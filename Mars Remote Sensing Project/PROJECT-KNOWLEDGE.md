@@ -2,7 +2,7 @@
 
 **Owner:** Logan Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `Z:\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md`
-**Started:** 2026-09-18 · **Last updated:** 2026-10-03 (**§32 added: the digitising map and layout 06 put the candidates and his empty classes in Pro; basin layout 07; the classification smoothed 5 × 5, chosen by feature size**; earlier the same day, **§31 added: the fix. A corrected ±60° stack, a reclassification scored on held-out labels, every Mars map clipped to ±60°, a new map and layouts in the project**; 2026-10-02: **§30 added — his two SVM classifications checked against his own polygons, the IAU craters and the DEM: the 29 Sep map follows its 4096-px processing tiles and scores below chance on its own training data; the 30 Sep map is mostly elevation**; earlier the same day, **§29.2 and §11 q23 — the two class schemas number lava tube and steep/windy hills the other way round; every labelled file follows the older one**; 2026-10-01: **§29 added — his own work in the Pro GUI, 2026-09-24 to 10-01, read from the logs and the gdb: hand training labels in four classes, a ±60° segmentation, two SVM classifications, the first two successful global Composite Bands runs, a deep-learning export — and `Landform_TrainingSamples_terrain` now holds HIS labels, which `make_typearea_supervised.py` would delete; §6, §8, §11, §13.2, §17.2, §27 reconciled**; 2026-09-19: **§28 added — the derived products move off the type area onto the mosaics' own grid; `build\grid60.py` is now the single definition of the ±60° extent, and the diurnal-contrast index exists at 15.2 bn px**; **§24 added — the day–night pair worked properly; calibrated thermal inertia is NOT derivable from the held 8-bit products, and the relative diurnal-contrast index that replaces it**; **§25 added — task 11 seeded with inferred channel candidates, and `Fill` caught flooding Ius Chasma 2,077 m deep**; earlier on 2026-09-18, a re-verification pass — most `[E]` items
+**Started:** 2026-09-18 · **Last updated:** 2026-10-06 (**§35 added: the project is backed up to a public GitHub repo, `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`, which is also its project page; §2.5's "no backup" is superseded**; 2026-10-03: **§32 added: the digitising map and layout 06 put the candidates and his empty classes in Pro; basin layout 07; the classification smoothed 5 × 5, chosen by feature size**; earlier the same day, **§31 added: the fix. A corrected ±60° stack, a reclassification scored on held-out labels, every Mars map clipped to ±60°, a new map and layouts in the project**; 2026-10-02: **§30 added — his two SVM classifications checked against his own polygons, the IAU craters and the DEM: the 29 Sep map follows its 4096-px processing tiles and scores below chance on its own training data; the 30 Sep map is mostly elevation**; earlier the same day, **§29.2 and §11 q23 — the two class schemas number lava tube and steep/windy hills the other way round; every labelled file follows the older one**; 2026-10-01: **§29 added — his own work in the Pro GUI, 2026-09-24 to 10-01, read from the logs and the gdb: hand training labels in four classes, a ±60° segmentation, two SVM classifications, the first two successful global Composite Bands runs, a deep-learning export — and `Landform_TrainingSamples_terrain` now holds HIS labels, which `make_typearea_supervised.py` would delete; §6, §8, §11, §13.2, §17.2, §27 reconciled**; 2026-09-19: **§28 added — the derived products move off the type area onto the mosaics' own grid; `build\grid60.py` is now the single definition of the ±60° extent, and the diurnal-contrast index exists at 15.2 bn px**; **§24 added — the day–night pair worked properly; calibrated thermal inertia is NOT derivable from the held 8-bit products, and the relative diurnal-contrast index that replaces it**; **§25 added — task 11 seeded with inferred channel candidates, and `Fill` caught flooding Ius Chasma 2,077 m deep**; earlier on 2026-09-18, a re-verification pass — most `[E]` items
 promoted to `[V]`; Composite Bands attempt count corrected from three to four; laptop-vs-desktop
 constraint added as §2.1; **final-deliverable date answered — 8 December 2026**; `Z:`
 confirmed as the project's single home, §2.5; **§13 added — verified headless
@@ -259,6 +259,10 @@ the working copy and the transport between machines, all at once.
 > **Decided 2026-09-18: `Z:` is the only copy. No backup for now.** **[V]** Raised once and
 > answered; it is his call and it is settled. Do not re-open it unasked — but do not pretend
 > the exposure isn't there either, because it changes what "careful" means when working here.
+>
+> **Superseded 2026-10-06, at his request: the irreplaceable part is now backed up to GitHub**
+> (§35). The 112 MB below, the gdb's vectors and the small rasters are off the drive; the
+> 300+ GB of derivatives still are not. The care rules below still apply.
 
 **What that decision actually risks is asymmetric, and worth knowing before acting:**
 
@@ -3225,3 +3229,44 @@ Jezero HiRISE file missing from the drive). Clearing them is still q5, his call.
 - Sheet 06's north arrow moved 0.3 in right, clear of the legend box.
 
 Both are in `polish_layouts.py` and in the builders' source. PNGs refreshed.
+
+---
+
+## 35. Backed up to GitHub, which is also the project page — 2026-10-06 **[V]**
+
+**At his request: a public repo named `Mars_Terrestrial_GlobalMosaic_GIS-Data` that backs up as
+much as it can and acts as the project page.** `https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`.
+This supersedes §2.5's "no backup" for the part that matters. `Z:` stays the working copy and the
+only home of the large derivatives.
+
+### 35.1 What went where **[V]**
+
+| | where | size |
+|---|---|---|
+| `Mars Remote Sensing Project\` (this file, `build\`, logs, figures, deliverables, the `.backup_*` folders) | repo, same folder name | ~100 MB |
+| `Mars Project\`: `.aprx`, `.atbx`, `.ecd`/`.ecs`, `GpMessages`, `ImportLog`, every sidecar, RAT, model and layout PNG in `Global60\` and `TypeArea\`, `LabeledObjects\` metadata | repo, same folder name | ~25 MB |
+| `Z:\` root: the globals' `.aux.xml`, the night mosaic's `.lbl`/`.md5`, his `new training` shapefile, the screenshot | repo, `drive-root\` | 14 MB |
+| The gdb's 19 feature classes (all but `Line`, `Point` and the `_2`/`_3` nomenclature duplicates), incl. his 512 labels and the empty `Landform_*` classes | repo, `exports\mars_project_vectors.gdb`; release, GeoPackage | 60 MB |
+| `TypeArea\` whole, Global60's classification maps + model + smoke rasters, the `.npy` caches, his two GUI SVM maps from the gdb | release `data-2026-10-06`, originals zipped byte for byte, `SHA256SUMS.txt` | ~4 GB |
+| The four source globals | **not copied**; the README links them. All four checked by HTTP HEAD 2026-10-06: byte-identical sizes at the USGS S3 bucket, the DEM under `mosaic/Mars/HRSC_MOLA_Blend/` | 62 GB |
+| Global60's derivatives, the gdb rasters, `.backups\`, DL chips, the five `*_ov400.npy` | **not backed up**; re-computable by `build\` | ~300 GB |
+
+Every feature class's row count was checked against the source after export (19/19). Re-encoding
+the rasters as DEFLATE GeoTIFFs only saved 8–35 %, so the release ships the original files. **[V]**
+
+### 35.2 Keeping it current
+
+Three scripts in `build\`, each finding the drive from its own path, so they work on `F:` too:
+
+- `build\github_sync.py --commit` (either Python, stdlib): mirrors what changed into the clone at
+  `~\OneDrive\Documents\GitHub\Mars_Terrestrial_GlobalMosaic_GIS-Data`, commits, pushes. Files over
+  95 MB are reported and skipped. Files deleted on the drive are removed from the mirror; git
+  history keeps them. **Only reads `Z:`.**
+- `build\github_export_gdb.py --rasters` (ArcGIS Python): re-exports the gdb vectors into the
+  repo's `exports\`, and the GeoPackage and the two GUI SVM maps to the release staging folder
+  (`%LOCALAPPDATA%\Temp\mars_github_dist`). **Run after digitising** — his edits live only in the gdb.
+- `build\github_release_bundle.py --upload data-YYYY-MM-DD`: zips the release groups (parts under
+  1.9 GB) and publishes them.
+
+The repo stores files byte-exact (`.gitattributes`: `* -text`). The clone is in OneDrive, so check
+for `*-DESKTOP-PJS73RO.*` conflict copies before committing; `.gitignore` excludes them.
