@@ -3239,6 +3239,11 @@ much as it can and acts as the project page.** `https://github.com/loggger101/Ma
 This supersedes §2.5's "no backup" for the part that matters. `Z:` stays the working copy and the
 only home of the large derivatives.
 
+**Licensing, his choice 2026-10-06:** code (`.py`, `.ps1`) under **MIT** (`LICENSE`); everything else
+of his (this file, documents, figures, layouts, the `.aprx`, vectors, release rasters) under
+**CC BY 4.0** (`LICENSE-CC-BY-4.0.txt`, the official legal code). The source mosaics and IAU
+nomenclature keep their producers' terms. The README's License section says so. **[V]**
+
 ### 35.1 What went where **[V]**
 
 | | where | size |
