@@ -7,9 +7,32 @@ An ArcGIS Pro project that co-registers Viking visible color, THEMIS day and nig
 
 The analysis extent is **±60° latitude** (86.6% of the surface), set by the coverage of the THEMIS night mosaic. The detail work is done in a type area at **Ius Chasma**, western Valles Marineris (~271–286°E, 6–13°S).
 
-This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 370 GB with all derived rasters). Everything here is the small part that can't be re-downloaded or cheaply re-computed: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters that matter go in a [GitHub release](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
+This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 370 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
+
+**Find your way around:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [build scripts](docs/scripts.md) (all 93, by purpose) · [vector layers](exports/README.md) (what each one is) · [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases) (the rasters)
 
 ![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
+
+## How it works
+
+```mermaid
+flowchart LR
+  V["Viking MDIM 2.1 color<br/>232 m, meridian 0°"] --> G
+  D["THEMIS day IR<br/>100 m, meridian 180°"] --> G
+  N["THEMIS night IR<br/>100 m, ±60° only"] --> G
+  E["HRSC/MOLA DEM<br/>200 m, geographic"] --> G
+  G["one ±60° grid, grid60.py<br/>100 m and 200 m, nested"] --> T["terrain<br/>slope °, aspect, hillshade, relief"]
+  G --> X["diurnal-contrast index<br/>day vs night"]
+  G --> S["7-band stack, 200 m<br/>Viking RGB, night, day, slope, relief"]
+  T --> S
+  L["512 hand-drawn labels"] --> M["support vector machine<br/>scored on held-out 15° blocks"]
+  S --> M --> C["±60° landform map, 400 m"]
+  T --> K["channel, crater and basin candidates<br/>flow routing, fill depth"]
+  X --> K
+  K --> H["hand digitising<br/>(open)"]
+```
+
+The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 
 ## Where it stands (2026-10-06)
 
@@ -36,7 +59,7 @@ The final deliverable is due **8 December 2026**. Presentation 1 and the prospec
 - **Channels**: `Fill` flooded Ius Chasma 2,077 m deep, and 56% of the stream cells in the first channel network were an artefact of it. Of the 2,610 candidates that remain, the 188 steep, rock-floored ones (1,037 km) are the ones worth digitising.
 - **Craters**: 1,685 closed-depression candidates ≥ 1 km, validated on Perrotin (−7.1% in diameter). The detector can't see breached craters such as Oudemans. At ±60°, 68% of the 117 IAU craters ≥ 100 km are recovered within ±50% in diameter.
 
-All of it, with every number tagged verified or open, is in [`PROJECT-KNOWLEDGE.md`](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
+The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.md`](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
 
 ## Layouts
 
@@ -48,7 +71,7 @@ All of it, with every number tagged verified or open, is in [`PROJECT-KNOWLEDGE.
 
 ## Source data
 
-Not in this repository: 58 GB, public, and still at these addresses at byte-identical sizes (checked 2026-10-06). Put them at the root of the project drive.
+Not in this repository: 62 GB, public, and still at these addresses at byte-identical sizes (checked 2026-10-06). Put them at the root of the project drive.
 
 | File | Size | Grid |
 |---|---|---|
@@ -80,6 +103,9 @@ Mars Project/
 exports/
   mars_project_vectors.gdb every feature class in Mars Project.gdb, including the 512 hand-drawn
                            training polygons, the candidate layers and the empty digitising classes
+  README.md                the layer catalog: rows, CRS, fields and what each layer is
+docs/
+  scripts.md               every build script by purpose, with the Python it needs
 drive-root/                source-raster sidecars; the "new training" shapefile
 ```
 
@@ -118,13 +144,13 @@ Run from `Mars Remote Sensing Project\build\` on the drive; each script finds th
 python github_sync.py --commit
 ```
 
-copies whatever changed into the clone, commits and pushes. Files over 95 MB are reported and skipped.
+copies whatever changed into the clone, regenerates `docs/scripts.md`, commits and pushes. Files over 95 MB are reported and skipped.
 
 ```bash
 "C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" github_export_gdb.py --rasters
 ```
 
-re-exports the geodatabase's vector layers into `exports/` (and the GeoPackage and the GUI SVM maps for the release). Run it after digitising.
+re-exports the geodatabase's vector layers into `exports/` and rewrites the layer catalog (and stages the GeoPackage and the GUI SVM maps for the release). Run it after digitising: a re-export rewrites every geodatabase file even when nothing changed, so it isn't worth running otherwise. `--catalog-only` rewrites just the catalog.
 
 ```bash
 python github_release_bundle.py --upload data-YYYY-MM-DD
