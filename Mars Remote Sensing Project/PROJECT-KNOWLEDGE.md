@@ -3249,7 +3249,7 @@ only home of the large derivatives.
 | The gdb's 19 feature classes (all but `Line`, `Point` and the `_2`/`_3` nomenclature duplicates), incl. his 512 labels and the empty `Landform_*` classes | repo, `exports\mars_project_vectors.gdb`; release, GeoPackage | 60 MB |
 | `TypeArea\` whole, Global60's classification maps + model + smoke rasters, the `.npy` caches, his two GUI SVM maps from the gdb | release `data-2026-10-06`, originals zipped byte for byte, `SHA256SUMS.txt` | ~4 GB |
 | The four source globals | **not copied**; the README links them. All four checked by HTTP HEAD 2026-10-06: byte-identical sizes at the USGS S3 bucket, the DEM under `mosaic/Mars/HRSC_MOLA_Blend/` | 62 GB |
-| Global60's derivatives, the gdb rasters, `.backups\`, DL chips, the five `*_ov400.npy` | **not backed up**; re-computable by `build\` | ~300 GB |
+| Global60's derivatives, the gdb rasters, `.backups\`, DL chips, the five `*_ov400.npy` | **not backed up** on 2026-10-06 at first; re-computable by `build\`. Most of it followed the same evening (§35.3) | ~300 GB |
 
 Every feature class's row count was checked against the source after export (19/19). Re-encoding
 the rasters as DEFLATE GeoTIFFs only saved 8–35 %, so the release ships the original files. **[V]**
@@ -3270,3 +3270,24 @@ Three scripts in `build\`, each finding the drive from its own path, so they wor
 
 The repo stores files byte-exact (`.gitattributes`: `* -text`). The clone is in OneDrive, so check
 for `*-DESKTOP-PJS73RO.*` conflict copies before committing; `.gitignore` excludes them.
+
+### 35.3 The large products followed, as a second release — 2026-10-06
+
+He asked to keep going. The first release uploaded at **~10 MB/s** (1.0 GB in 101 s, read from the
+asset timestamps), so the slow-to-recompute products fit in about two hours. **[V]**
+
+- `Mars Project\.backups\`, the 31 `.aprx` snapshots (2026-09-18 to 10-03, 11 MB), now go to the
+  repo: they are the project file's history from before git. `github_sync.py` no longer skips them.
+- `build\github_release_large.py derivatives-YYYY-MM-DD` (ArcGIS Python) publishes release
+  `derivatives-2026-10-06`: the seven ±60° derivatives (`global60_svm_stack_200m`,
+  `_thermal_contrast`, `_thermal_contrast_200m`, `_dem`, `_slope_deg`, `_aspect`, `_hillshade`; 67.6 GB)
+  as their original bytes cut into 1.9 GB `.partNNN` pieces, their sidecars, both `LabeledObjects`
+  exports, and his ±60° segmentation `Segmented_202609290011302066080` out of the gdb. One
+  `SHA256SUMS` hashes every piece and every reassembled file. Resumable; stages one piece at a time;
+  keeps the machine awake. Log: `build\logs\github_release_large.log`.
+- **Still not backed up:** the `.ovr` pyramids (~22 GB, Build Pyramids re-creates them) and the
+  other gdb rasters. Most are what §7 and §29–30 find defective and superseded: the percent-rise
+  slopes, `HillSha_Mars1`, `Surface_Mars1`, and the global composites `CompositeBand` and
+  `Mars_MO_THEMIS_CompositeBand`. Two are neither: the undocumented 8 Sep segmentation (§7) and the
+  Mercury Iso Cluster rehearsal, which is not Mars. His two SVM maps are in the first release.
+  Say so if any of these should go too. **[V]**

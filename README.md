@@ -66,15 +66,16 @@ The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   92 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   93 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
     pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)
   OLD/                     prospectus and Presentation 1 (delivered)
 Mars Project/
   Mars Project.aprx        the ArcGIS Pro project: 19 maps, 7 layouts
+  .backups/                31 earlier copies of the .aprx, 2026-09-18 to 10-03
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
-  LabeledObjects/          deep-learning export metadata (the image chips are not here)
+  LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs
 exports/
   mars_project_vectors.gdb every feature class in Mars Project.gdb, including the 512 hand-drawn
@@ -82,7 +83,9 @@ exports/
 drive-root/                source-raster sidecars; the "new training" shapefile
 ```
 
-### In the release, not the tree
+### In the releases, not the tree
+
+[`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06), about 4.3 GB:
 
 | Asset | What |
 |---|---|
@@ -93,7 +96,19 @@ drive-root/                source-raster sidecars; the "new training" shapefile
 | `npy-caches.zip` | decimated arrays of the globals that the figures are drawn from |
 | `SHA256SUMS.txt` | checksums |
 
-Not backed up anywhere but the drive: the ±60° terrain and thermal derivatives (85 GB), the geodatabase rasters (200+ GB) and the deep-learning chips (6 GB). The scripts in `build/` re-create them from the source data (the large runs belong on the desktop).
+[`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06), about 75 GB: the products that take hours to rebuild.
+
+| Asset | What |
+|---|---|
+| `global60_*.tif.partNNN` | the ±60° derivatives, original bytes cut into 1.9 GB pieces: the 7-band classification stack, the diurnal-contrast index (100 m and 200 m), DEM, slope in degrees, aspect, hillshade |
+| `global60-sidecars.zip` | their statistics and lineage (`.aux.xml`, `.xml`) |
+| `labeledobjects-part*.zip` | both deep-learning exports: the 1 October one from Pro and the ±60° re-export |
+| `Segmented_202609290011302066080.tif*` | the ±60° mean-shift segmentation made in Pro on 29 September |
+| `SHA256SUMS-derivatives-2026-10-06.txt` | checksums of every piece and of every reassembled file |
+
+Rejoin a split file before use: `cat global60_dem.tif.part* > global60_dem.tif` (or `copy /b a.part001+a.part002 a` in `cmd`), then check it against the sums.
+
+Not backed up anywhere but the drive: the `.ovr` pyramids (Build Pyramids re-creates them) and the other geodatabase rasters, mostly legacy products the knowledge base finds defective and superseded (percent-rise slopes on a degree grid, a global composite mixing raw elevation with 8-bit bands).
 
 ## Keeping it current
 
@@ -117,11 +132,17 @@ python github_release_bundle.py --upload data-YYYY-MM-DD
 
 zips the rasters and publishes them as a new release.
 
+```bash
+"C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" github_release_large.py derivatives-YYYY-MM-DD
+```
+
+does the same for the large products: about two hours at 10 MB/s, resumable, and it stages one 1.9 GB piece at a time.
+
 ## Restoring
 
 1. Download the four source rasters to the drive root.
 2. Copy `Mars Remote Sensing Project/`, `Mars Project/` and the contents of `drive-root/` onto the drive.
-3. Unzip the release's `typearea-part*.zip` and `global60-classification.zip` into `Mars Project/`, and `npy-caches.zip` into `Mars Remote Sensing Project/`.
+3. Unzip `typearea-part*.zip`, `global60-classification.zip`, `global60-sidecars.zip` and `labeledobjects-part*.zip` into `Mars Project/`, and `npy-caches.zip` into `Mars Remote Sensing Project/`. Rejoin the `global60_*.tif.part*` pieces into `Mars Project/Global60/`.
 4. Create `Mars Project/Mars Project.gdb` in Pro and copy the feature classes from `exports/mars_project_vectors.gdb` into it.
 5. Re-create the directory junctions `Z:\TypeArea` and `Z:\Global60`, which the legacy Spatial Analyst tools need (they reject the space in "Mars Project").
 

@@ -14,7 +14,8 @@ the desktop alike. Z: is only ever READ.
 What goes to the repo, mirrored under the same folder names as on the drive:
   Mars Remote Sensing Project\  everything except .npy caches and __pycache__
   Mars Project\                 the .aprx, models, logs, metadata sidecars, layouts: every file
-                                except raster payloads (.tif/.ovr), the gdb, .backups and DL chips
+                                except raster payloads (.tif/.ovr), the gdb and DL chips; .backups (the
+                                .aprx snapshots from before git) included
   <drive root>\  -> drive-root\ sidecars of the four globals and his "new training" shapefile
 Any single file over 95 MB is skipped and reported (GitHub refuses files over 100 MB).
 
@@ -38,7 +39,7 @@ REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
 DRY = "--dry-run" in sys.argv
 MAX = 95 * 1000 * 1000
 
-SKIP_DIRS = {"__pycache__", ".git", "Mars Project.gdb", ".backups", "Index", "images", "labels",
+SKIP_DIRS = {"__pycache__", ".git", "Mars Project.gdb", "Index", "images", "labels",
              "System Volume Information", "$RECYCLE.BIN"}
 SKIP_DIR_SUFFIX = (".crf", ".gdb")
 RASTER = {".tif", ".tiff", ".ovr", ".img", ".jp2"}
