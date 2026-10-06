@@ -3265,6 +3265,14 @@ Three scripts in `build\`, each finding the drive from its own path, so they wor
 - `build\github_export_gdb.py --rasters` (ArcGIS Python): re-exports the gdb vectors into the
   repo's `exports\`, and the GeoPackage and the two GUI SVM maps to the release staging folder
   (`%LOCALAPPDATA%\Temp\mars_github_dist`). **Run after digitising** — his edits live only in the gdb.
+  It also writes the layer catalog, `exports\README.md`. **A re-export rewrites every gdb file
+  (new internal UUIDs) even when no feature changed**, ~60 MB of history per run, so run it only
+  when layers have changed; `--catalog-only` rewrites just the catalog. It builds in staging and
+  refills the repo's `.gdb` folder file by file: deleting that folder failed with *Access is
+  denied* because OneDrive held it (2026-10-06). **[V]**
+- `github_sync.py` also regenerates `docs\scripts.md` in the repo: every build script grouped by
+  purpose, with its docstring's first line and the interpreter it needs, followed through local
+  imports (`le_theme` → `pptx` makes every deck builder "system").
 - `build\github_release_bundle.py --upload data-YYYY-MM-DD`: zips the release groups (parts under
   1.9 GB) and publishes them.
 
