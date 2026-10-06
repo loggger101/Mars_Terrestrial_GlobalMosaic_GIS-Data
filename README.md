@@ -15,22 +15,7 @@ This repository is the project page and an off-drive backup of the project. The 
 
 ## How it works
 
-```mermaid
-flowchart LR
-  V["Viking MDIM 2.1 color<br/>232 m, meridian 0°"] --> G
-  D["THEMIS day IR<br/>100 m, meridian 180°"] --> G
-  N["THEMIS night IR<br/>100 m, ±60° only"] --> G
-  E["HRSC/MOLA DEM<br/>200 m, geographic"] --> G
-  G["one ±60° grid, grid60.py<br/>100 m and 200 m, nested"] --> T["terrain<br/>slope °, aspect, hillshade, relief"]
-  G --> X["diurnal-contrast index<br/>day vs night"]
-  G --> S["7-band stack, 200 m<br/>Viking RGB, night, day, slope, relief"]
-  T --> S
-  L["512 hand-drawn labels"] --> M["support vector machine<br/>scored on held-out 15° blocks"]
-  S --> M --> C["±60° landform map, 400 m"]
-  T --> K["channel, crater and basin candidates<br/>flow routing, fill depth"]
-  X --> K
-  K --> H["hand digitising<br/>(open)"]
-```
+![Pipeline: four sources in three frames, one ±60° grid, the products, the classifier and the candidates](docs/pipeline.svg)
 
 The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 
