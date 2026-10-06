@@ -1,0 +1,125 @@
+{
+  "ImageHeight" : 256,
+  "ImageWidth" : 256,
+  "MetaDataMode" : "PASCAL_VOC_rectangles",
+  "BlackenAroundFeature" : false,
+  "IsMultidimensional" : false,
+  "CropTileMode" : "Fixed_Size",
+  "ImageSpaceUsed" : "MAP_SPACE",
+  "MinCellSize" : {
+    "x" : 200,
+    "y" : 200,
+    "spatialReference" : {
+      "wkt" : "PROJCS[\"Mars_Equidistant_Cylindrical_CM180\",GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_Sphere_IAU_IAG\",3396190.0,0.0]],PRIMEM[\"Reference_Meridian\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Equidistant_Cylindrical\"],PARAMETER[\"False_Easting\",0.0],PARAMETER[\"False_Northing\",0.0],PARAMETER[\"Central_Meridian\",180.0],PARAMETER[\"Standard_Parallel_1\",0.0],UNIT[\"Meter\",1.0]]"
+    }
+  },
+  "MaxCellSize" : {
+    "x" : 200,
+    "y" : 200,
+    "spatialReference" : {
+      "wkt" : "PROJCS[\"Mars_Equidistant_Cylindrical_CM180\",GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_Sphere_IAU_IAG\",3396190.0,0.0]],PRIMEM[\"Reference_Meridian\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Equidistant_Cylindrical\"],PARAMETER[\"False_Easting\",0.0],PARAMETER[\"False_Northing\",0.0],PARAMETER[\"Central_Meridian\",180.0],PARAMETER[\"Standard_Parallel_1\",0.0],UNIT[\"Meter\",1.0]]"
+    }
+  },
+  "Classes" : [
+    {
+      "Value" : 1,
+      "Name" : "Crater",
+      "Color" : [
+        255,
+        0,
+        0
+      ]
+    },
+    {
+      "Value" : 2,
+      "Name" : "steep/windy hills",
+      "Color" : [
+        28,
+        119,
+        85
+      ]
+    },
+    {
+      "Value" : 3,
+      "Name" : "lava tube",
+      "Color" : [
+        158,
+        25,
+        147
+      ]
+    },
+    {
+      "Value" : 4,
+      "Name" : "Normal Ground",
+      "Color" : [
+        81,
+        51,
+        13
+      ]
+    }
+  ],
+  "InputRastersProps" : {
+    "RasterCount" : 1,
+    "SensorName" : "MultiSpectral",
+    "BandNames" : [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "AllTilesStats" : [
+    {
+      "BandName" : "",
+      "Min" : 1,
+      "Max" : 255,
+      "Mean" : 136.59340986554247,
+      "StdDev" : 51.920727512606177
+    },
+    {
+      "BandName" : "",
+      "Min" : 1,
+      "Max" : 255,
+      "Mean" : 102.25141188413613,
+      "StdDev" : 40.161276857827893
+    },
+    {
+      "BandName" : "",
+      "Min" : 1,
+      "Max" : 255,
+      "Mean" : 91.124466219447896,
+      "StdDev" : 37.258896202741084
+    },
+    {
+      "BandName" : "",
+      "Min" : 1,
+      "Max" : 255,
+      "Mean" : 104.56132881969913,
+      "StdDev" : 45.188615914452456
+    },
+    {
+      "BandName" : "",
+      "Min" : 1,
+      "Max" : 255,
+      "Mean" : 125.52112173233792,
+      "StdDev" : 40.532276676969374
+    },
+    {
+      "BandName" : "",
+      "Min" : 1,
+      "Max" : 255,
+      "Mean" : 36.976446293283509,
+      "StdDev" : 56.236028607645487
+    },
+    {
+      "BandName" : "",
+      "Min" : 1,
+      "Max" : 255,
+      "Mean" : 38.699528025735283,
+      "StdDev" : 57.848814456062321
+    }
+  ]
+}

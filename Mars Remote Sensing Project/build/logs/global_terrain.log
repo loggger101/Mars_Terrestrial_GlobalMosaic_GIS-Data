@@ -1,0 +1,19 @@
+==============================================================================
+TERRAIN DERIVATIVES OVER +/-60  (task 4 at analysis-extent scale)
+==============================================================================
+  <Grid G200 106694 x 35565 @ 200 m  X -10669400..10669400  Y -3556500..3556500  lat -60.000..+60.000  3.795 Gpx>
+
+1. the DEM on the target grid
+  warping HRSC/MOLA -> G200 (nearest: the grids coincide to 0.005 px)
+    8:53:32  106694 x 35565  3.21 GB
+
+2. derivatives (gdaldem, Horn, z-factor 1 on a metric grid)
+  global60_slope_deg.tif     0:08:44  7.04 GB   min    0.000  max   52.698  mean    2.186  sd   3.457
+  global60_aspect.tif        0:09:54  8.03 GB   min    0.000  max  359.944  mean  177.157  sd 106.896
+  global60_hillshade.tif     0:02:49  1.30 GB   min    1.000  max  255.000  mean  180.055  sd   9.099
+
+3. label the CRS for ArcGIS
+  CRS relabelled -> Mars_Equidistant_Cylindrical_CM180
+
+done in 9:15:10
+outputs in Z:\Mars Project\Global60

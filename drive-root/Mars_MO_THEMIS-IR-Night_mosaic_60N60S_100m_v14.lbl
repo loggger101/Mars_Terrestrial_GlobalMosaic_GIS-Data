@@ -1,0 +1,59 @@
+Object = IsisCube
+  Object = Core
+    StartByte = 1138870
+    Format    = BandSequential
+
+    Group = Dimensions
+      Samples = 213388
+      Lines   = 71130
+      Bands   = 1
+    End_Group
+
+    Group = Pixels
+      Type       = UnsignedByte
+      ByteOrder  = Lsb
+      Base       = 0.0
+      Multiplier = 1.0
+    End_Group
+    ^Core     = Mars_MO_THEMIS-IR-Night_mosaic_60N60S_100m_v14.tif
+  End_Object
+
+  Group = Archive
+    DataSetId               = "THEMIS IR Night Mosaic"
+    ProducerInstitutionName = "Arizona State University"
+    ProducerId              = ASU
+    ProducerFullName        = "Mars Space Flight Facility"
+    ProductId               = thm_night_ir_v14
+    ProductVersionId        = 14
+    InstrumentHostName      = "Mars Odyssey"
+    InstrumentName          = "Thermal Emission Imaging System"
+    InstrumentId            = THEMIS
+    TargetName              = Mars
+  End_Group
+
+  Group = Mapping
+    ProjectionName     = SimpleCylindrical
+    CenterLongitude    = 180.0
+    TargetName         = Mars
+    EquatorialRadius   = 3396190.0 <meters>
+    PolarRadius        = 3376200.0 <meters>
+    LatitudeType       = Planetocentric
+    LongitudeDirection = PositiveEast
+    LongitudeDomain    = 360
+    MinimumLatitude    = -60.0003060000000019
+    MaximumLatitude    = 60.0003060000000019
+    MinimumLongitude   = 0.000769000000000000044
+    MaximumLongitude   = 359.999231000000009
+    UpperLeftCornerX   = -10669400.0
+    UpperLeftCornerY   = 3556500.0
+    PixelResolution    = 100.0 <meters/pixel>
+    Scale              = 592.746999999999957 <pixel/degree>
+    CenterLatitude     = 0.0
+  End_Group
+End_Object
+
+Object = Label
+  Bytes = 1695             
+End_Object
+
+End

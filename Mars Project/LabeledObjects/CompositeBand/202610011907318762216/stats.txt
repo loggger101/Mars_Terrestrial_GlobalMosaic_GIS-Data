@@ -1,0 +1,11 @@
+images = 4507 *7*256*256
+
+Class feature statistics:
+features = 6808
+features per image = [min = 1, mean = 1.51, max = 16]
+classes = 4
+cls name                                  cls value     images   features    min size   mean size    max size
+Crater                                            1       2094       3152      520.11   692065149.13   3513489766.47
+steep/windy hills                                 2        300        539     3280.43   354869528.05   2290818969.07
+lava tube                                         3        210        426        1.22   224118771.18   3513489766.47
+Normal Ground                                     4       1998       2691       89.78   1406752449.39   3513489766.47

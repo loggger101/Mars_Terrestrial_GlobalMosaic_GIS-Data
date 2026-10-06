@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en"><Esri><CreaDate>20260919</CreaDate><CreaTime>01084500</CreaTime><ArcGISFormat>1.0</ArcGISFormat><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Spatial Analyst Tools.tbx\StreamOrder" Date="20260919" Time="010845">StreamOrder Z:\TypeArea\ius_streams.tif Z:\TypeArea\ius_fdr.tif Z:\TypeArea\StreamO_ius_str1.tif STRAHLER</Process></lineage></DataProperties></Esri></metadata>

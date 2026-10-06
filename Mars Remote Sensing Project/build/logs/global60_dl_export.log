@@ -1,0 +1,13 @@
+exported in 628 s -> Z:\Mars Project\LabeledObjects\global60_svm_stack_200m
+images = 5480 *7*256*256
+
+Class feature statistics:
+features = 7884
+features per image = [min = 1, mean = 1.44, max = 15]
+classes = 4
+cls name                                  cls value     images   features    min size   mean size    max size
+Crater                                            1       2557       3575      550.57   610178839.18   2621440000.00
+steep/windy hills                                 2        354        610     3930.57   313578573.45   1881881498.54
+lava tube                                         3        245        458        1.22   208459817.74   2621440000.00
+Normal Ground                                     4       2427       3241        7.23   1129554456.32   2621440000.00
+

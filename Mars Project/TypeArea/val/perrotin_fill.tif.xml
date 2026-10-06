@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en"><Esri><CreaDate>20260919</CreaDate><CreaTime>01391000</CreaTime><ArcGISFormat>1.0</ArcGISFormat><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Spatial Analyst Tools.tbx\Fill" Date="20260919" Time="013910">Fill Z:\TypeArea\val\perrotin_dem.tif Z:\TypeArea\val\Fill_perrotin_d1.tif #</Process></lineage></DataProperties></Esri></metadata>

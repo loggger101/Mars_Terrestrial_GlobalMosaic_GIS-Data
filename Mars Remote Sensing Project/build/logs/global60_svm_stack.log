@@ -1,0 +1,32 @@
+1. Viking onto G200
+  reusing C:\Users\Loggg\AppData\Local\Temp\mars_scratch\viking_g200.tif
+2. stretch limits over ±60°
+  viking_red   p1    44.00  p99   189.00   (2926464 samples)
+  viking_green p1    27.00  p99   191.00   (2926464 samples)
+  viking_blue  p1    25.00  p99   205.00   (2926464 samples)
+  night_ir     p1    60.00  p99   217.00   (2826322 samples)
+  day_ir       p1    26.00  p99   229.00   (2926444 samples)
+  slope_deg    p1     0.00  p99    17.79   (2926448 samples)
+  relief_m     p1     2.00  p99   558.00   (2926304 samples)
+  124 s
+3. streaming 512-row strips -> Z:\Mars Project\Global60\global60_svm_stack_200m.tif
+   strip  1/70  valid 90.3%  0:02:46
+   strip  6/70  valid 98.8%  0:06:46
+   strip 11/70  valid 99.9%  0:11:11
+   strip 16/70  valid 100.0%  0:15:55
+   strip 21/70  valid 100.0%  0:20:31
+   strip 26/70  valid 100.0%  0:24:50
+   strip 31/70  valid 100.0%  0:29:23
+   strip 36/70  valid 100.0%  0:34:00
+   strip 41/70  valid 100.0%  0:38:40
+   strip 46/70  valid 100.0%  0:43:22
+   strip 51/70  valid 100.0%  1:16:55
+   strip 56/70  valid 99.8%  1:21:32
+   strip 61/70  valid 95.0%  1:26:02
+   strip 66/70  valid 83.4%  1:30:22
+   strip 70/70  valid 73.6%  1:33:12
+   co-valid 97.33% of G200
+4. overviews
+   3:52:20
+5. ArcGIS label + statistics
+done in 5:26:13

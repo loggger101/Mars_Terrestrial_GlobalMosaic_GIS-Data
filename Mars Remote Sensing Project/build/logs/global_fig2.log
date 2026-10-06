@@ -1,0 +1,13 @@
+1. read at display size
+   viking read 10.5 s  (867, 2600)
+   index (867, 2600)  viking (867, 2600)
+2. the measurement
+   Arabia Terra   dusty   viking  121.6 DN   index +0.0598
+   Amazonis       dusty   viking  124.8 DN   index +0.0578
+   Tharsis dust   dusty   viking  143.5 DN   index +0.0577
+   Syrtis Major   rocky   viking   67.0 DN   index +0.0632
+   Acidalia       rocky   viking   84.1 DN   index +0.0597
+   viking separation +54.40 DN      index separation -0.0030
+3. draw
+   Z:\Mars Remote Sensing Project\build\pres1_img\global60_thermal.png  1.9 MB
+done in 0.2 min

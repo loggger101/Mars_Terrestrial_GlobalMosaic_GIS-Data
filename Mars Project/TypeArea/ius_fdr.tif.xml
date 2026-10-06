@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en"><Esri><CreaDate>20260919</CreaDate><CreaTime>01003100</CreaTime><ArcGISFormat>1.0</ArcGISFormat><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Spatial Analyst Tools.tbx\FlowDirection" Date="20260919" Time="010031">FlowDirection Z:\TypeArea\ius_fill.tif Z:\TypeArea\FlowDir_ius_fil1.tif NORMAL # D8 PLANAR</Process></lineage></DataProperties></Esri></metadata>

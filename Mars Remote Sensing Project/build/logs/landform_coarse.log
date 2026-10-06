@@ -1,0 +1,29 @@
+==============================================================================
+CRATER + CHANNEL CANDIDATES OVER +/-60  (tasks 11 + 12, tiled)
+==============================================================================
+  <Grid G200 106694 x 35565 @ 200 m  X -10669400..10669400  Y -3556500..3556500  lat -60.000..+60.000  3.795 Gpx>
+  tiles       70 cores of 8192 px + 1024 px halo  (1638 km core, 205 km halo)
+  stream thr  1250 cells = 50 km2
+  scratch     C:\MarsScratch\global60  (internal SSD, KB 2.2)
+  [    0.0s] thermal index at 200 m  (reused)
+  [    0.0s] coarse pass: 13336 x 4445 @ 1600 m, one Fill over the whole extent
+  [   48.3s] coarse: 217,622 depressions, 5144 basins >= 20 km  0:00:48
+
+  5144 basins >= 20 km over the whole extent
+  largest:
+      2697.1 km  at   71.94E -40.97  depth   7857 m
+      2093.2 km  at  113.48E +44.45  depth   2001 m
+      1027.5 km  at  279.95E -23.91  depth   2101 m
+      1026.2 km  at   87.57E +12.46  depth   1413 m
+       401.2 km  at   16.75E  -2.24  depth   1507 m
+       378.7 km  at   60.99E +21.22  depth   2618 m
+       378.4 km  at   56.50E -14.51  depth   2015 m
+       347.6 km  at   31.58E +23.84  depth   1537 m
+       345.5 km  at  252.88E -13.90  depth   2600 m
+       289.0 km  at   35.96E +13.31  depth   2115 m
+       288.6 km  at  129.83E -14.58  depth   1884 m
+       282.0 km  at  250.27E -53.28  depth   1118 m
+       274.7 km  at   17.69E +23.32  depth   1226 m
+       262.4 km  at  141.24E -46.77  depth   1961 m
+       260.7 km  at  329.12E -50.72  depth   2975 m
+done in 0:00:48

@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+# OneDrive conflict copies
+*-DESKTOP-PJS73RO.*

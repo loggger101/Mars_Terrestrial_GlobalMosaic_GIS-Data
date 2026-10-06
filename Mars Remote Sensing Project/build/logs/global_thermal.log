@@ -1,0 +1,40 @@
+==============================================================================
+DIURNAL-CONTRAST INDEX OVER +/-60  (KB 24 at analysis-extent scale)
+==============================================================================
+  <Grid G100 213388 x 71130 @ 100 m  X -10669400..10669400  Y -3556500..3556500  lat -60.000..+60.000  15.178 Gpx>
+  day window  xoff=1 yoff=17783  (integer - no resampling)
+
+1. stretch, computed over +/-60 rather than over the type area
+  sampled 400 rows x 26674 px  -> 10,669,600 samples, 10,383,174 co-valid (97.32%)  13.8s
+  day    mean 125.80 sd 35.20   p2=43 p98=209
+  night  mean 124.59 sd 32.80   p2=63 p98=203
+
+2. streaming 512-row strips
+    strip   1/139  row      0    0.7%     0.5 min elapsed,   70.3 min projected  (16.3s/strip)
+    strip  11/139  row   5120    7.9%     3.5 min elapsed,   43.8 min projected  (177.6s/strip)
+    strip  21/139  row  10240   15.1%     6.0 min elapsed,   39.4 min projected  (149.7s/strip)
+    strip  31/139  row  15360   22.3%     8.9 min elapsed,   39.8 min projected  (174.7s/strip)
+    strip  41/139  row  20480   29.5%    11.5 min elapsed,   39.1 min projected  (160.0s/strip)
+    strip  51/139  row  25600   36.7%    14.3 min elapsed,   38.9 min projected  (164.9s/strip)
+    strip  61/139  row  30720   43.9%    17.0 min elapsed,   38.8 min projected  (165.2s/strip)
+    strip  71/139  row  35840   51.1%    19.6 min elapsed,   38.3 min projected  (152.7s/strip)
+    strip  81/139  row  40960   58.3%    21.7 min elapsed,   37.2 min projected  (126.7s/strip)
+    strip  91/139  row  46080   65.5%    24.3 min elapsed,   37.1 min projected  (157.0s/strip)
+    strip 101/139  row  51200   72.7%    26.9 min elapsed,   37.1 min projected  (158.2s/strip)
+    strip 111/139  row  56320   79.9%    29.6 min elapsed,   37.1 min projected  (160.0s/strip)
+    strip 121/139  row  61440   87.1%    32.2 min elapsed,   37.0 min projected  (156.8s/strip)
+    strip 131/139  row  66560   94.3%    34.6 min elapsed,   36.7 min projected  (140.8s/strip)
+    strip 139/139  row  70656  100.0%    36.3 min elapsed,   36.3 min projected  (102.4s/strip)
+
+3. result
+  Z:\Mars Project\Global60\global60_thermal_contrast.tif
+  25.57 GB on disk  (30.4 GB uncompressed -> 1.19x)
+  co-valid 14,776,942,885 / 15,178,288,440 = 97.36%
+  index  mean +0.0597  sd 0.2905
+         p2 -0.613  p25 -0.114  p50 +0.075  p75 +0.250  p98 +0.626
+
+  Ius type area for comparison (KB 24.2): mean +0.0757
+  The two are on DIFFERENT stretches and are not comparable - this
+  one is scaled over +/-60, that one over the type area.
+
+done in 36.3 min
