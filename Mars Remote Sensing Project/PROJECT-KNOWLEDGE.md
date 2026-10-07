@@ -3275,6 +3275,13 @@ Three scripts in `build\`, each finding the drive from its own path, so they wor
   when layers have changed; `--catalog-only` rewrites just the catalog. It builds in staging and
   refills the repo's `.gdb` folder file by file: deleting that folder failed with *Access is
   denied* because OneDrive held it (2026-10-06). **[V]**
+- **Repo-only files** (not on `Z:`, so the mirror leaves them alone): `restore.py` rebuilds the drive
+  from a clone and both releases (verify, unzip, rejoin split rasters, never overwrite without
+  `--force`); **tested 2026-10-07: the 2-piece `global60_dem.tif` came back byte-identical, 3.2 GB in
+  352 s** **[V]**. `tools\check_repo.py` (page links, Python syntax, file sizes, `CITATION.cff`) runs
+  in GitHub Actions on every push; each check failed on a planted defect first. `CITATION.cff`
+  gives the name as **Logan M Edwards**, his standard since 2026-10-07 (his own commit to the
+  LICENSE and README).
 - `github_sync.py` also regenerates `docs\scripts.md` in the repo: every build script grouped by
   purpose, with its docstring's first line and the interpreter it needs, followed through local
   imports (`le_theme` → `pptx` makes every deck builder "system").
