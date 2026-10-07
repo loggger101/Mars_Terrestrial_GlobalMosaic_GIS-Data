@@ -1,9 +1,9 @@
 {
  "rat": {
-  "0": "Crater",
-  "1": "steep/windy hills",
-  "2": "lava tube",
-  "3": "Normal Ground"
+  "1": "Crater",
+  "2": "steep/windy hills",
+  "3": "lava tube",
+  "4": "Normal Ground"
  },
  "share_area_weighted": {
   "Crater": 0.343,

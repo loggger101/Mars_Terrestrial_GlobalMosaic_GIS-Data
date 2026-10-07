@@ -21,8 +21,17 @@ from make_global60_classification import OUT as SRC
 
 gdal.UseExceptions()
 N = int(sys.argv[sys.argv.index("--size") + 1]) if "--size" in sys.argv else 3
-DST = SRC.replace(".tif", "_mode%d.tif" % N)
+DST = (sys.argv[sys.argv.index("--out") + 1] if "--out" in sys.argv
+       else SRC.replace(".tif", "_mode%d.tif" % N))
 STRIP, H = 1024, N // 2
+
+
+def class_values(band):
+    """The pixel values that are classes, from the attribute table: 1..4 since the recode (KB §36).
+    Read, not assumed, so the filter is right for either encoding."""
+    rat = band.GetDefaultRAT()
+    col = next(i for i in range(rat.GetColumnCount()) if rat.GetNameOfCol(i).lower() == "value")
+    return np.array(sorted(rat.GetValueAsInt(r, col) for r in range(rat.GetRowCount())), np.uint8)
 
 
 def main():
@@ -36,16 +45,19 @@ def main():
     ds.SetGeoTransform(src.GetGeoTransform()); ds.SetProjection(src.GetProjection())
     ob = ds.GetRasterBand(1); ob.SetNoDataValue(255)
     ob.SetRasterColorTable(b.GetRasterColorTable())
+    codes = class_values(b)
+    slot = np.zeros(256, np.int64)                             # pixel value -> its row in votes
+    slot[codes] = np.arange(len(codes))
     changed = valid = 0
     for y0 in range(0, Ht, STRIP):
         h = min(STRIP, Ht - y0)
         a0, a1 = max(0, y0 - H), min(Ht, y0 + h + H)
         a = b.ReadAsArray(0, a0, W, a1 - a0)
         votes = np.stack([ndimage.uniform_filter((a == k).astype(np.float32), size=N, mode="wrap")
-                          for k in range(4)])
-        best = votes.argmax(0).astype(np.uint8)
+                          for k in codes])
+        best = codes[votes.argmax(0)]
         top = votes.max(0)
-        mine = np.take_along_axis(votes, np.minimum(a, 3)[None].astype(np.int64), 0)[0]
+        mine = np.take_along_axis(votes, slot[a][None], 0)[0]
         out = np.where(mine >= top, a, best)                 # a tie keeps the original class
         out[a == 255] = 255
         out = out[y0 - a0:y0 - a0 + h]

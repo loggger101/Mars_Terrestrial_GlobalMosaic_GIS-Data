@@ -22,8 +22,8 @@ REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
 URL = "https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/"
 DATA, DERIV = "data-2026-10-06", "derivatives-2026-10-06"
 
-LANDFORM_VALUES = ("pixel 0 Crater, 1 steep/windy hills, 2 lava tube, 3 Normal Ground (class codes 1–4 "
-                   "in the attribute table), 255 no class")
+LANDFORM_VALUES = ("Pixel value = class code: 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, "
+                   "255 no class (recoded from ClassifyRaster's 0–3 on 2026-10-07, KB §36)")
 G60 = {
     "global60_svm_stack_200m.tif": "The classification stack, KB §31.2. Bands: Viking R, G, B, night IR, day IR, "
         "slope (°), 9 × 9 relief; each stretched p1–p99 to 1–255 over ±60° (limits in the `STRETCH` metadata). "

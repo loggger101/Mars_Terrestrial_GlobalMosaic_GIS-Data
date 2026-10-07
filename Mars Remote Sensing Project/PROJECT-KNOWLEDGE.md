@@ -3285,8 +3285,8 @@ Three scripts in `build\`, each finding the drive from its own path, so they wor
 - `build\github_catalog_rasters.py` (ArcGIS Python, headers only, seconds) writes the repo's
   `docs\rasters.md`: all 63 backed-up rasters with grid, type, NoData and size **read from GDAL**,
   a description, and the release asset holding each. An undescribed raster is printed as
-  "(not described)". Worth knowing from it: **the landform maps' pixel values are 0–3, not the
-  class codes 1–4** (the RAT maps them; 255 = no class). **[V]** The README's backup and restore
+  "(not described)". It found that **the landform maps' pixel values were 0–3, not the class
+  codes 1–4** (only the RAT mapped them). **Fixed the same day, §36.** **[V]** The README's backup and restore
   detail now lives in `docs\backup.md`; the front page keeps a "Using the data" section.
 - `github_sync.py` also regenerates `docs\scripts.md` in the repo: every build script grouped by
   purpose, with its docstring's first line and the interpreter it needs, followed through local
@@ -3325,3 +3325,49 @@ asset timestamps), so the slow-to-recompute products fit in about two hours. **[
   `Mars_MO_THEMIS_CompositeBand`. Two are neither: the undocumented 8 Sep segmentation (§7) and the
   Mercury Iso Cluster rehearsal, which is not Mars. His two SVM maps are in the first release.
   Say so if any of these should go too. **[V]**
+
+---
+
+## 36. The landform maps' pixel values are now the class codes — 2026-10-07 **[V]**
+
+**At his request,** after the raster catalog (§35.2) showed the trap. `ClassifyRaster` writes
+pixel values 0..n−1 and keeps the class codes only in the attribute table's `Classvalue`, so on all
+five ±60° landform maps pixel **0 was Crater (code 1) … 3 was Normal Ground (code 4)**. Pro read
+them correctly through the table; anyone reading raw pixels (GDAL, numpy, QGIS without the RAT) got
+every class off by one, against training labels that use 1–4.
+
+### 36.1 What changed
+
+- `global60_landforms_svm_400m.tif` and `_mode3/5/7/9.tif` in `Global60\` now hold **1 Crater,
+  2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class**. Same grid, NoData, colours (each
+  moved with its class), overviews, projection and statistics; the RAT now has Value = Classvalue.
+- **The originals were moved, not deleted**, to `Global60\_0based_originals\` (30 files), and
+  release `data-2026-10-06` held them until its `global60-classification.zip` was replaced the same day.
+- `build\landform_codes.py` does the recode, taking pixel → code from the raster's own table.
+  `build\fix_landform_values.py` applied it (idempotent; skips a map already coded).
+- **The sources can't bring 0–3 back:** `make_global60_classification.py` recodes after the
+  mosaic, and `make_global60_landforms_clean.py` reads the class values from the table instead of
+  hard-coding 0–3 (`range(4)`, `np.minimum(a, 3)`), and takes `--out`.
+- **The `.aprx` needed no change.** All seven landform layers (the five maps and his two GUI maps)
+  key their unique-value symbology on `Class_name`, not the pixel value.
+
+### 36.2 Proved, not assumed
+
+- Rehearsed on a copy of `_mode9` first. Then on `Z:`: **every pixel of all five maps equals the old
+  value + 1** (old ≠ 255), counted by an independent GDAL check, which on an un-recoded file reports
+  923,742,337 mismatches, so it is not vacuous.
+- The updated mode filter, run 5 × 5 on the recoded raw map, reproduces the recoded `_mode5`
+  **exactly** (0 of 948,669,701 pixels; 11.17 % changed, as in §32.2).
+- The classifier's new mosaic step, run on the 21 finished 400 m tiles still in scratch, rebuilds a
+  raw map **identical** to the recoded one on `Z:`.
+- Rescored with `verify_global60_classification.py`: raw **70.5 %, κ 0.540**; 5 × 5 **73.5 %,
+  κ 0.578**. All 46 score fields of both logs match the logs from before the recode; only the `rat`
+  field (pixel → name) moved by one.
+- The replaced `global60-classification.zip` was restored through `restore.py` from GitHub and
+  compared with `Z:`: identical.
+
+### 36.3 Not changed: the same convention elsewhere **[V]**
+
+The other ClassifyRaster outputs keep 0-based pixels with codes in their tables: his two GUI SVM
+maps in the gdb (his work, left alone) and the type-area classifications (`ius_sup_*`: 0–5 for
+codes 1–6), read from their tables 2026-10-07. Whether to recode those too is his call.

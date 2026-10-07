@@ -11,6 +11,8 @@ r"""The ±60° landform classification, redone on the corrected stack (KB §31).
      The model is trained on the 200 m stack either way. Classifying all of ±60° at 200 m is
      ~15 h on the laptop (smoke-timed, 14 µs/px), so the laptop run is --cell 400 (~4 h) and
      --cell 200 is a desktop job.
+     The delivered map's pixel values are the class codes: 1 Crater, 2 steep/windy hills,
+     3 lava tube, 4 Normal Ground, 255 no class (recoded after the mosaic, KB §36).
 
 His own class `Landform_TrainingSamples_terrain` is READ only. Every class this script writes
 carries MappedBy = MARKER, and safe_to_replace() refuses to delete any class holding a row it
@@ -179,6 +181,9 @@ def classify_tiled(out, cell, limit=None):
                                                     time.strftime("%H:%M:%S", time.gmtime(el))), flush=True)
 
     print("  mosaic %d tiles -> %s" % (len(files), out))
+    # ClassifyRaster writes pixel values 0..3; the mosaic is built as before, then recoded so
+    # the delivered map's pixels ARE the class codes 1..4 (KB §36).
+    final, out = out, out.replace(".tif", "_0based_tmp.tif")
     vrt = os.path.join(tdir, "mosaic.vrt")
     gdal.BuildVRT(vrt, files, srcNodata=255, VRTNodata=255)
     b = G.G200.bounds                                        # (xmin, ymin, xmax, ymax)
@@ -210,7 +215,14 @@ def classify_tiled(out, cell, limit=None):
             cv, n = names[int(r[0])]
             c.updateRow([r[0], cv, n] + list(COLOURS[n]))
     arcpy.management.CalculateStatistics(out)
-    print("  mosaic done, %s total" % time.strftime("%H:%M:%S", time.gmtime(time.time() - t0)))
+    import landform_codes
+    if os.path.exists(final):
+        arcpy.management.Delete(final)
+    h_src, h_dst, table = landform_codes.recode(out, final)
+    problems = landform_codes.check(out, final, h_src, h_dst, table)
+    assert not problems, "recode to class codes failed: %s" % problems
+    arcpy.management.Delete(out)
+    print("  mosaic done, pixel = class code, %s total" % time.strftime("%H:%M:%S", time.gmtime(time.time() - t0)))
 
 
 def main():
