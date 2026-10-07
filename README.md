@@ -1,5 +1,7 @@
 # Mars Global Mosaic
 
+[![check](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/actions/workflows/check.yml/badge.svg)](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/actions/workflows/check.yml)
+
 **Mapping Lava Flows, Fluvial Channels, and Impact Craters in Visible and Infrared.**
 Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Institute of Technology
 
@@ -92,6 +94,9 @@ exports/
 docs/
   scripts.md               every build script by purpose, with the Python it needs
 drive-root/                source-raster sidecars; the "new training" shapefile
+restore.py                 rebuilds the drive from this repository and its releases
+tools/check_repo.py        the checks CI runs on every push: page links, Python syntax, file sizes
+CITATION.cff               how to cite the project ("Cite this repository" on GitHub)
 ```
 
 ### In the releases, not the tree
@@ -117,7 +122,7 @@ drive-root/                source-raster sidecars; the "new training" shapefile
 | `Segmented_202609290011302066080.tif*` | the ±60° mean-shift segmentation made in Pro on 29 September |
 | `SHA256SUMS-derivatives-2026-10-06.txt` | checksums of every piece and of every reassembled file |
 
-Rejoin a split file before use: `cat global60_dem.tif.part* > global60_dem.tif` (or `copy /b a.part001+a.part002 a` in `cmd`), then check it against the sums.
+`restore.py` (below) rejoins and checks them. By hand: `cat global60_dem.tif.part* > global60_dem.tif` (or `copy /b a.part001+a.part002 a` in `cmd`), then check it against the sums.
 
 Not backed up anywhere but the drive: the `.ovr` pyramids (Build Pyramids re-creates them) and the other geodatabase rasters, mostly legacy products the knowledge base finds defective and superseded (percent-rise slopes on a degree grid, a global composite mixing raw elevation with 8-bit bands).
 
@@ -151,11 +156,21 @@ does the same for the large products: about two hours at 10 MB/s, resumable, and
 
 ## Restoring
 
-1. Download the four source rasters to the drive root.
-2. Copy `Mars Remote Sensing Project/`, `Mars Project/` and the contents of `drive-root/` onto the drive.
-3. Unzip `typearea-part*.zip`, `global60-classification.zip`, `global60-sidecars.zip` and `labeledobjects-part*.zip` into `Mars Project/`, and `npy-caches.zip` into `Mars Remote Sensing Project/`. Rejoin the `global60_*.tif.part*` pieces into `Mars Project/Global60/`.
-4. Create `Mars Project/Mars Project.gdb` in Pro and copy the feature classes from `exports/mars_project_vectors.gdb` into it.
-5. Re-create the directory junctions `Z:\TypeArea` and `Z:\Global60`, which the legacy Spatial Analyst tools need (they reject the space in "Mars Project").
+From a clone of this repository, [`restore.py`](restore.py) rebuilds the drive (Python 3.9+, nothing to install):
+
+```bash
+python restore.py --dest E:\ --dry-run
+python restore.py --dest E:\
+```
+
+It copies the repository's folders into place, downloads both releases (about 79 GB), checks every download against GitHub's SHA-256, unzips each bundle where it belongs, rejoins the split rasters into `Mars Project/Global60/` and checks each against its whole-file hash. Downloads resume if interrupted, and it never overwrites an existing file unless given `--force`. `--only <text>` restores just the assets whose names contain that text. The two Pro-GUI SVM maps, the segmentation and the GeoPackage go to `Mars Project/restored_from_gdb/`.
+
+Then, by hand:
+
+1. Download the four source rasters (above) to the drive root.
+2. Create `Mars Project/Mars Project.gdb` in Pro and copy the feature classes from `exports/mars_project_vectors.gdb` into it.
+3. Re-create the directory junctions `Z:\TypeArea` and `Z:\Global60`, which the legacy Spatial Analyst tools need (they reject the space in "Mars Project").
+4. Build pyramids on the large rasters.
 
 The `.aprx` stores relative paths, so it opens from any drive letter. Layers that pointed at rasters not restored will show as broken until the `build/` scripts rebuild them.
 

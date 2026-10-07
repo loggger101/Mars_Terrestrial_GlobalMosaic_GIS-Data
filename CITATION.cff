@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use these maps, data or scripts, please cite them as below."
+title: "Mars Global Mosaic: Mapping Lava Flows, Fluvial Channels, and Impact Craters in Visible and Infrared"
+type: dataset
+authors:
+  - family-names: Edwards
+    given-names: Logan M
+    affiliation: "Florida Institute of Technology"
+abstract: >-
+  An ArcGIS Pro project that co-registers Viking MDIM 2.1 color, THEMIS day and night
+  thermal infrared and the HRSC/MOLA blended elevation model of Mars on one ±60° grid,
+  classifies landforms with a support vector machine trained on hand-drawn labels and
+  scored on held-out blocks, and seeds channel, crater and basin candidates for
+  digitising. Coursework for OCN 4704 Remote Sensing, Fall 2026.
+repository-code: "https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data"
+license:
+  - CC-BY-4.0
+  - MIT
+date-released: "2026-10-06"
+keywords:
+  - Mars
+  - remote sensing
+  - GIS
+  - ArcGIS Pro
+  - THEMIS
+  - thermal infrared
+  - landform classification
+  - planetary science
