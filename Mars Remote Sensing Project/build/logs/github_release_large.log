@@ -1,0 +1,29 @@
+https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06
+uploaded  global60-sidecars.zip  0 MB
+uploaded  labeledobjects-part1.zip  1,901 MB
+uploaded  labeledobjects-part2.zip  1,900 MB
+uploaded  labeledobjects-part3.zip  1,902 MB
+uploaded  labeledobjects-part4.zip  477 MB
+uploaded  Segmented_202609290011302066080.tif  640 MB
+Post "https://uploads.github.com/repos/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/405210213/assets?label=&name=global60_dem.tif.part001": dial tcp: lookup uploads.github.com: no such host
+Traceback (most recent call last):
+  File "Z:\Mars Remote Sensing Project\build\github_release_large.py", line 147, in <module>
+    main()
+    ~~~~^^
+  File "Z:\Mars Remote Sensing Project\build\github_release_large.py", line 139, in main
+    split_upload(G60 / b, have)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "Z:\Mars Remote Sensing Project\build\github_release_large.py", line 90, in split_upload
+    upload(chunk, have)
+    ~~~~~~^^^^^^^^^^^^^
+  File "Z:\Mars Remote Sensing Project\build\github_release_large.py", line 63, in upload
+    gh("release", "upload", TAG, str(path), "--clobber")
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "Z:\Mars Remote Sensing Project\build\github_release_large.py", line 49, in gh
+    return subprocess.run(["gh", *a, "-R", REPO], check=True, **kw)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['gh', 'release', 'upload', 'derivatives-2026-10-06', 'C:\\Users\\Loggg\\AppData\\Local\\Temp\\mars_github_large\\global60_dem.tif.part001', '--clobber', '-R', 'loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data']' returned non-zero exit status 1.
+skip (already up)  global60-sidecars.zip

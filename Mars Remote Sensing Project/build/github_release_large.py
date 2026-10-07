@@ -24,7 +24,7 @@ Resumable: an asset already on the release at the same size is skipped, so re-ru
 dropped connection or a sleep. Each part is staged on internal disk, uploaded, then deleted, so
 staging never needs more than one part. Reads Z: only. Keeps the machine awake while it runs.
 """
-import os, sys, json, hashlib, zipfile, subprocess, ctypes
+import os, sys, json, time, hashlib, zipfile, subprocess, ctypes
 from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -42,7 +42,14 @@ SEGMENTED = "Segmented_202609290011302066080"
 TAG = sys.argv[1]
 ctypes.windll.kernel32.SetThreadExecutionState(0x80000000 | 0x00000001)  # ES_CONTINUOUS | SYSTEM_REQUIRED
 STAGE.mkdir(parents=True, exist_ok=True)
-sums = []   # (hex, name)
+# name -> sha256, kept on disk so a resumed run has the hashes of what an earlier run uploaded
+SUMS = STAGE / f"sums-{TAG}.json"
+sums = json.loads(SUMS.read_text()) if SUMS.exists() else {}
+
+
+def add_sum(name, hexdigest):
+    sums[name] = hexdigest
+    SUMS.write_text(json.dumps(sums, indent=1))
 
 
 def gh(*a, **kw):
@@ -59,9 +66,17 @@ def existing():
 def upload(path, have):
     if have.get(path.name) == path.stat().st_size:
         print(f"skip (already up)  {path.name}", flush=True)
-    else:
-        gh("release", "upload", TAG, str(path), "--clobber")
-        print(f"uploaded  {path.name}  {path.stat().st_size / 1e6:,.0f} MB", flush=True)
+        return
+    for attempt in range(1, 7):   # a dropped connection or a failed DNS lookup is retried, not fatal
+        try:
+            gh("release", "upload", TAG, str(path), "--clobber")
+            break
+        except subprocess.CalledProcessError:
+            if attempt == 6:
+                raise
+            print(f"upload failed, retry {attempt} in {60 * attempt} s  {path.name}", flush=True)
+            time.sleep(60 * attempt)
+    print(f"uploaded  {path.name}  {path.stat().st_size / 1e6:,.0f} MB", flush=True)
 
 
 def sha(path):
@@ -86,10 +101,10 @@ def split_upload(src, have):
                 while left:
                     b = f.read(min(1 << 24, left))
                     out.write(b); ph.update(b); whole.update(b); left -= len(b)
-            sums.append((ph.hexdigest(), name))
+            add_sum(name, ph.hexdigest())
             upload(chunk, have)
             chunk.unlink()
-    sums.append((whole.hexdigest(), f"{src.name}  (reassembled from {n} parts)"))
+    add_sum(f"{src.name}  (reassembled from {n} parts)", whole.hexdigest())
 
 
 def zip_parts(name, base, files, have):
@@ -104,7 +119,7 @@ def zip_parts(name, base, files, have):
         with zipfile.ZipFile(zp, "w", zipfile.ZIP_STORED, allowZip64=True) as z:
             for p in part:
                 z.write(p, p.relative_to(base).as_posix())
-        sums.append((sha(zp), zp.name))
+        add_sum(zp.name, sha(zp))
         upload(zp, have)
         zp.unlink()
 
@@ -119,8 +134,15 @@ def main():
     zip_parts("global60-sidecars", MP, sorted(p for b in BIG for p in G60.glob(b + ".*xml")), have)
     lo = MP / "LabeledObjects"
     zip_parts("labeledobjects", MP, sorted(p for p in lo.rglob("*") if p.is_file()), have)
-    if "--no-gdb" not in sys.argv:
-        seg = STAGE / f"{SEGMENTED}.tif"
+    seg = STAGE / f"{SEGMENTED}.tif"
+    if "--no-gdb" not in sys.argv and seg.name in have and seg.name not in sums:
+        # uploaded by a run that lost its hashes: fetch it back to hash it, cheaper than re-exporting
+        gh("release", "download", TAG, "-p", seg.name, "-D", str(STAGE), "--clobber")
+        add_sum(seg.name, sha(seg))
+        seg.unlink()
+    if "--no-gdb" in sys.argv or (seg.name in have and seg.name in sums):
+        print(f"skip (already up)  {seg.name}", flush=True)
+    else:
         if not seg.exists():
             from osgeo import gdal
             gdal.UseExceptions()
@@ -133,12 +155,12 @@ def main():
         if seg.stat().st_size > PART:
             split_upload(seg, have)
         else:
-            sums.append((sha(seg), seg.name)); upload(seg, have)
+            add_sum(seg.name, sha(seg)); upload(seg, have)
         seg.unlink()
     for b in BIG:
         split_upload(G60 / b, have)
     s = STAGE / f"SHA256SUMS-{TAG}.txt"
-    s.write_text("".join(f"{h}  {n}\n" for h, n in sums), encoding="utf-8", newline="\n")
+    s.write_text("".join(f"{h}  {n}\n" for n, h in sums.items()), encoding="utf-8", newline="\n")
     upload(s, existing())
     print("ALL DONE", flush=True)
 
