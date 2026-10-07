@@ -3298,7 +3298,7 @@ asset timestamps), so the slow-to-recompute products fit in about two hours. **[
   exports, and his ±60° segmentation `Segmented_202609290011302066080` out of the gdb. One
   `SHA256SUMS` hashes every piece and every reassembled file. Resumable; stages one piece at a time;
   keeps the machine awake. Log: `build\logs\github_release_large.log`.
-- **Finished 2026-10-07 11:5x: 46 assets, 74.4 GB.** Every asset's SHA-256 as GitHub records it
+- **Finished 2026-10-07 11:39 EDT: 46 assets, 74.4 GB.** Every asset's SHA-256 as GitHub records it
   matches the hash taken from the drive (45/45, plus the sums file). **[V]** It took ~16 h, not 2:
   the first run died on a DNS failure (now retried, up to 6 times); the laptop went into Modern
   Standby twice on battery ("Austerity Battery Drain Budget Exceeded", 20:21–21:51 and from 21:56),
