@@ -107,7 +107,7 @@ drive-root/                source-raster sidecars; the "new training" shapefile
 | `npy-caches.zip` | decimated arrays of the globals that the figures are drawn from |
 | `SHA256SUMS.txt` | checksums |
 
-[`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06), about 75 GB: the products that take hours to rebuild.
+[`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06), 74.4 GB in 46 assets: the products that take hours to rebuild.
 
 | Asset | What |
 |---|---|

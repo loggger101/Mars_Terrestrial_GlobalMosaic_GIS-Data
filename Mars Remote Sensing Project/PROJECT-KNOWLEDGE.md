@@ -3298,6 +3298,14 @@ asset timestamps), so the slow-to-recompute products fit in about two hours. **[
   exports, and his ±60° segmentation `Segmented_202609290011302066080` out of the gdb. One
   `SHA256SUMS` hashes every piece and every reassembled file. Resumable; stages one piece at a time;
   keeps the machine awake. Log: `build\logs\github_release_large.log`.
+- **Finished 2026-10-07 11:5x: 46 assets, 74.4 GB.** Every asset's SHA-256 as GitHub records it
+  matches the hash taken from the drive (45/45, plus the sums file). **[V]** It took ~16 h, not 2:
+  the first run died on a DNS failure (now retried, up to 6 times); the laptop went into Modern
+  Standby twice on battery ("Austerity Battery Drain Budget Exceeded", 20:21–21:51 and from 21:56),
+  which `SetThreadExecutionState` does not prevent; and the uplink fell from ~10 MB/s to 0.7–1.4 MB/s
+  overnight (home Wi-Fi, then `fit.edu`). One piece needed 4 retries on the campus network. A resumed
+  run takes each uploaded asset's SHA-256 from GitHub's `digest` field instead of rebuilding it.
+  **Big uploads: on AC, lid open, wired if possible.**
 - **Still not backed up:** the `.ovr` pyramids (~22 GB, Build Pyramids re-creates them) and the
   other gdb rasters. Most are what §7 and §29–30 find defective and superseded: the percent-rise
   slopes, `HillSha_Mars1`, `Surface_Mars1`, and the global composites `CompositeBand` and

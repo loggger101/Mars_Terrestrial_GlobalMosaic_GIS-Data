@@ -27,3 +27,59 @@ Traceback (most recent call last):
                              output=stdout, stderr=stderr)
 subprocess.CalledProcessError: Command '['gh', 'release', 'upload', 'derivatives-2026-10-06', 'C:\\Users\\Loggg\\AppData\\Local\\Temp\\mars_github_large\\global60_dem.tif.part001', '--clobber', '-R', 'loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data']' returned non-zero exit status 1.
 skip (already up)  global60-sidecars.zip
+skip (already up)  labeledobjects-part1.zip
+skip (already up)  global60-sidecars.zip
+skip (already up)  labeledobjects-part1.zip
+skip (already up)  labeledobjects-part2.zip
+skip (already up)  labeledobjects-part3.zip
+skip (already up)  labeledobjects-part4.zip
+skip (already up)  Segmented_202609290011302066080.tif
+uploaded  global60_dem.tif.part001  1,900 MB
+uploaded  global60_dem.tif.part002  1,314 MB
+uploaded  global60_hillshade.tif.part001  1,299 MB
+uploaded  global60_thermal_contrast_200m.tif.part001  1,900 MB
+uploaded  global60_thermal_contrast_200m.tif.part002  1,900 MB
+uploaded  global60_thermal_contrast_200m.tif.part003  1,900 MB
+uploaded  global60_thermal_contrast_200m.tif.part004  1,037 MB
+uploaded  global60_slope_deg.tif.part001  1,900 MB
+uploaded  global60_slope_deg.tif.part002  1,900 MB
+uploaded  global60_slope_deg.tif.part003  1,900 MB
+uploaded  global60_slope_deg.tif.part004  1,341 MB
+uploaded  global60_aspect.tif.part001  1,900 MB
+uploaded  global60_aspect.tif.part002  1,900 MB
+uploaded  global60_aspect.tif.part003  1,900 MB
+uploaded  global60_aspect.tif.part004  1,900 MB
+uploaded  global60_aspect.tif.part005  433 MB
+uploaded  global60_svm_stack_200m.tif.part001  1,900 MB
+uploaded  global60_svm_stack_200m.tif.part002  1,900 MB
+uploaded  global60_svm_stack_200m.tif.part003  1,900 MB
+uploaded  global60_svm_stack_200m.tif.part004  1,900 MB
+uploaded  global60_svm_stack_200m.tif.part005  1,900 MB
+uploaded  global60_svm_stack_200m.tif.part006  1,900 MB
+uploaded  global60_svm_stack_200m.tif.part007  1,900 MB
+uploaded  global60_svm_stack_200m.tif.part008  1,900 MB
+uploaded  global60_svm_stack_200m.tif.part009  463 MB
+uploaded  global60_thermal_contrast.tif.part001  1,900 MB
+uploaded  global60_thermal_contrast.tif.part002  1,900 MB
+uploaded  global60_thermal_contrast.tif.part003  1,900 MB
+uploaded  global60_thermal_contrast.tif.part004  1,900 MB
+uploaded  global60_thermal_contrast.tif.part005  1,900 MB
+uploaded  global60_thermal_contrast.tif.part006  1,900 MB
+uploaded  global60_thermal_contrast.tif.part007  1,900 MB
+uploaded  global60_thermal_contrast.tif.part008  1,900 MB
+uploaded  global60_thermal_contrast.tif.part009  1,900 MB
+HTTP 500 (https://uploads.github.com/repos/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/405210213/assets?label=&name=global60_thermal_contrast.tif.part010)
+upload failed, retry 1 in 60 s  global60_thermal_contrast.tif.part010
+HTTP 500 (https://uploads.github.com/repos/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/405210213/assets?label=&name=global60_thermal_contrast.tif.part010)
+upload failed, retry 2 in 120 s  global60_thermal_contrast.tif.part010
+HTTP 500 (https://uploads.github.com/repos/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/405210213/assets?label=&name=global60_thermal_contrast.tif.part010)
+upload failed, retry 3 in 180 s  global60_thermal_contrast.tif.part010
+HTTP 500 (https://uploads.github.com/repos/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/405210213/assets?label=&name=global60_thermal_contrast.tif.part010)
+upload failed, retry 4 in 240 s  global60_thermal_contrast.tif.part010
+uploaded  global60_thermal_contrast.tif.part010  1,900 MB
+uploaded  global60_thermal_contrast.tif.part011  1,900 MB
+uploaded  global60_thermal_contrast.tif.part012  1,900 MB
+uploaded  global60_thermal_contrast.tif.part013  1,900 MB
+uploaded  global60_thermal_contrast.tif.part014  871 MB
+uploaded  SHA256SUMS-derivatives-2026-10-06.txt  0 MB
+ALL DONE

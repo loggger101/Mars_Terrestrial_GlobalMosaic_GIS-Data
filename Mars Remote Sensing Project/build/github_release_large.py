@@ -20,7 +20,7 @@ Then check it against SHA256SUMS.
 Not backed up: the other gdb rasters. They are the legacy products §7 and §29-30 find defective
 (percent-rise slopes on a degree grid, the misregistered global composite) and are superseded.
 
-Resumable: an asset already on the release at the same size is skipped, so re-run after a
+Resumable: an asset already on the release is skipped and its SHA-256 taken from GitHub, so re-run after a
 dropped connection or a sleep. Each part is staged on internal disk, uploaded, then deleted, so
 staging never needs more than one part. Reads Z: only. Keeps the machine awake while it runs.
 """
@@ -57,15 +57,24 @@ def gh(*a, **kw):
 
 
 def existing():
+    """{name: sha256 hex} of every asset fully uploaded. GitHub records each asset's SHA-256, so
+    a resumed run takes the checksum from there instead of rebuilding the file to hash it."""
     out = subprocess.run(["gh", "api", f"repos/{REPO}/releases/tags/{TAG}", "--jq",
-                          "[.assets[] | {(.name): .size}] | add // {}"],
+                          '[.assets[] | select(.state == "uploaded") | {(.name): .digest}] | add // {}'],
                          capture_output=True, text=True, check=True).stdout
-    return json.loads(out or "{}")
+    return {k: (v or "").removeprefix("sha256:") for k, v in json.loads(out or "{}").items()}
+
+
+def already_up(name, have):
+    if name in have and have[name]:
+        add_sum(name, have[name])
+        print(f"skip (already up)  {name}", flush=True)
+        return True
+    return False
 
 
 def upload(path, have):
-    if have.get(path.name) == path.stat().st_size:
-        print(f"skip (already up)  {path.name}", flush=True)
+    if already_up(path.name, have):
         return
     for attempt in range(1, 7):   # a dropped connection or a failed DNS lookup is retried, not fatal
         try:
@@ -96,11 +105,16 @@ def split_upload(src, have):
             name = f"{src.name}.part{i:03d}"
             chunk = STAGE / name
             ph = hashlib.sha256()
-            with open(chunk, "wb") as out:
+            done = name in have   # still read it: the whole file's hash needs every byte
+            with open(os.devnull if done else chunk, "wb") as out:
                 left = min(PART, size - (i - 1) * PART)
                 while left:
                     b = f.read(min(1 << 24, left))
                     out.write(b); ph.update(b); whole.update(b); left -= len(b)
+            if done:
+                assert have[name] in ("", ph.hexdigest()), f"{name} on GitHub differs from the drive"
+                already_up(name, have)
+                continue
             add_sum(name, ph.hexdigest())
             upload(chunk, have)
             chunk.unlink()
@@ -116,6 +130,8 @@ def zip_parts(name, base, files, have):
     parts.append(cur)
     for i, part in enumerate(parts, 1):
         zp = STAGE / (f"{name}-part{i}.zip" if len(parts) > 1 else f"{name}.zip")
+        if already_up(zp.name, have):
+            continue
         with zipfile.ZipFile(zp, "w", zipfile.ZIP_STORED, allowZip64=True) as z:
             for p in part:
                 z.write(p, p.relative_to(base).as_posix())
@@ -135,13 +151,8 @@ def main():
     lo = MP / "LabeledObjects"
     zip_parts("labeledobjects", MP, sorted(p for p in lo.rglob("*") if p.is_file()), have)
     seg = STAGE / f"{SEGMENTED}.tif"
-    if "--no-gdb" not in sys.argv and seg.name in have and seg.name not in sums:
-        # uploaded by a run that lost its hashes: fetch it back to hash it, cheaper than re-exporting
-        gh("release", "download", TAG, "-p", seg.name, "-D", str(STAGE), "--clobber")
-        add_sum(seg.name, sha(seg))
-        seg.unlink()
-    if "--no-gdb" in sys.argv or (seg.name in have and seg.name in sums):
-        print(f"skip (already up)  {seg.name}", flush=True)
+    if "--no-gdb" in sys.argv or already_up(seg.name, have) or already_up(seg.name + ".part001", have):
+        pass
     else:
         if not seg.exists():
             from osgeo import gdal
