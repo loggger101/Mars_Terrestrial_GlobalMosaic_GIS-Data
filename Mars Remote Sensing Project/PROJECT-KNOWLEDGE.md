@@ -3282,6 +3282,12 @@ Three scripts in `build\`, each finding the drive from its own path, so they wor
   in GitHub Actions on every push; each check failed on a planted defect first. `CITATION.cff`
   gives the name as **Logan M Edwards**, his standard since 2026-10-07 (his own commit to the
   LICENSE and README).
+- `build\github_catalog_rasters.py` (ArcGIS Python, headers only, seconds) writes the repo's
+  `docs\rasters.md`: all 63 backed-up rasters with grid, type, NoData and size **read from GDAL**,
+  a description, and the release asset holding each. An undescribed raster is printed as
+  "(not described)". Worth knowing from it: **the landform maps' pixel values are 0–3, not the
+  class codes 1–4** (the RAT maps them; 255 = no class). **[V]** The README's backup and restore
+  detail now lives in `docs\backup.md`; the front page keeps a "Using the data" section.
 - `github_sync.py` also regenerates `docs\scripts.md` in the repo: every build script grouped by
   purpose, with its docstring's first line and the interpreter it needs, followed through local
   imports (`le_theme` → `pptx` makes every deck builder "system").
