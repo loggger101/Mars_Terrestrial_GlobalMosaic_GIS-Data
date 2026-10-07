@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 370 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Find your way around:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [build scripts](docs/scripts.md) (all 93, by purpose) · [vector layers](exports/README.md) (what each one is) · [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases) (the rasters)
+**Find your way around:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 94, by purpose) · [backup and restore](docs/backup.md)
 
 ![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 
@@ -69,6 +69,16 @@ Not in this repository: 62 GB, public, and still at these addresses at byte-iden
 
 Three coordinate frames, not two: check `Central_Meridian` per file before reading a window, or THEMIS lands half a planet away. Their statistics sidecars (`.aux.xml`), the night mosaic's PDS label and MD5 are in [`drive-root/`](drive-root).
 
+## Using the data
+
+You don't need ArcGIS Pro. The rasters are GeoTIFFs and the vectors come as a file geodatabase and a GeoPackage; QGIS and GDAL read all of them.
+
+- **Coordinate system.** Almost everything is in `Mars_Equidistant_Cylindrical_CM180`: metres on the Mars sphere (R = 3,396,190 m) with the **central meridian at 180°**, so x runs 0–360°E. The CRS is embedded in each file; keep it. Reprojecting to an Earth CRS, or assuming a 0° meridian, puts features half a planet away. The hand-drawn labels and the IAU nomenclature are in geographic `Mars_2000_(Sphere)`.
+- **The landform map** to use is `global60_landforms_svm_400m_mode5.tif`. Its pixel values are **0 Crater, 1 steep/windy hills, 2 lava tube, 3 Normal Ground, 255 no class**; the attribute table maps them to the class codes 1–4 used in the labels, with names and colours. Read the lava tube class as unreliable (above).
+- **The training labels** are `Landform_TrainingSamples_terrain` in [`exports/`](exports/README.md), class codes 1–4 in the same order. One class schema in the project swaps 2 and 3; the layer catalog says which.
+- **The diurnal-contrast index** is relative: it compares places within one area, not across the planet, and it is not thermal inertia.
+- **What each raster is**, with its grid, data type, NoData and the release that holds it: [docs/rasters.md](docs/rasters.md).
+
 ## What is in this repository
 
 The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\…`) maps directly onto one here.
@@ -76,7 +86,7 @@ The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   93 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   94 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
     pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)
@@ -92,87 +102,25 @@ exports/
                            training polygons, the candidate layers and the empty digitising classes
   README.md                the layer catalog: rows, CRS, fields and what each layer is
 docs/
+  rasters.md               every backed-up raster: grid, type, NoData, what it is, which release
+  backup.md                the release assets, keeping the backup current, restoring the drive
   scripts.md               every build script by purpose, with the Python it needs
+  pipeline.svg             the diagram above
 drive-root/                source-raster sidecars; the "new training" shapefile
 restore.py                 rebuilds the drive from this repository and its releases
 tools/check_repo.py        the checks CI runs on every push: page links, Python syntax, file sizes
 CITATION.cff               how to cite the project ("Cite this repository" on GitHub)
 ```
 
-### In the releases, not the tree
+## Backup and restore
 
-[`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06), about 4.3 GB:
-
-| Asset | What |
-|---|---|
-| `typearea-part*.zip` | the whole Ius Chasma type area: stack, terrain, thermal index, segmentations, classifications, models |
-| `global60-classification.zip` | the ±60° SVM maps (raw and 3/5/7/9 majority), the model, smoke tests |
-| `Classified_*.tif` | the two SVM maps made in the Pro GUI on 29 and 30 September (superseded, kept) |
-| `mars_project_vectors.gpkg.zip` | the same vector layers as `exports/`, as a GeoPackage |
-| `npy-caches.zip` | decimated arrays of the globals that the figures are drawn from |
-| `SHA256SUMS.txt` | checksums |
-
-[`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06), 74.4 GB in 46 assets: the products that take hours to rebuild.
-
-| Asset | What |
-|---|---|
-| `global60_*.tif.partNNN` | the ±60° derivatives, original bytes cut into 1.9 GB pieces: the 7-band classification stack, the diurnal-contrast index (100 m and 200 m), DEM, slope in degrees, aspect, hillshade |
-| `global60-sidecars.zip` | their statistics and lineage (`.aux.xml`, `.xml`) |
-| `labeledobjects-part*.zip` | both deep-learning exports: the 1 October one from Pro and the ±60° re-export |
-| `Segmented_202609290011302066080.tif*` | the ±60° mean-shift segmentation made in Pro on 29 September |
-| `SHA256SUMS-derivatives-2026-10-06.txt` | checksums of every piece and of every reassembled file |
-
-`restore.py` (below) rejoins and checks them. By hand: `cat global60_dem.tif.part* > global60_dem.tif` (or `copy /b a.part001+a.part002 a` in `cmd`), then check it against the sums.
-
-Not backed up anywhere but the drive: the `.ovr` pyramids (Build Pyramids re-creates them) and the other geodatabase rasters, mostly legacy products the knowledge base finds defective and superseded (percent-rise slopes on a degree grid, a global composite mixing raw elevation with 8-bit bands).
-
-## Keeping it current
-
-Run from `Mars Remote Sensing Project\build\` on the drive; each script finds the drive from its own location, so `Z:` and `F:` both work.
-
-```bash
-python github_sync.py --commit
-```
-
-copies whatever changed into the clone, regenerates `docs/scripts.md`, commits and pushes. Files over 95 MB are reported and skipped.
-
-```bash
-"C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" github_export_gdb.py --rasters
-```
-
-re-exports the geodatabase's vector layers into `exports/` and rewrites the layer catalog (and stages the GeoPackage and the GUI SVM maps for the release). Run it after digitising: a re-export rewrites every geodatabase file even when nothing changed, so it isn't worth running otherwise. `--catalog-only` rewrites just the catalog.
-
-```bash
-python github_release_bundle.py --upload data-YYYY-MM-DD
-```
-
-zips the rasters and publishes them as a new release.
-
-```bash
-"C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" github_release_large.py derivatives-YYYY-MM-DD
-```
-
-does the same for the large products: about two hours at 10 MB/s, resumable, and it stages one 1.9 GB piece at a time.
-
-## Restoring
-
-From a clone of this repository, [`restore.py`](restore.py) rebuilds the drive (Python 3.9+, nothing to install):
+The rasters are in two releases: [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) (4.3 GB: the type area, the ±60° landform maps, the GUI SVM maps, caches) and [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) (74.4 GB: the ±60° derivatives, split into 1.9 GB pieces, and the deep-learning exports). [`restore.py`](restore.py) rebuilds the drive from a clone and both releases, checking every file against its SHA-256:
 
 ```bash
 python restore.py --dest E:\ --dry-run
-python restore.py --dest E:\
 ```
 
-It copies the repository's folders into place, downloads both releases (about 79 GB), checks every download against GitHub's SHA-256, unzips each bundle where it belongs, rejoins the split rasters into `Mars Project/Global60/` and checks each against its whole-file hash. Downloads resume if interrupted, and it never overwrites an existing file unless given `--force`. `--only <text>` restores just the assets whose names contain that text. The two Pro-GUI SVM maps, the segmentation and the GeoPackage go to `Mars Project/restored_from_gdb/`.
-
-Then, by hand:
-
-1. Download the four source rasters (above) to the drive root.
-2. Create `Mars Project/Mars Project.gdb` in Pro and copy the feature classes from `exports/mars_project_vectors.gdb` into it.
-3. Re-create the directory junctions `Z:\TypeArea` and `Z:\Global60`, which the legacy Spatial Analyst tools need (they reject the space in "Mars Project").
-4. Build pyramids on the large rasters.
-
-The `.aprx` stores relative paths, so it opens from any drive letter. Layers that pointed at rasters not restored will show as broken until the `build/` scripts rebuild them.
+[docs/backup.md](docs/backup.md) lists every release asset, how the backup is kept current from the drive, and what is not backed up. [docs/rasters.md](docs/rasters.md) describes each raster: grid, type, NoData and what it is.
 
 ## License
 
