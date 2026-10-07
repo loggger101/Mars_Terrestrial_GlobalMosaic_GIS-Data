@@ -55,6 +55,12 @@ python github_release_bundle.py --upload data-YYYY-MM-DD
 zips the rasters and publishes them as a new release.
 
 ```bash
+"C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" github_catalog_rasters.py
+```
+
+rewrites [rasters.md](rasters.md) from the rasters' own headers (a few seconds). Run it after adding or rebuilding a raster product; a raster nobody has described shows up there as "(not described)".
+
+```bash
 "C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" github_release_large.py derivatives-YYYY-MM-DD
 ```
 
