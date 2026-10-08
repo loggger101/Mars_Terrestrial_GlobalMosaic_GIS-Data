@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Checks what the repository points at but does not hold. Runs in CI every Monday and by hand.
+"""Checks what the repository points at but does not hold. Run by hand, here or from Actions -> remote -> Run workflow.
 
     python tools/check_remote.py
 
