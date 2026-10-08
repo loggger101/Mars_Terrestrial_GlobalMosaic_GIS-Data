@@ -749,6 +749,10 @@ The deliverables already say so. Keep it that way. **[E]**
    The type-area run proves the recipe (§18): project first, snap to the day grid, bounded
    extent. It is `build\make_typearea_stack.py` pointed at a bigger window. Scale is
    **411×**, so plan hours and run it once. **Desktop job.** **[?]**
+   **Overtaken 2026-10-03 (§31):** the classification runs on `global60_svm_stack_200m.tif`, a
+   7-band 8-bit ±60° composite at 200 m. The 100 m Composite Bands run of `make_global_stack.py`
+   is still unbuilt (only its smoke windows exist) and nothing now waits on it, so it is left off
+   the README's next steps. **[V]**
 8. **Which machine produced the §8 run times?** **Partly deduced 2026-09-18, and the logs
    answer it for at least one run.** Run 6 (`Slope_Mars_V1`, 11 Sep, 1 h 05 m) was submitted
    `GPU_THEN_CPU` and logged *"No compatible GPU device has been detected."* **An RTX 2080 Ti

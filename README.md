@@ -33,9 +33,25 @@ The final deliverable is due **8 December 2026**. Presentation 1 and the prospec
 | Band composite | done: a 7-band, 8-bit ±60° stack at 200 m with no raw elevation band, 97.3% co-valid |
 | Unsupervised classification | done for the type area (Iso Cluster, object-based segmentation, parameter sweep) |
 | Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks |
-| Channel and crater candidates | seeded: 2,610 channel candidates, 1,685 crater candidates in Ius Chasma, 5,144 basin candidates at ±60° |
-| Landform digitising | **open, the critical path**: the target classes exist and are empty |
+| Channel and crater candidates | seeded: 2,610 channel candidates, 1,685 crater candidates in Ius Chasma, 5,144 basin candidates at ±60°; the ±60° fine pass is next step 3 |
+| Landform digitising | **open, the critical path**: next step 1 |
 | Map layouts | seven layouts in the project (below) |
+
+### Next steps
+
+In order, toward the final on 8 December. Every open question behind them is numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
+
+1. **Digitise the three landform layers** (task 11, the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. The map *Ius Chasma — digitising* and layout 06 put them over the machine prompts: the 188 steep, rock-floored channel candidates and the 1,685 crater candidates. Hand work in Pro; no heavy processing. Then re-export the geodatabase so the backup holds the new features ([keeping the backup current](docs/backup.md#keeping-it-current)).
+2. **Settle the choices that change what gets trained or published:**
+   - which class schema is current: `Composite Object Classes.ecs` swaps lava tube and steep/windy hills against every labelled file. Settle it before drawing more samples or training on the deep-learning export (q23);
+   - whether to add lava tube labels or drop the class: 44 polygons gave 2% user's accuracy (above);
+   - whether to prune the 64% of channel candidates on ground under 2° of slope (q17);
+   - boxes or pixel labels for the deep-learning export (q26);
+   - how much smoothing to publish: 5 × 5 now, chosen by feature size (q27).
+3. **Run the desktop jobs**, too heavy for the laptop. The scripts hard-code `Z:` and the drive mounts as `F:` on the desktop, so give it the letter `Z:` there first (q22).
+   - the ±60° crater and channel fine pass, `make_global_landforms.py`: about 7 hours measured, checkpointed per tile. Only the coarse basin pass has run. Check the output with `verify_global60.py`;
+   - pyramids on the four source mosaics (q6).
+4. **Write the final report and presentation**, from the layouts and the results above.
 
 ## Results so far
 
