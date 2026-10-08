@@ -3441,4 +3441,7 @@ deleted**: every item went to `Z:\_removed_not_Mars\` (with a README), which he 
   Cluster run, and its metadata keeps one orphan entry titled "Mercury". The record's own history
   (§3, §7, §23) still describes the Mercury tutorial settings: that is where the segmentation
   parameters came from, so it stays.
-- `Z:\_recode_probe\` is a scratch gdb from §36.4's copy test, also his to delete.
+- `Z:\_recode_probe\` (a scratch gdb from §36.4's copy test) and the internal-disk temp folders
+  `%LOCALAPPDATA%\Temp\mars_github_dist` and `mars_scratch` were sent to the Recycle Bin at his
+  request, 2026-10-07. `mars_scratch` held the 400 m classification tiles and `viking_g200.tif`;
+  `make_global60_svm_stack.py` rebuilds the latter if it is missing, and the scripts recreate the folder.
