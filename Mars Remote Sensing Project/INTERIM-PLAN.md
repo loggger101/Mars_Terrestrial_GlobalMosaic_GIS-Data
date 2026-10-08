@@ -152,8 +152,10 @@ Ordered as a talk would run: data → method → result → limit.
    checks that caught the 29/30 Sep maps. (§30–§32, layouts 04, 05)
 8. **What the references showed** — T1: the thermal bands add +1.3 pt and terrain alone matches the
    full stack; T3: the index does not track calibrated thermal inertia, Viking albedo does; T2:
-   Athabasca's lava is the least cratered unit in its window; T8: the classes are terrain classes.
-   (§40.1, §42.2, §42.4, §43)
+   Athabasca's lava is the least cratered unit in its window; T8: the classes are terrain classes;
+   T5: no band separates the 1:20 M contacts much better than chance (day IR leans H1's way);
+   T6: the composite's Iso Cluster classes are the least reproducible of all inputs; T7: no channel
+   threshold keeps first-order streams on real slopes. (§40.1, §42.2, §42.4, §43, §47)
 9. **What is not done** — digitising (review ready, §46), lava flows mapped from the mosaic,
    craters and channels below 20 km at ±60° (the fine pass, desktop). (`NEXT-STEPS.md`)
 
@@ -166,15 +168,15 @@ since. Status, for both the interim and the final:
 
 | | claim | status | what would settle it |
 |---|---|---|---|
-| **H1** | Day IR delineates flow boundaries under dust that Viking misses | **untested**; weakened at ±60° by local normalisation (§28.10) and by T3 (§42.4) | **T5, ready now**: Athabasca (§42.1) and the geologic map's contacts (§41) are both in the project |
+| **H1** | Day IR delineates flow boundaries under dust that Viking misses | **tested, not supported at 1:20 M** (T5, §47.2): day IR separates 21 % of lAv contact profiles, Viking red 12 %, chance 10 %; the difference's interval includes 0 | T5 again on lava margins digitised at Athabasca |
 | **H2** | Fluvial channels have shallower gradients than volcanic ones, and the two separate on gradient vs thermal | **untested**: no channel has an `Origin` yet; the review sets it on accepted channels (§46); test T4 | the digitised channels at Ius (fluvial) and Athabasca (volcanic), each with `SlopeDeg` and `ThermIdx` attributes the candidates already carry (§25) |
-| **H3** | The 4-band composite gives more stable Iso Cluster classes than any single input | **partly**: the composite's 10 classes are geologically coherent (§19.3); single-input runs were never compared | T6: one Iso Cluster per input on the type area, minutes on the laptop |
+| **H3** | The 4-band composite gives more stable Iso Cluster classes than any single input | **answered, not supported** (T6, §47.3): halves-trained ARI 0.40 for the 4-band composite against 0.61–0.89 for single inputs; most coherent, only just ahead of Viking | — |
 | **H4** | Crater rims from DN gradient recover most of the 141 IAU craters > 100 km | **answered with a different method**: fill depth, not DN gradient — 68 % of 117 inside ±58° (§28.11) | report the method change honestly; the gradient route was never run |
 | Q1 | Does projecting the DEM change slope enough to matter? | **answered**: yes, percent rise on a degree grid was not a slope (§7, §20) | — |
 | Q2 | Does Composite Bands complete globally once harmonised? | **answered**: bounded, 8.8 s; the GUI global runs 2 h 52 m and 3 h 10 m on the desktop (§18, §29.1) | — |
 | Q3 | How much does 8-bit depth limit separation? | **overtaken**: local normalisation is the bigger limit (§28.10) | — |
 | Q4 | Is day IR enough, or is night IR needed? | **answered**: night IR is the most independent band (§18.3) | — |
-| Q5 | How many tributary orders are recoverable at 100 m? | **partly**: Strahler order tops out at 3 at Ius with a 50 km² threshold (§25) | T7: a threshold sweep, the routing rasters are cached, ~2 min each |
+| Q5 | How many tributary orders are recoverable at 100 m? | **answered** (T7, §47.4): none that the DEM supports; max order follows the threshold (2 at 500 km², 3 at 50, 5 at 1) and ~two thirds of first-order streams lie under 2° at every threshold | — |
 | Q6 | Does DN gradient reveal unit boundaries beyond the source image? | **unexamined** | low priority; say so |
 
 ## 6. Timeline to mid-November

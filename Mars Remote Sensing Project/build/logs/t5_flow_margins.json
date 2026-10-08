@@ -1,0 +1,199 @@
+{
+ "test": "T5",
+ "hypothesis": "H1",
+ "prediction": "Viking red separates at least as many contacts as day IR; IR-only <= Viking-only; night IR fewest; H1 not supported",
+ "design": {
+  "step_km": 2.0,
+  "half_km": 20.0,
+  "gap_km": 3.0,
+  "null_n": 2000,
+  "null_min_km": 25.0,
+  "boot": 2000,
+  "seed": 20261008,
+  "null_quantile": 0.9
+ },
+ "contacts_by_pair_km": {
+  "AHv-HNt": 537.9,
+  "AHv-lAv": 758.0,
+  "HNt-lAv": 608.0,
+  "HNt-lAvf": 133.3,
+  "Htu-lAv": 156.3,
+  "lAv-lAvf": 570.7
+ },
+ "registration": {
+  "contact_sides_differ": 0.9716369529983793,
+  "null_sides_differ": 0.0
+ },
+ "sets": {
+  "lAv contacts": {
+   "profiles": 905,
+   "contacts": 10,
+   "bands": {
+    "viking_r": {
+     "null_p90": 1.672,
+     "median_d_contact": 0.679,
+     "median_d_null": 0.641,
+     "separates": 0.123,
+     "ci95": [
+      0.026,
+      0.216
+     ]
+    },
+    "viking_g": {
+     "null_p90": 1.639,
+     "median_d_contact": 0.666,
+     "median_d_null": 0.617,
+     "separates": 0.113,
+     "ci95": [
+      0.028,
+      0.199
+     ]
+    },
+    "viking_b": {
+     "null_p90": 1.586,
+     "median_d_contact": 0.673,
+     "median_d_null": 0.593,
+     "separates": 0.115,
+     "ci95": [
+      0.037,
+      0.19
+     ]
+    },
+    "day_ir": {
+     "null_p90": 1.576,
+     "median_d_contact": 0.646,
+     "median_d_null": 0.541,
+     "separates": 0.21,
+     "ci95": [
+      0.033,
+      0.384
+     ]
+    },
+    "night_ir": {
+     "null_p90": 1.65,
+     "median_d_contact": 0.614,
+     "median_d_null": 0.608,
+     "separates": 0.117,
+     "ci95": [
+      0.033,
+      0.202
+     ]
+    },
+    "contrast_index": {
+     "null_p90": 1.661,
+     "median_d_contact": 0.584,
+     "median_d_null": 0.605,
+     "separates": 0.13,
+     "ci95": [
+      0.03,
+      0.249
+     ]
+    }
+   },
+   "day_minus_viking_r": {
+    "diff": 0.087,
+    "ci95": [
+     -0.017,
+     0.181
+    ]
+   },
+   "night_minus_viking_r": {
+    "diff": -0.006,
+    "ci95": [
+     -0.049,
+     0.123
+    ]
+   },
+   "day_only": 137,
+   "viking_only": 58,
+   "night_only": 71,
+   "viking_only_vs_night": 76,
+   "h1_supported": false
+  },
+  "all contacts": {
+   "profiles": 1234,
+   "contacts": 13,
+   "bands": {
+    "viking_r": {
+     "null_p90": 1.672,
+     "median_d_contact": 0.699,
+     "median_d_null": 0.641,
+     "separates": 0.132,
+     "ci95": [
+      0.041,
+      0.2
+     ]
+    },
+    "viking_g": {
+     "null_p90": 1.639,
+     "median_d_contact": 0.678,
+     "median_d_null": 0.617,
+     "separates": 0.119,
+     "ci95": [
+      0.039,
+      0.183
+     ]
+    },
+    "viking_b": {
+     "null_p90": 1.586,
+     "median_d_contact": 0.668,
+     "median_d_null": 0.593,
+     "separates": 0.119,
+     "ci95": [
+      0.048,
+      0.176
+     ]
+    },
+    "day_ir": {
+     "null_p90": 1.576,
+     "median_d_contact": 0.618,
+     "median_d_null": 0.541,
+     "separates": 0.182,
+     "ci95": [
+      0.051,
+      0.328
+     ]
+    },
+    "night_ir": {
+     "null_p90": 1.65,
+     "median_d_contact": 0.658,
+     "median_d_null": 0.608,
+     "separates": 0.127,
+     "ci95": [
+      0.057,
+      0.201
+     ]
+    },
+    "contrast_index": {
+     "null_p90": 1.661,
+     "median_d_contact": 0.642,
+     "median_d_null": 0.605,
+     "separates": 0.118,
+     "ci95": [
+      0.044,
+      0.21
+     ]
+    }
+   },
+   "day_minus_viking_r": {
+    "diff": 0.049,
+    "ci95": [
+     -0.036,
+     0.146
+    ]
+   },
+   "night_minus_viking_r": {
+    "diff": -0.005,
+    "ci95": [
+     -0.045,
+     0.089
+    ]
+   },
+   "day_only": 152,
+   "viking_only": 91,
+   "night_only": 113,
+   "viking_only_vs_night": 119,
+   "h1_supported": false
+  }
+ }
+}

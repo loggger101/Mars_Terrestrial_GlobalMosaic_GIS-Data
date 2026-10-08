@@ -2,7 +2,7 @@
 
 **Owner:** Logan Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `Z:\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md`
-**Started:** 2026-09-18 · **Last updated:** 2026-10-08 (**§11 q14, q16–q19, q25 brought up to date with §39–§46**; **§46 added: digitising by review (D10): `Review` / `ReviewNote` on the four candidate classes, `SourceID` on the two digitising classes, and `accept_reviewed.py`, which copies only accepted candidates**; **§45 added: the interim report is a living build from the same source as the deck; the interim now leads with the measured limits (D12); `verify_interim.py` checks every interim number against this record**; **§44 added: graticules on every map and layout 10, the locator, with the geologic map's volcanic units as the lava-flow reference**; **§43 added: T3 planet-wide (the THEMIS pair keeps a weak local signal, Viking the regional one); T8 (the classes are terrain classes, also against the geologic map); the lava-tube relabel tested**; **§42 added: the Athabasca Valles type area; T2 and the detector's precision against Robbins (11 % at ≥ 1 km); T3 local: the diurnal-contrast index does not track calibrated thermal inertia at 3 km; §24.3 and §26.3 qualified**; **§41 added: the three approved reference datasets downloaded, checked and in the project: the USGS geologic map, the Robbins craters and TES thermal inertia**; **§40 added: test T1, the thermal bands add +1.3 pt and terrain alone matches the full stack; every build script now finds its drive (§11 q22)**; **§39.4: the record, the plans, the build scripts, the project's layer and layout text and the GitHub page rewritten in an objective, impersonal voice**; **§39.3: the interim deck is now a living build in the Presentation 1 style with seven map slides; `verify_all.py` repaired after §37**; **§21.4 corrected: the interim deck was never blocked; the course template is now on `Z:` and both deck builders run (§39.2); §1: the interim is due mid-November; §39 added: the next-steps plan, `NEXT-STEPS.md`, and the interim plan, `INTERIM-PLAN.md`; §10: the USGS geologic map is named as a validation source but is not on disk**; **§38 added: layout 08, the mosaic itself at ±60° in four panels (visible, day IR, night IR, topography), each on its own map in the stack's native CRS**; 2026-10-07: **§37 added: everything that isn't Mars is out of the project, moved to `Z:\_removed_not_Mars\`, nothing deleted; §36.4: every classified raster's pixel values are now its class codes, the two GUI maps and `ius_sup_*` included**; earlier the same day, **§36: the ±60° landform maps recoded 0–3 → 1–4**; 2026-10-06: **§35 added: the project is backed up to a public GitHub repo, `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`, which is also its project page; §2.5's "no backup" is superseded**; 2026-10-03: **§32 added: the digitising map and layout 06 put the candidates and the empty digitising classes in Pro; basin layout 07; the classification smoothed 5 × 5, chosen by feature size**; earlier the same day, **§31 added: the fix. A corrected ±60° stack, a reclassification scored on held-out labels, every Mars map clipped to ±60°, a new map and layouts in the project**; 2026-10-02: **§30 added — the two GUI SVM classifications checked against the labelled polygons, the IAU craters and the DEM: the 29 Sep map follows its 4096-px processing tiles and scores below chance on its own training data; the 30 Sep map is mostly elevation**; earlier the same day, **§29.2 and §11 q23 — the two class schemas number lava tube and steep/windy hills the other way round; every labelled file follows the older one**; 2026-10-01: **§29 added — manual work in the Pro GUI, 2026-09-24 to 10-01, read from the logs and the gdb: hand training labels in four classes, a ±60° segmentation, two SVM classifications, the first two successful global Composite Bands runs, a deep-learning export — and `Landform_TrainingSamples_terrain` now holds the hand-drawn labels, which `make_typearea_supervised.py` would delete; §6, §8, §11, §13.2, §17.2, §27 reconciled**; 2026-09-19: **§28 added — the derived products move off the type area onto the mosaics' own grid; `build\grid60.py` is now the single definition of the ±60° extent, and the diurnal-contrast index exists at 15.2 bn px**; **§24 added — the day–night pair worked properly; calibrated thermal inertia is NOT derivable from the held 8-bit products, and the relative diurnal-contrast index that replaces it**; **§25 added — task 11 seeded with inferred channel candidates, and `Fill` caught flooding Ius Chasma 2,077 m deep**; earlier on 2026-09-18, a re-verification pass — most `[E]` items
+**Started:** 2026-09-18 · **Last updated:** 2026-10-08 (**§47 added: tests T5, T6, T7; none supports the prospectus claim (H1 inconclusive at 1:20 M, H3 not supported, Q5 has no DEM-supported answer); §41's frame label corrected (the coordinates were right)**; **§11 q14, q16–q19, q25 brought up to date with §39–§46**; **§46 added: digitising by review (D10): `Review` / `ReviewNote` on the four candidate classes, `SourceID` on the two digitising classes, and `accept_reviewed.py`, which copies only accepted candidates**; **§45 added: the interim report is a living build from the same source as the deck; the interim now leads with the measured limits (D12); `verify_interim.py` checks every interim number against this record**; **§44 added: graticules on every map and layout 10, the locator, with the geologic map's volcanic units as the lava-flow reference**; **§43 added: T3 planet-wide (the THEMIS pair keeps a weak local signal, Viking the regional one); T8 (the classes are terrain classes, also against the geologic map); the lava-tube relabel tested**; **§42 added: the Athabasca Valles type area; T2 and the detector's precision against Robbins (11 % at ≥ 1 km); T3 local: the diurnal-contrast index does not track calibrated thermal inertia at 3 km; §24.3 and §26.3 qualified**; **§41 added: the three approved reference datasets downloaded, checked and in the project: the USGS geologic map, the Robbins craters and TES thermal inertia**; **§40 added: test T1, the thermal bands add +1.3 pt and terrain alone matches the full stack; every build script now finds its drive (§11 q22)**; **§39.4: the record, the plans, the build scripts, the project's layer and layout text and the GitHub page rewritten in an objective, impersonal voice**; **§39.3: the interim deck is now a living build in the Presentation 1 style with seven map slides; `verify_all.py` repaired after §37**; **§21.4 corrected: the interim deck was never blocked; the course template is now on `Z:` and both deck builders run (§39.2); §1: the interim is due mid-November; §39 added: the next-steps plan, `NEXT-STEPS.md`, and the interim plan, `INTERIM-PLAN.md`; §10: the USGS geologic map is named as a validation source but is not on disk**; **§38 added: layout 08, the mosaic itself at ±60° in four panels (visible, day IR, night IR, topography), each on its own map in the stack's native CRS**; 2026-10-07: **§37 added: everything that isn't Mars is out of the project, moved to `Z:\_removed_not_Mars\`, nothing deleted; §36.4: every classified raster's pixel values are now its class codes, the two GUI maps and `ius_sup_*` included**; earlier the same day, **§36: the ±60° landform maps recoded 0–3 → 1–4**; 2026-10-06: **§35 added: the project is backed up to a public GitHub repo, `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`, which is also its project page; §2.5's "no backup" is superseded**; 2026-10-03: **§32 added: the digitising map and layout 06 put the candidates and the empty digitising classes in Pro; basin layout 07; the classification smoothed 5 × 5, chosen by feature size**; earlier the same day, **§31 added: the fix. A corrected ±60° stack, a reclassification scored on held-out labels, every Mars map clipped to ±60°, a new map and layouts in the project**; 2026-10-02: **§30 added — the two GUI SVM classifications checked against the labelled polygons, the IAU craters and the DEM: the 29 Sep map follows its 4096-px processing tiles and scores below chance on its own training data; the 30 Sep map is mostly elevation**; earlier the same day, **§29.2 and §11 q23 — the two class schemas number lava tube and steep/windy hills the other way round; every labelled file follows the older one**; 2026-10-01: **§29 added — manual work in the Pro GUI, 2026-09-24 to 10-01, read from the logs and the gdb: hand training labels in four classes, a ±60° segmentation, two SVM classifications, the first two successful global Composite Bands runs, a deep-learning export — and `Landform_TrainingSamples_terrain` now holds the hand-drawn labels, which `make_typearea_supervised.py` would delete; §6, §8, §11, §13.2, §17.2, §27 reconciled**; 2026-09-19: **§28 added — the derived products move off the type area onto the mosaics' own grid; `build\grid60.py` is now the single definition of the ±60° extent, and the diurnal-contrast index exists at 15.2 bn px**; **§24 added — the day–night pair worked properly; calibrated thermal inertia is NOT derivable from the held 8-bit products, and the relative diurnal-contrast index that replaces it**; **§25 added — task 11 seeded with inferred channel candidates, and `Fill` caught flooding Ius Chasma 2,077 m deep**; earlier on 2026-09-18, a re-verification pass — most `[E]` items
 promoted to `[V]`; Composite Bands attempt count corrected from three to four; laptop-vs-desktop
 constraint added as §2.1; **final-deliverable date answered — 8 December 2026**; `Z:`
 confirmed as the project's single home, §2.5; **§13 added — verified headless
@@ -3743,7 +3743,7 @@ mirror `Reference\`. Zips were listed before extraction (no executables, no unsa
 
 | dataset | source | on disk | in the project |
 |---|---|---|---|
-| USGS **Geologic Map of Mars**, SIM 3292 (Tanaka et al. 2014), public domain | `pubs.usgs.gov/sim/3292/downloads/sim3292_database.zip` (808.9 MB) + readme, metadata | `SIM3292_geologic_map\` (file gdb, shapefiles) | `Ref_SIM3292_GeologicUnits`: 1,311 unit polygons, Robinson CM 0 → GCS_Mars_2000_Sphere; `UnitGroup` = the type code without its age (e.g. `lAv` → `v`) |
+| USGS **Geologic Map of Mars**, SIM 3292 (Tanaka et al. 2014), public domain | `pubs.usgs.gov/sim/3292/downloads/sim3292_database.zip` (808.9 MB) + readme, metadata | `SIM3292_geologic_map\` (file gdb, shapefiles) | `Ref_SIM3292_GeologicUnits`: 1,311 unit polygons, Robinson CM 0 (sphere) → WKID 104905, **labelled GCS_Mars_2000, the ellipsoid, but holding the sphere's coordinates unshifted** (corrected 2026-10-08, §47.1); `UnitGroup` = the type code without its age (e.g. `lAv` → `v`) |
 | **Robbins & Hynek crater database**, 2020 release (cite Robbins & Hynek 2012, JGR 117, E05004) | the author's site, `craters.sjrdesign.net` (39.4 MB zip; comma-separated, not tab as stated) | `Robbins_craters_2020\` | `Ref_Craters_Robbins2020`: **385,049** craters ≥ 1 km, circle-fit centre, `DiamKm`; longitude 0–360 → −180–180 |
 | **TES thermal inertia**, Putzig & Mellon 2007 (Icarus 191), dayside and nightside, 20 px/° | `se.psi.edu/inertia/2007`: `DBmap2007.bin`, `NBmap2007.bin`, masks | `TES_thermal_inertia_2007\` | GeoTIFFs beside the downloads (`make_tes_reference.py`): `TES_TI_2007_dayside/_nightside.tif` (Int16 tiu, nodata 0) and `_measured.tif` (1 = measured) |
 
@@ -4015,3 +4015,106 @@ The judgement stays manual; only an explicit accept moves a candidate into a `La
   save edits, then run `accept_reviewed.py` with the ArcGIS Pro Python (dry run, then `--apply --by`).
   Afterwards re-export the gdb to GitHub (§35.2). The tally is the input to the validation sheet
   (`NEXT-STEPS.md` 3.7).
+
+## 47. Tests T5, T6, T7: flow margins, composite stability, tributary orders — 2026-10-08 **[V]**
+
+Three tests from `NEXT-STEPS.md` §4, each with its prediction and verdict rule written into the script
+before it ran. Results in `build\logs\t5_flow_margins.json`, `t6_composite_stability.json`,
+`t7_order_sweep.json`; each script reran to identical numbers.
+
+**In one line:** none of the three supports the prospectus' claim. The flow-margin test is inconclusive
+at the resolution of the map it tests against; the composite's classes are the least reproducible of
+all inputs; and no channel threshold gives a first-order network that is mostly on real slopes.
+
+### 47.1 The geologic map's frame label, corrected
+
+`Ref_SIM3292_GeologicUnits` is labelled **GCS_Mars_2000 (WKID 104905, the ellipsoid, 3,396,190 /
+3,376,200 m)**, not the sphere that §41 and `make_reference_layers.py` said. The import projected the
+source (Robinson on the Mars 2000 sphere) to 104905 without a datum transformation, so the stored
+vertices are the sphere's coordinates: compared on 40 features against the source inverted on its own
+sphere, **max difference 5 × 10⁻¹⁰°**, and arcpy applies no shift between the two labels either. Every
+earlier use (T2, T8, layout 10) is therefore unaffected. A transformation added later would move
+latitudes by up to ~0.2° here; T5 converts lon/lat to the grid directly to keep it out. **[V]**
+
+### 47.2 T5 (H1): do the IR mosaics show lava-flow contacts that Viking misses?
+
+`build\make_flow_margin_test.py`. Athabasca window (§42.1): five SIM 3292 units (lAv 184,458 km²,
+AHv 166,437, HNt 40,762, lAvf 19,853, Htu 1,733); **14 internal contacts, 2,764 km**. Profiles every
+2 km, perpendicular, ±20 km; sides 3–20 km out. Separation d = |mean difference| / pooled sd. Null:
+2,000 random profiles ≥ 25 km from any contact; a profile "separates" when d exceeds the band's null
+90th percentile (10 % of null profiles by construction). 95 % intervals by bootstrap over contacts.
+**Registration check:** the units at ±10 km differ on **97.2 %** of contact profiles and on **0 %** of
+null ones.
+
+| band | lAv contacts (905 profiles, 10 contacts) | all contacts (1,234 profiles, 13 contacts) |
+|---|---|---|
+| Viking red | 12.3 % [2.6, 21.6] | 13.2 % [4.1, 20.0] |
+| Viking green / blue | 11.3 % / 11.5 % | 11.9 % / 11.9 % |
+| **day IR** | **21.0 % [3.3, 38.4]** | **18.2 % [5.1, 32.8]** |
+| night IR | 11.7 % [3.3, 20.2] | 12.7 % [5.7, 20.1] |
+| diurnal-contrast index | 13.0 % [3.0, 24.9] | 11.8 % [4.4, 21.0] |
+| day − Viking red | +8.7 pt [−1.7, +18.1]; day-only 137, Viking-only 58 | +4.9 pt [−3.6, +14.6]; 152 vs 91 |
+| night − Viking red | −0.6 pt [−4.9, +12.3] | −0.5 pt [−4.5, +8.9] |
+
+- **Verdict by the rule fixed in advance: H1 not supported** (the interval of day − Viking includes 0).
+- **The prediction failed in part:** Viking did not separate as many contacts as day IR; day IR's point
+  estimate is the highest of every band, night IR is level with Viking, not below it.
+- **What it shows:** across the 1:20 M contacts, every band separates the mapped units only slightly
+  more often than random lines inside one unit (11–21 % against 10 %). At this map scale the contacts
+  are generalised by kilometres and the test has 10 independent contacts, so it cannot settle H1
+  either way. Day IR leans in H1's direction; that is a hint, not a result.
+- **What would settle it:** the same script against lava margins digitised at 100 m at Athabasca
+  (task 11, §46), where the contact position is known to a few pixels. **[V]**
+
+### 47.3 T6 (H3): is the composite more stable than any single input?
+
+`build\make_composite_stability.py`. Ius window; Iso Cluster as in §19 (10 classes, minimum size 20,
+interval 10). Stability = adjusted Rand index (ARI) between the maps trained on the west and on the
+east half, each applied to the whole window; coherence = share of 4-neighbour pairs in one class. The
+ARI was checked first (1 for a map against itself and a relabelled copy, ~0 against a shuffled one).
+21 no-data edge pixels of the Viking-based inputs excluded.
+
+| input | stability (ARI) | coherence | classes ≥ 1 % |
+|---|---|---|---|
+| Viking RGB | 0.611 | 0.841 | 10 |
+| day IR | **0.891** | 0.697 | 10 |
+| night IR | 0.866 | 0.543 | 10 |
+| 4-band composite (the hypothesis' input) | 0.396 | **0.846** | 10 |
+| 5-band composite | 0.378 | 0.798 | 10 |
+
+- **Verdict: H3 not supported.** The composites give the **least** reproducible partitions: which half
+  trains them changes the classes most. They are the most spatially coherent, only just ahead of Viking.
+- **Prediction held:** Viking is both more stable and more coherent than the 5-band composite.
+- **Reading:** a one-band Iso Cluster is close to a density slice, so the single thermal bands
+  reproduce easily (0.89, 0.87) but are speckled (night IR 0.543). Adding bands makes the classes
+  smoother and less reproducible. Stability is not meaning: §19.3's geological coherence of the
+  composite's classes still stands. **[V]**
+
+### 47.4 T7 (Q5): how many tributary orders does the 100 m stack resolve?
+
+`build\make_order_sweep.py`. Ius, the cached routing rasters of §25 and the same fill-artefact mask; nine
+thresholds; per order, the share of stream cells on slopes ≥ 2° (26,078 no-data edge cells of the slope
+raster excluded; 53.3 % of the window is ≥ 2°).
+
+| threshold (cells / km²) | 100 / 1 | 250 / 2.5 | 500 / 5 | 1,000 / 10 | 2,000 / 20 | 5,000 / 50 | 10,000 / 100 | 20,000 / 200 | 50,000 / 500 |
+|---|---|---|---|---|---|---|---|---|---|
+| max Strahler order | 5 | 5 | 4 | 4 | 4 | 3 | 3 | 3 | 2 |
+| order-1 cells on ≥ 2° | 36.7 % | 35.0 % | 35.0 % | 36.0 % | 36.1 % | 35.5 % | 34.3 % | 32.9 % | 30.8 % |
+| highest order on ≥ 2° | 7 % | 4 % | 3 % | 2 % | 0 % | 2 % | 0 % | 0 % | 3 % |
+
+- **Q5 by the rule fixed in advance: no threshold passes** (order-1 streams ≥ 50 % on ≥ 2°), so Q5 has
+  no answer the DEM supports at Ius. At every threshold about two thirds of the first-order network
+  lies on ground under 2°, less steep than the window itself.
+- **The prediction failed in part:** the maximum order rises by about **one per tenfold** fall in the
+  threshold, not one per 4–5×; it is set by the threshold, as predicted. The 50 km² threshold reproduces
+  §25's maximum of 3.
+- **Reading:** the higher orders lie almost entirely on flat ground (0–7 % on ≥ 2°): trunk routing across
+  the plateau and the masked floor, which §25.2 already flagged as DEM noise on a 200 m blend. The
+  channel orders quoted for the candidates are a parameter, not a measurement. The 2° proxy is
+  Ius-specific; it was not applied at Athabasca, where 97 % of candidates lie under 2° (§42.1). **[V]**
+
+### 47.5 Where the hypotheses stand now
+
+H1 tested, not supported at 1:20 M (re-test on digitised margins); H2 untested (needs reviewed channels
+with `Origin`, T4); H3 tested, not supported; H4 answered by a different method (§28.11). Q5 answered:
+no DEM-supported order count at Ius. `INTERIM-PLAN.md` §5 updated.

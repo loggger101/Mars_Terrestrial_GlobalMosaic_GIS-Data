@@ -2,7 +2,9 @@
 r"""The downloaded references as feature classes in the project gdb (KB §41).
 
   Ref_SIM3292_GeologicUnits   USGS SIM 3292 (Tanaka et al. 2014) unit polygons, projected from the
-                              source's Robinson (CM 0) to GCS_Mars_2000_Sphere. Fields Unit, UnitDesc,
+                              source's Robinson (CM 0, Mars 2000 sphere) to WKID 104905. That WKID is
+                              labelled GCS_Mars_2000 (the ellipsoid), but no datum shift is applied, so the
+                              stored vertices are the sphere's coordinates (checked, KB §47.1). Fields Unit, UnitDesc,
                               SphArea_km, plus UnitGroup (the age-free unit family, e.g. "v" volcanic)
   Ref_Craters_Robbins2020     Robbins & Hynek crater database, 2020 release (385,049 craters >= 1 km),
                               points at the circle-fit centre, DiamKm, longitude converted to -180..180
@@ -24,7 +26,7 @@ SRC_UNITS = os.path.join(REF, r"SIM3292_geologic_map\SIM3292_MarsGlobalGeologicG
 SRC_CRATERS = os.path.join(REF, r"Robbins_craters_2020\Catalog_Mars_Release_2020_1kmPlus_FullMorphData.csv")
 SCRATCH = os.path.join(os.environ.get("LOCALAPPDATA", HERE), "Temp", "mars_scratch")
 SGDB = os.path.join(SCRATCH, "reference_build.gdb")
-MARS = arcpy.SpatialReference(104905)                     # GCS_Mars_2000_Sphere
+MARS = arcpy.SpatialReference(104905)                     # labelled GCS_Mars_2000 (ellipsoid); coordinates pass through unshifted (KB §47.1)
 UNITS, CRATERS = "Ref_SIM3292_GeologicUnits", "Ref_Craters_Robbins2020"
 SRC_TAGS = {UNITS: "USGS SIM 3292 (Tanaka et al. 2014)", CRATERS: "Robbins & Hynek, 2020 release"}
 

@@ -1,0 +1,300 @@
+{
+ "test": "T7",
+ "question": "Q5",
+ "prediction": "max order +1 per 4-5x fall in threshold; finest passing threshold >= 1,000 cells, 4 orders",
+ "rule": "max Strahler order at the finest threshold whose order-1 cells are >= 50 % on slopes >= 2 deg",
+ "thresholds": {
+  "100": {
+   "km2": 1.0,
+   "max_order": 5,
+   "orders": {
+    "1": {
+     "cells": 1179310,
+     "km_approx": 117931.0,
+     "steep_share": 0.367,
+     "mean_slope_deg": 5.23
+    },
+    "2": {
+     "cells": 432737,
+     "km_approx": 43273.7,
+     "steep_share": 0.328,
+     "mean_slope_deg": 4.39
+    },
+    "3": {
+     "cells": 129513,
+     "km_approx": 12951.3,
+     "steep_share": 0.316,
+     "mean_slope_deg": 3.8
+    },
+    "4": {
+     "cells": 32707,
+     "km_approx": 3270.7,
+     "steep_share": 0.242,
+     "mean_slope_deg": 2.46
+    },
+    "5": {
+     "cells": 4142,
+     "km_approx": 414.2,
+     "steep_share": 0.07,
+     "mean_slope_deg": 0.74
+    }
+   },
+   "total_km_approx": 177840.9,
+   "order1_steep_share": 0.367,
+   "passes": false,
+   "seconds": 45.0
+  },
+  "250": {
+   "km2": 2.5,
+   "max_order": 5,
+   "orders": {
+    "1": {
+     "cells": 688609,
+     "km_approx": 68860.9,
+     "steep_share": 0.35,
+     "mean_slope_deg": 4.71
+    },
+    "2": {
+     "cells": 236298,
+     "km_approx": 23629.8,
+     "steep_share": 0.318,
+     "mean_slope_deg": 4.01
+    },
+    "3": {
+     "cells": 63011,
+     "km_approx": 6301.1,
+     "steep_share": 0.261,
+     "mean_slope_deg": 2.79
+    },
+    "4": {
+     "cells": 11381,
+     "km_approx": 1138.1,
+     "steep_share": 0.119,
+     "mean_slope_deg": 1.15
+    },
+    "5": {
+     "cells": 450,
+     "km_approx": 45.0,
+     "steep_share": 0.04,
+     "mean_slope_deg": 0.43
+    }
+   },
+   "total_km_approx": 99974.9,
+   "order1_steep_share": 0.35,
+   "passes": false,
+   "seconds": 37.5
+  },
+  "500": {
+   "km2": 5.0,
+   "max_order": 4,
+   "orders": {
+    "1": {
+     "cells": 463844,
+     "km_approx": 46384.4,
+     "steep_share": 0.35,
+     "mean_slope_deg": 4.52
+    },
+    "2": {
+     "cells": 146881,
+     "km_approx": 14688.1,
+     "steep_share": 0.306,
+     "mean_slope_deg": 3.53
+    },
+    "3": {
+     "cells": 34860,
+     "km_approx": 3486.0,
+     "steep_share": 0.204,
+     "mean_slope_deg": 2.17
+    },
+    "4": {
+     "cells": 3807,
+     "km_approx": 380.7,
+     "steep_share": 0.028,
+     "mean_slope_deg": 0.41
+    }
+   },
+   "total_km_approx": 64939.2,
+   "order1_steep_share": 0.35,
+   "passes": false,
+   "seconds": 33.7
+  },
+  "1000": {
+   "km2": 10.0,
+   "max_order": 4,
+   "orders": {
+    "1": {
+     "cells": 317717,
+     "km_approx": 31771.7,
+     "steep_share": 0.36,
+     "mean_slope_deg": 4.41
+    },
+    "2": {
+     "cells": 90479,
+     "km_approx": 9047.9,
+     "steep_share": 0.271,
+     "mean_slope_deg": 2.99
+    },
+    "3": {
+     "cells": 15283,
+     "km_approx": 1528.3,
+     "steep_share": 0.113,
+     "mean_slope_deg": 1.27
+    },
+    "4": {
+     "cells": 1785,
+     "km_approx": 178.5,
+     "steep_share": 0.02,
+     "mean_slope_deg": 0.39
+    }
+   },
+   "total_km_approx": 42526.4,
+   "order1_steep_share": 0.36,
+   "passes": false,
+   "seconds": 30.6
+  },
+  "2000": {
+   "km2": 20.0,
+   "max_order": 4,
+   "orders": {
+    "1": {
+     "cells": 223812,
+     "km_approx": 22381.2,
+     "steep_share": 0.361,
+     "mean_slope_deg": 4.19
+    },
+    "2": {
+     "cells": 54699,
+     "km_approx": 5469.9,
+     "steep_share": 0.226,
+     "mean_slope_deg": 2.43
+    },
+    "3": {
+     "cells": 6287,
+     "km_approx": 628.7,
+     "steep_share": 0.043,
+     "mean_slope_deg": 0.51
+    },
+    "4": {
+     "cells": 31,
+     "km_approx": 3.1,
+     "steep_share": 0.0,
+     "mean_slope_deg": 0.17
+    }
+   },
+   "total_km_approx": 28482.9,
+   "order1_steep_share": 0.361,
+   "passes": false,
+   "seconds": 29.5
+  },
+  "5000": {
+   "km2": 50.0,
+   "max_order": 3,
+   "orders": {
+    "1": {
+     "cells": 142905,
+     "km_approx": 14290.5,
+     "steep_share": 0.355,
+     "mean_slope_deg": 3.89
+    },
+    "2": {
+     "cells": 26491,
+     "km_approx": 2649.1,
+     "steep_share": 0.18,
+     "mean_slope_deg": 1.99
+    },
+    "3": {
+     "cells": 1975,
+     "km_approx": 197.5,
+     "steep_share": 0.025,
+     "mean_slope_deg": 0.39
+    }
+   },
+   "total_km_approx": 17137.1,
+   "order1_steep_share": 0.355,
+   "passes": false,
+   "seconds": 28.0
+  },
+  "10000": {
+   "km2": 100.0,
+   "max_order": 3,
+   "orders": {
+    "1": {
+     "cells": 102338,
+     "km_approx": 10233.8,
+     "steep_share": 0.343,
+     "mean_slope_deg": 3.55
+    },
+    "2": {
+     "cells": 15186,
+     "km_approx": 1518.6,
+     "steep_share": 0.108,
+     "mean_slope_deg": 1.29
+    },
+    "3": {
+     "cells": 694,
+     "km_approx": 69.4,
+     "steep_share": 0.0,
+     "mean_slope_deg": 0.2
+    }
+   },
+   "total_km_approx": 11821.8,
+   "order1_steep_share": 0.343,
+   "passes": false,
+   "seconds": 27.3
+  },
+  "20000": {
+   "km2": 200.0,
+   "max_order": 3,
+   "orders": {
+    "1": {
+     "cells": 73764,
+     "km_approx": 7376.4,
+     "steep_share": 0.329,
+     "mean_slope_deg": 3.34
+    },
+    "2": {
+     "cells": 7704,
+     "km_approx": 770.4,
+     "steep_share": 0.066,
+     "mean_slope_deg": 0.7
+    },
+    "3": {
+     "cells": 245,
+     "km_approx": 24.5,
+     "steep_share": 0.0,
+     "mean_slope_deg": 0.27
+    }
+   },
+   "total_km_approx": 8171.3,
+   "order1_steep_share": 0.329,
+   "passes": false,
+   "seconds": 17.7
+  },
+  "50000": {
+   "km2": 500.0,
+   "max_order": 2,
+   "orders": {
+    "1": {
+     "cells": 45026,
+     "km_approx": 4502.6,
+     "steep_share": 0.308,
+     "mean_slope_deg": 2.92
+    },
+    "2": {
+     "cells": 4159,
+     "km_approx": 415.9,
+     "steep_share": 0.034,
+     "mean_slope_deg": 0.54
+    }
+   },
+   "total_km_approx": 4918.5,
+   "order1_steep_share": 0.308,
+   "passes": false,
+   "seconds": 16.3
+  }
+ },
+ "answer": {
+  "finest_passing_threshold_cells": null,
+  "orders_resolved": null
+ }
+}

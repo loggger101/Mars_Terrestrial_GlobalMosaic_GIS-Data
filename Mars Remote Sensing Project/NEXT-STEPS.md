@@ -17,7 +17,7 @@ status, deck formats, timeline). The drafts and the course template are in `NEXT
 
 ## Resume here — written at the end of the 2026-10-08 session
 
-**Where it stopped.** All laptop work scheduled through 25 Oct (§8) is done except the cheap tests T6 and T7; the desktop jobs and the manual review are open. Done:
+**Where it stopped.** All laptop work scheduled through 25 Oct (§8) is done, T5–T7 included (KB §47); the desktop jobs and the manual review are open. Done:
 T1, T2, T3 (local and planet-wide), T8, Athabasca (layout 09), the locator (layout 10), graticules,
 the living interim deck and report, and the review fields for digitising (KB §40–§46). Checks green
 on 2026-10-08: `audit_record.py`, `verify_all.py` 39 / 39, `neutral_voice.py`, the repo check;
@@ -32,10 +32,11 @@ KB §11 (q14, q16–q19, q25) and the GitHub README's next steps now agree.
 | 1 | **Review the Ius candidates** in Pro, starting with "Channels: steep and rock-floored (188)", then the closed depressions; then Athabasca | manual (GUI) | §6 steps 1–4; `build\accept_reviewed.py` (dry run, then `--apply --by "<name>"`) | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; tally printed |
 | 2 | After each review session: run the copy, re-export the gdb to GitHub, push | Claude (laptop) | `accept_reviewed.py`; `github_export_gdb.py`, then `github_sync.py` and the push (KB §35.2) | gdb export in the repo matches the drive |
 | 3 | **Validation sheet** (3.7): candidates vs accepted features, precision and recall per class, the misses | Claude (laptop) | new script + layout 11 or later; reads the `Review` tally | reruns in seconds; sheet exported and read |
-| 4 | **T6, T7, T5** (§4): composite stability (H3); tributary orders at 100 m (Q5); flow margins in IR vs Viking at Athabasca (H1). All three are unblocked now | Claude (laptop) | cached rasters and the geologic map, minutes to ~1 h each | results in the record; H1, H3, Q5 updated in `INTERIM-PLAN.md` §5 |
+| 4 | ~~**T6, T7, T5**~~ **Done 2026-10-08 (KB §47):** H1 inconclusive at the 1:20 M map's contacts (day IR leans its way, interval includes 0); H3 not supported (the composites are the least reproducible inputs); Q5 has no DEM-supported answer (no threshold keeps first-order streams on real slopes) | — | — | — |
+| 4a | **T5 again on digitised margins:** rerun `make_flow_margin_test.py` against lava margins drawn at Athabasca (`Landform_LavaFlowMargins`), where the contact is known to a few pixels | Claude (laptop), after margins are drawn | the script needs a `--margins` source in place of the SIM 3292 contacts | H1 settled either way |
 | 5 | **T8 sheet** (§7 row 13): the confusion matrix against the geologic map | Claude (laptop) | from §43.2's numbers | sheet in the `.aprx` |
-| 6 | **Interim deck refresh:** `interim.py` still says "8 layouts" (row "Map layouts" and the 6–8 Oct log row); there are 10. Its digitising row ("Classes ready and empty") and schedule ("8–25 Oct: digitising starts") should mention the review route (§46) | Claude (laptop) | `INTERIM-PLAN.md` §0: edit `interim.py`, rebuild, render, read every slide, `verify_interim.py` | deck and report rebuilt and read |
-| 6a | **README results** on GitHub: add T1, T3 and T8, and qualify the diurnal-contrast bullet ("a material signal"), which predates §42.4 (it does not track calibrated thermal inertia at 3 km) | Claude (laptop) | README.md in the clone; `tools/check_repo.py` | README matches KB §40–§43 |
+| 6 | **Interim deck refresh:** `interim.py` still says "8 layouts" (row "Map layouts" and the 6–8 Oct log row); there are 10. Its digitising row ("Classes ready and empty") and schedule ("8–25 Oct: digitising starts") should mention the review route (§46). Add T5–T7 (§47) to the results and issues, in the "measured limits" framing of D12 | Claude (laptop) | `INTERIM-PLAN.md` §0: edit `interim.py`, rebuild, render, read every slide, `verify_interim.py` | deck and report rebuilt and read |
+| 6a | **README results** on GitHub: add T1, T3, T8 and T5–T7, and qualify the diurnal-contrast bullet ("a material signal"), which predates §42.4 (it does not track calibrated thermal inertia at 3 km) | Claude (laptop) | README.md in the clone; `tools/check_repo.py` | README matches KB §40–§47 |
 | 6b | **T4** (H2): channel gradient and thermal response, Ius vs Athabasca, on reviewed channels with `Origin` set | Claude (laptop) | after item 1 has produced accepted channels in both windows | result in the record |
 | 7 | **Desktop day** when available: X0 junctions on `F:` → X1 GPU test → X2 fine pass (craters + channels ≥ 1 km at ±60°) → X4 pyramids alongside; X3 200 m classification next | desktop | §5 | X2 products verified (`verify_global60.py`); then 3.8 sheets |
 | 8 | **Decisions still open:** D2 (the interim and final rubrics), D7 (q23: which class schema, before any new samples), D9 (housekeeping deletions; recommended: after the final), D13 (q17: prune the plateau channel candidates; recommended: no, reject them in review) | the author | §2 | struck in §2 |
@@ -100,10 +101,10 @@ polygons: +1.3 pt** (§40.1), and T3 checked the index against calibrated therma
 > is the co-registered mosaic, the scored products and these measured limits, not a thermal
 > material map. Lava flows can now be mapped against the geologic map's volcanic units (T8).
 
-**The project's own hypotheses (H1–H4) and questions (Q1–Q6) have not been tracked since
-September.** Status table in `INTERIM-PLAN.md` §5: two hypotheses untested, one partly answered,
-one answered by a different method; four of six questions answered. The tests in §4 below are
-designed to close the rest.
+**The project's own hypotheses (H1–H4) and questions (Q1–Q6), tracked again since 2026-10-08**
+(status table in `INTERIM-PLAN.md` §5, KB §47.5): H1 tested and not supported at the geologic map's
+1:20 M scale (rerun on digitised margins); H2 untested (T4, needs reviewed channels); H3 tested, not
+supported; H4 answered by a different method. Q1, Q2, Q4 and Q5 answered, Q3 overtaken, Q6 unexamined.
 
 ---
 
@@ -195,9 +196,9 @@ surprise. Cheapest first. All on the laptop unless marked.
 | **T2** ✓ | **Is Athabasca younger than Ius's plateau?** | Closed depressions ≥ 1 km per 10⁶ km² in each window, same detector, same filters. **Prediction [E]:** Athabasca's flood lavas are among the youngest surfaces on Mars, so far fewer craters. A size-frequency plot per window, **labelled "closed depressions", never used for an age** (the detector misses breached craters, §26.3). With D5b, use Robbins counts instead and compare. | minutes | D4 |
 | **T3** ✓ (local §42.4, planet-wide §43.1) | **Which of our layers tracks calibrated thermal inertia?** | Aggregate Viking red, the THEMIS day and night DN, and the contrast index to TES's 3 km grid over ±60°; correlate each with TES inertia on measured pixels only. **Prediction:** Viking correlates (dust = bright = low inertia), the THEMIS pair does not (local normalisation). This would turn §28.10 from an argument into a calibrated measurement. | ~1 h | D5d |
 | **T4** | **H2: do volcanic and fluvial channels separate on gradient and thermal response?** | Channel slope and `ThermIdx` per segment: Ius candidates (fluvial/collapse) vs Athabasca candidates (volcanic), then the digitised `Origin` labels once they exist. The index is compared **within** each window only (§28.10), so test the separation inside each window against its own background. | minutes | ~~D4~~ ready (Athabasca built, §42.1); **better after review**: accepted channels with `Origin` set (§46) |
-| **T5** | **H1: does IR show flow margins Viking misses?** | Across the geologic map's volcanic contacts at Athabasca (or the digitised margins): edge contrast in Viking vs day IR vs night IR, sampled on perpendicular profiles. | ~1 h | ~~D4 + D5a~~ **ready now**: Athabasca (§42.1) and SIM 3292 (§41) are in the project |
-| **T6** | **H3: is the composite more stable than any single input?** | Iso Cluster 10 classes on Ius per input and on the composite; count surviving classes and their spatial coherence. | minutes | nothing |
-| **T7** | **Q5: how many tributary orders does 100 m resolve?** | Sweep the flow-accumulation threshold on the cached routing rasters (§25: ~2 min each); Strahler order and network length per threshold; where does it saturate? | ~20 min | nothing |
+| **T5** ✓ at 1:20 M (§47.2; inconclusive, rerun on digitised margins) | **H1: does IR show flow margins Viking misses?** | Across the geologic map's volcanic contacts at Athabasca (or the digitised margins): edge contrast in Viking vs day IR vs night IR, sampled on perpendicular profiles. | ~1 h | ~~D4 + D5a~~ **ready now**: Athabasca (§42.1) and SIM 3292 (§41) are in the project |
+| **T6** ✓ (§47.3; H3 not supported) | **H3: is the composite more stable than any single input?** | Iso Cluster 10 classes on Ius per input and on the composite; count surviving classes and their spatial coherence. | minutes | nothing |
+| **T7** ✓ (§47.4; no DEM-supported order count) | **Q5: how many tributary orders does 100 m resolve?** | Sweep the flow-accumulation threshold on the cached routing rasters (§25: ~2 min each); Strahler order and network length per threshold; where does it saturate? | ~20 min | nothing |
 | **T8** ✓ | **Accuracy against the geologic map** (the original schedule's week 13) | The SVM classes against SIM 3292 unit groups, confusion matrix; and the volcanic units as the lava-flow reference (D6). | ~1 h | D5a |
 
 ---

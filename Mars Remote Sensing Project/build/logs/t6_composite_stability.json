@@ -1,0 +1,56 @@
+{
+ "test": "T6",
+ "hypothesis": "H3",
+ "prediction": "H3 not supported: a single input (expected Viking) at least as stable and more coherent than the 5-band composite",
+ "parameters": {
+  "classes": 10,
+  "min_class_size": 20,
+  "sample_interval": 10,
+  "split": "west/east halves at x = 5838500 m"
+ },
+ "inputs": {
+  "Viking RGB": {
+   "stability_ari": 0.6105,
+   "coherence": 0.841,
+   "nodata_px": 21,
+   "classes_ge_1pct": 10,
+   "classes_delivered": 10,
+   "seconds": 122.3
+  },
+  "day IR": {
+   "stability_ari": 0.8909,
+   "coherence": 0.6965,
+   "nodata_px": 0,
+   "classes_ge_1pct": 10,
+   "classes_delivered": 10,
+   "seconds": 80.9
+  },
+  "night IR": {
+   "stability_ari": 0.8656,
+   "coherence": 0.5428,
+   "nodata_px": 0,
+   "classes_ge_1pct": 10,
+   "classes_delivered": 10,
+   "seconds": 85.1
+  },
+  "4-band composite": {
+   "stability_ari": 0.3964,
+   "coherence": 0.8462,
+   "nodata_px": 21,
+   "classes_ge_1pct": 10,
+   "classes_delivered": 10,
+   "seconds": 102.2
+  },
+  "5-band composite": {
+   "stability_ari": 0.3775,
+   "coherence": 0.7977,
+   "nodata_px": 21,
+   "classes_ge_1pct": 10,
+   "classes_delivered": 10,
+   "seconds": 90.7
+  }
+ },
+ "most_stable": "day IR",
+ "median_single_coherence": 0.6965,
+ "h3_supported": false
+}
