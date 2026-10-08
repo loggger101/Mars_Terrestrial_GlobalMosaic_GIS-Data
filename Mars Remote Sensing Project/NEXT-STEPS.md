@@ -36,14 +36,15 @@ lava flows, fluvial channels, impact craters — from a co-registered visible + 
 | **Co-registered mosaic** | done, 100 m (§18) | done: G100/G200 grids, 7-band stack, layout 08 (§28, §31.2, §38) |
 | **Craters** | 1,685 closed depressions ≥ 1 km, validated (§26) | only basins ≥ 20 km: 5,144, 68 % recall on IAU ≥ 100 km (§28.11) |
 | **Channels** | 2,610 candidates, 188 worth the time (§25) | **nothing** |
-| **Lava flows** | **nothing** | **nothing reliable**: the "lava tube" class is 39 % / 2 % (§31.3) |
-| **Manual digitising** | the three `Landform_*` classes are **empty** | — |
+| **Lava flows** | none mapped; at Athabasca the geologic map's `lAv` unit is the reference (§42) | **reference layer**: SIM 3292 volcanic units on layout 10 (§44); the classifier cannot separate volcanic plains (§43.2–43.3) |
+| **Manual digitising** | the three `Landform_*` classes are **empty** (0 rows, 2026-10-08); **review fields ready** (§46) | — |
 | **Classification** | Iso Cluster + supervised on terrain labels (§19, §27) | SVM on the hand-drawn labels, held out 73.5 %, κ 0.58 (§32.2) |
-| **Layouts** | 01, 02, 03, 06 | 04, 05, 07, 08 |
+| **Layouts** | 01, 02, 03, 06; 09 (Athabasca) | 04, 05, 07, 08; 10 (locator) |
 
-**The two gaps that matter most:** lava flows have no product at any scale, and nothing at ±60°
-yet resolves craters or channels below 20 km. Both are fixable in the time left. The third gap,
-the manual digitising, is the one only manual work can close, and it is still the critical path (§11 q16).
+**The two gaps that matter most:** lava flows are shown from the geologic map, not mapped from the
+mosaic (no digitised margin yet), and nothing at ±60° yet resolves craters or channels below 20 km.
+The third gap, the manual digitising, is the one only manual work can close, and it is still the
+critical path (§11 q16). Since 2026-10-08 it starts as a review of the candidates (D10, §46).
 
 **The unproven central claim:** that thermal IR adds something visible light does not. It is
 measured for band independence (§18.3) and as a local index (§24), but **never with the hand-drawn labels**.
@@ -58,6 +59,9 @@ The terrain labels of §27 gave +0.4 pt, which cannot settle it (§27.3). The 51
 >   half the older units' density.
 > - **The crater detector:** only 11–13 % of its ≥ 1 km candidates are catalogued craters.
 > - Reference data in the project (§41); Athabasca built (§42.1, layout 09); scripts run on any drive (§40.2).
+> - Later the same day: T3 planet-wide and T8 (§43), graticules and layout 10 (§44), the living interim
+>   report (§45), and **digitising by review ready** (D10, §46): the candidate tables carry a `Review`
+>   drop-down, and `accept_reviewed.py` copies the accepts.
 >
 > **Consequence for both documents:** at every scale a calibrated product can check, visible albedo
 > carries the material signal and the held THEMIS mosaics do not. The project's honest contribution
@@ -86,7 +90,7 @@ These block or shape everything below. Ask them together, once.
 | D7 | §11 **q23** (which class schema), **q26** (boxes or pixel labels for deep learning), **q27** (how much smoothing to publish). | q23 before any new samples. q26 only matters if deep learning goes ahead (X5). q27: keep 5 × 5, it was fixed by feature size (§32.2). |
 | D8 | ~~Push to GitHub?~~ **Answered 2026-10-08: push after each working session**, once the record audit, the voice check and the repo's own check pass. | — |
 | D9 | **Housekeeping deletions** (all an open decision): the `*_60_smoke` feature classes, the 10 duplicate nomenclature classes (q4), the empty `Line`/`Point` classes, the dead Jezero HiRISE layer, `Z:\_removed_not_Mars\`. | Leave until after the final unless space runs out. The interim may list them as "cleared" only if they are. |
-| D10 | **Digitising as review instead of drawing** (§6)? | Yes: it turns hours of drawing into minutes of accepting and rejecting, and keeps every decision manual. |
+| D10 | ~~Digitising as review instead of drawing?~~ **Answered 2026-10-08: yes.** Review fields and `accept_reviewed.py` built the same day (3.6, KB §46); workflow in §6. | — |
 | D11 | ~~Interim deck format~~ **Answered 2026-10-08: the Presentation 1 style with graphics, no fixed slide count, rebuilt as the data moves.** Built the same day as a living deck (`INTERIM-PLAN.md` §0). | Rebuild after every new result; read every slide. |
 | D12 | ~~How to present the thermal claim, after T1 and T3?~~ **Answered 2026-10-08: lead with the measured limits.** The results are the co-registered mosaic, the scored products and the limits: visible albedo carries the material signal at every scale a calibrated product can check; the held THEMIS mosaics do not. | — |
 
@@ -128,17 +132,20 @@ Ranked by what they unblock. Each has a **done when** so "done" is checkable.
    (seconds to minutes). Chain: stack (§18), terrain (§20), diurnal-contrast index (§24), channel
    and crater candidates (§25, §26), a digitising map and layout like 06. Check the THEMIS night
    coverage and seams in the window first (§28.10 left the unit of normalisation unmeasured).
-6. **Review fields for digitising (if D10, §6).** Add `Review` (accept / reject / unsure) to the
-   candidate classes and a script that copies accepted rows into the `Landform_*` classes with
-   `MappedBy` set to the reviewer. Never write into the digitising classes without an explicit accept.
+6. ~~**Review fields for digitising (if D10, §6).**~~ **Done 2026-10-08 (KB §46):** `Review` (domain
+   accept / reject / unsure) and `ReviewNote` on the four candidate classes, `SourceID` on the
+   channel and crater digitising classes, `build\accept_reviewed.py` (dry run by default; `--apply
+   --by "<name>"` copies accepts only, `MappedBy` = the reviewer). Rehearsed on a scratch gdb,
+   15 / 15 checks including two planted defects.
 7. **Validation layout for the manual digitising** (ready before digitising starts, filled in as it proceeds):
    candidates against the accepted features, recall per class, the breached craters the detector
    misses (§26.3). Scripted so it reruns in seconds after each session.
 8. **After the fine pass:** two ±60° sheets, crater density ≥ 1 km and the channel network, each
    with the IAU check and the stated blind spots (closed depressions only; plateau channels are
    DEM noise, §25). Run `verify_global60.py` first (§28.4).
-9. **After D5(a):** the lava-flow reference sheet and test T8 — the only route to a lava-flow
-   result at ±60°.
+9. ~~**After D5(a):** the lava-flow reference sheet and test T8.~~ **Done 2026-10-08:** T8 measured
+   (KB §43.2); the volcanic units are the lava-flow reference on layout 10 (§44). Left: a sheet for
+   T8's confusion matrix (§7 row 13).
 10. **The figure lists for the interim and the final** (draft in §7), closed against D2's rubrics,
     so layouts are built to a list rather than by drift.
 
@@ -187,12 +194,19 @@ Order matters: the cheap tests first, so a failure costs minutes.
   detector cannot see**; lava flow margins wherever they are visible. Suggested minimum so the
   validation means something: ~30 channel segments, ~50 crater rims, every lava margin that can
   be defended. Re-export the gdb to GitHub after each session (§35.2).
-- **Faster route (D10): review, then draw only what is missing.** `Review` is set on candidates
-  (accept / reject / unsure) in the attribute table; a script copies the accepted ones into the
-  digitising classes. Only what the machine missed is then drawn: breached craters, lava margins. Rejections
-  are data too: they give the detector a precision figure.
+- **Faster route (D10, ready since 2026-10-08, KB §46): review, then draw only what is missing.**
+  1. Open the map "Ius Chasma — digitising" (or "Athabasca Valles — digitising"); start with the
+     layer "Channels: steep and rock-floored (188)", then "Closed depressions ≥ 1 km".
+  2. In the layer's attribute table, set `Review` from the drop-down (accept / reject / unsure); add
+     a `ReviewNote` if useful. Before accepting, set `Origin` (channels: fluvial / volcanic /
+     indeterminate), `Preservation` (craters: fresh / degraded / ghost) and `Confidence`
+     (certain / probable / inferred) on the candidate row; they are copied as they stand.
+  3. Save edits. Run, with the ArcGIS Pro Python, `build\accept_reviewed.py` (dry run: the tally and
+     the precision so far), then `accept_reviewed.py --apply --by "<name>"`. Reruns copy only new accepts.
+  4. Draw what the machine missed directly in the digitising classes: breached craters, lava margins.
+  Rejections are data too: they give the detector a precision figure (3.7).
 - **If D4: the same at Athabasca**, where lava flow margins are the point.
-- Answer D1–D10.
+- Answer the open decisions: D2, D7, D9.
 - **The original schedule** (interim `SCHEDULE`, September) had digitising on 19–30 Oct, the crater
   inventory on 2–13 Nov, accuracy against the geologic map on 16–20 Nov and layouts on 23–27 Nov.
   §8 keeps that order and moves the interim into it.
@@ -210,19 +224,21 @@ on this footing and say so in it.
 
 | # | sheet | exists | interim | final |
 |---|---|---|---|---|
-| 09 | locator: ±60° with the type areas | — (3.4) | ✓ first slide | ✓ |
+| 10 | locator: ±60° with both type areas and the volcanic units (lava-flow reference) | ✓ (§44) | ✓ first slide | ✓ |
 | 08 | the mosaic at ±60°: visible, day, night, topography | ✓ (§38) | ✓ | ✓ |
 | 01–02 | Ius visible; Ius night IR | ✓ | ✓ | ✓ |
-| — | the province test: Viking separates, THEMIS doesn't | figure only (§28.10) | ✓ | ✓, with T3 if done |
+| — | the province test: Viking separates, THEMIS doesn't | figure only (§28.10) | ✓ | ✓ |
+| — | T3: the layers against calibrated TES thermal inertia | chart `tes_check.png` (§43.1, §45) | ✓ | ✓ |
 | 03 | Ius Iso Cluster | ✓ | ✓ | maybe superseded |
 | 06 | Ius digitising candidates | ✓ | ✓ | replaced by the validation sheet (3.7) |
+| 09 | Athabasca type area, digitising candidates | ✓ (§42.1) | ✓ | ✓ |
 | 07 | ±60° basins ≥ 20 km | ✓ | ✓ | ✓ |
-| 04 | ±60° SVM landforms, scored | ✓ | ✓ | redone after D6 / X3 |
+| 04 | ±60° SVM landforms, scored | ✓ | ✓ | redone after X3 (D6 settled, §43.3) |
 | 05 | the 29–30 Sep GUI SVMs checked | ✓ | ✓ (a lesson worth showing) | appendix |
-| 10–11 | ±60° craters ≥ 1 km; ±60° channels | — (after X2) | if ready by the cut | ✓ |
-| 12 | Athabasca type area | — (D4) | if ready | ✓ |
-| 13 | lava-flow reference / accuracy vs geologic map | — (D5a) | — | ✓ |
-| 14 | T1 ablation result | chart | if done | ✓ |
+| — | T1 ablation result | chart `thermal_ablation.png` (§40.1) | ✓ | ✓ |
+| 11–12 | ±60° craters ≥ 1 km; ±60° channels | — (after X2) | if ready by the cut | ✓ |
+| 13 | accuracy against the geologic map (T8) | measured (§43.2), no sheet yet | — | ✓ |
+| 14 | validation of the manual digitising (3.7) | — (needs reviewed candidates, §46) | if reviewing has started | ✓ |
 
 **Final report, an outline built on these** (to fill after the freeze, not before): 1 question
 and hook (Athabasca) · 2 data and the ±60° decision · 3 co-registration and the trap · 4 the

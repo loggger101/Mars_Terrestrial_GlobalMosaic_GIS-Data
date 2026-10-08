@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 124, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 126, by purpose) · [backup and restore](docs/backup.md)
 
 ![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 
@@ -41,7 +41,7 @@ The final deliverable is due **8 December 2026**. Presentation 1 and the prospec
 
 In order, toward the final on 8 December. Every open question behind them is numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
 
-1. **Digitise the three landform layers** (task 11, the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. The map *Ius Chasma — digitising* and layout 06 put them over the machine prompts: the 188 steep, rock-floored channel candidates and the 1,685 crater candidates. Hand work in Pro; no heavy processing. Then re-export the geodatabase so the backup holds the new features ([keeping the backup current](docs/backup.md#keeping-it-current)).
+1. **Digitise the three landform layers** (task 11, the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. The map *Ius Chasma — digitising* and layout 06 put them over the machine prompts: the 188 steep, rock-floored channel candidates and the 1,685 crater candidates. Digitising starts as a review: each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, and `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins) is drawn by hand (KB §46). Hand work in Pro; no heavy processing. Then re-export the geodatabase so the backup holds the new features ([keeping the backup current](docs/backup.md#keeping-it-current)).
 2. **Settle the choices that change what gets trained or published:**
    - which class schema is current: `Composite Object Classes.ecs` swaps lava tube and steep/windy hills against every labelled file. Settle it before drawing more samples or training on the deep-learning export (q23);
    - whether to add lava tube labels or drop the class: 44 polygons gave 2% user's accuracy (above);
@@ -136,7 +136,7 @@ The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   124 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   126 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
     pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)
