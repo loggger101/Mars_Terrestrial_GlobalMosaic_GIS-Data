@@ -21,9 +21,9 @@ This repository is the project page and an off-drive backup of the project. The 
 
 The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 
-## Where it stands (2026-10-07)
+## Where it stands (2026-10-08)
 
-The final deliverable is due **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim report and presentation are drafted in [`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF).
+The interim report and presentation are due **mid-November 2026** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source and rebuilt as results come in ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md).
 
 | Task | State |
 |---|---|
@@ -39,19 +39,19 @@ The final deliverable is due **8 December 2026**. Presentation 1 and the prospec
 
 ### Next steps
 
-In order, toward the final on 8 December. Every open question behind them is numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
+In order, toward the interim (data cut 2 November) and the final on 8 December. The full list, with who does what and when, is the "Resume here" section of [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md). Every open question behind them is numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
 
 1. **Digitise the three landform layers** (task 11, the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. The map *Ius Chasma — digitising* and layout 06 put them over the machine prompts: the 188 steep, rock-floored channel candidates and the 1,685 crater candidates. Digitising starts as a review: each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, and `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins) is drawn by hand (KB §46). Hand work in Pro; no heavy processing. Then re-export the geodatabase so the backup holds the new features ([keeping the backup current](docs/backup.md#keeping-it-current)).
 2. **Settle the choices that change what gets trained or published:**
    - which class schema is current: `Composite Object Classes.ecs` swaps lava tube and steep/windy hills against every labelled file. Settle it before drawing more samples or training on the deep-learning export (q23);
-   - whether to add lava tube labels or drop the class: 44 polygons gave 2% user's accuracy (above);
    - whether to prune the 64% of channel candidates on ground under 2° of slope (q17);
    - boxes or pixel labels for the deep-learning export (q26);
    - how much smoothing to publish: 5 × 5 now, chosen by feature size (q27).
-3. **Run the desktop jobs**, too heavy for the laptop. The scripts hard-code `Z:` and the drive mounts as `F:` on the desktop, so give it the letter `Z:` there first (q22).
+3. **Run the desktop jobs**, too heavy for the laptop. Every build script finds its own drive, so they run from `F:` on the desktop; the two no-space junctions (`TypeArea`, `Global60`) are recreated there once, and the scripts print the command (q22).
    - the ±60° crater and channel fine pass, `make_global_landforms.py`: about 7 hours measured, checkpointed per tile. Only the coarse basin pass has run. Check the output with `verify_global60.py`;
    - pyramids on the four source mosaics (q6).
-4. **Write the final report and presentation**, from the layouts and the results above.
+4. **Run the remaining tests** on the laptop: composite stability (H3), tributary orders at 100 m (Q5), flow margins in IR against Viking at Athabasca (H1), and, once reviewed channels exist, gradient and thermal response by origin (H2).
+5. **Write the interim and the final report and presentation**, from the layouts and the results above.
 
 ## Results so far
 

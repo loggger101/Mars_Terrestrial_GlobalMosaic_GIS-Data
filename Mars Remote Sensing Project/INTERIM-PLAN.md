@@ -65,9 +65,9 @@ Everything is in **`Z:\Mars Remote Sensing Project\NEXT STUFF\`**:
 | `2 Interim Presentation Template.pptx` | put there 8 Oct | the course |
 | `Mars Global Mosaic - Interim Presentation.pptx` | **8 Oct**, living (§0) | `build_interim_live.py` + `interim.py` |
 | `.backup_20261008\` | 13 Sep | the September deck, from `build_interim_le.py` |
-| `Mars Mosaic - Interim Report.docx` | **18 Sep** | `build_interim_docx.py` |
+| `Mars Mosaic - Interim Report.docx` | **8 Oct**, living (KB §45) | `build_interim_report_live.py` + `interim.py`; 11 figures |
 | `.backup_20260918\` | 18 Sep | copies of both, before the 18 Sep rebuild |
-| `build\content.py` (all the prose, both documents) | 18 Sep | — |
+| `build\content.py` (the September prose) | 18 Sep | superseded by `interim.py` for both documents |
 
 Both documents are generated, never hand-edited (KB §17, deck pipeline). **Every section of
 `content.py` that the interim uses is stale**: it describes the project as it was before
@@ -90,7 +90,8 @@ same order.
 **Decided 2026-10-08: the Presentation 1 style** (D11), now as the living deck of §0.
 
 **The biggest gap was: no maps.** Neither the September deck nor the report had a single figure,
-while eight layouts exist. The deck now has seven map slides (§0); the report still has none. *Preliminary Results* should be mostly sheets (§4 below). `le_theme.py` has the
+while eight layouts existed. **Closed 2026-10-08:** the deck has 20 slides with the maps and the T1 and
+T3 charts, and the report 11 figures, both from `interim.py` (KB §45); 10 layouts exist (§44). *Preliminary Results* should be mostly sheets (§4 below). `le_theme.py` has the
 picture helpers Presentation 1 used; `build_interim_deck.py` and `build_interim_docx.py` need one
 added (python-pptx `add_picture`, python-docx `add_picture`). Export the sheets at 200 dpi for the
 deck so text on them stays legible when projected.
@@ -103,11 +104,11 @@ content → what is true now:
 | section (`content.py`) | old claim (13–18 Sep) | now | KB |
 |---|---|---|---|
 | `GOALS_SHORT` | "one co-registered **global** mosaic" | ±60° by decision; say so | §16 |
-| | accuracy "against the USGS global geologic map" | **not on disk**; accuracy so far is on the held-out hand-drawn labels | §10, §31.3 |
+| | accuracy "against the USGS global geologic map" | **on disk since 2026-10-08** and measured (T8): the classes are terrain classes, not geologic units | §41, §43.2 |
 | `PROGRESS` (14 rows, %) | ~42 % overall | most rows moved; table in §3 below. **The percentages are the author's to set.** | — |
 | `PRELIM` | 3 rasters loaded; z-factor broken; Mercury rehearsal; "not yet applied to Mars" | all superseded: see the results list in §4 | §18–§38 |
 | `ISSUES` | 3 CRS frames; z-factor; composite fails; no GPU; no night IR; gazetteer; dead refs; duplicates | **solved**: CRS (§18, §28.1), z-factor (§20), composite (§18, §29, §31.2), night IR (§15), dead refs except HiRISE (§37). **Still open**: GPU (q10), duplicates (q4) | — |
-| | — | **new issues to report**: THEMIS mosaics locally normalised (§28.10); lava tube class unusable (§31.3); the 29/30 Sep GUI SVM maps (§30); the USB drive's dropouts and I/O ceiling (§2.2, §36.4); laptop sleep inflating timings (§28.9); class-schema clash (q23) | |
+| | — | **new issues to report** (lead with the measured limits, D12): the thermal bands add +1.3 pt (§40.1); the index does not track calibrated thermal inertia at 3 km (§42.4, §43.1); closed depressions are 11–13 % catalogued craters at ≥ 1 km (§42.3); THEMIS mosaics locally normalised (§28.10); lava tube class unusable, lava flows shown from the geologic map (§31.3, §43.3, §44); the 29/30 Sep GUI SVM maps (§30); the USB drive's dropouts and I/O ceiling (§2.2, §36.4); laptop sleep inflating timings (§28.9); class-schema clash (q23) | |
 | `NEXT_STEPS` | "project to one frame", "retry Composite Bands", "download night IR"… | all done; replace with `NEXT-STEPS.md` §3–§5 | — |
 | `WORKFLOW_LOG` | 8–13 Sep runs | add the 24 Sep – 1 Oct GUI runs (§29.1) and the scripted runs since | §29 |
 | `SCHEDULE` | interim in weeks 7–8 (5–16 Oct) | interim mid-Nov; final 8 Dec. Re-cut from `NEXT-STEPS.md` §6 | — |
@@ -116,20 +117,20 @@ content → what is true now:
 
 | # | row (as in the interim) | what is true on 2026-10-08 | KB |
 |---|---|---|---|
-| 1 | Scope, targets, type area | Ius Chasma set; ±60° extent decided; Athabasca proposed as a second area (D4) | §14.3, §16 |
+| 1 | Scope, targets, type area | Ius Chasma set; ±60° extent decided; **Athabasca Valles built as the second type area** (layout 09) | §14.3, §16, §42.1 |
 | 2 | Raster acquisition | three globals **plus THEMIS Night IR** (±60°) | §15 |
 | 3 | Statistics and stretches; pyramids | statistics on all; overviews on every ±60° product and the GUI composites; **the four source globals still have none** | §28, §29 |
 | 4 | Grouped mosaic viewer | done | — |
 | 5 | DEM derivatives | rebuilt in degrees on a metric grid, WARNING 000869 gone, type area and ±60° | §20, §28.8 |
 | 6 | Image-gradient products | renamed `Gradient_*` manually; not used further | §7 |
 | 7 | Jezero context | unchanged: hosted services only, HiRISE link dead | §3 |
-| 8 | Classification | Iso Cluster on Mars; supervised on terrain labels 62.7 %; the two GUI SVMs checked and found wanting; corrected ±60° SVM **73.5 %, κ 0.58 held out** | §19, §27, §30–§32 |
+| 8 | Classification | Iso Cluster on Mars; supervised on terrain labels 62.7 %; the two GUI SVMs checked and found wanting; corrected ±60° SVM **73.5 %, κ 0.58 held out**; thermal ablation T1 (+1.3 pt); scored against the geologic map, T8 | §19, §27, §30–§32, §40.1, §43.2 |
 | 9 | CRS harmonisation | **done**: type area at 100 m; ±60° on G100/G200 | §18, §28.1 |
 | 10 | Visible + IR composite | **done**: type area 8.8 s; the two GUI global composites; the corrected 7-band ±60° stack | §18, §29, §31.2 |
-| 11 | Landform digitising | classes exist and are **empty**; 512 training polygons drawn manually; candidates seeded | §19.4, §25, §29.2 |
-| 12 | Crater inventory | 1,685 closed depressions ≥ 1 km at Ius; 5,144 basins ≥ 20 km at ±60°, 68 % recall on IAU ≥ 100 km | §26, §28.11 |
-| 13 | Map layouts | **8 layouts**, from 0 | §22, §31–§33, §38 |
-| 14 | Report and presentations | Pres 1 and prospectus delivered; interim to rebuild | §1 |
+| 11 | Landform digitising | classes exist and are **empty**; 512 training polygons drawn manually; candidates seeded at both type areas; **review fields and `accept_reviewed.py` ready** | §19.4, §25, §29.2, §46 |
+| 12 | Crater inventory | 1,685 closed depressions ≥ 1 km at Ius (1,709 at Athabasca), 11–13 % of them catalogued craters; the Robbins catalogue in the project (385,049); 5,144 basins ≥ 20 km at ±60°, 68 % recall on IAU ≥ 100 km | §26, §28.11, §41, §42.3 |
+| 13 | Map layouts | **10 layouts**, from 0, with graticules | §22, §31–§33, §38, §42.1, §44 |
+| 14 | Report and presentations | Pres 1 and prospectus delivered; interim deck and report are living builds, rebuilt after each result | §1, §39.3, §45 |
 
 ## 4. The results the interim can show, each with its layout or figure
 
@@ -149,7 +150,12 @@ Ordered as a talk would run: data → method → result → limit.
    artefact; 188 steep, rock-floored candidates. (§25, layout 06)
 7. **The hand-drawn labels → a scored classification** — 73.5 % / κ 0.58 on blocks the model never saw; the
    checks that caught the 29/30 Sep maps. (§30–§32, layouts 04, 05)
-8. **What is not done** — digitising, lava flows, the thermal ablation. (`NEXT-STEPS.md`)
+8. **What the references showed** — T1: the thermal bands add +1.3 pt and terrain alone matches the
+   full stack; T3: the index does not track calibrated thermal inertia, Viking albedo does; T2:
+   Athabasca's lava is the least cratered unit in its window; T8: the classes are terrain classes.
+   (§40.1, §42.2, §42.4, §43)
+9. **What is not done** — digitising (review ready, §46), lava flows mapped from the mosaic,
+   craters and channels below 20 km at ±60° (the fine pass, desktop). (`NEXT-STEPS.md`)
 
 Every number above is already in the record; requote from there, not from this list (KB §12.1).
 
@@ -160,15 +166,15 @@ since. Status, for both the interim and the final:
 
 | | claim | status | what would settle it |
 |---|---|---|---|
-| **H1** | Day IR delineates flow boundaries under dust that Viking misses | **untested**; weakened at ±60° by local normalisation (§28.10) | Athabasca type area (D4): compare flow margins visible in day/night IR vs Viking, against the geologic map's contacts (D5a) |
-| **H2** | Fluvial channels have shallower gradients than volcanic ones, and the two separate on gradient vs thermal | **untested**: no channel has an `Origin` yet | the digitised channels at Ius (fluvial) and Athabasca (volcanic), each with `SlopeDeg` and `ThermIdx` attributes the candidates already carry (§25) |
-| **H3** | The 4-band composite gives more stable Iso Cluster classes than any single input | **partly**: the composite's 10 classes are geologically coherent (§19.3); single-input runs were never compared | one Iso Cluster per input on the type area: minutes on the laptop |
+| **H1** | Day IR delineates flow boundaries under dust that Viking misses | **untested**; weakened at ±60° by local normalisation (§28.10) and by T3 (§42.4) | **T5, ready now**: Athabasca (§42.1) and the geologic map's contacts (§41) are both in the project |
+| **H2** | Fluvial channels have shallower gradients than volcanic ones, and the two separate on gradient vs thermal | **untested**: no channel has an `Origin` yet; the review sets it on accepted channels (§46); test T4 | the digitised channels at Ius (fluvial) and Athabasca (volcanic), each with `SlopeDeg` and `ThermIdx` attributes the candidates already carry (§25) |
+| **H3** | The 4-band composite gives more stable Iso Cluster classes than any single input | **partly**: the composite's 10 classes are geologically coherent (§19.3); single-input runs were never compared | T6: one Iso Cluster per input on the type area, minutes on the laptop |
 | **H4** | Crater rims from DN gradient recover most of the 141 IAU craters > 100 km | **answered with a different method**: fill depth, not DN gradient — 68 % of 117 inside ±58° (§28.11) | report the method change honestly; the gradient route was never run |
 | Q1 | Does projecting the DEM change slope enough to matter? | **answered**: yes, percent rise on a degree grid was not a slope (§7, §20) | — |
 | Q2 | Does Composite Bands complete globally once harmonised? | **answered**: bounded, 8.8 s; the GUI global runs 2 h 52 m and 3 h 10 m on the desktop (§18, §29.1) | — |
 | Q3 | How much does 8-bit depth limit separation? | **overtaken**: local normalisation is the bigger limit (§28.10) | — |
 | Q4 | Is day IR enough, or is night IR needed? | **answered**: night IR is the most independent band (§18.3) | — |
-| Q5 | How many tributary orders are recoverable at 100 m? | **partly**: Strahler order tops out at 3 at Ius with a 50 km² threshold (§25) | a threshold sweep: the routing rasters are cached, ~2 min each |
+| Q5 | How many tributary orders are recoverable at 100 m? | **partly**: Strahler order tops out at 3 at Ius with a 50 km² threshold (§25) | T7: a threshold sweep, the routing rasters are cached, ~2 min each |
 | Q6 | Does DN gradient reveal unit boundaries beyond the source image? | **unexamined** | low priority; say so |
 
 ## 6. Timeline to mid-November
