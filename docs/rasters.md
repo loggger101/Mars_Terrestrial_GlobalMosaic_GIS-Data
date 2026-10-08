@@ -5,12 +5,19 @@ Every raster backed up in the [releases](https://github.com/loggger101/Mars_Terr
 on 2026-10-07. "KB §N" is a section of
 [`PROJECT-KNOWLEDGE.md`](../Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
 [`restore.py`](../restore.py) puts each one back where the table's first column says, under
-`Mars Project/Global60/`, `Mars Project/TypeArea/` or `Mars Project/restored_from_gdb/`.
+`Mars Project/Global60/`, `Mars Project/TypeArea/` or `Mars Project/restored_from_gdb/`. The type-area
+zip also holds `TypeArea/_0based_originals/`, the `ius_sup_*` maps before the recode below; they are not listed.
 
-**Coordinate system.** Everything here except the validation windows is in
-`Mars_Equidistant_Cylindrical_CM180`: equidistant cylindrical on the Mars sphere
-(R = 3,396,190 m), metres, **central meridian 180°**, so x runs 0–360°E. Software that assumes
-Earth or a 0° meridian will misplace it. The ±60° grids: 100 m is 213,388 × 71,130 and 200 m is
+**Classified rasters** hold the class code itself as the pixel value. Before 2026-10-07 they held
+ClassifyRaster's 0-based values instead (KB §36), so a copy downloaded earlier needs +1.
+
+**Coordinate system.** Every raster here is equidistant cylindrical on the Mars sphere
+(R = 3,396,190 m), in metres, and all but one have the **central meridian at 180°**, so x runs
+0–360°E. Software that assumes Earth or a 0° meridian will misplace them. The CRS is named
+`Mars_Equidistant_Cylindrical_CM180` in `Global60/` and `TypeArea/`; the validation windows under
+`TypeArea/val/` carry the same projection unnamed (`unknown`), and the geodatabase rasters call it
+`SimpleCylindrical_Mars`. **The exception is `Classified_202609300147338582853`, the 30 Sep map: central meridian 0°**, on
+Viking's 231.5 m global grid, so its x runs −180 to +180°E. The ±60° grids: 100 m is 213,388 × 71,130 and 200 m is
 106,694 × 35,565, nested, with the origin at −10,669,400, +3,556,500
 ([`Global60/README.md`](../Mars%20Project/Global60/README.md)).
 
@@ -24,7 +31,7 @@ the file is bigger). The `.ovr` pyramids are not in the releases: build them aft
 | `global60_aspect.tif` | Aspect in degrees clockwise from north (gdaldem, Horn); flat ground is NoData. | 106,694 × 35,565 @ 200 m | Float32 | -9999 | 8.03 GB | [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) `global60_aspect.tif.part*` |
 | `global60_dem.tif` | HRSC/MOLA elevation in metres, nearest-neighbour onto the 200 m grid (exact: the DEM's native cell is 200 m to within 10 µm). | 106,694 × 35,565 @ 200 m | Int16 | -32768 | 3.21 GB | [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) `global60_dem.tif.part*` |
 | `global60_hillshade.tif` | Hillshade, sun azimuth 225°, altitude 45° (gdaldem, Horn). | 106,694 × 35,565 @ 200 m | Byte | 0 | 1.30 GB | [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) `global60_hillshade.tif.part*` |
-| `global60_landforms_svm_400m.tif` | Landform classification, SVM on the hand-drawn labels, per pixel at 400 m (KB §31.3): 70.5 %, κ 0.54 on held-out polygons. Pixel value = class code: 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class (recoded from ClassifyRaster's 0–3 on 2026-10-07, KB §36). | 53,347 × 17,783 @ 400 m | Byte | 255 | 101 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `global60-classification.zip` |
+| `global60_landforms_svm_400m.tif` | Landform classification, SVM on the hand-drawn labels, per pixel at 400 m (KB §31.3): 70.5 %, κ 0.54 on held-out polygons. Classes 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class. | 53,347 × 17,783 @ 400 m | Byte | 255 | 101 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `global60-classification.zip` |
 | `global60_landforms_svm_400m_mode3.tif` | The same, 3 × 3 majority filter (KB §32.2). | 53,347 × 17,783 @ 400 m | Byte | 255 | 66 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `global60-classification.zip` |
 | `global60_landforms_svm_400m_mode5.tif` | The same, **5 × 5 majority filter: the published version** (73.5 %, κ 0.58 held out; KB §32.2). | 53,347 × 17,783 @ 400 m | Byte | 255 | 49 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `global60-classification.zip` |
 | `global60_landforms_svm_400m_mode7.tif` | The same, 7 × 7 majority filter. | 53,347 × 17,783 @ 400 m | Byte | 255 | 39 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `global60-classification.zip` |
@@ -78,7 +85,7 @@ are on their own grids.
 | `ius_strlink.tif` | Stream links. | 8,891 × 4,150 @ 100 m | Int32 | 2.147e+09 | 2 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `typearea-part*.zip` |
 | `ius_strord.tif` | Stream order. | 8,891 × 4,150 @ 100 m | Int32 | -2.147e+09 | 4 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `typearea-part*.zip` |
 | `ius_sup_augmented.tif` | Supervised, + index + slope: 82.6 %, circular (KB §27.2). Same class codes. | 8,891 × 4,150 @ 100 m | Byte | 15 | 4 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `typearea-part*.zip` |
-| `ius_sup_spectral.tif` | Supervised, 5-band composite: 62.7 %, κ 0.41 (KB §27.2). Pixel value = class code: 1 crater interior, 2 steep wall, 3 moderate wall, 4 chasma floor, 5 plateau flank, 6 plateau (recoded from 0–5 on 2026-10-07, KB §36.4). | 8,891 × 4,150 @ 100 m | Byte | 255 | 5 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `typearea-part*.zip` |
+| `ius_sup_spectral.tif` | Supervised, 5-band composite: 62.7 %, κ 0.41 (KB §27.2). Classes 1 crater interior, 2 steep wall, 3 moderate wall, 4 chasma floor, 5 plateau flank, 6 plateau. | 8,891 × 4,150 @ 100 m | Byte | 255 | 5 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `typearea-part*.zip` |
 | `ius_sup_thermal.tif` | Supervised, + thermal index: 63.1 %, κ 0.41. Same class codes as `ius_sup_spectral`. | 8,891 × 4,150 @ 100 m | Byte | 15 | 5 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `typearea-part*.zip` |
 | `ius_thermal_contrast.tif` | Diurnal-contrast index in [−1, 1], each band scaled by its own p2–p98 first (KB §24.2). Stretched over Ius only: don't compare with the ±60° index. | 8,891 × 4,150 @ 100 m | Float32 | -9999 | 85 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `typearea-part*.zip` |
 | `ius_train_lab.tif` | Terrain-derived training labels for the KB §27 accuracy test (6 classes, eroded cores). | 8,891 × 4,150 @ 100 m | Byte | 0 | 1 MB | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `typearea-part*.zip` |
@@ -96,6 +103,6 @@ Made in the Pro GUI and kept inside `Mars Project.gdb`; exported as DEFLATE GeoT
 
 | File | What it is | Grid | Type | NoData | Size | In release |
 |---|---|---|---|---|---|---|
-| `Classified_202609292109007048151.tif` | The 29 Sep SVM classification made in the Pro GUI. Follows its 4096-px processing tiles; below chance on its own labels (KB §30.2). Superseded, kept. Pixel value = class code: 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class (recoded from 0–3 on 2026-10-07, KB §36.4). | 213,388 × 71,130 @ 100 m | Byte | 255 | — | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `Classified_202609292109007048151.tif` |
-| `Classified_202609300147338582853.tif` | The 30 Sep SVM classification made in the Pro GUI. Mostly an elevation map (KB §30.3). Superseded, kept. Pixel value = class code: 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class (recoded from 0–3 on 2026-10-07, KB §36.4). | 92,160 × 46,080 @ 231.542 m | Byte | 255 | — | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `Classified_202609300147338582853.tif` |
+| `Classified_202609292109007048151.tif` | The 29 Sep SVM classification made in the Pro GUI. Follows its 4096-px processing tiles; below chance on its own labels (KB §30.2). Superseded, kept. Classes 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class. | 213,388 × 71,130 @ 100 m | Byte | 255 | — | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `Classified_202609292109007048151.tif` |
+| `Classified_202609300147338582853.tif` | The 30 Sep SVM classification made in the Pro GUI. Mostly an elevation map (KB §30.3). Superseded, kept. Classes 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class. | 92,160 × 46,080 @ 231.542 m | Byte | 255 | — | [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) `Classified_202609300147338582853.tif` |
 | `Segmented_202609290011302066080.tif` | The ±60° mean-shift segmentation made in the Pro GUI, 29 Sep (KB §29.5). | 213,388 × 71,130 @ 100 m | Byte × 3 | 255 | — | [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) `Segmented_202609290011302066080.tif` |

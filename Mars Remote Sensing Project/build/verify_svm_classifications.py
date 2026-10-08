@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Checks his two SVM classifications (29-30 Sep, KB §29) against independent evidence.
+"""Checks the two Pro-GUI SVM classifications (29-30 Sep, KB §29) against independent evidence.
 
 Read-only. Reads pyramid levels only, so it runs on the laptop in about two minutes.
 Nothing in the gdb or the .aprx is written.

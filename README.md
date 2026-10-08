@@ -9,7 +9,7 @@ An ArcGIS Pro project that co-registers Viking visible color, THEMIS day and nig
 
 The analysis extent is **±60° latitude** (86.6% of the surface), set by the coverage of the THEMIS night mosaic. The detail work is done in a type area at **Ius Chasma**, western Valles Marineris (~271–286°E, 6–13°S).
 
-This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 370 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
+This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
 **Find your way around:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 102, by purpose) · [backup and restore](docs/backup.md)
 
@@ -21,7 +21,7 @@ This repository is the project page and an off-drive backup of the project. The 
 
 The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 
-## Where it stands (2026-10-06)
+## Where it stands (2026-10-07)
 
 The final deliverable is due **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim report and presentation are drafted in [`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF).
 
@@ -106,10 +106,9 @@ def lonlat(col, row):
 
 It prints Crater 33.2%, steep/windy hills 1.7%, lava tube 9.5%, Normal Ground 55.5%, the same shares as a full-resolution count. `lonlat` agrees with PROJ's own transform to 10⁻¹³ degrees.
 
-- **Coordinate system.** Almost everything is in `Mars_Equidistant_Cylindrical_CM180`: metres on the Mars sphere (R = 3,396,190 m) with the **central meridian at 180°**, so x runs 0–360°E. The CRS is embedded in each file; keep it. Reprojecting to an Earth CRS, or assuming a 0° meridian, puts features half a planet away. The hand-drawn labels and the IAU nomenclature are in geographic `Mars_2000_(Sphere)`.
-- **The landform map** to use is `global60_landforms_svm_400m_mode5.tif`. Its pixel values are the class codes: **1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class**, the same codes as the training labels; the attribute table adds names and colours. Read the lava tube class as unreliable (above). Every classified raster in the project follows the same rule: pixel value = class code. (Before 2026-10-07 they carried ClassifyRaster's 0-based values, these maps and the GUI maps 0–3, the type-area `ius_sup_*` maps 0–5; copies downloaded earlier need +1.)
+- **Coordinate system.** Almost everything is in `Mars_Equidistant_Cylindrical_CM180`: metres on the Mars sphere (R = 3,396,190 m) with the **central meridian at 180°**, so x runs 0–360°E. The CRS is embedded in each file; keep it. Reprojecting to an Earth CRS, or assuming a 0° meridian, puts features half a planet away. The exception is the 30 Sep SVM map, `Classified_202609300147338582853`: same projection, but **central meridian 0°**, on Viking's grid. The hand-drawn labels and the IAU nomenclature are in geographic `Mars_2000_(Sphere)`.
+- **The landform map** to use is `global60_landforms_svm_400m_mode5.tif`. Its pixel values are the class codes: **1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class**, the same codes as the training labels; the attribute table adds names and colours. Read the lava tube class as unreliable (above). Every classified raster in the project follows the same rule: pixel value = class code.
 - **The training labels** are `Landform_TrainingSamples_terrain` in [`exports/`](exports/README.md), with the same class codes 1–4. One class schema in the project swaps 2 and 3; the layer catalog says which.
-- **The diurnal-contrast index** is relative: it compares places within one area, not across the planet, and it is not thermal inertia.
 - **What each raster is**, with its grid, data type, NoData and the release that holds it: [docs/rasters.md](docs/rasters.md).
 
 ## What is in this repository
@@ -139,7 +138,7 @@ docs/
   backup.md                the release assets, keeping the backup current, restoring the drive
   scripts.md               every build script by purpose, with the Python it needs
   pipeline.svg             the diagram above
-drive-root/                source-raster sidecars; the "new training" shapefile
+drive-root/                source-raster sidecars; the "new training" shapefile; a 3D-view screenshot
 restore.py                 rebuilds the drive from this repository and its releases
 tools/check_repo.py        the checks CI runs on every push: page links, Python syntax, file sizes,
                            and that the counts this page states match the tree
@@ -148,13 +147,13 @@ CITATION.cff               how to cite the project ("Cite this repository" on Gi
 
 ## Backup and restore
 
-The rasters are in two releases: [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) (4.3 GB: the type area, the ±60° landform maps, the GUI SVM maps, caches) and [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) (74.4 GB: the ±60° derivatives, split into 1.9 GB pieces, and the deep-learning exports). [`restore.py`](restore.py) rebuilds the drive from a clone and both releases, checking every file against its SHA-256:
+The rasters are in two releases: [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06) (4.4 GB: the type area, the ±60° landform maps, the GUI SVM maps, caches) and [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) (74.4 GB: the ±60° derivatives, split into 1.9 GB pieces, and the deep-learning exports). [`restore.py`](restore.py) rebuilds the drive from a clone and both releases, checking every file against its SHA-256:
 
 ```bash
 python restore.py --dest E:\ --dry-run
 ```
 
-[docs/backup.md](docs/backup.md) lists every release asset, how the backup is kept current from the drive, and what is not backed up. [docs/rasters.md](docs/rasters.md) describes each raster: grid, type, NoData and what it is.
+[docs/backup.md](docs/backup.md) lists every release asset, how the backup is kept current from the drive, and what is not backed up.
 
 ## License
 

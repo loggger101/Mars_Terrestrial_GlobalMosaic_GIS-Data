@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Re-export his deep-learning training data from the corrected ±60° stack (KB §29.6, §31).
+r"""Re-export the hand-labelled deep-learning training data from the corrected ±60° stack (KB §29.6, §31).
 
 His 1 Oct export came from the 7-band CompositeBand: a raw DEM band in metres, percent-rise slope,
 and empty thermal bands past ±60° (§29.4, §30.3). This one uses the same settings he chose

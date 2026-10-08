@@ -7,7 +7,7 @@ described in [rasters.md](rasters.md), each vector layer in [the layer catalog](
 
 ## What is in the releases
 
-[`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06), about 4.3 GB:
+[`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06), about 4.4 GB:
 
 | Asset | What |
 |---|---|
@@ -30,7 +30,7 @@ described in [rasters.md](rasters.md), each vector layer in [the layer catalog](
 
 `restore.py` ([Restoring](#restoring)) rejoins and checks them. By hand: `cat global60_dem.tif.part* > global60_dem.tif` (or `copy /b a.part001+a.part002 a` in `cmd`), then check it against the sums.
 
-Not backed up anywhere but the drive: the `.ovr` pyramids (Build Pyramids re-creates them) and the other geodatabase rasters, mostly legacy products the knowledge base finds defective and superseded (percent-rise slopes on a degree grid, a global composite mixing raw elevation with 8-bit bands).
+Not backed up anywhere but the drive: the `.ovr` pyramids (Build Pyramids re-creates them), `Global60/_0based_originals/` (the ±60° landform maps before their recode, KB §36) and the other geodatabase rasters, mostly legacy products the knowledge base finds defective and superseded (percent-rise slopes on a degree grid, a global composite mixing raw elevation with 8-bit bands).
 
 ## Keeping it current
 
@@ -46,7 +46,7 @@ copies whatever changed into the clone, regenerates `docs/scripts.md`, commits a
 "C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" github_export_gdb.py --rasters
 ```
 
-re-exports the geodatabase's vector layers into `exports/` and rewrites the layer catalog (and stages the GeoPackage and the GUI SVM maps for the release). Run it after digitising: a re-export rewrites every geodatabase file even when nothing changed, so it isn't worth running otherwise. `--catalog-only` rewrites just the catalog.
+re-exports the geodatabase's vector layers into `exports/` and rewrites the layer catalog (and stages the GeoPackage and the GUI SVM maps for the release). Run it after digitising: a re-export rewrites every geodatabase file even when nothing changed, so it isn't worth running otherwise. `--catalog-only` rewrites just the catalog; `--rasters-only` exports just the two SVM maps.
 
 ```bash
 python github_release_bundle.py --upload data-YYYY-MM-DD

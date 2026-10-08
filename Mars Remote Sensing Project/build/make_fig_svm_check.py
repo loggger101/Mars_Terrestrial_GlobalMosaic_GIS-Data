@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Figure: his two SVM classifications (KB §29, §30) checked against independent evidence.
+r"""Figure: the two Pro-GUI SVM classifications (KB §29, §30) checked against independent evidence.
 
 A  29 Sep SVM over the ±60° segments - the 4096-px processing tiles drawn over it
 B  30 Sep SVM over the 7-band CompositeBand - the ±60° edge of the thermal bands marked

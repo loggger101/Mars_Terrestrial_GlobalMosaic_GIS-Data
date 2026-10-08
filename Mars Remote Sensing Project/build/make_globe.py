@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""A whole-Mars orthographic disc for the title slide, from his own Viking mosaic.
+"""A whole-Mars orthographic disc for the title slide, from the project's Viking mosaic.
 
 Reads the cached global decimation rather than the 12.7 GB TIFF, so this runs in
 seconds under the stock interpreter -- no GDAL needed.

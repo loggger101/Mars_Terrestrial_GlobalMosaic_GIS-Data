@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Scores global60_landforms_svm_<cell>m.tif the way §30 scored his two maps (KB §31).
+r"""Scores global60_landforms_svm_<cell>m.tif the way §30 scored the two Pro-GUI maps (KB §31).
 
   1. HELD-OUT accuracy on Landform_TrainingSamples_terrain_60_test: whole 15° blocks the SVM
      never saw. This is the accuracy figure; the training-set score is printed beside it only

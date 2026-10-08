@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Puts the machine candidates and his digitising classes INTO the project (KB §32).
+r"""Puts the machine candidates and the empty digitising classes INTO the project (KB §32).
 
 Digitising is the critical path (KB §11 q16), but nothing he needs for it was in any map: the
 three empty Landform_* classes he digitises into, the 2,610 channel candidates (§25), the 1,685

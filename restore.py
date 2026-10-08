@@ -12,8 +12,8 @@ Run it from a clone of the repo. It lays the drive out as the knowledge base exp
     <dest>\Mars Project\                    the repo folder, plus TypeArea\, Global60\ rasters
                                             (split files rejoined), LabeledObjects\
     <dest>\Mars Project\restored_from_gdb\  the GUI SVM maps and the ±60° segmentation, which
-                                            lived inside Mars Project.gdb; the vector layers are
-                                            in <repo>\exports\ and its GeoPackage
+                                            lived inside Mars Project.gdb, and the GeoPackage of
+                                            the vector layers (also in <repo>\exports\)
     <dest>\                                 the drive-root sidecars and "new training" shapefile
 
 Every download is checked against the release's SHA-256 (GitHub records one per asset), and every
@@ -22,7 +22,7 @@ are kept in <dest>\_downloads until --clean. Existing files are never overwritte
 The four source mosaics are not in the releases; the README links them.
 
 Not restored: Mars Project.gdb itself (create it in Pro and copy in exports\mars_project_vectors.gdb),
-the .ovr pyramids (Build Pyramids), and the Z:\TypeArea / Z:\Global60 junctions (README, Restoring).
+the .ovr pyramids (Build Pyramids), and the Z:\TypeArea / Z:\Global60 junctions (docs/backup.md, Restoring).
 Stdlib only, Python 3.9+.
 """
 import argparse, hashlib, json, os, shutil, sys, urllib.request, zipfile

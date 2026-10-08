@@ -22,12 +22,9 @@ REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
 URL = "https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/"
 DATA, DERIV = "data-2026-10-06", "derivatives-2026-10-06"
 
-LANDFORM_VALUES = ("Pixel value = class code: 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, "
-                   "255 no class (recoded from ClassifyRaster's 0–3 on 2026-10-07, KB §36)")
-IUS_SUP_VALUES = ("Pixel value = class code: 1 crater interior, 2 steep wall, 3 moderate wall, 4 chasma floor, "
-                  "5 plateau flank, 6 plateau (recoded from 0–5 on 2026-10-07, KB §36.4)")
-GUI_VALUES = ("Pixel value = class code: 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class "
-              "(recoded from 0–3 on 2026-10-07, KB §36.4)")
+LANDFORM_VALUES = "Classes 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class"
+IUS_SUP_VALUES = ("Classes 1 crater interior, 2 steep wall, 3 moderate wall, 4 chasma floor, 5 plateau flank, "
+                  "6 plateau")
 G60 = {
     "global60_svm_stack_200m.tif": "The classification stack, KB §31.2. Bands: Viking R, G, B, night IR, day IR, "
         "slope (°), 9 × 9 relief; each stretched p1–p99 to 1–255 over ±60° (limits in the `STRETCH` metadata). "
@@ -101,11 +98,12 @@ IUS = {
     "val/perrotin_fill.tif": "Perrotin: filled DEM.",
     "val/perrotin_depth.tif": "Perrotin: fill depth. Recovered within −7.1 % in diameter.",
 }
+CM0 = "Classified_202609300147338582853"   # the one raster on a 0° central meridian (Viking's grid)
 GDB = {
     "Classified_202609292109007048151": "The 29 Sep SVM classification made in the Pro GUI. Follows its 4096-px "
-        "processing tiles; below chance on its own labels (KB §30.2). Superseded, kept. " + GUI_VALUES + ".",
+        "processing tiles; below chance on its own labels (KB §30.2). Superseded, kept. " + LANDFORM_VALUES + ".",
     "Classified_202609300147338582853": "The 30 Sep SVM classification made in the Pro GUI. Mostly an elevation map (KB §30.3). "
-        "Superseded, kept. " + GUI_VALUES + ".",
+        "Superseded, kept. " + LANDFORM_VALUES + ".",
     "Segmented_202609290011302066080": "The ±60° mean-shift segmentation made in the Pro GUI, 29 Sep (KB §29.5).",
 }
 
@@ -114,11 +112,14 @@ def info(src):
     ds = gdal.Open(src)
     b = ds.GetRasterBand(1)
     wkt = ds.GetProjection()
-    srs = osr.SpatialReference(wkt=wkt).GetName() if wkt else "none"
+    sr = osr.SpatialReference(wkt=wkt) if wkt else None
+    srs = sr.GetName() if sr else "none"
+    cm = sr.GetProjParm("central_meridian") if sr else None
     nd = b.GetNoDataValue()
     nd = "none" if nd is None else (f"{nd:.4g}" if abs(nd) > 1e6 else f"{nd:g}")
     out = dict(w=ds.RasterXSize, h=ds.RasterYSize, n=ds.RasterCount, cell=ds.GetGeoTransform()[1],
-               dt=gdal.GetDataTypeName(b.DataType), nd=nd, srs=srs)
+               dt=gdal.GetDataTypeName(b.DataType), nd=nd, srs=srs, cm=cm,
+               proj=sr.GetAttrValue("PROJECTION") if sr else None, R=sr.GetSemiMajor() if sr else None)
     ds = None
     return out
 
@@ -135,23 +136,29 @@ def row(name, desc, i, size, where):
 def main():
     head = "| File | What it is | Grid | Type | NoData | Size | In release |\n|---|---|---|---|---|---|---|"
     rel = lambda tag, asset: f"[`{tag}`]({URL}{tag}) `{asset}`"
-    g60, ius, crs = [], [], set()
+    g60, ius, crs, frames = [], [], set(), {}
     for p in sorted((MP / "Global60").glob("*.tif")):
-        i = info(str(p)); crs.add(i["srs"])
+        i = info(str(p)); crs.add(i["srs"]); frames[p.name] = i
         big = p.name in G60 and not p.name.startswith(("global60_landforms", "smoke60"))
         where = rel(DERIV, p.name + ".part*") if big else rel(DATA, "global60-classification.zip")
         g60.append(row(p.name, G60.get(p.name), i, p.stat().st_size, where))
     ta = MP / "TypeArea"
     for p in sorted(ta.glob("*.tif")) + sorted((ta / "val").glob("*.tif")):
         key = p.relative_to(ta).as_posix()
-        i = info(str(p)); crs.add(i["srs"])
+        i = info(str(p)); crs.add(i["srs"]); frames[key] = i
         ius.append(row(key, IUS.get(key), i, p.stat().st_size, rel(DATA, "typearea-part*.zip")))
     gdb = []
     for name, desc in GDB.items():
         i = info(f"OpenFileGDB:{MP / 'Mars Project.gdb'}:{name}")
+        frames[name] = dict(i)
         i["nd"] = "255"   # the gdb keeps a mask only; github_export_gdb.py writes 255 under it in the release file
         tag = DERIV if name.startswith("Segmented") else DATA
         gdb.append(row(name + ".tif", desc, i, 0, rel(tag, name + ".tif")).replace("| 0 MB |", "| — |"))
+    # The coordinate-system note below states these facts; stop if a header no longer agrees with it.
+    odd = {k: (f["proj"], f["cm"], f["R"]) for k, f in frames.items()
+           if (f["proj"], f["R"]) != ("Equirectangular", 3396190.0) or f["cm"] != (0.0 if k == CM0 else 180.0)}
+    assert not odd and crs - {"unknown"} == {"Mars_Equidistant_Cylindrical_CM180"}, \
+        f"coordinate systems changed; rewrite the note: {odd} {crs}"
     missing = [n for n in G60 if not (MP / "Global60" / n).exists()] + \
               [n for n in IUS if not (ta / n).exists()]
 
@@ -162,12 +169,19 @@ Every raster backed up in the [releases]({URL.rsplit("/tag/", 1)[0]}), read from
 on {time.strftime('%Y-%m-%d')}. "KB §N" is a section of
 [`PROJECT-KNOWLEDGE.md`](../Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
 [`restore.py`](../restore.py) puts each one back where the table's first column says, under
-`Mars Project/Global60/`, `Mars Project/TypeArea/` or `Mars Project/restored_from_gdb/`.
+`Mars Project/Global60/`, `Mars Project/TypeArea/` or `Mars Project/restored_from_gdb/`. The type-area
+zip also holds `TypeArea/_0based_originals/`, the `ius_sup_*` maps before the recode below; they are not listed.
 
-**Coordinate system.** Everything here except the validation windows is in
-`{', '.join(sorted(c for c in crs if c != 'unknown'))}`: equidistant cylindrical on the Mars sphere
-(R = 3,396,190 m), metres, **central meridian 180°**, so x runs 0–360°E. Software that assumes
-Earth or a 0° meridian will misplace it. The ±60° grids: 100 m is 213,388 × 71,130 and 200 m is
+**Classified rasters** hold the class code itself as the pixel value. Before 2026-10-07 they held
+ClassifyRaster's 0-based values instead (KB §36), so a copy downloaded earlier needs +1.
+
+**Coordinate system.** Every raster here is equidistant cylindrical on the Mars sphere
+(R = 3,396,190 m), in metres, and all but one have the **central meridian at 180°**, so x runs
+0–360°E. Software that assumes Earth or a 0° meridian will misplace them. The CRS is named
+`Mars_Equidistant_Cylindrical_CM180` in `Global60/` and `TypeArea/`; the validation windows under
+`TypeArea/val/` carry the same projection unnamed (`unknown`), and the geodatabase rasters call it
+`SimpleCylindrical_Mars`. **The exception is `{CM0}`, the 30 Sep map: central meridian 0°**, on
+Viking's 231.5 m global grid, so its x runs −180 to +180°E. The ±60° grids: 100 m is 213,388 × 71,130 and 200 m is
 106,694 × 35,565, nested, with the origin at −10,669,400, +3,556,500
 ([`Global60/README.md`](../Mars%20Project/Global60/README.md)).
 

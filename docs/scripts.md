@@ -29,7 +29,7 @@ All 102 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`make_typearea_thermal.py`](../Mars%20Remote%20Sensing%20Project/build/make_typearea_thermal.py) | ArcGIS | Day-night thermal analysis over the Ius Chasma type area. |
 | [`verify_crater_detection.py`](../Mars%20Remote%20Sensing%20Project/build/verify_crater_detection.py) | ArcGIS | Does the fill-depth crater detector actually work? Measure it. |
 | [`verify_segmentation.py`](../Mars%20Remote%20Sensing%20Project/build/verify_segmentation.py) | ArcGIS | Did segmentation de-speckle, and which parameters? Measure, don't eyeball. |
-| [`verify_typearea.py`](../Mars%20Remote%20Sensing%20Project/build/verify_typearea.py) | ArcGIS | (no docstring) |
+| [`verify_typearea.py`](../Mars%20Remote%20Sensing%20Project/build/verify_typearea.py) | ArcGIS | Checks the Ius Chasma 5-band composite: each band's range, mean and valid share, the share valid in all five bands, their correlations, and the DEM's relief on the same grid. |
 
 ## ±60° analysis extent
 
@@ -38,7 +38,7 @@ All 102 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`grid60.py`](../Mars%20Remote%20Sensing%20Project/build/grid60.py) | ArcGIS | The canonical +/-60 deg target grid, and the only place it is defined. |
 | [`make_extent.py`](../Mars%20Remote%20Sensing%20Project/build/make_extent.py) | either | The mapping extent: 360 degrees of longitude, 60 N to 60 S. |
 | [`make_global60_classification.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_classification.py) | ArcGIS | The ±60° landform classification, redone on the corrected stack (KB §31). |
-| [`make_global60_dl_export.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_dl_export.py) | ArcGIS | Re-export his deep-learning training data from the corrected ±60° stack (KB §29.6, §31). |
+| [`make_global60_dl_export.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_dl_export.py) | ArcGIS | Re-export the hand-labelled deep-learning training data from the corrected ±60° stack (KB §29.6, §31). |
 | [`make_global60_landforms_clean.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_landforms_clean.py) | ArcGIS | Majority (mode) filter on the ±60° landform classification (KB §32). |
 | [`make_global60_svm_stack.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_svm_stack.py) | ArcGIS | A corrected classification stack at the analysis extent (KB §30, §31). |
 | [`make_global_landforms.py`](../Mars%20Remote%20Sensing%20Project/build/make_global_landforms.py) | ArcGIS | Crater and channel candidates over the WHOLE +/-60 extent - tasks 11 + 12. |
@@ -47,8 +47,8 @@ All 102 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`make_global_thermal.py`](../Mars%20Remote%20Sensing%20Project/build/make_global_thermal.py) | ArcGIS | The diurnal-contrast index (KB 24) over the WHOLE +/-60 analysis extent. |
 | [`svmcheck.py`](../Mars%20Remote%20Sensing%20Project/build/svmcheck.py) | either | Scoring a landform classification against independent evidence (KB §30, §31). |
 | [`verify_global60.py`](../Mars%20Remote%20Sensing%20Project/build/verify_global60.py) | ArcGIS | Prove that every +/-60 product lands on the downloaded mosaics' own grid. |
-| [`verify_global60_classification.py`](../Mars%20Remote%20Sensing%20Project/build/verify_global60_classification.py) | ArcGIS | Scores global60_landforms_svm_<cell>m.tif the way §30 scored his two maps (KB §31). |
-| [`verify_svm_classifications.py`](../Mars%20Remote%20Sensing%20Project/build/verify_svm_classifications.py) | ArcGIS | Checks his two SVM classifications (29-30 Sep, KB §29) against independent evidence. |
+| [`verify_global60_classification.py`](../Mars%20Remote%20Sensing%20Project/build/verify_global60_classification.py) | ArcGIS | Scores global60_landforms_svm_<cell>m.tif the way §30 scored the two Pro-GUI maps (KB §31). |
+| [`verify_svm_classifications.py`](../Mars%20Remote%20Sensing%20Project/build/verify_svm_classifications.py) | ArcGIS | Checks the two Pro-GUI SVM classifications (29-30 Sep, KB §29) against independent evidence. |
 
 ## ArcGIS project: maps and layouts
 
@@ -58,8 +58,8 @@ All 102 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`audit_layers.py`](../Mars%20Remote%20Sensing%20Project/build/audit_layers.py) | either | Full data connections, group-layer membership, layouts and renderer settings. |
 | [`fix_night_stretch.py`](../Mars%20Remote%20Sensing%20Project/build/fix_night_stretch.py) | either | Match the THEMIS Night IR display stretch to the Day IR. |
 | [`layoutkit.py`](../Mars%20Remote%20Sensing%20Project/build/layoutkit.py) | ArcGIS | CIM helpers for layouts, extracted verbatim from make_typearea_layouts.py by ast. |
-| [`make_candidate_maps.py`](../Mars%20Remote%20Sensing%20Project/build/make_candidate_maps.py) | ArcGIS | Puts the machine candidates and his digitising classes INTO the project (KB §32). |
-| [`make_global60_maps.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_maps.py) | ArcGIS | Puts the ±60° work INTO the ArcGIS project, where he sees it when he opens Pro (KB §31). |
+| [`make_candidate_maps.py`](../Mars%20Remote%20Sensing%20Project/build/make_candidate_maps.py) | ArcGIS | Puts the machine candidates and the empty digitising classes INTO the project (KB §32). |
+| [`make_global60_maps.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_maps.py) | ArcGIS | Puts the ±60° work INTO the ArcGIS project, where it shows when the project opens in Pro (KB §31). |
 | [`make_typearea_layouts.py`](../Mars%20Remote%20Sensing%20Project/build/make_typearea_layouts.py) | either | Task 13: real map layouts for the Ius Chasma type area. |
 | [`polish_layouts.py`](../Mars%20Remote%20Sensing%20Project/build/polish_layouts.py) | ArcGIS | Presentation fixes to the seven layouts, found by exporting and reading every sheet (KB §33). |
 | [`repoint_junction_layers.py`](../Mars%20Remote%20Sensing%20Project/build/repoint_junction_layers.py) | ArcGIS | Points every layer that reads through a junction at the real folder instead (KB §34). |
@@ -78,11 +78,11 @@ All 102 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`make_fig_global60.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_global60.py) | ArcGIS | The +/-60 thermal figure - and why it cannot be read as a material map. |
 | [`make_fig_segmentation.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_segmentation.py) | ArcGIS | Segmentation parameter sweep, shown on a zoom across the Ius Chasma wall. |
 | [`make_fig_supervised.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_supervised.py) | ArcGIS | Figure: task 7's supervised half, with the accuracy assessment made visible - including the comparison that does NOT support the easy story. |
-| [`make_fig_svm_check.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_svm_check.py) | either | Figure: his two SVM classifications (KB §29, §30) checked against independent evidence. |
+| [`make_fig_svm_check.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_svm_check.py) | either | Figure: the two Pro-GUI SVM classifications (KB §29, §30) checked against independent evidence. |
 | [`make_fig_thermal.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_thermal.py) | ArcGIS | Figure: the diurnal-contrast index over Ius Chasma, and the case that it is a MATERIAL discriminator rather than a restatement of topography. |
 | [`make_figs_dark.py`](../Mars%20Remote%20Sensing%20Project/build/make_figs_dark.py) | either | Dark-ground versions of the Presentation 1 figures. |
 | [`make_globals.py`](../Mars%20Remote%20Sensing%20Project/build/make_globals.py) | ArcGIS | Global sheets for the three source rasters -- one slide each. |
-| [`make_globe.py`](../Mars%20Remote%20Sensing%20Project/build/make_globe.py) | either | A whole-Mars orthographic disc for the title slide, from his own Viking mosaic. |
+| [`make_globe.py`](../Mars%20Remote%20Sensing%20Project/build/make_globe.py) | either | A whole-Mars orthographic disc for the title slide, from the project's Viking mosaic. |
 | [`make_locator.py`](../Mars%20Remote%20Sensing%20Project/build/make_locator.py) | ArcGIS | Global locator: where the two type areas sit on the planet. |
 | [`make_panels.py`](../Mars%20Remote%20Sensing%20Project/build/make_panels.py) | ArcGIS | Matched-extent panels over the project's own saved type-area window. |
 | [`make_spectrum.py`](../Mars%20Remote%20Sensing%20Project/build/make_spectrum.py) | either | Which parts of the spectrum this project uses, and what sits where. |

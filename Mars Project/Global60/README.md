@@ -5,7 +5,8 @@ Everything in this folder is on the **same content area as the source mosaics at
 `Z:\Mars Project\TypeArea\` holds the `ius_*` products for one 15 × 7° box, and
 this holds the `global60_*` products for the full ±60° analysis extent.
 
-Built 2026-09-19. See `PROJECT-KNOWLEDGE.md` §27.
+Started 2026-09-19. See `PROJECT-KNOWLEDGE.md` §28 (the grid and the first products) and §31–32
+(the classification).
 
 ## The grid
 
@@ -47,13 +48,22 @@ is **never resampled** — it is a window read, not a warp.
 | file | grid | what |
 |---|---|---|
 | `global60_thermal_contrast.tif` | G100 | diurnal-contrast index ×10000, Int16, nodata −32768 |
+| `global60_thermal_contrast_200m.tif` | G200 | the index aggregated to the DEM grid |
 | `global60_dem.tif` | G200 | HRSC/MOLA, exact, Int16 |
 | `global60_slope_deg.tif` | G200 | slope in **degrees** on a metric grid |
 | `global60_aspect.tif` | G200 | aspect |
 | `global60_hillshade.tif` | G200 | 225° / 45° |
-| `global60_thermal_contrast_200m.tif` | G200 | the index aggregated to the DEM grid |
-| `global60_viking / _day / _night.tif` | G100 | harmonised single bands *(desktop)* |
-| `global60_composite_4band / _5band.tif` | G100 | Composite Bands *(desktop)* |
+| `global60_svm_stack_200m.tif` | G200 | the 7-band classification stack, 8-bit, no elevation band (§31.2) |
+| `global60_landforms_svm.ecd` | | the support vector machine, trained on the training split of the hand-drawn labels (§31) |
+| `global60_landforms_svm_400m.tif` | 400 m | the landform classification; pixel = class code 1–4, 255 none |
+| `global60_landforms_svm_400m_mode3 / 5 / 7 / 9.tif` | 400 m | the same after an n × n majority filter; `_mode5` is the one to use (§32.2) |
+| `smoke60_*.tif` | G100 | smoke-test windows of the pipeline: Viking, day, night, 4- and 5-band composites (§28.11) |
+| `global60_svm_s_ClassifyRaste*.crf` | | temporary outputs `ClassifyRaster` wrote on 2 Oct; no layer uses them |
+| `layouts\` | | PNG exports of layouts 04–07 |
+| `_0based_originals\` | | the landform maps before their pixel values became the class codes (§36) |
+
+The full-extent harmonised bands and Composite Bands (`global60_viking`, `_composite_4band`, …)
+were never built at ±60°: only their smoke-test windows exist. The classification uses the stack above instead.
 
 ## Two things to keep straight
 

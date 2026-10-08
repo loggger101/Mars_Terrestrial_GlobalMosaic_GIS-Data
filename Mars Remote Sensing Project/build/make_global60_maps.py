@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Puts the ±60° work INTO the ArcGIS project, where he sees it when he opens Pro (KB §31).
+r"""Puts the ±60° work INTO the ArcGIS project, where it shows when the project opens in Pro (KB §31).
 
   1. clips every Mars map to the ±60° analysis extent (Map.clipLayers - display only,
      nothing is deleted; clipLayers(None) undoes it)

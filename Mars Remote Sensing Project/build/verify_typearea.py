@@ -1,3 +1,5 @@
+"""Checks the Ius Chasma 5-band composite: each band's range, mean and valid share, the share valid in
+all five bands, their correlations, and the DEM's relief on the same grid."""
 import numpy as np
 from osgeo import gdal
 gdal.UseExceptions()
