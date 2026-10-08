@@ -1,3 +1,5 @@
+# Renders every slide of a .pptx deck to PNG in OutDir, through PowerPoint COM; killed after 180 s.
+#   render.ps1 -Deck <deck.pptx> -OutDir <folder>
 param([string]$Deck, [string]$OutDir)
 
 $job = Start-Job -ScriptBlock {

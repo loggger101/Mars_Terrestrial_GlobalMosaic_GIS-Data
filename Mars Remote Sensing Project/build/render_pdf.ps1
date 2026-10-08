@@ -1,3 +1,5 @@
+# Exports a .pptx deck to PDF through PowerPoint COM; killed after 240 s.
+#   render_pdf.ps1 -Deck <deck.pptx> -Pdf <out.pdf>
 param([string]$Deck, [string]$Pdf)
 
 # PowerPoint COM only behaves from inside a Start-Job wrapper here; a wedged

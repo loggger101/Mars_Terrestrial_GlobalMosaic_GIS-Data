@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 370 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Find your way around:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 94, by purpose) · [backup and restore](docs/backup.md)
+**Find your way around:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 102, by purpose) · [backup and restore](docs/backup.md)
 
 ![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 
@@ -73,6 +73,39 @@ Three coordinate frames, not two: check `Central_Meridian` per file before readi
 
 You don't need ArcGIS Pro. The rasters are GeoTIFFs and the vectors come as a file geodatabase and a GeoPackage; QGIS and GDAL read all of them.
 
+**Quick start.** Download the landform maps (400 MB) and unzip them:
+
+```bash
+curl -LO https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/download/data-2026-10-06/global60-classification.zip
+unzip global60-classification.zip
+```
+
+Then, with GDAL's Python bindings (`osgeo`, from conda-forge or the Python that ships with QGIS), read the map and turn a pixel into longitude and latitude:
+
+```python
+from osgeo import gdal
+import numpy as np, math
+gdal.UseExceptions()
+
+ds = gdal.Open("Global60/global60_landforms_svm_400m_mode5.tif")   # 400 m, 53,347 x 17,783
+band = ds.GetRasterBand(1)
+# A tenth of the full resolution is plenty for an overview.
+a = band.ReadAsArray(buf_xsize=ds.RasterXSize // 10, buf_ysize=ds.RasterYSize // 10)
+names = {1: "Crater", 2: "steep/windy hills", 3: "lava tube", 4: "Normal Ground"}
+valid = a != band.GetNoDataValue()                                  # 255: no class
+for code, name in names.items():
+    print(f"{name:18} {np.mean(a[valid] == code):6.1%}")
+
+# Map coordinates are metres on the Mars sphere, central meridian 180°E.
+R = 3396190.0
+x0, dx, _, y0, _, dy = ds.GetGeoTransform()
+def lonlat(col, row):
+    x, y = x0 + (col + 0.5) * dx, y0 + (row + 0.5) * dy
+    return 180 + math.degrees(x / R), math.degrees(y / R)           # longitude 0–360°E, latitude
+```
+
+It prints Crater 33.2%, steep/windy hills 1.7%, lava tube 9.5%, Normal Ground 55.5%, the same shares as a full-resolution count. `lonlat` agrees with PROJ's own transform to 10⁻¹³ degrees.
+
 - **Coordinate system.** Almost everything is in `Mars_Equidistant_Cylindrical_CM180`: metres on the Mars sphere (R = 3,396,190 m) with the **central meridian at 180°**, so x runs 0–360°E. The CRS is embedded in each file; keep it. Reprojecting to an Earth CRS, or assuming a 0° meridian, puts features half a planet away. The hand-drawn labels and the IAU nomenclature are in geographic `Mars_2000_(Sphere)`.
 - **The landform map** to use is `global60_landforms_svm_400m_mode5.tif`. Its pixel values are the class codes: **1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class**, the same codes as the training labels; the attribute table adds names and colours. Read the lava tube class as unreliable (above). Every classified raster in the project follows the same rule: pixel value = class code. (Before 2026-10-07 they carried ClassifyRaster's 0-based values, these maps and the GUI maps 0–3, the type-area `ius_sup_*` maps 0–5; copies downloaded earlier need +1.)
 - **The training labels** are `Landform_TrainingSamples_terrain` in [`exports/`](exports/README.md), with the same class codes 1–4. One class schema in the project swaps 2 and 3; the layer catalog says which.
@@ -86,7 +119,7 @@ The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   94 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   102 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
     pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)
@@ -108,7 +141,8 @@ docs/
   pipeline.svg             the diagram above
 drive-root/                source-raster sidecars; the "new training" shapefile
 restore.py                 rebuilds the drive from this repository and its releases
-tools/check_repo.py        the checks CI runs on every push: page links, Python syntax, file sizes
+tools/check_repo.py        the checks CI runs on every push: page links, Python syntax, file sizes,
+                           and that the counts this page states match the tree
 CITATION.cff               how to cite the project ("Cite this repository" on GitHub)
 ```
 

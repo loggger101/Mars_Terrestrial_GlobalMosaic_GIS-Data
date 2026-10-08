@@ -1,3 +1,5 @@
+# Exports a Word document to PDF through Word COM; killed after 180 s.
+#   render_doc.ps1 -Doc <file.docx> -Pdf <out.pdf>
 param([string]$Doc, [string]$Pdf)
 
 $job = Start-Job -ScriptBlock {
