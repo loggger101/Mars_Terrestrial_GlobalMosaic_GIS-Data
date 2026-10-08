@@ -95,6 +95,12 @@ LOG = [   # (date, what, outcome, §)
 # ------------------------------------------------------------------ figures (preliminary results)
 # images: ("layout", <layout name in the .aprx>) or ("file", <path under build\>)
 FIGURES = [
+    dict(title="Where: the analysis extent and the two type areas",
+         images=[("layout", "10_global60_locator")],
+         points=["±60° latitude, 86.6% of the planet: the THEMIS night mosaic's coverage",
+                 "Ius Chasma, canyon and tributaries; Athabasca Valles, flood lava",
+                 "Orange: volcanic units of the USGS geologic map, the lava-flow reference"],
+         source="§16, §41, §42, §43"),
     dict(title="The mosaic at ±60°",
          images=[("layout", "08_global60_mosaic")],
          points=["Four datasets on one 200 m grid for the first time",
@@ -114,6 +120,13 @@ FIGURES = [
                  "They are contrast-stretched region by region: thermal contrast is local",
                  "Planet-wide, visible albedo carries the material signal"],
          source="§28.10"),
+    dict(title="Checked against calibrated thermal inertia (TES)",
+         images=[("file", r"interim_img\tes_check.png")],
+         points=["Viking albedo tracks real thermal inertia across the planet (r −0.36)",
+                 "Night IR and the diurnal-contrast index: a weak signal inside regions only (|r| ≈ 0.1)",
+                 "Day IR carries none; across the planet the THEMIS pair says nothing",
+                 "So the material signal is in visible albedo; thermal IR adds little at 3 km"],
+         source="§41, §42.4, §43.1"),
     dict(title="Craters at ±60°: closed depressions ≥ 20 km",
          images=[("layout", "07_global60_basins")],
          points=["5,144 basins found by fill depth in 48 s",
@@ -157,16 +170,23 @@ FIGURES = [
 ]
 
 # ------------------------------------------------------------------ issues
-ISSUES = [
-    ("Thermal contrast is local",
-     "Both THEMIS mosaics were stretched region by region, so day–night contrast works inside one "
-     "area and fails across the planet. Calibrated thermal inertia is not derivable from them (§24, §28.10)."),
-    ("Lava flows have no reliable product yet",
-     "The lava tube class is right 2% of the times it is mapped. Needs new labels or the USGS geologic map."),
+ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
+    ("The thermal signal is weak where it can be checked",
+     "Against calibrated TES thermal inertia, the THEMIS mosaics keep only a weak local signal (|r| ≈ 0.1 "
+     "within 15° blocks) and none across the planet; Viking albedo tracks it (r −0.31 to −0.36). In the "
+     "classification the thermal bands add 1.3 points (§40.1, §42.4, §43.1)."),
+    ("The landform classes are terrain classes",
+     "Slope and relief alone match all seven bands; against the geologic map the classes sit where terrain "
+     "puts them, and \"lava tube\" marks volcano flanks, not lava plains (§40.1, §43.2)."),
+    ("Lava flows come from the geologic map",
+     "Volcanic plains are not separable from other plains in these bands; a fifth \"volcanic\" class tested "
+     "below chance. The USGS map's volcanic units are the lava-flow reference (§43.3, §44)."),
+    ("Closed depressions are not a crater count",
+     "Only 11–13% of the detector's ≥ 1 km candidates are catalogued craters; the Robbins catalogue "
+     "(385,049 craters) is the crater reference (§42.3)."),
     ("Digitising has not started",
-     "The three landform classes are ready and empty; it is the critical path, and only judgement can do it."),
-    ("Closed-depression craters only",
-     "Fill depth finds closed basins; breached craters, the fluvially modified ones, need hand mapping (§26.3)."),
+     "The three landform classes are ready and empty in both type areas; it is the critical path, and only "
+     "judgement can do it."),
     ("250 GB on one USB drive",
      "Reads cap near 112 MB/s, and the drive has dropped off mid-write; big outputs are built on internal disk first (§2.2, §36.4)."),
     ("Solved since September",
@@ -174,18 +194,18 @@ ISSUES = [
 ]
 
 NEXT_STEPS = [
-    "Digitise Ius Chasma: accept or reject the machine candidates, then draw what they miss",
-    "Measure whether the thermal bands improve the classification, with the hand-drawn labels",
-    "Craters and channels ≥ 1 km across ±60° (a 7-hour resumable run)",
-    "A second type area at Athabasca Valles: flood lava once mapped as a water channel",
-    "Score against the USGS geologic map: the reference for lava flows",
+    "Digitise Ius Chasma and Athabasca Valles: accept or reject the machine candidates, then draw what they miss",
+    "Craters and channels ≥ 1 km across ±60° on the desktop (a 7-hour resumable run), scored against Robbins",
+    "Channel gradient and thermal response, Ius (fluvial) against Athabasca (volcanic): hypothesis H2",
+    "Flow margins in visible against infrared at Athabasca, against the geologic map's contacts: hypothesis H1",
+    "Pyramids on the four source mosaics, for faster work in ArcGIS Pro",
 ]
 
 SCHEDULE = [   # (when, what)
-    ("8–25 Oct", "Digitising starts; thermal test; ±60° crater and channel run; Athabasca"),
-    ("26 Oct – 1 Nov", "±60° crater and channel sheets; reference data scored"),
+    ("8–25 Oct", "Digitising starts; desktop runs: junctions, pyramids, ±60° crater and channel pass"),
+    ("26 Oct – 1 Nov", "±60° crater and channel sheets; H1 and H2 at the two type areas"),
     ("mid-Nov", "Interim presentation and report"),
-    ("14–22 Nov", "Validation against the digitised landforms; lava-flow sheet; data freeze"),
+    ("14–22 Nov", "Validation against the digitised landforms; data freeze"),
     ("23 Nov – 4 Dec", "Final report and presentation"),
     ("8 Dec", "Final due"),
 ]

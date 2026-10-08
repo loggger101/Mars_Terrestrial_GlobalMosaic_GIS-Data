@@ -1,0 +1,263 @@
+{
+ "cell_m": 1599.9700082477318,
+ "p_class": {
+  "Crater": 0.3429946142600752,
+  "steep/windy hills": 0.01880144235347624,
+  "lava tube": 0.0967029940200881,
+  "Normal Ground": 0.5415009493663605
+ },
+ "groups": {
+  "a": {
+   "area_share": 0.013458302494461356,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.3602213983721252,
+     "enrichment": 1.0502246490056772
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.07616577904503881,
+     "enrichment": 4.051060424678341
+    },
+    "lava tube": {
+     "share_in_group": 0.39869860173822125,
+     "enrichment": 4.122918900064248
+    },
+    "Normal Ground": {
+     "share_in_group": 0.16491422084461457,
+     "enrichment": 0.30455019707276526
+    }
+   }
+  },
+  "h": {
+   "area_share": 0.411521146422358,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.4596740120092221,
+     "enrichment": 1.340178512717622
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.01780067527872643,
+     "enrichment": 0.9467717925074628
+    },
+    "lava tube": {
+     "share_in_group": 0.09819548923413153,
+     "enrichment": 1.0154338056351533
+    },
+    "Normal Ground": {
+     "share_in_group": 0.4243298234779201,
+     "enrichment": 0.7836178754154565
+    }
+   }
+  },
+  "hm": {
+   "area_share": 0.028351265414214413,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.5592855790399036,
+     "enrichment": 1.630595804678805
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.047999037344152014,
+     "enrichment": 2.5529444199943185
+    },
+    "lava tube": {
+     "share_in_group": 0.17101609708587653,
+     "enrichment": 1.768467448384808
+    },
+    "Normal Ground": {
+     "share_in_group": 0.22169928653006774,
+     "enrichment": 0.4094162471727705
+    }
+   }
+  },
+  "hu": {
+   "area_share": 0.021034421164409137,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.40507750257816605,
+     "enrichment": 1.181002516473966
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.12246042572300118,
+     "enrichment": 6.513352721599
+    },
+    "lava tube": {
+     "share_in_group": 0.11504665273258358,
+     "enrichment": 1.1896907008761792
+    },
+    "Normal Ground": {
+     "share_in_group": 0.35741541896624923,
+     "enrichment": 0.6600457845632225
+    }
+   }
+  },
+  "i": {
+   "area_share": 0.05456603421704031,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.4756931535635108,
+     "enrichment": 1.3868822826553686
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.029200796024211592,
+     "enrichment": 1.5531146746734883
+    },
+    "lava tube": {
+     "share_in_group": 0.11133410526854384,
+     "enrichment": 1.1512994648895403
+    },
+    "Normal Ground": {
+     "share_in_group": 0.38377194514373386,
+     "enrichment": 0.7087188777652303
+    }
+   }
+  },
+  "l": {
+   "area_share": 0.09176249602811162,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.0873956433558187,
+     "enrichment": 0.2548017949038438
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.0009174291140563844,
+     "enrichment": 0.04879567731072287
+    },
+    "lava tube": {
+     "share_in_group": 0.004735281582128676,
+     "enrichment": 0.04896726962915974
+    },
+    "Normal Ground": {
+     "share_in_group": 0.9069516459479964,
+     "enrichment": 1.6748846830449133
+    }
+   }
+  },
+  "p": {
+   "area_share": 0.00042591975447375737,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.13740202026611373,
+     "enrichment": 0.4005952704608033
+    },
+    "steep/windy hills": {
+     "share_in_group": 2.4401265361402162e-05,
+     "enrichment": 0.0012978400753860546
+    },
+    "lava tube": {
+     "share_in_group": 0.00967347828551457,
+     "enrichment": 0.10003287264823568
+    },
+    "Normal Ground": {
+     "share_in_group": 0.8529001001830103,
+     "enrichment": 1.5750666756559426
+    }
+   }
+  },
+  "t": {
+   "area_share": 0.07888860974045282,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.361736319065127,
+     "enrichment": 1.0546413967621104
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.030339306207417732,
+     "enrichment": 1.6136690811813292
+    },
+    "lava tube": {
+     "share_in_group": 0.06812021197668537,
+     "enrichment": 0.7044271241750257
+    },
+    "Normal Ground": {
+     "share_in_group": 0.53980416275077,
+     "enrichment": 0.9968665122054247
+    }
+   }
+  },
+  "tu": {
+   "area_share": 0.023870308204716237,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.30417393108148283,
+     "enrichment": 0.8868183884976204
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.019797938055279542,
+     "enrichment": 1.053001024233604
+    },
+    "lava tube": {
+     "share_in_group": 0.13008438483413537,
+     "enrichment": 1.3451950082032926
+    },
+    "Normal Ground": {
+     "share_in_group": 0.5459437460291021,
+     "enrichment": 1.0082045962577542
+    }
+   }
+  },
+  "v": {
+   "area_share": 0.22794330731132798,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.16049413236301285,
+     "enrichment": 0.46792026956236227
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.006453389486579881,
+     "enrichment": 0.34323906460222714
+    },
+    "lava tube": {
+     "share_in_group": 0.0839983370055222,
+     "enrichment": 0.8686218855651278
+    },
+    "Normal Ground": {
+     "share_in_group": 0.749054141144885,
+     "enrichment": 1.3832923876151901
+    }
+   }
+  },
+  "ve": {
+   "area_share": 0.011205061304829803,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.41083610612453103,
+     "enrichment": 1.1977917117177097
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.022390935269671834,
+     "enrichment": 1.1909158270260007
+    },
+    "lava tube": {
+     "share_in_group": 0.32291369489252775,
+     "enrichment": 3.3392316149534
+    },
+    "Normal Ground": {
+     "share_in_group": 0.2438592637132692,
+     "enrichment": 0.4503394943233656
+    }
+   }
+  },
+  "vf": {
+   "area_share": 0.006111806314479154,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.10980301674171125,
+     "enrichment": 0.32013043988630463
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.006330500734462824,
+     "enrichment": 0.33670293030961873
+    },
+    "lava tube": {
+     "share_in_group": 0.15294330086709437,
+     "enrichment": 1.5815777206993558
+    },
+    "Normal Ground": {
+     "share_in_group": 0.7309231816567315,
+     "enrichment": 1.3498096033109899
+    }
+   }
+  }
+ }
+}

@@ -51,9 +51,9 @@ python build_interim_live.py "..\NEXT STUFF\Mars Global Mosaic - Interim Present
 4. ~~Done 2026-10-08 (KB §40.3).~~ **`pres1_img\ius_fusion.png` said "thermal-inertia proxy"** and "low/high inertia" on the
    image; fix `make_fig_fusion.py` wording before it goes on a slide.
 5. A **locator slide** once layout 09 exists (`NEXT-STEPS.md` 3.4); the T1 result once measured.
-6. **`verify_all.py` checks `content.py`, not `interim.py`.** Add a check that every number in
+6. ~~Done 2026-10-08 (KB §45): `verify_interim.py`.~~ **`verify_all.py` checks `content.py`, not `interim.py`.** Add a check that every number in
    `interim.py` still matches the record before the interim is delivered.
-7. The **report** (`build_interim_docx.py`) still reads the September `content.py` and has no
+7. ~~Done 2026-10-08 (KB §45): `build_interim_report_live.py`.~~ The **report** (`build_interim_docx.py`) read the September `content.py` and has no
    figures; switch it to `interim.py` and the same images when the deck settles.
 
 ## 1. What exists, and how old it is

@@ -1,0 +1,126 @@
+{
+ "dayside": {
+  "Viking red": {
+   "r_global": -0.31118633216122754,
+   "r_within_blocks_median": -0.05649328578071541,
+   "r_within_blocks_p25_p75": [
+    -0.1679910312644606,
+    0.013659273444744319
+   ],
+   "blocks": 192,
+   "cells": 15780603
+  },
+  "THEMIS night DN": {
+   "r_global": 0.03802155776630953,
+   "r_within_blocks_median": 0.06299295418164197,
+   "r_within_blocks_p25_p75": [
+    0.039520725320230696,
+    0.09425316742073445
+   ],
+   "blocks": 192,
+   "cells": 15780603
+  },
+  "THEMIS day DN": {
+   "r_global": 0.0027417429039434944,
+   "r_within_blocks_median": -0.010101810107807304,
+   "r_within_blocks_p25_p75": [
+    -0.026131304117395174,
+    0.008438001693836027
+   ],
+   "blocks": 192,
+   "cells": 15780603
+  },
+  "slope": {
+   "r_global": 0.03123322293927539,
+   "r_within_blocks_median": -0.05069543393162597,
+   "r_within_blocks_p25_p75": [
+    -0.1138418347121608,
+    0.035499249020171875
+   ],
+   "blocks": 192,
+   "cells": 15780603
+  },
+  "local relief": {
+   "r_global": 0.03046071004538318,
+   "r_within_blocks_median": -0.04920230925033511,
+   "r_within_blocks_p25_p75": [
+    -0.1139551789304589,
+    0.03334508144133952
+   ],
+   "blocks": 192,
+   "cells": 15780603
+  },
+  "diurnal-contrast index": {
+   "r_global": -0.025822845399808537,
+   "r_within_blocks_median": -0.048820909002540894,
+   "r_within_blocks_p25_p75": [
+    -0.08207060531376774,
+    -0.026372396628498218
+   ],
+   "blocks": 192,
+   "cells": 15784225
+  }
+ },
+ "nightside": {
+  "Viking red": {
+   "r_global": -0.3570519511051898,
+   "r_within_blocks_median": -0.09952016581196746,
+   "r_within_blocks_p25_p75": [
+    -0.22897861640678785,
+    -0.00015473437925155124
+   ],
+   "blocks": 192,
+   "cells": 15626375
+  },
+  "THEMIS night DN": {
+   "r_global": 0.04902217369542159,
+   "r_within_blocks_median": 0.10780689815971177,
+   "r_within_blocks_p25_p75": [
+    0.06992073867853937,
+    0.1504061710397097
+   ],
+   "blocks": 192,
+   "cells": 15626375
+  },
+  "THEMIS day DN": {
+   "r_global": 0.005171796442926425,
+   "r_within_blocks_median": -0.006852291343636645,
+   "r_within_blocks_p25_p75": [
+    -0.04132479690820447,
+    0.01599321701663202
+   ],
+   "blocks": 192,
+   "cells": 15626375
+  },
+  "slope": {
+   "r_global": 0.06381587787713856,
+   "r_within_blocks_median": 0.0036224008507701115,
+   "r_within_blocks_p25_p75": [
+    -0.08405048546846793,
+    0.08651606958237226
+   ],
+   "blocks": 192,
+   "cells": 15626375
+  },
+  "local relief": {
+   "r_global": 0.06258679015685098,
+   "r_within_blocks_median": 0.001857037676043613,
+   "r_within_blocks_p25_p75": [
+    -0.08339573059226331,
+    0.08699874567750956
+   ],
+   "blocks": 192,
+   "cells": 15626375
+  },
+  "diurnal-contrast index": {
+   "r_global": -0.03184048871832045,
+   "r_within_blocks_median": -0.07731127244239346,
+   "r_within_blocks_p25_p75": [
+    -0.13622337109226063,
+    -0.04823247491585067
+   ],
+   "blocks": 192,
+   "cells": 15629922
+  }
+ }
+}

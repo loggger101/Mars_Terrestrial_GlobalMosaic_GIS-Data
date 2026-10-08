@@ -82,12 +82,13 @@ These block or shape everything below. Ask them together, once.
 | D3 | ~~Where to run the ±60° crater + channel fine pass?~~ **Answered 2026-10-08: on the desktop** (X2), after the junctions there are recreated (X0, KB §40.2). | — |
 | D4 | ~~A second type area at Athabasca Valles?~~ **Answered 2026-10-08: yes, build it** (3.5). | — |
 | D5 | ~~Acquire reference data?~~ **Answered 2026-10-08: yes to (a) the USGS geologic map, (b) the Robbins crater database and (d) TES thermal inertia**; (c) has no public source. Stored under `Z:\Mars Project\Reference\`, not mirrored to GitHub (third-party data). | — |
-| D6 | The **lava tube class**: 10.7 % of the ±60° map, 2 % right where it says so. Keep, merge into steep/windy hills, or relabel? | Retrain without it, or with new polygons drawn from the geologic map's volcanic units (needs D5a). A class that is wrong 98 % of the time is worse than no class. |
+| D6 | ~~The lava tube class?~~ **Settled 2026-10-08 (KB §43.3): the four hand-drawn classes stay** (the author's rule: never remove them; a fifth may be added if it helps). Relabel, drop and a fifth "volcanic (map)" class were tested at 1.6 km; the fifth class scored below chance and cost the others 5.6 pt, so **no fifth class and no rerun**. Lava flows come from the geologic map's volcanic units, as a reference layer. | — |
 | D7 | §11 **q23** (which class schema), **q26** (boxes or pixel labels for deep learning), **q27** (how much smoothing to publish). | q23 before any new samples. q26 only matters if deep learning goes ahead (X5). q27: keep 5 × 5, it was fixed by feature size (§32.2). |
 | D8 | ~~Push to GitHub?~~ **Answered 2026-10-08: push after each working session**, once the record audit, the voice check and the repo's own check pass. | — |
 | D9 | **Housekeeping deletions** (all an open decision): the `*_60_smoke` feature classes, the 10 duplicate nomenclature classes (q4), the empty `Line`/`Point` classes, the dead Jezero HiRISE layer, `Z:\_removed_not_Mars\`. | Leave until after the final unless space runs out. The interim may list them as "cleared" only if they are. |
 | D10 | **Digitising as review instead of drawing** (§6)? | Yes: it turns hours of drawing into minutes of accepting and rejecting, and keeps every decision manual. |
 | D11 | ~~Interim deck format~~ **Answered 2026-10-08: the Presentation 1 style with graphics, no fixed slide count, rebuilt as the data moves.** Built the same day as a living deck (`INTERIM-PLAN.md` §0). | Rebuild after every new result; read every slide. |
+| D12 | ~~How to present the thermal claim, after T1 and T3?~~ **Answered 2026-10-08: lead with the measured limits.** The results are the co-registered mosaic, the scored products and the limits: visible albedo carries the material signal at every scale a calibrated product can check; the held THEMIS mosaics do not. | — |
 
 ### D5 in detail — what each download is, checked on the web 2026-10-08
 
@@ -112,14 +113,14 @@ Ranked by what they unblock. Each has a **done when** so "done" is checkable.
    drive letter changed (a `subst` alias proves it on the laptop).*
 2. ~~**Test T1, the thermal ablation** (§4).~~ **Done 2026-10-08 (KB §40.1): thermal +1.3 pt [+0.6, +2.2]; terrain alone matches the full stack; the labels are landform classes.** Optional: confirm with Pro's SVM. *Done when: held-out scores for every band set are
    in the record, whichever way they fall.*
-3. **A graticule that renders.** `CIMGraticule` failed three times (§22.3). One can be added in
+3. ~~**A graticule that renders.**~~ **Done 2026-10-08 (KB §44).** `CIMGraticule` failed three times (§22.3). One can be added in
    the Pro GUI in seconds, but the builders wipe and rebuild each sheet, so a GUI graticule would
    be lost on the next rerun. A feature class of latitude/longitude lines every 30° (15° on type
    areas), labelled and added by the builders, survives reruns and is plain data. Every layout
    lacks coordinates now, and a remote-sensing grade looks for them.
    *Done when: every sheet's PNG shows labelled lines, and `polish_layouts.py` still finds
    nothing to change.*
-4. **A locator/index sheet (layout 09):** ±60° Viking, the extent outline, boxes for Ius and
+4. ~~**A locator/index sheet:**~~ **Done 2026-10-08 as layout 10 (KB §44).** ±60° Viking, the extent outline, boxes for Ius and
    (if D4) Athabasca, with the IAU names. `make_locator.py` makes this as a matplotlib figure; it
    should be a real layout. It is the interim's natural first map.
 5. ~~**Athabasca type area (if D4).**~~ **Done 2026-10-08 (KB §42.1, layout 09).** Window ~150–162°E, 4–14°N: about 7,100 × 5,900 px at 100 m,
@@ -157,7 +158,7 @@ surprise. Cheapest first. All on the laptop unless marked.
 | **T5** | **H1: does IR show flow margins Viking misses?** | Across the geologic map's volcanic contacts at Athabasca (or the digitised margins): edge contrast in Viking vs day IR vs night IR, sampled on perpendicular profiles. | ~1 h | D4 + D5a, or the digitised margins |
 | **T6** | **H3: is the composite more stable than any single input?** | Iso Cluster 10 classes on Ius per input and on the composite; count surviving classes and their spatial coherence. | minutes | nothing |
 | **T7** | **Q5: how many tributary orders does 100 m resolve?** | Sweep the flow-accumulation threshold on the cached routing rasters (§25: ~2 min each); Strahler order and network length per threshold; where does it saturate? | ~20 min | nothing |
-| **T8** | **Accuracy against the geologic map** (the original schedule's week 13) | The SVM classes against SIM 3292 unit groups, confusion matrix; and the volcanic units as the lava-flow reference (D6). | ~1 h | D5a |
+| **T8** ✓ | **Accuracy against the geologic map** (the original schedule's week 13) | The SVM classes against SIM 3292 unit groups, confusion matrix; and the volcanic units as the lava-flow reference (D6). | ~1 h | D5a |
 
 ---
 

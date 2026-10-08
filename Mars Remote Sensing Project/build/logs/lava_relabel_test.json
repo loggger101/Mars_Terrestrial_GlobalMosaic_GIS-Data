@@ -1,0 +1,50 @@
+{
+ "cell_m": 1599.9700082477318,
+ "variants": {
+  "A: four hand-drawn classes": {
+   "common_heldout_accuracy": 0.7016654649043398,
+   "common_per_class_producers": {
+    "1": 0.5159149160240413,
+    "2": 0.8461300567747186,
+    "4": 0.9979664846183794
+   },
+   "lava_tube_producers": 0.36157599693152964
+  },
+  "B: lava tube -> volcanic (map)": {
+   "common_heldout_accuracy": 0.7019107365497481,
+   "common_per_class_producers": {
+    "1": 0.5177131014354756,
+    "2": 0.8560826015103296,
+    "4": 0.9935619524135102
+   },
+   "volcanic_producers": 0.20828766690891967,
+   "volcanic_users": 0.2994050857640579,
+   "heldout_lava_tube_polygons_called": {
+    "1": 0.39979439672707057,
+    "2": 0.12635735405212595,
+    "3": 0.32228381206861817,
+    "4": 0.15156443715218532
+   }
+  },
+  "C: three classes": {
+   "common_heldout_accuracy": 0.7897403680809663,
+   "common_per_class_producers": {
+    "1": 0.6629802720233131,
+    "2": 0.8560826015103296,
+    "4": 0.9983605833276433
+   }
+  },
+  "D: four hand-drawn + volcanic (map) as a fifth": {
+   "common_heldout_accuracy": 0.6464664550246434,
+   "common_per_class_producers": {
+    "1": 0.42542108839464904,
+    "2": 0.8461300567747186,
+    "4": 0.9935446849745766
+   },
+   "lava_tube_producers": 0.2510672902904727,
+   "volcanic_producers": 0.20183826137362285,
+   "volcanic_users": 0.30331564840531344,
+   "volcanic_area_share_in_test_blocks": 0.3791445926501848
+  }
+ }
+}

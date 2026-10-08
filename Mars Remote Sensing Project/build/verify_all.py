@@ -253,8 +253,12 @@ check("Hillshade used azimuth 225, altitude 45, shadows",
 MERC_VAT = os.path.join(Z, "_removed_not_Mars", "removed_not_Mars.gdb", "a00000010.gdbtable")
 merc_rows = (struct.unpack("<I", open(MERC_VAT, "rb").read(8)[4:8])[0]
              if os.path.exists(MERC_VAT) else None)
+# Its lineage survived only in the free space of the project gdb's GDB_Items, which the classes added
+# on 2026-10-08 overwrote (KB §45); the moved copy keeps it in its own GDB_Items.
+MERC_ITEMS = os.path.join(Z, "_removed_not_Mars", "removed_not_Mars.gdb", "a00000004.gdbtable")
+merc_lin = lin + (open(MERC_ITEMS, "rb").read().decode("latin-1") if os.path.exists(MERC_ITEMS) else "")
 check("Mercury Iso Cluster ran with 10 classes",
-      re.search(r"IsoClusterUnsupervisedClassification[^<]*166m\.tif 10", lin)
+      re.search(r"IsoClusterUnsupervisedClassification[^<]*166m\.tif 10", merc_lin)
       is not None and merc_rows in (10, None),
       "<Process> lineage + VAT row count in _removed_not_Mars (KB §37)"
       + ("" if merc_rows is not None else "; VAT gone, lineage only"))
