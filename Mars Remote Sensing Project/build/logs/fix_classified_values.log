@@ -1,0 +1,3 @@
+ok  ius_sup_spectral.tif  (25 s): crater_interior 3,348,730, wall_steep 5,938,504, wall_moderate 281,877, chasma_floor 9,344,084, plateau_flank 3,162,383, plateau 14,822,072; NoData 0
+ok  ius_sup_thermal.tif  (23 s): crater_interior 3,411,976, wall_steep 5,875,740, wall_moderate 335,306, chasma_floor 9,066,676, plateau_flank 3,198,271, plateau 15,009,681; NoData 0
+ok  ius_sup_augmented.tif  (23 s): crater_interior 4,097,902, wall_steep 4,142,857, wall_moderate 1,705,151, chasma_floor 6,767,765, plateau_flank 3,200,784, plateau 16,983,191; NoData 0

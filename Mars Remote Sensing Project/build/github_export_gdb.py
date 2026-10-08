@@ -4,6 +4,7 @@ r"""Exports what Mars Project.gdb holds that github_sync.py cannot copy (KB §35
     python github_export_gdb.py              vectors -> <repo>\exports\mars_project_vectors.gdb
                                              and     -> <dist>\mars_project_vectors.gpkg
     python github_export_gdb.py --rasters    also his two Pro-GUI SVM maps -> <dist>\*.tif
+    python github_export_gdb.py --rasters-only   only the two SVM maps
     python github_export_gdb.py --catalog-only   only rewrite exports\README.md, no re-export.
                                              Re-exporting rewrites every gdb file even when the data
                                              is unchanged, so do it when the layers have changed.
@@ -15,7 +16,10 @@ the two empty scratch classes "Line"/"Point" and the _2/_3 duplicates of the IAU
 Row counts are checked against the source for each class.
 
 The two SVM maps (29 and 30 Sep, §29-30) exist only inside the gdb, so they are written as
-DEFLATE-compressed GeoTIFFs for the release. Superseded (§31), but they are his.
+DEFLATE-compressed GeoTIFFs for the release. Superseded (§31), but they are his. Pixel value =
+class code 1-4 since 2026-10-07 (§36.4). The gdb keeps no-data as a mask, with 0 or 255 stored under
+it, so the export writes 255 under the mask and declares NoData 255: a reader that ignores masks
+can't take a masked pixel for a class.
 
 Reads Z: only. --repo and --dist as in github_sync.py / github_release_bundle.py.
 """
@@ -137,15 +141,36 @@ the labels and nomenclature are in geographic `Mars_2000_(Sphere)`.
 
 def svm_maps():
     from osgeo import gdal
+    import numpy as np
     gdal.UseExceptions()
+    # Strips one block high, and a cache that holds them plus the output tiles being filled: full-width
+    # 1024-row strips overflowed GDAL's default cache and re-read the drive (8 GB, output stalled).
+    gdal.SetCacheMax(2 * 1024**3)
+    DIST.mkdir(parents=True, exist_ok=True)
     for name in SVM_MAPS:
         dst = DIST / f"{name}.tif"
-        ds = gdal.Open(f"OpenFileGDB:{SRC}:{name}")
-        gdal.Translate(str(dst), ds, creationOptions=[
+        src = gdal.Open(f"OpenFileGDB:{SRC}:{name}")
+        b = src.GetRasterBand(1)
+        assert b.DataType == gdal.GDT_Byte, f"{name}: not 8-bit"
+        out = gdal.GetDriverByName("GTiff").Create(str(dst), src.RasterXSize, src.RasterYSize, 1, gdal.GDT_Byte, [
             "COMPRESS=DEFLATE", "ZLEVEL=9", "TILED=YES", "BLOCKXSIZE=512", "BLOCKYSIZE=512",
             "BIGTIFF=IF_SAFER", "NUM_THREADS=ALL_CPUS"])
-        ds = None
-        print(f"{name}.tif  {dst.stat().st_size / 1e6:.1f} MB", flush=True)
+        out.SetGeoTransform(src.GetGeoTransform())
+        out.SetProjection(src.GetProjection())
+        ob = out.GetRasterBand(1)
+        ob.SetNoDataValue(255)
+        valid, step, mb = 0, b.GetBlockSize()[1], b.GetMaskBand()
+        for y in range(0, src.RasterYSize, step):
+            h = min(step, src.RasterYSize - y)
+            v = b.ReadAsArray(0, y, src.RasterXSize, h)
+            m = mb.ReadAsArray(0, y, src.RasterXSize, h) > 0
+            assert not (v[m] == 255).any(), f"{name}: a valid pixel holds the NoData value 255"
+            v[~m] = 255
+            ob.WriteArray(v, 0, y)
+            valid += int(m.sum())
+        ob.ComputeStatistics(False)
+        out = ob = src = b = mb = None
+        print(f"{name}.tif  {dst.stat().st_size / 1e6:.1f} MB, {valid:,} valid pixels", flush=True)
 
 
 if __name__ == "__main__":
@@ -153,6 +178,9 @@ if __name__ == "__main__":
         fgdb = REPO / "exports" / "mars_project_vectors.gdb"
         arcpy.env.workspace = str(fgdb)
         catalog(fgdb, arcpy.ListFeatureClasses())
+        sys.exit(0)
+    if "--rasters-only" in sys.argv:
+        svm_maps()
         sys.exit(0)
     bad = vectors()
     if "--rasters" in sys.argv:

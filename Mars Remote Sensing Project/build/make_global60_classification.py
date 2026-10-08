@@ -218,8 +218,8 @@ def classify_tiled(out, cell, limit=None):
     import landform_codes
     if os.path.exists(final):
         arcpy.management.Delete(final)
-    h_src, h_dst, table = landform_codes.recode(out, final)
-    problems = landform_codes.check(out, final, h_src, h_dst, table)
+    h_src, h_dst, table, nd = landform_codes.recode(out, final)
+    problems = landform_codes.check(out, final, h_src, h_dst, table, nd)
     assert not problems, "recode to class codes failed: %s" % problems
     arcpy.management.Delete(out)
     print("  mosaic done, pixel = class code, %s total" % time.strftime("%H:%M:%S", time.gmtime(time.time() - t0)))

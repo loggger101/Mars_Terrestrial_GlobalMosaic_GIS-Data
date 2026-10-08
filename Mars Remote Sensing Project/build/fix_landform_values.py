@@ -43,8 +43,8 @@ def main():
         moved = os.path.join(KEEP, name)
         for f in glob.glob(glob.escape(path) + "*"):          # the .tif and its sidecars
             shutil.move(f, os.path.join(KEEP, os.path.basename(f)))
-        h_src, h_dst, table = LC.recode(moved, path)
-        problems = LC.check(moved, path, h_src, h_dst, table)
+        h_src, h_dst, table, nd = LC.recode(moved, path)
+        problems = LC.check(moved, path, h_src, h_dst, table, nd)
         bad += bool(problems)
         counts = ", ".join(f"{n} {h_dst[cv]:,}" for cv, n, _ in sorted(table.values()))
         print(f"{'ok' if not problems else 'FAILED'}  {name}  ({time.time() - t:.0f} s): {counts}")

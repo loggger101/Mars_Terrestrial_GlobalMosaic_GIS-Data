@@ -24,6 +24,10 @@ DATA, DERIV = "data-2026-10-06", "derivatives-2026-10-06"
 
 LANDFORM_VALUES = ("Pixel value = class code: 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, "
                    "255 no class (recoded from ClassifyRaster's 0–3 on 2026-10-07, KB §36)")
+IUS_SUP_VALUES = ("Pixel value = class code: 1 crater interior, 2 steep wall, 3 moderate wall, 4 chasma floor, "
+                  "5 plateau flank, 6 plateau (recoded from 0–5 on 2026-10-07, KB §36.4)")
+GUI_VALUES = ("Pixel value = class code: 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class "
+              "(recoded from 0–3 on 2026-10-07, KB §36.4)")
 G60 = {
     "global60_svm_stack_200m.tif": "The classification stack, KB §31.2. Bands: Viking R, G, B, night IR, day IR, "
         "slope (°), 9 × 9 relief; each stretched p1–p99 to 1–255 over ±60° (limits in the `STRETCH` metadata). "
@@ -87,10 +91,9 @@ IUS = {
     "ius_stack_therm.tif": "5-band composite + diurnal-contrast index (6 bands, one NoData, KB §27).",
     "ius_stack_aug.tif": "5-band composite + index + slope (7 bands). Slope is in the labels too, so its "
         "score is an upper bound only (KB §27.2).",
-    "ius_sup_spectral.tif": "Supervised, 5-band composite: 62.7 %, κ 0.41 (KB §27.2). Classes crater interior, "
-        "steep wall, moderate wall, chasma floor, plateau flank, plateau.",
-    "ius_sup_thermal.tif": "Supervised, + thermal index: 63.1 %, κ 0.41.",
-    "ius_sup_augmented.tif": "Supervised, + index + slope: 82.6 %, circular (KB §27.2).",
+    "ius_sup_spectral.tif": "Supervised, 5-band composite: 62.7 %, κ 0.41 (KB §27.2). " + IUS_SUP_VALUES + ".",
+    "ius_sup_thermal.tif": "Supervised, + thermal index: 63.1 %, κ 0.41. Same class codes as `ius_sup_spectral`.",
+    "ius_sup_augmented.tif": "Supervised, + index + slope: 82.6 %, circular (KB §27.2). Same class codes.",
     "val/oudemans_dem.tif": "Crater-detector validation window, Oudemans: DEM (KB §26.3).",
     "val/oudemans_fill.tif": "Oudemans: filled DEM.",
     "val/oudemans_depth.tif": "Oudemans: fill depth. The breached crater the detector misses.",
@@ -100,9 +103,9 @@ IUS = {
 }
 GDB = {
     "Classified_202609292109007048151": "The 29 Sep SVM classification made in the Pro GUI. Follows its 4096-px "
-        "processing tiles; below chance on its own labels (KB §30.2). Superseded, kept.",
+        "processing tiles; below chance on its own labels (KB §30.2). Superseded, kept. " + GUI_VALUES + ".",
     "Classified_202609300147338582853": "The 30 Sep SVM classification made in the Pro GUI. Mostly an elevation map (KB §30.3). "
-        "Superseded, kept.",
+        "Superseded, kept. " + GUI_VALUES + ".",
     "Segmented_202609290011302066080": "The ±60° mean-shift segmentation made in the Pro GUI, 29 Sep (KB §29.5).",
 }
 
@@ -146,6 +149,7 @@ def main():
     gdb = []
     for name, desc in GDB.items():
         i = info(f"OpenFileGDB:{MP / 'Mars Project.gdb'}:{name}")
+        i["nd"] = "255"   # the gdb keeps a mask only; github_export_gdb.py writes 255 under it in the release file
         tag = DERIV if name.startswith("Segmented") else DATA
         gdb.append(row(name + ".tif", desc, i, 0, rel(tag, name + ".tif")).replace("| 0 MB |", "| — |"))
     missing = [n for n in G60 if not (MP / "Global60" / n).exists()] + \

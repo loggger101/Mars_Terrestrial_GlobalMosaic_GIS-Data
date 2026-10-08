@@ -13,7 +13,7 @@ described in [rasters.md](rasters.md), each vector layer in [the layer catalog](
 |---|---|
 | `typearea-part*.zip` | the whole Ius Chasma type area: stack, terrain, thermal index, segmentations, classifications, models |
 | `global60-classification.zip` | the ±60° SVM maps (raw and 3/5/7/9 majority), the model, smoke tests |
-| `Classified_*.tif` | the two SVM maps made in the Pro GUI on 29 and 30 September (superseded, kept) |
+| `Classified_*.tif` | the two SVM maps made in the Pro GUI on 29 and 30 September (superseded, kept); pixel value = class code 1–4, NoData 255, since 2026-10-07 |
 | `mars_project_vectors.gpkg.zip` | the same vector layers as `exports/`, as a GeoPackage |
 | `npy-caches.zip` | decimated arrays of the globals that the figures are drawn from |
 | `SHA256SUMS.txt` | checksums |

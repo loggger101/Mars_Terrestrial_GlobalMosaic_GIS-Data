@@ -74,7 +74,7 @@ Three coordinate frames, not two: check `Central_Meridian` per file before readi
 You don't need ArcGIS Pro. The rasters are GeoTIFFs and the vectors come as a file geodatabase and a GeoPackage; QGIS and GDAL read all of them.
 
 - **Coordinate system.** Almost everything is in `Mars_Equidistant_Cylindrical_CM180`: metres on the Mars sphere (R = 3,396,190 m) with the **central meridian at 180°**, so x runs 0–360°E. The CRS is embedded in each file; keep it. Reprojecting to an Earth CRS, or assuming a 0° meridian, puts features half a planet away. The hand-drawn labels and the IAU nomenclature are in geographic `Mars_2000_(Sphere)`.
-- **The landform map** to use is `global60_landforms_svm_400m_mode5.tif`. Its pixel values are the class codes: **1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class**, the same codes as the training labels; the attribute table adds names and colours. Read the lava tube class as unreliable (above). (Before 2026-10-07 the maps carried ClassifyRaster's 0–3; copies downloaded earlier need +1.)
+- **The landform map** to use is `global60_landforms_svm_400m_mode5.tif`. Its pixel values are the class codes: **1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class**, the same codes as the training labels; the attribute table adds names and colours. Read the lava tube class as unreliable (above). Every classified raster in the project follows the same rule: pixel value = class code. (Before 2026-10-07 they carried ClassifyRaster's 0-based values, these maps and the GUI maps 0–3, the type-area `ius_sup_*` maps 0–5; copies downloaded earlier need +1.)
 - **The training labels** are `Landform_TrainingSamples_terrain` in [`exports/`](exports/README.md), with the same class codes 1–4. One class schema in the project swaps 2 and 3; the layer catalog says which.
 - **The diurnal-contrast index** is relative: it compares places within one area, not across the planet, and it is not thermal inertia.
 - **What each raster is**, with its grid, data type, NoData and the release that holds it: [docs/rasters.md](docs/rasters.md).
@@ -92,8 +92,8 @@ Mars Remote Sensing Project/
   NEXT STUFF/              interim report and presentation (in progress)
   OLD/                     prospectus and Presentation 1 (delivered)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 19 maps, 7 layouts
-  .backups/                31 earlier copies of the .aprx, 2026-09-18 to 10-03
+  Mars Project.aprx        the ArcGIS Pro project: 15 maps, all Mars, and 7 layouts
+  .backups/                32 earlier copies of the .aprx, 2026-09-18 to 10-07
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs

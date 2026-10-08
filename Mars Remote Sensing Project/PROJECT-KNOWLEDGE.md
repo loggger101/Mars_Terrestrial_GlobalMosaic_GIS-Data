@@ -2,7 +2,7 @@
 
 **Owner:** Logan Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `Z:\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md`
-**Started:** 2026-09-18 · **Last updated:** 2026-10-06 (**§35 added: the project is backed up to a public GitHub repo, `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`, which is also its project page; §2.5's "no backup" is superseded**; 2026-10-03: **§32 added: the digitising map and layout 06 put the candidates and his empty classes in Pro; basin layout 07; the classification smoothed 5 × 5, chosen by feature size**; earlier the same day, **§31 added: the fix. A corrected ±60° stack, a reclassification scored on held-out labels, every Mars map clipped to ±60°, a new map and layouts in the project**; 2026-10-02: **§30 added — his two SVM classifications checked against his own polygons, the IAU craters and the DEM: the 29 Sep map follows its 4096-px processing tiles and scores below chance on its own training data; the 30 Sep map is mostly elevation**; earlier the same day, **§29.2 and §11 q23 — the two class schemas number lava tube and steep/windy hills the other way round; every labelled file follows the older one**; 2026-10-01: **§29 added — his own work in the Pro GUI, 2026-09-24 to 10-01, read from the logs and the gdb: hand training labels in four classes, a ±60° segmentation, two SVM classifications, the first two successful global Composite Bands runs, a deep-learning export — and `Landform_TrainingSamples_terrain` now holds HIS labels, which `make_typearea_supervised.py` would delete; §6, §8, §11, §13.2, §17.2, §27 reconciled**; 2026-09-19: **§28 added — the derived products move off the type area onto the mosaics' own grid; `build\grid60.py` is now the single definition of the ±60° extent, and the diurnal-contrast index exists at 15.2 bn px**; **§24 added — the day–night pair worked properly; calibrated thermal inertia is NOT derivable from the held 8-bit products, and the relative diurnal-contrast index that replaces it**; **§25 added — task 11 seeded with inferred channel candidates, and `Fill` caught flooding Ius Chasma 2,077 m deep**; earlier on 2026-09-18, a re-verification pass — most `[E]` items
+**Started:** 2026-09-18 · **Last updated:** 2026-10-07 (**§37 added: everything that isn't Mars is out of the project, moved to `Z:\_removed_not_Mars\`, nothing deleted; §36.4: every classified raster's pixel values are now its class codes, his two GUI maps and `ius_sup_*` included**; earlier the same day, **§36: the ±60° landform maps recoded 0–3 → 1–4**; 2026-10-06: **§35 added: the project is backed up to a public GitHub repo, `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`, which is also its project page; §2.5's "no backup" is superseded**; 2026-10-03: **§32 added: the digitising map and layout 06 put the candidates and his empty classes in Pro; basin layout 07; the classification smoothed 5 × 5, chosen by feature size**; earlier the same day, **§31 added: the fix. A corrected ±60° stack, a reclassification scored on held-out labels, every Mars map clipped to ±60°, a new map and layouts in the project**; 2026-10-02: **§30 added — his two SVM classifications checked against his own polygons, the IAU craters and the DEM: the 29 Sep map follows its 4096-px processing tiles and scores below chance on its own training data; the 30 Sep map is mostly elevation**; earlier the same day, **§29.2 and §11 q23 — the two class schemas number lava tube and steep/windy hills the other way round; every labelled file follows the older one**; 2026-10-01: **§29 added — his own work in the Pro GUI, 2026-09-24 to 10-01, read from the logs and the gdb: hand training labels in four classes, a ±60° segmentation, two SVM classifications, the first two successful global Composite Bands runs, a deep-learning export — and `Landform_TrainingSamples_terrain` now holds HIS labels, which `make_typearea_supervised.py` would delete; §6, §8, §11, §13.2, §17.2, §27 reconciled**; 2026-09-19: **§28 added — the derived products move off the type area onto the mosaics' own grid; `build\grid60.py` is now the single definition of the ±60° extent, and the diurnal-contrast index exists at 15.2 bn px**; **§24 added — the day–night pair worked properly; calibrated thermal inertia is NOT derivable from the held 8-bit products, and the relative diurnal-contrast index that replaces it**; **§25 added — task 11 seeded with inferred channel candidates, and `Fill` caught flooding Ius Chasma 2,077 m deep**; earlier on 2026-09-18, a re-verification pass — most `[E]` items
 promoted to `[V]`; Composite Bands attempt count corrected from three to four; laptop-vs-desktop
 constraint added as §2.1; **final-deliverable date answered — 8 December 2026**; `Z:`
 confirmed as the project's single home, §2.5; **§13 added — verified headless
@@ -742,7 +742,7 @@ The deliverables already say so. Keep it that way. **[E]**
    already in the interim report — but attributed to Mercury when it actually ran on the
    Mars DEM** (§14.5). Not a dead end; a misattribution to correct. **[V]**
 4. Should the 10 duplicate nomenclature feature classes be deleted? **[?]**
-5. Broken references (§3) — clear them out of the maps? Needs a write, so Pro must be closed. **[?]**
+5. Broken references (§3) — clear them out of the maps? Needs a write, so Pro must be closed. **Answered 2026-10-07 for the non-Mars ones (§37):** the Enceladus and Mercury maps are out of the project. The one broken link left is the Jezero HiRISE mosaic, which is Mars and stays. **[V]**
 6. **Build pyramids on the four globals?** With the SSD copy ruled out (§2.2) this is now the
    **best speed-up available to the project**, not merely the cheapest. **Desktop job.** **[?]**
 7. **Run Composite Bands / CRS harmonisation at ±60°.** **No longer a risk — a task.**
@@ -3221,7 +3221,7 @@ At the source, `make_global60_maps.py` and `make_candidate_maps.py` now add laye
 geoprocessing; layers in the project must not.**
 
 Not done: the 4 broken layers the sweep also found are his non-Mars ones (Enceladus, Mercury, a
-Jezero HiRISE file missing from the drive). Clearing them is still q5, his call.
+Jezero HiRISE file missing from the drive). Clearing them is still q5, his call. (2026-10-07: the non-Mars ones are gone, §37.)
 
 ### 34.2 Two layout nudges left over from §33
 
@@ -3366,8 +3366,79 @@ every class off by one, against training labels that use 1–4.
 - The replaced `global60-classification.zip` was restored through `restore.py` from GitHub and
   compared with `Z:`: identical.
 
-### 36.3 Not changed: the same convention elsewhere **[V]**
+### 36.3 The same convention elsewhere: also recoded, §36.4 **[V]**
 
-The other ClassifyRaster outputs keep 0-based pixels with codes in their tables: his two GUI SVM
-maps in the gdb (his work, left alone) and the type-area classifications (`ius_sup_*`: 0–5 for
-codes 1–6), read from their tables 2026-10-07. Whether to recode those too is his call.
+The other ClassifyRaster outputs kept 0-based pixels with codes in their tables: his two GUI SVM
+maps in the gdb and the type-area classifications (`ius_sup_*`: 0–5 for codes 1–6). **He asked
+for those too the same day ("continue updating the old 0-based numbering"), and they are done:
+§36.4.**
+
+### 36.4 The rest recoded: `ius_sup_*` and his two GUI maps — 2026-10-07 evening **[V]**
+
+Every classified raster in the project now has **pixel value = class code**. Done by
+`build\fix_classified_values.py` (idempotent, uses `landform_codes.py` as §36.1; Pro closed).
+
+| Raster | Before → after | NoData | Original kept as |
+|---|---|---|---|
+| `TypeArea\ius_sup_spectral.tif` | 0–5 → **1 crater interior, 2 steep wall, 3 moderate wall, 4 chasma floor, 5 plateau flank, 6 plateau** | 255 | `TypeArea\_0based_originals\` (moved, with sidecars) |
+| `TypeArea\ius_sup_thermal.tif`, `_augmented.tif` | same | 15 (theirs, kept) | same folder |
+| gdb `Classified_202609292109007048151` (29 Sep) | 0–3 → **1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground** | 255 | gdb `…_0based` (renamed) |
+| gdb `Classified_202609300147338582853` (30 Sep) | same | 255 (none masked) | gdb `…_0based` |
+
+- **His GUI maps had no NoData value, only a mask,** and under the 29 Sep map's mask the stored
+  pixels read 0, which was Crater. Its 401,286,036 masked pixels are now NoData 255. The originals
+  were renamed `<name>_0based` in the gdb, not deleted, and the recode copied in under the old name,
+  so the five `.aprx` layers on them still resolve and keep their colours (unique values keyed on
+  `Class_name`; checked by reading the project after the run).
+- **Checked:** 29 Sep **14,777,002,404** valid pixels, 30 Sep **4,246,732,800**: every one equals
+  old + 1, masks identical, tables Value = Classvalue, pyramids 9 and 8 levels as before. The type-
+  area maps: per-class counts and NoData counts identical before and after.
+- **A false alarm first, fixed:** the generalised check reported a mismatch because numpy 2 keeps
+  `np.where(mask, 256, uint8_array)` as uint8, so 256 wraps to 0 and NoData was counted as Crater.
+  `landform_codes.py` now casts to int16 first. The §36.1 results don't depend on it (their checks
+  were the independent GDAL count).
+- **`Z:` dropped off USB at 14:55** (System log: "Delayed Write Failed") while `CopyRaster` was
+  writing the 29 Sep recode straight into the gdb on the drive, 40+ minutes in. The renamed original
+  was intact (re-read in full, 0 mismatches); the partial copy was unreadable. The script now
+  **builds the gdb raster on internal disk and copies the finished dataset to `Z:` in one step**,
+  and **resumes**: if `<name>_0based` exists, it drops an unreadable or un-recoded `<name>` and
+  recodes from the `_0based` original. Both paths were rehearsed in scratch gdbs before the rerun.
+- **The copy onto `Z:` then failed once more** (16:37, ERROR 000260 file read/write; nothing in
+  the System log). It cleaned up after itself. The same copy into a scratch gdb on `Z:` worked, so
+  `build\fix_classified_finish.py` retried just that step (up to three tries): the first worked.
+- **Reading two gdb rasters in full-width 2048-row strips thrashes GDAL's cache:** the first
+  independent check read 58 GB off `Z:` in 2.5 h for a ~600 MB raster. Strips one block (128 rows)
+  high with a 2 GB cache: the 30 Sep map in 79 s.
+- **Release:** `github_export_gdb.py --rasters-only` re-exports the two maps as GeoTIFF with 255
+  written under the mask and declared NoData (the gdb stores 0 or 255 under it, which a reader that
+  ignores masks would take for data). `Classified_*.tif` and `typearea-part*.zip` in release
+  `data-2026-10-06` are replaced; `docs/rasters.md` gives the class codes.
+
+## 37. Everything that isn't Mars is out of the project — 2026-10-07 **[V]**
+
+**His instruction:** "anything that isnt part of MARS is not relevent tho so please remove it."
+`build\remove_non_mars.py`, rehearsed on a copy of the `.aprx` first, Pro closed. **Nothing was
+deleted**: every item went to `Z:\_removed_not_Mars\` (with a README), which he can delete.
+
+| What | Where it went |
+|---|---|
+| Map **"Map"**: World Topographic + World Hillshade, Web Mercator (Earth) | `Map.mapx` |
+| Map **"Map1"**: the Enceladus Cassini DEM (a broken link) | `Map1.mapx` |
+| Map **"Enceladus"**: the Enceladus DEM + Earth basemaps | `Enceladus.mapx` |
+| Map **"Mercury"**: the MESSENGER basemap (a broken link) | `Mercury.mapx` |
+| gdb raster `Mercury_MESSEN_IsoClusterUns` (the Mercury Iso Cluster rehearsal, §7) | `removed_not_Mars.gdb` (copied, dimensions checked, then removed from the project gdb) |
+| `build\aprx_live\`, the 2026-09-18 unpacked `.aprx` snapshot | `aprx_live_snapshot_2026-09-18\` (moved whole); `build\audit_aprx.py` then re-extracted the current project into `build\aprx_live\` |
+
+- Each map was removed only if its coordinate system is not Mars and no layout uses it; each was
+  exported to `.mapx` first (import one to get it back), and the `.aprx` was backed up to
+  `Mars Project\.backups\Mars Project 20261007-203644.aprx`. The four held only non-Mars layers.
+- **After:** **15 maps, all in Mars coordinate systems; 7 layouts**, unchanged. The gdb holds
+  **15 rasters** (14 − Mercury + the two `_0based` originals of §36.4) and 30 feature classes. One
+  broken link is left, the Jezero HiRISE mosaic (Mars, §3). Every web layer left is a Mars service
+  (Esri OnMars MDIM, CTX, MOLA/HRSC) or the Perseverance/Jezero feeds. Nothing else on `Z:` is named
+  for another body; `Z:\new training.shp` (511 features) is in Mars 2000.
+- **Not removable, so left:** the `.aprx`'s geoprocessing history still records the Mercury Iso
+  Cluster run, and its metadata keeps one orphan entry titled "Mercury". The record's own history
+  (§3, §7, §23) still describes the Mercury tutorial settings: that is where the segmentation
+  parameters came from, so it stays.
+- `Z:\_recode_probe\` is a scratch gdb from §36.4's copy test, also his to delete.
