@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 r"""Puts the machine candidates and the empty digitising classes INTO the project (KB §32).
 
-Digitising is the critical path (KB §11 q16), but nothing he needs for it was in any map: the
-three empty Landform_* classes he digitises into, the 2,610 channel candidates (§25), the 1,685
+Digitising is the critical path (KB §11 q16), but nothing needed for it was in any map: the
+three empty Landform_* digitising classes, the 2,610 channel candidates (§25), the 1,685
 crater candidates (§26) and the 5,144 ±60° basin candidates (§28.11). This adds:
 
-  map "Ius Chasma — digitising"   his three empty classes on top (ready to edit), the candidates
+  map "Ius Chasma — digitising"   the three empty digitising classes on top (ready to edit), the candidates
                                   under them, the type-area rasters under those
   map "Mars ±60° — basins"        basin candidates sized by diameter, IAU craters > 100 km
   layouts 06_ius_digitising, 07_global60_basins, exported to Global60\layouts\
 
-The 188 candidates worth his time (slope >= 5° AND thermal index < -0.15, §25) are a definition
-query, not a copy: accepting one is still a copy into Landform_ChannelCenterlines, by him.
+The 188 candidates worth the time (slope >= 5° AND thermal index < -0.15, §25) are a definition
+query, not a copy: accepting one is still a copy into Landform_ChannelCenterlines, manually.
 
 Pro must be closed. The .aprx is backed up first. --aprx <copy> rehearses on a copy, which must
 sit BESIDE the real .aprx (it stores relative paths, §31.5). Run polish_layouts.py afterwards (§33).
@@ -75,7 +75,7 @@ def main():
     chan = os.path.join(GDB, "Landform_ChannelCandidates_auto")
     n_good, n_all = count(chan, GOOD), count(chan)
     n_crat = count(os.path.join(GDB, "Landform_CraterCandidates_auto"))
-    gyou = group(m, "YOURS to digitise into (empty)")
+    gyou = group(m, "Digitising classes (empty)")
     l = add(m, os.path.join(GDB, "Landform_ChannelCenterlines"), "Channel centrelines", True, gyou)
     line_style(l, (0, 92, 230), 2.5)
     l = add(m, os.path.join(GDB, "Landform_LavaFlowMargins"), "Lava flow margins", True, gyou)
@@ -138,8 +138,8 @@ def main():
     mf.camera.X, mf.camera.Y, mf.camera.scale = src.camera.X, src.camera.Y, src.camera.scale
     add_text(lyt, [
         text(0.45, 7.85, "Ius Chasma \u2014 candidates to digitise", 21, "title", bold=True),
-        text(0.45, 7.50, "Machine candidates are prompts: accept one by copying it into your own class. "
-             "Your three classes are empty and on top, ready to edit.", 10.5, "subtitle", colour=(70, 70, 70)),
+        text(0.45, 7.50, "Machine candidates are prompts: accept one by copying it into the matching digitising class. "
+             "The three digitising classes are empty and on top, ready to edit.", 10.5, "subtitle", colour=(70, 70, 70)),
         text(0.45, 0.72, "Cyan: %d of %d channel candidates are steep (\u2265 5\u00b0) and rock-floored (thermal index < \u22120.15): "
              "start there.\nThe other %d stay switched off; 64%% of all candidates sit on plateau under 2\u00b0, "
              "where routing follows DEM noise.\nMagenta: %d closed depressions \u2265 1 km. A breached crater is not a "

@@ -2,7 +2,7 @@
 r"""The ±60° landform classification, redone on the corrected stack (KB §31).
 
   1. Analysis_Extent_60       the ±60° polygon every Mars map is clipped to (§16)
-  2. a spatial train/test split of HIS 512 polygons, clipped to ±60°:
+  2. a spatial train/test split of the 512 hand-drawn polygons, clipped to ±60°:
        Landform_TrainingSamples_terrain_60_train / _60_test
      Whole 15° x 15° blocks go to one side or the other, so a test polygon never sits beside
      a training polygon from the same patch of ground (the §27 rule).
@@ -14,7 +14,7 @@ r"""The ±60° landform classification, redone on the corrected stack (KB §31).
      The delivered map's pixel values are the class codes: 1 Crater, 2 steep/windy hills,
      3 lava tube, 4 Normal Ground, 255 no class (recoded after the mosaic, KB §36).
 
-His own class `Landform_TrainingSamples_terrain` is READ only. Every class this script writes
+The hand-drawn class `Landform_TrainingSamples_terrain` is READ only. Every class this script writes
 carries MappedBy = MARKER, and safe_to_replace() refuses to delete any class holding a row it
 did not write (the §29.8 guard).
 
@@ -32,7 +32,7 @@ sys.path.insert(0, HERE)
 import grid60 as G
 
 GDB = r"Z:\Mars Project\Mars Project.gdb"
-HIS = os.path.join(GDB, "Landform_TrainingSamples_terrain")
+HAND_LABELS = os.path.join(GDB, "Landform_TrainingSamples_terrain")
 EXTENT = os.path.join(GDB, "Analysis_Extent_60")
 TRAIN = os.path.join(GDB, "Landform_TrainingSamples_terrain_60_train")
 TEST = os.path.join(GDB, "Landform_TrainingSamples_terrain_60_test")
@@ -42,7 +42,7 @@ CELL = int(sys.argv[sys.argv.index("--cell") + 1]) if "--cell" in sys.argv else 
 OUT = os.path.join(G.OUTDIR, "global60_landforms_svm_%dm.tif" % CELL)
 MARKER = "make_global60_classification.py"
 BLOCK_DEG, TEST_SHARE, SEED = 15.0, 0.3, 60
-MARS = arcpy.SpatialReference(104905)                # GCS_Mars_2000_Sphere, his labels' CRS
+MARS = arcpy.SpatialReference(104905)                # GCS_Mars_2000_Sphere, the hand-drawn labels' CRS
 arcpy.env.overwriteOutput = False
 
 
@@ -51,7 +51,7 @@ def keep_awake(on=True):
 
 
 def safe_to_replace(fc):
-    """True if fc is absent, empty, or every row is ours. Never deletes his work."""
+    """True if fc is absent, empty, or every row is ours. Never deletes manual work."""
     if not arcpy.Exists(fc):
         return True
     if "MappedBy" not in [f.name for f in arcpy.ListFields(fc)]:
@@ -87,7 +87,7 @@ def make_split():
     tmp = "memory\\his60"
     if arcpy.Exists(tmp):
         arcpy.management.Delete(tmp)
-    arcpy.analysis.Clip(HIS, EXTENT, tmp)
+    arcpy.analysis.Clip(HAND_LABELS, EXTENT, tmp)
     arcpy.management.AddField(tmp, "MappedBy", "TEXT", field_length=64)
     arcpy.management.AddField(tmp, "Split", "TEXT", field_length=8)
     arcpy.management.AddField(tmp, "Block", "TEXT", field_length=16)
@@ -144,7 +144,7 @@ def classify(out, extent=None, cell=200):
 SCRATCH = os.path.join(os.environ["LOCALAPPDATA"], "Temp", "mars_scratch")   # internal SSD (§2.2)
 TILE = 16384                                     # G200 px per tile side: 21 tiles over ±60°
 COLOURS = {"Crater": (255, 0, 0), "steep/windy hills": (28, 119, 85),
-           "lava tube": (158, 25, 147), "Normal Ground": (81, 51, 13)}   # his RAT colours
+           "lava tube": (158, 25, 147), "Normal Ground": (81, 51, 13)}   # the RAT colours
 
 
 def classify_tiled(out, cell, limit=None):
@@ -230,7 +230,7 @@ def main():
     keep_awake(True)
     if "--classify-only" not in sys.argv:
         print("1. analysis extent"); make_extent()
-        print("2. train / test split of his labels"); make_split()
+        print("2. train / test split of the hand-drawn labels"); make_split()
         print("3. train SVM"); train()
     if smoke:
         # one 4096 x 4096 G200 window at the equator, 169-183°E (Elysium / Cerberus), timed

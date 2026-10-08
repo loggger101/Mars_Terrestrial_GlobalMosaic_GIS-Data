@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 r"""Candidate channel centrelines for the Ius Chasma type area.
 
-Task 11 (digitising) is the critical path and only he can drive it - but he
+Task 11 (digitising) is the critical path and it needs manual judgement - but it
 should not start from a blank canvas. This derives CANDIDATE centrelines from
 the DEM by flow routing and attributes each one with the diurnal-contrast index
 (KB 24), so every candidate arrives pre-triaged on the one axis that bears on
@@ -9,7 +9,7 @@ the Athabasca question: is this thing rock-floored or dust-mantled?
 
 These are candidates, not mapping. They are written to a SEPARATE feature class
 - Landform_ChannelCandidates_auto - so Landform_ChannelCenterlines stays a clean
-surface for his own digitising. Confidence is 'inferred' on every row.
+surface for manual digitising. Confidence is 'inferred' on every row.
 
 Run with the ArcGIS interpreter. Scratch work happens under Z:\TypeArea because
 legacy Spatial Analyst tools reject the space in "Mars Project".
@@ -194,6 +194,6 @@ for k, v in buckets.items():
     print("     %-24s %4d  (%4.1f%%)" % (k, v, 100.0 * v / max(kept, 1)))
 print("""
   Every row is Confidence='inferred', Origin='indeterminate', MappedBy='auto-candidate'.
-  Nothing was written to Landform_ChannelCenterlines - that stays his.""")
+  Nothing was written to Landform_ChannelCenterlines - that stays manual.""")
 arcpy.CheckInExtension("Spatial")
 print("done in %.1f s" % (time.time() - t0))

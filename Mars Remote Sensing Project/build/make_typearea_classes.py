@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Task 7: Iso Cluster + ML Classify on the Ius Chasma 5-band stack.
 
-Same parameters he rehearsed on the Mercury MESSENGER basemap - 10 classes,
+Same parameters as rehearsed on the Mercury MESSENGER basemap - 10 classes,
 min class size 20, sample interval 10 - now applied to Mars for the first time.
 """
 import os, time, arcpy

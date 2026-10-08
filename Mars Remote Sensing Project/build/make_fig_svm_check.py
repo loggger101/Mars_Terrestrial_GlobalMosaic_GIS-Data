@@ -3,7 +3,7 @@ r"""Figure: the two Pro-GUI SVM classifications (KB §29, §30) checked against 
 
 A  29 Sep SVM over the ±60° segments - the 4096-px processing tiles drawn over it
 B  30 Sep SVM over the 7-band CompositeBand - the ±60° edge of the thermal bands marked
-C  training-set score: how much of his own polygons each map gives back, per class
+C  training-set score: how much of the labelled polygons each map gives back, per class
 D  IAU named craters: 'Crater' inside the rim against a ring outside it
 
 Reads logs\svm_check.json and the two pyramid-level caches written by
@@ -24,7 +24,7 @@ comp7 = np.load(os.path.join(HERE, "svm_comp7_ov3.npy"))
 
 BG, CY, SUB, WARN = "#0E2841", "#0E9ED4", "#9ED8ED", "#E8804A"
 NAMES = ["Crater", "steep/windy hills", "lava tube", "Normal Ground"]
-COLS = ["#FF0000", "#1C7755", "#9E1993", "#51330D"]                # his RAT colours
+COLS = ["#FF0000", "#1C7755", "#9E1993", "#51330D"]                # the RAT colours
 CMAP = ListedColormap(COLS)
 KPD = 3396.19 * np.pi / 180.0
 TILE_DEG = 4096 * 100 / 1000 / KPD                                 # 4096 px at 100 m = 6.91 deg
@@ -106,10 +106,10 @@ axC.set_xticks(x); axC.set_xticklabels(["Crater", "steep/windy\nhills", "lava tu
                                        color=SUB, fontsize=8.8)
 axC.set_ylim(0, 122); axC.set_ylabel("% of polygon area returned as its own class", color=SUB, fontsize=8.8)
 axC.legend(frameon=False, labelcolor="white", fontsize=9, loc="upper left", ncol=2)
-title(axC, "C   His 512 polygons, scored on each map")
+title(axC, "C   The 512 labelled polygons, scored on each map")
 caption(axC, "A training-set score: the upper bound on accuracy. Over each bar, polygons whose own "
         "class wins. A map that says Normal Ground everywhere scores %.0f%%; the 29 Sep map scores "
-        "%.0f%% and returns none of his 122 Normal Ground or 44 lava tube polygons."
+        "%.0f%% and returns none of the 122 hand-labelled Normal Ground or 44 lava tube polygons."
         % (100 * res["night"]["training_score"]["one_class_everywhere"],
            100 * res["night"]["training_score"]["accuracy"]), 62, colour=WARN, y=-0.2)
 frame(axC)
@@ -140,7 +140,7 @@ caption(axD, "'Crater' inside the rim (0–0.7 R) against a ring outside it (1.5
         62, y=-0.2)
 frame(axD)
 
-fig.suptitle("His two SVM classifications, checked against his own labels, the IAU craters and the DEM",
+fig.suptitle("The two GUI SVM classifications, checked against the hand-drawn labels, the IAU craters and the DEM",
              color="white", fontsize=15, x=0.045, ha="left", y=0.985)
 out = os.path.join(HERE, "pres1_img", "svm_check.png")
 fig.savefig(out, dpi=110, facecolor=BG)

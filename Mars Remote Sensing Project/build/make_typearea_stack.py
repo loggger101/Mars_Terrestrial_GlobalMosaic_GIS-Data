@@ -2,7 +2,7 @@
 """Task 3 + task 5 over the Ius Chasma type area.
 
 Harmonises all four inputs onto ONE grid, then builds the band composite that
-has failed four times at global scale. Bounded extent, per his own fix.
+has failed four times at global scale. Bounded extent, per the prospectus's own fix.
 
 Target grid = THEMIS native: eqc / lon_0=180 / R=3396190 / 100 m, snapped to the
 day mosaic's own pixel edges. Chosen so the day-night pair is NOT resampled -

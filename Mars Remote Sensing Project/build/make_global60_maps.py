@@ -3,8 +3,8 @@ r"""Puts the ±60° work INTO the ArcGIS project, where it shows when the projec
 
   1. clips every Mars map to the ±60° analysis extent (Map.clipLayers - display only,
      nothing is deleted; clipLayers(None) undoes it)
-  2. builds the map "Mars ±60° Analysis": the corrected classification over hillshade, his
-     labels split train / held-out, the inputs, his two 29-30 Sep SVMs as superseded layers
+  2. builds the map "Mars ±60° Analysis": the corrected classification over hillshade, the hand-drawn
+     labels split train / held-out, the inputs, the two 29-30 Sep GUI SVMs as superseded layers
   3. builds two small maps, "Check — 29 Sep SVM" and "Check — 30 Sep SVM", so each check layout
      shows the right layer live, not whichever layer was last switched on
   4. layouts 04_global60_landforms and 05_svm_checks, exported to Global60\layouts\
@@ -52,7 +52,7 @@ TILES = os.path.join(GDB, "Check_Tiles_4096px_60")
 
 MAIN, C29, C30 = "Mars \u00b160\u00b0 Analysis", "Check \u2014 29 Sep SVM", "Check \u2014 30 Sep SVM"
 CLASS_COLOURS = {"Crater": (255, 0, 0), "steep/windy hills": (28, 119, 85),
-                 "lava tube": (158, 25, 147), "Normal Ground": (81, 51, 13)}   # his RAT colours
+                 "lava tube": (158, 25, 147), "Normal Ground": (81, 51, 13)}   # the RAT colours
 NOT_MARS = ("Map", "Map1", "Enceladus", "Mercury", "mars")   # Earth, Enceladus, Mercury, broken HiRISE
 PAGE_W, PAGE_H = 11.0, 8.5
 CREDIT = ("Logan Edwards  \u00b7  OCN 4704 Remote Sensing  \u00b7  Mars Global Mosaic  \u00b7  "
@@ -96,7 +96,7 @@ def outline(layer, colour, width=1.2, dashed=False):
 
 
 def by_class(layer, width):
-    """Hollow polygons outlined in his class colours."""
+    """Hollow polygons outlined in the class colours."""
     sym = layer.symbology
     sym.updateRenderer("UniqueValueRenderer")
     sym.renderer.fields = ["Classname"]
@@ -212,9 +212,9 @@ def main():
     ext = add(m, os.path.join(GDB, "Analysis_Extent_60"), "Analysis extent \u00b160\u00b0")
     outline(ext, (232, 128, 74), 1.5)
     tst = add(m, os.path.join(GDB, "Landform_TrainingSamples_terrain_60_test"),
-              "His labels \u2014 held out (scored, never trained on)")
+              "Hand-drawn labels \u2014 held out (scored, never trained on)")
     by_class(tst, 1.6)
-    trn = add(m, os.path.join(GDB, "Landform_TrainingSamples_terrain_60_train"), "His labels \u2014 used to train")
+    trn = add(m, os.path.join(GDB, "Landform_TrainingSamples_terrain_60_train"), "Hand-drawn labels \u2014 used to train")
     by_class(trn, 0.7)
     cls = raw = None
     if HAVE_CLS:
@@ -234,7 +234,7 @@ def main():
     add(m, os.path.join(G60, "global60_slope_deg.tif"), "Slope (degrees)", False, gin)
     add(m, os.path.join(G60, "global60_dem.tif"), "Elevation (HRSC/MOLA)", False, gin)
     add(m, os.path.join(G60, "global60_hillshade.tif"), "Hillshade", True, gin)
-    gold = group(m, "Superseded: his 29\u201330 Sep SVMs (KB \u00a730)", visible=False)
+    gold = group(m, "Superseded: the 29\u201330 Sep GUI SVMs (KB \u00a730)", visible=False)
     add(m, os.path.join(GDB, "Classified_202609292109007048151"), "29 Sep SVM \u2014 tile artefact", False, gold)
     add(m, os.path.join(GDB, "Classified_202609300147338582853"), "30 Sep SVM \u2014 mostly elevation", False, gold)
     gc = group(m, "Reference", visible=False)
@@ -276,7 +276,7 @@ def main():
         mf = frame(lyt, m, (0.45, 3.55, fw, fh), "frame")
         add_text(lyt, [
             text(0.45, 7.80, "Mars \u00b160\u00b0 \u2014 landform classification", 21, "title", bold=True),
-            text(0.45, 7.22, "Support vector machine on his 512 hand-drawn labels, over a corrected 7-band stack: "
+            text(0.45, 7.22, "Support vector machine on the 512 hand-drawn labels, over a corrected 7-band stack: "
                  "Viking RGB, THEMIS night + day IR, slope (\u00b0), local relief.\nNo raw elevation band."
                  + (" Smoothed with a %d \u00d7 %d (2 km) majority filter." % (CLEAN, CLEAN) if HAVE_CLEAN else ""),
                  10, "subtitle", colour=(70, 70, 70)),
@@ -313,10 +313,10 @@ def main():
     mfb = frame(lyt, m30, (0.45, 1.05, fw, fh), "frame30")
     a, b = OLD["night"], OLD["comp7"]
     add_text(lyt, [
-        text(0.45, 7.80, "His two SVM classifications, checked", 21, "title", bold=True),
+        text(0.45, 7.80, "The first two SVM classifications, checked", 21, "title", bold=True),
         text(0.45, 7.36, "29 Sep \u2014 SVM over the \u00b160\u00b0 segments + Night IR", 11, "h29", bold=True),
         text(0.45, 7.10, "Uniform blocks on the 4096-px tile grid (white).", 9, "s29", colour=(70, 70, 70)),
-        text(7.85, 4.62, "On his own training polygons:\n%.0f%%, \u03ba %.2f\n(one class everywhere: %.0f%%)\n\n"
+        text(7.85, 4.62, "On their own training polygons:\n%.0f%%, \u03ba %.2f\n(one class everywhere: %.0f%%)\n\n"
              "Normal Ground polygons won: %s\nlava tube: %s\n\n'Crater' inside IAU craters %.0f%%,\naround them %.0f%%\n\n"
              "Seams appear only at the classify step:\ninput 1.00, segments 1.01, output 2.77"
              % (100 * a["training_score"]["accuracy"], a["training_score"]["kappa"],
@@ -328,7 +328,7 @@ def main():
         text(0.45, 3.86, "30 Sep \u2014 SVM over the 7-band CompositeBand", 11, "h30", bold=True),
         text(0.45, 3.60, "Shown clipped to \u00b160\u00b0; past it the thermal bands were empty.", 9, "s30",
              colour=(70, 70, 70)),
-        text(7.85, 1.10, "On his own training polygons:\n%.0f%%, \u03ba %.2f\n\nElevation bins alone\nreproduce %.0f%% of it\n"
+        text(7.85, 1.10, "On their own training polygons:\n%.0f%%, \u03ba %.2f\n\nElevation bins alone\nreproduce %.0f%% of it\n"
              "(raw DEM band in metres\nbeside 8-bit bands)\n\n'Crater' inside IAU craters %.0f%%,\naround them %.0f%%"
              % (100 * b["training_score"]["accuracy"], b["training_score"]["kappa"],
                 100 * b["elevation_only_reproduces"],

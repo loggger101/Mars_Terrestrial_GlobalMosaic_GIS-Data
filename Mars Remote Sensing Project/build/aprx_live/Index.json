@@ -3,7 +3,7 @@
 	"MajorVersion" : 1,
 	"MinorVersion" : 0,
 	"PatchVersion" : 0,
-	"NumberOfNodes" : 173,
+	"NumberOfNodes" : 186,
 	"Nodes" :
 	[
 		{
@@ -28,7 +28,7 @@
 			"NodeId" : 3,
 			"NodeType" : "Map",
 			"FileName" : "209df3307dce441da61ecdf9958f465d.json",
-			"ChildNodeIds" : "155,24,171,19"
+			"ChildNodeIds" : "155,24,184,19"
 		},
 		{
 			"NodeId" : 4,
@@ -70,7 +70,7 @@
 			"NodeId" : 10,
 			"NodeType" : "Layer",
 			"FileName" : "afe1b8f196d2490c92c85ce93a06b923.json",
-			"ChildNodeIds" : "172"
+			"ChildNodeIds" : "185"
 		},
 		{
 			"NodeId" : 11,
@@ -142,19 +142,19 @@
 			"NodeId" : 22,
 			"NodeType" : "Map",
 			"FileName" : "e9687b949d8e4680b729e48bf4e1d2f1.json",
-			"ChildNodeIds" : "170,121,122,123,130,124,125,19"
+			"ChildNodeIds" : "183,122,123,124,131,125,126,19"
 		},
 		{
 			"NodeId" : 23,
 			"NodeType" : "Map",
 			"FileName" : "f446e08c78cc4f8cbfd7c1f814c1911a.json",
-			"ChildNodeIds" : "165,5,4,7,8,0,11,9,6,1,10,2,172,19"
+			"ChildNodeIds" : "165,5,4,7,8,0,11,9,6,1,10,2,185,19"
 		},
 		{
 			"NodeId" : 24,
 			"NodeType" : "Layer",
 			"FileName" : "f7bb8a631c2e4fbdac771ba4b2bc57db.json",
-			"ChildNodeIds" : "171"
+			"ChildNodeIds" : "184"
 		},
 		{
 			"NodeId" : 25,
@@ -165,7 +165,7 @@
 		{
 			"NodeId" : 26,
 			"NodeType" : "Layer",
-			"FileName" : "Ius_Chasma___digitising/Channel_centrelines.json",
+			"FileName" : "Ius_Chasma___digitising/Channel_centrelines2.json",
 			"ChildNodeIds" : "163,25"
 		},
 		{
@@ -183,68 +183,68 @@
 		{
 			"NodeId" : 29,
 			"NodeType" : "Layer",
-			"FileName" : "Ius_Chasma___digitising/Crater_rims.json",
+			"FileName" : "Ius_Chasma___digitising/Crater_rims2.json",
 			"ChildNodeIds" : "25,158"
 		},
 		{
 			"NodeId" : 30,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/Craters__closed_depressions___1_km__1685_.json",
-			"ChildNodeIds" : "128,25"
+			"ChildNodeIds" : "129,25"
 		},
 		{
 			"NodeId" : 31,
+			"NodeType" : "Layer",
+			"FileName" : "Ius_Chasma___digitising/Digitising_classes__empty___new.json",
+			"ChildNodeIds" : "35,164,26,29,25"
+		},
+		{
+			"NodeId" : 32,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/Diurnal_contrast_index__valid_inside_this_window_.json",
 			"ChildNodeIds" : "169,25"
 		},
 		{
-			"NodeId" : 32,
+			"NodeId" : 33,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/Hillshade_225__45_.json",
 			"ChildNodeIds" : "150,25"
 		},
 		{
-			"NodeId" : 33,
+			"NodeId" : 34,
 			"NodeType" : "Map",
 			"FileName" : "Ius_Chasma___digitising/Ius_Chasma___digitising.json",
-			"ChildNodeIds" : "39,25,35,37,20"
-		},
-		{
-			"NodeId" : 34,
-			"NodeType" : "Layer",
-			"FileName" : "Ius_Chasma___digitising/Lava_flow_margins.json",
-			"ChildNodeIds" : "133,25"
+			"ChildNodeIds" : "25,36,38,20,31"
 		},
 		{
 			"NodeId" : 35,
+			"NodeType" : "Layer",
+			"FileName" : "Ius_Chasma___digitising/Lava_flow_margins2.json",
+			"ChildNodeIds" : "134,25"
+		},
+		{
+			"NodeId" : 36,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/Machine_candidates___prompts__not_results__KB__25_26_.json",
 			"ChildNodeIds" : "25,160,28,27,30"
 		},
 		{
-			"NodeId" : 36,
+			"NodeId" : 37,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/Slope__degrees_.json",
 			"ChildNodeIds" : "157,25"
 		},
 		{
-			"NodeId" : 37,
-			"NodeType" : "Layer",
-			"FileName" : "Ius_Chasma___digitising/Type_area_rasters__100_m_.json",
-			"ChildNodeIds" : "152,36,31,38,25,32"
-		},
-		{
 			"NodeId" : 38,
 			"NodeType" : "Layer",
-			"FileName" : "Ius_Chasma___digitising/Viking_MDIM_2_1__visible_.json",
-			"ChildNodeIds" : "156,25"
+			"FileName" : "Ius_Chasma___digitising/Type_area_rasters__100_m_.json",
+			"ChildNodeIds" : "152,37,32,39,25,33"
 		},
 		{
 			"NodeId" : 39,
 			"NodeType" : "Layer",
-			"FileName" : "Ius_Chasma___digitising/YOURS_to_digitise_into__empty_.json",
-			"ChildNodeIds" : "34,164,26,29,25"
+			"FileName" : "Ius_Chasma___digitising/Viking_MDIM_2_1__visible_.json",
+			"ChildNodeIds" : "156,25"
 		},
 		{
 			"NodeId" : 40,
@@ -358,462 +358,462 @@
 			"NodeId" : 58,
 			"NodeType" : "Layout",
 			"FileName" : "Layout/Layout5.json",
-			"ChildNodeIds" : "101,99,90,93"
+			"ChildNodeIds" : "102,100,91,94"
 		},
 		{
 			"NodeId" : 59,
 			"NodeType" : "Layout",
 			"FileName" : "Layout/Layout6.json",
-			"ChildNodeIds" : "33,29,28,26,30,34"
+			"ChildNodeIds" : "34,28,30,26,29,35"
 		},
 		{
 			"NodeId" : 60,
 			"NodeType" : "Layout",
 			"FileName" : "Layout/Layout7.json",
-			"ChildNodeIds" : "85,84,86"
+			"ChildNodeIds" : "86,85,87"
 		},
 		{
 			"NodeId" : 61,
+			"NodeType" : "Layout",
+			"FileName" : "Layout/Layout8.json",
+			"ChildNodeIds" : "179,175,172,182"
+		},
+		{
+			"NodeId" : 62,
 			"NodeType" : "Layer",
 			"FileName" : "Map2/37866239a3bb49409c0595a5cf98aea2.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 62,
+			"NodeId" : 63,
 			"NodeType" : "Layer",
 			"FileName" : "Map2/5b4637def8884c4592496dfcda721f5b.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 63,
+			"NodeId" : 64,
 			"NodeType" : "Layer",
 			"FileName" : "Map2/Global_CTX_Mosaic_of_Mars__V01_.json",
-			"ChildNodeIds" : "61"
-		},
-		{
-			"NodeId" : 64,
-			"NodeType" : "Map",
-			"FileName" : "Map2/Map22.json",
-			"ChildNodeIds" : "62,66,19"
+			"ChildNodeIds" : "62"
 		},
 		{
 			"NodeId" : 65,
 			"NodeType" : "Map",
-			"FileName" : "Map2/Map23.json",
-			"ChildNodeIds" : "63,61,19"
+			"FileName" : "Map2/Map22.json",
+			"ChildNodeIds" : "63,67,19"
 		},
 		{
 			"NodeId" : 66,
-			"NodeType" : "Layer",
-			"FileName" : "Map2/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2_tif.json",
-			"ChildNodeIds" : "62"
+			"NodeType" : "Map",
+			"FileName" : "Map2/Map23.json",
+			"ChildNodeIds" : "64,62,19"
 		},
 		{
 			"NodeId" : 67,
+			"NodeType" : "Layer",
+			"FileName" : "Map2/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2_tif.json",
+			"ChildNodeIds" : "63"
+		},
+		{
+			"NodeId" : 68,
 			"NodeType" : "Layer",
 			"FileName" : "Map3/8619327ad68f402fb3e8c9045fe0ec63.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 68,
-			"NodeType" : "Layer",
-			"FileName" : "Map3/Gradient_Mars_M1.json",
-			"ChildNodeIds" : "127,67"
-		},
-		{
 			"NodeId" : 69,
 			"NodeType" : "Layer",
-			"FileName" : "Map3/Gradient_Mars_V1.json",
-			"ChildNodeIds" : "146,67"
+			"FileName" : "Map3/Gradient_Mars_M1.json",
+			"ChildNodeIds" : "128,68"
 		},
 		{
 			"NodeId" : 70,
 			"NodeType" : "Layer",
-			"FileName" : "Map3/HRSC_MOLA.json",
-			"ChildNodeIds" : "151,77,73,67"
+			"FileName" : "Map3/Gradient_Mars_V1.json",
+			"ChildNodeIds" : "146,68"
 		},
 		{
 			"NodeId" : 71,
 			"NodeType" : "Layer",
-			"FileName" : "Map3/IR.json",
-			"ChildNodeIds" : "68,154,67,74,75"
+			"FileName" : "Map3/HRSC_MOLA.json",
+			"ChildNodeIds" : "151,78,74,68"
 		},
 		{
 			"NodeId" : 72,
-			"NodeType" : "Map",
-			"FileName" : "Map3/Map32.json",
-			"ChildNodeIds" : "78,67,70,71,21"
+			"NodeType" : "Layer",
+			"FileName" : "Map3/IR.json",
+			"ChildNodeIds" : "69,154,68,75,76"
 		},
 		{
 			"NodeId" : 73,
-			"NodeType" : "Layer",
-			"FileName" : "Map3/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2_tif.json",
-			"ChildNodeIds" : "147,67"
+			"NodeType" : "Map",
+			"FileName" : "Map3/Map32.json",
+			"ChildNodeIds" : "79,68,71,72,21"
 		},
 		{
 			"NodeId" : 74,
 			"NodeType" : "Layer",
-			"FileName" : "Map3/Mars_MO_THEMIS_IR_Day_mosaic_global_100m_v12_tif.json",
-			"ChildNodeIds" : "135,67"
+			"FileName" : "Map3/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2_tif.json",
+			"ChildNodeIds" : "147,68"
 		},
 		{
 			"NodeId" : 75,
 			"NodeType" : "Layer",
-			"FileName" : "Map3/Mars_MO_THEMIS_IR_Night_mosaic_60N60S_100m_v14_tif2.json",
-			"ChildNodeIds" : "67,138"
+			"FileName" : "Map3/Mars_MO_THEMIS_IR_Day_mosaic_global_100m_v12_tif.json",
+			"ChildNodeIds" : "135,68"
 		},
 		{
 			"NodeId" : 76,
 			"NodeType" : "Layer",
-			"FileName" : "Map3/Mars_Viking_MDIM21_ClrMosaic_global_232m_tif.json",
-			"ChildNodeIds" : "167,67"
+			"FileName" : "Map3/Mars_MO_THEMIS_IR_Night_mosaic_60N60S_100m_v14_tif2.json",
+			"ChildNodeIds" : "68,138"
 		},
 		{
 			"NodeId" : 77,
 			"NodeType" : "Layer",
-			"FileName" : "Map3/Slope_Mars_H1.json",
-			"ChildNodeIds" : "136,67"
+			"FileName" : "Map3/Mars_Viking_MDIM21_ClrMosaic_global_232m_tif.json",
+			"ChildNodeIds" : "167,68"
 		},
 		{
 			"NodeId" : 78,
 			"NodeType" : "Layer",
-			"FileName" : "Map3/Viking.json",
-			"ChildNodeIds" : "69,149,76,67"
+			"FileName" : "Map3/Slope_Mars_H1.json",
+			"ChildNodeIds" : "136,68"
 		},
 		{
 			"NodeId" : 79,
+			"NodeType" : "Layer",
+			"FileName" : "Map3/Viking.json",
+			"ChildNodeIds" : "70,149,77,68"
+		},
+		{
+			"NodeId" : 80,
 			"NodeType" : "Layer",
 			"FileName" : "Map4/73df2a004ceb4cde8dac5492b47df6f9.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 80,
+			"NodeId" : 81,
 			"NodeType" : "Layer",
 			"FileName" : "Map4/irise_soc_006_orthoMosaic_25cm_Eqc_latTs0_lon0_first_tif.json",
-			"ChildNodeIds" : "79"
-		},
-		{
-			"NodeId" : 81,
-			"NodeType" : "Map",
-			"FileName" : "Map4/Map4.json",
-			"ChildNodeIds" : "79,80,144"
+			"ChildNodeIds" : "80"
 		},
 		{
 			"NodeId" : 82,
+			"NodeType" : "Map",
+			"FileName" : "Map4/Map4.json",
+			"ChildNodeIds" : "80,81,144"
+		},
+		{
+			"NodeId" : 83,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60____basins/4916861751a948628cfa75526f0513d5.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 83,
-			"NodeType" : "Layer",
-			"FileName" : "Mars__60____basins/global60_hillshade_tif.json",
-			"ChildNodeIds" : "82"
-		},
-		{
 			"NodeId" : 84,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60____basins/Landform_BasinCandidates_auto_60.json",
-			"ChildNodeIds" : "82"
+			"FileName" : "Mars__60____basins/global60_hillshade_tif.json",
+			"ChildNodeIds" : "83"
 		},
 		{
 			"NodeId" : 85,
-			"NodeType" : "Map",
-			"FileName" : "Mars__60____basins/Mars__60____basins.json",
-			"ChildNodeIds" : "82,86,19,84,83"
+			"NodeType" : "Layer",
+			"FileName" : "Mars__60____basins/Landform_BasinCandidates_auto_60.json",
+			"ChildNodeIds" : "83"
 		},
 		{
 			"NodeId" : 86,
-			"NodeType" : "Layer",
-			"FileName" : "Mars__60____basins/MARS_nomenclature_craters_gt100km_March2019.json",
-			"ChildNodeIds" : "82"
+			"NodeType" : "Map",
+			"FileName" : "Mars__60____basins/Mars__60____basins.json",
+			"ChildNodeIds" : "83,87,19,85,84"
 		},
 		{
 			"NodeId" : 87,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/29_Sep_SVM___tile_artefact.json",
-			"ChildNodeIds" : "89,145"
+			"FileName" : "Mars__60____basins/MARS_nomenclature_craters_gt100km_March2019.json",
+			"ChildNodeIds" : "83"
 		},
 		{
 			"NodeId" : 88,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/30_Sep_SVM___mostly_elevation.json",
-			"ChildNodeIds" : "89,140"
+			"FileName" : "Mars__60__Analysis/29_Sep_SVM___tile_artefact2.json",
+			"ChildNodeIds" : "90,145"
 		},
 		{
 			"NodeId" : 89,
+			"NodeType" : "Layer",
+			"FileName" : "Mars__60__Analysis/30_Sep_SVM___mostly_elevation2.json",
+			"ChildNodeIds" : "140,90"
+		},
+		{
+			"NodeId" : 90,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/30f0f05906e046fd949b2ccda49ab983.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 90,
-			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Analysis_Extent_60.json",
-			"ChildNodeIds" : "89"
-		},
-		{
 			"NodeId" : 91,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Basin_candidates___20_km__auto_.json",
-			"ChildNodeIds" : "89,131"
+			"FileName" : "Mars__60__Analysis/Analysis_Extent_60.json",
+			"ChildNodeIds" : "90"
 		},
 		{
 			"NodeId" : 92,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Elevation__HRSC_MOLA_.json",
-			"ChildNodeIds" : "89,143"
+			"FileName" : "Mars__60__Analysis/Basin_candidates___20_km__auto_.json",
+			"ChildNodeIds" : "90,132"
 		},
 		{
 			"NodeId" : 93,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/global60_landforms_svm_400m_mode5_tif.json",
-			"ChildNodeIds" : "89"
+			"FileName" : "Mars__60__Analysis/Elevation__HRSC_MOLA_.json",
+			"ChildNodeIds" : "90,143"
 		},
 		{
 			"NodeId" : 94,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/global60_landforms_svm_400m_tif.json",
-			"ChildNodeIds" : "89"
+			"FileName" : "Mars__60__Analysis/global60_landforms_svm_400m_mode5_tif.json",
+			"ChildNodeIds" : "90"
 		},
 		{
 			"NodeId" : 95,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Hillshade.json",
-			"ChildNodeIds" : "89,168"
+			"FileName" : "Mars__60__Analysis/global60_landforms_svm_400m_tif.json",
+			"ChildNodeIds" : "90"
 		},
 		{
 			"NodeId" : 96,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/IAU_craters___100_km.json",
-			"ChildNodeIds" : "89,161"
+			"FileName" : "Mars__60__Analysis/Hillshade.json",
+			"ChildNodeIds" : "90,168"
 		},
 		{
 			"NodeId" : 97,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/IAU_craters___100_km2.json",
-			"ChildNodeIds" : "89,153"
+			"FileName" : "Mars__60__Analysis/IAU_craters___100_km.json",
+			"ChildNodeIds" : "90,161"
 		},
 		{
 			"NodeId" : 98,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Inputs___60___200_m_.json",
-			"ChildNodeIds" : "104,92,95,89,105,102,162"
+			"FileName" : "Mars__60__Analysis/IAU_craters___100_km2.json",
+			"ChildNodeIds" : "90,153"
 		},
 		{
 			"NodeId" : 99,
+			"NodeType" : "Layer",
+			"FileName" : "Mars__60__Analysis/Inputs___60___200_m_.json",
+			"ChildNodeIds" : "105,93,96,90,106,103,162"
+		},
+		{
+			"NodeId" : 100,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/Landform_TrainingSamples_terrain_60_test.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 100,
+			"NodeId" : 101,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/Landform_TrainingSamples_terrain_60_train.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 101,
+			"NodeId" : 102,
 			"NodeType" : "Map",
 			"FileName" : "Mars__60__Analysis/Mars__60__Analysis.json",
-			"ChildNodeIds" : "99,103,19,106,98,100,90,89,94,93"
-		},
-		{
-			"NodeId" : 102,
-			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/ontrast_index___compare_within_one_area_only__KB__28_10_.json",
-			"ChildNodeIds" : "89,142"
+			"ChildNodeIds" : "100,104,19,99,101,91,90,95,94,107"
 		},
 		{
 			"NodeId" : 103,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Reference.json",
-			"ChildNodeIds" : "96,91,97,89,148"
+			"FileName" : "Mars__60__Analysis/ontrast_index___compare_within_one_area_only__KB__28_10_.json",
+			"ChildNodeIds" : "90,142"
 		},
 		{
 			"NodeId" : 104,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Slope__degrees_.json",
-			"ChildNodeIds" : "89,126"
+			"FileName" : "Mars__60__Analysis/Reference.json",
+			"ChildNodeIds" : "97,92,98,90,148"
 		},
 		{
 			"NodeId" : 105,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Stack__Viking_RGB__bands_1_3_of_7_.json",
-			"ChildNodeIds" : "89,141"
+			"FileName" : "Mars__60__Analysis/Slope__degrees_.json",
+			"ChildNodeIds" : "90,127"
 		},
 		{
 			"NodeId" : 106,
 			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Superseded__his_29_30_Sep_SVMs__KB__30_.json",
-			"ChildNodeIds" : "88,87,89,132"
+			"FileName" : "Mars__60__Analysis/Stack__Viking_RGB__bands_1_3_of_7_.json",
+			"ChildNodeIds" : "90,141"
 		},
 		{
 			"NodeId" : 107,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/89710f92705e47768327a0dbe00c2baa.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars__60__Analysis/Superseded__the_29_30_Sep_GUI_SVMs__KB__30___new.json",
+			"ChildNodeIds" : "133,90,88,89"
 		},
 		{
 			"NodeId" : 108,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/a1fe0a781648473a9eb136249ce295b5.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/89710f92705e47768327a0dbe00c2baa.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 109,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Classified_202609300147338582853.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/a1fe0a781648473a9eb136249ce295b5.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 110,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/CompositeBand.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Classified_202609300147338582853.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 111,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/fd8b88f468de40e08fc54f3a45b94fa6.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/CompositeBand.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 112,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_aspect_tif.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/fd8b88f468de40e08fc54f3a45b94fa6.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 113,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_dem_tif.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_aspect_tif.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 114,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_hillshade_tif.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_dem_tif.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 115,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_slope_deg_tif.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_hillshade_tif.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 116,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2_tif.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_slope_deg_tif.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 117,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_MO_THEMIS_CompositeBand.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2_tif.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 118,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_MO_THEMIS_IR_Day_mosaic_global_100m_v12_tif.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_MO_THEMIS_CompositeBand.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 119,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_MO_THEMIS_IR_Night_mosaic_60N60S_100m_v14_tif2.json",
-			"ChildNodeIds" : "129,170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_MO_THEMIS_IR_Day_mosaic_global_100m_v12_tif.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 120,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_Viking_MDIM21_ClrMosaic_global_232m_tif.json",
-			"ChildNodeIds" : "170"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_MO_THEMIS_IR_Night_mosaic_60N60S_100m_v14_tif2.json",
+			"ChildNodeIds" : "130,183"
 		},
 		{
 			"NodeId" : 121,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer.json",
-			"ChildNodeIds" : "170,108,116,151"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_Viking_MDIM21_ClrMosaic_global_232m_tif.json",
+			"ChildNodeIds" : "183"
 		},
 		{
 			"NodeId" : 122,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer2.json",
-			"ChildNodeIds" : "170,118,107,154,119,117"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer.json",
+			"ChildNodeIds" : "183,109,117,151"
 		},
 		{
 			"NodeId" : 123,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer3.json",
-			"ChildNodeIds" : "120,149,170,111"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer2.json",
+			"ChildNodeIds" : "183,119,108,154,120,118"
 		},
 		{
 			"NodeId" : 124,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer4.json",
-			"ChildNodeIds" : "139,109,170,110"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer3.json",
+			"ChildNodeIds" : "121,149,183,112"
 		},
 		{
 			"NodeId" : 125,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer5.json",
-			"ChildNodeIds" : "166,170,112,113,114,115"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer4.json",
+			"ChildNodeIds" : "139,110,183,111"
 		},
 		{
 			"NodeId" : 126,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer5.json",
+			"ChildNodeIds" : "166,183,113,114,115,116"
+		},
+		{
+			"NodeId" : 127,
 			"NodeType" : "BinaryReference",
 			"FileName" : "Metadata/05f417dfc8e8afd37d420fdaa2489c79.xml",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 127,
+			"NodeId" : 128,
 			"NodeType" : "BinaryReference",
 			"FileName" : "Metadata/06a8311a35a3d1908f644c587f0af831.xml",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 128,
+			"NodeId" : 129,
 			"NodeType" : "BinaryReference",
 			"FileName" : "Metadata/0707fd3f82c82e1368e6316d45262a1b.xml",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 129,
+			"NodeId" : 130,
 			"NodeType" : "BinaryReference",
 			"FileName" : "Metadata/0a6abdf4ed1a0ce264f27d3a62260b28.xml",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 130,
+			"NodeId" : 131,
 			"NodeType" : "BinaryReference",
 			"FileName" : "Metadata/0ace2656e33559c91991a57dedff18a1.xml",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 131,
+			"NodeId" : 132,
 			"NodeType" : "BinaryReference",
 			"FileName" : "Metadata/176ef7764db07c75ae4e55c915cc7532.xml",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 132,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/1d5ad855f76c7249ff1a98fa6a4346d4.xml",
-			"ChildNodeIds" : ""
-		},
-		{
 			"NodeId" : 133,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/2eeaec2a26cbe590a6bba07463a3e868.xml",
+			"FileName" : "Metadata/1eaa17778d53363c40949584536aa5af.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 134,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/3328b8991867c4511dec89599adec7ec.xml",
+			"FileName" : "Metadata/2eeaec2a26cbe590a6bba07463a3e868.xml",
 			"ChildNodeIds" : ""
 		},
 		{
@@ -993,7 +993,7 @@
 		{
 			"NodeId" : 164,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/e4a1e0722cea802243ff64733ac71c2e.xml",
+			"FileName" : "Metadata/d715e2544baccb94c1b9f73080c1f534.xml",
 			"ChildNodeIds" : ""
 		},
 		{
@@ -1029,17 +1029,95 @@
 		{
 			"NodeId" : 170,
 			"NodeType" : "Layer",
-			"FileName" : "Web_Map/1e28a99d08dd4b41978f29db6ecc3135.json",
+			"FileName" : "Mosaic__60____day_IR/81263d8e6d8948378f63903b83c93ce9.json",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 171,
 			"NodeType" : "Layer",
+			"FileName" : "Mosaic__60____day_IR/global60_svm_stack_200m_tif_day_ir.json",
+			"ChildNodeIds" : "170"
+		},
+		{
+			"NodeId" : 172,
+			"NodeType" : "Map",
+			"FileName" : "Mosaic__60____day_IR/Mosaic__60____day_IR.json",
+			"ChildNodeIds" : "171,170"
+		},
+		{
+			"NodeId" : 173,
+			"NodeType" : "Layer",
+			"FileName" : "Mosaic__60____night_IR/3737204938ed41d0ac488687e64e9106.json",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 174,
+			"NodeType" : "Layer",
+			"FileName" : "Mosaic__60____night_IR/global60_svm_stack_200m_tif_night_ir.json",
+			"ChildNodeIds" : "173"
+		},
+		{
+			"NodeId" : 175,
+			"NodeType" : "Map",
+			"FileName" : "Mosaic__60____night_IR/Mosaic__60____night_IR.json",
+			"ChildNodeIds" : "174,173"
+		},
+		{
+			"NodeId" : 176,
+			"NodeType" : "Layer",
+			"FileName" : "Mosaic__60____topography/7c452c5756ff43369a99731f31e9f719.json",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 177,
+			"NodeType" : "Layer",
+			"FileName" : "Mosaic__60____topography/global60_dem_tif.json",
+			"ChildNodeIds" : "176"
+		},
+		{
+			"NodeId" : 178,
+			"NodeType" : "Layer",
+			"FileName" : "Mosaic__60____topography/global60_hillshade_tif.json",
+			"ChildNodeIds" : "176"
+		},
+		{
+			"NodeId" : 179,
+			"NodeType" : "Map",
+			"FileName" : "Mosaic__60____topography/Mosaic__60____topography.json",
+			"ChildNodeIds" : "177,178,176"
+		},
+		{
+			"NodeId" : 180,
+			"NodeType" : "Layer",
+			"FileName" : "Mosaic__60____visible/6e23dde2c7c24862a40d4926de5825c8.json",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 181,
+			"NodeType" : "Layer",
+			"FileName" : "Mosaic__60____visible/global60_svm_stack_200m_tif.json",
+			"ChildNodeIds" : "180"
+		},
+		{
+			"NodeId" : 182,
+			"NodeType" : "Map",
+			"FileName" : "Mosaic__60____visible/Mosaic__60____visible.json",
+			"ChildNodeIds" : "181,180"
+		},
+		{
+			"NodeId" : 183,
+			"NodeType" : "Layer",
+			"FileName" : "Web_Map/1e28a99d08dd4b41978f29db6ecc3135.json",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 184,
+			"NodeType" : "Layer",
 			"FileName" : "Web_Map/3c541af875a048a984467baa9f545eb8.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 172,
+			"NodeId" : 185,
 			"NodeType" : "Layer",
 			"FileName" : "Web_Map/7f93b15881fa4342a93c2cebecf783ef.json",
 			"ChildNodeIds" : ""

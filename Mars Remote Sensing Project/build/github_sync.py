@@ -16,7 +16,7 @@ What goes to the repo, mirrored under the same folder names as on the drive:
   Mars Project\                 the .aprx, models, logs, metadata sidecars, layouts: every file
                                 except raster payloads (.tif/.ovr), the gdb and DL chips; .backups (the
                                 .aprx snapshots from before git) included
-  <drive root>\  -> drive-root\ sidecars of the four globals and his "new training" shapefile
+  <drive root>\  -> drive-root\ sidecars of the four globals and the "new training" shapefile
 Any single file over 95 MB is skipped and reported (GitHub refuses files over 100 MB).
 
 What does not, and where it goes instead:
@@ -42,11 +42,16 @@ MAX = 95 * 1000 * 1000
 SKIP_DIRS = {"__pycache__", ".git", "Mars Project.gdb", "Index", "images", "labels",
              "System Volume Information", "$RECYCLE.BIN"}
 SKIP_DIR_SUFFIX = (".crf", ".gdb")
+# Dated snapshots of the record and scripts (.backup_YYYYMMDD, .py_backup_YYYYMMDD): history, kept on
+# the drive and in git history, not on the project page (KB §39.4).
+SKIP_DIR_PREFIX = (".backup_", ".py_backup_")
+SKIP_FILES = {"neutral_voice.py"}
 RASTER = {".tif", ".tiff", ".ovr", ".img", ".jp2"}
 
 
 def keep_rsp(p):   # Mars Remote Sensing Project
-    return p.suffix.lower() not in {".npy", ".pyc"}
+    # neutral_voice.py lists the personal phrasings it removes, so it stays off the public page (KB §39.4)
+    return p.suffix.lower() not in {".npy", ".pyc"} and p.name not in SKIP_FILES
 
 
 def keep_mp(p):    # Mars Project
@@ -70,6 +75,7 @@ def walk(src, recurse, keep):
         return
     for root, dirs, files in os.walk(src):
         dirs[:] = [d for d in dirs if d not in SKIP_DIRS and not d.endswith(SKIP_DIR_SUFFIX)
+                   and not d.startswith(SKIP_DIR_PREFIX)
                    and not os.path.islink(os.path.join(root, d))]
         for f in files:
             p = Path(root) / f
@@ -102,7 +108,8 @@ def write_script_index():
     import ast
     build = DRIVE / "Mars Remote Sensing Project" / "build"
     rows = {g: [] for g, _ in GROUPS}
-    srcs = {p.stem: p.read_text(encoding="utf-8", errors="replace") for p in sorted(build.glob("*.py"))}
+    srcs = {p.stem: p.read_text(encoding="utf-8", errors="replace") for p in sorted(build.glob("*.py"))
+            if p.name not in SKIP_FILES}
     # Which interpreter: arcpy/osgeo need ArcGIS's, pptx the system one, inherited through local imports.
     imported = {k: set(re.findall(r"^\s*(?:import|from) (\w+)", s, re.M)) for k, s in srcs.items()}
     needs = {k: {m for m, mods in (("ArcGIS", {"arcpy", "osgeo"}), ("system", {"pptx"})) if imported[k] & mods}

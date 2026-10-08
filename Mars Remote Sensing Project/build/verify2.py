@@ -50,8 +50,8 @@ allt = " ".join(texts.values())
 
 # ---- A. the built artefacts carry the corrections -------------------------
 MUST_GO = [
-    # he holds three rasters only: Viking MDIM, THEMIS Day IR, HRSC/MOLA DEM
-    ("re-acquire", "nothing may be planned around imagery he does not have"),
+    # the project holds three rasters only: Viking MDIM, THEMIS Day IR, HRSC/MOLA DEM
+    ("re-acquire", "nothing may be planned around imagery the project does not have"),
     ("restored HiRISE", "same"),
     ("ground reference", "there is no ground reference"),
     ("Type area 2", "Jezero is a context map, not a second type area"),

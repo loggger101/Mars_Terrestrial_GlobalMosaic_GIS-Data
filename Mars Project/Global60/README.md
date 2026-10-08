@@ -75,7 +75,7 @@ low = damped = bedrock.
 **It is stretched over ±60°, not over Ius.** The percentiles come from the whole
 extent, so the numbers here are **not comparable** to `ius_thermal_contrast.tif`.
 That is deliberate — a planet-wide index scaled to one canyon would be
-meaningless — but it means you cannot quote a value from one against the other.
+meaningless — but it means a value from one cannot be quoted against the other.
 
 ## Checking it
 

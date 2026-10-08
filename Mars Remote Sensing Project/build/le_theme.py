@@ -107,7 +107,7 @@ def new(prs, title, dark=False, size=34):
 
 
 def title_slide(prs, title, lines):
-    """His Presentation 1 title slide, reproduced."""
+    """The Presentation 1 title slide, reproduced."""
     s = blank(prs)
     tf = textbox(s, 0, 196 * PT, W, 80 * PT)
     p = tf.paragraphs[0]

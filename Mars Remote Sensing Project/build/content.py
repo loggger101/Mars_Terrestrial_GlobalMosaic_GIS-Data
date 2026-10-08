@@ -7,7 +7,7 @@ table's <Process> lineage, the GpMessages logs, and the .aux.xml raster
 statistics). Nothing here is invented.
 """
 
-# Logan Edwards' own title, taken from his Presentation 1.
+# The project's own title, taken from Presentation 1.
 DECK_TITLE = "Mars Global Mosaic"
 COURSE = "REMOTE SENSING 2026 OCN 4704"
 AUTHOR = "Logan Edwards"

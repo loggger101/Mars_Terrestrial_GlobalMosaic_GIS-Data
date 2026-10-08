@@ -6,7 +6,7 @@ r"""Zips the rasters and caches too big for the repo into GitHub release assets 
                                                        ...and publish them as that release
 
 Run github_export_gdb.py (ArcGIS Python, with --rasters) first: it leaves the GeoPackage and
-his two SVM maps in <dist>, and this picks them up.
+the two GUI SVM maps in <dist>, and this picks them up.
 
 Assets, each part under 1.9 GB (GitHub's limit is 2 GiB per file); files are the originals,
 byte for byte, so a restore is an unzip:

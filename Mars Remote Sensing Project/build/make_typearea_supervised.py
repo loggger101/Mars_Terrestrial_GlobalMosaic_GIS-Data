@@ -141,7 +141,7 @@ def safe_to_replace(fc):
     """True only if fc is absent or every row in it was written by this script.
 
     KB 29.3: the class this used to write, Landform_TrainingSamples_terrain,
-    now holds HIS hand labels, and the old Delete would have destroyed them on
+    now holds the hand-drawn labels, and the old Delete would have destroyed them on
     a single-copy drive. Never delete a class this script cannot prove it made.
     """
     if not arcpy.Exists(fc):
@@ -193,7 +193,7 @@ def classify(tag, raster):
     return out
 
 
-# the augmented stack: his 5-band composite + the diurnal-contrast index + slope
+# the augmented stack: the 5-band composite + the diurnal-contrast index + slope
 # A BuildVRT of these three inherits THREE different NoData values - 0.0 on the
 # composite, -9999 on the index, -3.4e38 on slope. ClassifyRaster collapsed to a
 # single class on that stack and wrote a nonsense nodata=3.0. Build it by hand
@@ -319,7 +319,7 @@ a = summary["spectral"][0]
 th = summary["thermal"][0]
 b_ = summary["augmented"][0]
 print("\n" + "=" * 78)
-print("  spectral (his 5-band composite)      %.1f%%   kappa %.3f" % (100 * a, summary["spectral"][1]))
+print("  spectral (the 5-band composite)      %.1f%%   kappa %.3f" % (100 * a, summary["spectral"][1]))
 print("  + diurnal-contrast index ONLY        %.1f%%   kappa %.3f   (%+.1f points)  <- fair"
       % (100 * th, summary["thermal"][1], 100 * (th - a)))
 print("  + index AND slope                    %.1f%%   kappa %.3f   (%+.1f points)  <- circular"

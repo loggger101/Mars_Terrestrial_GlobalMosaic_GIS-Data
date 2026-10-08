@@ -3,20 +3,20 @@ r"""Exports what Mars Project.gdb holds that github_sync.py cannot copy (KB §35
 
     python github_export_gdb.py              vectors -> <repo>\exports\mars_project_vectors.gdb
                                              and     -> <dist>\mars_project_vectors.gpkg
-    python github_export_gdb.py --rasters    also his two Pro-GUI SVM maps -> <dist>\*.tif
+    python github_export_gdb.py --rasters    also the two Pro-GUI SVM maps -> <dist>\*.tif
     python github_export_gdb.py --rasters-only   only the two SVM maps
     python github_export_gdb.py --catalog-only   only rewrite exports\README.md, no re-export.
                                              Re-exporting rewrites every gdb file even when the data
                                              is unchanged, so do it when the layers have changed.
 
 The gdb is 200+ GB of rasters, but its feature classes are small and they hold the one thing
-nothing can re-compute: his 512 hand-drawn training polygons. Every feature class goes, except
+nothing can re-compute: the 512 hand-drawn training polygons. Every feature class goes, except
 the two empty scratch classes "Line"/"Point" and the _2/_3 duplicates of the IAU nomenclature
 (identical copies, §11 q4). The empty Landform_* classes go too: their schema is the work.
 Row counts are checked against the source for each class.
 
 The two SVM maps (29 and 30 Sep, §29-30) exist only inside the gdb, so they are written as
-DEFLATE-compressed GeoTIFFs for the release. Superseded (§31), but they are his. Pixel value =
+DEFLATE-compressed GeoTIFFs for the release. Superseded (§31), but they are original work. Pixel value =
 class code 1-4 since 2026-10-07 (§36.4). The gdb keeps no-data as a mask, with 0 or 255 stored under
 it, so the export writes 255 under the mask and declares NoData 255: a reader that ignores masks
 can't take a masked pixel for a class.

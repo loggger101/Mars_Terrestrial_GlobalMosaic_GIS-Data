@@ -14,7 +14,7 @@ Validated against the gazetteer: recall and diameter agreement on named craters
 inside the type area, which is an accuracy check this project has never had.
 
 Run with the ArcGIS interpreter. Writes Landform_CraterCandidates_auto - a
-SEPARATE class, like the channels. Landform_CraterRims stays his.
+SEPARATE class, like the channels. Landform_CraterRims stays manual.
 """
 import os, time, datetime
 import numpy as np

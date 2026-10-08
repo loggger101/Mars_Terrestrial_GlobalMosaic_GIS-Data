@@ -116,7 +116,7 @@ def main():
         off = np.setdiff1d(np.arange(len(colj)), on)
         seams[nm] = round(float(colj[on].mean() / colj[off].mean()), 3)
     res["seam_ratio"] = seams
-    print("seam ratio (1.0 = no seams; his 29 Sep map 2.77):", seams)
+    print("seam ratio (1.0 = no seams; the 29 Sep GUI map 2.77):", seams)
 
     dem = np.load(os.path.join(HERE, "dem_global_3000_f32.npy"))   # CM 0, -180..180, 90..-90
     Hd, Wd = dem.shape

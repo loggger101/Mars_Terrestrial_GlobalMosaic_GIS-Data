@@ -7,7 +7,7 @@ r"""Recode the remaining 0-based classified rasters so pixel value = class code 
   TypeArea\ius_sup_spectral / _thermal / _augmented.tif   pixels 0..5 -> codes 1..6 (KB §27)
       originals (with sidecars) MOVED to TypeArea\_0based_originals\
   Mars Project.gdb\Classified_202609292109007048151 / ..._202609300147338582853
-      his two GUI SVM maps, pixels 0..3 -> codes 1..4 (KB §29-30). They had no NoData value,
+      the two GUI SVM maps, pixels 0..3 -> codes 1..4 (KB §29-30). They had no NoData value,
       only a mask, and the 29 Sep map's masked pixels read as 0 (= Crater): they become NoData 255.
       Recoded to a GeoTIFF on internal disk, checked, then the original is RENAMED to <name>_0based
       in the gdb and the recode copied in under the original name, so the .aprx layers (symbology

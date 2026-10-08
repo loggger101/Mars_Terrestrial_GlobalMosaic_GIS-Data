@@ -45,11 +45,11 @@ Everything the type-area runs established carries over unchanged:
   * Filters stay at the values verify_crater_detection.py tuned them to:
     aspect <= 2.0, fill ratio >= 0.55 (KB 26.4).
   * Output goes to SEPARATE feature classes. Landform_CraterRims and
-    Landform_ChannelCenterlines stay his.
+    Landform_ChannelCenterlines stay manual.
 
 ------------------------------------------------------------------- resolution
 
-200 m, the DEM's native grid - his call, 2026-09-19. The type-area products ran
+200 m, the DEM's native grid - an open decision, 2026-09-19. The type-area products ran
 at 100 m because the imagery stack is 100 m, but HRSC/MOLA is 200 m: that run
 was resampling a 200 m product and finding flow paths in the interpolation. At
 G200 the warp is exact (grid60) and the detail is measured rather than invented.

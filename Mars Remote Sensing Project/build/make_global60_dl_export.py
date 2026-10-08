@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 r"""Re-export the hand-labelled deep-learning training data from the corrected ±60° stack (KB §29.6, §31).
 
-His 1 Oct export came from the 7-band CompositeBand: a raw DEM band in metres, percent-rise slope,
-and empty thermal bands past ±60° (§29.4, §30.3). This one uses the same settings he chose
-(256 x 256 chips, PASCAL VOC rectangles, his class values; his stride is not recorded in the
+The 1 Oct export came from the 7-band CompositeBand: a raw DEM band in metres, percent-rise slope,
+and empty thermal bands past ±60° (§29.4, §30.3). This one uses the same settings as the GUI export
+(256 x 256 chips, PASCAL VOC rectangles, the class values; the GUI stride is not recorded in the
 export, so stride is 128, half a chip) on
 global60_svm_stack_200m.tif, so every chip is inside ±60° and every band is 8-bit 1-255.
 
-His export is left as it is. This writes a NEW folder:
+The GUI export is left as it is. This writes a NEW folder:
   Z:\Mars Project\LabeledObjects\global60_svm_stack_200m\
-Labels: his Landform_TrainingSamples_terrain, read only. Chips exist only where the stack does,
-so the parts of his polygons north of 60°N fall away by themselves.
+Labels: the hand-drawn Landform_TrainingSamples_terrain, read only. Chips exist only where the stack does,
+so the parts of the labelled polygons north of 60°N fall away by themselves.
 """
 import os, sys, time, shutil
 import arcpy

@@ -209,8 +209,8 @@ for claim, needle in [
 def composite_cancellations(folder):
     """(start, elapsed) for every cancelled Composite Bands run, read per log.
 
-    A bare count of the whole folder encodes the day it was written: he
-    cancelled a fifth attempt on 24 Sep and "== 4" started failing (KB 17.2).
+    A bare count of the whole folder encodes the day it was written: a fifth
+    attempt was cancelled on 24 Sep and "== 4" started failing (KB 17.2).
     Dating each run lets the checks below pin what the deliverables claim -
     four by 13 Sep - without breaking when another run is logged.
     """
@@ -245,10 +245,16 @@ lin = open(os.path.join(GDB, "a00000004.gdbtable"), "rb").read().decode("latin-1
 check("Hillshade used azimuth 225, altitude 45, shadows",
       re.search(r"HillShade[^<]*225 45 SHADOWS", lin) is not None,
       "<Process> lineage")
+# The raster itself left the project gdb on 2026-10-07 (KB §37) for Z:\_removed_not_Mars\, where
+# its VAT is a00000010 (fields Value, Count). That folder may be deleted: then only the lineage is left.
+MERC_VAT = os.path.join(Z, "_removed_not_Mars", "removed_not_Mars.gdb", "a00000010.gdbtable")
+merc_rows = (struct.unpack("<I", open(MERC_VAT, "rb").read(8)[4:8])[0]
+             if os.path.exists(MERC_VAT) else None)
 check("Mercury Iso Cluster ran with 10 classes",
       re.search(r"IsoClusterUnsupervisedClassification[^<]*166m\.tif 10", lin)
-      is not None and rows(0x19) == 10,
-      "<Process> lineage + VAT row count")
+      is not None and merc_rows in (10, None),
+      "<Process> lineage + VAT row count in _removed_not_Mars (KB §37)"
+      + ("" if merc_rows is not None else "; VAT gone, lineage only"))
 
 # --------------------------------------------------------- missing files ----
 for fn in ("JEZ_hirise_soc_006_orthoMosaic_25cm_Eqc_latTs0_lon0_first.tif",

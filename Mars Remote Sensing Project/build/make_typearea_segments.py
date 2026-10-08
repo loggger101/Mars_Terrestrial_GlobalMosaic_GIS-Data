@@ -9,7 +9,7 @@ Bands 1, 4, 5 = Viking red, THEMIS day, THEMIS night. Those are the three
 near-independent dimensions found in 18.3 - Viking G and B are 0.96-0.99
 correlated with R and would add nothing but weight.
 
-Parameters are the ones he rehearsed on Mercury: spectral 20, spatial 20,
+Parameters are the ones rehearsed on Mercury: spectral 20, spatial 20,
 min segment 5 px.
 """
 import os, time, arcpy

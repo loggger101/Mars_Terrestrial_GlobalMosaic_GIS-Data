@@ -26,7 +26,7 @@ arcpy.env.overwriteOutput = True
 arcpy.env.workspace = OUT
 
 # (tag, spectral, spatial, min segment px)
-SWEEP = [("fine",   "20", "20",  "5"),      # his Mercury parameters
+SWEEP = [("fine",   "20", "20",  "5"),      # the Mercury rehearsal's parameters
          ("medium", "14", "14", "30"),
          ("coarse", "9",  "9",  "80")]
 

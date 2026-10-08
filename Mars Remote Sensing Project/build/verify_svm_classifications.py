@@ -6,7 +6,7 @@ Nothing in the gdb or the .aprx is written.
 
   1. class shares by latitude band
   2. agreement between the two maps (area-weighted, kappa)
-  3. training-set score: how much of each of his 512 polygons comes back as its own class
+  3. training-set score: how much of each of the 512 labelled polygons comes back as its own class
      (an UPPER bound on accuracy, not an accuracy assessment)
   4. IAU named craters: is 'Crater' commoner inside a named crater than in a ring round it?
   5. the 4096-px block period in the night-grid map

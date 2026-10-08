@@ -19,7 +19,7 @@ def kappa(ct):
 
 
 def training_score(a, m, g, polys):
-    """Area-weighted confusion of his polygons (rows) against the map's classes (cols)."""
+    """Area-weighted confusion of the labelled polygons (rows) against the map's classes (cols)."""
     H, W = a.shape
     cmx = np.zeros((4, 4)); own = []
     for v, rings in polys:

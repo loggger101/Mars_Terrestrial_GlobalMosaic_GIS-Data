@@ -14,7 +14,7 @@ caption and figure is carried over verbatim from that PDF; the design is new.
               rows separated by hairlines and banded in #14314C
   figures     re-rendered on the slide ground by make_figs_dark.py, so they sit
               in the slide instead of floating as lit rectangles
-  title       a whole-Mars orthographic disc from his own Viking mosaic,
+  title       a whole-Mars orthographic disc from the project's own Viking mosaic,
               bleeding off the right edge (make_globe.py)
 
     python build_pres1_styled.py [img_dir] [out.pptx]
@@ -39,7 +39,7 @@ A = "http://schemas.openxmlformats.org/drawingml/2006/main"
 DISPLAY = "Aptos Display"
 BODY = "Aptos"
 
-GROUND = RGBColor(0x0E, 0x28, 0x41)      # the slide ground, his navy
+GROUND = RGBColor(0x0E, 0x28, 0x41)      # the slide ground, the Presentation 1 navy
 DEEP = RGBColor(0x06, 0x0E, 0x16)        # title slide only
 BAND = RGBColor(0x14, 0x31, 0x4C)        # table banding, panel fills
 RULE = RGBColor(0x2A, 0x4A, 0x66)        # hairlines

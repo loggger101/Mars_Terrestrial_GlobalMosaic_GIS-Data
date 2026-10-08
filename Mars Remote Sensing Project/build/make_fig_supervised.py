@@ -2,7 +2,7 @@
 r"""Figure: task 7's supervised half, with the accuracy assessment made visible
 - including the comparison that does NOT support the easy story.
 
-A  the supervised classification on his 5-band composite
+A  the supervised classification on the 5-band composite
 B  the spatial train/test split - the thing that makes the number honest
 C  confusion matrix on held-out blocks, spectral stack
 D  three stacks compared, with the circular one marked as such

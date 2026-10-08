@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Task 11 scaffolding: the three landform feature classes.
 
-His prospectus task 8: "Lava flow margins, channel centerlines, and crater rims
+Prospectus task 8: "Lava flow margins, channel centerlines, and crater rims
 as three feature classes in the project geodatabase."
 
 Created in the SAME projected frame as the harmonised type-area stack

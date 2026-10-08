@@ -175,7 +175,7 @@ fig.tight_layout(pad=0.4)
 save(fig, "g_extent_dark.png")
 
 # ============================================================ the spectrum ===
-# Reproduces the version that is in his deck: no THEMIS Night IR row and no
+# Reproduces the version that is in the deck: no THEMIS Night IR row and no
 # held/planned legend. make_spectrum.py draws a later variant with both, which
 # would be new content on the slide rather than a restyle of it.
 

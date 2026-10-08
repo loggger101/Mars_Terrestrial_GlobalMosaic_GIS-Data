@@ -4,8 +4,8 @@ r"""Take everything that isn't Mars out of the project (KB §37). ArcGIS Python.
     python remove_non_mars.py --aprx <copy beside the real .aprx>    rehearse the map removal
     python remove_non_mars.py                                         the real project
 
-His instruction, 2026-10-07: anything that isn't part of Mars is not relevant; remove it.
-Nothing is deleted outright. Every item goes to Z:\_removed_not_Mars\, which he can delete:
+Instruction, 2026-10-07: anything that isn't part of Mars is not relevant; remove it.
+Nothing is deleted outright. Every item goes to Z:\_removed_not_Mars\, which can be deleted manually:
 
   .aprx maps whose coordinate system is not Mars, and which no layout uses:
       "Map" (Earth: World Topographic + World Hillshade, WGS 84),

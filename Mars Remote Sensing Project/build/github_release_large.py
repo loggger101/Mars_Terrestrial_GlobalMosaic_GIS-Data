@@ -8,8 +8,8 @@ What goes, as release assets (GitHub caps one asset at 2 GiB, so big files are b
       _slope_deg, _aspect, _hillshade (.tif). Original bytes, cut into <file>.partNNN of 1.9 GB.
       The .ovr pyramids are left out: Build Pyramids re-creates them.
   global60-sidecars.zip      their .aux.xml / .xml (statistics, lineage)
-  labeledobjects-partN.zip   both deep-learning exports, his (1 Oct) and the §31.4 one
-  Segmented_202609290011302066080.tif   his ±60° segmentation (§29.5), out of the gdb as a
+  labeledobjects-partN.zip   both deep-learning exports, the GUI one (1 Oct) and the §31.4 one
+  Segmented_202609290011302066080.tif   the GUI ±60° segmentation (§29.5), out of the gdb as a
       DEFLATE GeoTIFF, split the same way if it needs to be. Skipped with --no-gdb.
   SHA256SUMS-<tag>.txt       a hash of every asset AND of every reassembled whole file
 
@@ -144,7 +144,7 @@ def main():
     if subprocess.run(["gh", "release", "view", TAG, "-R", REPO], capture_output=True).returncode:
         gh("release", "create", TAG, "--title", TAG, "--notes",
            "Large derived products from the project drive: the ±60° derivatives (byte-split, "
-           "reassemble with `cat name.part* > name`), the deep-learning exports and his ±60° "
+           "reassemble with `cat name.part* > name`), the deep-learning exports and the GUI ±60° "
            "segmentation. See SHA256SUMS and the README section 'Restoring'.")
     have = existing()
     zip_parts("global60-sidecars", MP, sorted(p for b in BIG for p in G60.glob(b + ".*xml")), have)

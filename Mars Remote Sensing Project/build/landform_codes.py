@@ -9,7 +9,7 @@ than assumed, and carries across what the old file had: colours, NoData, overvie
 projection, statistics and a table whose Value now equals its Classvalue.
 
 NoData is kept as the source declares it (255 on the ±60° maps, 15 on two type-area maps). A
-source with no NoData value but a mask (his two gdb maps, where masked pixels read as 0, i.e. as
+source with no NoData value but a mask (the two GUI gdb maps, where masked pixels read as 0, i.e. as
 Crater) gets NoData 255 on the masked pixels. A source may be a .tif or a raster in a file gdb;
 the output is always a GeoTIFF (copy it into a gdb with arcpy afterwards).
 """
