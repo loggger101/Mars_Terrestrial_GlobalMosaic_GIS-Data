@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Task 3 + task 5 over the Ius Chasma type area.
+"""Task 3 + task 5 over a type area: Ius Chasma, or --area ath for Athabasca Valles (areas.py, KB §42).
 
 Harmonises all four inputs onto ONE grid, then builds the band composite that
 has failed four times at global scale. Bounded extent, per the prospectus's own fix.
@@ -9,27 +9,32 @@ day mosaic's own pixel edges. Chosen so the day-night pair is NOT resampled -
 only Viking and the DEM are, and they must be regardless.
 """
 import os, time
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
+import areas
+A = areas.current()
 from osgeo import gdal
 gdal.UseExceptions()
 gdal.SetConfigOption("GDAL_CACHEMAX", "512")
 
-OUT = r"Z:\Mars Project\TypeArea"
+OUT = A["out"]
 os.makedirs(OUT, exist_ok=True)
 TSRS = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=180 +x_0=0 +y_0=0 +R=3396190 +units=m +no_defs"
 # snapped to the day grid (ULX -10669500, ULY 5334800, 100 m)
-BOUNDS = (5394000.0, -770600.0, 6283100.0, -355600.0)      # xmin ymin xmax ymax
+BOUNDS = A["bounds"]                                        # xmin ymin xmax ymax
 RES = 100.0
 W = int((BOUNDS[2]-BOUNDS[0])/RES); H = int((BOUNDS[3]-BOUNDS[1])/RES)
-print("target grid %d x %d @ %g m  (Ius Chasma, 271-286E / 13-6S)" % (W, H, RES))
+print("target grid %d x %d @ %g m  (%s)" % (W, H, RES, A["label"]))
 
-SRC = [("viking", r"Z:\Mars_Viking_MDIM21_ClrMosaic_global_232m.tif", "cubic",    0),
-       ("day",    r"Z:\Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif", "near",  0),
-       ("night",  r"Z:\Mars_MO_THEMIS-IR-Night_mosaic_60N60S_100m_v14.tif","near", 0),
-       ("dem",    r"Z:\Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif", "cubic", -32768)]
+SRC = [("viking", on_drive(r"Mars_Viking_MDIM21_ClrMosaic_global_232m.tif"), "cubic",    0),
+       ("day",    on_drive(r"Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif"), "near",  0),
+       ("night",  on_drive(r"Mars_MO_THEMIS-IR-Night_mosaic_60N60S_100m_v14.tif"),"near", 0),
+       ("dem",    on_drive(r"Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif"), "cubic", -32768)]
 
 made = {}
 for name, src, alg, nod in SRC:
-    dst = os.path.join(OUT, "ius_%s.tif" % name)
+    dst = os.path.join(OUT, areas.name(A, "%s.tif" % name))
     t = time.time()
     gdal.Warp(dst, src, dstSRS=TSRS, outputBounds=BOUNDS, xRes=RES, yRes=RES,
               resampleAlg=alg, srcNodata=nod, dstNodata=nod,
@@ -63,7 +68,7 @@ except ImportError:
 
 def composite(tag, parts):
     vrt = os.path.join(OUT, "_%s.vrt" % tag)
-    out = os.path.join(OUT, "ius_composite_%s.tif" % tag)
+    out = os.path.join(OUT, areas.name(A, "composite_%s.tif" % tag))
     t = time.time()
     gdal.BuildVRT(vrt, parts, separate=True)
     gdal.Translate(out, vrt, creationOptions=["TILED=YES","COMPRESS=DEFLATE","BIGTIFF=IF_SAFER"])

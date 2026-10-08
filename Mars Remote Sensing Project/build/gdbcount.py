@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 """Map FileGDB table ids to names and read each table's row count."""
 import os, re, struct
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 
-gdb = r"Z:\Mars Project\Mars Project.gdb"
+gdb = on_drive(r"Mars Project\Mars Project.gdb")
 
 # a00000001.gdbtable is GDB_SystemCatalog: one row per table, in ObjectID order.
 data = open(os.path.join(gdb, "a00000001.gdbtable"), "rb").read()

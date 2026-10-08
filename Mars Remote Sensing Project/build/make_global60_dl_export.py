@@ -13,6 +13,9 @@ Labels: the hand-drawn Landform_TrainingSamples_terrain, read only. Chips exist 
 so the parts of the labelled polygons north of 60°N fall away by themselves.
 """
 import os, sys, time, shutil
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 import arcpy
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -20,8 +23,8 @@ sys.path.insert(0, HERE)
 import grid60 as G
 
 STACK = os.path.join(G.OUTDIR, "global60_svm_stack_200m.tif")
-LABELS = r"Z:\Mars Project\Mars Project.gdb\Landform_TrainingSamples_terrain"
-OUT = r"Z:\Mars Project\LabeledObjects\global60_svm_stack_200m"
+LABELS = on_drive(r"Mars Project\Mars Project.gdb\Landform_TrainingSamples_terrain")
+OUT = on_drive(r"Mars Project\LabeledObjects\global60_svm_stack_200m")
 
 if os.path.exists(OUT):
     # only ever replace a folder this script made: it carries our marker file

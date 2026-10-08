@@ -16,6 +16,9 @@ Needs make_global60_svm_stack.py, make_global60_classification.py and
 verify_global60_classification.py to have run. Run polish_layouts.py afterwards (KB §33).
 """
 import os, sys, time, json, shutil
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")      # cp1252 console: ≥ and — would crash a print
 import arcpy
 
@@ -26,9 +29,9 @@ from make_global60_classification import OUT as CLS_PATH, CELL
 from layoutkit import C, rgb, text, poly_geom
 
 APRX = (sys.argv[sys.argv.index("--aprx") + 1] if "--aprx" in sys.argv      # a copy, for a dry run
-        else r"Z:\Mars Project\Mars Project.aprx")
-BKDIR = r"Z:\Mars Project\.backups"
-GDB = r"Z:\Mars Project\Mars Project.gdb"
+        else on_drive(r"Mars Project\Mars Project.aprx"))
+BKDIR = on_drive(r"Mars Project\.backups")
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
 G60 = G.OUTDIR          # the real folder, NOT the junction: it breaks when the drive is F: (KB §34)
 OUTD = os.path.join(G.OUTDIR, "layouts")
 MARS = arcpy.SpatialReference(104905)

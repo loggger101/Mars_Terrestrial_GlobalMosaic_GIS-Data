@@ -5,12 +5,15 @@ A panel that lives in the top few percent of the luminance range will read as
 a blank white rectangle once a projector's gamma and ambient light are applied.
 """
 import glob
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 import os
 
 import numpy as np
 from PIL import Image
 
-DIR = r"Z:\Mars Remote Sensing Project\build\le_img"
+DIR = on_drive(r"Mars Remote Sensing Project\build\le_img")
 
 print("%-12s %7s %7s %7s %7s %7s  %s"
       % ("image", "mean", "p1", "p99", "range", "std", "verdict"))

@@ -12,12 +12,15 @@ Pro must be closed. The .aprx is backed up first. --aprx <copy> rehearses on a c
 BESIDE the real .aprx (it stores relative paths, §31.5). Run audit_aprx.py afterwards.
 """
 import os, sys, time, shutil
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import arcpy
 
 APRX = (sys.argv[sys.argv.index("--aprx") + 1] if "--aprx" in sys.argv
-        else r"Z:\Mars Project\Mars Project.aprx")
-BKDIR = r"Z:\Mars Project\.backups"
+        else on_drive(r"Mars Project\Mars Project.aprx"))
+BKDIR = on_drive(r"Mars Project\.backups")
 GROUPS = [("Mars \u00b160\u00b0 Analysis", "Superseded: the 29\u201330 Sep GUI SVMs (KB \u00a730)"),
           ("Ius Chasma \u2014 digitising", "Digitising classes (empty)")]
 

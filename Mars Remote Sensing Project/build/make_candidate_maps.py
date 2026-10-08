@@ -17,22 +17,34 @@ Pro must be closed. The .aprx is backed up first. --aprx <copy> rehearses on a c
 sit BESIDE the real .aprx (it stores relative paths, §31.5). Run polish_layouts.py afterwards (§33).
 """
 import os, sys, time, shutil
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+import json
 import arcpy
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import grid60 as G
+import areas
 from layoutkit import text, poly_geom
 from make_global60_maps import (outline, add, group, get_map, page, add_text, legend_classes, order,
                                 extent_polygon, CREDIT, BKDIR, OUTD)
 
 APRX = (sys.argv[sys.argv.index("--aprx") + 1] if "--aprx" in sys.argv
-        else r"Z:\Mars Project\Mars Project.aprx")
-GDB = r"Z:\Mars Project\Mars Project.gdb"
-TA = r"Z:\Mars Project\TypeArea"
-DIG, BAS = "Ius Chasma \u2014 digitising", "Mars \u00b160\u00b0 \u2014 basins"
+        else on_drive(r"Mars Project\Mars Project.aprx"))
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
+TA = on_drive(r"Mars Project\TypeArea")
+BAS = "Mars \u00b160\u00b0 \u2014 basins"
+LAYOUTS = {"ius": "06_ius_digitising", "ath": "09_athabasca_digitising"}
 GOOD = "SlopeDeg >= 5 AND ThermIdx < -0.15"          # §25: steep AND rock-floored
+# The prompt per area. Ius: steep and rock-floored (§25). Athabasca: rock-floored only; 97 % of its
+# candidates lie under 2°, so a slope test leaves 5 of 3,283 and separates nothing there (§42).
+PROMPT = {"ius": (GOOD, "steep and rock-floored",
+                  "are steep (\u2265 5\u00b0) and rock-floored (thermal index < \u22120.15): start there"),
+          "ath": ("ThermIdx < -0.15", "rock-floored",
+                  "are rock-floored (thermal index < \u22120.15): start there; on these lava plains slope cannot help")}
 PAGE_W, PAGE_H = 11.0, 8.5
 
 assert not any("ArcGISPro" in l for l in os.popen("tasklist").read().splitlines()), "close ArcGIS Pro first"
@@ -60,6 +72,84 @@ def surrounds(p, lyt, mf, sbar_xy, arrow_xy):
             el.elementWidth = 3.1
 
 
+def digitising(p, key, sr, camera_from=None):
+    """Map "<area> — digitising" and its layout: the empty digitising classes on top, the area's
+    machine candidates under them, its 100 m rasters under those (KB §32.1; Athabasca §42)."""
+    A = dict(areas.AREAS[key], key=key)
+    W = (A["bounds"][2] - A["bounds"][0]) / 100.0; H = (A["bounds"][3] - A["bounds"][1]) / 100.0
+    folder = on_drive(os.path.join("Mars Project", A["folder"]))
+    pre = A["prefix"] + "_"
+    name, lname = "%s \u2014 digitising" % A["name"], LAYOUTS[key]
+    print("map:", name)
+    m = get_map(p, name)
+    m.spatialReference = sr
+    chan = os.path.join(GDB, A["channels"]); crat = os.path.join(GDB, A["craters"])
+    q, short, why = PROMPT[key]
+    n_good, n_all = count(chan, q), count(chan)
+    plateau = count(chan, "SlopeDeg < 2") / float(n_all)
+    n_crat = count(crat)
+    prec = json.load(open(os.path.join(HERE, "logs", "crater_density.json")))["areas"][key]["detector_vs_robbins"]["1.0"]["precision"]
+    gyou = group(m, "Digitising classes (empty)")
+    l = add(m, os.path.join(GDB, "Landform_ChannelCenterlines"), "Channel centrelines", True, gyou)
+    line_style(l, (0, 92, 230), 2.5)
+    l = add(m, os.path.join(GDB, "Landform_LavaFlowMargins"), "Lava flow margins", True, gyou)
+    line_style(l, (230, 76, 0), 2.5)
+    l = add(m, os.path.join(GDB, "Landform_CraterRims"), "Crater rims", True, gyou)
+    outline(l, (255, 255, 0), 2.0)
+    gc = group(m, "Machine candidates \u2014 prompts, not results (KB \u00a725\u201326, \u00a742)")
+    good = add(m, chan, "Channels: %s (%d)" % (short, n_good), True, gc)
+    good.definitionQuery = q
+    line_style(good, (0, 255, 255), 1.6)
+    rest = add(m, chan, "Channels: other (%d, %.0f%% on < 2\u00b0 plateau)" % (n_all - n_good, 100 * plateau), False, gc)
+    rest.definitionQuery = "NOT (%s)" % q
+    line_style(rest, (150, 150, 150), 0.5)
+    cr = add(m, crat, "Closed depressions \u2265 1 km (%d)" % n_crat, True, gc)
+    outline(cr, (255, 0, 197), 0.8)
+    gb = group(m, "Type-area rasters (100 m)")
+    add(m, os.path.join(folder, pre + "thermal_contrast.tif"), "Diurnal contrast index (valid inside this window)", False, gb)
+    add(m, os.path.join(folder, pre + "viking.tif"), "Viking MDIM 2.1 (visible)", False, gb)
+    add(m, os.path.join(folder, pre + "slope_deg.tif"), "Slope (degrees)", False, gb)
+    add(m, os.path.join(folder, pre + "hillshade.tif"), "Hillshade 225\u00b0/45\u00b0", True, gb)
+    order(m, [gyou.name, gc.name, gb.name])
+    print("   ", [l.longName for l in m.listLayers()])
+
+    lyt = page(p, lname)
+    aspect = W / H
+    wide = aspect >= 1.6
+    fh_max = 4.71
+    fw = 10.10 if wide else fh_max * aspect
+    fh = fw / aspect
+    mf = lyt.createMapFrame(poly_geom(0.45, 2.42, fw, fh), m, "frame")
+    if camera_from is not None:
+        mf.camera.X, mf.camera.Y, mf.camera.scale = camera_from.camera.X, camera_from.camera.Y, camera_from.camera.scale
+    else:
+        xmin, ymin, xmax, ymax = A["bounds"]
+        mf.camera.setExtent(arcpy.Extent(xmin, ymin, xmax, ymax, spatial_reference=sr))
+    breached = ("Breached craters are missed (Oudemans, KB \u00a726)." if key == "ius"
+                else "Breached craters are missed (KB \u00a726).")
+    add_text(lyt, [
+        text(0.45, 7.85, "%s \u2014 candidates to digitise" % A["name"], 21, "title", bold=True),
+        text(0.45, 7.50, "Machine candidates are prompts: accept one by copying it into the matching digitising class. "
+             "The three digitising classes are empty and on top, ready to edit.", 10.5, "subtitle", colour=(70, 70, 70)),
+        text(0.45, 0.72, "Cyan: %d of %d channel candidates %s."
+             "\nThe other %d stay switched off; %.0f%% of all candidates sit on plateau under 2\u00b0, "
+             "where routing follows DEM noise.\nMagenta: %d closed depressions \u2265 1 km; only %.0f%% match a catalogued (Robbins) "
+             "crater (KB \u00a742.3). %s"
+             % (n_good, n_all, why, n_all - n_good, 100 * plateau, n_crat, 100 * prec, breached), 8.8, "notes", colour=(40, 40, 40)),
+        text(0.45, 0.40, CREDIT, 7.5, "credit", colour=(90, 90, 90))])
+    names = [good.name, cr.name, "Channel centrelines", "Crater rims", "Lava flow margins"]
+    if wide:
+        surrounds(p, lyt, mf, (0.50, 1.72), (10.25, 1.52))   # 9.95 sat against the legend box (KB §34)
+        legend_classes(p, lyt, mf, 4.3, 2.30, 5.4, 0.62, names, names=False, cols=3)
+    else:                                                     # a squarer window: legend beside the frame
+        x = 0.45 + fw + 0.35
+        surrounds(p, lyt, mf, (x, 2.55), (10.25, 2.45))
+        legend_classes(p, lyt, mf, x, 7.10, 10.55 - x, 2.4, names, names=False, cols=1)
+    out = os.path.join(OUTD, lname + ".png"); lyt.exportToPNG(out, resolution=150); print("   ", out)
+    return m
+
+
+
 def main():
     if "--aprx" not in sys.argv:
         os.makedirs(BKDIR, exist_ok=True)
@@ -68,37 +158,11 @@ def main():
     p = arcpy.mp.ArcGISProject(APRX)
     ius = p.listMaps("Ius Chasma Type Area")[0]
 
-    # ------------------------------------------------------------------ Ius digitising map
-    print("1. map:", DIG)
-    m = get_map(p, DIG)
-    m.spatialReference = ius.spatialReference
-    chan = os.path.join(GDB, "Landform_ChannelCandidates_auto")
-    n_good, n_all = count(chan, GOOD), count(chan)
-    n_crat = count(os.path.join(GDB, "Landform_CraterCandidates_auto"))
-    gyou = group(m, "Digitising classes (empty)")
-    l = add(m, os.path.join(GDB, "Landform_ChannelCenterlines"), "Channel centrelines", True, gyou)
-    line_style(l, (0, 92, 230), 2.5)
-    l = add(m, os.path.join(GDB, "Landform_LavaFlowMargins"), "Lava flow margins", True, gyou)
-    line_style(l, (230, 76, 0), 2.5)
-    l = add(m, os.path.join(GDB, "Landform_CraterRims"), "Crater rims", True, gyou)
-    outline(l, (255, 255, 0), 2.0)
-    gc = group(m, "Machine candidates \u2014 prompts, not results (KB \u00a725\u201326)")
-    good = add(m, chan, "Channels: steep and rock-floored (%d)" % n_good, True, gc)
-    good.definitionQuery = GOOD
-    line_style(good, (0, 255, 255), 1.6)
-    rest = add(m, chan, "Channels: other (%d, 64%% on < 2\u00b0 plateau)" % (n_all - n_good), False, gc)
-    rest.definitionQuery = "NOT (%s)" % GOOD
-    line_style(rest, (150, 150, 150), 0.5)
-    cr = add(m, os.path.join(GDB, "Landform_CraterCandidates_auto"),
-             "Craters: closed depressions \u2265 1 km (%d)" % n_crat, True, gc)
-    outline(cr, (255, 0, 197), 0.8)
-    gb = group(m, "Type-area rasters (100 m)")
-    add(m, os.path.join(TA, "ius_thermal_contrast.tif"), "Diurnal contrast index (valid inside this window)", False, gb)
-    add(m, os.path.join(TA, "ius_viking.tif"), "Viking MDIM 2.1 (visible)", False, gb)
-    add(m, os.path.join(TA, "ius_slope_deg.tif"), "Slope (degrees)", False, gb)
-    add(m, os.path.join(TA, "ius_hillshade.tif"), "Hillshade 225\u00b0/45\u00b0", True, gb)
-    order(m, [gyou.name, gc.name, gb.name])
-    print("   ", [l.longName for l in m.listLayers()])
+    # ------------------------------------------------------------------ digitising maps and layouts
+    print("1. digitising maps")
+    src06 = p.listLayouts("01_visible")[0].listElements("MAPFRAME_ELEMENT")[0]
+    digitising(p, "ius", ius.spatialReference, camera_from=src06)
+    digitising(p, "ath", ius.spatialReference)
 
     # ------------------------------------------------------------------ ±60° basins map
     print("2. map:", BAS)
@@ -128,29 +192,6 @@ def main():
     hs = add(mb, os.path.join(G.OUTDIR, "global60_hillshade.tif"), "Hillshade (\u00b160\u00b0, 200 m)")  # not the junction (KB §34)
     order(mb, [iau.name, bas.name, hs.name])
     mb.clipLayers(extent_polygon())
-
-    # ------------------------------------------------------------------ layout 06
-    print("3. layouts")
-    lyt = page(p, "06_ius_digitising")
-    src = p.listLayouts("01_visible")[0].listElements("MAPFRAME_ELEMENT")[0]
-    fw = 10.10; fh = fw / (8891.0 / 4150.0)             # the type-area stack's 2.14:1
-    mf = lyt.createMapFrame(poly_geom(0.45, 2.42, fw, fh), m, "frame")
-    mf.camera.X, mf.camera.Y, mf.camera.scale = src.camera.X, src.camera.Y, src.camera.scale
-    add_text(lyt, [
-        text(0.45, 7.85, "Ius Chasma \u2014 candidates to digitise", 21, "title", bold=True),
-        text(0.45, 7.50, "Machine candidates are prompts: accept one by copying it into the matching digitising class. "
-             "The three digitising classes are empty and on top, ready to edit.", 10.5, "subtitle", colour=(70, 70, 70)),
-        text(0.45, 0.72, "Cyan: %d of %d channel candidates are steep (\u2265 5\u00b0) and rock-floored (thermal index < \u22120.15): "
-             "start there.\nThe other %d stay switched off; 64%% of all candidates sit on plateau under 2\u00b0, "
-             "where routing follows DEM noise.\nMagenta: %d closed depressions \u2265 1 km. A breached crater is not a "
-             "closed depression and is missing (Oudemans, just outside, KB \u00a726)."
-             % (n_good, n_all, n_all - n_good, n_crat), 8.8, "notes", colour=(40, 40, 40)),
-        text(0.45, 0.40, CREDIT, 7.5, "credit", colour=(90, 90, 90))])
-    surrounds(p, lyt, mf, (0.50, 1.72), (10.25, 1.52))   # 9.95 sat against the legend box (KB §34)
-    legend_classes(p, lyt, mf, 4.3, 2.30, 5.4, 0.62,
-                   [good.name, cr.name, "Channel centrelines", "Crater rims", "Lava flow margins"],
-                   names=False, cols=3)
-    out = os.path.join(OUTD, "06_ius_digitising.png"); lyt.exportToPNG(out, resolution=150); print("   ", out)
 
     # ------------------------------------------------------------------ layout 07
     lyt = page(p, "07_global60_basins")

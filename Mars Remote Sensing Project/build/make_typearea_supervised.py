@@ -18,14 +18,17 @@ independent samples.
 Run with the ArcGIS interpreter.
 """
 import os, time, datetime
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 import numpy as np
 from osgeo import gdal
 from scipy import ndimage
 import arcpy
 gdal.UseExceptions()
 
-WS = r"Z:\TypeArea"
-GDB = r"Z:\Mars Project\Mars Project.gdb"
+WS = junction("TypeArea")
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
 SCRATCH = os.path.join(WS, "sup_scratch.gdb")
 P = lambda n: os.path.join(WS, n)
 NBLOCK_X, NBLOCK_Y = 10, 6      # checkerboard for the spatial split

@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 """Recover the geoprocessing lineage recorded in the file geodatabase item table."""
 import re, sys
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 
-path = r"Z:\Mars Project\Mars Project.gdb\a00000004.gdbtable"
+path = on_drive(r"Mars Project\Mars Project.gdb\a00000004.gdbtable")
 txt = open(path, "rb").read().decode("latin-1")
 
 procs = re.findall(

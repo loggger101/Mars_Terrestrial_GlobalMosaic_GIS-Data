@@ -71,7 +71,7 @@ PROGRESS = [   # (task, what is true now, percentage or None)                   
     ("CRS harmonisation", "Done: one 100 m / 200 m grid over ±60°", None),                    # §18 §28.1
     ("Visible + IR composite", "Done: type area; 7-band ±60° stack", None),                   # §18 §31.2
     ("Landform digitising", "Classes ready and empty; 512 training polygons drawn", None),              # §19.4 §29.2
-    ("Crater inventory", "1,685 at Ius ≥ 1 km; 5,144 basins ≥ 20 km at ±60°", None),  # §26 §28.11
+    ("Crater inventory", "Robbins catalogue in the project (385,049); 5,144 basins ≥ 20 km at ±60°", None),  # §41 §28.11
     ("Map layouts", "8 layouts, from none", None),                                                       # §38
     ("Report and presentations", "Interim being rebuilt", None),
 ]
@@ -83,7 +83,7 @@ LOG = [   # (date, what, outcome, §)
     ("18 Sep", "THEMIS Night IR acquired", "14.14 GB, pixel-aligned with day IR", "§15"),
     ("18 Sep", "Slope and hillshade rebuilt on a metric grid", "Slope in degrees; z-factor warning gone", "§20"),
     ("19 Sep", "±60° grids and diurnal contrast index", "15.2 bn px in 36.3 min", "§28"),
-    ("19 Sep", "Channel and crater candidates, Ius", "2,610 channels; 1,685 craters in 49 s", "§25–26"),
+    ("19 Sep", "Channel and crater candidates, Ius", "2,610 channels; 1,685 closed depressions in 49 s", "§25–26"),
     ("19 Sep", "Basins at ±60°", "5,144 ≥ 20 km in 48 s", "§28.11"),
     ("24–30 Sep", "Global composites in the Pro GUI (desktop)", "First successes: 2 h 52 m, 3 h 10 m", "§29"),
     ("29 Sep", "Hand-drawn training polygons; SVMs", "Four classes; two ±60° maps", "§29"),
@@ -125,15 +125,29 @@ FIGURES = [
          images=[("layout", "06_ius_digitising")],
          points=["Fill raised the canyon floor 2,077 m; 56% of the first channel network was artefact",
                  "188 channel candidates are steep and rock-floored: the place to start",
-                 "1,685 closed depressions ≥ 1 km, checked on two named craters just outside: "
-                 "Perrotin within 7.1%, Oudemans missed because it is breached"],
-         source="§25, §26"),
+                 "1,685 closed depressions ≥ 1 km: only 11% match a catalogued (Robbins) crater, "
+                 "so they are prompts, not a crater count"],
+         source="§25, §26, §42.3"),
+    dict(title="Athabasca Valles: the second type area",
+         images=[("layout", "09_athabasca_digitising")],
+         points=["Flood lava once mapped as a water channel; the USGS map calls it Late Amazonian volcanic (lAv)",
+                 "Same 100 m stack, terrain and candidates as Ius: 3,283 channels, 409 rock-floored",
+                 "Catalogued craters: 1,122 per million km² on lAv, against 1,760 and 2,183 on the older units",
+                 "Calibrated TES inertia: the diurnal-contrast index does not track it (r ≈ 0); Viking albedo does (−0.55)"],
+         source="§41, §42"),
     dict(title="Landforms at ±60°, scored on labels the model never saw",
          images=[("layout", "04_global60_landforms")],
          points=["SVM on 512 hand-drawn polygons, split by whole 15° blocks",
                  "73.5%, κ 0.58 held out (one class everywhere: 58.6%)",
                  "Normal Ground and cratered terrain are solid; lava tube is not (2% user's)"],
          source="§31.3, §32.2"),
+    dict(title="Does thermal infrared improve the classification?",
+         images=[("file", r"interim_img\thermal_ablation.png")],
+         points=["Slope and relief alone: 68.6%, κ 0.52 held out; all seven bands: 67.0%, κ 0.50",
+                 "The thermal bands add +1.3 points (95% interval +0.6 to +2.2): real, but small",
+                 "Without terrain, visible and thermal score below one class everywhere (58.6%)",
+                 "The labelled classes are landforms, so terrain decides them; the thermal claim needs material labels"],
+         source="§40"),
     dict(title="Checking the first two classifications",
          images=[("layout", "05_svm_checks")],
          points=["29 Sep map follows its 4096-px processing tiles, not the terrain",

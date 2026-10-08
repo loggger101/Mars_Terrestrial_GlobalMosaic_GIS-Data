@@ -14,6 +14,9 @@ It also sweeps the shape filters, because the type-area run returned a 140.9 km
 "crater" that is almost certainly part of the chasma.
 """
 import os, time
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 import numpy as np
 from osgeo import gdal
 import arcpy
@@ -21,10 +24,10 @@ from arcpy.sa import Fill
 from scipy import ndimage
 gdal.UseExceptions()
 
-WS = r"Z:\TypeArea"
+WS = junction("TypeArea")
 VAL = os.path.join(WS, "val")
-GDB = r"Z:\Mars Project\Mars Project.gdb"
-DEM_SRC = r"Z:\Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif"
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
+DEM_SRC = on_drive(r"Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif")
 TSRS = ("+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=180 +x_0=0 +y_0=0 +R=3396190 "
         "+units=m +no_defs")
 R = 3396190.0

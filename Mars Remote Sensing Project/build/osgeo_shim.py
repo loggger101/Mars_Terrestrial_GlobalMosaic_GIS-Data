@@ -5,14 +5,20 @@ The GeoTIFF keeps its projection in the GeoAsciiParams / GeoDoubleParams tags;
 the ArcGIS Pro interpreter has GDAL but the stock one does not, so shell out.
 """
 import json
+import os
 import subprocess
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive
 
 PY = r"C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe"
+SRC = {"Viking": on_drive("Mars_Viking_MDIM21_ClrMosaic_global_232m.tif"),
+       "THEMIS": on_drive("Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif"),
+       "DEM": on_drive("Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif")}
 CODE = (
     "import json;from osgeo import gdal,osr;gdal.UseExceptions();"
-    "p={'Viking':r'Z:\\Mars_Viking_MDIM21_ClrMosaic_global_232m.tif',"
-    "'THEMIS':r'Z:\\Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif',"
-    "'DEM':r'Z:\\Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif'};"
+    "p=%r;" % SRC +
     "o={};"
     "\nfor k,v in p.items():\n"
     "    d=gdal.Open(v);s=osr.SpatialReference(wkt=d.GetProjection());"

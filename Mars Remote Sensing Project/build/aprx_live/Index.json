@@ -3,7 +3,7 @@
 	"MajorVersion" : 1,
 	"MinorVersion" : 0,
 	"PatchVersion" : 0,
-	"NumberOfNodes" : 186,
+	"NumberOfNodes" : 215,
 	"Nodes" :
 	[
 		{
@@ -28,7 +28,7 @@
 			"NodeId" : 3,
 			"NodeType" : "Map",
 			"FileName" : "209df3307dce441da61ecdf9958f465d.json",
-			"ChildNodeIds" : "155,24,184,19"
+			"ChildNodeIds" : "183,39,213,34"
 		},
 		{
 			"NodeId" : 4,
@@ -70,1054 +70,1228 @@
 			"NodeId" : 10,
 			"NodeType" : "Layer",
 			"FileName" : "afe1b8f196d2490c92c85ce93a06b923.json",
-			"ChildNodeIds" : "185"
+			"ChildNodeIds" : "214"
 		},
 		{
 			"NodeId" : 11,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/1f4634347c9c4c6d9cdd3928ac33fcfe.json",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 12,
+			"NodeType" : "Map",
+			"FileName" : "Athabasca_Valles___digitising/Athabasca_Valles___digitising.json",
+			"ChildNodeIds" : "11,19,24,16"
+		},
+		{
+			"NodeId" : 13,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/Channel_centrelines.json",
+			"ChildNodeIds" : "154,11"
+		},
+		{
+			"NodeId" : 14,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/Channels__other__2874__97__on___2__plateau_.json",
+			"ChildNodeIds" : "187,11"
+		},
+		{
+			"NodeId" : 15,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/Channels__rock_floored__409_.json",
+			"ChildNodeIds" : "11,189"
+		},
+		{
+			"NodeId" : 16,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/chine_candidates___prompts__not_results__KB__25_26___42_.json",
+			"ChildNodeIds" : "173,15,11,14,17"
+		},
+		{
+			"NodeId" : 17,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/Closed_depressions___1_km__1709_.json",
+			"ChildNodeIds" : "186,11"
+		},
+		{
+			"NodeId" : 18,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/Crater_rims.json",
+			"ChildNodeIds" : "167,11"
+		},
+		{
+			"NodeId" : 19,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/Digitising_classes__empty_.json",
+			"ChildNodeIds" : "13,188,22,18,11"
+		},
+		{
+			"NodeId" : 20,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/Diurnal_contrast_index__valid_inside_this_window_.json",
+			"ChildNodeIds" : "158,11"
+		},
+		{
+			"NodeId" : 21,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/Hillshade_225__45_.json",
+			"ChildNodeIds" : "11,162"
+		},
+		{
+			"NodeId" : 22,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/Lava_flow_margins.json",
+			"ChildNodeIds" : "163,11"
+		},
+		{
+			"NodeId" : 23,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/Slope__degrees_.json",
+			"ChildNodeIds" : "192,11"
+		},
+		{
+			"NodeId" : 24,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/Type_area_rasters__100_m_.json",
+			"ChildNodeIds" : "168,23,20,25,21,11"
+		},
+		{
+			"NodeId" : 25,
+			"NodeType" : "Layer",
+			"FileName" : "Athabasca_Valles___digitising/Viking_MDIM_2_1__visible_.json",
+			"ChildNodeIds" : "185,11"
+		},
+		{
+			"NodeId" : 26,
 			"NodeType" : "Layer",
 			"FileName" : "c73f1e31a87f4f238d0285dc00a75b14.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 12,
+			"NodeId" : 27,
 			"NodeType" : "Layer",
 			"FileName" : "Check___29_Sep_SVM/9149f1548ac54c108532d7613bac1ee4.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 13,
+			"NodeId" : 28,
 			"NodeType" : "Map",
 			"FileName" : "Check___29_Sep_SVM/Check___29_Sep_SVM.json",
-			"ChildNodeIds" : "14,15,12,19"
+			"ChildNodeIds" : "29,30,27,34"
 		},
 		{
-			"NodeId" : 14,
+			"NodeId" : 29,
 			"NodeType" : "Layer",
 			"FileName" : "Check___29_Sep_SVM/Check_Tiles_4096px_60.json",
-			"ChildNodeIds" : "12"
+			"ChildNodeIds" : "27"
 		},
 		{
-			"NodeId" : 15,
+			"NodeId" : 30,
 			"NodeType" : "Layer",
 			"FileName" : "Check___29_Sep_SVM/Classified_202609292109007048151.json",
-			"ChildNodeIds" : "12"
+			"ChildNodeIds" : "27"
 		},
 		{
-			"NodeId" : 16,
+			"NodeId" : 31,
 			"NodeType" : "Layer",
 			"FileName" : "Check___30_Sep_SVM/b7a608efb1484715bb40fa24ee14e246.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 17,
+			"NodeId" : 32,
 			"NodeType" : "Map",
 			"FileName" : "Check___30_Sep_SVM/Check___30_Sep_SVM.json",
-			"ChildNodeIds" : "18,16,19"
+			"ChildNodeIds" : "33,31,34"
 		},
 		{
-			"NodeId" : 18,
+			"NodeId" : 33,
 			"NodeType" : "Layer",
 			"FileName" : "Check___30_Sep_SVM/Classified_202609300147338582853.json",
-			"ChildNodeIds" : "16"
+			"ChildNodeIds" : "31"
 		},
 		{
-			"NodeId" : 19,
+			"NodeId" : 34,
 			"NodeType" : "BinaryReference",
 			"FileName" : "ClipShape/225fc0564b43d4d1e29e07f575d49938.dat",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 20,
+			"NodeId" : 35,
 			"NodeType" : "BinaryReference",
 			"FileName" : "ClipShape/3d9ae2f3b28ce011516a83520fc97164.dat",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 21,
+			"NodeId" : 36,
 			"NodeType" : "BinaryReference",
 			"FileName" : "ClipShape/e94e0a1e817b9a38d37cf4ad6b83698d.dat",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 22,
+			"NodeId" : 37,
 			"NodeType" : "Map",
 			"FileName" : "e9687b949d8e4680b729e48bf4e1d2f1.json",
-			"ChildNodeIds" : "183,122,123,124,131,125,126,19"
+			"ChildNodeIds" : "212,138,139,140,146,141,142,34"
 		},
 		{
-			"NodeId" : 23,
+			"NodeId" : 38,
 			"NodeType" : "Map",
 			"FileName" : "f446e08c78cc4f8cbfd7c1f814c1911a.json",
-			"ChildNodeIds" : "165,5,4,7,8,0,11,9,6,1,10,2,185,19"
+			"ChildNodeIds" : "194,5,4,7,8,0,26,9,6,1,10,2,214,34"
 		},
 		{
-			"NodeId" : 24,
+			"NodeId" : 39,
 			"NodeType" : "Layer",
 			"FileName" : "f7bb8a631c2e4fbdac771ba4b2bc57db.json",
-			"ChildNodeIds" : "184"
+			"ChildNodeIds" : "213"
 		},
 		{
-			"NodeId" : 25,
+			"NodeId" : 40,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/cd1302373842473cbe1c1446ccfcb4b8.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 26,
+			"NodeId" : 41,
 			"NodeType" : "Layer",
-			"FileName" : "Ius_Chasma___digitising/Channel_centrelines2.json",
-			"ChildNodeIds" : "163,25"
+			"FileName" : "Ius_Chasma___digitising/Channel_centrelines.json",
+			"ChildNodeIds" : "170,40"
 		},
 		{
-			"NodeId" : 27,
+			"NodeId" : 42,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/Channels__other__2422__64__on___2__plateau_.json",
-			"ChildNodeIds" : "137,25"
+			"ChildNodeIds" : "40,151"
 		},
 		{
-			"NodeId" : 28,
+			"NodeId" : 43,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/Channels__steep_and_rock_floored__188_.json",
-			"ChildNodeIds" : "159,25"
+			"ChildNodeIds" : "40,159"
 		},
 		{
-			"NodeId" : 29,
+			"NodeId" : 44,
 			"NodeType" : "Layer",
-			"FileName" : "Ius_Chasma___digitising/Crater_rims2.json",
-			"ChildNodeIds" : "25,158"
+			"FileName" : "Ius_Chasma___digitising/chine_candidates___prompts__not_results__KB__25_26___42_.json",
+			"ChildNodeIds" : "193,43,42,45,40"
 		},
 		{
-			"NodeId" : 30,
+			"NodeId" : 45,
 			"NodeType" : "Layer",
-			"FileName" : "Ius_Chasma___digitising/Craters__closed_depressions___1_km__1685_.json",
-			"ChildNodeIds" : "129,25"
+			"FileName" : "Ius_Chasma___digitising/Closed_depressions___1_km__1685_.json",
+			"ChildNodeIds" : "171,40"
 		},
 		{
-			"NodeId" : 31,
+			"NodeId" : 46,
 			"NodeType" : "Layer",
-			"FileName" : "Ius_Chasma___digitising/Digitising_classes__empty___new.json",
-			"ChildNodeIds" : "35,164,26,29,25"
+			"FileName" : "Ius_Chasma___digitising/Crater_rims.json",
+			"ChildNodeIds" : "184,40"
 		},
 		{
-			"NodeId" : 32,
+			"NodeId" : 47,
+			"NodeType" : "Layer",
+			"FileName" : "Ius_Chasma___digitising/Digitising_classes__empty_.json",
+			"ChildNodeIds" : "198,41,51,46,40"
+		},
+		{
+			"NodeId" : 48,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/Diurnal_contrast_index__valid_inside_this_window_.json",
-			"ChildNodeIds" : "169,25"
+			"ChildNodeIds" : "40,157"
 		},
 		{
-			"NodeId" : 33,
+			"NodeId" : 49,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/Hillshade_225__45_.json",
-			"ChildNodeIds" : "150,25"
+			"ChildNodeIds" : "40,150"
 		},
 		{
-			"NodeId" : 34,
+			"NodeId" : 50,
 			"NodeType" : "Map",
 			"FileName" : "Ius_Chasma___digitising/Ius_Chasma___digitising.json",
-			"ChildNodeIds" : "25,36,38,20,31"
+			"ChildNodeIds" : "40,53,35,44,47"
 		},
 		{
-			"NodeId" : 35,
+			"NodeId" : 51,
 			"NodeType" : "Layer",
-			"FileName" : "Ius_Chasma___digitising/Lava_flow_margins2.json",
-			"ChildNodeIds" : "134,25"
+			"FileName" : "Ius_Chasma___digitising/Lava_flow_margins.json",
+			"ChildNodeIds" : "147,40"
 		},
 		{
-			"NodeId" : 36,
-			"NodeType" : "Layer",
-			"FileName" : "Ius_Chasma___digitising/Machine_candidates___prompts__not_results__KB__25_26_.json",
-			"ChildNodeIds" : "25,160,28,27,30"
-		},
-		{
-			"NodeId" : 37,
+			"NodeId" : 52,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/Slope__degrees_.json",
-			"ChildNodeIds" : "157,25"
+			"ChildNodeIds" : "40,178"
 		},
 		{
-			"NodeId" : 38,
+			"NodeId" : 53,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/Type_area_rasters__100_m_.json",
-			"ChildNodeIds" : "152,37,32,39,25,33"
+			"ChildNodeIds" : "52,48,54,40,49,156"
 		},
 		{
-			"NodeId" : 39,
+			"NodeId" : 54,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___digitising/Viking_MDIM_2_1__visible_.json",
-			"ChildNodeIds" : "156,25"
+			"ChildNodeIds" : "40,176"
 		},
 		{
-			"NodeId" : 40,
+			"NodeId" : 55,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___night_IR/21f99cec613b496d856f5da27df6ecfc.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 41,
+			"NodeId" : 56,
 			"NodeType" : "Map",
 			"FileName" : "Ius_Chasma___night_IR/Ius_Chasma___night_IR.json",
-			"ChildNodeIds" : "42,40,20"
+			"ChildNodeIds" : "57,55,35"
 		},
 		{
-			"NodeId" : 42,
+			"NodeId" : 57,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___night_IR/ius_night_tif.json",
-			"ChildNodeIds" : "40"
+			"ChildNodeIds" : "55"
 		},
 		{
-			"NodeId" : 43,
+			"NodeId" : 58,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___visible/ee4b59c2ba43452db8fd54584b758ea1.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 44,
+			"NodeId" : 59,
 			"NodeType" : "Map",
 			"FileName" : "Ius_Chasma___visible/Ius_Chasma___visible.json",
-			"ChildNodeIds" : "45,43,20"
+			"ChildNodeIds" : "60,58,35"
 		},
 		{
-			"NodeId" : 45,
+			"NodeId" : 60,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma___visible/ius_viking_tif.json",
-			"ChildNodeIds" : "43"
+			"ChildNodeIds" : "58"
 		},
 		{
-			"NodeId" : 46,
+			"NodeId" : 61,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma_Type_Area/ba53f6af22274bcd93c30be2176e42fe.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 47,
+			"NodeId" : 62,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma_Type_Area/dab735de98644467a388b756e13f016a.json",
-			"ChildNodeIds" : "46"
+			"ChildNodeIds" : "61"
 		},
 		{
-			"NodeId" : 48,
+			"NodeId" : 63,
 			"NodeType" : "Map",
 			"FileName" : "Ius_Chasma_Type_Area/Ius_Chasma_Type_Area.json",
-			"ChildNodeIds" : "52,51,49,53,46,50,47"
+			"ChildNodeIds" : "67,66,64,68,61,65,62"
 		},
 		{
-			"NodeId" : 49,
+			"NodeId" : 64,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma_Type_Area/ius_day_tif.json",
-			"ChildNodeIds" : "46"
+			"ChildNodeIds" : "61"
 		},
 		{
-			"NodeId" : 50,
+			"NodeId" : 65,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma_Type_Area/ius_isocluster_10_tif.json",
-			"ChildNodeIds" : "46"
+			"ChildNodeIds" : "61"
 		},
 		{
-			"NodeId" : 51,
+			"NodeId" : 66,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma_Type_Area/ius_night_tif.json",
-			"ChildNodeIds" : "46"
+			"ChildNodeIds" : "61"
 		},
 		{
-			"NodeId" : 52,
+			"NodeId" : 67,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma_Type_Area/ius_slope_deg_tif.json",
-			"ChildNodeIds" : "46"
+			"ChildNodeIds" : "61"
 		},
 		{
-			"NodeId" : 53,
+			"NodeId" : 68,
 			"NodeType" : "Layer",
 			"FileName" : "Ius_Chasma_Type_Area/ius_viking_tif.json",
-			"ChildNodeIds" : "46"
+			"ChildNodeIds" : "61"
 		},
 		{
-			"NodeId" : 54,
+			"NodeId" : 69,
 			"NodeType" : "Layout",
 			"FileName" : "Layout/Layout.json",
-			"ChildNodeIds" : "44"
+			"ChildNodeIds" : "59"
 		},
 		{
-			"NodeId" : 55,
+			"NodeId" : 70,
 			"NodeType" : "Layout",
 			"FileName" : "Layout/Layout2.json",
-			"ChildNodeIds" : "41"
+			"ChildNodeIds" : "56"
 		},
 		{
-			"NodeId" : 56,
+			"NodeId" : 71,
 			"NodeType" : "Layout",
 			"FileName" : "Layout/Layout3.json",
-			"ChildNodeIds" : "48,49,50,51,52,53,47"
+			"ChildNodeIds" : "63,64,65,66,67,68,62"
 		},
 		{
-			"NodeId" : 57,
+			"NodeId" : 72,
 			"NodeType" : "Layout",
 			"FileName" : "Layout/Layout4.json",
-			"ChildNodeIds" : "17,13,15"
+			"ChildNodeIds" : "32,28,30"
 		},
 		{
-			"NodeId" : 58,
+			"NodeId" : 73,
 			"NodeType" : "Layout",
 			"FileName" : "Layout/Layout5.json",
-			"ChildNodeIds" : "102,100,91,94"
+			"ChildNodeIds" : "118,116,107,110"
 		},
 		{
-			"NodeId" : 59,
+			"NodeId" : 74,
 			"NodeType" : "Layout",
 			"FileName" : "Layout/Layout6.json",
-			"ChildNodeIds" : "34,28,30,26,29,35"
+			"ChildNodeIds" : "50,43,41,45,46,51"
 		},
 		{
-			"NodeId" : 60,
+			"NodeId" : 75,
 			"NodeType" : "Layout",
 			"FileName" : "Layout/Layout7.json",
-			"ChildNodeIds" : "86,85,87"
+			"ChildNodeIds" : "102,101,103"
 		},
 		{
-			"NodeId" : 61,
+			"NodeId" : 76,
 			"NodeType" : "Layout",
 			"FileName" : "Layout/Layout8.json",
-			"ChildNodeIds" : "179,175,172,182"
+			"ChildNodeIds" : "208,204,201,211"
 		},
 		{
-			"NodeId" : 62,
+			"NodeId" : 77,
+			"NodeType" : "Layout",
+			"FileName" : "Layout/Layout9.json",
+			"ChildNodeIds" : "13,12,18,15,17,22"
+		},
+		{
+			"NodeId" : 78,
 			"NodeType" : "Layer",
 			"FileName" : "Map2/37866239a3bb49409c0595a5cf98aea2.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 63,
+			"NodeId" : 79,
 			"NodeType" : "Layer",
 			"FileName" : "Map2/5b4637def8884c4592496dfcda721f5b.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 64,
+			"NodeId" : 80,
 			"NodeType" : "Layer",
 			"FileName" : "Map2/Global_CTX_Mosaic_of_Mars__V01_.json",
-			"ChildNodeIds" : "62"
+			"ChildNodeIds" : "78"
 		},
 		{
-			"NodeId" : 65,
+			"NodeId" : 81,
 			"NodeType" : "Map",
 			"FileName" : "Map2/Map22.json",
-			"ChildNodeIds" : "63,67,19"
+			"ChildNodeIds" : "79,83,34"
 		},
 		{
-			"NodeId" : 66,
+			"NodeId" : 82,
 			"NodeType" : "Map",
 			"FileName" : "Map2/Map23.json",
-			"ChildNodeIds" : "64,62,19"
+			"ChildNodeIds" : "80,78,34"
 		},
 		{
-			"NodeId" : 67,
+			"NodeId" : 83,
 			"NodeType" : "Layer",
 			"FileName" : "Map2/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2_tif.json",
-			"ChildNodeIds" : "63"
+			"ChildNodeIds" : "79"
 		},
 		{
-			"NodeId" : 68,
+			"NodeId" : 84,
 			"NodeType" : "Layer",
 			"FileName" : "Map3/8619327ad68f402fb3e8c9045fe0ec63.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 69,
+			"NodeId" : 85,
 			"NodeType" : "Layer",
 			"FileName" : "Map3/Gradient_Mars_M1.json",
-			"ChildNodeIds" : "128,68"
+			"ChildNodeIds" : "144,84"
 		},
 		{
-			"NodeId" : 70,
+			"NodeId" : 86,
 			"NodeType" : "Layer",
 			"FileName" : "Map3/Gradient_Mars_V1.json",
-			"ChildNodeIds" : "146,68"
+			"ChildNodeIds" : "174,84"
 		},
 		{
-			"NodeId" : 71,
+			"NodeId" : 87,
 			"NodeType" : "Layer",
 			"FileName" : "Map3/HRSC_MOLA.json",
-			"ChildNodeIds" : "151,78,74,68"
+			"ChildNodeIds" : "180,94,90,84"
 		},
 		{
-			"NodeId" : 72,
+			"NodeId" : 88,
 			"NodeType" : "Layer",
 			"FileName" : "Map3/IR.json",
-			"ChildNodeIds" : "69,154,68,75,76"
+			"ChildNodeIds" : "85,182,84,91,92"
 		},
 		{
-			"NodeId" : 73,
+			"NodeId" : 89,
 			"NodeType" : "Map",
 			"FileName" : "Map3/Map32.json",
-			"ChildNodeIds" : "79,68,71,72,21"
+			"ChildNodeIds" : "95,84,87,88,36"
 		},
 		{
-			"NodeId" : 74,
+			"NodeId" : 90,
 			"NodeType" : "Layer",
 			"FileName" : "Map3/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2_tif.json",
-			"ChildNodeIds" : "147,68"
+			"ChildNodeIds" : "175,84"
 		},
 		{
-			"NodeId" : 75,
+			"NodeId" : 91,
 			"NodeType" : "Layer",
 			"FileName" : "Map3/Mars_MO_THEMIS_IR_Day_mosaic_global_100m_v12_tif.json",
-			"ChildNodeIds" : "135,68"
+			"ChildNodeIds" : "152,84"
 		},
 		{
-			"NodeId" : 76,
+			"NodeId" : 92,
 			"NodeType" : "Layer",
 			"FileName" : "Map3/Mars_MO_THEMIS_IR_Night_mosaic_60N60S_100m_v14_tif2.json",
-			"ChildNodeIds" : "68,138"
+			"ChildNodeIds" : "84,155"
 		},
 		{
-			"NodeId" : 77,
+			"NodeId" : 93,
 			"NodeType" : "Layer",
 			"FileName" : "Map3/Mars_Viking_MDIM21_ClrMosaic_global_232m_tif.json",
-			"ChildNodeIds" : "167,68"
+			"ChildNodeIds" : "196,84"
 		},
 		{
-			"NodeId" : 78,
+			"NodeId" : 94,
 			"NodeType" : "Layer",
 			"FileName" : "Map3/Slope_Mars_H1.json",
-			"ChildNodeIds" : "136,68"
+			"ChildNodeIds" : "153,84"
 		},
 		{
-			"NodeId" : 79,
+			"NodeId" : 95,
 			"NodeType" : "Layer",
 			"FileName" : "Map3/Viking.json",
-			"ChildNodeIds" : "70,149,77,68"
+			"ChildNodeIds" : "86,179,93,84"
 		},
 		{
-			"NodeId" : 80,
+			"NodeId" : 96,
 			"NodeType" : "Layer",
 			"FileName" : "Map4/73df2a004ceb4cde8dac5492b47df6f9.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 81,
+			"NodeId" : 97,
 			"NodeType" : "Layer",
 			"FileName" : "Map4/irise_soc_006_orthoMosaic_25cm_Eqc_latTs0_lon0_first_tif.json",
-			"ChildNodeIds" : "80"
+			"ChildNodeIds" : "96"
 		},
 		{
-			"NodeId" : 82,
+			"NodeId" : 98,
 			"NodeType" : "Map",
 			"FileName" : "Map4/Map4.json",
-			"ChildNodeIds" : "80,81,144"
+			"ChildNodeIds" : "96,97,169"
 		},
 		{
-			"NodeId" : 83,
+			"NodeId" : 99,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60____basins/4916861751a948628cfa75526f0513d5.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 84,
+			"NodeId" : 100,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60____basins/global60_hillshade_tif.json",
-			"ChildNodeIds" : "83"
+			"ChildNodeIds" : "99"
 		},
 		{
-			"NodeId" : 85,
+			"NodeId" : 101,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60____basins/Landform_BasinCandidates_auto_60.json",
-			"ChildNodeIds" : "83"
+			"ChildNodeIds" : "99"
 		},
 		{
-			"NodeId" : 86,
+			"NodeId" : 102,
 			"NodeType" : "Map",
 			"FileName" : "Mars__60____basins/Mars__60____basins.json",
-			"ChildNodeIds" : "83,87,19,85,84"
+			"ChildNodeIds" : "99,103,34,101,100"
 		},
 		{
-			"NodeId" : 87,
+			"NodeId" : 103,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60____basins/MARS_nomenclature_craters_gt100km_March2019.json",
-			"ChildNodeIds" : "83"
+			"ChildNodeIds" : "99"
 		},
 		{
-			"NodeId" : 88,
+			"NodeId" : 104,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/29_Sep_SVM___tile_artefact2.json",
-			"ChildNodeIds" : "90,145"
+			"ChildNodeIds" : "106,172"
 		},
 		{
-			"NodeId" : 89,
+			"NodeId" : 105,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/30_Sep_SVM___mostly_elevation2.json",
-			"ChildNodeIds" : "140,90"
+			"ChildNodeIds" : "161,106"
 		},
 		{
-			"NodeId" : 90,
+			"NodeId" : 106,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/30f0f05906e046fd949b2ccda49ab983.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 91,
+			"NodeId" : 107,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/Analysis_Extent_60.json",
-			"ChildNodeIds" : "90"
+			"ChildNodeIds" : "106"
 		},
 		{
-			"NodeId" : 92,
+			"NodeId" : 108,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/Basin_candidates___20_km__auto_.json",
-			"ChildNodeIds" : "90,132"
+			"ChildNodeIds" : "106,148"
 		},
 		{
-			"NodeId" : 93,
+			"NodeId" : 109,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/Elevation__HRSC_MOLA_.json",
-			"ChildNodeIds" : "90,143"
+			"ChildNodeIds" : "106,166"
 		},
 		{
-			"NodeId" : 94,
+			"NodeId" : 110,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/global60_landforms_svm_400m_mode5_tif.json",
-			"ChildNodeIds" : "90"
+			"ChildNodeIds" : "106"
 		},
 		{
-			"NodeId" : 95,
+			"NodeId" : 111,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/global60_landforms_svm_400m_tif.json",
-			"ChildNodeIds" : "90"
+			"ChildNodeIds" : "106"
 		},
 		{
-			"NodeId" : 96,
+			"NodeId" : 112,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/Hillshade.json",
-			"ChildNodeIds" : "90,168"
+			"ChildNodeIds" : "106,197"
 		},
 		{
-			"NodeId" : 97,
+			"NodeId" : 113,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/IAU_craters___100_km.json",
-			"ChildNodeIds" : "90,161"
+			"ChildNodeIds" : "106,190"
 		},
 		{
-			"NodeId" : 98,
+			"NodeId" : 114,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/IAU_craters___100_km2.json",
-			"ChildNodeIds" : "90,153"
+			"ChildNodeIds" : "106,181"
 		},
 		{
-			"NodeId" : 99,
+			"NodeId" : 115,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/Inputs___60___200_m_.json",
-			"ChildNodeIds" : "105,93,96,90,106,103,162"
+			"ChildNodeIds" : "121,109,112,106,122,119,191"
 		},
 		{
-			"NodeId" : 100,
+			"NodeId" : 116,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/Landform_TrainingSamples_terrain_60_test.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 101,
+			"NodeId" : 117,
 			"NodeType" : "Layer",
 			"FileName" : "Mars__60__Analysis/Landform_TrainingSamples_terrain_60_train.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 102,
+			"NodeId" : 118,
 			"NodeType" : "Map",
 			"FileName" : "Mars__60__Analysis/Mars__60__Analysis.json",
-			"ChildNodeIds" : "100,104,19,99,101,91,90,95,94,107"
-		},
-		{
-			"NodeId" : 103,
-			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/ontrast_index___compare_within_one_area_only__KB__28_10_.json",
-			"ChildNodeIds" : "90,142"
-		},
-		{
-			"NodeId" : 104,
-			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Reference.json",
-			"ChildNodeIds" : "97,92,98,90,148"
-		},
-		{
-			"NodeId" : 105,
-			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Slope__degrees_.json",
-			"ChildNodeIds" : "90,127"
-		},
-		{
-			"NodeId" : 106,
-			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Stack__Viking_RGB__bands_1_3_of_7_.json",
-			"ChildNodeIds" : "90,141"
-		},
-		{
-			"NodeId" : 107,
-			"NodeType" : "Layer",
-			"FileName" : "Mars__60__Analysis/Superseded__the_29_30_Sep_GUI_SVMs__KB__30___new.json",
-			"ChildNodeIds" : "133,90,88,89"
-		},
-		{
-			"NodeId" : 108,
-			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/89710f92705e47768327a0dbe00c2baa.json",
-			"ChildNodeIds" : "183"
-		},
-		{
-			"NodeId" : 109,
-			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/a1fe0a781648473a9eb136249ce295b5.json",
-			"ChildNodeIds" : "183"
-		},
-		{
-			"NodeId" : 110,
-			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Classified_202609300147338582853.json",
-			"ChildNodeIds" : "183"
-		},
-		{
-			"NodeId" : 111,
-			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/CompositeBand.json",
-			"ChildNodeIds" : "183"
-		},
-		{
-			"NodeId" : 112,
-			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/fd8b88f468de40e08fc54f3a45b94fa6.json",
-			"ChildNodeIds" : "183"
-		},
-		{
-			"NodeId" : 113,
-			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_aspect_tif.json",
-			"ChildNodeIds" : "183"
-		},
-		{
-			"NodeId" : 114,
-			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_dem_tif.json",
-			"ChildNodeIds" : "183"
-		},
-		{
-			"NodeId" : 115,
-			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_hillshade_tif.json",
-			"ChildNodeIds" : "183"
-		},
-		{
-			"NodeId" : 116,
-			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_slope_deg_tif.json",
-			"ChildNodeIds" : "183"
-		},
-		{
-			"NodeId" : 117,
-			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2_tif.json",
-			"ChildNodeIds" : "183"
-		},
-		{
-			"NodeId" : 118,
-			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_MO_THEMIS_CompositeBand.json",
-			"ChildNodeIds" : "183"
+			"ChildNodeIds" : "116,120,34,115,117,107,106,111,110,123"
 		},
 		{
 			"NodeId" : 119,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_MO_THEMIS_IR_Day_mosaic_global_100m_v12_tif.json",
-			"ChildNodeIds" : "183"
+			"FileName" : "Mars__60__Analysis/ontrast_index___compare_within_one_area_only__KB__28_10_.json",
+			"ChildNodeIds" : "106,165"
 		},
 		{
 			"NodeId" : 120,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_MO_THEMIS_IR_Night_mosaic_60N60S_100m_v14_tif2.json",
-			"ChildNodeIds" : "130,183"
+			"FileName" : "Mars__60__Analysis/Reference.json",
+			"ChildNodeIds" : "113,108,114,106,177"
 		},
 		{
 			"NodeId" : 121,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_Viking_MDIM21_ClrMosaic_global_232m_tif.json",
-			"ChildNodeIds" : "183"
+			"FileName" : "Mars__60__Analysis/Slope__degrees_.json",
+			"ChildNodeIds" : "106,143"
 		},
 		{
 			"NodeId" : 122,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer.json",
-			"ChildNodeIds" : "183,109,117,151"
+			"FileName" : "Mars__60__Analysis/Stack__Viking_RGB__bands_1_3_of_7_.json",
+			"ChildNodeIds" : "106,164"
 		},
 		{
 			"NodeId" : 123,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer2.json",
-			"ChildNodeIds" : "183,119,108,154,120,118"
+			"FileName" : "Mars__60__Analysis/Superseded__the_29_30_Sep_GUI_SVMs__KB__30___new.json",
+			"ChildNodeIds" : "149,106,104,105"
 		},
 		{
 			"NodeId" : 124,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer3.json",
-			"ChildNodeIds" : "121,149,183,112"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/89710f92705e47768327a0dbe00c2baa.json",
+			"ChildNodeIds" : "212"
 		},
 		{
 			"NodeId" : 125,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer4.json",
-			"ChildNodeIds" : "139,110,183,111"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/a1fe0a781648473a9eb136249ce295b5.json",
+			"ChildNodeIds" : "212"
 		},
 		{
 			"NodeId" : 126,
 			"NodeType" : "Layer",
-			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer5.json",
-			"ChildNodeIds" : "166,183,113,114,115,116"
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Classified_202609300147338582853.json",
+			"ChildNodeIds" : "212"
 		},
 		{
 			"NodeId" : 127,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/CompositeBand.json",
+			"ChildNodeIds" : "212"
+		},
+		{
+			"NodeId" : 128,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/fd8b88f468de40e08fc54f3a45b94fa6.json",
+			"ChildNodeIds" : "212"
+		},
+		{
+			"NodeId" : 129,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_aspect_tif.json",
+			"ChildNodeIds" : "212"
+		},
+		{
+			"NodeId" : 130,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_dem_tif.json",
+			"ChildNodeIds" : "212"
+		},
+		{
+			"NodeId" : 131,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_hillshade_tif.json",
+			"ChildNodeIds" : "212"
+		},
+		{
+			"NodeId" : 132,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/global60_slope_deg_tif.json",
+			"ChildNodeIds" : "212"
+		},
+		{
+			"NodeId" : 133,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2_tif.json",
+			"ChildNodeIds" : "212"
+		},
+		{
+			"NodeId" : 134,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_MO_THEMIS_CompositeBand.json",
+			"ChildNodeIds" : "212"
+		},
+		{
+			"NodeId" : 135,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_MO_THEMIS_IR_Day_mosaic_global_100m_v12_tif.json",
+			"ChildNodeIds" : "212"
+		},
+		{
+			"NodeId" : 136,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_MO_THEMIS_IR_Night_mosaic_60N60S_100m_v14_tif2.json",
+			"ChildNodeIds" : "145,212"
+		},
+		{
+			"NodeId" : 137,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/Mars_Viking_MDIM21_ClrMosaic_global_232m_tif.json",
+			"ChildNodeIds" : "212"
+		},
+		{
+			"NodeId" : 138,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer.json",
+			"ChildNodeIds" : "212,125,133,180"
+		},
+		{
+			"NodeId" : 139,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer2.json",
+			"ChildNodeIds" : "212,135,124,182,136,134"
+		},
+		{
+			"NodeId" : 140,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer3.json",
+			"ChildNodeIds" : "137,179,212,128"
+		},
+		{
+			"NodeId" : 141,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer4.json",
+			"ChildNodeIds" : "160,126,212,127"
+		},
+		{
+			"NodeId" : 142,
+			"NodeType" : "Layer",
+			"FileName" : "Mars_High_Resolution_Mosaic_Viewer/New_Group_Layer5.json",
+			"ChildNodeIds" : "195,212,129,130,131,132"
+		},
+		{
+			"NodeId" : 143,
 			"NodeType" : "BinaryReference",
 			"FileName" : "Metadata/05f417dfc8e8afd37d420fdaa2489c79.xml",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 128,
+			"NodeId" : 144,
 			"NodeType" : "BinaryReference",
 			"FileName" : "Metadata/06a8311a35a3d1908f644c587f0af831.xml",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 129,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/0707fd3f82c82e1368e6316d45262a1b.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 130,
+			"NodeId" : 145,
 			"NodeType" : "BinaryReference",
 			"FileName" : "Metadata/0a6abdf4ed1a0ce264f27d3a62260b28.xml",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 131,
+			"NodeId" : 146,
 			"NodeType" : "BinaryReference",
 			"FileName" : "Metadata/0ace2656e33559c91991a57dedff18a1.xml",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 132,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/176ef7764db07c75ae4e55c915cc7532.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 133,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/1eaa17778d53363c40949584536aa5af.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 134,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/2eeaec2a26cbe590a6bba07463a3e868.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 135,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/374da25802a8dc4a118dbea7511d8f42.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 136,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/3c3f72522723bd02e37f3b3f67618153.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 137,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/424776944b57fde8c3c31b39ed2f05c2.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 138,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/456c54df7eb199446f20ad466bb77dc3.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 139,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/5d324fae8fc9994892fe2eded187e1ca.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 140,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/63f3bc45473ae6988ca575814b9d95f9.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 141,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/6a761a2be88c383222958f18ad912914.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 142,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/6b46e6e03abcf2c36308db26e54ac97f.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 143,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/6bde2299c5f75157ee4948538b6236a9.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 144,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/6fcfe0de1876a52b50950ad2bdbaa5de.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 145,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/756c1f723f6f74c0e3e049ee1e6ab636.xml",
-			"ChildNodeIds" : ""
-		},
-		{
-			"NodeId" : 146,
-			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/75c358ad973cc4f1f8ddfe296b66d837.xml",
-			"ChildNodeIds" : ""
-		},
-		{
 			"NodeId" : 147,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/75d68a27d36e445970e1d75643239059.xml",
+			"FileName" : "Metadata/0f7543cf62405a59c3297814a4a289f4.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 148,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/7fb399b14146fb7bb60edb1012a90cef.xml",
+			"FileName" : "Metadata/176ef7764db07c75ae4e55c915cc7532.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 149,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/858cbf9d8a9c420cf3161d92a843437d.xml",
+			"FileName" : "Metadata/1eaa17778d53363c40949584536aa5af.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 150,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/88275404fadd5ce12acbc029a21daa1f.xml",
+			"FileName" : "Metadata/261c6cbe3fb55e222a1a37e34534e844.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 151,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/8e4a36fbf64b7e4b07776ab7954af84e.xml",
+			"FileName" : "Metadata/3096844ebb5754f5f336a13de74979a4.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 152,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/8ec1cb4ec2461c885c611338267d7d90.xml",
+			"FileName" : "Metadata/374da25802a8dc4a118dbea7511d8f42.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 153,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/919c469accdfdd5c7db7773e0261db0d.xml",
+			"FileName" : "Metadata/3c3f72522723bd02e37f3b3f67618153.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 154,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/94c5e6bd439ff2ba1c020db3caf931d3.xml",
+			"FileName" : "Metadata/4243937920f061686b1f7d021fcca239.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 155,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/9fe266edc543174d8cbd0e2e138ec14f.xml",
+			"FileName" : "Metadata/456c54df7eb199446f20ad466bb77dc3.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 156,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/a5a593bedff2900dc68539878ae2343b.xml",
+			"FileName" : "Metadata/464c7acb2f8d259354e9e184a528ebaf.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 157,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/b9d3d365db27285f1acc1d5bc0649233.xml",
+			"FileName" : "Metadata/4bc66a74874dcc534bb14b5b8df8346c.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 158,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/c21941ebc164b24c603f315d01bfa1b6.xml",
+			"FileName" : "Metadata/56f3e43c9cb4d61c3a0435668b04dd32.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 159,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/c9deaf95f7cead437407d4ec5294d358.xml",
+			"FileName" : "Metadata/599b6d7891758f8688029c59ea418463.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 160,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/cc4e88604052eda1219c3058f3e2b71a.xml",
+			"FileName" : "Metadata/5d324fae8fc9994892fe2eded187e1ca.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 161,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/cfba4fd22c2340e1d94e2a991deac6cf.xml",
+			"FileName" : "Metadata/63f3bc45473ae6988ca575814b9d95f9.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 162,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/d233734dbbcda0aeaa98a149fa09d78c.xml",
+			"FileName" : "Metadata/6585cd3f162340a46e5e35bf8f249858.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 163,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/d3f369b2d6551f17fba6ece405ae3f69.xml",
+			"FileName" : "Metadata/664928a93d17a1ea157bcd69d29da515.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 164,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/d715e2544baccb94c1b9f73080c1f534.xml",
+			"FileName" : "Metadata/6a761a2be88c383222958f18ad912914.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 165,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/e6cbe3cbe9ca4fd74a42842ef8afd95e.xml",
+			"FileName" : "Metadata/6b46e6e03abcf2c36308db26e54ac97f.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 166,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/e72a9ce196dc131d10e95f376a9788ff.xml",
+			"FileName" : "Metadata/6bde2299c5f75157ee4948538b6236a9.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 167,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/eb24da0c8957fa4ce7c366b58fbdb469.xml",
+			"FileName" : "Metadata/6cfe2a43828e8b3deb234c90945572c8.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 168,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/eb9f4af2f2e5b8fa2f2c57aee63918b4.xml",
+			"FileName" : "Metadata/6da8dca23d0a417b2855b1b5b7774896.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 169,
 			"NodeType" : "BinaryReference",
-			"FileName" : "Metadata/fbbd814cdbb545f7390ba76fd37ca6d4.xml",
+			"FileName" : "Metadata/6fcfe0de1876a52b50950ad2bdbaa5de.xml",
 			"ChildNodeIds" : ""
 		},
 		{
 			"NodeId" : 170,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/6fe782cd00ce41ee67e137ed41c4c88a.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 171,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/717667ebaa0f65e0911f9565063fdfd8.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 172,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/756c1f723f6f74c0e3e049ee1e6ab636.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 173,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/756c4e5f08ca35483fd1e3674e55637a.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 174,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/75c358ad973cc4f1f8ddfe296b66d837.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 175,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/75d68a27d36e445970e1d75643239059.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 176,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/76685b32cb62f0ec0b2b1e7278bc6a3a.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 177,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/7fb399b14146fb7bb60edb1012a90cef.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 178,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/82be8f325f9fa42ca8aa73f1e3d9f4d7.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 179,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/858cbf9d8a9c420cf3161d92a843437d.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 180,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/8e4a36fbf64b7e4b07776ab7954af84e.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 181,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/919c469accdfdd5c7db7773e0261db0d.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 182,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/94c5e6bd439ff2ba1c020db3caf931d3.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 183,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/9fe266edc543174d8cbd0e2e138ec14f.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 184,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/a095d5de86f4e258edd35c686c3d699e.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 185,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/a399b057ac05aebc5ab8f88b1734f955.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 186,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/ae8c3672b10b15120b910bdbb0784764.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 187,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/b4da62070cb259cb6631eb1bcbb849e0.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 188,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/bf048f224728594277fb23f8ac6f66aa.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 189,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/c097432689d161d4450e7dbc2321068a.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 190,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/cfba4fd22c2340e1d94e2a991deac6cf.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 191,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/d233734dbbcda0aeaa98a149fa09d78c.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 192,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/d561a36fc5c9a133d6e2f61874a6f517.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 193,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/da5b0f77aedf75867097f56db95cfe5f.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 194,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/e6cbe3cbe9ca4fd74a42842ef8afd95e.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 195,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/e72a9ce196dc131d10e95f376a9788ff.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 196,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/eb24da0c8957fa4ce7c366b58fbdb469.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 197,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/eb9f4af2f2e5b8fa2f2c57aee63918b4.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 198,
+			"NodeType" : "BinaryReference",
+			"FileName" : "Metadata/ed4dc1b2ae077d919331755cef8849a7.xml",
+			"ChildNodeIds" : ""
+		},
+		{
+			"NodeId" : 199,
 			"NodeType" : "Layer",
 			"FileName" : "Mosaic__60____day_IR/81263d8e6d8948378f63903b83c93ce9.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 171,
+			"NodeId" : 200,
 			"NodeType" : "Layer",
 			"FileName" : "Mosaic__60____day_IR/global60_svm_stack_200m_tif_day_ir.json",
-			"ChildNodeIds" : "170"
+			"ChildNodeIds" : "199"
 		},
 		{
-			"NodeId" : 172,
+			"NodeId" : 201,
 			"NodeType" : "Map",
 			"FileName" : "Mosaic__60____day_IR/Mosaic__60____day_IR.json",
-			"ChildNodeIds" : "171,170"
+			"ChildNodeIds" : "200,199"
 		},
 		{
-			"NodeId" : 173,
+			"NodeId" : 202,
 			"NodeType" : "Layer",
 			"FileName" : "Mosaic__60____night_IR/3737204938ed41d0ac488687e64e9106.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 174,
+			"NodeId" : 203,
 			"NodeType" : "Layer",
 			"FileName" : "Mosaic__60____night_IR/global60_svm_stack_200m_tif_night_ir.json",
-			"ChildNodeIds" : "173"
+			"ChildNodeIds" : "202"
 		},
 		{
-			"NodeId" : 175,
+			"NodeId" : 204,
 			"NodeType" : "Map",
 			"FileName" : "Mosaic__60____night_IR/Mosaic__60____night_IR.json",
-			"ChildNodeIds" : "174,173"
+			"ChildNodeIds" : "203,202"
 		},
 		{
-			"NodeId" : 176,
+			"NodeId" : 205,
 			"NodeType" : "Layer",
 			"FileName" : "Mosaic__60____topography/7c452c5756ff43369a99731f31e9f719.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 177,
+			"NodeId" : 206,
 			"NodeType" : "Layer",
 			"FileName" : "Mosaic__60____topography/global60_dem_tif.json",
-			"ChildNodeIds" : "176"
+			"ChildNodeIds" : "205"
 		},
 		{
-			"NodeId" : 178,
+			"NodeId" : 207,
 			"NodeType" : "Layer",
 			"FileName" : "Mosaic__60____topography/global60_hillshade_tif.json",
-			"ChildNodeIds" : "176"
+			"ChildNodeIds" : "205"
 		},
 		{
-			"NodeId" : 179,
+			"NodeId" : 208,
 			"NodeType" : "Map",
 			"FileName" : "Mosaic__60____topography/Mosaic__60____topography.json",
-			"ChildNodeIds" : "177,178,176"
+			"ChildNodeIds" : "206,207,205"
 		},
 		{
-			"NodeId" : 180,
+			"NodeId" : 209,
 			"NodeType" : "Layer",
 			"FileName" : "Mosaic__60____visible/6e23dde2c7c24862a40d4926de5825c8.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 181,
+			"NodeId" : 210,
 			"NodeType" : "Layer",
 			"FileName" : "Mosaic__60____visible/global60_svm_stack_200m_tif.json",
-			"ChildNodeIds" : "180"
+			"ChildNodeIds" : "209"
 		},
 		{
-			"NodeId" : 182,
+			"NodeId" : 211,
 			"NodeType" : "Map",
 			"FileName" : "Mosaic__60____visible/Mosaic__60____visible.json",
-			"ChildNodeIds" : "181,180"
+			"ChildNodeIds" : "210,209"
 		},
 		{
-			"NodeId" : 183,
+			"NodeId" : 212,
 			"NodeType" : "Layer",
 			"FileName" : "Web_Map/1e28a99d08dd4b41978f29db6ecc3135.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 184,
+			"NodeId" : 213,
 			"NodeType" : "Layer",
 			"FileName" : "Web_Map/3c541af875a048a984467baa9f545eb8.json",
 			"ChildNodeIds" : ""
 		},
 		{
-			"NodeId" : 185,
+			"NodeId" : 214,
 			"NodeType" : "Layer",
 			"FileName" : "Web_Map/7f93b15881fa4342a93c2cebecf783ef.json",
 			"ChildNodeIds" : ""

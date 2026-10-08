@@ -11,6 +11,9 @@ r"""Scores global60_landforms_svm_<cell>m.tif the way §30 scored the two Pro-GU
 Reads the 400 m pyramid level. Read-only. Writes build\logs\global60_classification_check.json.
 """
 import os, sys, json, time
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 import numpy as np
 import arcpy
 from osgeo import gdal
@@ -21,7 +24,7 @@ import grid60 as G
 from svmcheck import kappa, training_score, crater_score, KPD
 
 gdal.UseExceptions()
-GDB = r"Z:\Mars Project\Mars Project.gdb"
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
 from make_global60_classification import OUT as CLS, CELL   # --cell 400 (default) or 200
 # --raster scores another version of the map, e.g. a mode-filtered one; it is named in the outputs
 TAG = "%dm" % CELL

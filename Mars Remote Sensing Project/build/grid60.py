@@ -23,6 +23,9 @@ Use TARGET_WKT (not the PROJ string) when labelling outputs for ArcGIS - see
 make_typearea_stack.py, gdal.Warp writes a WKT that Pro reads as "unknown".
 """
 import os
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 import math
 
 from osgeo import gdal
@@ -30,11 +33,11 @@ from osgeo import gdal
 gdal.UseExceptions()
 
 # ---------------------------------------------------------------- the sources
-ROOT = r"Z:"
-SRC_VIKING = os.path.join(ROOT, "\\", "Mars_Viking_MDIM21_ClrMosaic_global_232m.tif")
-SRC_DAY = os.path.join(ROOT, "\\", "Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif")
-SRC_NIGHT = os.path.join(ROOT, "\\", "Mars_MO_THEMIS-IR-Night_mosaic_60N60S_100m_v14.tif")
-SRC_DEM = os.path.join(ROOT, "\\", "Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif")
+ROOT = on_drive()
+SRC_VIKING = os.path.join(ROOT, "Mars_Viking_MDIM21_ClrMosaic_global_232m.tif")
+SRC_DAY = os.path.join(ROOT, "Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif")
+SRC_NIGHT = os.path.join(ROOT, "Mars_MO_THEMIS-IR-Night_mosaic_60N60S_100m_v14.tif")
+SRC_DEM = os.path.join(ROOT, "Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif")
 
 # the binding raster - the +/-60 extent IS this file's extent
 TEMPLATE = SRC_NIGHT
@@ -54,9 +57,9 @@ TARGET_WKT = ('PROJCS["Mars_Equidistant_Cylindrical_CM180",'
               'PARAMETER["Standard_Parallel_1",0.0],UNIT["Meter",1.0]]')
 
 # where +/-60 products go - beside the type-area products, not mixed into them
-OUTDIR = r"Z:\Mars Project\Global60"
+OUTDIR = on_drive(r"Mars Project\Global60")
 # junction form, for the legacy Spatial Analyst tools that reject spaces (KB 19.1)
-OUTDIR_NOSPACE = r"Z:\Global60"
+OUTDIR_NOSPACE = on_drive(r"Global60")
 
 
 class Grid(object):

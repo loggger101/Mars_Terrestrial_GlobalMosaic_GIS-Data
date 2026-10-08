@@ -40,7 +40,8 @@ DRY = "--dry-run" in sys.argv
 MAX = 95 * 1000 * 1000
 
 SKIP_DIRS = {"__pycache__", ".git", "Mars Project.gdb", "Index", "images", "labels",
-             "System Volume Information", "$RECYCLE.BIN"}
+             "System Volume Information", "$RECYCLE.BIN",
+             "Reference"}   # Mars Project\Reference: downloaded third-party data, not redistributed (KB §41)
 SKIP_DIR_SUFFIX = (".crf", ".gdb")
 # Dated snapshots of the record and scripts (.backup_YYYYMMDD, .py_backup_YYYYMMDD): history, kept on
 # the drive and in git history, not on the project page (KB §39.4).

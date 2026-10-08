@@ -24,13 +24,16 @@ sit BESIDE the real .aprx (it stores relative paths, §31.5). --export <dir> wri
 PNG afterwards.
 """
 import os, sys, time, shutil
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import arcpy
 
 APRX = (sys.argv[sys.argv.index("--aprx") + 1] if "--aprx" in sys.argv
-        else r"Z:\Mars Project\Mars Project.aprx")
+        else on_drive(r"Mars Project\Mars Project.aprx"))
 EXPORT = sys.argv[sys.argv.index("--export") + 1] if "--export" in sys.argv else None
-BKDIR = r"Z:\Mars Project\.backups"
+BKDIR = on_drive(r"Mars Project\.backups")
 FONT = "Arial"
 REPLACE_FONTS = {"Aptos", "Tahoma"}
 HEADING_PT = 11

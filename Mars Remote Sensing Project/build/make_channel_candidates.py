@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Candidate channel centrelines for the Ius Chasma type area.
+r"""Candidate channel centrelines for a type area (Ius Chasma; --area ath for Athabasca, KB §42).
 
 Task 11 (digitising) is the critical path and it needs manual judgement - but it
 should not start from a blank canvas. This derives CANDIDATE centrelines from
@@ -15,15 +15,21 @@ Run with the ArcGIS interpreter. Scratch work happens under Z:\TypeArea because
 legacy Spatial Analyst tools reject the space in "Mars Project".
 """
 import os, time, arcpy
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
+import areas
+A = areas.current()
+PFX = A["prefix"] + "_"
 from arcpy.sa import *
 
-WS = r"Z:\TypeArea"                       # junction - no spaces
-GDB = r"Z:\Mars Project\Mars Project.gdb"  # the real project gdb
+WS = A["ws"]()                                  # junction - no spaces
+GDB = on_drive(r"Mars Project\Mars Project.gdb")  # the real project gdb
 SCRATCH = os.path.join(WS, "chan_scratch.gdb")
-DEM = os.path.join(WS, "ius_dem.tif")
-IDX = os.path.join(WS, "ius_thermal_contrast.tif")
-SLP = os.path.join(WS, "ius_slope_deg.tif")
-TARGET = "Landform_ChannelCandidates_auto"
+DEM = os.path.join(WS, PFX + "dem.tif")
+IDX = os.path.join(WS, PFX + "thermal_contrast.tif")
+SLP = os.path.join(WS, PFX + "slope_deg.tif")
+TARGET = A["channels"]
 
 # a stream is a cell with at least this many upslope cells. 100 m cells, so
 # 5000 = 50 km^2 of catchment - deliberately high, to return the trunk network
@@ -41,7 +47,7 @@ def step(msg):
 
 
 print("=" * 74)
-print("CANDIDATE CHANNEL CENTRELINES - Ius Chasma")
+print("CANDIDATE CHANNEL CENTRELINES - " + A["name"])
 print("=" * 74)
 
 if arcpy.Exists(SCRATCH):
@@ -60,9 +66,9 @@ def cached(name, fn, label):
     return path
 
 
-fill = cached("ius_fill.tif", lambda: Fill(DEM), "Fill")
-fdr = cached("ius_fdr.tif", lambda: FlowDirection(fill, "NORMAL"), "FlowDirection")
-fac = cached("ius_fac.tif", lambda: FlowAccumulation(fdr, None, "FLOAT"), "FlowAccumulation")
+fill = cached(PFX + "fill.tif", lambda: Fill(DEM), "Fill")
+fdr = cached(PFX + "fdr.tif", lambda: FlowDirection(fill, "NORMAL"), "FlowDirection")
+fac = cached(PFX + "fac.tif", lambda: FlowAccumulation(fdr, None, "FLOAT"), "FlowAccumulation")
 r = arcpy.Raster(fac)
 step("   max upslope cells = %s" % f"{int(r.maximum):,}")
 del r
@@ -70,7 +76,7 @@ del r
 # Ius Chasma is a CLOSED BASIN. Fill floods it - measured: 23% of the scene
 # raised, max 2077 m - and routing across that synthetic lake surface produced
 # 56% of the first network as pure artefact. Keep only real topography.
-depth = os.path.join(WS, "ius_filldepth.tif")
+depth = os.path.join(WS, PFX + "filldepth.tif")
 if not arcpy.Exists(depth):
     (Raster(fill) - Raster(DEM)).save(depth)
 nofill = Raster(depth) <= 1.0
@@ -86,7 +92,7 @@ def cellcount(ras):
     return int(n)
 
 
-streams = os.path.join(WS, "ius_streams.tif")
+streams = os.path.join(WS, PFX + "streams.tif")
 n_all = cellcount(Con(Raster(fac) > THRESH, 1))
 Con((Raster(fac) > THRESH) & (nofill == 1), 1).save(streams)
 n_keep = cellcount(Raster(streams) == 1)
@@ -95,11 +101,11 @@ step("Con > %s cells (%.0f km2), off filled ground: %s of %s cells kept "
      % (f"{THRESH:,}", THRESH * 0.01, f"{n_keep:,}", f"{n_all:,}",
         100.0 * (1 - n_keep / max(n_all, 1))))
 
-link = os.path.join(WS, "ius_strlink.tif")
+link = os.path.join(WS, PFX + "strlink.tif")
 StreamLink(streams, fdr).save(link)
 step("StreamLink")
 
-order = os.path.join(WS, "ius_strord.tif")
+order = os.path.join(WS, PFX + "strord.tif")
 StreamOrder(streams, fdr, "STRAHLER").save(order)
 step("StreamOrder (Strahler)")
 

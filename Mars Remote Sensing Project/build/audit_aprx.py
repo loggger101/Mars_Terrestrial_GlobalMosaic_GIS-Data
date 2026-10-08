@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """Re-extract the live .aprx and list every map, layer and data connection."""
 import sys as _sys
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 try:
     _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -10,7 +13,7 @@ import os
 import shutil
 import zipfile
 
-APRX = r"Z:\Mars Project\Mars Project.aprx"
+APRX = on_drive(r"Mars Project\Mars Project.aprx")
 DEST = os.path.join(os.path.dirname(os.path.abspath(__file__)), "aprx_live")
 
 if os.path.isdir(DEST):

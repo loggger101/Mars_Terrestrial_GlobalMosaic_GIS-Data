@@ -55,6 +55,9 @@ was resampling a 200 m product and finding flow paths in the interpolation. At
 G200 the warp is exact (grid60) and the detail is measured rather than invented.
 """
 import os
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 import sys
 import time
 import glob
@@ -74,7 +77,7 @@ gdal.SetConfigOption("GDAL_CACHEMAX", "1024")
 GRID = G.G200
 DEM = os.path.join(G.OUTDIR_NOSPACE, "global60_dem.tif")
 IDX200 = os.path.join(G.OUTDIR_NOSPACE, "global60_thermal_contrast_200m.tif")
-GDB = r"Z:\Mars Project\Mars Project.gdb"
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
 
 # KB 2.2: intermediates go on internal SSD, never on the USB bus
 SCRATCH = r"C:\MarsScratch\global60"

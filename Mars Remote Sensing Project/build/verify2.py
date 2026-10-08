@@ -8,6 +8,9 @@
   C. Claims the first sweep tested too narrowly or not at all.
 """
 import sys as _sys
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 try:
     _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -18,8 +21,8 @@ import struct
 import sys
 import zipfile
 
-DELIV = r"Z:\Mars Remote Sensing Project"
-GDB = r"Z:\Mars Project\Mars Project.gdb"
+DELIV = on_drive(r"Mars Remote Sensing Project")
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
 FILES = {
     "Presentation 1": "ocean first pres LE.pptx",
     "Prospectus": "Mars Mosaic - Project Prospectus.docx",
@@ -217,7 +220,7 @@ check("nomenclature copies are NOT uniformly three",
 for fn in ("Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif",
            "Mars_Viking_MDIM21_ClrMosaic_global_232m.tif",
            "Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif"):
-    aux = open(os.path.join("Z:\\", fn + ".aux.xml"), encoding="utf-8").read()
+    aux = open(os.path.join(on_drive(), fn + ".aux.xml"), encoding="utf-8").read()
     check("%s: no overview record in its sidecar either" % fn[5:20],
           not re.search(r"Overview|PyramidLevel|RRD", aux, re.I),
           "second, independent line of evidence for 'no pyramids'")

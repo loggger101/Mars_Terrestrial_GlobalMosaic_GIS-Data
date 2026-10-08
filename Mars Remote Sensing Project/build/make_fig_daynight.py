@@ -7,13 +7,16 @@ each window from that file's own geotransform, so the offsets it prints are an
 independent check rather than an assumption (see PROJECT-KNOWLEDGE.md 15.3).
 """
 import numpy as np, time
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 from osgeo import gdal
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 gdal.UseExceptions()
 
-DAY   = r"Z:\Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif"
-NIGHT = r"Z:\Mars_MO_THEMIS-IR-Night_mosaic_60N60S_100m_v14.tif"
+DAY   = on_drive(r"Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif")
+NIGHT = on_drive(r"Mars_MO_THEMIS-IR-Night_mosaic_60N60S_100m_v14.tif")
 R = 3396190.0; DEG = R*np.pi/180.0
 LON0, LON1, LAT0, LAT1 = 271.0, 286.0, -13.0, -6.0
 
@@ -56,6 +59,6 @@ ax[-1].set_xlabel("East longitude (\u00b0)", color=SUB)
 fig.suptitle("Ius Chasma type area  \u00b7  271\u2013286\u00b0E, 13\u20136\u00b0S",
              color="white", fontsize=16, y=0.985, x=0.125, ha="left")
 fig.tight_layout(rect=[0, 0, 1, 0.965])
-out = r"Z:\Mars Remote Sensing Project\build\pres1_img\ius_day_night_diff.png"
+out = on_drive(r"Mars Remote Sensing Project\build\pres1_img\ius_day_night_diff.png")
 fig.savefig(out, dpi=115, facecolor=BG)
 print("wrote", out)

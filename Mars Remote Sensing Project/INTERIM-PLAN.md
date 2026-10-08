@@ -48,7 +48,7 @@ python build_interim_live.py "..\NEXT STUFF\Mars Global Mosaic - Interim Present
    KB §28.10 and layout 08 quote **47.67 DN** (seven provinces). Both are real; the slide quotes the
    figure's own number and says "these five boxes". Regenerate one consistent version before the
    final, light-background to match the deck.
-4. **`pres1_img\ius_fusion.png` still says "thermal-inertia proxy"** and "low/high inertia" on the
+4. ~~Done 2026-10-08 (KB §40.3).~~ **`pres1_img\ius_fusion.png` said "thermal-inertia proxy"** and "low/high inertia" on the
    image; fix `make_fig_fusion.py` wording before it goes on a slide.
 5. A **locator slide** once layout 09 exists (`NEXT-STEPS.md` 3.4); the T1 result once measured.
 6. **`verify_all.py` checks `content.py`, not `interim.py`.** Add a check that every number in

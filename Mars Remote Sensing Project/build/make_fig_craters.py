@@ -9,15 +9,18 @@ C  Oudemans - detector MISS, and why: the rim is breached
 D  Perrotin - detector hit, -7.1% on diameter
 """
 import os, numpy as np, arcpy
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 from osgeo import gdal
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle
 gdal.UseExceptions()
 
-WS = r"Z:\TypeArea"
+WS = junction("TypeArea")
 VAL = os.path.join(WS, "val")
-FC = r"Z:\Mars Project\Mars Project.gdb\Landform_CraterCandidates_auto"
+FC = on_drive(r"Mars Project\Mars Project.gdb\Landform_CraterCandidates_auto")
 R = 3396190.0
 DEG = R * np.pi / 180.0
 LON0, LON1, LAT0, LAT1 = 271.0, 286.0, -13.0, -6.0
@@ -121,6 +124,6 @@ fig.suptitle("Ius Chasma \u00b7 candidate craters are inferred, not mapped \u00b
              "orange = depth Fill removed",
              color="white", fontsize=15, y=0.977, x=0.075, ha="left")
 fig.tight_layout(rect=[0, 0, 1, 0.957])
-out = r"Z:\Mars Remote Sensing Project\build\pres1_img\ius_crater_candidates.png"
+out = on_drive(r"Mars Remote Sensing Project\build\pres1_img\ius_crater_candidates.png")
 fig.savefig(out, dpi=115, facecolor=BG)
 print("wrote", out)

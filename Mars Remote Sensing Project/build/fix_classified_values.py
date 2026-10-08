@@ -17,14 +17,17 @@ Idempotent: a raster whose table already has Value == Classvalue is skipped. Pro
 The ±60° landform maps were done by fix_landform_values.py (§36.1).
 """
 import os, sys, glob, shutil, time
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import numpy as np
 import arcpy
 from osgeo import gdal
 import landform_codes as LC
 
-GDB = sys.argv[sys.argv.index("--gdb") + 1] if "--gdb" in sys.argv else r"Z:\Mars Project\Mars Project.gdb"
-TIFS = sys.argv[sys.argv.index("--tif-dir") + 1] if "--tif-dir" in sys.argv else r"Z:\Mars Project\TypeArea"
+GDB = sys.argv[sys.argv.index("--gdb") + 1] if "--gdb" in sys.argv else on_drive(r"Mars Project\Mars Project.gdb")
+TIFS = sys.argv[sys.argv.index("--tif-dir") + 1] if "--tif-dir" in sys.argv else on_drive(r"Mars Project\TypeArea")
 TIF_NAMES = ["ius_sup_spectral.tif", "ius_sup_thermal.tif", "ius_sup_augmented.tif"]
 GDB_NAMES = ["Classified_202609292109007048151", "Classified_202609300147338582853"]
 SCRATCH = os.path.join(os.environ["LOCALAPPDATA"], "Temp", "mars_scratch", "recode")

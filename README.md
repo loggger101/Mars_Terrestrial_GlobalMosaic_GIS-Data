@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 108, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 116, by purpose) · [backup and restore](docs/backup.md)
 
 ![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 
@@ -33,9 +33,9 @@ The final deliverable is due **8 December 2026**. Presentation 1 and the prospec
 | Band composite | done: a 7-band, 8-bit ±60° stack at 200 m with no raw elevation band, 97.3% co-valid |
 | Unsupervised classification | done for the type area (Iso Cluster, object-based segmentation, parameter sweep) |
 | Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks |
-| Channel and crater candidates | seeded: 2,610 channel candidates, 1,685 crater candidates in Ius Chasma, 5,144 basin candidates at ±60°; the ±60° fine pass is next step 3 |
+| Channel and crater candidates | seeded: 2,610 channel candidates and 1,685 closed depressions in Ius Chasma, the same for Athabasca Valles, 5,144 basin candidates at ±60°; the Robbins crater catalogue (385,049) for reference |
 | Landform digitising | **open, the critical path**: next step 1 |
-| Map layouts | eight layouts in the project (below) |
+| Map layouts | nine layouts in the project (below) |
 
 ### Next steps
 
@@ -60,7 +60,7 @@ In order, toward the final on 8 December. Every open question behind them is num
 - **Diurnal-contrast index**: calibrated thermal inertia can't be derived from the 8-bit, locally stretched THEMIS mosaics. A relative day–night contrast index can, and within the type area it is nearly independent of terrain (r = +0.11 against elevation, −0.25 against slope). It is a material signal, not a restatement of topography. It does not compare across the planet.
 - **Type-area supervised accuracy**: 62.7%, κ 0.41 on terrain-defined classes. The thermal index adds +0.4 points there, as it should on terrain classes.
 - **Channels**: `Fill` flooded Ius Chasma 2,077 m deep, and 56% of the stream cells in the first channel network were an artefact of it. Of the 2,610 candidates that remain, the 188 steep, rock-floored ones (1,037 km) are the ones worth digitising.
-- **Craters**: 1,685 closed-depression candidates ≥ 1 km, validated on Perrotin (−7.1% in diameter). The detector can't see breached craters such as Oudemans. At ±60°, 68% of the 117 IAU craters ≥ 100 km are recovered within ±50% in diameter.
+- **Craters**: 1,685 closed-depression candidates ≥ 1 km; against the Robbins catalogue only 11% are catalogued craters (21% at ≥ 2 km), so they are prompts, not a crater count. Large craters are measured well: Perrotin within 7.1% in diameter. The detector can't see breached craters such as Oudemans. At ±60°, 68% of the 117 IAU craters ≥ 100 km are recovered within ±50% in diameter.
 
 The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.md`](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
 
@@ -71,7 +71,7 @@ The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.m
 | ![01](Mars%20Project/TypeArea/layouts/01_visible.png) Ius Chasma, visible | ![02](Mars%20Project/TypeArea/layouts/02_night_ir.png) Ius Chasma, night IR |
 | ![03](Mars%20Project/TypeArea/layouts/03_classification.png) Ius Chasma, classification | ![05](Mars%20Project/Global60/layouts/05_svm_checks.png) Checks on the earlier SVM maps |
 | ![06](Mars%20Project/Global60/layouts/06_ius_digitising.png) Ius Chasma, digitising candidates | ![07](Mars%20Project/Global60/layouts/07_global60_basins.png) ±60° basin candidates |
-| ![08](Mars%20Project/Global60/layouts/08_global60_mosaic.png) The mosaic at ±60°: visible, day IR, night IR, topography | |
+| ![08](Mars%20Project/Global60/layouts/08_global60_mosaic.png) The mosaic at ±60°: visible, day IR, night IR, topography | ![09](Mars%20Project/Global60/layouts/09_athabasca_digitising.png) Athabasca Valles, digitising candidates |
 
 ## Source data
 
@@ -135,14 +135,14 @@ The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   108 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   116 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
     pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)
   OLD/                     prospectus and Presentation 1 (delivered)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 19 maps, all Mars, and 8 layouts
-  .backups/                40 earlier copies of the .aprx, 2026-09-18 to 10-08
+  Mars Project.aprx        the ArcGIS Pro project: 20 maps, all Mars, and 9 layouts
+  .backups/                43 earlier copies of the .aprx, 2026-09-18 to 10-08
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs

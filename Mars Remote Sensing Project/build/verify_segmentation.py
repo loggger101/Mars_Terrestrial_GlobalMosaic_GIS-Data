@@ -8,6 +8,9 @@
 One identical full-resolution window for every raster.
 """
 import sys
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -17,7 +20,7 @@ import numpy as np
 from osgeo import gdal
 gdal.UseExceptions()
 
-TA = r"Z:\TypeArea"
+TA = junction("TypeArea")
 RASTERS = [
     ("per-pixel (no seg)",   "ius_isocluster_10.tif",      "-",      "-"),
     ("legacy on segments",   "ius_seg_isocluster_10.tif",  "20/20/5", "-"),

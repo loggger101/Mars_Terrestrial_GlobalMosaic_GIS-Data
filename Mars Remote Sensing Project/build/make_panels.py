@@ -6,6 +6,9 @@ three-way comparison on the data-sources slide is genuinely co-registered rather
 than three separate screenshots.
 """
 import os
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 import time
 
 import numpy as np
@@ -13,7 +16,7 @@ from PIL import Image
 
 import marsfig as M
 
-OUT = r"Z:\Mars Remote Sensing Project\build\le_img"
+OUT = on_drive(r"Mars Remote Sensing Project\build\le_img")
 os.makedirs(OUT, exist_ok=True)
 
 

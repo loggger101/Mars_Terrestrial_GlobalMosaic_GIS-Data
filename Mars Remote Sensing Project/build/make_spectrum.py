@@ -6,13 +6,16 @@ prospectus; the figure adds no new claims, it just places them on an axis.
 Each label sits directly above its own bar so nothing reaches across the plot.
 """
 import os
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt                                   # noqa: E402
 from matplotlib.patches import Rectangle                          # noqa: E402
 
-OUT = r"Z:\Mars Remote Sensing Project\build\le_img"
+OUT = on_drive(r"Mars Remote Sensing Project\build\le_img")
 NAVY, CYAN, GREY = "#0E2841", "#0E9ED4", "#555F66"
 INK = "#000000"
 

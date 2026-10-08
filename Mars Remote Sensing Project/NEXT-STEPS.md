@@ -49,6 +49,21 @@ the manual digitising, is the one only manual work can close, and it is still th
 measured for band independence (§18.3) and as a local index (§24), but **never with the hand-drawn labels**.
 The terrain labels of §27 gave +0.4 pt, which cannot settle it (§27.3). The 512 labelled polygons can.
 
+> **Status, end of 2026-10-08 (KB §40–§42).** Measured since this plan was written:
+> - **T1:** the thermal bands add +1.3 pt [+0.6, +2.2] to the ±60° classification; slope + relief
+>   alone match the full stack. The hand-drawn classes are landform classes.
+> - **T3, local:** inside both type areas the diurnal-contrast index does **not** track calibrated TES
+>   thermal inertia at 3 km (r −0.22 to ≈ 0); Viking albedo does at Athabasca (−0.55, −0.64).
+> - **T2:** the Athabasca lava (`lAv`) is the least cratered large unit in its window (Robbins), about
+>   half the older units' density.
+> - **The crater detector:** only 11–13 % of its ≥ 1 km candidates are catalogued craters.
+> - Reference data in the project (§41); Athabasca built (§42.1, layout 09); scripts run on any drive (§40.2).
+>
+> **Consequence for both documents:** at every scale a calibrated product can check, visible albedo
+> carries the material signal and the held THEMIS mosaics do not. The project's honest contribution
+> is the co-registered mosaic, the scored products and these measured limits, not a thermal
+> material map. Lava flows can now be mapped against the geologic map's volcanic units (T8).
+
 **The project's own hypotheses (H1–H4) and questions (Q1–Q6) have not been tracked since
 September.** Status table in `INTERIM-PLAN.md` §5: two hypotheses untested, one partly answered,
 one answered by a different method; four of six questions answered. The tests in §4 below are
@@ -64,12 +79,12 @@ These block or shape everything below. Ask them together, once.
 |---|---|---|
 | D1 | ~~Is the interim still owed?~~ **Answered 2026-10-08: owed, due mid-November; the exact day is not known.** ~~The template~~ **on `Z:` since 2026-10-08** (`NEXT STUFF\`). | Plan against ~13 November. Nothing left to ask. |
 | D2 | What do the **interim and final** require: length, deck, poster, rubric? Is the final deck on the same template? | Get both rubrics now; they decide which layouts matter. |
-| D3 | Run the **±60° crater + channel fine pass** (`make_global_landforms.py`, ~7 h, resumable) on the laptop overnight on AC, or wait for the desktop? | Laptop, lid open, on AC, if the desktop is days away. It was approved at 200 m on 2026-09-19; but §11 q18 says "ask before any hydrology at ±60°", so **confirm both in one answer**. |
-| D4 | A **second type area at Athabasca Valles** (IAU: 153.2–156.8°E, 7.2–10.0°N, beside Cerberus Fossae)? | **Yes.** It is the project's own hook (§14.4): a channel mapped as fluvial for decades, now flood lava. The thermal index is valid locally (§28.10), so a type area is exactly where it can do work. Ius is fluvial/collapse; Athabasca is volcanic. Together they are the volcanic-versus-fluvial test, and tests T2, T4 and T5 below need it. |
-| D5 | **Acquire reference data?** Each is a download, so each needs approval. Sources checked 2026-10-08, table below. | (a) and (d) first; (b) next; (c) only if a public file turns up. |
+| D3 | ~~Where to run the ±60° crater + channel fine pass?~~ **Answered 2026-10-08: on the desktop** (X2), after the junctions there are recreated (X0, KB §40.2). | — |
+| D4 | ~~A second type area at Athabasca Valles?~~ **Answered 2026-10-08: yes, build it** (3.5). | — |
+| D5 | ~~Acquire reference data?~~ **Answered 2026-10-08: yes to (a) the USGS geologic map, (b) the Robbins crater database and (d) TES thermal inertia**; (c) has no public source. Stored under `Z:\Mars Project\Reference\`, not mirrored to GitHub (third-party data). | — |
 | D6 | The **lava tube class**: 10.7 % of the ±60° map, 2 % right where it says so. Keep, merge into steep/windy hills, or relabel? | Retrain without it, or with new polygons drawn from the geologic map's volcanic units (needs D5a). A class that is wrong 98 % of the time is worse than no class. |
 | D7 | §11 **q23** (which class schema), **q26** (boxes or pixel labels for deep learning), **q27** (how much smoothing to publish). | q23 before any new samples. q26 only matters if deep learning goes ahead (X5). q27: keep 5 × 5, it was fixed by feature size (§32.2). |
-| D8 | **Push to GitHub**: layout 08, §38–§39 and the two plan files are not mirrored yet (`build\github_sync.py --commit`). | Yes, after each working session. It is the only off-drive copy (§35). |
+| D8 | ~~Push to GitHub?~~ **Answered 2026-10-08: push after each working session**, once the record audit, the voice check and the repo's own check pass. | — |
 | D9 | **Housekeeping deletions** (all an open decision): the `*_60_smoke` feature classes, the 10 duplicate nomenclature classes (q4), the empty `Line`/`Point` classes, the dead Jezero HiRISE layer, `Z:\_removed_not_Mars\`. | Leave until after the final unless space runs out. The interim may list them as "cleared" only if they are. |
 | D10 | **Digitising as review instead of drawing** (§6)? | Yes: it turns hours of drawing into minutes of accepting and rejecting, and keeps every decision manual. |
 | D11 | ~~Interim deck format~~ **Answered 2026-10-08: the Presentation 1 style with graphics, no fixed slide count, rebuilt as the data moves.** Built the same day as a living deck (`INTERIM-PLAN.md` §0). | Rebuild after every new result; read every slide. |
@@ -89,13 +104,13 @@ These block or shape everything below. Ask them together, once.
 
 Ranked by what they unblock. Each has a **done when** so "done" is checkable.
 
-1. **Make the build scripts drive-independent.** 58 of the 100 scripts in `build\` hard-code `Z:`;
+1. ~~**Make the build scripts drive-independent.**~~ **Done 2026-10-08 (KB §40.2).** Left: the junctions on `F:` (X0). 58 of the 100 scripts in `build\` hard-code `Z:`;
    on the desktop the drive is `F:` (§11 q22). Every desktop job below is blocked until this is
    fixed. One `paths.py` that finds the drive from the script's own location (the `github_*`
    scripts already do this), then grep for any `Z:` left, then smoke-test the two big scripts.
    *Done when: a grep finds no hard-coded drive outside `paths.py`, and `--smoke` runs with the
    drive letter changed (a `subst` alias proves it on the laptop).*
-2. **Test T1, the thermal ablation** (§4). *Done when: held-out scores for every band set are
+2. ~~**Test T1, the thermal ablation** (§4).~~ **Done 2026-10-08 (KB §40.1): thermal +1.3 pt [+0.6, +2.2]; terrain alone matches the full stack; the labels are landform classes.** Optional: confirm with Pro's SVM. *Done when: held-out scores for every band set are
    in the record, whichever way they fall.*
 3. **A graticule that renders.** `CIMGraticule` failed three times (§22.3). One can be added in
    the Pro GUI in seconds, but the builders wipe and rebuild each sheet, so a GUI graticule would
@@ -107,7 +122,7 @@ Ranked by what they unblock. Each has a **done when** so "done" is checkable.
 4. **A locator/index sheet (layout 09):** ±60° Viking, the extent outline, boxes for Ius and
    (if D4) Athabasca, with the IAU names. `make_locator.py` makes this as a matplotlib figure; it
    should be a real layout. It is the interim's natural first map.
-5. **Athabasca type area (if D4).** Window ~150–162°E, 4–14°N: about 7,100 × 5,900 px at 100 m,
+5. ~~**Athabasca type area (if D4).**~~ **Done 2026-10-08 (KB §42.1, layout 09).** Window ~150–162°E, 4–14°N: about 7,100 × 5,900 px at 100 m,
    42 Mpx, the same order as Ius (37 Mpx), so every type-area step costs about what it did there
    (seconds to minutes). Chain: stack (§18), terrain (§20), diurnal-contrast index (§24), channel
    and crater candidates (§25, §26), a digitising map and layout like 06. Check the THEMIS night
@@ -135,9 +150,9 @@ surprise. Cheapest first. All on the laptop unless marked.
 
 | # | Question | Design | Cost | Needs |
 |---|---|---|---|---|
-| **T1** | **Does thermal IR improve classification, with the hand-drawn labels?** (the central claim) | The §31 split, unchanged. Band sets: all 7; without night + day IR; without Viking; thermal + terrain only. Fast pass: sample the stack under the labelled polygons, scikit-learn SVM per band set, held-out κ (minutes). Then confirm the best and the no-thermal set with Pro's SVM at 400 m. **Prediction:** at ±60° the thermal bands add little (§28.10); report it either way. | minutes; ~3.5 h per Pro run | nothing |
-| **T2** | **Is Athabasca younger than Ius's plateau?** | Closed depressions ≥ 1 km per 10⁶ km² in each window, same detector, same filters. **Prediction [E]:** Athabasca's flood lavas are among the youngest surfaces on Mars, so far fewer craters. A size-frequency plot per window, **labelled "closed depressions", never used for an age** (the detector misses breached craters, §26.3). With D5b, use Robbins counts instead and compare. | minutes | D4 |
-| **T3** | **Which of our layers tracks calibrated thermal inertia?** | Aggregate Viking red, the THEMIS day and night DN, and the contrast index to TES's 3 km grid over ±60°; correlate each with TES inertia on measured pixels only. **Prediction:** Viking correlates (dust = bright = low inertia), the THEMIS pair does not (local normalisation). This would turn §28.10 from an argument into a calibrated measurement. | ~1 h | D5d |
+| **T1** ✓ | **Does thermal IR improve classification, with the hand-drawn labels?** (the central claim) | The §31 split, unchanged. Band sets: all 7; without night + day IR; without Viking; thermal + terrain only. Fast pass: sample the stack under the labelled polygons, scikit-learn SVM per band set, held-out κ (minutes). Then confirm the best and the no-thermal set with Pro's SVM at 400 m. **Prediction:** at ±60° the thermal bands add little (§28.10); report it either way. | minutes; ~3.5 h per Pro run | nothing |
+| **T2** ✓ | **Is Athabasca younger than Ius's plateau?** | Closed depressions ≥ 1 km per 10⁶ km² in each window, same detector, same filters. **Prediction [E]:** Athabasca's flood lavas are among the youngest surfaces on Mars, so far fewer craters. A size-frequency plot per window, **labelled "closed depressions", never used for an age** (the detector misses breached craters, §26.3). With D5b, use Robbins counts instead and compare. | minutes | D4 |
+| **T3** ½ (local done) | **Which of our layers tracks calibrated thermal inertia?** | Aggregate Viking red, the THEMIS day and night DN, and the contrast index to TES's 3 km grid over ±60°; correlate each with TES inertia on measured pixels only. **Prediction:** Viking correlates (dust = bright = low inertia), the THEMIS pair does not (local normalisation). This would turn §28.10 from an argument into a calibrated measurement. | ~1 h | D5d |
 | **T4** | **H2: do volcanic and fluvial channels separate on gradient and thermal response?** | Channel slope and `ThermIdx` per segment: Ius candidates (fluvial/collapse) vs Athabasca candidates (volcanic), then the digitised `Origin` labels once they exist. The index is compared **within** each window only (§28.10), so test the separation inside each window against its own background. | minutes | D4; better with the hand-drawn labels |
 | **T5** | **H1: does IR show flow margins Viking misses?** | Across the geologic map's volcanic contacts at Athabasca (or the digitised margins): edge contrast in Viking vs day IR vs night IR, sampled on perpendicular profiles. | ~1 h | D4 + D5a, or the digitised margins |
 | **T6** | **H3: is the composite more stable than any single input?** | Iso Cluster 10 classes on Ius per input and on the composite; count surviving classes and their spatial coherence. | minutes | nothing |

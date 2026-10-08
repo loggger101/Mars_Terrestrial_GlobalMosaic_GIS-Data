@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """Segmentation parameter sweep, shown on a zoom across the Ius Chasma wall."""
 import sys
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -12,7 +15,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap, BoundaryNorm
 gdal.UseExceptions()
 
-TA = r"Z:\TypeArea"
+TA = junction("TypeArea")
 X, Y, W, H = 3400, 1100, 1700, 1100          # wall + tributary fans + plateau
 PAL = ["#8ecae6", "#219ebc", "#023047", "#ffb703", "#fb8500",
        "#d62828", "#7209b7", "#4361ee", "#43aa8b", "#b5179e"]
@@ -48,5 +51,5 @@ for a, (fn, ttl, sub) in zip(ax.ravel(), PANELS):
 fig.suptitle("Segmentation detail controls the result far more than the classifier does",
              color="white", fontsize=15, x=0.012, ha="left", y=0.985)
 fig.tight_layout(rect=[0, 0.005, 1, 0.955], h_pad=3.0, w_pad=1.6)
-out = r"Z:\Mars Remote Sensing Project\build\pres1_img\ius_segmentation_sweep.png"
+out = on_drive(r"Mars Remote Sensing Project\build\pres1_img\ius_segmentation_sweep.png")
 fig.savefig(out, dpi=112, facecolor=BG); print("wrote", out)

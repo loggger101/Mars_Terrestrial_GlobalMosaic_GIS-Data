@@ -11,13 +11,16 @@ Reads Z:\TypeArea\ius_sup_spectral.tif and sup_confusion.npy from
 make_typearea_supervised.py (order: spectral, thermal, augmented).
 """
 import os, numpy as np
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 from osgeo import gdal
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 gdal.UseExceptions()
 
-WS = r"Z:\TypeArea"
+WS = junction("TypeArea")
 P = lambda n: os.path.join(WS, n)
 LON0, LON1, LAT0, LAT1 = 271.0, 286.0, -13.0, -6.0
 BG, CY, SUB, WARN = "#0E2841", "#0E9ED4", "#9ED8ED", "#E8804A"
@@ -122,7 +125,7 @@ fig.suptitle("Ius Chasma \u00b7 task 7 supervised \u00b7 the thermal index adds 
              "TERRAIN task \u2014 exactly as \u00a724 predicts",
              color="white", fontsize=14, y=0.977, x=0.055, ha="left")
 fig.tight_layout(rect=[0, 0.035, 1, 0.955])
-out = r"Z:\Mars Remote Sensing Project\build\pres1_img\ius_supervised.png"
+out = on_drive(r"Mars Remote Sensing Project\build\pres1_img\ius_supervised.png")
 fig.savefig(out, dpi=115, facecolor=BG)
 print("wrote", out)
 print("OA  spectral %.1f%%   thermal %.1f%%   augmented %.1f%%"

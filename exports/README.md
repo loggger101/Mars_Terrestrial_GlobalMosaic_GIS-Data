@@ -1,8 +1,10 @@
 # Vector layers from `Mars Project.gdb`
 
-Exported by [`github_export_gdb.py`](../Mars%20Remote%20Sensing%20Project/build/github_export_gdb.py) on 2026-10-06.
-Every feature class in the project geodatabase except two empty scratch classes (`Line`, `Point`)
-and the `_2`/`_3` duplicates of the nomenclature layers. Row counts were checked against the source.
+Exported by [`github_export_gdb.py`](../Mars%20Remote%20Sensing%20Project/build/github_export_gdb.py) on 2026-10-08.
+Every feature class in the project geodatabase except two empty scratch classes (`Line`, `Point`),
+the `_2`/`_3` duplicates of the nomenclature layers, and the third-party reference layers (`Ref_*`:
+the USGS geologic map and the Robbins crater database, available from their publishers). Row counts
+were checked against the source.
 "KB §N" is a section of the project knowledge base,
 [`PROJECT-KNOWLEDGE.md`](../Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
 The same layers are in the release as a GeoPackage (`mars_project_vectors.gpkg.zip`).
@@ -35,3 +37,5 @@ the labels and nomenclature are in geographic `Mars_2000_(Sphere)`.
 | `Landform_TrainingSamples_terrain_60_train` | Polygon | 329 | Mars_2000_(Sphere) | The hand-drawn polygons clipped to ±60° and split by whole 15° blocks, seed 60: the 329 used for training (KB §31.3). | `Classcode`, `Classname`, `Classvalue`, `RED`, `GREEN`, `BLUE`, `Count`, `ImageURI`, `IShape`, `MappedBy`, `Split`, `Block`, `SHAPE_Length`, `SHAPE_Area` |
 | `Landform_TrainingSamples_terrain_60_test` | Polygon | 183 | Mars_2000_(Sphere) | The 183 held out: never trained on, used only for scoring (KB §31.3). | `Classcode`, `Classname`, `Classvalue`, `RED`, `GREEN`, `BLUE`, `Count`, `ImageURI`, `IShape`, `MappedBy`, `Split`, `Block`, `SHAPE_Length`, `SHAPE_Area` |
 | `Check_Tiles_4096px_60` | Polygon | 954 | Mars_Equidistant_Cylindrical_CM180 | The 4096-pixel processing tiles that the 29 Sep SVM map follows (KB §30.2). | `MappedBy`, `Tile` |
+| `Landform_ChannelCandidates_auto_ath` | Polyline | 3,283 | Mars_Equidistant_Cylindrical_CM180 |  | `UnitName`, `Origin`, `Confidence`, `Evidence`, `StrahlerOrd`, `LengthKm`, `ThermIdx`, `ThermSd`, `SlopeDeg`, `FillDepthM`, `Notes`, `MappedBy`, `MappedOn` |
+| `Landform_CraterCandidates_auto_ath` | Polygon | 1,709 | Mars_Equidistant_Cylindrical_CM180 |  | `UnitName`, `Confidence`, `Evidence`, `DiameterKm`, `DepthMaxM`, `DepthMeanM`, `Aspect`, `FillRatio`, `ThermIdx`, `CenterLon`, `CenterLat`, `IAUName`, `Preservation`, `Notes`, `MappedBy`, `MappedOn` |

@@ -13,14 +13,17 @@ Pro must be closed. The .aprx is backed up first. --aprx <copy> rehearses on a c
 sit BESIDE the real .aprx (§31.5). Idempotent.
 """
 import os, sys, time, shutil
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import arcpy
 
 APRX = (sys.argv[sys.argv.index("--aprx") + 1] if "--aprx" in sys.argv
-        else r"Z:\Mars Project\Mars Project.aprx")
-BKDIR = r"Z:\Mars Project\.backups"
-JUNCTIONS = {r"Z:\Global60": r"Z:\Mars Project\Global60",
-             r"Z:\TypeArea": r"Z:\Mars Project\TypeArea"}
+        else on_drive(r"Mars Project\Mars Project.aprx"))
+BKDIR = on_drive(r"Mars Project\.backups")
+JUNCTIONS = {on_drive(r"Global60"): on_drive(r"Mars Project\Global60"),
+             on_drive(r"TypeArea"): on_drive(r"Mars Project\TypeArea")}
 
 assert not any("ArcGISPro" in l for l in os.popen("tasklist").read().splitlines()), "close ArcGIS Pro first"
 

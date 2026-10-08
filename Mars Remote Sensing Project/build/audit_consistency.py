@@ -5,6 +5,9 @@ Pulls every sentence in the built deliverables that carries one of the key
 numbers, so contradictory phrasings show up side by side.
 """
 import sys as _sys
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 try:
     _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -13,7 +16,7 @@ import os
 import re
 import zipfile
 
-DELIV = r"Z:\Mars Remote Sensing Project"
+DELIV = on_drive(r"Mars Remote Sensing Project")
 FILES = {
     "P1": "ocean first pres LE.pptx",
     "PROS": "Mars Mosaic - Project Prospectus.docx",

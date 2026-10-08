@@ -10,12 +10,15 @@ Three panels:
 Reads Z:\TypeArea\ius_thermal_contrast.tif (make_typearea_thermal.py).
 """
 import os, numpy as np
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 from osgeo import gdal
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 gdal.UseExceptions()
 
-OUT = r"Z:\TypeArea"
+OUT = junction("TypeArea")
 P = lambda n: os.path.join(OUT, n)
 LON0, LON1, LAT0, LAT1 = 271.0, 286.0, -13.0, -6.0
 BG, CY, SUB = "#0E2841", "#0E9ED4", "#9ED8ED"
@@ -127,7 +130,7 @@ fig.suptitle("Ius Chasma type area  \u00b7  271\u2013286\u00b0E, 13\u20136\u00b0
              "relative index from 8-bit DN, not calibrated thermal inertia",
              color="white", fontsize=15, y=0.977, x=0.085, ha="left")
 fig.tight_layout(rect=[0, 0, 1, 0.958])
-out = r"Z:\Mars Remote Sensing Project\build\pres1_img\ius_thermal_contrast.png"
+out = on_drive(r"Mars Remote Sensing Project\build\pres1_img\ius_thermal_contrast.png")
 fig.savefig(out, dpi=115, facecolor=BG)
 print("wrote", out)
 print("class order (coldest index first):",

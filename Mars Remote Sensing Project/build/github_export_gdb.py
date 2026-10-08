@@ -70,7 +70,8 @@ arcpy.env.overwriteOutput = True
 def vectors():
     arcpy.env.workspace = SRC
     fcs = [fc for fc in arcpy.ListFeatureClasses()
-           if fc not in {"Line", "Point"} and not fc.endswith(("_March2019_2", "_March2019_3"))]
+           if fc not in {"Line", "Point"} and not fc.endswith(("_March2019_2", "_March2019_3"))
+           and not fc.startswith("Ref_")]       # third-party reference data (KB §41): not redistributed
     out = REPO / "exports"
     out.mkdir(parents=True, exist_ok=True)
     DIST.mkdir(parents=True, exist_ok=True)
@@ -118,8 +119,10 @@ def catalog(fgdb, fcs):
     text = f"""# Vector layers from `Mars Project.gdb`
 
 Exported by [`github_export_gdb.py`](../Mars%20Remote%20Sensing%20Project/build/github_export_gdb.py) on {time.strftime('%Y-%m-%d')}.
-Every feature class in the project geodatabase except two empty scratch classes (`Line`, `Point`)
-and the `_2`/`_3` duplicates of the nomenclature layers. Row counts were checked against the source.
+Every feature class in the project geodatabase except two empty scratch classes (`Line`, `Point`),
+the `_2`/`_3` duplicates of the nomenclature layers, and the third-party reference layers (`Ref_*`:
+the USGS geologic map and the Robbins crater database, available from their publishers). Row counts
+were checked against the source.
 "KB §N" is a section of the project knowledge base,
 [`PROJECT-KNOWLEDGE.md`](../Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
 The same layers are in the release as a GeoPackage (`mars_project_vectors.gpkg.zip`).

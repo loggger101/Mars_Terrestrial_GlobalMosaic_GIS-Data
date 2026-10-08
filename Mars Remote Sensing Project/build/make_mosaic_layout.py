@@ -19,6 +19,9 @@ Pro must be closed. The .aprx is backed up first. --aprx <copy> rehearses on a c
 sit BESIDE the real .aprx (it stores relative paths, §31.5). Run polish_layouts.py afterwards (§33).
 """
 import os, sys, time, shutil
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import arcpy
 
@@ -29,7 +32,7 @@ from layoutkit import text, rgb, poly_geom
 from make_global60_maps import get_map, page, add_text, CREDIT, BKDIR, OUTD
 
 APRX = (sys.argv[sys.argv.index("--aprx") + 1] if "--aprx" in sys.argv
-        else r"Z:\Mars Project\Mars Project.aprx")
+        else on_drive(r"Mars Project\Mars Project.aprx"))
 STACK = os.path.join(G.OUTDIR, "global60_svm_stack_200m.tif")     # not the junction (KB §34)
 DEM = os.path.join(G.OUTDIR, "global60_dem.tif")
 HS = os.path.join(G.OUTDIR, "global60_hillshade.tif")

@@ -12,9 +12,12 @@ night mean 124.26 sigma 32.79), so the same stretch makes them genuinely
 comparable.
 """
 import os, time, shutil, arcpy
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 
-APRX  = r"Z:\Mars Project\Mars Project.aprx"
-BKDIR = r"Z:\Mars Project\.backups"
+APRX  = on_drive(r"Mars Project\Mars Project.aprx")
+BKDIR = on_drive(r"Mars Project\.backups")
 DAY   = "Mars_MO_THEMIS-IR-Day"
 NIGHT = "Mars_MO_THEMIS-IR-Night"
 

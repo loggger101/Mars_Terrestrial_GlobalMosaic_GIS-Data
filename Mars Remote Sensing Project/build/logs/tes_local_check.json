@@ -1,0 +1,62 @@
+{
+ "dayside": {
+  "ius": {
+   "cells": 35932,
+   "median_TI": 191.0,
+   "p10_p90_TI": [
+    135.0,
+    300.0
+   ],
+   "r_log_TI": {
+    "diurnal-contrast index": -0.077975592925695,
+    "Viking red": -0.10199849196572205,
+    "THEMIS day DN": 0.016919396571700704,
+    "THEMIS night DN": 0.10556854857635614
+   }
+  },
+  "ath": {
+   "cells": 40584,
+   "median_TI": 162.0,
+   "p10_p90_TI": [
+    56.0,
+    241.0
+   ],
+   "r_log_TI": {
+    "diurnal-contrast index": -0.017071523284488868,
+    "Viking red": -0.5464576835279735,
+    "THEMIS day DN": 0.035526055053999715,
+    "THEMIS night DN": 0.0502280924998359
+   }
+  }
+ },
+ "nightside": {
+  "ius": {
+   "cells": 35864,
+   "median_TI": 201.0,
+   "p10_p90_TI": [
+    156.0,
+    349.0
+   ],
+   "r_log_TI": {
+    "diurnal-contrast index": -0.2170979360366915,
+    "Viking red": -0.2560763986954135,
+    "THEMIS day DN": 0.11023556055651655,
+    "THEMIS night DN": 0.35502396190700536
+   }
+  },
+  "ath": {
+   "cells": 40727,
+   "median_TI": 198.0,
+   "p10_p90_TI": [
+    70.0,
+    281.0
+   ],
+   "r_log_TI": {
+    "diurnal-contrast index": -0.00716774373989191,
+    "Viking red": -0.6446856112982585,
+    "THEMIS day DN": 0.053026894431970645,
+    "THEMIS night DN": 0.053470041106662654
+   }
+  }
+ }
+}

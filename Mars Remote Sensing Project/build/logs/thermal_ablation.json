@@ -1,0 +1,245 @@
+{
+ "method": "Gaussian maximum likelihood, equal priors, numpy; 400 m; held-out area-weighted",
+ "n_train_px": 38295345,
+ "n_test_px": 2686147,
+ "n_test_polygons": 183,
+ "bands": [
+  "Viking R",
+  "Viking G",
+  "Viking B",
+  "Night IR",
+  "Day IR",
+  "slope",
+  "relief"
+ ],
+ "sets": {
+  "all 7 bands": {
+   "bands": [
+    "Viking R",
+    "Viking G",
+    "Viking B",
+    "Night IR",
+    "Day IR",
+    "slope",
+    "relief"
+   ],
+   "accuracy": 0.6697964786006497,
+   "kappa": 0.5024280043331476,
+   "producers": {
+    "Crater": 0.4654042779912477,
+    "steep/windy hills": 0.8379408099298029,
+    "lava tube": 0.38616817236491285,
+    "Normal Ground": 0.9935735263391289
+   },
+   "users": {
+    "Crater": 0.9612393546472632,
+    "steep/windy hills": 0.4438907373830459,
+    "lava tube": 0.02008392320310872,
+    "Normal Ground": 0.7165036447889658
+   }
+  },
+  "without thermal (no night, day)": {
+   "bands": [
+    "Viking R",
+    "Viking G",
+    "Viking B",
+    "slope",
+    "relief"
+   ],
+   "accuracy": 0.6569020626097849,
+   "kappa": 0.4889935260133651,
+   "producers": {
+    "Crater": 0.4433082561929259,
+    "steep/windy hills": 0.844329279439691,
+    "lava tube": 0.3490589166109307,
+    "Normal Ground": 0.9931469792640053
+   },
+   "users": {
+    "Crater": 0.9610832301401214,
+    "steep/windy hills": 0.4602106165107411,
+    "lava tube": 0.015932397126231488,
+    "Normal Ground": 0.7151847720479242
+   },
+   "gain_from_full_stack": {
+    "accuracy": 0.012894415990864827,
+    "accuracy_ci95": [
+     0.005553395229317657,
+     0.021701608685899418
+    ],
+    "kappa": 0.013434478319782506,
+    "kappa_ci95": [
+     0.006165332314868885,
+     0.016861315943753348
+    ]
+   }
+  },
+  "without visible (no Viking)": {
+   "bands": [
+    "Night IR",
+    "Day IR",
+    "slope",
+    "relief"
+   ],
+   "accuracy": 0.6814049458237813,
+   "kappa": 0.5094598027498429,
+   "producers": {
+    "Crater": 0.4790770138058771,
+    "steep/windy hills": 0.9031570571278694,
+    "lava tube": 0.1436961753956045,
+    "Normal Ground": 0.99558699111708
+   },
+   "users": {
+    "Crater": 0.9731295193630657,
+    "steep/windy hills": 0.42572837146599074,
+    "lava tube": 0.01337077732165811,
+    "Normal Ground": 0.6734840069674938
+   },
+   "gain_from_full_stack": {
+    "accuracy": -0.01160846722313158,
+    "accuracy_ci95": [
+     -0.03316225032052611,
+     0.01223989923442376
+    ],
+    "kappa": -0.007031798416695323,
+    "kappa_ci95": [
+     -0.02677556205330764,
+     0.016597033257241902
+    ]
+   }
+  },
+  "visible + thermal (no terrain)": {
+   "bands": [
+    "Viking R",
+    "Viking G",
+    "Viking B",
+    "Night IR",
+    "Day IR"
+   ],
+   "accuracy": 0.42360683882878436,
+   "kappa": 0.204900183312356,
+   "producers": {
+    "Crater": 0.23197275621618826,
+    "steep/windy hills": 0.3254953827382492,
+    "lava tube": 0.44284595161315626,
+    "Normal Ground": 0.7725802959897169
+   },
+   "users": {
+    "Crater": 0.8506729389735955,
+    "steep/windy hills": 0.16004459362170143,
+    "lava tube": 0.013398746694596267,
+    "Normal Ground": 0.5239099908418692
+   },
+   "gain_from_full_stack": {
+    "accuracy": 0.24618963977186537,
+    "accuracy_ci95": [
+     0.20376949182269258,
+     0.29750531203580216
+    ],
+    "kappa": 0.2975278210207916,
+    "kappa_ci95": [
+     0.1593100031162036,
+     0.37284967399199803
+    ]
+   }
+  },
+  "visible only": {
+   "bands": [
+    "Viking R",
+    "Viking G",
+    "Viking B"
+   ],
+   "accuracy": 0.40262601603575077,
+   "kappa": 0.17364716550234377,
+   "producers": {
+    "Crater": 0.24192306737701322,
+    "steep/windy hills": 0.20027116330533729,
+    "lava tube": 0.36722440472953904,
+    "Normal Ground": 0.7199082855523649
+   },
+   "users": {
+    "Crater": 0.8469988206428316,
+    "steep/windy hills": 0.12717081064210864,
+    "lava tube": 0.009895573894676228,
+    "Normal Ground": 0.48959920933534945
+   },
+   "gain_from_full_stack": {
+    "accuracy": 0.26717046256489896,
+    "accuracy_ci95": [
+     0.2109420295082013,
+     0.3253582003730649
+    ],
+    "kappa": 0.32878083883080383,
+    "kappa_ci95": [
+     0.17562840913876934,
+     0.41183820163582857
+    ]
+   }
+  },
+  "thermal only": {
+   "bands": [
+    "Night IR",
+    "Day IR"
+   ],
+   "accuracy": 0.387222161590511,
+   "kappa": 0.15129602207952433,
+   "producers": {
+    "Crater": 0.0746101952384364,
+    "steep/windy hills": 0.4140098230599877,
+    "lava tube": 0.13560354855121068,
+    "Normal Ground": 0.9246673956960358
+   },
+   "users": {
+    "Crater": 0.82035751298157,
+    "steep/windy hills": 0.15919219217395453,
+    "lava tube": 0.009931957313257044,
+    "Normal Ground": 0.45715567778544297
+   },
+   "gain_from_full_stack": {
+    "accuracy": 0.28257431701013874,
+    "accuracy_ci95": [
+     0.18144997725103046,
+     0.4010691882345689
+    ],
+    "kappa": 0.3511319822536233,
+    "kappa_ci95": [
+     0.16313083850227564,
+     0.4143674543956013
+    ]
+   }
+  },
+  "terrain only": {
+   "bands": [
+    "slope",
+    "relief"
+   ],
+   "accuracy": 0.686274871613018,
+   "kappa": 0.5148206354258817,
+   "producers": {
+    "Crater": 0.4873048803211384,
+    "steep/windy hills": 0.9055320815508539,
+    "lava tube": 0.12655092969728599,
+    "Normal Ground": 0.9955620212157774
+   },
+   "users": {
+    "Crater": 0.9732819131107541,
+    "steep/windy hills": 0.4364542645980711,
+    "lava tube": 0.012220212135491494,
+    "Normal Ground": 0.6726494323086994
+   },
+   "gain_from_full_stack": {
+    "accuracy": -0.01647839301236831,
+    "accuracy_ci95": [
+     -0.03992142233472308,
+     0.008398631329501772
+    ],
+    "kappa": -0.012392631092734141,
+    "kappa_ci95": [
+     -0.03267548786195398,
+     0.012623443408678523
+    ]
+   }
+  }
+ },
+ "one_class_everywhere": 0.5861999451707981,
+ "one_class_everywhere_note": "area share of the commonest held-out class"
+}

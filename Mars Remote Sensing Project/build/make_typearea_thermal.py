@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Day-night thermal analysis over the Ius Chasma type area.
+r"""Day-night thermal analysis over a type area (Ius Chasma; --area ath for Athabasca, KB §42).
 
 The prospectus rests on one claim (KB 14.4): day-night pairing converts
 brightness temperature into THERMAL INERTIA, the best dust-versus-bedrock
@@ -12,15 +12,19 @@ This script (a) proves that limit from the data, (b) builds the index, and
 (c) tests it against the object-based classification and the terrain, to see
 whether it carries information the other bands do not.
 
-Outputs to Z:\TypeArea (junction - legacy SA tools reject the space).
+Outputs to the area's no-space junction (Z:\TypeArea for Ius) - legacy SA tools reject the space.
 """
 import os, sys, time
 import numpy as np
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import areas
+A = areas.current()
+PFX = A["prefix"] + "_"
 from osgeo import gdal
 gdal.UseExceptions()
 gdal.SetConfigOption("GDAL_CACHEMAX", "512")
 
-OUT = r"Z:\TypeArea"
+OUT = A["ws"]()
 P = lambda n: os.path.join(OUT, n)
 NODATA = -9999.0
 t0 = time.time()
@@ -56,7 +60,7 @@ def write_like(ref, path, arr, nodata=NODATA):
 print("=" * 78)
 print("1. WHAT THE TWO THERMAL PRODUCTS ACTUALLY ARE")
 print("=" * 78)
-for n in ("ius_day", "ius_night"):
+for n in (PFX + "day", PFX + "night"):
     ds = gdal.Open(P(n + ".tif"))
     b = ds.GetRasterBand(1)
     print("  %-10s %5dx%-5d  %-8s  nodata=%s" % (
@@ -64,8 +68,8 @@ for n in ("ius_day", "ius_night"):
         gdal.GetDataTypeName(b.DataType), b.GetNoDataValue()))
     del b, ds
 
-day, _ = band(P("ius_day.tif"))
-night, _ = band(P("ius_night.tif"))
+day, _ = band(P(PFX + "day.tif"))
+night, _ = band(P(PFX + "night.tif"))
 
 # nodata is 0 on both (set by make_typearea_stack); treat 0 as no observation
 valid = (day > 0) & (night > 0)
@@ -94,8 +98,8 @@ print("=" * 78)
 #     labelled for what it is
 diff = np.full(day.shape, NODATA, np.float32)
 diff[valid] = day[valid] - night[valid]
-write_like(P("ius_day.tif"), P("ius_dn_diff.tif"), diff)
-print("  ius_dn_diff.tif        raw DN(day) - DN(night)   mean %6.2f  sd %5.2f"
+write_like(P(PFX + "day.tif"), P(PFX + "dn_diff.tif"), diff)
+print("  " + PFX + "dn_diff.tif        raw DN(day) - DN(night)   mean %6.2f  sd %5.2f"
       % (diff[valid].astype(np.float64).mean(), diff[valid].astype(np.float64).std()))
 del diff
 
@@ -113,10 +117,10 @@ print("  scaling  day  p2=%.0f p98=%.0f     night p2=%.0f p98=%.0f" % (dlo, dhi,
 
 idx = np.full(day.shape, NODATA, np.float32)
 idx[valid] = dS[valid] - nS[valid]
-write_like(P("ius_day.tif"), P("ius_thermal_contrast.tif"), idx)
+write_like(P(PFX + "day.tif"), P(PFX + "thermal_contrast.tif"), idx)
 iv = idx[valid].astype(np.float64)
 q = np.percentile(iv, [0, 2, 25, 50, 75, 98, 100])
-print("  ius_thermal_contrast.tif  scaled(day)-scaled(night)  range [-1,1]")
+print("  " + PFX + "thermal_contrast.tif  scaled(day)-scaled(night)  range [-1,1]")
 print("      mean %+.4f  sd %.4f   p0/p2/p25/p50/p75/p98/p100 = %s"
       % (iv.mean(), iv.std(), "/".join("%+.2f" % v for v in q)))
 print("""
@@ -136,11 +140,11 @@ def corr(a, b, mask):
     den = np.sqrt((x * x).sum() * (y * y).sum())
     return float((x * y).sum() / den) if den else float("nan")
 
-others = [("day IR", P("ius_day.tif"), 1),
-          ("night IR", P("ius_night.tif"), 1),
-          ("Viking red", P("ius_viking.tif"), 1),
-          ("elevation", P("ius_dem.tif"), 1),
-          ("slope deg", P("ius_slope_deg.tif"), 1)]
+others = [("day IR", P(PFX + "day.tif"), 1),
+          ("night IR", P(PFX + "night.tif"), 1),
+          ("Viking red", P(PFX + "viking.tif"), 1),
+          ("elevation", P(PFX + "dem.tif"), 1),
+          ("slope deg", P(PFX + "slope_deg.tif"), 1)]
 
 print("  Pearson r of the contrast index against every other layer:")
 for nm, path, bi in others:
@@ -155,16 +159,16 @@ for nm, path, bi in others:
 
 # ------------------------------------- 4. read it against the landform classes
 print("=" * 78)
-print("4. THE INDEX PER OBJECT-BASED CLASS  (ius_obj_medium, 14/14/30)")
+print("4. THE INDEX PER OBJECT-BASED CLASS  (" + PFX + "obj_medium, 14/14/30)")
 print("=" * 78)
-cls_path = P("ius_obj_medium.tif")
+cls_path = P(PFX + "obj_medium.tif")
 if os.path.exists(cls_path):
     cls, cnod = band(cls_path)
     m = valid & (cls > 0)
     if cnod is not None:
         m &= (cls != cnod)
-    sl, snod = band(P("ius_slope_deg.tif"))
-    el, enod = band(P("ius_dem.tif"))
+    sl, snod = band(P(PFX + "slope_deg.tif"))
+    el, enod = band(P(PFX + "dem.tif"))
     # both carry NoData sentinels; an unmasked one turns every class mean to -inf
     m &= np.isfinite(sl) & (sl > -1e30) & (el > -32000)
     if snod is not None:
@@ -189,7 +193,7 @@ if os.path.exists(cls_path):
   Sorted coldest-index first: the top rows are the surfaces that damp the
   diurnal swing (rock), the bottom rows are the ones that swing hardest (dust).""")
 else:
-    print("  ius_obj_medium.tif not found - skipped")
+    print("  " + PFX + "obj_medium.tif not found - skipped")
 
 print("=" * 78)
 print("done in %.1f s" % (time.time() - t0))

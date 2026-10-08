@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Candidate impact craters for the Ius Chasma type area - task 12 from zero.
+r"""Candidate impact craters for a type area (Ius Chasma; --area ath for Athabasca, KB §42) - task 12 from zero.
 
 The project's only crater data is the IAU gazetteer: 141 named craters >100 km
 and 972 <100 km, planet-wide. That is a NAME LIST, not an inventory, and
@@ -17,15 +17,21 @@ Run with the ArcGIS interpreter. Writes Landform_CraterCandidates_auto - a
 SEPARATE class, like the channels. Landform_CraterRims stays manual.
 """
 import os, time, datetime
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
+import areas
+A = areas.current()
+PFX = A["prefix"] + "_"
 import numpy as np
 from osgeo import gdal
 import arcpy
 gdal.UseExceptions()
 
-WS = r"Z:\TypeArea"
-GDB = r"Z:\Mars Project\Mars Project.gdb"
-TARGET = "Landform_CraterCandidates_auto"
-DEPTH = os.path.join(WS, "ius_filldepth.tif")
+WS = A["ws"]()
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
+TARGET = A["craters"]
+DEPTH = os.path.join(WS, PFX + "filldepth.tif")
 R = 3396190.0
 DEG = R * np.pi / 180.0
 CELL_KM2 = 0.01                 # 100 m cells
@@ -57,7 +63,7 @@ def band(p):
 
 
 print("=" * 76)
-print("CANDIDATE IMPACT CRATERS - Ius Chasma type area")
+print("CANDIDATE IMPACT CRATERS - " + A["name"])
 print("=" * 76)
 
 depth, gt = band(DEPTH)
@@ -131,7 +137,7 @@ if named:
 # ------------------------------------------------------------ write the class
 print("\n" + "=" * 76)
 keep_ids = idx[keep]
-mp = os.path.join(WS, "ius_cratermask.tif")
+mp = os.path.join(WS, PFX + "cratermask.tif")
 drv = gdal.GetDriverByName("GTiff")
 ref = gdal.Open(DEPTH)
 ds = drv.Create(mp, ref.RasterXSize, ref.RasterYSize, 1, gdal.GDT_Int32,
@@ -158,7 +164,7 @@ stat = {int(i): (float(d), float(mx), float(mn), float(a), float(fr), float(lo),
                                                meand[keep], aspect[keep], fillratio[keep],
                                                lon[keep], lat[keep])}
 zi = os.path.join(SCRATCH, "zs_cidx")
-arcpy.sa.ZonalStatisticsAsTable(mp, "Value", os.path.join(WS, "ius_thermal_contrast.tif"),
+arcpy.sa.ZonalStatisticsAsTable(mp, "Value", os.path.join(WS, PFX + "thermal_contrast.tif"),
                                 zi, "DATA", "MEAN")
 idx_by = {r[0]: r[1] for r in arcpy.da.SearchCursor(zi, ["Value", "MEAN"])}
 step("thermal index per candidate")
@@ -221,6 +227,6 @@ for lo_, hi_ in [(1, 2), (2, 5), (5, 10), (10, 20), (20, 50), (50, 1000)]:
     m = (dk >= lo_) & (dk < hi_)
     if m.sum():
         print("     %5.0f - %-6.0f km  %5d" % (lo_, hi_, int(m.sum())))
-print("\n  %d candidates >= 1 km in one 15 x 7 deg window, against %d named craters."
-      % (len(dk), len(named)))
+print("\n  %d candidates >= 1 km in the %d x %d deg %s window, against %d named craters."
+      % (len(dk), A["lon"][1] - A["lon"][0], A["lat"][1] - A["lat"][0], A["name"], len(named)))
 print("done in %.1f s" % (time.time() - t0))

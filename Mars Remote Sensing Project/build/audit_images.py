@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """Audit every picture in a deck: placement, aspect distortion, effective DPI, crop."""
 import sys as _sys
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 try:
     _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -14,8 +17,8 @@ from pptx.util import Emu
 
 EMU_PT = 12700
 DECK = sys.argv[1] if len(sys.argv) > 1 else (
-    r"Z:\Mars Remote Sensing Project"
-    r"\ocean first pres LE.pptx")
+    on_drive(r"Mars Remote Sensing Project"
+    r"\ocean first pres LE.pptx"))
 
 prs = Presentation(DECK)
 W = prs.slide_width / EMU_PT

@@ -7,6 +7,9 @@ is the same plate carree lattice expressed in degrees, so a lon/lat window maps
 cleanly onto all three rasters and they co-register exactly.
 """
 import math
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 
 import numpy as np
 from osgeo import gdal, osr
@@ -15,9 +18,9 @@ gdal.UseExceptions()
 gdal.SetConfigOption("GDAL_CACHEMAX", "1024")
 
 R = 3396190.0
-VIKING = r"Z:\Mars_Viking_MDIM21_ClrMosaic_global_232m.tif"
-THEMIS = r"Z:\Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif"
-DEM = r"Z:\Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif"
+VIKING = on_drive(r"Mars_Viking_MDIM21_ClrMosaic_global_232m.tif")
+THEMIS = on_drive(r"Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif")
+DEM = on_drive(r"Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif")
 
 # The saved extent of the project's "Mars High-Resolution Mosaic Viewer" map.
 WINDOW = dict(lon0=-88.7446, lon1=-74.4783, lat0=-13.0527, lat1=-5.7390)

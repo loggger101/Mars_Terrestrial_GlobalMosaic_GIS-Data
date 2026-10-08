@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 """Pull raster properties/statistics for the derived gdb rasters from the item XML."""
 import re
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 
-path = r"Z:\Mars Project\Mars Project.gdb\a00000004.gdbtable"
+path = on_drive(r"Mars Project\Mars Project.gdb\a00000004.gdbtable")
 txt = open(path, "rb").read().decode("latin-1")
 
 names = ["Slope_Mars_H1", "Slope_Mars_M1", "Slope_Mars_V1", "Surface_Mars1",

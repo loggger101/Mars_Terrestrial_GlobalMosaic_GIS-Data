@@ -13,9 +13,12 @@ Parameters are the ones rehearsed on Mercury: spectral 20, spatial 20,
 min segment 5 px.
 """
 import os, time, arcpy
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 from arcpy.sa import *
 
-OUT = r"Z:\TypeArea"          # junction: legacy SA tools reject spaces in paths
+OUT = junction("TypeArea")          # junction: legacy SA tools reject spaces in paths
 SRC = os.path.join(OUT, "ius_composite_5band.tif")
 arcpy.CheckOutExtension("Spatial")
 arcpy.env.overwriteOutput = True

@@ -6,6 +6,9 @@ stripped one scanline per block and carry no pyramids, so this is a full-file
 read -- about a minute -- which is itself the argument for building pyramids.
 """
 import math
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 import os
 import time
 
@@ -21,7 +24,7 @@ import marsfig as M                                               # noqa: E402
 
 gdal.UseExceptions()
 gdal.SetConfigOption("GDAL_CACHEMAX", "1024")
-OUT = r"Z:\Mars Remote Sensing Project\build\le_img"
+OUT = on_drive(r"Mars Remote Sensing Project\build\le_img")
 
 NAVY, CYAN = "#0E2841", "#0E9ED4"
 # a dark stroke keeps white labels legible over Hellas and the polar caps

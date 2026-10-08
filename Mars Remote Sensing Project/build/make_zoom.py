@@ -5,13 +5,16 @@ Same ground in all three, read from the three global rasters, so the
 three-way comparison on the data-sources slide is genuinely co-registered.
 """
 import os
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 
 import numpy as np
 from PIL import Image
 
 import marsfig as M
 
-OUT = r"Z:\Mars Remote Sensing Project\build\le_img"
+OUT = on_drive(r"Mars Remote Sensing Project\build\le_img")
 
 # Louros Valles, the sapping-fed tributary fan on the south wall of Ius Chasma
 ZOOM = dict(lon0=-85.7, lon1=-81.7, lat0=-10.75, lat1=-7.25)

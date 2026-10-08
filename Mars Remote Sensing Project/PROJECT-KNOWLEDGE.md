@@ -2,7 +2,7 @@
 
 **Owner:** Logan Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `Z:\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md`
-**Started:** 2026-09-18 · **Last updated:** 2026-10-08 (**§39.4: the record, the plans, the build scripts, the project's layer and layout text and the GitHub page rewritten in an objective, impersonal voice**; **§39.3: the interim deck is now a living build in the Presentation 1 style with seven map slides; `verify_all.py` repaired after §37**; **§21.4 corrected: the interim deck was never blocked; the course template is now on `Z:` and both deck builders run (§39.2); §1: the interim is due mid-November; §39 added: the next-steps plan, `NEXT-STEPS.md`, and the interim plan, `INTERIM-PLAN.md`; §10: the USGS geologic map is named as a validation source but is not on disk**; **§38 added: layout 08, the mosaic itself at ±60° in four panels (visible, day IR, night IR, topography), each on its own map in the stack's native CRS**; 2026-10-07: **§37 added: everything that isn't Mars is out of the project, moved to `Z:\_removed_not_Mars\`, nothing deleted; §36.4: every classified raster's pixel values are now its class codes, the two GUI maps and `ius_sup_*` included**; earlier the same day, **§36: the ±60° landform maps recoded 0–3 → 1–4**; 2026-10-06: **§35 added: the project is backed up to a public GitHub repo, `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`, which is also its project page; §2.5's "no backup" is superseded**; 2026-10-03: **§32 added: the digitising map and layout 06 put the candidates and the empty digitising classes in Pro; basin layout 07; the classification smoothed 5 × 5, chosen by feature size**; earlier the same day, **§31 added: the fix. A corrected ±60° stack, a reclassification scored on held-out labels, every Mars map clipped to ±60°, a new map and layouts in the project**; 2026-10-02: **§30 added — the two GUI SVM classifications checked against the labelled polygons, the IAU craters and the DEM: the 29 Sep map follows its 4096-px processing tiles and scores below chance on its own training data; the 30 Sep map is mostly elevation**; earlier the same day, **§29.2 and §11 q23 — the two class schemas number lava tube and steep/windy hills the other way round; every labelled file follows the older one**; 2026-10-01: **§29 added — manual work in the Pro GUI, 2026-09-24 to 10-01, read from the logs and the gdb: hand training labels in four classes, a ±60° segmentation, two SVM classifications, the first two successful global Composite Bands runs, a deep-learning export — and `Landform_TrainingSamples_terrain` now holds the hand-drawn labels, which `make_typearea_supervised.py` would delete; §6, §8, §11, §13.2, §17.2, §27 reconciled**; 2026-09-19: **§28 added — the derived products move off the type area onto the mosaics' own grid; `build\grid60.py` is now the single definition of the ±60° extent, and the diurnal-contrast index exists at 15.2 bn px**; **§24 added — the day–night pair worked properly; calibrated thermal inertia is NOT derivable from the held 8-bit products, and the relative diurnal-contrast index that replaces it**; **§25 added — task 11 seeded with inferred channel candidates, and `Fill` caught flooding Ius Chasma 2,077 m deep**; earlier on 2026-09-18, a re-verification pass — most `[E]` items
+**Started:** 2026-09-18 · **Last updated:** 2026-10-08 (**§42 added: the Athabasca Valles type area; T2 and the detector's precision against Robbins (11 % at ≥ 1 km); T3 local: the diurnal-contrast index does not track calibrated thermal inertia at 3 km; §24.3 and §26.3 qualified**; **§41 added: the three approved reference datasets downloaded, checked and in the project: the USGS geologic map, the Robbins craters and TES thermal inertia**; **§40 added: test T1, the thermal bands add +1.3 pt and terrain alone matches the full stack; every build script now finds its drive (§11 q22)**; **§39.4: the record, the plans, the build scripts, the project's layer and layout text and the GitHub page rewritten in an objective, impersonal voice**; **§39.3: the interim deck is now a living build in the Presentation 1 style with seven map slides; `verify_all.py` repaired after §37**; **§21.4 corrected: the interim deck was never blocked; the course template is now on `Z:` and both deck builders run (§39.2); §1: the interim is due mid-November; §39 added: the next-steps plan, `NEXT-STEPS.md`, and the interim plan, `INTERIM-PLAN.md`; §10: the USGS geologic map is named as a validation source but is not on disk**; **§38 added: layout 08, the mosaic itself at ±60° in four panels (visible, day IR, night IR, topography), each on its own map in the stack's native CRS**; 2026-10-07: **§37 added: everything that isn't Mars is out of the project, moved to `Z:\_removed_not_Mars\`, nothing deleted; §36.4: every classified raster's pixel values are now its class codes, the two GUI maps and `ius_sup_*` included**; earlier the same day, **§36: the ±60° landform maps recoded 0–3 → 1–4**; 2026-10-06: **§35 added: the project is backed up to a public GitHub repo, `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`, which is also its project page; §2.5's "no backup" is superseded**; 2026-10-03: **§32 added: the digitising map and layout 06 put the candidates and the empty digitising classes in Pro; basin layout 07; the classification smoothed 5 × 5, chosen by feature size**; earlier the same day, **§31 added: the fix. A corrected ±60° stack, a reclassification scored on held-out labels, every Mars map clipped to ±60°, a new map and layouts in the project**; 2026-10-02: **§30 added — the two GUI SVM classifications checked against the labelled polygons, the IAU craters and the DEM: the 29 Sep map follows its 4096-px processing tiles and scores below chance on its own training data; the 30 Sep map is mostly elevation**; earlier the same day, **§29.2 and §11 q23 — the two class schemas number lava tube and steep/windy hills the other way round; every labelled file follows the older one**; 2026-10-01: **§29 added — manual work in the Pro GUI, 2026-09-24 to 10-01, read from the logs and the gdb: hand training labels in four classes, a ±60° segmentation, two SVM classifications, the first two successful global Composite Bands runs, a deep-learning export — and `Landform_TrainingSamples_terrain` now holds the hand-drawn labels, which `make_typearea_supervised.py` would delete; §6, §8, §11, §13.2, §17.2, §27 reconciled**; 2026-09-19: **§28 added — the derived products move off the type area onto the mosaics' own grid; `build\grid60.py` is now the single definition of the ±60° extent, and the diurnal-contrast index exists at 15.2 bn px**; **§24 added — the day–night pair worked properly; calibrated thermal inertia is NOT derivable from the held 8-bit products, and the relative diurnal-contrast index that replaces it**; **§25 added — task 11 seeded with inferred channel candidates, and `Fill` caught flooding Ius Chasma 2,077 m deep**; earlier on 2026-09-18, a re-verification pass — most `[E]` items
 promoted to `[V]`; Composite Bands attempt count corrected from three to four; laptop-vs-desktop
 constraint added as §2.1; **final-deliverable date answered — 8 December 2026**; `Z:`
 confirmed as the project's single home, §2.5; **§13 added — verified headless
@@ -454,7 +454,7 @@ context map; it needs a network connection. **[E]**
 Read with `arcpy` 2026-09-18. This is authoritative — it supersedes any byte-walk estimate.
 All of §6 is **[V]**.
 
-### Feature classes — 30 present (22 on 2026-09-18, 26 on 2026-10-01; see the rows below, §29, §31)
+### Feature classes — 34 present (22 on 2026-09-18, 26 on 2026-10-01, 30 on 2026-10-07; see the rows below, §29, §31, §41, §42)
 
 The IAU nomenclature layers were imported two and three times over as `_2` / `_3` duplicates,
 plus two empty scratch classes. All are `Mars_2000_(Sphere)`, all Point except as noted.
@@ -499,6 +499,10 @@ not been reconciled with, one manual: **[V]**
 | `Landform_TrainingSamples_terrain_60_train` | Polygon | 329 | §31.3, the hand-drawn labels clipped and split |
 | `Landform_TrainingSamples_terrain_60_test` | Polygon | 183 | §31.3, held out |
 | `Check_Tiles_4096px_60` | Polygon | 954 | §31.1, `make_global60_maps.py`: the §30.2 tile grid |
+| `Ref_SIM3292_GeologicUnits` | Polygon | 1,311 | §41, USGS geologic map units, `make_reference_layers.py` |
+| `Ref_Craters_Robbins2020` | Point | 385,049 | §41, Robbins & Hynek crater database, 2020 release |
+| `Landform_ChannelCandidates_auto_ath` | Polyline | 3,283 | §42.1, Athabasca channel candidates |
+| `Landform_CraterCandidates_auto_ath` | Polygon | 1,709 | §42.1, Athabasca closed depressions ≥ 1 km |
 
 > Both are deliberately **not** `Landform_ChannelCenterlines` / `Landform_CraterRims` — machine
 > candidates must not be mixed into the manual digitising classes. Every row carries
@@ -820,8 +824,9 @@ The deliverables already say so. Keep it that way. **[E]**
     dated per log, four by 13 Sep plus the fifth on 24 Sep. **39 / 39.** **[V]**
 22. **The drive is `F:` on the desktop** (§2.4). Junctions and `build\` paths assume `Z:`. **[?]**
     **The project's layers are safe since 2026-10-03 (§34.1):** 12 that read through the
-    `Z:\Global60` junction were repointed, so the `.aprx` opens whole on `F:`. The scripts still
-    assume `Z:`.
+    `Z:\Global60` junction were repointed, so the `.aprx` opens whole on `F:`. ~~The scripts still
+    assume `Z:`.~~ **Answered 2026-10-08 (§40.2): every build script finds its drive.** Left for the
+    desktop: recreate the two no-space junctions there once (the scripts print the command). **[V]**
 23. **Which class schema is kept?** `Composite Object Classes.ecs` (1 Oct) numbers lava tube 2 and
     steep/windy hills 3; the hand-drawn labels, both SVM definitions and the deep-learning export use the
     reverse (§29.2). Settle it before training a model on the export or drawing samples under
@@ -1957,6 +1962,11 @@ rather than an artefact of two stretches.
 
 ### 24.3 It is a material discriminator, not a restatement of topography **[V]**
 
+> **Qualified 2026-10-08 (§42.4):** against calibrated TES thermal inertia at the 3 km TES can resolve,
+> the index does not track inertia in this window (r −0.08 dayside, −0.22 nightside) or at
+> Athabasca (≈ 0). It is independent of topography, as below; that it is a *material*
+> discriminator is supported only below 3 km, where nothing calibrated can test it.
+
 This is the result worth defending, because the obvious objection is "you have just remapped
 the canyon."
 
@@ -2142,6 +2152,11 @@ mean of +0.0757** — crater interiors are dust-mantled relative to their surrou
 what a sediment trap should look like.
 
 ### 26.3 Validated on two named craters — one hit, one instructive failure **[V]**
+
+> **Measured against the Robbins database 2026-10-08 (§42.3):** at D ≥ 1 km only **11 %** of the
+> 1,685 candidates match a catalogued crater, and they find 21 % of the catalogued ones; at ≥ 2 km,
+> 21 % and 49 %. The two named-crater checks below hold for large craters; at small sizes most
+> candidates are closed depressions that are not craters. Never quote the count as craters.
 
 `build\verify_crater_detection.py` builds two ~25–30 Mpx windows around Oudemans and Perrotin
 and runs the **identical** detector. 179 s including both DEM warps and both `Fill` runs.
@@ -3622,3 +3637,215 @@ repo mirrors all of them. Changed:
 - **Rule from now on:** everything written into this record, the plans, the scripts, the project
   and the repo uses the objective, impersonal voice. Run `neutral_voice.py --check` on any edited
   text before it is mirrored.
+
+## 40. Test T1, and scripts that run on either drive — 2026-10-08 **[V]**
+
+### 40.1 T1: the thermal bands add 1.3 points; slope and relief alone match the full stack
+
+`build\make_thermal_ablation.py`, `logs\thermal_ablation.json`, figure `make_fig_ablation.py` →
+`interim_img\thermal_ablation.png` (a slide in the interim deck). The prediction was written into
+the script before it ran: little or no gain at ±60°, because of §28.10.
+
+- **Samples:** every 400 m pixel of the §31.2 stack (its first overview) inside the §31 split, valid
+  in all 7 bands: **38.3 M training pixels in 328 polygons, 2.69 M held-out pixels in 183
+  polygons**, area-weighted by cos(latitude).
+- **Classifier:** Gaussian maximum likelihood, equal priors, in numpy. Not the published SVM:
+  scikit-learn is in neither Python here and installing it is a download. Absolute scores differ
+  from §31.3 (the SVM's raw map: 70.5 %); the comparison between band sets is the result.
+  **Cross-check:** "one class everywhere" comes out at **58.6 %**, exactly §31.3's figure, so the
+  held-out set and the weighting are the same.
+- **Uncertainty:** 1,000 paired bootstrap resamples of whole held-out polygons.
+
+| bands | held-out accuracy | κ |
+|---|---|---|
+| terrain only (slope, relief) | **68.6 %** | 0.515 |
+| without visible (no Viking) | 68.1 % | 0.509 |
+| all 7 bands | 67.0 % | 0.502 |
+| without thermal (no night, day) | 65.7 % | 0.489 |
+| visible + thermal (no terrain) | 42.4 % | 0.205 |
+| visible only | 40.3 % | 0.174 |
+| thermal only | 38.7 % | 0.151 |
+| one class everywhere | 58.6 % | — |
+
+- **The thermal bands add +1.3 pt, 95 % interval +0.6 to +2.2 (κ +0.013, +0.006 to +0.017).**
+  Detectable and small. That is the answer the record has been waiting for since §27.3, and it
+  agrees with §28.10.
+- **Terrain alone matches or beats the full stack** (differences inside their intervals). Without
+  the terrain bands, visible and thermal together score **below the one-class baseline**.
+- **What it means:** the four hand-drawn classes (Crater, steep/windy hills, lava tube, Normal
+  Ground) are landform classes, and landform is a terrain property. They cannot price a material
+  signal. Testing the thermal claim needs **material labels** (dust against rock, e.g. from the
+  geologic map, `NEXT-STEPS.md` D5a) or a **local** test (Athabasca, D4), where §24.3 already shows
+  the index discriminates. This is also why the SVM map tracks terrain even without an
+  elevation band (§31.3).
+- **First run lesson:** holding 1,000 bootstrap index arrays over 2.7 M pixels passed 4 GB with
+  2 GB free and was stopped; the script now sums per-polygon confusion matrices (identical result,
+  26 s for the whole analysis from cached samples).
+
+### 40.2 Every build script finds its drive **[V]**
+
+`build\paths.py`: `DRIVE` is two levels above `build\` (taken with `abspath`, not `resolve`, so a
+copy reached through a junction keeps its own root), `on_drive(rel)` joins under it, and
+`junction(name)` checks the no-space alias Spatial Analyst needs (§19.1) and, when it is missing or
+broken, stops with the `rmdir` / `mklink /J` lines to fix it.
+
+- **114 path literals in 58 scripts** rewritten by a token-level pass (strings in code only; docstrings
+  and comments untouched; implicit string concatenation wrapped whole). Originals in
+  `build\.py_backup_20261008\`. `osgeo_shim.py` builds its sub-script's paths from `on_drive`;
+  `verify_svm_classifications.py` already found its drive and was left alone.
+- **A latent bug found by the test:** `grid60.py` built source paths as `join(ROOT, "\\", file)`. The bare
+  separator resets to the drive root, which only worked because the project sits at one. Fixed.
+- **Proved:** run from a stand-in root (two junctions in a scratch folder), `paths.DRIVE` and every
+  derived path follow it, and `verify_all.py` looks for the source mosaics under the stand-in root;
+  a planted broken junction gets the `rmdir` + `mklink` message. On `Z:`, all 108 scripts compile,
+  `verify_all.py` 39 / 39, `audit_record.py` passes, `verify_global60.py` 6 pass / 0 fail,
+  `verify_typearea.py` and `osgeo_shim.py` give the same values as before.
+- **For the desktop (X0):** the junctions on the drive still point at `Z:\…`. The first script that
+  needs one prints:
+
+```
+rmdir "F:\TypeArea"
+mklink /J "F:\TypeArea" "F:\Mars Project\TypeArea"
+rmdir "F:\Global60"
+mklink /J "F:\Global60" "F:\Mars Project\Global60"
+```
+
+  Recreated on `F:` they would in turn point at `F:\…` and break on `Z:`, the same trade in
+  reverse; the scripts say so whichever machine they run on.
+
+### 40.3 Two figures corrected
+
+`pres1_img\ius_fusion.png` no longer says "thermal-inertia proxy" or "low/high inertia" (§24 retired
+the term); its third panel is "relative diurnal contrast", red "large day–night swing, dust-like",
+blue "small swing, bedrock and coarse debris", marked 8-bit DN. `svm_check.png` was regenerated for
+§39.4.
+
+## 41. The reference data: geologic map, crater database, calibrated thermal inertia — 2026-10-08 **[V]**
+
+Approved 2026-10-08 (`NEXT-STEPS.md` D5). Downloaded to **`Z:\Mars Project\Reference\`**, one folder
+each, SHA-256 of every file in `Reference\README.md`. Third-party data: `github_sync.py` does not
+mirror `Reference\`. Zips were listed before extraction (no executables, no unsafe paths).
+
+| dataset | source | on disk | in the project |
+|---|---|---|---|
+| USGS **Geologic Map of Mars**, SIM 3292 (Tanaka et al. 2014), public domain | `pubs.usgs.gov/sim/3292/downloads/sim3292_database.zip` (808.9 MB) + readme, metadata | `SIM3292_geologic_map\` (file gdb, shapefiles) | `Ref_SIM3292_GeologicUnits`: 1,311 unit polygons, Robinson CM 0 → GCS_Mars_2000_Sphere; `UnitGroup` = the type code without its age (e.g. `lAv` → `v`) |
+| **Robbins & Hynek crater database**, 2020 release (cite Robbins & Hynek 2012, JGR 117, E05004) | the author's site, `craters.sjrdesign.net` (39.4 MB zip; comma-separated, not tab as stated) | `Robbins_craters_2020\` | `Ref_Craters_Robbins2020`: **385,049** craters ≥ 1 km, circle-fit centre, `DiamKm`; longitude 0–360 → −180–180 |
+| **TES thermal inertia**, Putzig & Mellon 2007 (Icarus 191), dayside and nightside, 20 px/° | `se.psi.edu/inertia/2007`: `DBmap2007.bin`, `NBmap2007.bin`, masks | `TES_thermal_inertia_2007\` | GeoTIFFs beside the downloads (`make_tes_reference.py`): `TES_TI_2007_dayside/_nightside.tif` (Int16 tiu, nodata 0) and `_measured.tif` (1 = measured) |
+
+Checked, not assumed:
+
+- **Craters registered:** every one of the 141 IAU craters > 100 km in the gdb matches a Robbins crater
+  of similar size; centre offset median **1.0 %** of the diameter (p90 2.9 %), size ratio median
+  **1.000**.
+- **Units registered:** Olympus Mons summit falls in `Ave` (Amazonian volcanic edifice), Hellas floor
+  in `lHb` (Late Hesperian basin), Arabia Terra in `mNh` (Middle Noachian highland), the Ius Chasma
+  floor in `Aa` (Amazonian apron). **Athabasca Valles falls in `lAv`, Late Amazonian volcanic**: the
+  map independently records the flood-lava reading behind §14.4.
+- **TES orientation proved:** the header says columns are WEST longitude and the first row is −90°.
+  Of the four possible readings, only that one correlates strongly negatively with Viking red over
+  ±60° (dayside r −0.279, the next best −0.158; nightside −0.320 vs −0.151), as dust (bright, low
+  inertia) requires. The script refuses to write otherwise.
+- **A byte-order bug, caught by reading the output back:** numpy read the big-endian integers
+  correctly, but GDAL wrote them unswapped (Tharsis came out 9,728 tiu, out of the 5–5,000 range;
+  0x2600 is 38 byte-swapped). Converted to native order; the script now reads each file back and
+  asserts range and province order.
+- **The calibrated contrast the THEMIS mosaics lose (§28.10):** dayside median **45 tiu** over the
+  dusty provinces (Tharsis 41, Arabia 50, Amazonis 43) against **246 tiu** over the rocky ones (Syrtis
+  Major 228, Acidalia 264). Where the THEMIS DN separated the same boxes by under 0.3 DN, TES
+  separates them fivefold. That is the regional material signal, measured, at 3 km.
+- **The masks mean "measured":** 1 on 90.0 % (dayside) and 88.3 % (nightside) of pixels; the page's
+  "infilled, under 8 %" is the complement, and 3.2 % is no data poleward of 87°.
+
+What this unlocks (`NEXT-STEPS.md` §4): **T3** (which layer tracks calibrated inertia), **T8** (accuracy
+against the geologic map), material labels for the thermal question **T1** left open (§40.1), the
+lava-flow reference (`v` units), and crater-detector recall at every size.
+
+## 42. Athabasca Valles, the second type area, and three tests against the references — 2026-10-08 **[V]**
+
+### 42.1 The area, built by the same scripts as Ius
+
+Approved 2026-10-08 (`NEXT-STEPS.md` D4). `build\areas.py` now holds both windows; the type-area chain
+takes `--area ath` (stack, terrain, thermal, channel and crater candidates, `verify_typearea.py`), and
+Ius rebuilds as before (`verify_typearea.py` reproduces §18.3's correlations to the third decimal).
+
+- **Window** 150–162°E, 4–14°N (IAU Athabasca Valles 153.2–156.8°E, 7.2–10.0°N, with the Cerberus
+  Fossae source to the east), snapped to the day mosaic's 100 m edges: **7,114 × 5,929 px**, 42 Mpx.
+  Products `ath_*` in `Z:\Mars Project\Athabasca\`, junction `Z:\Athabasca` (`mklink /J`, §19.1).
+- **Stack** 69 s, four inputs on one grid, composites 4- and 5-band. Band correlations follow Ius:
+  visible bands 0.81–0.95 with each other, day IR −0.35 to −0.42 against visible, night IR
+  |r| ≤ 0.15 against everything.
+- **Terrain** slope mean 1.8° (smooth lava plains), no WARNING 000869. **Index** 100 % co-valid,
+  r +0.015 with elevation, −0.12 with slope; the THEMIS DN statistics again equal the mosaic-wide
+  ones (mean 125.7, sd 34.5): §28.10's local stretch.
+- **Candidates:** `Landform_ChannelCandidates_auto_ath`, 3,283 centrelines (23,677 km; 38.8 % of
+  stream cells discarded as fill artefact; 409 "damped"); `Landform_CraterCandidates_auto_ath`, 1,709
+  closed depressions ≥ 1 km. Zero IAU-named craters in the window.
+- **The geologic map places Athabasca Valles in `lAv`, Late Amazonian volcanic (§41).**
+- **In the project:** map "Athabasca Valles — digitising" and **layout `09_athabasca_digitising`**, built
+  by `make_candidate_maps.py`, which now makes both digitising sheets from one function (Ius
+  rebuilt to its previous figures: 188 / 2,422 / 64 %). The prompt differs by area: Ius highlights
+  steep and rock-floored channels; at Athabasca 97 % of candidates lie under 2°, so slope leaves 5 of
+  3,283 and the prompt is rock-floored alone (409). 20 maps, 9 layouts.
+
+### 42.2 T2: crater density per unit, Robbins against the detector
+
+`build\make_crater_density.py`, `logs\crater_density.json`. Craters ≥ 1 km per 10⁶ km² per SIM 3292
+unit (units ≥ 20,000 km² inside the window). Prediction: the Athabasca lava far below the older units.
+
+| window | unit | km² | Robbins | per 10⁶ km² | detector | per 10⁶ km² |
+|---|---|---|---|---|---|---|
+| Athabasca Valles | `lAv` Late Amazonian volcanic unit | 184,458 | 207 | 1122 | 916 | 4966 |
+| Athabasca Valles | `AHv` Amazonian and Hesperian volcanic | 166,437 | 293 | 1760 | 490 | 2944 |
+| Athabasca Valles | `HNt` Hesperian and Noachian transition unit | 40,762 | 89 | 2183 | 253 | 6207 |
+| Ius Chasma | `lHv` Late Hesperian volcanic unit | 48,490 | 358 | 7383 | 281 | 5795 |
+| Ius Chasma | `eHv` Early Hesperian volcanic unit | 106,627 | 287 | 2692 | 553 | 5186 |
+| Ius Chasma | `lNh` Late Noachian highland unit | 25,653 | 77 | 3002 | 180 | 7017 |
+| Ius Chasma | `eHh` Early Hesperian highland unit | 23,004 | 61 | 2652 | 167 | 7260 |
+| Ius Chasma | `Nhu` Noachian highland undivided unit | 83,005 | 23 | 277 | 182 | 2193 |
+| Ius Chasma | `Htu` Hesperian transition undivided unit | 26,299 | 5 | 190 | 53 | 2015 |
+
+- **Robbins: lAv is the least cratered large unit in its window, 1,122 against 1,760 (AHv) and
+  2,183 (HNt) per 10⁶ km².** The direction predicted, about half the density, not "far fewer": at
+  1 : 20 M the `lAv` polygon spans far more of Elysium–Amazonis than the young flood lava itself.
+  Relative density only, never an age.
+- **The detector reverses it: 4,966 per 10⁶ km² on `lAv`, the most of the three.** On flat lava it
+  counts closed depressions that are not impact craters. Its density is unusable for T2.
+
+### 42.3 The crater detector against Robbins: precision is low below a few km
+
+A candidate matches a Robbins crater if its centre is within half the Robbins diameter and its
+diameter within a factor of 2.
+
+| window | D ≥ | Robbins craters | found (recall) | candidates | that match (precision) |
+|---|---|---|---|---|---|
+| Ius | 1 km | 935 | **21 %** | 1685 | **11 %** |
+| Ius | 2 km | 198 | 49 % | 452 | 21 % |
+| Athabasca | 1 km | 592 | **36 %** | 1709 | **13 %** |
+| Athabasca | 2 km | 191 | 56 % | 352 | 30 % |
+
+§26.3 (Perrotin −7.1 %) and §28.11 (68 % of IAU craters ≥ 100 km) stand for large craters. At the
+sizes that make up the 1,685 and 1,709 candidates, about nine in ten are not catalogued craters.
+**The layers are closed depressions; for craters, use `Ref_Craters_Robbins2020`.** Layout 06, the
+interim deck and the README are worded accordingly.
+
+### 42.4 T3, local: the index against calibrated thermal inertia
+
+`build\make_tes_local_check.py`, `logs\tes_local_check.json`. Each window's 100 m rasters averaged
+into TES's 0.05° (~3 km) cells, measured TES pixels only. Prediction: the index clearly negative
+against log inertia in both windows.
+
+| | index | Viking red | THEMIS day DN | THEMIS night DN |
+|---|---|---|---|---|
+| Ius, dayside TES | -0.08 | -0.10 | +0.02 | +0.11 |
+| Ius, nightside TES | -0.22 | -0.26 | +0.11 | +0.36 |
+| Athabasca, dayside TES | -0.02 | -0.55 | +0.04 | +0.05 |
+| Athabasca, nightside TES | -0.01 | -0.64 | +0.05 | +0.05 |
+
+- **The prediction fails at 3 km.** The index barely tracks calibrated inertia at Ius and not at all
+  at Athabasca. **Viking albedo does at Athabasca (−0.55, −0.64)**, as it does planet-wide (§28.10,
+  §41). Night IR at Ius tracks nightside inertia the physical way (+0.36).
+- **What is left of the thermal claim:** the index is independent of topography (§24.3, §42.1) and
+  correlates with the type-area classes (§24); whether it separates materials below 3 km is
+  untested, because no calibrated product resolves that scale. Write the final on that footing: at
+  every scale a calibrated product can check, visible albedo carries the material signal and the
+  held THEMIS mosaics do not; T1 (§40.1) agrees.

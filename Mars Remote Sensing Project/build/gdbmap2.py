@@ -6,10 +6,13 @@ deleted, so this reads only LIVE catalog rows -- unlike scraping the .gdbtable,
 which also picks up stale names sitting in free space.
 """
 import os
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 import re
 import struct
 
-GDB = r"Z:\Mars Project\Mars Project.gdb"
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
 tab = open(os.path.join(GDB, "a00000001.gdbtable"), "rb").read()
 idx = open(os.path.join(GDB, "a00000001.gdbtablx"), "rb").read()
 

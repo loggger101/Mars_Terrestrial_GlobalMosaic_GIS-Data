@@ -5,10 +5,13 @@ Same trick as gdbmap2: walk the .gdbtablx row index so deleted rows and stale
 free-space bytes are excluded.
 """
 import os
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 import re
 import struct
 
-GDB = r"Z:\Mars Project\Mars Project.gdb"
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
 tab = open(os.path.join(GDB, "a00000004.gdbtable"), "rb").read()
 idx = open(os.path.join(GDB, "a00000004.gdbtablx"), "rb").read()
 

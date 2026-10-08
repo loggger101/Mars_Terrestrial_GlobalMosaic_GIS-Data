@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en"><Esri><CreaDate>20261008</CreaDate><CreaTime>02533300</CreaTime><ArcGISFormat>1.0</ArcGISFormat><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Spatial Analyst Tools.tbx\StreamLink" Date="20261008" Time="025333">StreamLink Z:\Athabasca\ath_streams.tif Z:\Athabasca\ath_fdr.tif Z:\Athabasca\StreamL_ath_str1.tif</Process></lineage></DataProperties></Esri></metadata>

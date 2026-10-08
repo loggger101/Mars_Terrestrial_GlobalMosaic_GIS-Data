@@ -10,8 +10,11 @@ mapping is actually done on. Equirectangular is neither equal-area nor
 conformal, but across 6-13 S the scale error is under 2 percent.
 """
 import arcpy, os
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 
-GDB = r"Z:\Mars Project\Mars Project.gdb"
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
 WKT = ('PROJCS["Mars_Equidistant_Cylindrical_CM180",'
        'GEOGCS["GCS_Mars_2000_Sphere",DATUM["D_Mars_2000_Sphere",'
        'SPHEROID["Mars_2000_Sphere_IAU_IAG",3396190.0,0.0]],'

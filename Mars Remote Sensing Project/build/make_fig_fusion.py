@@ -2,13 +2,16 @@
 """Ius Chasma fusion figure - HSV composite so colour carries thermal
 information while relief still reads."""
 import numpy as np
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 from osgeo import gdal
 from matplotlib.colors import rgb_to_hsv, hsv_to_rgb
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 gdal.UseExceptions()
 
-ds=gdal.Open(r"Z:\Mars Project\TypeArea\ius_composite_5band.tif")
+ds=gdal.Open(on_drive(r"Mars Project\TypeArea\ius_composite_5band.tif"))
 S=4
 def band(i):
     return ds.GetRasterBand(i).ReadAsArray(buf_xsize=ds.RasterXSize//S,
@@ -27,7 +30,7 @@ hsv[...,1]*=0.50                      # desaturate: colour should hint, not shou
 hsv[...,2]=0.15+0.85*st(D,1,99)       # value = day IR, so relief and texture carry
 fuse=hsv_to_rgb(hsv)
 
-# day-night difference: the thermal-inertia proxy, on its own scale
+# day-night difference: the relative diurnal contrast (KB §24), on its own scale; not thermal inertia
 dn=np.where((D>0)&(N>0), D-N, np.nan)
 
 BG="#0E2841"; CY="#0E9ED4"; SUB="#9ED8ED"
@@ -36,8 +39,9 @@ panels=[(nat,None,"Natural colour  \u2014  Viking MDIM 2.1",
          "albedo only: the canyon reads as shadow, the plateau is uniform dust"),
         (fuse,None,"Fusion  \u2014  hue: THEMIS night / day / Viking red,  value: day IR",
          "colour now separates materials that share the same albedo above"),
-        (dn,"RdBu_r","Day \u2212 Night  \u2014  thermal-inertia proxy",
-         "red: dust, low inertia    blue: bedrock and coarse debris, high inertia")]
+        (dn,"RdBu_r","Day \u2212 Night  \u2014  relative diurnal contrast",
+         "red: large day\u2013night swing, dust-like    blue: small swing, bedrock and coarse debris"
+         "    (8-bit DN, not calibrated inertia)")]
 fig,ax=plt.subplots(3,1,figsize=(12,15.2),facecolor=BG)
 for a,(im,cmap,t,sub) in zip(ax,panels):
     kw=dict(extent=ext,aspect="auto")
@@ -52,5 +56,5 @@ fig.suptitle("Co-registered stack  \u00b7  Ius Chasma type area  \u00b7  271\u20
              color="white",fontsize=15.5,x=0.098,ha="left",y=0.988)
 fig.subplots_adjust(hspace=0.30)
 fig.tight_layout(rect=[0,0.01,1,0.965],h_pad=3.2)
-out=r"Z:\Mars Remote Sensing Project\build\pres1_img\ius_fusion.png"
+out=on_drive(r"Mars Remote Sensing Project\build\pres1_img\ius_fusion.png")
 fig.savefig(out,dpi=112,facecolor=BG); print("wrote",out)

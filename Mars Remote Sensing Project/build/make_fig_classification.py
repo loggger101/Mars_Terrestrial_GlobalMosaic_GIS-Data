@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """Ius Chasma unsupervised classification, 10 classes, over the day-IR relief."""
 import numpy as np
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 from osgeo import gdal
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -13,8 +16,8 @@ def rd(p, band=1):
     d=gdal.Open(p)
     return d.GetRasterBand(band).ReadAsArray(buf_xsize=d.RasterXSize//S,
             buf_ysize=d.RasterYSize//S, resample_alg=gdal.GRIORA_NearestNeighbour)
-cls=rd(r"Z:\TypeArea\ius_isocluster_10.tif").astype(np.int16)
-day=gdal.Open(r"Z:\TypeArea\ius_day.tif")
+cls=rd(os.path.join(junction("TypeArea"), r"ius_isocluster_10.tif")).astype(np.int16)
+day=gdal.Open(os.path.join(junction("TypeArea"), r"ius_day.tif"))
 d=day.GetRasterBand(1).ReadAsArray(buf_xsize=day.RasterXSize//S,
         buf_ysize=day.RasterYSize//S, resample_alg=gdal.GRIORA_Average).astype(np.float32)
 p1,p2=np.percentile(d[d>0],[1,99]); shade=np.clip((d-p1)/(p2-p1),0,1)
@@ -44,5 +47,5 @@ ax[1].get_legend().get_title().set_color(CY)
 fig.suptitle("Unsupervised classification  \u00b7  Ius Chasma type area",
              color="white",fontsize=15.5,x=0.098,ha="left",y=0.985)
 fig.tight_layout(rect=[0,0.01,0.93,0.962],h_pad=2.6)
-out=r"Z:\Mars Remote Sensing Project\build\pres1_img\ius_classification.png"
+out=on_drive(r"Mars Remote Sensing Project\build\pres1_img\ius_classification.png")
 fig.savefig(out,dpi=112,facecolor=BG); print("wrote",out)

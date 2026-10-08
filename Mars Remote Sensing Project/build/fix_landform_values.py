@@ -13,11 +13,14 @@ Pro must be closed: the .aprx layers point at these files (their symbology keys 
 so it survives the recode unchanged).
 """
 import os, sys, glob, shutil, time
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import arcpy
 import landform_codes as LC
 
-DIR = sys.argv[sys.argv.index("--dir") + 1] if "--dir" in sys.argv else r"Z:\Mars Project\Global60"
+DIR = sys.argv[sys.argv.index("--dir") + 1] if "--dir" in sys.argv else on_drive(r"Mars Project\Global60")
 NAMES = ["global60_landforms_svm_400m.tif"] + [f"global60_landforms_svm_400m_mode{n}.tif" for n in (3, 5, 7, 9)]
 KEEP = os.path.join(DIR, "_0based_originals")
 

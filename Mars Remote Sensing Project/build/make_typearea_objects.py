@@ -14,9 +14,12 @@ Two corrections to the first attempt:
    opposite of what de-speckling wants. Hence the sweep below.
 """
 import os, time, arcpy
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 from arcpy.ia import *
 
-OUT = r"Z:\TypeArea"
+OUT = junction("TypeArea")
 SRC = os.path.join(OUT, "ius_composite_5band.tif")
 BANDS = "1 4 5"            # Viking red, THEMIS day, THEMIS night - the three
                            # near-independent dimensions (18.3)

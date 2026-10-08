@@ -10,11 +10,14 @@ arcpy.mp has no createTextElement in Pro 3.x; text is built through the CIM.
 Run polish_layouts.py afterwards: legend fonts and headings are fixed there (KB §33).
 """
 import os, time, shutil, arcpy
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 
 C     = arcpy.cim.CreateCIMObjectFromClassName
-APRX  = r"Z:\Mars Project\Mars Project.aprx"
-BKDIR = r"Z:\Mars Project\.backups"
-TA    = r"Z:\Mars Project\TypeArea"
+APRX  = on_drive(r"Mars Project\Mars Project.aprx")
+BKDIR = on_drive(r"Mars Project\.backups")
+TA    = on_drive(r"Mars Project\TypeArea")
 OUTD  = os.path.join(TA, "layouts")
 MAPNM = "Ius Chasma Type Area"
 PAGE_W, PAGE_H = 11.0, 8.5

@@ -6,10 +6,13 @@ projector and still fine in print. Photographic panels go to JPEG; the gradient
 panels stay PNG because they are near-binary line work that JPEG rings on.
 """
 import os
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 
 from PIL import Image
 
-DIR = r"Z:\Mars Remote Sensing Project\build\le_img"
+DIR = on_drive(r"Mars Remote Sensing Project\build\le_img")
 DPI = 200.0
 
 # name -> (placed width in points, codec)

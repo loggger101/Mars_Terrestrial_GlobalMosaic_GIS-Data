@@ -5,9 +5,12 @@ Same parameters as rehearsed on the Mercury MESSENGER basemap - 10 classes,
 min class size 20, sample interval 10 - now applied to Mars for the first time.
 """
 import os, time, arcpy
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 from arcpy.sa import *
 
-OUT = r"Z:\TypeArea"        # junction to Z:\Mars Project\TypeArea -- legacy Spatial
+OUT = junction("TypeArea")        # junction to Z:\Mars Project\TypeArea -- legacy Spatial
                              # Analyst grid-expression parser rejects spaces in paths
 SRC = os.path.join(OUT, "ius_composite_5band.tif")
 arcpy.CheckOutExtension("Spatial")

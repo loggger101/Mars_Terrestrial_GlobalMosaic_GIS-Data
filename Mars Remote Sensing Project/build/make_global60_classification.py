@@ -24,6 +24,9 @@ did not write (the §29.8 guard).
   python make_global60_classification.py --smoke               steps 1-3, one 4096 px window
 """
 import os, sys, time, ctypes
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 import numpy as np
 import arcpy
 
@@ -31,7 +34,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import grid60 as G
 
-GDB = r"Z:\Mars Project\Mars Project.gdb"
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
 HAND_LABELS = os.path.join(GDB, "Landform_TrainingSamples_terrain")
 EXTENT = os.path.join(GDB, "Analysis_Extent_60")
 TRAIN = os.path.join(GDB, "Landform_TrainingSamples_terrain_60_train")

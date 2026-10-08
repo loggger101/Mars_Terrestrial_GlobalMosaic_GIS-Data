@@ -1,9 +1,14 @@
-"""Checks the Ius Chasma 5-band composite: each band's range, mean and valid share, the share valid in
+"""Checks a type area's 5-band composite (--area, KB §42): each band's range, mean and valid share, the share valid in
 all five bands, their correlations, and the DEM's relief on the same grid."""
 import numpy as np
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
+import areas
+AREA = areas.current()
 from osgeo import gdal
 gdal.UseExceptions()
-p=r"Z:\Mars Project\TypeArea\ius_composite_5band.tif"
+p=os.path.join(AREA["out"], areas.name(AREA, "composite_5band.tif"))
 ds=gdal.Open(p)
 names=["Viking R","Viking G","Viking B","THEMIS day","THEMIS night"]
 print("%-12s %6s %6s %9s %8s %9s" % ("band","min","max","mean","std","valid%"))
@@ -22,7 +27,7 @@ C=np.corrcoef(X)
 print("            " + " ".join("%9s" % n[:9] for n in names))
 for i,n in enumerate(names):
     print("%-12s" % n + " ".join("%9.3f" % C[i,j] for j in range(5)))
-dem=gdal.Open(r"Z:\Mars Project\TypeArea\ius_dem.tif").ReadAsArray().astype(np.float32)
+dem=gdal.Open(os.path.join(AREA["out"], areas.name(AREA, "dem.tif"))).ReadAsArray().astype(np.float32)
 dem[dem<-30000]=np.nan
 print("\nDEM on same grid: %.0f .. %.0f m  relief %.0f m" % (np.nanmin(dem),np.nanmax(dem),
       np.nanmax(dem)-np.nanmin(dem)))

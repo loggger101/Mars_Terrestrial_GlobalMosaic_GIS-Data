@@ -8,6 +8,9 @@
   3. What fonts does the deck actually ask for, and are they installed?
 """
 import sys as _sys
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 try:
     _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -19,8 +22,8 @@ import zipfile
 
 from pptx import Presentation
 
-DECK = (r"Z:\Mars Remote Sensing Project"
-        r"\ocean first pres LE.pptx")
+DECK = (on_drive(r"Mars Remote Sensing Project"
+        r"\ocean first pres LE.pptx"))
 
 TEMPLATE = [
     ("Introduction", None),

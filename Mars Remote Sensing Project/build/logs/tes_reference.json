@@ -1,0 +1,34 @@
+{
+ "dayside": {
+  "r_by_orientation": {
+   "rows south-first, columns west": -0.2791872489450758,
+   "rows south-first, columns east": 0.09567618212915414,
+   "rows north-first, columns west": -0.1575061046135918,
+   "rows north-first, columns east": 0.08165242395137934
+  },
+  "chosen": "rows south-first, columns west",
+  "province_medians_tiu": {
+   "Tharsis (dusty)": 41.0,
+   "Arabia Terra (dusty)": 50.0,
+   "Amazonis (dusty)": 43.0,
+   "Syrtis Major (rocky)": 228.0,
+   "Acidalia (rocky)": 264.0
+  }
+ },
+ "nightside": {
+  "r_by_orientation": {
+   "rows south-first, columns west": -0.3203332582073633,
+   "rows south-first, columns east": 0.09971653824678399,
+   "rows north-first, columns west": -0.151358553240843,
+   "rows north-first, columns east": 0.06035518314570164
+  },
+  "chosen": "rows south-first, columns west",
+  "province_medians_tiu": {
+   "Tharsis (dusty)": 66.0,
+   "Arabia Terra (dusty)": 65.0,
+   "Amazonis (dusty)": 65.0,
+   "Syrtis Major (rocky)": 217.0,
+   "Acidalia (rocky)": 286.0
+  }
+ }
+}

@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """Why does the THEMIS window land somewhere else? Compare the three grids."""
 import math
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 
 from osgeo import gdal, osr
 
@@ -8,9 +11,9 @@ gdal.UseExceptions()
 R = 3396190.0
 
 for name, path in (
-        ("Viking", r"Z:\Mars_Viking_MDIM21_ClrMosaic_global_232m.tif"),
-        ("THEMIS", r"Z:\Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif"),
-        ("DEM", r"Z:\Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif")):
+        ("Viking", on_drive(r"Mars_Viking_MDIM21_ClrMosaic_global_232m.tif")),
+        ("THEMIS", on_drive(r"Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif")),
+        ("DEM", on_drive(r"Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif"))):
     ds = gdal.Open(path, gdal.GA_ReadOnly)
     gt = ds.GetGeoTransform()
     sr = osr.SpatialReference(wkt=ds.GetProjection())

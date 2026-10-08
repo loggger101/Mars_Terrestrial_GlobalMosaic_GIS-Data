@@ -11,6 +11,9 @@ Run it after editing the knowledge base:
 (plain system Python works too - nothing here needs arcpy.)
 """
 import sys
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -18,7 +21,7 @@ except Exception:
 import io, os, re, glob
 
 BS   = chr(92)
-ROOT = r"Z:\Mars Remote Sensing Project"
+ROOT = on_drive(r"Mars Remote Sensing Project")
 KB   = os.path.join(ROOT, "PROJECT-KNOWLEDGE.md")
 BUILD= os.path.join(ROOT, "build")
 MEM  = r"C:\Users\Loggg\.claude\projects\Z--\memory"
@@ -68,13 +71,13 @@ print("  --   tags: [V] %d   [E] %d   [?] %d   (%d lines)"
       % (s.count("[V]"), s.count("[E]"), s.count("[?]"), len(L)))
 
 print("\n=== ground truth vs what the record claims ===")
-nroot = len(glob.glob(r"Z:\*.tif"))
+nroot = len(glob.glob(on_drive(r"*.tif")))
 check("Z: root raster count matches \u00a73", ("**%s** global GeoTIFFs" %
       {3: "Three", 4: "**Four**"}.get(nroot, nroot)).replace("****", "**") in s or
       ("**Four** global GeoTIFFs" in s and nroot == 4), "%d on disk" % nroot)
 try:
     import arcpy
-    arcpy.env.workspace = r"Z:\Mars Project\Mars Project.gdb"
+    arcpy.env.workspace = on_drive(r"Mars Project\Mars Project.gdb")
     nfc = len(arcpy.ListFeatureClasses()); nr = len(arcpy.ListRasters())
     check("gdb feature-class count matches \u00a76", "%d present" % nfc in s, "%d in gdb" % nfc)
     check("gdb raster count matches \u00a713.2", "%d rasters" % nr in s, "%d in gdb" % nr)

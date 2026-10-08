@@ -8,14 +8,17 @@ every layer name and every layout text element in the .aprx, so the project and 
 backed up first. --dry-run reports without saving.
 """
 import os, sys, time, shutil
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import arcpy
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from neutral_voice import rewrite
 
-APRX = r"Z:\Mars Project\Mars Project.aprx"
-BKDIR = r"Z:\Mars Project\.backups"
+APRX = on_drive(r"Mars Project\Mars Project.aprx")
+BKDIR = on_drive(r"Mars Project\.backups")
 DRY = "--dry-run" in sys.argv
 
 assert DRY or not any("ArcGISPro" in l for l in os.popen("tasklist").read().splitlines()), "close ArcGIS Pro first"

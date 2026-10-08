@@ -6,6 +6,9 @@ disk (published wavelengths, the schedule, the hypotheses) is listed as such
 rather than silently passed.
 """
 import sys as _sys
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 try:
     _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -15,11 +18,11 @@ import re
 import struct
 import sys
 
-sys.path.insert(0, r"Z:\Mars Remote Sensing Project\build")
+sys.path.insert(0, on_drive(r"Mars Remote Sensing Project\build"))
 import content as C                                            # noqa: E402
 
-Z = "Z:\\"
-PROJ = r"Z:\Mars Project"
+Z = on_drive()
+PROJ = on_drive(r"Mars Project")
 GDB = os.path.join(PROJ, "Mars Project.gdb")
 TIFS = {
     "THEMIS": "Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif",

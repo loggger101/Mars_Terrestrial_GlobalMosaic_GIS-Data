@@ -6,14 +6,17 @@ Panel A  the candidates on a hillshade, coloured by diurnal-contrast index
 Panel B  what Fill did, and why 56% of the first network was thrown away
 """
 import os, numpy as np, arcpy
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 from osgeo import gdal
 import matplotlib; matplotlib.use("Agg")
 from matplotlib.collections import LineCollection
 import matplotlib.pyplot as plt
 gdal.UseExceptions()
 
-WS = r"Z:\TypeArea"
-FC = r"Z:\Mars Project\Mars Project.gdb\Landform_ChannelCandidates_auto"
+WS = junction("TypeArea")
+FC = on_drive(r"Mars Project\Mars Project.gdb\Landform_ChannelCandidates_auto")
 R = 3396190.0
 DEG = R * np.pi / 180.0
 LON0, LON1, LAT0, LAT1 = 271.0, 286.0, -13.0, -6.0
@@ -89,6 +92,6 @@ fig.suptitle("Ius Chasma \u00b7 candidate channels are inferred, not mapped \u00
              "Landform_ChannelCandidates_auto",
              color="white", fontsize=15, y=0.978, x=0.075, ha="left")
 fig.tight_layout(rect=[0, 0, 1, 0.958])
-out = r"Z:\Mars Remote Sensing Project\build\pres1_img\ius_channel_candidates.png"
+out = on_drive(r"Mars Remote Sensing Project\build\pres1_img\ius_channel_candidates.png")
 fig.savefig(out, dpi=115, facecolor=BG)
 print("wrote", out)

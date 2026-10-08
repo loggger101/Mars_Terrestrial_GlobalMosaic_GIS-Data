@@ -18,16 +18,19 @@ Nothing is deleted outright. Every item goes to Z:\_removed_not_Mars\, which can
   build\aprx_live\: the Enceladus and Mercury layer files of the 2026-09-18 .aprx snapshot -> moved
 """
 import os, sys, glob, shutil, time
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive, junction
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import arcpy
 
-APRX = sys.argv[sys.argv.index("--aprx") + 1] if "--aprx" in sys.argv else r"Z:\Mars Project\Mars Project.aprx"
+APRX = sys.argv[sys.argv.index("--aprx") + 1] if "--aprx" in sys.argv else on_drive(r"Mars Project\Mars Project.aprx")
 REHEARSAL = "--aprx" in sys.argv
-GDB = r"Z:\Mars Project\Mars Project.gdb"
-OUT = r"Z:\_removed_not_Mars"
+GDB = on_drive(r"Mars Project\Mars Project.gdb")
+OUT = on_drive(r"_removed_not_Mars")
 MAPS = {"Map", "Map1", "Enceladus", "Mercury"}
 RASTERS = ["Mercury_MESSEN_IsoClusterUns"]
-SNAPSHOT = r"Z:\Mars Remote Sensing Project\build\aprx_live"
+SNAPSHOT = on_drive(r"Mars Remote Sensing Project\build\aprx_live")
 
 assert not any("ArcGISPro" in l for l in os.popen("tasklist").read().splitlines()), "close ArcGIS Pro first"
 
