@@ -1,7 +1,7 @@
 name: check
 
-# Broken page links, Python syntax errors, oversized files and a stale CITATION.cff
-# (tools/check_repo.py). The scripts themselves need arcpy and the project drive, so CI
+# Broken page links, Python syntax errors, oversized files, a stale CITATION.cff and page counts
+# that no longer match the tree (tools/check_repo.py). The scripts themselves need arcpy and the project drive, so CI
 # checks that they parse, not that they run.
 
 on:

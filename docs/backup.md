@@ -28,7 +28,7 @@ described in [rasters.md](rasters.md), each vector layer in [the layer catalog](
 | `Segmented_202609290011302066080.tif*` | the ±60° mean-shift segmentation made in Pro on 29 September |
 | `SHA256SUMS-derivatives-2026-10-06.txt` | checksums of every piece and of every reassembled file |
 
-`restore.py` ([Restoring](#restoring)) rejoins and checks them. By hand: `cat global60_dem.tif.part* > global60_dem.tif` (or `copy /b a.part001+a.part002 a` in `cmd`), then check it against the sums.
+`restore.py` ([Restoring](#restoring)) rejoins and checks them. Every Monday, [`tools/check_remote.py`](../tools/check_remote.py) checks both releases' assets against their checksum files without downloading them. By hand: `cat global60_dem.tif.part* > global60_dem.tif` (or `copy /b a.part001+a.part002 a` in `cmd`), then check it against the sums.
 
 Not backed up anywhere but the drive: the `.ovr` pyramids (Build Pyramids re-creates them), `Global60/_0based_originals/` (the ±60° landform maps before their recode, KB §36) and the other geodatabase rasters, mostly legacy products the knowledge base finds defective and superseded (percent-rise slopes on a degree grid, a global composite mixing raw elevation with 8-bit bands).
 

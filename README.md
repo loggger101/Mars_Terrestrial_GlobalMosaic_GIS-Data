@@ -1,6 +1,6 @@
 # Mars Global Mosaic
 
-[![check](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/actions/workflows/check.yml/badge.svg)](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/actions/workflows/check.yml)
+[![check](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/actions/workflows/check.yml/badge.svg)](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/actions/workflows/check.yml) [![remote](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/actions/workflows/remote.yml/badge.svg)](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/actions/workflows/remote.yml)
 
 **Mapping Lava Flows, Fluvial Channels, and Impact Craters in Visible and Infrared.**
 Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Institute of Technology
@@ -74,7 +74,7 @@ The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.m
 
 ## Source data
 
-Not in this repository: 62 GB, public, and still at these addresses at byte-identical sizes (checked 2026-10-06). Put them at the root of the project drive.
+Not in this repository: 62 GB, public. Every Monday, [`tools/check_remote.py`](tools/check_remote.py) checks that each is still served at its address at the exact size the project drive holds. Put them at the root of the project drive.
 
 | File | Size | Grid |
 |---|---|---|
@@ -158,6 +158,8 @@ drive-root/                source-raster sidecars; the "new training" shapefile;
 restore.py                 rebuilds the drive from this repository and its releases
 tools/check_repo.py        the checks CI runs on every push: page links, Python syntax, file sizes,
                            and that the counts this page states match the tree
+tools/check_remote.py      weekly: release assets against their checksums, linked releases,
+                           the source mosaics' addresses and sizes
 CITATION.cff               how to cite the project ("Cite this repository" on GitHub)
 ```
 
