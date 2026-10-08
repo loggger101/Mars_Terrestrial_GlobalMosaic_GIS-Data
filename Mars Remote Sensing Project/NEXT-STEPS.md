@@ -15,6 +15,33 @@ status, deck formats, timeline). The drafts and the course template are in `NEXT
 
 ---
 
+## Resume here — written at the end of the 2026-10-08 session
+
+**Where it stopped.** All laptop work scheduled through 25 Oct (§8) is done except the cheap tests T6 and T7; the desktop jobs and the manual review are open. Done:
+T1, T2, T3 (local and planet-wide), T8, Athabasca (layout 09), the locator (layout 10), graticules,
+the living interim deck and report, and the review fields for digitising (KB §40–§46). Checks green
+on 2026-10-08: `audit_record.py`, `verify_all.py` 39 / 39, `neutral_voice.py`, the repo check;
+GitHub commit `86e950d` pushed, CI passed. **The three `Landform_*` digitising classes hold 0 rows.**
+
+**Next, in this order:**
+
+| # | what | who | where / how | done when |
+|---|---|---|---|---|
+| 1 | **Review the Ius candidates** in Pro, starting with "Channels: steep and rock-floored (188)", then the closed depressions; then Athabasca | manual (GUI) | §6 steps 1–4; `build\accept_reviewed.py` (dry run, then `--apply --by "<name>"`) | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; tally printed |
+| 2 | After each review session: run the copy, re-export the gdb to GitHub, push | Claude (laptop) | `accept_reviewed.py`; `github_export_gdb.py`, then `github_sync.py` and the push (KB §35.2) | gdb export in the repo matches the drive |
+| 3 | **Validation sheet** (3.7): candidates vs accepted features, precision and recall per class, the misses | Claude (laptop) | new script + layout 11 or later; reads the `Review` tally | reruns in seconds; sheet exported and read |
+| 4 | **T6 and T7** (§4): composite stability; tributary orders at 100 m | Claude (laptop) | cached rasters, minutes each | results in the record |
+| 5 | **T8 sheet** (§7 row 13): the confusion matrix against the geologic map | Claude (laptop) | from §43.2's numbers | sheet in the `.aprx` |
+| 6 | **Interim deck refresh:** `interim.py` still says "8 layouts" (row "Map layouts" and the 6–8 Oct log row); there are 10. Add the review route to the digitising row | Claude (laptop) | `INTERIM-PLAN.md` §0: edit `interim.py`, rebuild, render, read every slide, `verify_interim.py` | deck and report rebuilt and read |
+| 7 | **Desktop day** when available: X0 junctions on `F:` → X1 GPU test → X2 fine pass (craters + channels ≥ 1 km at ±60°) → X4 pyramids alongside; X3 200 m classification next | desktop | §5 | X2 products verified (`verify_global60.py`); then 3.8 sheets |
+| 8 | **Decisions still open:** D2 (the interim and final rubrics), D7 (q23: which class schema, before any new samples), D9 (housekeeping deletions; recommended: after the final) | the author | §2 | struck in §2 |
+
+**Dates that do not move:** digitising checkpoint **1 Nov** (still empty → the interim presents
+candidates with recall, §6) · interim data cut **2 Nov** · interim ~**13 Nov** · data freeze
+**22 Nov** · final **8 Dec**.
+
+---
+
 ## 0. Start of every session (two minutes, saves hours)
 
 1. Which machine? (`hostname`; laptop = metadata and light raster work, desktop = heavy runs, §2.1)
@@ -46,11 +73,12 @@ mosaic (no digitised margin yet), and nothing at ±60° yet resolves craters or 
 The third gap, the manual digitising, is the one only manual work can close, and it is still the
 critical path (§11 q16). Since 2026-10-08 it starts as a review of the candidates (D10, §46).
 
-**The unproven central claim:** that thermal IR adds something visible light does not. It is
-measured for band independence (§18.3) and as a local index (§24), but **never with the hand-drawn labels**.
-The terrain labels of §27 gave +0.4 pt, which cannot settle it (§27.3). The 512 labelled polygons can.
+**The central claim, now measured:** that thermal IR adds something visible light does not. Before
+2026-10-08 it was measured for band independence (§18.3) and as a local index (§24) only; the
+terrain labels of §27 gave +0.4 pt, which could not settle it (§27.3). **T1 used the 512 hand-drawn
+polygons: +1.3 pt** (§40.1), and T3 checked the index against calibrated thermal inertia (§42.4, §43.1).
 
-> **Status, end of 2026-10-08 (KB §40–§42).** Measured since this plan was written:
+> **Status, end of 2026-10-08 (KB §40–§46).** Measured since this plan was written:
 > - **T1:** the thermal bands add +1.3 pt [+0.6, +2.2] to the ±60° classification; slope + relief
 >   alone match the full stack. The hand-drawn classes are landform classes.
 > - **T3, local:** inside both type areas the diurnal-contrast index does **not** track calibrated TES
@@ -160,7 +188,7 @@ surprise. Cheapest first. All on the laptop unless marked.
 |---|---|---|---|---|
 | **T1** ✓ | **Does thermal IR improve classification, with the hand-drawn labels?** (the central claim) | The §31 split, unchanged. Band sets: all 7; without night + day IR; without Viking; thermal + terrain only. Fast pass: sample the stack under the labelled polygons, scikit-learn SVM per band set, held-out κ (minutes). Then confirm the best and the no-thermal set with Pro's SVM at 400 m. **Prediction:** at ±60° the thermal bands add little (§28.10); report it either way. | minutes; ~3.5 h per Pro run | nothing |
 | **T2** ✓ | **Is Athabasca younger than Ius's plateau?** | Closed depressions ≥ 1 km per 10⁶ km² in each window, same detector, same filters. **Prediction [E]:** Athabasca's flood lavas are among the youngest surfaces on Mars, so far fewer craters. A size-frequency plot per window, **labelled "closed depressions", never used for an age** (the detector misses breached craters, §26.3). With D5b, use Robbins counts instead and compare. | minutes | D4 |
-| **T3** ½ (local done) | **Which of our layers tracks calibrated thermal inertia?** | Aggregate Viking red, the THEMIS day and night DN, and the contrast index to TES's 3 km grid over ±60°; correlate each with TES inertia on measured pixels only. **Prediction:** Viking correlates (dust = bright = low inertia), the THEMIS pair does not (local normalisation). This would turn §28.10 from an argument into a calibrated measurement. | ~1 h | D5d |
+| **T3** ✓ (local §42.4, planet-wide §43.1) | **Which of our layers tracks calibrated thermal inertia?** | Aggregate Viking red, the THEMIS day and night DN, and the contrast index to TES's 3 km grid over ±60°; correlate each with TES inertia on measured pixels only. **Prediction:** Viking correlates (dust = bright = low inertia), the THEMIS pair does not (local normalisation). This would turn §28.10 from an argument into a calibrated measurement. | ~1 h | D5d |
 | **T4** | **H2: do volcanic and fluvial channels separate on gradient and thermal response?** | Channel slope and `ThermIdx` per segment: Ius candidates (fluvial/collapse) vs Athabasca candidates (volcanic), then the digitised `Origin` labels once they exist. The index is compared **within** each window only (§28.10), so test the separation inside each window against its own background. | minutes | D4; better with the hand-drawn labels |
 | **T5** | **H1: does IR show flow margins Viking misses?** | Across the geologic map's volcanic contacts at Athabasca (or the digitised margins): edge contrast in Viking vs day IR vs night IR, sampled on perpendicular profiles. | ~1 h | D4 + D5a, or the digitised margins |
 | **T6** | **H3: is the composite more stable than any single input?** | Iso Cluster 10 classes on Ius per input and on the composite; count surviving classes and their spatial coherence. | minutes | nothing |
@@ -254,8 +282,8 @@ a measured number and a sheet.
 
 | Window | Focus |
 |---|---|
-| **8–14 Oct** | D1–D10 answered. Scripts repathed (3.1). T1 fast pass. Graticule (3.3). Digitising or reviewing starts (§6). The interim deck is rebuilt after each result (`INTERIM-PLAN.md` §0). Fine pass overnight if D3 = laptop. |
-| **15–25 Oct** | Desktop: X0, X1, X2 if still needed, X4. Athabasca type area (3.5); T2, T6, T7. Reference data in (D5); T3. Locator sheet (3.4). |
+| **8–14 Oct** | ~~D1–D10 answered~~ (D2, D7, D9 open). ~~Scripts repathed (3.1). T1 fast pass. Graticule (3.3).~~ Done 2026-10-08. Digitising or reviewing starts (§6; fields ready, §46). The interim deck is rebuilt after each result (`INTERIM-PLAN.md` §0). Fine pass overnight if D3 = laptop. |
+| **15–25 Oct** | Desktop: X0, X1, X2 if still needed, X4. ~~Athabasca type area (3.5); T2~~, T6, T7. ~~Reference data in (D5); T3. Locator sheet (3.4).~~ (struck items done 2026-10-08) Validation sheet (3.7) once reviews exist. |
 | **26 Oct – 1 Nov** | T1 confirmed in Pro; X3 with the winning band set. ±60° crater and channel sheets (3.8). **1 Nov: digitising checkpoint** (§6 contingency). |
 | **2 Nov** | **Interim data cut.** Whatever is measured goes in; the rest goes to the final. |
 | **2–12 Nov** | **Interim** per `INTERIM-PLAN.md` §6: rewrite `content.py`, rebuild, read every page, `verify_all.py` updated and green, review. Data work pauses except overnight runs. |
