@@ -93,7 +93,7 @@ same order.
 
 **The biggest gap was: no maps.** Neither the September deck nor the report had a single figure,
 while eight layouts existed. **Closed 2026-10-08:** the deck has 20 slides with the maps and the T1 and
-T3 charts, and the report 11 figures, both from `interim.py` (KB §45); 10 layouts exist (§44). *Preliminary Results* should be mostly sheets (§4 below). `le_theme.py` has the
+T3 charts, and the report 11 figures, both from `interim.py` (KB §45); 12 layouts exist (§44, §49; the deck still says 10 until its next rebuild). *Preliminary Results* should be mostly sheets (§4 below). `le_theme.py` has the
 picture helpers Presentation 1 used; `build_interim_deck.py` and `build_interim_docx.py` need one
 added (python-pptx `add_picture`, python-docx `add_picture`). Export the sheets at 200 dpi for the
 deck so text on them stays legible when projected.
@@ -131,7 +131,7 @@ content → what is true now:
 | 10 | Visible + IR composite | **done**: type area 8.8 s; the two GUI global composites; the corrected 7-band ±60° stack | §18, §29, §31.2 |
 | 11 | Landform digitising | classes exist and are **empty**; 512 training polygons drawn manually; candidates seeded at both type areas; **review fields and `accept_reviewed.py` ready** | §19.4, §25, §29.2, §46 |
 | 12 | Crater inventory | 1,685 closed depressions ≥ 1 km at Ius (1,709 at Athabasca), 11–13 % of them catalogued craters; the Robbins catalogue in the project (385,049); 5,144 basins ≥ 20 km at ±60°, 68 % recall on IAU ≥ 100 km | §26, §28.11, §41, §42.3 |
-| 13 | Map layouts | **10 layouts**, from 0, with graticules | §22, §31–§33, §38, §42.1, §44 |
+| 13 | Map layouts | **12 layouts**, from 0, with graticules; 13 (T8) and 14 (validation) added after the deck was built | §22, §31–§33, §38, §42.1, §44, §49 |
 | 14 | Report and presentations | Pres 1 and prospectus delivered; interim deck and report are living builds, rebuilt after each result | §1, §39.3, §45 |
 
 ## 4. The results the interim can show, each with its layout or figure

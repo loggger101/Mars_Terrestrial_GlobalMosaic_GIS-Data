@@ -1,0 +1,87 @@
+{
+ "read": "2026-10-08 23:07",
+ "areas": {
+  "ius": {
+   "name": "Ius Chasma",
+   "rows": {
+    "channels": {
+     "accept": 0,
+     "reject": 0,
+     "unsure": 0,
+     "open": 2610,
+     "candidates": 2610,
+     "candidate_class": "Landform_ChannelCandidates_auto",
+     "copied": 0,
+     "drawn": 0,
+     "precision": null,
+     "judged": 0,
+     "recall": null,
+     "mapped": 0
+    },
+    "depressions": {
+     "accept": 0,
+     "reject": 0,
+     "unsure": 0,
+     "open": 1685,
+     "candidates": 1685,
+     "candidate_class": "Landform_CraterCandidates_auto",
+     "copied": 0,
+     "drawn": 0,
+     "precision": null,
+     "judged": 0,
+     "recall": null,
+     "mapped": 0,
+     "robbins_1km": {
+      "recall": 0.20748663101604278,
+      "precision": 0.11394658753709198,
+      "robbins": 935
+     }
+    },
+    "lava margins": {
+     "drawn": 0
+    }
+   }
+  },
+  "ath": {
+   "name": "Athabasca Valles",
+   "rows": {
+    "channels": {
+     "accept": 0,
+     "reject": 0,
+     "unsure": 0,
+     "open": 3283,
+     "candidates": 3283,
+     "candidate_class": "Landform_ChannelCandidates_auto_ath",
+     "copied": 0,
+     "drawn": 0,
+     "precision": null,
+     "judged": 0,
+     "recall": null,
+     "mapped": 0
+    },
+    "depressions": {
+     "accept": 0,
+     "reject": 0,
+     "unsure": 0,
+     "open": 1709,
+     "candidates": 1709,
+     "candidate_class": "Landform_CraterCandidates_auto_ath",
+     "copied": 0,
+     "drawn": 0,
+     "precision": null,
+     "judged": 0,
+     "recall": null,
+     "mapped": 0,
+     "robbins_1km": {
+      "recall": 0.3614864864864865,
+      "precision": 0.12521942656524282,
+      "robbins": 592
+     }
+    },
+    "lava margins": {
+     "drawn": 0
+    }
+   }
+  }
+ }
+}

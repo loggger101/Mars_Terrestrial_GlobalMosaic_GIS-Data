@@ -15,9 +15,12 @@ status, deck formats, timeline). The drafts and the course template are in `NEXT
 
 ---
 
-## Resume here — written at the end of the 2026-10-08 session
+## Resume here — written at the end of the 2026-10-08 session (evening)
 
-**Where it stopped.** All laptop work scheduled through 25 Oct (§8) is done, T5–T7 included (KB §47), and the interim deck and report are rebuilt with them (KB §48); the desktop jobs and the manual review are open. Done:
+**Where it stopped.** All laptop work scheduled through 25 Oct (§8) is done, T5–T7 included (KB §47), and the interim deck and report are rebuilt with them (KB §48); the desktop jobs and the manual review are open.
+**Latest (KB §49):** layout 13 (T8 against the geologic map) and layout 14 (the validation sheet) are in
+the project; 24 maps, 12 layouts. Read before building them: **0 of 9,287 candidates reviewed**. Every
+laptop item that does not wait for reviews, margins, the desktop or a decision is now done. Done:
 T1, T2, T3 (local and planet-wide), T8, Athabasca (layout 09), the locator (layout 10), graticules,
 the living interim deck and report, and the review fields for digitising (KB §40–§46). Checks green
 on 2026-10-08: `audit_record.py`, `verify_all.py` 39 / 39, `neutral_voice.py`, the repo check;
@@ -30,11 +33,12 @@ KB §11 (q14, q16–q19, q25) and the GitHub README's next steps now agree.
 | # | what | who | where / how | done when |
 |---|---|---|---|---|
 | 1 | **Review the Ius candidates** in Pro, starting with "Channels: steep and rock-floored (188)", then the closed depressions; then Athabasca | manual (GUI) | §6 steps 1–4; `build\accept_reviewed.py` (dry run, then `--apply --by "<name>"`) | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; tally printed |
-| 2 | After each review session: run the copy, re-export the gdb to GitHub, push | Claude (laptop) | `accept_reviewed.py`; `github_export_gdb.py`, then `github_sync.py` and the push (KB §35.2) | gdb export in the repo matches the drive |
-| 3 | **Validation sheet** (3.7): candidates vs accepted features, precision and recall per class, the misses | Claude (laptop) | new script + layout 11 or later; reads the `Review` tally | reruns in seconds; sheet exported and read |
+| 2 | After each review session: run the copy, **refresh layout 14**, re-export the gdb to GitHub, push | Claude (laptop) | `accept_reviewed.py`; `make_validation_sheet.py` (Pro closed) then `polish_layouts.py`; `github_export_gdb.py`, then `github_sync.py` and the push (KB §35.2) | gdb export in the repo matches the drive; layout 14's table matches the tally |
+| 3 | ~~**Validation sheet** (3.7)~~ **Done 2026-10-08 (KB §49):** layout 14, live in Pro, review precision and recall per class and window, the hand-drawn misses, the Robbins reference; tally tested on planted data (21 / 21, planted defect caught) | — | — | — |
 | 4 | ~~**T6, T7, T5**~~ **Done 2026-10-08 (KB §47):** H1 inconclusive at the 1:20 M map's contacts (day IR leans its way, interval includes 0); H3 not supported (the composites are the least reproducible inputs); Q5 has no DEM-supported answer (no threshold keeps first-order streams on real slopes) | — | — | — |
 | 4a | **T5 again on digitised margins:** rerun `make_flow_margin_test.py` against lava margins drawn at Athabasca (`Landform_LavaFlowMargins`), where the contact is known to a few pixels | Claude (laptop), after margins are drawn | the script needs a `--margins` source in place of the SIM 3292 contacts | H1 settled either way |
-| 5 | **T8 sheet** (§7 row 13): the confusion matrix against the geologic map | Claude (laptop) | from §43.2's numbers | sheet in the `.aprx` |
+| 5 | ~~**T8 sheet** (§7 row 13)~~ **Done 2026-10-08 (KB §49):** layout 13, the cross-tabulation of all 12 unit groups from `logs\geomap_check.json` beside the map | — | — | — |
+| 5a | **At the next interim rebuild:** `interim.py` says 10 layouts (now 12); consider layout 13 as a T8 slide | Claude (laptop) | `INTERIM-PLAN.md` §0 | deck and report say 12; `verify_interim.py` green |
 | 6 | ~~**Interim deck refresh**~~ **Done 2026-10-08 (KB §48):** 23 slides, report 15 pages; T5–T7 slides, review route, 10 layouts; a double-rounded κ and three report layout faults fixed. Next rebuild: after the next result (`INTERIM-PLAN.md` §0) | — | — | — |
 | 6a | ~~**README results**~~ **Done 2026-10-08 (KB §48):** T1–T3, T5–T8 added to the GitHub README; the diurnal-contrast bullet qualified (§42.4) | — | — | — |
 | 6b | **T4** (H2): channel gradient and thermal response, Ius vs Athabasca, on reviewed channels with `Origin` set | Claude (laptop) | after item 1 has produced accepted channels in both windows | result in the record |
@@ -171,15 +175,15 @@ Ranked by what they unblock. Each has a **done when** so "done" is checkable.
    channel and crater digitising classes, `build\accept_reviewed.py` (dry run by default; `--apply
    --by "<name>"` copies accepts only, `MappedBy` = the reviewer). Rehearsed on a scratch gdb,
    15 / 15 checks including two planted defects.
-7. **Validation layout for the manual digitising** (ready before digitising starts, filled in as it proceeds):
+7. ~~**Validation layout for the manual digitising**~~ **Done 2026-10-08 as layout 14 (KB §49);** rerun `make_validation_sheet.py` after each review session (ready before digitising starts, filled in as it proceeds):
    candidates against the accepted features, recall per class, the breached craters the detector
    misses (§26.3). Scripted so it reruns in seconds after each session.
 8. **After the fine pass:** two ±60° sheets, crater density ≥ 1 km and the channel network, each
    with the IAU check and the stated blind spots (closed depressions only; plateau channels are
    DEM noise, §25). Run `verify_global60.py` first (§28.4).
 9. ~~**After D5(a):** the lava-flow reference sheet and test T8.~~ **Done 2026-10-08:** T8 measured
-   (KB §43.2); the volcanic units are the lava-flow reference on layout 10 (§44). Left: a sheet for
-   T8's confusion matrix (§7 row 13).
+   (KB §43.2); the volcanic units are the lava-flow reference on layout 10 (§44). T8's sheet is
+   layout 13 (§49).
 10. **The figure lists for the interim and the final** (draft in §7), closed against D2's rubrics,
     so layouts are built to a list rather than by drift.
 
@@ -238,6 +242,7 @@ Order matters: the cheap tests first, so a failure costs minutes.
      (certain / probable / inferred) on the candidate row; they are copied as they stand.
   3. Save edits. Run, with the ArcGIS Pro Python, `build\accept_reviewed.py` (dry run: the tally and
      the precision so far), then `accept_reviewed.py --apply --by "<name>"`. Reruns copy only new accepts.
+     Then refresh layout 14 (Pro closed): `make_validation_sheet.py`, then `polish_layouts.py` (KB §49).
   4. Draw what the machine missed directly in the digitising classes: breached craters, lava margins.
   Rejections are data too: they give the detector a precision figure (3.7).
 - **The same at Athabasca** (built, layout 09, map "Athabasca Valles — digitising"), where lava flow
@@ -273,8 +278,8 @@ on this footing and say so in it.
 | 05 | the 29–30 Sep GUI SVMs checked | ✓ | ✓ (a lesson worth showing) | appendix |
 | — | T1 ablation result | chart `thermal_ablation.png` (§40.1) | ✓ | ✓ |
 | 11–12 | ±60° craters ≥ 1 km; ±60° channels | — (after X2) | if ready by the cut | ✓ |
-| 13 | accuracy against the geologic map (T8) | measured (§43.2), no sheet yet | — | ✓ |
-| 14 | validation of the manual digitising (3.7) | — (needs reviewed candidates, §46) | if reviewing has started | ✓ |
+| 13 | accuracy against the geologic map (T8) | ✓ layout 13 (§49) | optional | ✓ |
+| 14 | validation of the manual digitising (3.7) | ✓ layout 14 (§49); fills as reviews arrive | if reviewing has started | ✓ |
 
 **Final report, an outline built on these** (to fill after the freeze, not before): 1 question
 and hook (Athabasca) · 2 data and the ±60° decision · 3 co-registration and the trap · 4 the

@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 130, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 132, by purpose) · [backup and restore](docs/backup.md)
 
 ![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 
@@ -35,13 +35,13 @@ The interim report and presentation are due **mid-November 2026** and the final 
 | Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks |
 | Channel and crater candidates | seeded: 2,610 channel candidates and 1,685 closed depressions in Ius Chasma, the same for Athabasca Valles, 5,144 basin candidates at ±60°; the Robbins crater catalogue (385,049) for reference |
 | Landform digitising | **open, the critical path**: next step 1 |
-| Map layouts | ten layouts in the project (below) |
+| Map layouts | twelve layouts in the project (below), including the validation sheet, which fills in as the review proceeds |
 
 ### Next steps
 
 In order, toward the interim (data cut 2 November) and the final on 8 December. The full list, with who does what and when, is the "Resume here" section of [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md). Every open question behind them is numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
 
-1. **Digitise the three landform layers** (task 11, the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. The map *Ius Chasma — digitising* and layout 06 put them over the machine prompts: the 188 steep, rock-floored channel candidates and the 1,685 crater candidates. Digitising starts as a review: each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, and `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins) is drawn by hand (KB §46). Hand work in Pro; no heavy processing. Then re-export the geodatabase so the backup holds the new features ([keeping the backup current](docs/backup.md#keeping-it-current)).
+1. **Digitise the three landform layers** (task 11, the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. The map *Ius Chasma — digitising* and layout 06 put them over the machine prompts: the 188 steep, rock-floored channel candidates and the 1,685 crater candidates. Digitising starts as a review: each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, and `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins) is drawn by hand (KB §46). Hand work in Pro; no heavy processing. Layout 14 and `build/make_validation_sheet.py` turn each review session into the detector's precision and recall (KB §49). Then re-export the geodatabase so the backup holds the new features ([keeping the backup current](docs/backup.md#keeping-it-current)).
 2. **Settle the choices that change what gets trained or published:**
    - which class schema is current: `Composite Object Classes.ecs` swaps lava tube and steep/windy hills against every labelled file. Settle it before drawing more samples or training on the deep-learning export (q23);
    - whether to prune the 64% of channel candidates on ground under 2° of slope (q17);
@@ -50,7 +50,7 @@ In order, toward the interim (data cut 2 November) and the final on 8 December. 
 3. **Run the desktop jobs**, too heavy for the laptop. Every build script finds its own drive, so they run from `F:` on the desktop; the two no-space junctions (`TypeArea`, `Global60`) are recreated there once, and the scripts print the command (q22).
    - the ±60° crater and channel fine pass, `make_global_landforms.py`: about 7 hours measured, checkpointed per tile. Only the coarse basin pass has run. Check the output with `verify_global60.py`;
    - pyramids on the four source mosaics (q6).
-4. **Run the remaining tests** on the laptop: composite stability (H3), tributary orders at 100 m (Q5), flow margins in IR against Viking at Athabasca (H1), and, once reviewed channels exist, gradient and thermal response by origin (H2).
+4. **Run the tests that wait for the review** on the laptop: gradient and thermal response by origin (H2), once reviewed channels exist, and flow margins in IR against Viking (H1) again on lava margins digitised at Athabasca. The other tests have run (results below).
 5. **Write the interim and the final report and presentation**, from the layouts and the results above.
 
 ## Results so far
@@ -76,7 +76,8 @@ The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.m
 | ![03](Mars%20Project/TypeArea/layouts/03_classification.png) Ius Chasma, classification | ![05](Mars%20Project/Global60/layouts/05_svm_checks.png) Checks on the earlier SVM maps |
 | ![06](Mars%20Project/Global60/layouts/06_ius_digitising.png) Ius Chasma, digitising candidates | ![07](Mars%20Project/Global60/layouts/07_global60_basins.png) ±60° basin candidates |
 | ![08](Mars%20Project/Global60/layouts/08_global60_mosaic.png) The mosaic at ±60°: visible, day IR, night IR, topography | ![09](Mars%20Project/Global60/layouts/09_athabasca_digitising.png) Athabasca Valles, digitising candidates |
-| ![10](Mars%20Project/Global60/layouts/10_global60_locator.png) The ±60° locator: type areas and the geologic map's volcanic units | |
+| ![10](Mars%20Project/Global60/layouts/10_global60_locator.png) The ±60° locator: type areas and the geologic map's volcanic units | ![13](Mars%20Project/Global60/layouts/13_geomap_check.png) The classes against the USGS geologic map (T8) |
+| ![14](Mars%20Project/Global60/layouts/14_validation.png) Validation: the candidates against review and the Robbins catalogue | |
 
 ## Source data
 
@@ -140,14 +141,14 @@ The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   130 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   132 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
     pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)
   OLD/                     prospectus and Presentation 1 (delivered)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 21 maps, all Mars, and 10 layouts
-  .backups/                45 earlier copies of the .aprx, 2026-09-18 to 10-08
+  Mars Project.aprx        the ArcGIS Pro project: 24 maps, all Mars, and 12 layouts
+  .backups/                48 earlier copies of the .aprx, 2026-09-18 to 10-08
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs
