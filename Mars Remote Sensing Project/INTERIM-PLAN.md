@@ -32,7 +32,8 @@ python build_interim_live.py "..\NEXT STUFF\Mars Global Mosaic - Interim Present
 - **`build\build_interim_live.py`** lays it out in `le_theme.py` (the Presentation 1 design):
   title, goals, spectral bands, the correlation table, tasks and percent complete, the processing
   log, a "Preliminary Results" divider, one slide per figure, issues, next steps with schedule.
-  16 slides on 2026-10-08; the count follows `FIGURES`.
+  23 slides since the T5–T7 rebuild (2026-10-08 evening, KB §48); the count follows `FIGURES`. The
+  report (`build_interim_report_live.py`) keeps each figure, its takeaways and its source on one page.
 - The 13 Sep deck is kept in `NEXT STUFF\.backup_20261008\`. `build_interim_le.py` (the September
   builder, from `content.py`) is untouched.
 - **After any rebuild:** render (`render_pdf.ps1`), rasterise (`pdf_pages.py`) and read every
@@ -50,7 +51,8 @@ python build_interim_live.py "..\NEXT STUFF\Mars Global Mosaic - Interim Present
    final, light-background to match the deck.
 4. ~~Done 2026-10-08 (KB §40.3).~~ **`pres1_img\ius_fusion.png` said "thermal-inertia proxy"** and "low/high inertia" on the
    image; fix `make_fig_fusion.py` wording before it goes on a slide.
-5. A **locator slide** once layout 09 exists (`NEXT-STEPS.md` 3.4); the T1 result once measured.
+5. ~~A locator slide; the T1 result.~~ **Done 2026-10-08:** layout 10 opens the results; T1, T3 and
+   T5–T7 each have a chart slide (KB §44, §45, §48).
 6. ~~Done 2026-10-08 (KB §45): `verify_interim.py`.~~ **`verify_all.py` checks `content.py`, not `interim.py`.** Add a check that every number in
    `interim.py` still matches the record before the interim is delivered.
 7. ~~Done 2026-10-08 (KB §45): `build_interim_report_live.py`.~~ The **report** (`build_interim_docx.py`) read the September `content.py` and has no

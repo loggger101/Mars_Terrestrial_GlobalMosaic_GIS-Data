@@ -17,7 +17,7 @@ status, deck formats, timeline). The drafts and the course template are in `NEXT
 
 ## Resume here — written at the end of the 2026-10-08 session
 
-**Where it stopped.** All laptop work scheduled through 25 Oct (§8) is done, T5–T7 included (KB §47); the desktop jobs and the manual review are open. Done:
+**Where it stopped.** All laptop work scheduled through 25 Oct (§8) is done, T5–T7 included (KB §47), and the interim deck and report are rebuilt with them (KB §48); the desktop jobs and the manual review are open. Done:
 T1, T2, T3 (local and planet-wide), T8, Athabasca (layout 09), the locator (layout 10), graticules,
 the living interim deck and report, and the review fields for digitising (KB §40–§46). Checks green
 on 2026-10-08: `audit_record.py`, `verify_all.py` 39 / 39, `neutral_voice.py`, the repo check;
@@ -35,8 +35,8 @@ KB §11 (q14, q16–q19, q25) and the GitHub README's next steps now agree.
 | 4 | ~~**T6, T7, T5**~~ **Done 2026-10-08 (KB §47):** H1 inconclusive at the 1:20 M map's contacts (day IR leans its way, interval includes 0); H3 not supported (the composites are the least reproducible inputs); Q5 has no DEM-supported answer (no threshold keeps first-order streams on real slopes) | — | — | — |
 | 4a | **T5 again on digitised margins:** rerun `make_flow_margin_test.py` against lava margins drawn at Athabasca (`Landform_LavaFlowMargins`), where the contact is known to a few pixels | Claude (laptop), after margins are drawn | the script needs a `--margins` source in place of the SIM 3292 contacts | H1 settled either way |
 | 5 | **T8 sheet** (§7 row 13): the confusion matrix against the geologic map | Claude (laptop) | from §43.2's numbers | sheet in the `.aprx` |
-| 6 | **Interim deck refresh:** `interim.py` still says "8 layouts" (row "Map layouts" and the 6–8 Oct log row); there are 10. Its digitising row ("Classes ready and empty") and schedule ("8–25 Oct: digitising starts") should mention the review route (§46). Add T5–T7 (§47) to the results and issues, in the "measured limits" framing of D12 | Claude (laptop) | `INTERIM-PLAN.md` §0: edit `interim.py`, rebuild, render, read every slide, `verify_interim.py` | deck and report rebuilt and read |
-| 6a | **README results** on GitHub: add T1, T3, T8 and T5–T7, and qualify the diurnal-contrast bullet ("a material signal"), which predates §42.4 (it does not track calibrated thermal inertia at 3 km) | Claude (laptop) | README.md in the clone; `tools/check_repo.py` | README matches KB §40–§47 |
+| 6 | ~~**Interim deck refresh**~~ **Done 2026-10-08 (KB §48):** 23 slides, report 15 pages; T5–T7 slides, review route, 10 layouts; a double-rounded κ and three report layout faults fixed. Next rebuild: after the next result (`INTERIM-PLAN.md` §0) | — | — | — |
+| 6a | ~~**README results**~~ **Done 2026-10-08 (KB §48):** T1–T3, T5–T8 added to the GitHub README; the diurnal-contrast bullet qualified (§42.4) | — | — | — |
 | 6b | **T4** (H2): channel gradient and thermal response, Ius vs Athabasca, on reviewed channels with `Origin` set | Claude (laptop) | after item 1 has produced accepted channels in both windows | result in the record |
 | 7 | **Desktop day** when available: X0 junctions on `F:` → X1 GPU test → X2 fine pass (craters + channels ≥ 1 km at ±60°) → X4 pyramids alongside; X3 200 m classification next | desktop | §5 | X2 products verified (`verify_global60.py`); then 3.8 sheets |
 | 8 | **Decisions still open:** D2 (the interim and final rubrics), D7 (q23: which class schema, before any new samples), D9 (housekeeping deletions; recommended: after the final), D13 (q17: prune the plateau channel candidates; recommended: no, reject them in review) | the author | §2 | struck in §2 |

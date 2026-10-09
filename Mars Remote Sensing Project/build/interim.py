@@ -60,7 +60,7 @@ CORRELATION = {   # Ius type area, 100.00% co-valid, §18.3
 
 # ------------------------------------------------------------------ progress
 PROGRESS = [   # (task, what is true now, percentage or None)                   KB
-    ("Scope, targets and type area", "Ius Chasma type area; ±60° extent decided", None),       # §14.3 §16
+    ("Scope, targets and type area", "Ius Chasma and Athabasca Valles type areas; ±60° extent decided", None),  # §14.3 §16 §42.1
     ("Raster acquisition", "Three globals + THEMIS Night IR", None),                                     # §15
     ("Statistics, stretches, pyramids", "All products overviewed; the four source globals still not", None),  # §28 §29
     ("Grouped mosaic viewer", "Done", None),
@@ -70,10 +70,10 @@ PROGRESS = [   # (task, what is true now, percentage or None)                   
     ("Classification", "±60° SVM on hand-drawn labels: 73.5%, κ 0.58 held out", None),          # §32.2
     ("CRS harmonisation", "Done: one 100 m / 200 m grid over ±60°", None),                    # §18 §28.1
     ("Visible + IR composite", "Done: type area; 7-band ±60° stack", None),                   # §18 §31.2
-    ("Landform digitising", "Classes ready and empty; 512 training polygons drawn", None),              # §19.4 §29.2
+    ("Landform digitising", "Classes ready and empty; candidates reviewable; 512 training polygons drawn", None),  # §19.4 §29.2 §46
     ("Crater inventory", "Robbins catalogue in the project (385,049); 5,144 basins ≥ 20 km at ±60°", None),  # §41 §28.11
-    ("Map layouts", "8 layouts, from none", None),                                                       # §38
-    ("Report and presentations", "Interim being rebuilt", None),
+    ("Map layouts", "10 layouts, from none, with graticules", None),                                    # §38 §42.1 §44
+    ("Report and presentations", "Interim deck and report are living builds from one source", None),  # §45
 ]
 PROGRESS_SEPT = [90, 100, 70, 100, 80, 70, 20, 20, 15, 5, 0, 0, 0, 25]   # the 13 Sep deck, for comparison
 
@@ -89,7 +89,9 @@ LOG = [   # (date, what, outcome, §)
     ("29 Sep", "Hand-drawn training polygons; SVMs", "Four classes; two ±60° maps", "§29"),
     ("2 Oct", "The first two SVM maps checked", "Tile artefact; mostly elevation", "§30"),
     ("3 Oct", "Corrected stack; SVM scored held out", "73.5%, κ 0.58 (5 × 5)", "§31–32"),
-    ("6–8 Oct", "Backup to GitHub; class codes; layout 08", "Eight layouts", "§35–38"),
+    ("6–7 Oct", "Backup to GitHub; class codes", "Public repository; pixel = class code", "§35–36"),
+    ("8 Oct", "Reference data, Athabasca, tests T1–T3 and T8", "Thermal adds +1.3 points; ten layouts", "§38–44"),
+    ("8 Oct", "Digitising by review; tests T5–T7", "No support for H1, H3 or a tributary count", "§46–47"),
 ]
 
 # ------------------------------------------------------------------ figures (preliminary results)
@@ -156,11 +158,32 @@ FIGURES = [
          source="§31.3, §32.2"),
     dict(title="Does thermal infrared improve the classification?",
          images=[("file", r"interim_img\thermal_ablation.png")],
-         points=["Slope and relief alone: 68.6%, κ 0.52 held out; all seven bands: 67.0%, κ 0.50",
+         points=["Slope and relief alone: 68.6%, κ 0.51 held out; all seven bands: 67.0%, κ 0.50",
                  "The thermal bands add +1.3 points (95% interval +0.6 to +2.2): real, but small",
                  "Without terrain, visible and thermal score below one class everywhere (58.6%)",
                  "The labelled classes are landforms, so terrain decides them; the thermal claim needs material labels"],
          source="§40"),
+    dict(title="Do the infrared mosaics show lava-flow edges Viking misses? (H1)",
+         images=[("file", r"interim_img\t5_margins.png")],
+         points=["Profiles across the geologic map's lava contacts at Athabasca: does each band tell the units apart?",
+                 "Every band does so only slightly more often than chance (10%): Viking red 12.3%, day IR 21.0%",
+                 "Day IR leans toward H1, but the intervals overlap (difference +8.7 points, −1.7 to +18.1)",
+                 "A 1:20 M map's contacts are kilometres wide: H1 is retested on margins digitised at 100 m"],
+         source="§47.2"),
+    dict(title="Is the composite more stable than a single band? (H3)",
+         images=[("file", r"interim_img\t6_stability.png")],
+         points=["Iso Cluster trained on the west and the east half of Ius, compared over the whole window",
+                 "The composites are the least reproducible inputs: 0.40 and 0.38, against 0.61–0.89 for single bands",
+                 "They give the smoothest maps, only just ahead of Viking (0.85 against 0.84)",
+                 "H3 is not supported"],
+         source="§47.3"),
+    dict(title="How many tributary orders does 100 m resolve? (Q5)",
+         images=[("file", r"interim_img\t7_orders.png")],
+         points=["Channel thresholds from 1 to 500 km² of catchment at Ius Chasma",
+                 "The highest stream order follows the threshold: 5 at 1 km², 3 at 50 km², 2 at 500 km²",
+                 "Only 30.8–36.7% of first-order streams lie on slopes ≥ 2°, at every threshold",
+                 "The order count is a setting, not a property of the terrain: no answer the DEM supports"],
+         source="§47.4"),
     dict(title="Checking the first two classifications",
          images=[("layout", "05_svm_checks")],
          points=["29 Sep map follows its 4096-px processing tiles, not the terrain",
@@ -184,9 +207,13 @@ ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
     ("Closed depressions are not a crater count",
      "Only 11–13% of the detector's ≥ 1 km candidates are catalogued craters; the Robbins catalogue "
      "(385,049 craters) is the crater reference (§42.3)."),
+    ("Three hypotheses tested, none supported",
+     "No band separates the geologic map's lava contacts much better than chance (the map is too coarse to "
+     "settle H1); the composite's classes are the least reproducible input (H3); no channel threshold keeps "
+     "first-order streams on real slopes (Q5) (§47)."),
     ("Digitising has not started",
-     "The three landform classes are ready and empty in both type areas; it is the critical path, and only "
-     "judgement can do it."),
+     "The three landform classes are ready and empty in both type areas; candidates can now be accepted or "
+     "rejected in the attribute table (§46). It is the critical path, and only judgement can do it."),
     ("250 GB on one USB drive",
      "Reads cap near 112 MB/s, and the drive has dropped off mid-write; big outputs are built on internal disk first (§2.2, §36.4)."),
     ("Solved since September",
@@ -197,13 +224,13 @@ NEXT_STEPS = [
     "Digitise Ius Chasma and Athabasca Valles: accept or reject the machine candidates, then draw what they miss",
     "Craters and channels ≥ 1 km across ±60° on the desktop (a 7-hour resumable run), scored against Robbins",
     "Channel gradient and thermal response, Ius (fluvial) against Athabasca (volcanic): hypothesis H2",
-    "Flow margins in visible against infrared at Athabasca, against the geologic map's contacts: hypothesis H1",
+    "Flow margins in visible against infrared at Athabasca, retested on digitised margins: hypothesis H1",
     "Pyramids on the four source mosaics, for faster work in ArcGIS Pro",
 ]
 
 SCHEDULE = [   # (when, what)
-    ("8–25 Oct", "Digitising starts; desktop runs: junctions, pyramids, ±60° crater and channel pass"),
-    ("26 Oct – 1 Nov", "±60° crater and channel sheets; H1 and H2 at the two type areas"),
+    ("8–25 Oct", "Digitising by review starts; desktop runs: junctions, pyramids, ±60° crater and channel pass"),
+    ("26 Oct – 1 Nov", "±60° crater and channel sheets; H2 at the two type areas; H1 on digitised margins"),
     ("mid-Nov", "Interim presentation and report"),
     ("14–22 Nov", "Validation against the digitised landforms; data freeze"),
     ("23 Nov – 4 Dec", "Final report and presentation"),

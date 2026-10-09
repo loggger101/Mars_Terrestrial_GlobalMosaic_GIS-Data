@@ -58,13 +58,23 @@ def figure(f, n):
     paths = [image_path(k, r) for k, r in f["images"]]
     if len(paths) == 1:
         p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p.add_run().add_picture(paths[0], width=Inches(6.5))
+        from PIL import Image
+        with Image.open(paths[0]) as im:
+            aspect = im.height / float(im.width)
+        if 6.5 * aspect > 6.0:                     # a tall figure: cap it so its takeaways and source fit beneath
+            p.add_run().add_picture(paths[0], height=Inches(6.0))
+        else:
+            p.add_run().add_picture(paths[0], width=Inches(6.5))
+        p.paragraph_format.keep_with_next = True
     else:
         t = doc.add_table(rows=1, cols=len(paths))
         w = Inches(6.5 / len(paths) - 0.05)
         for c, path in zip(t.rows[0].cells, paths):
             c.paragraphs[0].add_run().add_picture(path, width=w)
+            c.paragraphs[0].paragraph_format.keep_with_next = True
     K.bullets(f["points"])
+    for p in doc.paragraphs[-len(f["points"]):]:   # a figure's takeaways stay on its page, with the source line
+        p.paragraph_format.keep_with_next = True
     source(f["source"])
 
 
@@ -97,7 +107,7 @@ K.heading("4. Project Tasks and Percent Complete")
 K.table(["#", "Task", "Where it stands", "13 Sep", "Now"],
         [[i, t, now, "%d%%" % sep, "%d%%" % pct if pct is not None else "–"]
          for i, ((t, now, pct), sep) in enumerate(zip(I.PROGRESS, I.PROGRESS_SEPT), 1)],
-        widths=[0.3, 2.0, 3.6, 0.6, 0.6], size=10)
+        widths=[0.4, 2.0, 3.5, 0.6, 0.6], size=10)          # 0.3 in wrapped "10" to "1 / 0"
 K.heading("5. Processing Completed Since the Last Report")
 K.table(["When", "What", "Outcome", "KB"], [list(r) for r in I.LOG], widths=[0.9, 2.8, 2.4, 0.7], size=10)
 
