@@ -64,10 +64,25 @@ def unstretched(layer):
     layer.setDefinition(d)
 
 
-def one_layer_map(p, name, path, label):
+def one_layer_map(p, name, path, label, band_index=None):
+    """band_index: show one band of the WHOLE stack. A layer added from a band path (stack.tif\\day_ir)
+    is stored with an absolute path that breaks on another drive letter (found 2026-10-09, KB §52);
+    the whole stack is stored relative. The band path is added only to borrow its single-band
+    stretch colorizer, then removed."""
     m = get_map(p, name)
     m.spatialReference = NATIVE
-    l = m.addDataFromPath(path); l.name = label; l.visible = True
+    if band_index is None:
+        l = m.addDataFromPath(path)
+    else:
+        tmp = m.addDataFromPath(path)
+        col = tmp.getDefinition("V3").colorizer
+        m.removeLayer(tmp)
+        l = m.addDataFromPath(STACK)
+        d = l.getDefinition("V3")
+        col.bandIndex = band_index
+        d.colorizer = col
+        l.setDefinition(d)
+    l.name = label; l.visible = True
     return m, l
 
 
@@ -85,9 +100,9 @@ def main():
     d.colorizer.redBandIndex, d.colorizer.greenBandIndex, d.colorizer.blueBandIndex = 0, 1, 2
     lv.setDefinition(d)
     unstretched(lv)
-    md, ld = one_layer_map(p, DAY, band("day_ir"),"THEMIS Day IR (band 5 of the \u00b160\u00b0 stack)")
+    md, ld = one_layer_map(p, DAY, band("day_ir"), "THEMIS Day IR (band 5 of the \u00b160\u00b0 stack)", 4)
     unstretched(ld)
-    mn, ln = one_layer_map(p, NIGHT, band("night_ir"),"THEMIS Night IR (band 4 of the \u00b160\u00b0 stack)")
+    mn, ln = one_layer_map(p, NIGHT, band("night_ir"), "THEMIS Night IR (band 4 of the \u00b160\u00b0 stack)", 3)
     unstretched(ln)
     mt = get_map(p, TOPO)
     mt.spatialReference = NATIVE

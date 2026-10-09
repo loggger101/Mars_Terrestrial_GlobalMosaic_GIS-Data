@@ -39,7 +39,7 @@ The interim report and presentation are due **mid-November 2026** and the final 
 
 ### Next steps
 
-In order, toward the interim (data cut 2 November) and the final on 8 December. The full list, with who does what and when, is the "Resume here" section of [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md). Every open question behind them is numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
+In order, toward the interim (data cut 2 November) and the final on 8 December. The full list, with who does what and when, is the "Resume here" section of [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md). Every open task, audited on 2026-10-09 with its command, cost and test of done, is in [`HANDOFF-DESKTOP.md`](Mars%20Remote%20Sensing%20Project/HANDOFF-DESKTOP.md), written for the move to the desktop. Every open question behind them is numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
 
 1. **Digitise the three landform layers** (task 11, the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. The map *Ius Chasma — digitising* and layout 06 put them over the machine prompts: the 188 steep, rock-floored channel candidates and the 1,685 crater candidates. Digitising starts as a review: each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, and `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins) is drawn by hand (KB §46). Hand work in Pro; no heavy processing. Layout 14 and `build/make_validation_sheet.py` turn each review session into the detector's precision and recall (KB §49). Then re-export the geodatabase so the backup holds the new features ([keeping the backup current](docs/backup.md#keeping-it-current)).
 2. **The choices are settled** (KB §50, 2026-10-09): the class order is that of the labels (1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground; `Composite Object Classes.ecs` is superseded); the plateau channel candidates stay and are rejected in review; the published map keeps its 5 × 5 smoothing; a deep-learning model is trained on the corrected stack with box labels, from a training-split export so it can be scored on the same held-out blocks as the SVM.
@@ -146,7 +146,7 @@ Mars Remote Sensing Project/
   OLD/                     prospectus and Presentation 1 (delivered)
 Mars Project/
   Mars Project.aprx        the ArcGIS Pro project: 23 maps, all Mars, and 12 layouts
-  .backups/                51 earlier copies of the .aprx, 2026-09-18 to 10-09
+  .backups/                53 earlier copies of the .aprx, 2026-09-18 to 10-09
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs

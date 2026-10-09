@@ -17,6 +17,11 @@ status, deck formats, timeline). The drafts and the course template are in `NEXT
 
 ## Resume here — written at the end of the 2026-10-08 session (evening), updated 2026-10-09
 
+> **Moving to the desktop? Read `HANDOFF-DESKTOP.md` first** (beside this file; KB §52): the first ten
+> minutes there (`F:`, junctions, `desktop_check.py --gpu`), the working rules, and every open task
+> audited on 2026-10-09 with its command, cost and "done when". The `.aprx` was verified to open whole
+> on another drive letter.
+
 **2026-10-09 (KB §50): every open decision is answered** (D2, D7, D9, D13; item 8 below). D9's deletions
 are done; the deep-learning training export is redone from the training split for X5. The project:
 23 maps, 12 layouts, 24 feature classes; `verify_all.py` 37 / 37 (two checks retired with the deleted data).

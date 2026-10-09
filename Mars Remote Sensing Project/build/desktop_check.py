@@ -4,7 +4,7 @@ r"""Desktop-day preflight: X0, X1 and X5's preconditions in one run (NEXT-STEPS 
     <ArcGIS python.exe> desktop_check.py          X0 + X5 preflight (seconds)
     <ArcGIS python.exe> desktop_check.py --gpu    also X1: Slope on the Ius DEM, CPU_ONLY then GPU_THEN_CPU
 
-X0  the two no-space junctions (TypeArea, Global60) resolve on this drive; paths.junction() prints
+X0  the three no-space junctions (TypeArea, Global60, Athabasca) resolve on this drive; paths.junction() prints
     the mklink command for any that does not.
 X1  q10: does GPU_THEN_CPU engage? The same Slope on the 37 Mpx Ius DEM twice, timed, output to the
     internal disk. Engaged = the GP messages no longer say "No compatible GPU device has been detected"
@@ -36,7 +36,7 @@ def say(k, ok, detail=""):
 
 # X0: junctions
 res["junctions"] = {}
-for name in ("TypeArea", "Global60"):
+for name in ("TypeArea", "Global60", "Athabasca"):
     alias, target = on_drive(name), on_drive(os.path.join("Mars Project", name))
     ok = os.path.isdir(alias) and os.path.samefile(alias, target)
     res["junctions"][name] = ok

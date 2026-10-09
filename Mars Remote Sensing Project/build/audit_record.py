@@ -24,7 +24,13 @@ BS   = chr(92)
 ROOT = on_drive(r"Mars Remote Sensing Project")
 KB   = os.path.join(ROOT, "PROJECT-KNOWLEDGE.md")
 BUILD= os.path.join(ROOT, "build")
-MEM  = r"C:\Users\Loggg\.claude\projects\Z--\memory"
+# Claude Code's memory folder for this drive: keyed by the working directory, so "Z--" on the
+# laptop and "F--" on the desktop (2026-10-09, KB §52). MARS_MEMORY_DIR overrides. If this machine
+# has none, the memory checks are skipped and say so; they are not counted as passed.
+_home = os.path.join(os.path.expanduser("~"), ".claude", "projects")
+_cands = [os.environ.get("MARS_MEMORY_DIR", ""), os.path.join(_home, on_drive()[0] + "--", "memory"),
+          os.path.join(_home, "Z--", "memory")]
+MEM  = next((c for c in _cands if c and os.path.isfile(os.path.join(c, "MEMORY.md"))), None)
 fails = []
 
 def check(label, ok, detail=""):
@@ -95,7 +101,10 @@ for f in sorted(os.listdir(imgdir)):
 check("every type-area figure is reproducible", not orphan, "orphans: %s" % orphan if orphan else "")
 
 print("\n=== memory ===")
-mf = [f for f in glob.glob(os.path.join(MEM, "*.md")) if os.path.basename(f) != "MEMORY.md"]
+if MEM is None:
+    print("  SKIP no Claude memory folder on this machine (looked in: %s); the memory checks did not run"
+          % ", ".join(c for c in _cands if c))
+mf = [f for f in glob.glob(os.path.join(MEM, "*.md")) if os.path.basename(f) != "MEMORY.md"] if MEM else []
 names, badfm = set(), []
 for f in mf:
     t = io.open(f, encoding="utf-8").read()
@@ -107,15 +116,16 @@ for f in mf:
     if not nm or nm.group(1) != os.path.splitext(os.path.basename(f))[0]: badfm.append(os.path.basename(f))
     elif not ty or ty.group(1) not in ("user", "feedback", "project", "reference"): badfm.append(os.path.basename(f))
     if nm: names.add(nm.group(1))
-check("frontmatter valid on every memory", not badfm, "bad: %s" % badfm if badfm else "%d files" % len(mf))
-broken = sorted({l for f in mf for l in re.findall(r"\[\[([^\]]+)\]\]",
-                 io.open(f, encoding="utf-8").read()) if l not in names})
-check("every [[wikilink]] resolves", not broken, "broken: %s" % broken if broken else "")
-idx = io.open(os.path.join(MEM, "MEMORY.md"), encoding="utf-8").read()
-linked = set(re.findall(r"\]\(([^)]+\.md)\)", idx))
-actual = {os.path.basename(f) for f in mf}
-check("index lists every memory", not (actual - linked), "unindexed: %s" % sorted(actual - linked))
-check("index has no dangling rows", not (linked - actual), "dangling: %s" % sorted(linked - actual))
+if MEM:
+    check("frontmatter valid on every memory", not badfm, "bad: %s" % badfm if badfm else "%d files" % len(mf))
+    broken = sorted({l for f in mf for l in re.findall(r"\[\[([^\]]+)\]\]",
+                     io.open(f, encoding="utf-8").read()) if l not in names})
+    check("every [[wikilink]] resolves", not broken, "broken: %s" % broken if broken else "")
+    idx = io.open(os.path.join(MEM, "MEMORY.md"), encoding="utf-8").read()
+    linked = set(re.findall(r"\]\(([^)]+\.md)\)", idx))
+    actual = {os.path.basename(f) for f in mf}
+    check("index lists every memory", not (actual - linked), "unindexed: %s" % sorted(actual - linked))
+    check("index has no dangling rows", not (linked - actual), "dangling: %s" % sorted(linked - actual))
 
 print("\n%s  (%d check%s failed)" % ("ALL CHECKS PASS" if not fails else "FAILURES: " + ", ".join(fails),
       len(fails), "" if len(fails) == 1 else "s"))
