@@ -2,7 +2,7 @@
 
 **Owner:** Logan Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `Z:\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md`
-**Started:** 2026-09-18 · **Last updated:** 2026-10-09 (**§50 added: every open decision answered (no rubric; the labels' class order; deep learning yes, boxes; 5 × 5 kept; plateau candidates kept); 13 classes and one map deleted after an inventory, `_removed_not_Mars` to the Recycle Bin; a training-split deep-learning export**; **§49 added: layout 13, T8's cross-tabulation against the geologic map as a sheet, and layout 14, the validation sheet (review precision and recall, Robbins reference), live in Pro and rerun after each review session**; **§48 added: the interim deck (23 slides) and report (15 pages) rebuilt with T5–T7; four presentation faults fixed, including a double-rounded κ**; **§47 added: tests T5, T6, T7; none supports the prospectus claim (H1 inconclusive at 1:20 M, H3 not supported, Q5 has no DEM-supported answer); §41's frame label corrected (the coordinates were right)**; **§11 q14, q16–q19, q25 brought up to date with §39–§46**; **§46 added: digitising by review (D10): `Review` / `ReviewNote` on the four candidate classes, `SourceID` on the two digitising classes, and `accept_reviewed.py`, which copies only accepted candidates**; **§45 added: the interim report is a living build from the same source as the deck; the interim now leads with the measured limits (D12); `verify_interim.py` checks every interim number against this record**; **§44 added: graticules on every map and layout 10, the locator, with the geologic map's volcanic units as the lava-flow reference**; **§43 added: T3 planet-wide (the THEMIS pair keeps a weak local signal, Viking the regional one); T8 (the classes are terrain classes, also against the geologic map); the lava-tube relabel tested**; **§42 added: the Athabasca Valles type area; T2 and the detector's precision against Robbins (11 % at ≥ 1 km); T3 local: the diurnal-contrast index does not track calibrated thermal inertia at 3 km; §24.3 and §26.3 qualified**; **§41 added: the three approved reference datasets downloaded, checked and in the project: the USGS geologic map, the Robbins craters and TES thermal inertia**; **§40 added: test T1, the thermal bands add +1.3 pt and terrain alone matches the full stack; every build script now finds its drive (§11 q22)**; **§39.4: the record, the plans, the build scripts, the project's layer and layout text and the GitHub page rewritten in an objective, impersonal voice**; **§39.3: the interim deck is now a living build in the Presentation 1 style with seven map slides; `verify_all.py` repaired after §37**; **§21.4 corrected: the interim deck was never blocked; the course template is now on `Z:` and both deck builders run (§39.2); §1: the interim is due mid-November; §39 added: the next-steps plan, `NEXT-STEPS.md`, and the interim plan, `INTERIM-PLAN.md`; §10: the USGS geologic map is named as a validation source but is not on disk**; **§38 added: layout 08, the mosaic itself at ±60° in four panels (visible, day IR, night IR, topography), each on its own map in the stack's native CRS**; 2026-10-07: **§37 added: everything that isn't Mars is out of the project, moved to `Z:\_removed_not_Mars\`, nothing deleted; §36.4: every classified raster's pixel values are now its class codes, the two GUI maps and `ius_sup_*` included**; earlier the same day, **§36: the ±60° landform maps recoded 0–3 → 1–4**; 2026-10-06: **§35 added: the project is backed up to a public GitHub repo, `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`, which is also its project page; §2.5's "no backup" is superseded**; 2026-10-03: **§32 added: the digitising map and layout 06 put the candidates and the empty digitising classes in Pro; basin layout 07; the classification smoothed 5 × 5, chosen by feature size**; earlier the same day, **§31 added: the fix. A corrected ±60° stack, a reclassification scored on held-out labels, every Mars map clipped to ±60°, a new map and layouts in the project**; 2026-10-02: **§30 added — the two GUI SVM classifications checked against the labelled polygons, the IAU craters and the DEM: the 29 Sep map follows its 4096-px processing tiles and scores below chance on its own training data; the 30 Sep map is mostly elevation**; earlier the same day, **§29.2 and §11 q23 — the two class schemas number lava tube and steep/windy hills the other way round; every labelled file follows the older one**; 2026-10-01: **§29 added — manual work in the Pro GUI, 2026-09-24 to 10-01, read from the logs and the gdb: hand training labels in four classes, a ±60° segmentation, two SVM classifications, the first two successful global Composite Bands runs, a deep-learning export — and `Landform_TrainingSamples_terrain` now holds the hand-drawn labels, which `make_typearea_supervised.py` would delete; §6, §8, §11, §13.2, §17.2, §27 reconciled**; 2026-09-19: **§28 added — the derived products move off the type area onto the mosaics' own grid; `build\grid60.py` is now the single definition of the ±60° extent, and the diurnal-contrast index exists at 15.2 bn px**; **§24 added — the day–night pair worked properly; calibrated thermal inertia is NOT derivable from the held 8-bit products, and the relative diurnal-contrast index that replaces it**; **§25 added — task 11 seeded with inferred channel candidates, and `Fill` caught flooding Ius Chasma 2,077 m deep**; earlier on 2026-09-18, a re-verification pass — most `[E]` items
+**Started:** 2026-09-18 · **Last updated:** 2026-10-09 (**§51 added: T4 stage 1, H2 not supported (the volcanic window's channels are shallower; no thermal separation); the desktop-day preflight, with a GPU-test false positive caught; the deep-learning script with a tested scorer; deep-learning libraries absent on the laptop**; **§50 added: every open decision answered (no rubric; the labels' class order; deep learning yes, boxes; 5 × 5 kept; plateau candidates kept); 13 classes and one map deleted after an inventory, `_removed_not_Mars` to the Recycle Bin; a training-split deep-learning export**; **§49 added: layout 13, T8's cross-tabulation against the geologic map as a sheet, and layout 14, the validation sheet (review precision and recall, Robbins reference), live in Pro and rerun after each review session**; **§48 added: the interim deck (23 slides) and report (15 pages) rebuilt with T5–T7; four presentation faults fixed, including a double-rounded κ**; **§47 added: tests T5, T6, T7; none supports the prospectus claim (H1 inconclusive at 1:20 M, H3 not supported, Q5 has no DEM-supported answer); §41's frame label corrected (the coordinates were right)**; **§11 q14, q16–q19, q25 brought up to date with §39–§46**; **§46 added: digitising by review (D10): `Review` / `ReviewNote` on the four candidate classes, `SourceID` on the two digitising classes, and `accept_reviewed.py`, which copies only accepted candidates**; **§45 added: the interim report is a living build from the same source as the deck; the interim now leads with the measured limits (D12); `verify_interim.py` checks every interim number against this record**; **§44 added: graticules on every map and layout 10, the locator, with the geologic map's volcanic units as the lava-flow reference**; **§43 added: T3 planet-wide (the THEMIS pair keeps a weak local signal, Viking the regional one); T8 (the classes are terrain classes, also against the geologic map); the lava-tube relabel tested**; **§42 added: the Athabasca Valles type area; T2 and the detector's precision against Robbins (11 % at ≥ 1 km); T3 local: the diurnal-contrast index does not track calibrated thermal inertia at 3 km; §24.3 and §26.3 qualified**; **§41 added: the three approved reference datasets downloaded, checked and in the project: the USGS geologic map, the Robbins craters and TES thermal inertia**; **§40 added: test T1, the thermal bands add +1.3 pt and terrain alone matches the full stack; every build script now finds its drive (§11 q22)**; **§39.4: the record, the plans, the build scripts, the project's layer and layout text and the GitHub page rewritten in an objective, impersonal voice**; **§39.3: the interim deck is now a living build in the Presentation 1 style with seven map slides; `verify_all.py` repaired after §37**; **§21.4 corrected: the interim deck was never blocked; the course template is now on `Z:` and both deck builders run (§39.2); §1: the interim is due mid-November; §39 added: the next-steps plan, `NEXT-STEPS.md`, and the interim plan, `INTERIM-PLAN.md`; §10: the USGS geologic map is named as a validation source but is not on disk**; **§38 added: layout 08, the mosaic itself at ±60° in four panels (visible, day IR, night IR, topography), each on its own map in the stack's native CRS**; 2026-10-07: **§37 added: everything that isn't Mars is out of the project, moved to `Z:\_removed_not_Mars\`, nothing deleted; §36.4: every classified raster's pixel values are now its class codes, the two GUI maps and `ius_sup_*` included**; earlier the same day, **§36: the ±60° landform maps recoded 0–3 → 1–4**; 2026-10-06: **§35 added: the project is backed up to a public GitHub repo, `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`, which is also its project page; §2.5's "no backup" is superseded**; 2026-10-03: **§32 added: the digitising map and layout 06 put the candidates and the empty digitising classes in Pro; basin layout 07; the classification smoothed 5 × 5, chosen by feature size**; earlier the same day, **§31 added: the fix. A corrected ±60° stack, a reclassification scored on held-out labels, every Mars map clipped to ±60°, a new map and layouts in the project**; 2026-10-02: **§30 added — the two GUI SVM classifications checked against the labelled polygons, the IAU craters and the DEM: the 29 Sep map follows its 4096-px processing tiles and scores below chance on its own training data; the 30 Sep map is mostly elevation**; earlier the same day, **§29.2 and §11 q23 — the two class schemas number lava tube and steep/windy hills the other way round; every labelled file follows the older one**; 2026-10-01: **§29 added — manual work in the Pro GUI, 2026-09-24 to 10-01, read from the logs and the gdb: hand training labels in four classes, a ±60° segmentation, two SVM classifications, the first two successful global Composite Bands runs, a deep-learning export — and `Landform_TrainingSamples_terrain` now holds the hand-drawn labels, which `make_typearea_supervised.py` would delete; §6, §8, §11, §13.2, §17.2, §27 reconciled**; 2026-09-19: **§28 added — the derived products move off the type area onto the mosaics' own grid; `build\grid60.py` is now the single definition of the ±60° extent, and the diurnal-contrast index exists at 15.2 bn px**; **§24 added — the day–night pair worked properly; calibrated thermal inertia is NOT derivable from the held 8-bit products, and the relative diurnal-contrast index that replaces it**; **§25 added — task 11 seeded with inferred channel candidates, and `Fill` caught flooding Ius Chasma 2,077 m deep**; earlier on 2026-09-18, a re-verification pass — most `[E]` items
 promoted to `[V]`; Composite Bands attempt count corrected from three to four; laptop-vs-desktop
 constraint added as §2.1; **final-deliverable date answered — 8 December 2026**; `Z:`
 confirmed as the project's single home, §2.5; **§13 added — verified headless
@@ -4133,6 +4133,7 @@ raster excluded; 53.3 % of the window is ≥ 2°).
 H1 tested, not supported at 1:20 M (re-test on digitised margins); H2 untested (needs reviewed channels
 with `Origin`, T4); H3 tested, not supported; H4 answered by a different method (§28.11). Q5 answered:
 no DEM-supported order count at Ius. `INTERIM-PLAN.md` §5 updated.
+**Since 2026-10-09 (§51.1): H2 not supported at stage 1** (by window); stage 2 waits for reviewed channels.
 
 ## 48. The interim rebuilt with T5–T7, and four presentation faults fixed — 2026-10-08 **[V]**
 
@@ -4255,3 +4256,77 @@ export (256 × 256 chips, stride 128, PASCAL VOC rectangles, `Classvalue`) from
 
 The §31.4 export (5,480 chips, 7,884 boxes) is unchanged. **X5 trains on the `_train` folder only.**
 Chips near a block edge may show held-out ground as unlabelled context, never as a label.
+
+## 51. T4 stage 1 (H2), the desktop-day preflight, the deep-learning script, a locator fix — 2026-10-09 **[V]**
+
+On request ("anything else you are able to do on your own"): the laptop work left after §50.
+
+### 51.1 T4, stage 1: do the two windows' channels separate on gradient and thermal response? (H2)
+
+`build\make_t4_channel_h2.py`, `logs\t4_channel_h2.json`; chart `make_fig_t4.py` → `interim_img\t4_channels.png`.
+H2 (`INTERIM-PLAN.md` §5): fluvial channels have shallower gradients than volcanic ones, and the two
+separate on gradient against thermal response. Stage 1, as `NEXT-STEPS.md` §4 designs T4: the channel
+candidates, the window standing in for origin (Ius Chasma fluvial / collapse, Athabasca Valles volcanic).
+Prediction and verdict rule written into the script before it ran. Gradient = straight-line elevation drop
+over the routed length on the 100 m DEM; thermal response = the candidate's `ThermIdx` as a z-score against
+200,000 background pixels of its own window's index (§28.10); intervals by a bootstrap over 50 km cells;
+AUC 5-fold cross-validated. A self-test on data with known answers passed first; a rerun gave a
+byte-identical log.
+
+| | Ius Chasma | Athabasca Valles | difference, 95 % interval | AUC: gradient / thermal / both |
+|---|---|---|---|---|
+| all candidates ≥ 1 km (2,588 / 3,272) | median 10.2 m/km | 1.4 m/km | −8.85 [−15.69, −5.76] m/km; thermal d −0.02 [−0.12, +0.08] | 0.81 / 0.50 / 0.81 |
+| Strahler order ≥ 2 (1,009 / 1,803) | 3.8 m/km | 0.9 m/km | −2.87 [−4.87, −1.91] m/km; thermal d −0.08 [−0.20, +0.04] | 0.76 / 0.53 / 0.77 |
+
+- **Verdict by the rule fixed in advance: H2 not supported at stage 1.** The volcanic window's channels are
+  **shallower**, not steeper, and neither window's candidates differ from their own background on the
+  thermal index (mean z +0.04 and +0.03).
+- **The prediction held on both counts.** What separates the windows is gradient alone, i.e. the window:
+  Ius holds the chasma walls, Athabasca flat lava plains (§42.1). Window is a proxy for origin, so stage 1
+  cannot confirm H2 either way.
+- **Stage 2** runs on reviewed channels with `Origin` set, once ≥ 10 fluvial and ≥ 10 volcanic exist
+  (the script reports it waiting; 0 reviewed channels on 2026-10-09).
+
+### 51.2 Desktop day prepared: `desktop_check.py` (X0, X1, X5 preflight)
+
+- One command on the desktop: the two junctions (X0); with `--gpu`, the q10 test (X1): `Slope` on the
+  Ius DEM with `CPU_ONLY` then `GPU_THEN_CPU`, timed, output on the internal disk; X5's preconditions.
+- **A false positive caught on a known negative:** the first version used `arcpy.sa.Slope`, whose map
+  algebra returns **no** GP messages, so "no message saying no GPU" called the laptop's integrated
+  graphics "engaged". The tool form `arcpy.ddd.Slope` returns them; on the laptop it now reports
+  *"No compatible GPU device has been detected."* and "not engaged". The positive case can only be seen
+  on the desktop.
+- **Deep learning needs a software install first.** In the laptop's Pro 3.7 environment `torch`,
+  `torchvision`, `fastai` and `arcgis.learn` do not import: Esri's separately installed "Deep Learning
+  Libraries" are absent. Whether the desktop has them is unknown **[?]**; installing them is a download
+  that needs approval. `desktop_check.py` reports it.
+
+### 51.3 `make_dl_model.py`: X5 written, its scorer tested
+
+- `--train` (training-split chips only, refuses unless the preflight log says ready), `--detect`
+  (around the 183 held-out polygons, 25 km mask), `--score <layer>`. Tool parameter names checked against
+  Pro 3.7's signatures; **train and detect have not run** (no libraries here), and which detection models
+  accept 7-band input is not verified **[?]**.
+- **The score is per polygon** (boxes cannot score per pixel on area classes, §31.4): recall = share of
+  held-out polygons whose own class's boxes cover ≥ 50 % of them; precision = of the boxes centred in a
+  held-out polygon, the share with its class. **Tested:** each held-out polygon's own envelope with its
+  true class scores recall 1 and precision 1 in every class; the same boxes with classes rotated score 0.
+
+### 51.4 Layout 10's type-area labels
+
+The labels sat inside boxes smaller than the names, on the yellow outline. `make_reference_maps.py` now
+places them around the polygon (Maplex `HorizontalAroundPolygon`) with a dark halo; rerun, rehearsed on a
+copy first (no layer broken in any of the 23 maps), then `polish_layouts.py`. Read on the export: legible.
+
+### 51.5 The interim rebuilt (`NEXT-STEPS.md` item 5a)
+
+- `interim.py`: status 9 October; 12 layouts; the dead HiRISE link removed; the validation sheet; a T8 slide
+  (`make_fig_t8.py` → `interim_img\t8_enrichment.png`, layout 13's table drawn from the same log, because
+  the whole sheet is too tall for a slide); a T4 slide; "four hypotheses tested, none supported"; next
+  steps H2 on reviewed channels and the deep-learning model. `verify_interim.py`: all 193 numbers found,
+  and each new one checked by hand against its own section (§48's limit).
+- **Deck 25 slides, report 16 figures on 17 pages**, rendered through PowerPoint and Word; every changed
+  slide and page read. **Faults found by reading, fixed:** the whole layout 13 on the T8 slide left its
+  table unreadable and pushed the takeaways off the slide (now the table chart); the T4 title wrapped
+  onto the accent rule (shortened); a 14th log row ran off the slide (the two newest rows merged).
+- The previous deck and report: copies in the session scratch only; both are rebuilt from `interim.py`.

@@ -16,7 +16,7 @@ Slide text is written in a neutral, impersonal voice.
 """
 from content import DECK_TITLE, COURSE, AUTHOR, TITLE        # unchanged since the prospectus
 
-STATUS_DATE = "8 October 2026"
+STATUS_DATE = "9 October 2026"
 
 MISSION = (
     "Assemble one co-registered visible and thermal-infrared mosaic of Mars in ArcGIS Pro, over "
@@ -66,13 +66,13 @@ PROGRESS = [   # (task, what is true now, percentage or None)                   
     ("Grouped mosaic viewer", "Done", None),
     ("DEM terrain derivatives", "Rebuilt in degrees, type area and ±60°; WARNING 000869 gone", None),  # §20 §28.8
     ("Image-gradient products", "Renamed Gradient_*; not used further", None),                          # §7
-    ("Jezero context", "Hosted services only; HiRISE link dead", None),                                 # §3
+    ("Jezero context", "Hosted services only; the dead HiRISE link removed", None),                     # §3 §50
     ("Classification", "±60° SVM on hand-drawn labels: 73.5%, κ 0.58 held out", None),          # §32.2
     ("CRS harmonisation", "Done: one 100 m / 200 m grid over ±60°", None),                    # §18 §28.1
     ("Visible + IR composite", "Done: type area; 7-band ±60° stack", None),                   # §18 §31.2
-    ("Landform digitising", "Classes ready and empty; candidates reviewable; 512 training polygons drawn", None),  # §19.4 §29.2 §46
+    ("Landform digitising", "Classes ready and empty; candidates reviewable; validation sheet ready; 512 training polygons drawn", None),  # §19.4 §29.2 §46 §49
     ("Crater inventory", "Robbins catalogue in the project (385,049); 5,144 basins ≥ 20 km at ±60°", None),  # §41 §28.11
-    ("Map layouts", "10 layouts, from none, with graticules", None),                                    # §38 §42.1 §44
+    ("Map layouts", "12 layouts, from none, with graticules", None),                                    # §38 §42.1 §44 §49
     ("Report and presentations", "Interim deck and report are living builds from one source", None),  # §45
 ]
 PROGRESS_SEPT = [90, 100, 70, 100, 80, 70, 20, 20, 15, 5, 0, 0, 0, 25]   # the 13 Sep deck, for comparison
@@ -91,7 +91,8 @@ LOG = [   # (date, what, outcome, §)
     ("3 Oct", "Corrected stack; SVM scored held out", "73.5%, κ 0.58 (5 × 5)", "§31–32"),
     ("6–7 Oct", "Backup to GitHub; class codes", "Public repository; pixel = class code", "§35–36"),
     ("8 Oct", "Reference data, Athabasca, tests T1–T3 and T8", "Thermal adds +1.3 points; ten layouts", "§38–44"),
-    ("8 Oct", "Digitising by review; tests T5–T7", "No support for H1, H3 or a tributary count", "§46–47"),
+    ("8–9 Oct", "Digitising by review; tests T4–T7; validation sheet",          # 14 rows overflow the slide
+     "No support for H1–H3 or a tributary count; 12 layouts", "§46–51"),
 ]
 
 # ------------------------------------------------------------------ figures (preliminary results)
@@ -156,6 +157,13 @@ FIGURES = [
                  "73.5%, κ 0.58 held out (one class everywhere: 58.6%)",
                  "Normal Ground and cratered terrain are solid; lava tube is not (2% user's)"],
          source="§31.3, §32.2"),
+    dict(title="The landform classes against the USGS geologic map",
+         images=[("file", r"interim_img\t8_enrichment.png")],          # layout 13 is the Pro sheet; its table, legible
+         points=["Each cell: how much more often a class occurs in a unit group than across ±60° (×1 = no link)",
+                 "\"Lava tube\" is not enriched on volcanic plains (×0.87) but on volcano flanks and aprons (×3.34, ×4.12)",
+                 "75% of the volcanic plains come out Normal Ground",
+                 "A coherent terrain map, not a lava-flow map: lava flows come from the geologic map"],
+         source="§43.2, §49"),
     dict(title="Does thermal infrared improve the classification?",
          images=[("file", r"interim_img\thermal_ablation.png")],
          points=["Slope and relief alone: 68.6%, κ 0.51 held out; all seven bands: 67.0%, κ 0.50",
@@ -184,6 +192,13 @@ FIGURES = [
                  "Only 30.8–36.7% of first-order streams lie on slopes ≥ 2°, at every threshold",
                  "The order count is a setting, not a property of the terrain: no answer the DEM supports"],
          source="§47.4"),
+    dict(title="Do volcanic channels differ from fluvial ones? (H2)",
+         images=[("file", r"interim_img\t4_channels.png")],
+         points=["Channel candidates, Ius Chasma (fluvial) against Athabasca Valles (volcanic): 2,588 and 3,272",
+                 "The volcanic channels are shallower, not steeper: median 1.4 against 10.2 m per km",
+                 "Thermal response tells the two apart no better than chance (AUC 0.50)",
+                 "H2 is not supported at this stage; the window, not the origin, sets the gradient; retested on reviewed channels"],
+         source="§51.1"),
     dict(title="Checking the first two classifications",
          images=[("layout", "05_svm_checks")],
          points=["29 Sep map follows its 4096-px processing tiles, not the terrain",
@@ -207,10 +222,11 @@ ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
     ("Closed depressions are not a crater count",
      "Only 11–13% of the detector's ≥ 1 km candidates are catalogued craters; the Robbins catalogue "
      "(385,049 craters) is the crater reference (§42.3)."),
-    ("Three hypotheses tested, none supported",
+    ("Four hypotheses tested, none supported",
      "No band separates the geologic map's lava contacts much better than chance (the map is too coarse to "
      "settle H1); the composite's classes are the least reproducible input (H3); no channel threshold keeps "
-     "first-order streams on real slopes (Q5) (§47)."),
+     "first-order streams on real slopes (Q5); the volcanic window's channels are shallower, and thermal "
+     "response separates nothing (H2, stage 1) (§47, §51)."),
     ("Digitising has not started",
      "The three landform classes are ready and empty in both type areas; candidates can now be accepted or "
      "rejected in the attribute table (§46). It is the critical path, and only judgement can do it."),
@@ -223,14 +239,15 @@ ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
 NEXT_STEPS = [
     "Digitise Ius Chasma and Athabasca Valles: accept or reject the machine candidates, then draw what they miss",
     "Craters and channels ≥ 1 km across ±60° on the desktop (a 7-hour resumable run), scored against Robbins",
-    "Channel gradient and thermal response, Ius (fluvial) against Athabasca (volcanic): hypothesis H2",
+    "Hypothesis H2 again, on reviewed channels with their origin set",
+    "A deep-learning model on the desktop GPU, trained on the training split and scored on the held-out polygons",
     "Flow margins in visible against infrared at Athabasca, retested on digitised margins: hypothesis H1",
     "Pyramids on the four source mosaics, for faster work in ArcGIS Pro",
 ]
 
 SCHEDULE = [   # (when, what)
     ("8–25 Oct", "Digitising by review starts; desktop runs: junctions, pyramids, ±60° crater and channel pass"),
-    ("26 Oct – 1 Nov", "±60° crater and channel sheets; H2 at the two type areas; H1 on digitised margins"),
+    ("26 Oct – 1 Nov", "±60° crater and channel sheets; H1 and H2 on digitised features"),
     ("mid-Nov", "Interim presentation and report"),
     ("14–22 Nov", "Validation against the digitised landforms; data freeze"),
     ("23 Nov – 4 Dec", "Final report and presentation"),

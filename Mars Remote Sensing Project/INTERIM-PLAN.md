@@ -32,7 +32,8 @@ python build_interim_live.py "..\NEXT STUFF\Mars Global Mosaic - Interim Present
 - **`build\build_interim_live.py`** lays it out in `le_theme.py` (the Presentation 1 design):
   title, goals, spectral bands, the correlation table, tasks and percent complete, the processing
   log, a "Preliminary Results" divider, one slide per figure, issues, next steps with schedule.
-  23 slides since the T5–T7 rebuild (2026-10-08 evening, KB §48); the count follows `FIGURES`. The
+  25 slides since the 2026-10-09 rebuild (T8 table and T4, KB §51; report 17 pages, 16 figures); 23 after
+  the T5–T7 rebuild (KB §48); the count follows `FIGURES`. The
   report (`build_interim_report_live.py`) keeps each figure, its takeaways and its source on one page.
 - The 13 Sep deck is kept in `NEXT STUFF\.backup_20261008\`. `build_interim_le.py` (the September
   builder, from `content.py`) is untouched.
@@ -171,7 +172,7 @@ since. Status, for both the interim and the final:
 | | claim | status | what would settle it |
 |---|---|---|---|
 | **H1** | Day IR delineates flow boundaries under dust that Viking misses | **tested, not supported at 1:20 M** (T5, §47.2): day IR separates 21 % of lAv contact profiles, Viking red 12 %, chance 10 %; the difference's interval includes 0 | T5 again on lava margins digitised at Athabasca |
-| **H2** | Fluvial channels have shallower gradients than volcanic ones, and the two separate on gradient vs thermal | **untested**: no channel has an `Origin` yet; the review sets it on accepted channels (§46); test T4 | the digitised channels at Ius (fluvial) and Athabasca (volcanic), each with `SlopeDeg` and `ThermIdx` attributes the candidates already carry (§25) |
+| **H2** | Fluvial channels have shallower gradients than volcanic ones, and the two separate on gradient vs thermal | **stage 1 tested 2026-10-09 (KB §51.1), not supported:** by window, the volcanic channels are shallower (median 1.4 against 10.2 m/km) and thermal response separates nothing (AUC 0.50); stage 2 waits for reviewed channels with `Origin` (§46) | the digitised channels at Ius (fluvial) and Athabasca (volcanic), each with `SlopeDeg` and `ThermIdx` attributes the candidates already carry (§25) |
 | **H3** | The 4-band composite gives more stable Iso Cluster classes than any single input | **answered, not supported** (T6, §47.3): halves-trained ARI 0.40 for the 4-band composite against 0.61–0.89 for single inputs; most coherent, only just ahead of Viking | — |
 | **H4** | Crater rims from DN gradient recover most of the 141 IAU craters > 100 km | **answered with a different method**: fill depth, not DN gradient — 68 % of 117 inside ±58° (§28.11) | report the method change honestly; the gradient route was never run |
 | Q1 | Does projecting the DEM change slope enough to matter? | **answered**: yes, percent rise on a degree grid was not a slope (§7, §20) | — |

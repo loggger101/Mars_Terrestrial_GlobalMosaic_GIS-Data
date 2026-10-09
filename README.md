@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 133, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 138, by purpose) · [backup and restore](docs/backup.md)
 
 ![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 
@@ -47,7 +47,7 @@ In order, toward the interim (data cut 2 November) and the final on 8 December. 
    - the ±60° crater and channel fine pass, `make_global_landforms.py`: about 7 hours measured, checkpointed per tile. Only the coarse basin pass has run. Check the output with `verify_global60.py`;
    - pyramids on the four source mosaics (q6);
    - the deep-learning model, once a GPU test shows the card works: trained on `LabeledObjects/global60_svm_stack_200m_train/` only, scored on the held-out polygons.
-4. **Run the tests that wait for the review** on the laptop: gradient and thermal response by origin (H2), once reviewed channels exist, and flow margins in IR against Viking (H1) again on lava margins digitised at Athabasca. The other tests have run (results below).
+4. **Run the tests that wait for the review** on the laptop: gradient and thermal response by origin (H2, stage 2), once reviewed channels exist, and flow margins in IR against Viking (H1) again on lava margins digitised at Athabasca. The other tests have run (results below).
 5. **Write the interim and the final report and presentation**, from the layouts and the results above.
 
 ## Results so far
@@ -57,6 +57,7 @@ In order, toward the interim (data cut 2 November) and the final on 8 December. 
 - **Against calibrated thermal inertia (T3)**: across ±60°, TES thermal inertia tracks Viking red (r −0.36), while the THEMIS mosaics keep only a weak signal inside regions (|r| ≈ 0.1). In the two type areas the diurnal-contrast index does not track it (r −0.22 to ≈ 0); Viking albedo does at Athabasca (−0.55, −0.64). Where a calibrated product can check, visible albedo carries the material signal.
 - **Against the USGS geologic map (T8, T2)**: the classes sit where terrain puts them, and volcanic plains can't be separated from other plains in these bands, so lava flows are shown from the map's volcanic units. At Athabasca the flood lava (`lAv`) is the least cratered large unit: 1,122 catalogued craters per million km², against 1,760 and 2,183 on the older units.
 - **The prospectus' hypotheses (T5–T7)**: no band separates the geologic map's lava contacts at Athabasca much better than chance (day IR 21.0%, Viking red 12.3%, chance 10%; the 1:20 M map is too coarse to settle it). The composite's Iso Cluster classes are the least reproducible input (west- vs east-trained agreement 0.40, against 0.61–0.89 for single bands). No channel threshold keeps first-order streams on real slopes: only 30.8–36.7% lie on ≥ 2°, so the tributary order count is a setting, not a measurement.
+- **Volcanic against fluvial channels (T4, H2, stage 1)**: by type area, the volcanic (Athabasca) channel candidates are shallower than the fluvial (Ius) ones, median 1.4 against 10.2 m per km, the opposite of the hypothesis, and thermal response tells them apart no better than chance (AUC 0.50). The window, not the origin, sets the gradient; H2 is retested on reviewed channels (KB §51).
 - **Two earlier SVM maps checked and superseded**: one follows its 4096-pixel processing tiles and scores below chance on its own training data. The other is mostly an elevation map.
 - **Diurnal-contrast index**: calibrated thermal inertia can't be derived from the 8-bit, locally stretched THEMIS mosaics. A relative day–night contrast index can, and within the type area it is nearly independent of terrain (r = +0.11 against elevation, −0.25 against slope). It is not a restatement of topography, but against calibrated TES thermal inertia it barely tracks material (above), and it does not compare across the planet.
 - **Type-area supervised accuracy**: 62.7%, κ 0.41 on terrain-defined classes. The thermal index adds +0.4 points there, as it should on terrain classes.
@@ -138,14 +139,14 @@ The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   133 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   138 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
     pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)
   OLD/                     prospectus and Presentation 1 (delivered)
 Mars Project/
   Mars Project.aprx        the ArcGIS Pro project: 23 maps, all Mars, and 12 layouts
-  .backups/                49 earlier copies of the .aprx, 2026-09-18 to 10-09
+  .backups/                51 earlier copies of the .aprx, 2026-09-18 to 10-09
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs

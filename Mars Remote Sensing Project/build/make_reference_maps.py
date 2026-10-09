@@ -164,6 +164,15 @@ def build_locator(p):
         col = arcpy.cim.CreateCIMObjectFromClassName("CIMRGBColor", "V3"); col.values = [255, 255, 0, 100]
         fill.color = col
         c.textSymbol.symbol.symbol.symbolLayers = [fill]
+        # beside the box, not inside it: at the locator's scale the boxes are smaller than their names
+        # and the label sat on the outline (seen on the 2026-10-08 export). A dark halo keeps it legible.
+        c.maplexLabelPlacementProperties.polygonPlacementMethod = "HorizontalAroundPolygon"
+        halo_fill = arcpy.cim.CreateCIMObjectFromClassName("CIMSolidFill", "V3")
+        hcol = arcpy.cim.CreateCIMObjectFromClassName("CIMRGBColor", "V3"); hcol.values = [0, 0, 0, 70]
+        halo_fill.color = hcol
+        halo = arcpy.cim.CreateCIMObjectFromClassName("CIMPolygonSymbol", "V3"); halo.symbolLayers = [halo_fill]
+        c.textSymbol.symbol.haloSymbol = halo
+        c.textSymbol.symbol.haloSize = 1.2
     ta.setDefinition(d)
     v = add(m, os.path.join(GDB, "Ref_SIM3292_GeologicUnits"), "Volcanic units, USGS SIM 3292 (lava-flow reference)",
             transparency=45)

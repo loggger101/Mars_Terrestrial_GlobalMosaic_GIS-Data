@@ -1,0 +1,50 @@
+{
+ "host": "fartbutt",
+ "drive": "Z:\\",
+ "when": "2026-10-09 00:56",
+ "pro": "3.7",
+ "junctions": {
+  "TypeArea": true,
+  "Global60": true
+ },
+ "dl_libraries": {
+  "torch": "ModuleNotFoundError: No module named 'torch'",
+  "torchvision": "ModuleNotFoundError: No module named 'torchvision'",
+  "fastai": "ModuleNotFoundError: No module named 'fastai'",
+  "arcgis.learn": "ModuleNotFoundError: No module named 'torchvision'"
+ },
+ "cuda": {
+  "available": false,
+  "device": null,
+  "note": "torch not importable"
+ },
+ "train_export": {
+  "exists": true,
+  "labels_train_only": true,
+  "chips_stats": 3622,
+  "chips_found": 3622,
+  "intact": true
+ },
+ "x5_ready": false,
+ "x1": {
+  "CPU_ONLY": {
+   "seconds": 2.6,
+   "no_gpu_message": false,
+   "messages": [
+    "Start Time: Friday, October 9, 2026 12:56:11 AM",
+    "Succeeded at Friday, October 9, 2026 12:56:13 AM (Elapsed Time: 2.11 seconds)"
+   ]
+  },
+  "GPU_THEN_CPU": {
+   "seconds": 1.9,
+   "no_gpu_message": true,
+   "messages": [
+    "Start Time: Friday, October 9, 2026 12:56:13 AM",
+    "No compatible GPU device has been detected.",
+    "Succeeded at Friday, October 9, 2026 12:56:15 AM (Elapsed Time: 1.87 seconds)"
+   ]
+  },
+  "gpu_engaged": false,
+  "output_folder": "C:\\Users\\Loggg\\AppData\\Local\\Temp\\x1_gpu_yj7_su03"
+ }
+}

@@ -20,6 +20,11 @@ status, deck formats, timeline). The drafts and the course template are in `NEXT
 **2026-10-09 (KB §50): every open decision is answered** (D2, D7, D9, D13; item 8 below). D9's deletions
 are done; the deep-learning training export is redone from the training split for X5. The project:
 23 maps, 12 layouts, 24 feature classes; `verify_all.py` 37 / 37 (two checks retired with the deleted data).
+**Later 2026-10-09 (KB §51):** T4 stage 1 run (H2 not supported by window); the desktop day prepared
+(`desktop_check.py --gpu` first; deep learning needs Esri's Deep Learning Libraries installed, absent on the
+laptop); `make_dl_model.py` written with a tested scorer; layout 10's labels fixed; the interim rebuilt
+(25 slides, 17 pages). **Nothing is left on the laptop that does not wait for the review, the desktop or an
+install.** The next laptop work starts after a review session (item 2).
 
 **Where it stopped.** All laptop work scheduled through 25 Oct (§8) is done, T5–T7 included (KB §47), and the interim deck and report are rebuilt with them (KB §48); the desktop jobs and the manual review are open.
 **Latest (KB §49):** layout 13 (T8 against the geologic map) and layout 14 (the validation sheet) are in
@@ -42,11 +47,11 @@ KB §11 (q14, q16–q19, q25) and the GitHub README's next steps now agree.
 | 4 | ~~**T6, T7, T5**~~ **Done 2026-10-08 (KB §47):** H1 inconclusive at the 1:20 M map's contacts (day IR leans its way, interval includes 0); H3 not supported (the composites are the least reproducible inputs); Q5 has no DEM-supported answer (no threshold keeps first-order streams on real slopes) | — | — | — |
 | 4a | **T5 again on digitised margins:** rerun `make_flow_margin_test.py` against lava margins drawn at Athabasca (`Landform_LavaFlowMargins`), where the contact is known to a few pixels | Claude (laptop), after margins are drawn | the script needs a `--margins` source in place of the SIM 3292 contacts | H1 settled either way |
 | 5 | ~~**T8 sheet** (§7 row 13)~~ **Done 2026-10-08 (KB §49):** layout 13, the cross-tabulation of all 12 unit groups from `logs\geomap_check.json` beside the map | — | — | — |
-| 5a | **At the next interim rebuild:** `interim.py` says 10 layouts (now 12); consider layout 13 as a T8 slide | Claude (laptop) | `INTERIM-PLAN.md` §0 | deck and report say 12; `verify_interim.py` green |
+| 5a | ~~**At the next interim rebuild**~~ **Done 2026-10-09 (KB §51):** 25 slides, report 17 pages; 12 layouts, a T8 table and a T4 slide; every changed slide and page read, two faults fixed | — | — | — |
 | 6 | ~~**Interim deck refresh**~~ **Done 2026-10-08 (KB §48):** 23 slides, report 15 pages; T5–T7 slides, review route, 10 layouts; a double-rounded κ and three report layout faults fixed. Next rebuild: after the next result (`INTERIM-PLAN.md` §0) | — | — | — |
 | 6a | ~~**README results**~~ **Done 2026-10-08 (KB §48):** T1–T3, T5–T8 added to the GitHub README; the diurnal-contrast bullet qualified (§42.4) | — | — | — |
-| 6b | **T4** (H2): channel gradient and thermal response, Ius vs Athabasca, on reviewed channels with `Origin` set | Claude (laptop) | after item 1 has produced accepted channels in both windows | result in the record |
-| 7 | **Desktop day** when available: X0 junctions on `F:` → X1 GPU test → X2 fine pass (craters + channels ≥ 1 km at ±60°) → X4 pyramids alongside; X3 200 m classification next | desktop | §5 | X2 products verified (`verify_global60.py`); then 3.8 sheets |
+| 6b | **T4** (H2): ~~stage 1~~ **done 2026-10-09 (KB §51.1): not supported** by window (volcanic channels shallower; no thermal separation). Stage 2: on reviewed channels with `Origin` set | Claude (laptop) | `make_t4_channel_h2.py` reports stage 2 waiting until ≥ 10 fluvial and ≥ 10 volcanic exist | result in the record |
+| 7 | **Desktop day** when available. **Start with `build\desktop_check.py --gpu`** (X0 + X1 + X5 preflight, KB §51.2). Deep learning (X5) first needs Esri's "Deep Learning Libraries" installed in Pro (absent on the laptop; a download, so asked first); then `make_dl_model.py --train`, `--detect`, `--score`. X0 junctions on `F:` → X1 GPU test → X2 fine pass (craters + channels ≥ 1 km at ±60°) → X4 pyramids alongside; X3 200 m classification next | desktop | §5 | X2 products verified (`verify_global60.py`); then 3.8 sheets |
 | 8 | ~~**Decisions still open**~~ **All answered 2026-10-09 (KB §50):** D2 no rubric exists (§7 is the figure list); D7: q23 the labels' order, q25 deep learning yes on the corrected stack, q26 boxes, q27 keep 5 × 5; D9 deletions done; D13 keep the plateau candidates, reject in review | — | — | — |
 
 **Dates that do not move:** digitising checkpoint **1 Nov** (still empty → the interim presents
@@ -111,7 +116,8 @@ polygons: +1.3 pt** (§40.1), and T3 checked the index against calibrated therma
 
 **The project's own hypotheses (H1–H4) and questions (Q1–Q6), tracked again since 2026-10-08**
 (status table in `INTERIM-PLAN.md` §5, KB §47.5): H1 tested and not supported at the geologic map's
-1:20 M scale (rerun on digitised margins); H2 untested (T4, needs reviewed channels); H3 tested, not
+1:20 M scale (rerun on digitised margins); H2 not supported at stage 1 (T4 by window, KB §51.1; stage 2
+needs reviewed channels); H3 tested, not
 supported; H4 answered by a different method. Q1, Q2, Q4 and Q5 answered, Q3 overtaken, Q6 unexamined.
 
 ---

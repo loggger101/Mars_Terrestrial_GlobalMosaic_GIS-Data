@@ -1,0 +1,104 @@
+{
+ "prediction": "gradient: Ius steeper than Athabasca (H2 direction fails); thermal: |d| < 0.5",
+ "design": {
+  "min_km": 1.0,
+  "background_pixels": 200000,
+  "bootstrap": 2000,
+  "cell_m": 50000.0,
+  "seed": 20261009
+ },
+ "windows": {
+  "ius": {
+   "name": "Ius Chasma",
+   "n": 2588,
+   "background_mean": 0.07630935907521488,
+   "background_sd": 0.2784614465364232,
+   "grad_median": 10.234548596028226,
+   "grad_p90": 210.51884493574278,
+   "therm_z_mean": 0.04208788260307537
+  },
+  "ath": {
+   "name": "Athabasca Valles",
+   "n": 3272,
+   "background_mean": 0.07013224081209657,
+   "background_sd": 0.28229460451138966,
+   "grad_median": 1.3828321494771476,
+   "grad_p90": 7.0553391008500945,
+   "therm_z_mean": 0.025469659487140573
+  }
+ },
+ "stage1_all": {
+  "grad_median_a": 10.234548596028226,
+  "grad_median_b": 1.3828321494771476,
+  "grad_median_diff": -8.851716446551078,
+  "d_log_grad": -1.1674784069342123,
+  "d_thermal": -0.023149428050825593,
+  "therm_z_mean_a": 0.04208788260307537,
+  "therm_z_mean_b": 0.025469659487140573,
+  "auc_both": 0.8137162349833537,
+  "auc_gradient": 0.8103276878804941,
+  "auc_thermal": 0.4956419132123814,
+  "grad_median_diff_ci95": [
+   -15.68709969680349,
+   -5.755460342275857
+  ],
+  "d_log_grad_ci95": [
+   -1.360837362682583,
+   -0.991740517745364
+  ],
+  "d_thermal_ci95": [
+   -0.12000156965258409,
+   0.07578529647948527
+  ],
+  "n_a": 2588,
+  "n_b": 3272,
+  "cells_a": 164,
+  "cells_b": 194,
+  "a": "Ius Chasma",
+  "b": "Athabasca Valles",
+  "verdict": {
+   "gradient_volcanic_steeper": false,
+   "thermal_separates": false,
+   "stage1": "NOT SUPPORTED at stage 1"
+  }
+ },
+ "stage1_order2": {
+  "grad_median_a": 3.7919508037180982,
+  "grad_median_b": 0.9183434423151962,
+  "grad_median_diff": -2.873607361402902,
+  "d_log_grad": -0.9442389837131269,
+  "d_thermal": -0.07900178108848789,
+  "therm_z_mean_a": 0.09516562313744716,
+  "therm_z_mean_b": 0.04298261498184679,
+  "auc_both": 0.7669416735789432,
+  "auc_gradient": 0.7624568017075384,
+  "auc_thermal": 0.5296276935203799,
+  "grad_median_diff_ci95": [
+   -4.870940683560965,
+   -1.9102810083219812
+  ],
+  "d_log_grad_ci95": [
+   -1.1639053648276827,
+   -0.7555799822633135
+  ],
+  "d_thermal_ci95": [
+   -0.20420967351125127,
+   0.03918171757800942
+  ],
+  "n_a": 1009,
+  "n_b": 1803,
+  "cells_a": 138,
+  "cells_b": 171,
+  "a": "Ius Chasma, order >= 2",
+  "b": "Athabasca Valles, order >= 2",
+  "verdict": {
+   "gradient_volcanic_steeper": false,
+   "thermal_separates": false,
+   "stage1": "NOT SUPPORTED at stage 1"
+  }
+ },
+ "stage2": {
+  "origin_counts": {},
+  "note": "waiting: needs >= 10 fluvial and >= 10 volcanic reviewed channels"
+ }
+}
