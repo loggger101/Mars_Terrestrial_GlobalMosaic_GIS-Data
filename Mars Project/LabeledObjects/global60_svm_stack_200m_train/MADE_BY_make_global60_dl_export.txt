@@ -1,0 +1,2 @@
+Written by build\make_global60_dl_export.py from Z:\Mars Project\Global60\global60_svm_stack_200m.tif
+labels: Z:\Mars Project\Mars Project.gdb\Landform_TrainingSamples_terrain_60_train

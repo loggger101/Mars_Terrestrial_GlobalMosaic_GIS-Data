@@ -10,9 +10,11 @@ r"""Exports what Mars Project.gdb holds that github_sync.py cannot copy (KB §35
                                              is unchanged, so do it when the layers have changed.
 
 The gdb is 200+ GB of rasters, but its feature classes are small and they hold the one thing
-nothing can re-compute: the 512 hand-drawn training polygons. Every feature class goes, except
-the two empty scratch classes "Line"/"Point" and the _2/_3 duplicates of the IAU nomenclature
-(identical copies, §11 q4). The empty Landform_* classes go too: their schema is the work.
+nothing can re-compute: the 512 hand-drawn training polygons. Every feature class goes, except the
+third-party reference layers (Ref_*). The scratch classes "Line"/"Point", the _2/_3 duplicates of the
+IAU nomenclature and the two ±60° smoke classes were deleted from the gdb on 2026-10-09 (KB §50); the
+filter below still skips the first two kinds should they reappear. The empty Landform_* classes go too:
+their schema is the work.
 Row counts are checked against the source for each class.
 
 The two SVM maps (29 and 30 Sep, §29-30) exist only inside the gdb, so they are written as
@@ -52,8 +54,6 @@ ABOUT = {
     "Landform_CraterCandidates_auto": "Machine crater candidates over Ius Chasma: closed depressions ≥ 1 km from fill "
         "depth (KB §26). Blind to breached craters.",
     "Landform_BasinCandidates_auto_60": "Closed basins ≥ 20 km over ±60°, the coarse planet-scale pass (KB §28.11, §32.1).",
-    "Landform_ChannelCandidates_auto_60_smoke": "Smoke-test tile of the ±60° channel pass (KB §28.11).",
-    "Landform_CraterCandidates_auto_60_smoke": "Smoke-test tile of the ±60° crater pass (KB §28.11).",
     "Analysis_Extent_60": "The analysis extent: ±60.0003° latitude, the THEMIS night mosaic's own edge (KB §16, §31.3).",
     "Check_Tiles_4096px_60": "The 4096-pixel processing tiles that the 29 Sep SVM map follows (KB §30.2).",
     "MARS_nomenclature_albedo_March2019": "IAU/USGS Gazetteer of Planetary Nomenclature, March 2019: albedo features.",
@@ -119,8 +119,7 @@ def catalog(fgdb, fcs):
     text = f"""# Vector layers from `Mars Project.gdb`
 
 Exported by [`github_export_gdb.py`](../Mars%20Remote%20Sensing%20Project/build/github_export_gdb.py) on {time.strftime('%Y-%m-%d')}.
-Every feature class in the project geodatabase except two empty scratch classes (`Line`, `Point`),
-the `_2`/`_3` duplicates of the nomenclature layers, and the third-party reference layers (`Ref_*`:
+Every feature class in the project geodatabase except the third-party reference layers (`Ref_*`:
 the USGS geologic map and the Robbins crater database, available from their publishers). Row counts
 were checked against the source.
 "KB §N" is a section of the project knowledge base,
@@ -128,8 +127,9 @@ were checked against the source.
 The same layers are in the release as a GeoPackage (`mars_project_vectors.gpkg.zip`).
 
 **Class codes in the training layers:** 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground.
-Every labelled file and model uses these. The class schema `Composite Object Classes.ecs` swaps 2 and 3,
-so don't draw new samples under it without remapping (KB §29.2).
+Every labelled file and model uses these, and they are the project's schema (decided 2026-10-09, KB §11
+q23). The class schema file `Composite Object Classes.ecs` swaps 2 and 3 and is superseded: don't draw
+new samples under it (KB §29.2).
 
 The Landform classes are in `Mars_Equidistant_Cylindrical_CM180` (metres, central meridian 180°);
 the labels and nomenclature are in geographic `Mars_2000_(Sphere)`.

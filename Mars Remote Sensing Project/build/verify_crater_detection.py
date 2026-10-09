@@ -81,8 +81,8 @@ def detect(depth, gt, min_diam=1.0, max_diam=300.0, max_aspect=2.5, min_fill=0.4
 
 # the two truth craters
 truth = {}
-for fc in ("MARS_nomenclature_craters_gt100km_March2019_3",
-           "MARS_nomenclature_craters_lt100km_March2019_3"):
+for fc in ("MARS_nomenclature_craters_gt100km_March2019",
+           "MARS_nomenclature_craters_lt100km_March2019"):
     with arcpy.da.SearchCursor(os.path.join(GDB, fc),
                                ["name", "diameter", "center_lon", "center_lat"]) as c:
         for nm, d, lo, la in c:

@@ -186,9 +186,8 @@ def rows(oid):
 check("IAU gazetteer: 141 craters >100 km, 972 <100 km, 1,113 total",
       rows(0x0d) == 141 and rows(0x0e) == 972 and rows(0x0d) + rows(0x0e) == 1113,
       "row counts of the two crater feature classes")
-check("Nomenclature imported three times each",
-      rows(0x0d) == rows(0x12) == rows(0x1d) == 141,
-      "_2 and _3 duplicates carry identical counts")
+# Retired 2026-10-09 (KB §50): "Nomenclature imported three times each" read the _2 / _3 duplicates,
+# which were verified identical to the originals and deleted on approval (D9, q4). Not made to pass.
 
 msgs = "".join(open(os.path.join(PROJ, "GpMessages", f), encoding="utf-8-sig").read()
                for f in os.listdir(os.path.join(PROJ, "GpMessages")))
@@ -248,20 +247,9 @@ lin = open(os.path.join(GDB, "a00000004.gdbtable"), "rb").read().decode("latin-1
 check("Hillshade used azimuth 225, altitude 45, shadows",
       re.search(r"HillShade[^<]*225 45 SHADOWS", lin) is not None,
       "<Process> lineage")
-# The raster itself left the project gdb on 2026-10-07 (KB §37) for Z:\_removed_not_Mars\, where
-# its VAT is a00000010 (fields Value, Count). That folder may be deleted: then only the lineage is left.
-MERC_VAT = os.path.join(Z, "_removed_not_Mars", "removed_not_Mars.gdb", "a00000010.gdbtable")
-merc_rows = (struct.unpack("<I", open(MERC_VAT, "rb").read(8)[4:8])[0]
-             if os.path.exists(MERC_VAT) else None)
-# Its lineage survived only in the free space of the project gdb's GDB_Items, which the classes added
-# on 2026-10-08 overwrote (KB §45); the moved copy keeps it in its own GDB_Items.
-MERC_ITEMS = os.path.join(Z, "_removed_not_Mars", "removed_not_Mars.gdb", "a00000004.gdbtable")
-merc_lin = lin + (open(MERC_ITEMS, "rb").read().decode("latin-1") if os.path.exists(MERC_ITEMS) else "")
-check("Mercury Iso Cluster ran with 10 classes",
-      re.search(r"IsoClusterUnsupervisedClassification[^<]*166m\.tif 10", merc_lin)
-      is not None and merc_rows in (10, None),
-      "<Process> lineage + VAT row count in _removed_not_Mars (KB §37)"
-      + ("" if merc_rows is not None else "; VAT gone, lineage only"))
+# Retired 2026-10-09 (KB §45, §50): "Mercury Iso Cluster ran with 10 classes" read its lineage and VAT
+# from Z:\_removed_not_Mars\, the last evidence after the project gdb's free space was overwritten.
+# That folder went to the Recycle Bin on approval (D9). Not made to pass.
 
 # --------------------------------------------------------- missing files ----
 for fn in ("JEZ_hirise_soc_006_orthoMosaic_25cm_Eqc_latTs0_lon0_first.tif",

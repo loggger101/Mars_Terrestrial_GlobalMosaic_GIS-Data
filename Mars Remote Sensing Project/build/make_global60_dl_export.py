@@ -11,6 +11,12 @@ The GUI export is left as it is. This writes a NEW folder:
   Z:\Mars Project\LabeledObjects\global60_svm_stack_200m\
 Labels: the hand-drawn Landform_TrainingSamples_terrain, read only. Chips exist only where the stack does,
 so the parts of the labelled polygons north of 60°N fall away by themselves.
+
+--train-only (added 2026-10-09, KB §50, q25 answered yes): the same export from
+Landform_TrainingSamples_terrain_60_train alone (329 polygons) into ...\global60_svm_stack_200m_train\,
+so a model trained on it can be scored on the 183 held-out polygons in their 15° blocks, as the SVM was
+(§31.3). The default export above holds all 512, held-out ones included: train on it and the held-out
+score means nothing. Boxes, as exported (q26).
 """
 import os, sys, time, shutil
 import os, sys
@@ -23,8 +29,10 @@ sys.path.insert(0, HERE)
 import grid60 as G
 
 STACK = os.path.join(G.OUTDIR, "global60_svm_stack_200m.tif")
-LABELS = on_drive(r"Mars Project\Mars Project.gdb\Landform_TrainingSamples_terrain")
-OUT = on_drive(r"Mars Project\LabeledObjects\global60_svm_stack_200m")
+TRAIN_ONLY = "--train-only" in sys.argv
+LABELS = on_drive(r"Mars Project\Mars Project.gdb\Landform_TrainingSamples_terrain"
+                  + ("_60_train" if TRAIN_ONLY else ""))
+OUT = on_drive(r"Mars Project\LabeledObjects\global60_svm_stack_200m" + ("_train" if TRAIN_ONLY else ""))
 
 if os.path.exists(OUT):
     # only ever replace a folder this script made: it carries our marker file
@@ -39,6 +47,6 @@ arcpy.ia.ExportTrainingDataForDeepLearning(
     output_nofeature_tiles="ONLY_TILES_WITH_FEATURES",
     metadata_format="PASCAL_VOC_rectangles", class_value_field="Classvalue")
 open(os.path.join(OUT, "MADE_BY_make_global60_dl_export.txt"), "w").write(
-    "Written by build\\make_global60_dl_export.py from %s\n" % STACK)
+    "Written by build\\make_global60_dl_export.py from %s\nlabels: %s\n" % (STACK, LABELS))
 print("exported in %.0f s -> %s" % (time.time() - t, OUT))
 print(open(os.path.join(OUT, "stats.txt")).read()[:1500])

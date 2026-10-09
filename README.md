@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 132, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 133, by purpose) · [backup and restore](docs/backup.md)
 
 ![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 
@@ -42,14 +42,11 @@ The interim report and presentation are due **mid-November 2026** and the final 
 In order, toward the interim (data cut 2 November) and the final on 8 December. The full list, with who does what and when, is the "Resume here" section of [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md). Every open question behind them is numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
 
 1. **Digitise the three landform layers** (task 11, the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. The map *Ius Chasma — digitising* and layout 06 put them over the machine prompts: the 188 steep, rock-floored channel candidates and the 1,685 crater candidates. Digitising starts as a review: each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, and `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins) is drawn by hand (KB §46). Hand work in Pro; no heavy processing. Layout 14 and `build/make_validation_sheet.py` turn each review session into the detector's precision and recall (KB §49). Then re-export the geodatabase so the backup holds the new features ([keeping the backup current](docs/backup.md#keeping-it-current)).
-2. **Settle the choices that change what gets trained or published:**
-   - which class schema is current: `Composite Object Classes.ecs` swaps lava tube and steep/windy hills against every labelled file. Settle it before drawing more samples or training on the deep-learning export (q23);
-   - whether to prune the 64% of channel candidates on ground under 2° of slope (q17);
-   - boxes or pixel labels for the deep-learning export (q26);
-   - how much smoothing to publish: 5 × 5 now, chosen by feature size (q27).
+2. **The choices are settled** (KB §50, 2026-10-09): the class order is that of the labels (1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground; `Composite Object Classes.ecs` is superseded); the plateau channel candidates stay and are rejected in review; the published map keeps its 5 × 5 smoothing; a deep-learning model is trained on the corrected stack with box labels, from a training-split export so it can be scored on the same held-out blocks as the SVM.
 3. **Run the desktop jobs**, too heavy for the laptop. Every build script finds its own drive, so they run from `F:` on the desktop; the two no-space junctions (`TypeArea`, `Global60`) are recreated there once, and the scripts print the command (q22).
    - the ±60° crater and channel fine pass, `make_global_landforms.py`: about 7 hours measured, checkpointed per tile. Only the coarse basin pass has run. Check the output with `verify_global60.py`;
-   - pyramids on the four source mosaics (q6).
+   - pyramids on the four source mosaics (q6);
+   - the deep-learning model, once a GPU test shows the card works: trained on `LabeledObjects/global60_svm_stack_200m_train/` only, scored on the held-out polygons.
 4. **Run the tests that wait for the review** on the laptop: gradient and thermal response by origin (H2), once reviewed channels exist, and flow margins in IR against Viking (H1) again on lava margins digitised at Athabasca. The other tests have run (results below).
 5. **Write the interim and the final report and presentation**, from the layouts and the results above.
 
@@ -141,14 +138,14 @@ The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   132 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   133 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
     pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)
   OLD/                     prospectus and Presentation 1 (delivered)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 24 maps, all Mars, and 12 layouts
-  .backups/                48 earlier copies of the .aprx, 2026-09-18 to 10-08
+  Mars Project.aprx        the ArcGIS Pro project: 23 maps, all Mars, and 12 layouts
+  .backups/                49 earlier copies of the .aprx, 2026-09-18 to 10-09
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs

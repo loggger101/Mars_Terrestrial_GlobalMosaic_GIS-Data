@@ -15,7 +15,11 @@ status, deck formats, timeline). The drafts and the course template are in `NEXT
 
 ---
 
-## Resume here — written at the end of the 2026-10-08 session (evening)
+## Resume here — written at the end of the 2026-10-08 session (evening), updated 2026-10-09
+
+**2026-10-09 (KB §50): every open decision is answered** (D2, D7, D9, D13; item 8 below). D9's deletions
+are done; the deep-learning training export is redone from the training split for X5. The project:
+23 maps, 12 layouts, 24 feature classes; `verify_all.py` 37 / 37 (two checks retired with the deleted data).
 
 **Where it stopped.** All laptop work scheduled through 25 Oct (§8) is done, T5–T7 included (KB §47), and the interim deck and report are rebuilt with them (KB §48); the desktop jobs and the manual review are open.
 **Latest (KB §49):** layout 13 (T8 against the geologic map) and layout 14 (the validation sheet) are in
@@ -43,7 +47,7 @@ KB §11 (q14, q16–q19, q25) and the GitHub README's next steps now agree.
 | 6a | ~~**README results**~~ **Done 2026-10-08 (KB §48):** T1–T3, T5–T8 added to the GitHub README; the diurnal-contrast bullet qualified (§42.4) | — | — | — |
 | 6b | **T4** (H2): channel gradient and thermal response, Ius vs Athabasca, on reviewed channels with `Origin` set | Claude (laptop) | after item 1 has produced accepted channels in both windows | result in the record |
 | 7 | **Desktop day** when available: X0 junctions on `F:` → X1 GPU test → X2 fine pass (craters + channels ≥ 1 km at ±60°) → X4 pyramids alongside; X3 200 m classification next | desktop | §5 | X2 products verified (`verify_global60.py`); then 3.8 sheets |
-| 8 | **Decisions still open:** D2 (the interim and final rubrics), D7 (q23: which class schema, before any new samples), D9 (housekeeping deletions; recommended: after the final), D13 (q17: prune the plateau channel candidates; recommended: no, reject them in review) | the author | §2 | struck in §2 |
+| 8 | ~~**Decisions still open**~~ **All answered 2026-10-09 (KB §50):** D2 no rubric exists (§7 is the figure list); D7: q23 the labels' order, q25 deep learning yes on the corrected stack, q26 boxes, q27 keep 5 × 5; D9 deletions done; D13 keep the plateau candidates, reject in review | — | — | — |
 
 **Dates that do not move:** digitising checkpoint **1 Nov** (still empty → the interim presents
 candidates with recall, §6) · interim data cut **2 Nov** · interim ~**13 Nov** · data freeze
@@ -119,17 +123,17 @@ These block or shape everything below. Ask them together, once.
 | # | Decision | Recommendation |
 |---|---|---|
 | D1 | ~~Is the interim still owed?~~ **Answered 2026-10-08: owed, due mid-November; the exact day is not known.** ~~The template~~ **on `Z:` since 2026-10-08** (`NEXT STUFF\`). | Plan against ~13 November. Nothing left to ask. |
-| D2 | What do the **interim and final** require: length, deck, poster, rubric? Is the final deck on the same template? | Get both rubrics now; they decide which layouts matter. |
+| D2 | ~~What do the **interim and final** require?~~ **Answered 2026-10-09: no rubric exists.** | Plan to the draft lists: §7 is the figure list for both deadlines; interim = the living deck and report (D11), final = the §7 outline. |
 | D3 | ~~Where to run the ±60° crater + channel fine pass?~~ **Answered 2026-10-08: on the desktop** (X2), after the junctions there are recreated (X0, KB §40.2). | — |
 | D4 | ~~A second type area at Athabasca Valles?~~ **Answered 2026-10-08: yes, build it** (3.5). | — |
 | D5 | ~~Acquire reference data?~~ **Answered 2026-10-08: yes to (a) the USGS geologic map, (b) the Robbins crater database and (d) TES thermal inertia**; (c) has no public source. Stored under `Z:\Mars Project\Reference\`, not mirrored to GitHub (third-party data). | — |
 | D6 | ~~The lava tube class?~~ **Settled 2026-10-08 (KB §43.3): the four hand-drawn classes stay** (the author's rule: never remove them; a fifth may be added if it helps). Relabel, drop and a fifth "volcanic (map)" class were tested at 1.6 km; the fifth class scored below chance and cost the others 5.6 pt, so **no fifth class and no rerun**. Lava flows come from the geologic map's volcanic units, as a reference layer. | — |
-| D7 | §11 **q23** (which class schema), **q25** (train deep learning on the corrected stack?), **q26** (boxes or pixel labels for deep learning), **q27** (how much smoothing to publish). | q23 before any new samples. q25 and q26 only matter if deep learning goes ahead (X5); the corrected stack is already what every scored product uses. q27: keep 5 × 5, it was fixed by feature size (§32.2). |
+| D7 | ~~§11 **q23**, **q25**, **q26**, **q27**~~ **Answered 2026-10-09 (KB §50):** q23 the labels' order (1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground; the `.ecs` is superseded); q25 **yes**, deep learning on the corrected stack (X5); q26 **boxes**, as exported; q27 **keep 5 × 5**. | q23 before any new samples. q25 and q26 only matter if deep learning goes ahead (X5); the corrected stack is already what every scored product uses. q27: keep 5 × 5, it was fixed by feature size (§32.2). |
 | D8 | ~~Push to GitHub?~~ **Answered 2026-10-08: push after each working session**, once the record audit, the voice check and the repo's own check pass. | — |
-| D9 | **Housekeeping deletions** (all an open decision): the `*_60_smoke` feature classes, the 10 duplicate nomenclature classes (q4), the empty `Line`/`Point` classes, the dead Jezero HiRISE layer, `Z:\_removed_not_Mars\`. | Leave until after the final unless space runs out. The interim may list them as "cleared" only if they are. |
+| D9 | ~~**Housekeeping deletions**~~ **Answered and done 2026-10-09 (KB §50):** the two `*_60_smoke` classes, the 9 (not 10) identical nomenclature copies, `Line`/`Point`, the map holding only the dead Jezero HiRISE layer; `Z:\_removed_not_Mars\` to the Recycle Bin. Backups on the laptop's internal disk. | The interim may list them as cleared. |
 | D10 | ~~Digitising as review instead of drawing?~~ **Answered 2026-10-08: yes.** Review fields and `accept_reviewed.py` built the same day (3.6, KB §46); workflow in §6. | — |
 | D11 | ~~Interim deck format~~ **Answered 2026-10-08: the Presentation 1 style with graphics, no fixed slide count, rebuilt as the data moves.** Built the same day as a living deck (`INTERIM-PLAN.md` §0). | Rebuild after every new result; read every slide. |
-| D13 | §11 **q17**: prune the 2,422 channel candidates outside the steep, rock-floored subset (64 % on ground under 2°)? | **No:** with the review (§46) they cost one "reject" each and the rejections become the detector's precision. Review the 188 first; leave the rest as prompts. |
+| D13 | **Answered 2026-10-09: keep, reject in review.** §11 **q17**: prune the 2,422 channel candidates outside the steep, rock-floored subset (64 % on ground under 2°)? | **No:** with the review (§46) they cost one "reject" each and the rejections become the detector's precision. Review the 188 first; leave the rest as prompts. |
 | D12 | ~~How to present the thermal claim, after T1 and T3?~~ **Answered 2026-10-08: lead with the measured limits.** The results are the co-registered mosaic, the scored products and the limits: visible albedo carries the material signal at every scale a calibrated product can check; the held THEMIS mosaics do not. | — |
 
 ### D5 in detail — what each download is, checked on the web 2026-10-08
@@ -184,8 +188,8 @@ Ranked by what they unblock. Each has a **done when** so "done" is checkable.
 9. ~~**After D5(a):** the lava-flow reference sheet and test T8.~~ **Done 2026-10-08:** T8 measured
    (KB §43.2); the volcanic units are the lava-flow reference on layout 10 (§44). T8's sheet is
    layout 13 (§49).
-10. **The figure lists for the interim and the final** (draft in §7), closed against D2's rubrics,
-    so layouts are built to a list rather than by drift.
+10. ~~**The figure lists for the interim and the final**~~ **Settled 2026-10-09:** no rubric exists (D2),
+    so §7 is the list; layouts are built to it rather than by drift.
 
 ---
 
@@ -218,7 +222,7 @@ Order matters: the cheap tests first, so a failure costs minutes.
 | X2 | Fine landforms pass, if not run on the laptop (D3) | ≤ 7 h | Craters and channels ≥ 1 km at ±60°. |
 | X3 | 200 m classification (`--cell 200`) after D6 and T1 | ~15 h on the laptop; desktop unmeasured | The 400 m map resolves ~4 km features only (§32.2). Run it with T1's winning band set. |
 | X4 | Pyramids on the four source globals (q6) | hours | Speeds up every pan and zoom in the GUI work, including digitising. |
-| X5 | Deep-learning training on the 2080 Ti | hours | **Only after D6/D7**, and only if X1 says the GPU works. Lowest priority: the SVM is already scored, and a model trained on a broken class inherits it. |
+| X5 | Deep-learning training on the 2080 Ti | hours | **Approved 2026-10-09 (q25, KB §50)**, only if X1 says the GPU works. Train on `LabeledObjects\global60_svm_stack_200m_train\` (the training split only, boxes), never on the all-labels export; score on the 183 held-out polygons as the SVM was (§31.3). After X2–X4. |
 | X6 | q24: read the 29 Sep `ClassifyRaster` settings | minutes | Closes a question; nothing depends on it. |
 | X7 | q12, optional: one source global rewritten as an internally tiled, compressed copy, timed against the original | ~1 h | Tests the I/O ceiling fix (§2.2); only if X4's pyramids leave panning slow. Needs space on the drive. |
 
@@ -247,7 +251,7 @@ Order matters: the cheap tests first, so a failure costs minutes.
   Rejections are data too: they give the detector a precision figure (3.7).
 - **The same at Athabasca** (built, layout 09, map "Athabasca Valles — digitising"), where lava flow
   margins are the point; the `lAv` unit of the geologic map shows where to look (§42).
-- Answer the open decisions: D2, D7, D9.
+- ~~Answer the open decisions: D2, D7, D9.~~ All answered 2026-10-09.
 - **The original schedule** (interim `SCHEDULE`, September) had digitising on 19–30 Oct, the crater
   inventory on 2–13 Nov, accuracy against the geologic map on 16–20 Nov and layouts on 23–27 Nov.
   §8 keeps that order and moves the interim into it.
@@ -261,7 +265,7 @@ on this footing and say so in it.
 
 ---
 
-## 7. Figures — what exists and what each deadline needs (draft; close against D2)
+## 7. Figures — what exists and what each deadline needs (the list: no rubric exists, D2)
 
 | # | sheet | exists | interim | final |
 |---|---|---|---|---|
@@ -295,7 +299,7 @@ a measured number and a sheet.
 
 | Window | Focus |
 |---|---|
-| **8–14 Oct** | ~~D1–D10 answered~~ (D2, D7, D9 open). ~~Scripts repathed (3.1). T1 fast pass. Graticule (3.3).~~ Done 2026-10-08. Digitising or reviewing starts (§6; fields ready, §46). The interim deck is rebuilt after each result (`INTERIM-PLAN.md` §0). Fine pass overnight if D3 = laptop. |
+| **8–14 Oct** | ~~D1–D13 answered~~ (all by 2026-10-09). ~~Scripts repathed (3.1). T1 fast pass. Graticule (3.3).~~ Done 2026-10-08. Digitising or reviewing starts (§6; fields ready, §46). The interim deck is rebuilt after each result (`INTERIM-PLAN.md` §0). Fine pass overnight if D3 = laptop. |
 | **15–25 Oct** | Desktop: X0, X1, X2 if still needed, X4. ~~Athabasca type area (3.5); T2~~, T6, T7. ~~Reference data in (D5); T3. Locator sheet (3.4).~~ (struck items done 2026-10-08) Validation sheet (3.7) once reviews exist. |
 | **26 Oct – 1 Nov** | T1 confirmed in Pro; X3 with the winning band set. ±60° crater and channel sheets (3.8). **1 Nov: digitising checkpoint** (§6 contingency). |
 | **2 Nov** | **Interim data cut.** Whatever is measured goes in; the rest goes to the final. |

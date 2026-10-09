@@ -108,8 +108,8 @@ print("\n" + "=" * 76)
 print("VALIDATION AGAINST THE IAU GAZETTEER")
 print("=" * 76)
 named = []
-for fc in ("MARS_nomenclature_craters_gt100km_March2019_3",
-           "MARS_nomenclature_craters_lt100km_March2019_3"):
+for fc in ("MARS_nomenclature_craters_gt100km_March2019",
+           "MARS_nomenclature_craters_lt100km_March2019"):
     with arcpy.da.SearchCursor(os.path.join(GDB, fc),
                                ["name", "diameter", "center_lon", "center_lat"]) as c:
         for nm, dia, lo, la in c:
