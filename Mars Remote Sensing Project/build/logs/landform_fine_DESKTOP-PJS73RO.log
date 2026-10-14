@@ -12,3 +12,86 @@ CRATER + CHANNEL CANDIDATES OVER +/-60  (tasks 11 + 12, tiled)
 fine pass
     tile   1/70  built   774.2s   elapsed 0:16:28  projected 19:12:46
     tile   2/70  built   661.7s   elapsed 0:27:29  projected 16:02:22
+    tile   3/70  built   780.5s   elapsed 0:40:30  projected 15:45:07
+    tile   4/70  built   730.1s   elapsed 0:52:40  projected 15:21:47
+    tile   5/70  built   609.1s   elapsed 1:02:49  projected 14:39:33
+    tile   6/70  built   638.7s   elapsed 1:13:28  projected 14:17:08
+    tile   7/70  built   586.5s   elapsed 1:23:14  projected 13:52:27
+    tile   8/70  built   648.5s   elapsed 1:34:03  projected 13:42:57
+    tile   9/70  built   571.7s   elapsed 1:43:34  projected 13:25:38
+    tile  10/70  built   696.9s   elapsed 1:55:11  projected 13:26:22
+    tile  11/70  built   572.6s   elapsed 2:04:44  projected 13:13:48
+    tile  12/70  built   679.7s   elapsed 2:16:04  projected 13:13:44
+    tile  13/70  built   571.7s   elapsed 2:25:35  projected 13:03:59
+    tile  14/70  built    85.0s   elapsed 2:27:00  projected 12:15:04
+    tile  15/70  built   592.3s   elapsed 2:36:53  projected 12:12:08
+    tile  16/70  built   807.8s   elapsed 2:50:21  projected 12:25:16
+    tile  17/70  built   755.4s   elapsed 3:02:56  projected 12:33:16
+    tile  18/70  built   758.7s   elapsed 3:15:35  projected 12:40:36
+    tile  19/70  built   732.3s   elapsed 3:27:47  projected 12:45:32
+    tile  20/70  built   703.1s   elapsed 3:39:30  projected 12:48:16
+    tile  21/70  built   679.7s   elapsed 3:50:50  projected 12:49:27
+    tile  22/70  built   625.5s   elapsed 4:01:15  projected 12:47:38
+    tile  23/70  built   655.9s   elapsed 4:12:11  projected 12:47:32
+    tile  24/70  built   804.1s   elapsed 4:25:35  projected 12:54:38
+    tile  25/70  built   653.4s   elapsed 4:36:29  projected 12:54:09
+    tile  26/70  built   731.7s   elapsed 4:48:40  projected 12:57:12
+    tile  27/70  built   867.5s   elapsed 5:03:08  projected 13:05:54
+    tile  28/70  built   117.1s   elapsed 5:05:05  projected 12:42:43
+    tile  29/70  built   714.3s   elapsed 5:16:59  projected 12:45:09
+    tile  30/70  built   835.3s   elapsed 5:30:54  projected 12:52:08
+    tile  31/70  built   884.9s   elapsed 5:45:39  projected 13:00:31
+    tile  32/70  built   703.1s   elapsed 5:57:22  projected 13:01:46
+    tile  33/70  built   678.4s   elapsed 6:08:41  projected 13:02:03
+    tile  34/70  built   621.0s   elapsed 6:19:02  projected 13:00:22
+    tile  35/70  built   581.1s   elapsed 6:28:43  projected 12:57:26
+    tile  36/70  built   802.2s   elapsed 6:42:05  projected 13:01:50
+    tile  37/70  built   594.1s   elapsed 6:51:59  projected 12:59:27
+    tile  38/70  built   674.3s   elapsed 7:03:14  projected 12:59:38
+    tile  39/70  built   802.1s   elapsed 7:16:36  projected 13:03:38
+    tile  40/70  built   619.6s   elapsed 7:26:55  projected 13:02:07
+    tile  41/70  built   666.1s   elapsed 7:38:01  projected 13:02:00
+    tile  42/70  built    86.1s   elapsed 7:39:28  projected 12:45:46
+    tile  43/70  built   640.7s   elapsed 7:50:08  projected 12:45:21
+    tile  44/70  built   538.3s   elapsed 7:59:07  projected 12:42:14
+    tile  45/70  built   576.1s   elapsed 8:08:43  projected 12:40:13
+    tile  46/70  built   699.7s   elapsed 8:20:22  projected 12:41:27
+    tile  47/70  built   626.4s   elapsed 8:30:49  projected 12:40:48
+    tile  48/70  built   796.1s   elapsed 8:44:05  projected 12:44:18
+    tile  49/70  built   609.8s   elapsed 8:54:15  projected 12:43:13
+    tile  50/70  built   634.1s   elapsed 9:04:49  projected 12:42:45
+    tile  51/70  built   705.3s   elapsed 9:16:34  projected 12:43:56
+    tile  52/70  built   593.0s   elapsed 9:26:27  projected 12:42:32
+    tile  53/70  built   651.5s   elapsed 9:37:19  projected 12:42:29
+    tile  54/70  built   588.4s   elapsed 9:47:07  projected 12:41:05
+    tile  55/70  built   706.7s   elapsed 9:58:54  projected 12:42:14
+    tile  56/70  built    90.9s   elapsed 10:00:25  projected 12:30:31
+    tile  57/70  built   271.6s   elapsed 10:04:56  projected 12:22:55
+    tile  58/70  built   261.5s   elapsed 10:09:18  projected 12:15:22
+    tile  59/70  built   238.0s   elapsed 10:13:16  projected 12:07:36
+    tile  60/70  built   380.2s   elapsed 10:19:36  projected 12:02:52
+    tile  61/70  built   271.9s   elapsed 10:24:08  projected 11:56:13
+    tile  62/70  built   274.8s   elapsed 10:28:43  projected 11:49:50
+    tile  63/70  built   242.4s   elapsed 10:32:45  projected 11:43:04
+    tile  64/70  built   252.2s   elapsed 10:36:58  projected 11:36:41
+    tile  65/70  built   242.6s   elapsed 10:41:00  projected 11:30:19
+    tile  66/70  built   258.7s   elapsed 10:45:19  projected 11:24:26
+    tile  67/70  built   288.0s   elapsed 10:50:07  projected 11:19:14
+    tile  68/70  built   212.8s   elapsed 10:53:40  projected 11:12:53
+    tile  69/70  built   293.6s   elapsed 10:58:33  projected 11:08:06
+    tile  70/70  built    45.7s   elapsed 10:59:19  projected 10:59:19
+
+merge
+  [39630.1s] merged: 467,224 fine + 323 coarse-only = 467,547 craters; 973,879 channel segments
+     fill-artefact discard across all tiles: 60.1% of stream cells
+  [39681.9s] wrote 467,547 -> Landform_CraterCandidates_auto_60
+  [39804.6s] wrote 973,879 -> Landform_ChannelCandidates_auto_60
+  [40033.1s] thermal index attached to 467,547 crater candidates
+
+==============================================================================
+  467,547 crater candidates, 973,879 channel segments over +/-60
+  Both classes are Confidence='inferred'. Landform_CraterRims and
+  Landform_ChannelCenterlines were not touched.
+  This is an inventory of CLOSED DEPRESSIONS - breached craters are
+  invisible to it (KB 26.3, Oudemans). Do not report it as complete.
+done in 11:07:13

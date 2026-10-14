@@ -1,0 +1,222 @@
+{
+ "when": "2026-10-14 09:38",
+ "checks": {
+  "C1 crater count = run log": {
+   "ok": true,
+   "detail": "467547"
+  },
+  "C1 channel count = run log": {
+   "ok": true,
+   "detail": "973879"
+  },
+  "C1 CRS Mars_Equidistant_Cylindrical_CM180": {
+   "ok": true,
+   "detail": "{'Mars_Equidistant_Cylindrical_CM180'}"
+  },
+  "C1 no empty geometry": {
+   "ok": true,
+   "detail": "0 crater, 0 channel"
+  },
+  "C1 every crater inside the G200 grid": {
+   "ok": true,
+   "detail": "0 outside"
+  },
+  "C1 CenterLat within \u00b160\u00b0": {
+   "ok": true,
+   "detail": "max |lat| 59.9865"
+  },
+  "C2 fine-pass: D >= 1 km, aspect <= 2, fill ratio >= 0.55": {
+   "ok": true,
+   "detail": "min D 1.009, max aspect 2.000, min fill 0.550"
+  },
+  "C2 coarse-pass: D >= 20 km": {
+   "ok": true,
+   "detail": "min D 20.0"
+  },
+  "C3 crater density on column seams / mid-tile (0.85-1.15)": {
+   "ok": true,
+   "detail": "0.985"
+  },
+  "C3 crater density on row seams / mid-tile (0.85-1.15)": {
+   "ok": true,
+   "detail": "0.961"
+  },
+  "C3 near-duplicate rate at seams / elsewhere (<= 1.5)": {
+   "ok": true,
+   "detail": "0.0000 / 0.0002"
+  },
+  "C5b observed precision above the 3-diameter-shift baseline at every Dmin": {
+   "ok": true,
+   "detail": "1:15.3%>0.8%, 2:29.3%>1.4%, 5:62.2%>4.0%, 10:79.2%>7.1%, 20:83.0%>10.2%, 50:78.5%>9.9%, 100:69.0%>8.3%"
+  }
+ },
+ "preservation": {
+  "coarse-pass": 323,
+  "fine-pass": 467224
+ },
+ "seams": {
+  "col_ratio": 0.9853574504737296,
+  "row_ratio": 0.961121157323689,
+  "n_col_seams": 13,
+  "n_row_seams": 4
+ },
+ "near_duplicates": {
+  "all": 101,
+  "rate_near_seams": 0.0,
+  "rate_elsewhere": 0.00021704513464319714
+ },
+ "c5_2deg_control_holds": false,
+ "robbins_shifted_2deg": {
+  "1": {
+   "robbins": 352796,
+   "candidates": 467547,
+   "recall": 0.01001145137699974,
+   "precision": 0.007515821938756959
+  },
+  "2": {
+   "robbins": 118124,
+   "candidates": 142902,
+   "recall": 0.016313365615793572,
+   "precision": 0.013372800940504682
+  },
+  "5": {
+   "robbins": 43049,
+   "candidates": 31043,
+   "recall": 0.028339798833886966,
+   "precision": 0.038817124633572786
+  },
+  "10": {
+   "robbins": 21990,
+   "candidates": 12838,
+   "recall": 0.04197362437471578,
+   "precision": 0.07064963389936127
+  },
+  "20": {
+   "robbins": 9784,
+   "candidates": 5400,
+   "recall": 0.05733851185609158,
+   "precision": 0.10277777777777777
+  },
+  "50": {
+   "robbins": 1857,
+   "candidates": 1025,
+   "recall": 0.06623586429725363,
+   "precision": 0.11902439024390243
+  },
+  "100": {
+   "robbins": 269,
+   "candidates": 145,
+   "recall": 0.10037174721189591,
+   "precision": 0.18620689655172415
+  }
+ },
+ "robbins_shifted_3D": {
+  "1": {
+   "robbins": 352796,
+   "candidates": 467547,
+   "recall": 0.011227451558407691,
+   "precision": 0.008463320265128426
+  },
+  "2": {
+   "robbins": 118124,
+   "candidates": 142902,
+   "recall": 0.01720226202973147,
+   "precision": 0.014177548249849547
+  },
+  "5": {
+   "robbins": 43049,
+   "candidates": 31043,
+   "recall": 0.028966991103161515,
+   "precision": 0.04000901974680282
+  },
+  "10": {
+   "robbins": 21990,
+   "candidates": 12838,
+   "recall": 0.041791723510686676,
+   "precision": 0.07096120891104533
+  },
+  "20": {
+   "robbins": 9784,
+   "candidates": 5400,
+   "recall": 0.056929681112019626,
+   "precision": 0.10185185185185185
+  },
+  "50": {
+   "robbins": 1857,
+   "candidates": 1025,
+   "recall": 0.05546580506192784,
+   "precision": 0.09853658536585366
+  },
+  "100": {
+   "robbins": 269,
+   "candidates": 145,
+   "recall": 0.04460966542750929,
+   "precision": 0.08275862068965517
+  }
+ },
+ "robbins": {
+  "1": {
+   "robbins": 352796,
+   "candidates": 467547,
+   "recall": 0.2053991541854216,
+   "precision": 0.15331292896756904
+  },
+  "2": {
+   "robbins": 118124,
+   "candidates": 142902,
+   "recall": 0.3596644204395381,
+   "precision": 0.29280206015311194
+  },
+  "5": {
+   "robbins": 43049,
+   "candidates": 31043,
+   "recall": 0.4598016214081628,
+   "precision": 0.6219437554360081
+  },
+  "10": {
+   "robbins": 21990,
+   "candidates": 12838,
+   "recall": 0.4799454297407913,
+   "precision": 0.792257360959651
+  },
+  "20": {
+   "robbins": 9784,
+   "candidates": 5400,
+   "recall": 0.4829313164349959,
+   "precision": 0.8303703703703704
+  },
+  "50": {
+   "robbins": 1857,
+   "candidates": 1025,
+   "recall": 0.46095853527194397,
+   "precision": 0.7853658536585366
+  },
+  "100": {
+   "robbins": 269,
+   "candidates": 145,
+   "recall": 0.3903345724907063,
+   "precision": 0.6896551724137931
+  }
+ },
+ "ius_window": {
+  "candidates_ge1km": 1709,
+  "type_area_run_100m": 1685,
+  "vs_robbins_ge1km": {
+   "robbins": 935,
+   "candidates": 1709,
+   "recall": 0.2053475935828877,
+   "precision": 0.11117612638970158
+  }
+ },
+ "ath_window": {
+  "candidates_ge1km": 1819,
+  "type_area_run_100m": 1709,
+  "vs_robbins_ge1km": {
+   "robbins": 592,
+   "candidates": 1819,
+   "recall": 0.3716216216216216,
+   "precision": 0.12094557449147883
+  }
+ },
+ "failed": []
+}

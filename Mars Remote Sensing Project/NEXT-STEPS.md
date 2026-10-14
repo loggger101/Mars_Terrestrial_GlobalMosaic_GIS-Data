@@ -21,9 +21,13 @@ status, deck formats, timeline). The drafts and the course template are in `NEXT
 X6 done, q24 answered (the 29 Sep blocks are `ClassifyRaster`'s processing tiles); X5 preflight run
 (deep-learning libraries absent here too). Later (§53.3): X0 junctions fixed in place, **X1 the GPU
 engages**, X2 smoke passed, **the full fine pass running since 22:24** (~16 h, checkpointed; log
-`build\logs\landform_fine_DESKTOP-PJS73RO.log`), deck libraries installed. **Next:** when the fine pass
-ends, `verify_global60.py`, then install the Deep Learning Libraries (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`,
-downloaded and verified) and rerun `desktop_check.py`; then X5 and X3. Pro's Python here is on `D:` (§53.0).
+`build\logs\landform_fine_DESKTOP-PJS73RO.log`), deck libraries installed.
+**2026-10-14 (§53.4–53.5): X2 done** in 11 h 07 min: 467,547 closed depressions ≥ 1 km and 973,879 channel
+segments at ±60°, checked (`verify_global60_candidates.py`: seams clean; the type-area windows reproduce
+§42.3; against Robbins, precision 15 % at ≥ 1 km, 62 % at ≥ 5 km, 83 % at ≥ 20 km). The Deep Learning
+Libraries install needs an administrator (Error 1925 unelevated; the UAC prompt went unanswered).
+**Next:** the UAC-approved install (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`), then
+`desktop_check.py` and X5; X3; layouts 11 and 12 from the fine pass (Pro closed). Pro's Python here is on `D:` (§53.0).
 
 > **Moving to the desktop? Read `HANDOFF-DESKTOP.md` first** (beside this file; KB §52): the first ten
 > minutes there (`F:`, junctions, `desktop_check.py --gpu`), the working rules, and every open task

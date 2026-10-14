@@ -16,7 +16,9 @@ interim data cut **2 November**, digitising checkpoint **1 November**, data free
 > place with `build\retarget_junction.py`; an agent's shell refuses `rmdir` there), **X1 done: the GPU
 > engages**, X2 smoke passed and **the full fine pass started at 22:24** (~16 h; run without
 > `--skip-coarse`, §53.3), the deck libraries installed, and the Deep Learning Libraries downloaded and
-> verified, to be installed once the fine pass ends (same Python environment). Open: X2 finishing, X3, X5.
+> verified, to be installed once the fine pass ends (same Python environment). **2026-10-14: X2 done**
+> (11 h 07 min, checked, §53.4); the deep-learning install needs an administrator (§53.5). Open: X5 (after
+> the install), X3, the sheets of §5.4.
 
 ---
 

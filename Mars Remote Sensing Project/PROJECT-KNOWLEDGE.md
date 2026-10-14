@@ -454,9 +454,10 @@ context map; it needs a network connection. **[E]**
 Read with `arcpy` 2026-09-18. This is authoritative — it supersedes any byte-walk estimate.
 All of §6 is **[V]**.
 
-### Feature classes — 26 present (22 on 2026-09-18, 26 on 2026-10-01, 30 on 2026-10-07, 37 on 2026-10-08, 24 on 2026-10-09; see the rows below, §29, §31, §41, §42, §44, §50, §53)
+### Feature classes — 28 present (22 on 2026-09-18, 26 on 2026-10-01, 30 on 2026-10-07, 37 on 2026-10-08, 24 on 2026-10-09, 26 on 2026-10-13; see the rows below, §29, §31, §41, §42, §44, §50, §53)
 
 **2026-10-13 (§53.3): the two `_60_smoke` classes are back** (`Landform_CraterCandidates_auto_60_smoke` 8,098 rows, `Landform_ChannelCandidates_auto_60_smoke` 5,305), recreated by the X2 smoke test as the handoff foresaw; deleting them waits for approval.
+**2026-10-14 (§53.4): the ±60° fine pass** adds `Landform_CraterCandidates_auto_60` (467,547 points) and `Landform_ChannelCandidates_auto_60` (973,879 polylines).
 
 **2026-10-09 (§50): 13 deleted on approval (D9):** the 9 `_2` / `_3` nomenclature copies (each verified
 identical to its original, which stays), `Line`, `Point`, and the two `_60_smoke` classes. Copies of all
@@ -4501,5 +4502,73 @@ On request ("continue trying to do it yourself, and you are approved for the ins
   MSI writes into `arcgispro-py3`, the environment the fine pass is running from.
 - `python-pptx` 1.0.2, `python-docx` 1.2.0, `PyMuPDF` 1.28.2 installed for the system Python (`pip --user`).
 
-**Counted:** 141 build scripts on the drive (`test_q24_tiles.py`, `retarget_junction.py` new; 140 in the
-public repo).
+### 53.4 X2 done: closed depressions and channels at ±60° — 2026-10-14 **[V]**
+
+`make_global_landforms.py` (coarse pass, then 70 fine tiles of 8,192 px + 1,024 px halo at 200 m),
+2026-10-13 22:24 to 10-14 09:31, **11 h 07 min** on the desktop (laptop estimate ~7 h was for the fine
+tiles alone on its rate; here tiles took 45.7–884.9 s, mean 562 s; log `logs\landform_fine_DESKTOP-PJS73RO.log`,
+error log empty).
+
+| class | rows | what |
+|---|---|---|
+| `Landform_CraterCandidates_auto_60` | **467,547** points | closed depressions ≥ 1 km: 467,224 fine-pass + 323 coarse-only (wider than the halo, ≥ 20 km) |
+| `Landform_ChannelCandidates_auto_60` | **973,879** polylines | 6.20 million km in all, median 4.2 km; orders 1–5: 567,384 / 361,681 / 41,547 / 3,170 / 97 segments |
+
+Fill-artefact discard (KB 25.1) across all tiles: **60.1 %** of stream cells (Ius alone 56 %). Both
+classes are `Confidence = 'inferred'`; `Landform_CraterRims` and `Landform_ChannelCenterlines` untouched.
+
+**`MappedOn` corrected.** The script stamped every row 2026-09-19 (a hard-coded date, the day it was
+written). Rows set to the day each class was written (10-14; the smoke classes 10-13), every row checked
+before and after; the script now uses the run's date.
+
+**Checked** (`build\verify_global60_candidates.py`, new; predictions and rules in its docstring before each
+run; `logs\global60_candidates_check.json`). `verify_global60.py` (rasters only): 6 pass, 0 fail.
+
+- **C1–C2 pass:** counts equal the run log; CRS `Mars_Equidistant_Cylindrical_CM180`; no empty geometry;
+  every centre inside the grid, |lat| ≤ 59.99°; fine-pass filters hold (D ≥ 1.009 km, aspect ≤ 2.000,
+  fill ratio ≥ 0.550), coarse-only D ≥ 20 km.
+- **C3 pass, the tile seams are clean:** crater density in 4 km bands on the core seams over that half a
+  core away: **0.985** (columns), **0.961** (rows), predicted 0.85–1.15; near-duplicates (centres within
+  half the larger diameter, diameters within 2×): rate 0.0000 at seams, 0.0002 elsewhere.
+- **C4, the type-area windows reproduce §42.3:** Ius **1,709** candidates ≥ 1 km at 200 m (100 m run 1,685;
+  the prediction "fewer" failed), against Robbins 935 craters, recall **20.5 %**, precision **11.1 %**
+  (§42.3: 935, 21 %, 11 %). Athabasca **1,819** (100 m: 1,709), Robbins 592, recall **37.2 %**, precision
+  **12.1 %** (§42.3: 592, 36 %, 13 %). The 200 m pass behaves like the 100 m type-area runs.
+- **C5, against Robbins over ±60°** (the §42.3 rule; Robbins craters with |lat| ≤ 60°). The prediction's
+  control, candidates shifted 2°, **failed as written** from ≥ 5 km up (precision 3.9–18.6 %: a 2° shift is
+  no farther than a large crater's own size). A second control was written before run 2: each candidate
+  shifted east by 3 of its own diameters, a local chance baseline. Observed above it at every size:
+
+| D ≥ | Robbins | recall (baseline) | candidates | precision (baseline) |
+|---|---|---|---|---|
+| 1 km | 352,796 | 20.5 % (1.1 %) | 467,547 | **15.3 %** (0.8 %) |
+| 2 km | 118,124 | 36.0 % (1.7 %) | 142,902 | 29.3 % (1.4 %) |
+| 5 km | 43,049 | 46.0 % (2.9 %) | 31,043 | **62.2 %** (4.0 %) |
+| 10 km | 21,990 | 48.0 % (4.2 %) | 12,838 | 79.2 % (7.1 %) |
+| 20 km | 9,784 | 48.3 % (5.7 %) | 5,400 | **83.0 %** (10.2 %) |
+| 50 km | 1,857 | 46.1 % (5.5 %) | 1,025 | 78.5 % (9.9 %) |
+| 100 km | 269 | 39.0 % (4.5 %) | 145 | 69.0 % (8.3 %) |
+
+- **Read:** below ~2 km most candidates are not catalogued craters (as §42.3 found in both windows); from
+  ~5 km up, most are. Recall levels off near half: the detector sees closed depressions only, and breached
+  or degraded craters stay invisible (§26.3). The ≥ 100 km recall (39 %) is lower than §28.11's 68 %, which
+  is a different measurement: the coarse basin pass against the 117 named IAU craters ≥ 100 km inside ±58°
+  (named, so mostly prominent ones), a depression near the centre with diameter within ±50 %; here every
+  Robbins crater ≥ 100 km, centre within half its diameter, diameter within 2×. **The class remains "closed depressions ≥ 1 km", not a crater inventory.**
+- The channel class is not scored here (no channel reference at ±60°); plateau channels are DEM noise
+  (§25, §47.4), stated on any sheet built from it.
+
+**Next from this (HANDOFF §5.4):** layouts 11 and 12 (closed-depression density with this Robbins table;
+the channel network with its blind spots), and the interim if before the 2 November cut.
+
+### 53.5 X5: the install needs an administrator
+
+The MSI run elevated (`msiexec /i ... /passive`, `-Verb RunAs`) found the UAC prompt cancelled or
+unanswered. Unelevated (`/qn`) it ends with **Error 1925** ("You do not have sufficient privileges to
+complete this installation for all users"): a per-machine install. It failed at the first operation of
+`InstallFinalize`, before any file was written: `torch`, `torchvision`, `fastai` absent, `arcpy` and numpy
+2.3.5 import as before. Open: one approved UAC prompt (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`),
+or Esri's conda route into a clone (no admin; Esri calls that package set uncertified).
+
+**Counted:** 142 build scripts on the drive (`test_q24_tiles.py`, `retarget_junction.py`,
+`verify_global60_candidates.py` new; 141 in the public repo); 28 feature classes.

@@ -108,7 +108,8 @@ MAX_FILL_M = 1.0       # KB 25.1: off filled ground
 
 R = 3396190.0
 DEG = R * np.pi / 180.0
-TODAY = datetime.datetime(2026, 9, 19)
+# the run's own date (it was hard-coded to the day this script was written, 2026-09-19; KB §53.4)
+TODAY = datetime.datetime.combine(datetime.date.today(), datetime.time())
 T0 = time.time()
 
 
