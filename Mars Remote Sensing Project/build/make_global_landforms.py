@@ -61,6 +61,7 @@ from paths import on_drive, junction
 import sys
 import time
 import glob
+import shutil
 import datetime
 
 import numpy as np
@@ -291,6 +292,13 @@ def do_tile(t):
     from arcpy.sa import (FlowDirection, FlowAccumulation, StreamLink,
                           StreamOrder, Con, Raster)
     arcpy.env.overwriteOutput = True
+
+    # The clean-up at the end of a tile runs while arcpy still holds its rasters, so their files stay
+    # (~2 bytes/px, ~15 GB over the 70 full tiles; KB §53.3). By the next tile the locks are gone:
+    # empty the working folder of every tile that already has its checkpoint.
+    for old in glob.glob(os.path.join(SCRATCH, "t[0-9][0-9][0-9]")):
+        if os.path.exists(os.path.join(SCRATCH, "tile_%s.npz" % os.path.basename(old)[1:])):
+            shutil.rmtree(old, ignore_errors=True)
 
     tg = GRID.sub(hx0, hy0, hw, hh, "tile%03d" % tid)
     wd = os.path.join(SCRATCH, "t%03d" % tid)

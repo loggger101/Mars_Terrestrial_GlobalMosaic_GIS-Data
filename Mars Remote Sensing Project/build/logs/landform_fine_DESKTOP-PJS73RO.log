@@ -1,0 +1,14 @@
+==============================================================================
+CRATER + CHANNEL CANDIDATES OVER +/-60  (tasks 11 + 12, tiled)
+==============================================================================
+  <Grid G200 106694 x 35565 @ 200 m  X -10669400..10669400  Y -3556500..3556500  lat -60.000..+60.000  3.795 Gpx>
+  tiles       70 cores of 8192 px + 1024 px halo  (1638 km core, 205 km halo)
+  stream thr  1250 cells = 50 km2
+  scratch     C:\MarsScratch\global60  (internal SSD, KB 2.2)
+  [    0.4s] thermal index at 200 m  (reused)
+  [    0.4s] coarse pass: 13336 x 4445 @ 1600 m, one Fill over the whole extent
+  [  213.8s] coarse: 217,622 depressions, 5144 basins >= 20 km  0:03:33
+
+fine pass
+    tile   1/70  built   774.2s   elapsed 0:16:28  projected 19:12:46
+    tile   2/70  built   661.7s   elapsed 0:27:29  projected 16:02:22

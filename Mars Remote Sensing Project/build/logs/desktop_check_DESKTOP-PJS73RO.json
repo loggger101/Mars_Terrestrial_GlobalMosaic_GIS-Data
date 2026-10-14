@@ -1,12 +1,12 @@
 {
  "host": "DESKTOP-PJS73RO",
  "drive": "F:\\",
- "when": "2026-10-13 21:19",
+ "when": "2026-10-13 22:14",
  "pro": "3.7",
  "junctions": {
-  "TypeArea": false,
-  "Global60": false,
-  "Athabasca": false
+  "TypeArea": true,
+  "Global60": true,
+  "Athabasca": true
  },
  "dl_libraries": {
   "torch": "ModuleNotFoundError: No module named 'torch'",
@@ -26,5 +26,26 @@
   "chips_found": 3622,
   "intact": true
  },
- "x5_ready": false
+ "x5_ready": false,
+ "x1": {
+  "CPU_ONLY": {
+   "seconds": 10.4,
+   "no_gpu_message": false,
+   "messages": [
+    "Start Time: Tuesday, October 13, 2026 10:14:48 PM",
+    "Succeeded at Tuesday, October 13, 2026 10:14:55 PM (Elapsed Time: 7.63 seconds)"
+   ]
+  },
+  "GPU_THEN_CPU": {
+   "seconds": 2.9,
+   "no_gpu_message": false,
+   "messages": [
+    "Start Time: Tuesday, October 13, 2026 10:14:56 PM",
+    "WARNING 010453: The GPU being used is connected to your display. This may cause the computer to appear unresponsive. The display driver may reboot the GPU if the computation takes too long.",
+    "Succeeded at Tuesday, October 13, 2026 10:14:58 PM (Elapsed Time: 2.77 seconds)"
+   ]
+  },
+  "gpu_engaged": true,
+  "output_folder": "C:\\Users\\Owner\\AppData\\Local\\Temp\\x1_gpu_mckzxyy6"
+ }
 }

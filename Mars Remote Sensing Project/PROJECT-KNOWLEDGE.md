@@ -454,7 +454,9 @@ context map; it needs a network connection. **[E]**
 Read with `arcpy` 2026-09-18. This is authoritative — it supersedes any byte-walk estimate.
 All of §6 is **[V]**.
 
-### Feature classes — 24 present (22 on 2026-09-18, 26 on 2026-10-01, 30 on 2026-10-07, 37 on 2026-10-08; see the rows below, §29, §31, §41, §42, §44, §50)
+### Feature classes — 26 present (22 on 2026-09-18, 26 on 2026-10-01, 30 on 2026-10-07, 37 on 2026-10-08, 24 on 2026-10-09; see the rows below, §29, §31, §41, §42, §44, §50, §53)
+
+**2026-10-13 (§53.3): the two `_60_smoke` classes are back** (`Landform_CraterCandidates_auto_60_smoke` 8,098 rows, `Landform_ChannelCandidates_auto_60_smoke` 5,305), recreated by the X2 smoke test as the handoff foresaw; deleting them waits for approval.
 
 **2026-10-09 (§50): 13 deleted on approval (D9):** the 9 `_2` / `_3` nomenclature copies (each verified
 identical to its original, which stays), `Line`, `Point`, and the two `_60_smoke` classes. Copies of all
@@ -781,6 +783,8 @@ The deliverables already say so. Keep it that way. **[E]**
    stays on `Z:` permanently — it will outgrow both computers** (§2.2). The old framing also
    undercounted the footprint by 5×. **[V]**
 10. **Does `GPU_THEN_CPU` actually engage on the 2080 Ti?** One test run settles it (§2.3). **[?]**
+    **Answered 2026-10-13: yes** (§53.3): Slope 7.63 s on CPU, 2.77 s with `GPU_THEN_CPU`, and the tool
+    reports the GPU in use (WARNING 010453: it also drives the display). **[V]**
 11. ~~What internal disk does the desktop have, and how much free space?~~ **Moot** — it was
     only needed to plan the copy in q9, which is now settled. Still worth knowing for **scratch
     space** (§2.2), which is a far smaller ask. **[?]**
@@ -4380,10 +4384,8 @@ tasks". Pro was closed; nothing was written to the `.aprx` or the gdb.
 - **ArcGIS Pro 3.7 is installed on `D:\ArcGISPro\`.** The ArcGIS Python is
   `D:\ArcGISPro\bin\Python\envs\arcgispro-py3\python.exe`, not the `C:\Program Files\...` path that
   `HANDOFF-DESKTOP.md` §3 gave (the laptop's). The handoff is corrected.
-- **X0, the junctions: not yet done.** `F:\TypeArea`, `F:\Global60`, `F:\Athabasca` still target
-  `Z:\Mars Project\...`. The agent's shell refuses `rmdir` on those paths, so they are recreated by hand in
-  `cmd` (the commands in `HANDOFF-DESKTOP.md` §1). X1 (GPU test) and X2 (fine pass) read through them and
-  wait.
+- **X0, the junctions:** found still targeting `Z:\Mars Project\...`; the agent's shell refuses `rmdir` on
+  those paths. **Fixed the same evening by retargeting each in place** (§53.3).
 - **X5 preflight** (`desktop_check.py`, `logs\desktop_check_DESKTOP-PJS73RO.json`): **torch, torchvision,
   fastai and `arcgis.learn` do not import here either.** Esri's Deep Learning Libraries are absent on both
   machines; installing them is a download that needs approval. The training-split export is intact
@@ -4463,4 +4465,41 @@ across all others (§30.2).
   `ClassifyRaster` over a segmented raster larger than one tile, check for 4,096-px seams before using it
   (the §30.2 jump ratio does that). Scratch in `C:\MarsScratch\q24*` (internal disk, ~0.5 GB).
 
-**Counted:** 140 build scripts on the drive (`test_q24_tiles.py` new; 139 in the public repo).
+### 53.3 X0, X1 and the fine-pass smoke test (later 2026-10-13)
+
+On request ("continue trying to do it yourself, and you are approved for the installations").
+
+- **X0 done.** `build\retarget_junction.py` (new) rewrites a junction's reparse point in place
+  (`FSCTL_SET_REPARSE_POINT`), removing nothing; it refuses unless the path already is a junction and the
+  target exists. Run on `TypeArea` first and checked (`os.path.samefile` with the target), then
+  `Global60` and `Athabasca`. `desktop_check.py`: all three `ok`.
+- **X1 done: the GPU engages** (§11 q10). `arcpy.ddd.Slope` on the Ius DEM: `CPU_ONLY` 7.63 s (tool
+  clock; 10.4 s wall), `GPU_THEN_CPU` **2.77 s** (2.9 s wall), and the GPU run's messages say so
+  explicitly: *"WARNING 010453: The GPU being used is connected to your display ... The display driver may
+  reboot the GPU if the computation takes too long."* No "no compatible GPU" message in either run. The
+  device: NVIDIA GeForce RTX 2080 Ti, 11 GB, driver 596.36. The warning matters for long GPU jobs: the
+  2080 Ti also drives the display. **[V]**
+- **X2 smoke** (`make_global_landforms.py --smoke`, 6 m 50 s, log `logs\landform_smoke_DESKTOP-PJS73RO.log`):
+  the coarse pass gives **5,144 basins ≥ 20 km**, as in §28.11; tile 1 gives **816** crater and **1,425**
+  channel candidates, **identical** to the laptop's one-tile smoke (`logs\landform_smoke.log`, 2026-09-19).
+  Four tiles: 8,098 craters (2,962 fine + 5,136 coarse-only), 5,305 channel segments, in the recreated
+  `_60_smoke` classes (left in the gdb; deleting them waits for approval, §50.1).
+- **A scratch leak found and fixed.** Each tile's clean-up ran while arcpy still held its rasters, so the
+  files stayed: ~12 MB per smoke tile, ~2 bytes/px, i.e. ~15 GB over the 70 full tiles against ~30 GB
+  free on `C:`. `make_global_landforms.py` now empties the working folder of every tile that has its
+  checkpoint when the next tile starts. Tested by rebuilding the last smoke tile: the three finished
+  tiles' folders went, the outputs were identical (8,098 / 5,305).
+- **The full fine pass runs without `--skip-coarse`**, against `HANDOFF-DESKTOP.md` §5.1: that flag does not
+  only save the 3.5 min coarse pass, it drops the coarse-only basins (wider than the 205 km halo) from the
+  merged crater class. The coarse pass writes nothing to `Landform_BasinCandidates_auto_60` unless
+  `--skip-fine`, so layout 07 is untouched. Started 22:24 as a detached process (log
+  `logs\landform_fine_DESKTOP-PJS73RO.log`); coarse pass again 5,144 basins.
+- **X5 install prepared:** `ArcGIS_Pro_37_Deep_Learning_Libraries_200060.zip` (6,398,596,251 bytes) from
+  `gisupdates.esri.com` (Esri's link `links.esri.com/pro-deep-learning-libraries/37`), in
+  `D:\MarsDownloads\dl_libs_37\`; every CRC ok; `ProDeepLearning.msi` Authenticode-signed by Environmental
+  Systems Research Institute, Inc. (DigiCert), status Valid. **Installed only after the fine pass ends:** the
+  MSI writes into `arcgispro-py3`, the environment the fine pass is running from.
+- `python-pptx` 1.0.2, `python-docx` 1.2.0, `PyMuPDF` 1.28.2 installed for the system Python (`pip --user`).
+
+**Counted:** 141 build scripts on the drive (`test_q24_tiles.py`, `retarget_junction.py` new; 140 in the
+public repo).

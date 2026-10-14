@@ -19,10 +19,11 @@ status, deck formats, timeline). The drafts and the course template are in `NEXT
 
 **2026-10-13, first desktop session (KB §53):** X4 pyramids done on all four sources (26 min, q6 closed);
 X6 done, q24 answered (the 29 Sep blocks are `ClassifyRaster`'s processing tiles); X5 preflight run
-(deep-learning libraries absent here too). **Next on the desktop:** X0 the junctions (by hand in `cmd`,
-`HANDOFF-DESKTOP.md` §1 step 3) → X1 `desktop_check.py --gpu` → X2 fine pass (`--smoke`, then
-`--skip-coarse`) → X3. Two installs wait for approval: Esri's Deep Learning Libraries (X5) and
-`python-pptx` / `python-docx` / `PyMuPDF` for the deck builders. Pro's Python here is on `D:` (§53.0).
+(deep-learning libraries absent here too). Later (§53.3): X0 junctions fixed in place, **X1 the GPU
+engages**, X2 smoke passed, **the full fine pass running since 22:24** (~16 h, checkpointed; log
+`build\logs\landform_fine_DESKTOP-PJS73RO.log`), deck libraries installed. **Next:** when the fine pass
+ends, `verify_global60.py`, then install the Deep Learning Libraries (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`,
+downloaded and verified) and rerun `desktop_check.py`; then X5 and X3. Pro's Python here is on `D:` (§53.0).
 
 > **Moving to the desktop? Read `HANDOFF-DESKTOP.md` first** (beside this file; KB §52): the first ten
 > minutes there (`F:`, junctions, `desktop_check.py --gpu`), the working rules, and every open task

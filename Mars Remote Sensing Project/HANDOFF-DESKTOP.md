@@ -12,9 +12,11 @@ interim data cut **2 November**, digitising checkpoint **1 November**, data free
 
 > **First desktop session, 2026-10-13 (KB §53):** X4 pyramids **done** (26 min); X6 / q24 **answered**
 > (`ClassifyRaster`'s processing tiles); the X5 preflight run (deep-learning libraries absent; the
-> training-split export intact). **Still open from §5.1: X0** (the junctions; the agent's shell refuses
-> `rmdir` there, so run the three `cmd` lines of §1 step 3 by hand), then X1, X2, X3, X5. The desktop's
-> system Python also lacks `python-pptx`, `python-docx`, `PyMuPDF` (approval needed to install).
+> training-split export intact). Later the same evening (§53.3): **X0 done** (junctions retargeted in
+> place with `build\retarget_junction.py`; an agent's shell refuses `rmdir` there), **X1 done: the GPU
+> engages**, X2 smoke passed and **the full fine pass started at 22:24** (~16 h; run without
+> `--skip-coarse`, §53.3), the deck libraries installed, and the Deep Learning Libraries downloaded and
+> verified, to be installed once the fine pass ends (same Python environment). Open: X2 finishing, X3, X5.
 
 ---
 

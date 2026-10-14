@@ -1,0 +1,32 @@
+﻿==============================================================================
+CRATER + CHANNEL CANDIDATES OVER +/-60  (tasks 11 + 12, tiled)
+*** SMOKE TEST - small tiles over Ius Chasma, separate outputs ***
+==============================================================================
+  <Grid G200 106694 x 35565 @ 200 m  X -10669400..10669400  Y -3556500..3556500  lat -60.000..+60.000  3.795 Gpx>
+  tiles       4 cores of 2048 px + 256 px halo  (410 km core, 51 km halo)
+  stream thr  1250 cells = 50 km2
+  scratch     C:\MarsScratch\global60_smoke  (internal SSD, KB 2.2)
+  [    0.1s] thermal index at 200 m  (reused)
+  [    0.1s] coarse pass: 13336 x 4445 @ 1600 m, one Fill over the whole extent
+  [  198.3s] coarse: 217,622 depressions, 5144 basins >= 20 km  0:03:18
+
+fine pass
+    tile   1/4  built    49.9s   elapsed 0:04:08  projected 0:16:35
+    tile   2/4  built    33.7s   elapsed 0:04:42  projected 0:09:25
+    tile   3/4  built    37.0s   elapsed 0:05:19  projected 0:07:06
+    tile   4/4  built    36.3s   elapsed 0:05:55  projected 0:05:55
+
+merge
+  [  356.9s] merged: 2,962 fine + 5136 coarse-only = 8,098 craters; 5,305 channel segments
+     fill-artefact discard across all tiles: 48.3% of stream cells
+  [  364.9s] wrote 8,098 -> Landform_CraterCandidates_auto_60_smoke
+  [  372.4s] wrote 5,305 -> Landform_ChannelCandidates_auto_60_smoke
+  [  410.5s] thermal index attached to 8,098 crater candidates
+
+==============================================================================
+  8,098 crater candidates, 5,305 channel segments over +/-60
+  Both classes are Confidence='inferred'. Landform_CraterRims and
+  Landform_ChannelCenterlines were not touched.
+  This is an inventory of CLOSED DEPRESSIONS - breached craters are
+  invisible to it (KB 26.3, Oudemans). Do not report it as complete.
+done in 0:06:50
