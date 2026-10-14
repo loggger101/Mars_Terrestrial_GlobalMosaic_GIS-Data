@@ -10,6 +10,12 @@ Deadlines: **interim ~13 November 2026** (the course says "mid-November"; the ex
 interim data cut **2 November**, digitising checkpoint **1 November**, data freeze **22 November**,
 **final Tuesday 8 December 2026**. No rubric exists for either (D2, KB §50).
 
+> **First desktop session, 2026-10-13 (KB §53):** X4 pyramids **done** (26 min); X6 / q24 **answered**
+> (`ClassifyRaster`'s processing tiles); the X5 preflight run (deep-learning libraries absent; the
+> training-split export intact). **Still open from §5.1: X0** (the junctions; the agent's shell refuses
+> `rmdir` there, so run the three `cmd` lines of §1 step 3 by hand), then X1, X2, X3, X5. The desktop's
+> system Python also lacks `python-pptx`, `python-docx`, `PyMuPDF` (approval needed to install).
+
 ---
 
 ## 1. The first ten minutes on the desktop
@@ -66,7 +72,8 @@ interim data cut **2 November**, digitising checkpoint **1 November**, data free
 
 **Tools and machines**
 - **Two Pythons, neither does both jobs.** Rasters and `arcpy`: `C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe`
-  (Pro 3.7 on the laptop; check the desktop's version in the preflight log). Decks, reports and charts:
+  on the laptop; **on the desktop Pro 3.7 is on `D:`: `D:\ArcGISPro\bin\Python\envs\arcgispro-py3\python.exe`**
+  (KB §53.0; `paths.arcgis_python()` finds it from the registry). Decks, reports and charts:
   system Python with `python-pptx`, `python-docx`, `matplotlib`, `Pillow` (and `PyMuPDF` to read PDFs as
   images). Never `propy.bat`: it fails on its own unquoted path. `import arcpy` costs ~7 s: batch work.
 - **No GUI automation.** `arcpy` headless is the channel; the Pro GUI is for the author. Work must end up

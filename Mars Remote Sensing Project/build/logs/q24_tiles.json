@@ -1,0 +1,34 @@
+{
+ "window": {
+  "col0": 161792,
+  "row0": 30720,
+  "size": 8192,
+  "col_tile": 40,
+  "row_tile": 8
+ },
+ "classify_seconds": 58,
+ "rerun_offset_applied": 1,
+ "agreement_away_from_tile_lines": 0.8762493470953109,
+ "original_cols": {
+  "median_rate": 0.0057373046875,
+  "at_original_line_2048": 42.97872340425532,
+  "at_rerun_line_4096": 1.8297872340425532
+ },
+ "original_rows": {
+  "median_rate": 0.0054931640625,
+  "at_original_line_2048": 1.2666666666666666,
+  "at_rerun_line_4096": 0.4888888888888889
+ },
+ "rerun_cols": {
+  "median_rate": 0.0057373046875,
+  "at_original_line_2048": 1.1702127659574468,
+  "at_rerun_line_4096": 22.19148936170213
+ },
+ "rerun_rows": {
+  "median_rate": 0.00537109375,
+  "at_original_line_2048": 1.2954545454545454,
+  "at_rerun_line_4096": 0.5
+ },
+ "verdict": "no verdict: the rerun does not reproduce the map",
+ "when": "2026-10-13 21:30"
+}

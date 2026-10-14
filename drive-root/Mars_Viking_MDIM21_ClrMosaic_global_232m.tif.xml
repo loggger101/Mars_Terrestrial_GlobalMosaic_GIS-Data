@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en"><Esri><CreaDate>20261013</CreaDate><CreaTime>21373200</CreaTime><ArcGISFormat>1.0</ArcGISFormat><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="d:\arcgispro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\BuildPyramids" Date="20261013" Time="213732">BuildPyramids F:\Mars_Viking_MDIM21_ClrMosaic_global_232m.tif -1 NONE NEAREST DEFAULT 75 OVERWRITE</Process></lineage></DataProperties></Esri></metadata>

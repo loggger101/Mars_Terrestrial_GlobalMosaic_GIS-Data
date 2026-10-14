@@ -20,6 +20,7 @@ file to edit:
 
 ```
 "C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" make_interim_figs.py
+    (desktop: "D:\ArcGISPro\bin\Python\envs\arcgispro-py3\python.exe", KB §53.0)
 python build_interim_live.py "..\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx"
 ```
 

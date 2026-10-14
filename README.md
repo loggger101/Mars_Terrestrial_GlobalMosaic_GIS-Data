@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 138, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 139, by purpose) · [backup and restore](docs/backup.md)
 
 ![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 
@@ -21,7 +21,7 @@ This repository is the project page and an off-drive backup of the project. The 
 
 The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 
-## Where it stands (2026-10-08)
+## Where it stands (2026-10-13)
 
 The interim report and presentation are due **mid-November 2026** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source and rebuilt as results come in ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md).
 
@@ -45,7 +45,7 @@ In order, toward the interim (data cut 2 November) and the final on 8 December. 
 2. **The choices are settled** (KB §50, 2026-10-09): the class order is that of the labels (1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground; `Composite Object Classes.ecs` is superseded); the plateau channel candidates stay and are rejected in review; the published map keeps its 5 × 5 smoothing; a deep-learning model is trained on the corrected stack with box labels, from a training-split export so it can be scored on the same held-out blocks as the SVM.
 3. **Run the desktop jobs**, too heavy for the laptop. Every build script finds its own drive, so they run from `F:` on the desktop; the two no-space junctions (`TypeArea`, `Global60`) are recreated there once, and the scripts print the command (q22).
    - the ±60° crater and channel fine pass, `make_global_landforms.py`: about 7 hours measured, checkpointed per tile. Only the coarse basin pass has run. Check the output with `verify_global60.py`;
-   - pyramids on the four source mosaics (q6);
+   - ~~pyramids on the four source mosaics (q6)~~: done 2026-10-13, 26 min on the desktop (KB §53);
    - the deep-learning model, once a GPU test shows the card works: trained on `LabeledObjects/global60_svm_stack_200m_train/` only, scored on the held-out polygons.
 4. **Run the tests that wait for the review** on the laptop: gradient and thermal response by origin (H2, stage 2), once reviewed channels exist, and flow margins in IR against Viking (H1) again on lava margins digitised at Athabasca. The other tests have run (results below).
 5. **Write the interim and the final report and presentation**, from the layouts and the results above.
@@ -58,7 +58,7 @@ In order, toward the interim (data cut 2 November) and the final on 8 December. 
 - **Against the USGS geologic map (T8, T2)**: the classes sit where terrain puts them, and volcanic plains can't be separated from other plains in these bands, so lava flows are shown from the map's volcanic units. At Athabasca the flood lava (`lAv`) is the least cratered large unit: 1,122 catalogued craters per million km², against 1,760 and 2,183 on the older units.
 - **The prospectus' hypotheses (T5–T7)**: no band separates the geologic map's lava contacts at Athabasca much better than chance (day IR 21.0%, Viking red 12.3%, chance 10%; the 1:20 M map is too coarse to settle it). The composite's Iso Cluster classes are the least reproducible input (west- vs east-trained agreement 0.40, against 0.61–0.89 for single bands). No channel threshold keeps first-order streams on real slopes: only 30.8–36.7% lie on ≥ 2°, so the tributary order count is a setting, not a measurement.
 - **Volcanic against fluvial channels (T4, H2, stage 1)**: by type area, the volcanic (Athabasca) channel candidates are shallower than the fluvial (Ius) ones, median 1.4 against 10.2 m per km, the opposite of the hypothesis, and thermal response tells them apart no better than chance (AUC 0.50). The window, not the origin, sets the gradient; H2 is retested on reviewed channels (KB §51).
-- **Two earlier SVM maps checked and superseded**: one follows its 4096-pixel processing tiles and scores below chance on its own training data. The other is mostly an elevation map.
+- **Two earlier SVM maps checked and superseded**: one follows its 4096-pixel processing tiles and scores below chance on its own training data; rerunning its classifier on a window aligned with those tiles reproduces it to 99.9995%, and shifting the window moves the seams, so the blocks are the tool's processing tiles (KB §53). The other is mostly an elevation map.
 - **Diurnal-contrast index**: calibrated thermal inertia can't be derived from the 8-bit, locally stretched THEMIS mosaics. A relative day–night contrast index can, and within the type area it is nearly independent of terrain (r = +0.11 against elevation, −0.25 against slope). It is not a restatement of topography, but against calibrated TES thermal inertia it barely tracks material (above), and it does not compare across the planet.
 - **Type-area supervised accuracy**: 62.7%, κ 0.41 on terrain-defined classes. The thermal index adds +0.4 points there, as it should on terrain classes.
 - **Channels**: `Fill` flooded Ius Chasma 2,077 m deep, and 56% of the stream cells in the first channel network were an artefact of it. Of the 2,610 candidates that remain, the 188 steep, rock-floored ones (1,037 km) are the ones worth digitising.
@@ -139,7 +139,7 @@ The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   138 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   139 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
     pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)

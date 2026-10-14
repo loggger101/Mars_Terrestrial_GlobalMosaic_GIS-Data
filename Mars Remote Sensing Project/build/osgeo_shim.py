@@ -10,9 +10,9 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from paths import on_drive
+from paths import on_drive, arcgis_python
 
-PY = r"C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe"
+PY = arcgis_python()
 SRC = {"Viking": on_drive("Mars_Viking_MDIM21_ClrMosaic_global_232m.tif"),
        "THEMIS": on_drive("Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif"),
        "DEM": on_drive("Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif")}

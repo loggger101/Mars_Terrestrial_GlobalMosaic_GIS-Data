@@ -1,0 +1,35 @@
+{
+ "window": {
+  "col0": 159744,
+  "row0": 28672,
+  "size": 8192,
+  "col_tile": 40,
+  "row_tile": 8
+ },
+ "classify_seconds": 55,
+ "rerun_offset_applied": 1,
+ "agreement_away_from_tile_lines": 0.9999942521522991,
+ "original_cols": {
+  "median_rate": 0.0042724609375,
+  "at_original_line_2048": 2.085714285714286,
+  "at_rerun_line_4096": 1.2
+ },
+ "original_rows": {
+  "median_rate": 0.00439453125,
+  "at_original_line_2048": 0.3888888888888889,
+  "at_rerun_line_4096": 0.75
+ },
+ "rerun_cols": {
+  "median_rate": 0.0042724609375,
+  "at_original_line_2048": 2.085714285714286,
+  "at_rerun_line_4096": 1.2
+ },
+ "rerun_rows": {
+  "median_rate": 0.00439453125,
+  "at_original_line_2048": 0.3888888888888889,
+  "at_rerun_line_4096": 0.75
+ },
+ "agreement_all": 0.9999946057796478,
+ "verdict": "reproduces with aligned tiles",
+ "when": "2026-10-13 21:32"
+}

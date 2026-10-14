@@ -1,0 +1,15 @@
+{
+ "with_ovr": {
+  "seconds": 0.03,
+  "overviews": 7,
+  "rows": 4096,
+  "cols": 213388
+ },
+ "no_ovr": {
+  "seconds": 1.01,
+  "overviews": 0,
+  "rows": 4096,
+  "cols": 213388
+ },
+ "speedup": 33.7
+}

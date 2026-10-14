@@ -41,6 +41,21 @@ def junction(name):
     return alias
 
 
+def arcgis_python():
+    """The ArcGIS Pro Python. Pro is on C:\\Program Files on the laptop and on D:\\ArcGISPro on the
+    desktop (KB §53.0), so read Pro's install folder from the registry; MARS_ARCGIS_PY overrides."""
+    if os.environ.get("MARS_ARCGIS_PY"):
+        return os.environ["MARS_ARCGIS_PY"]
+    root = r"C:\Program Files\ArcGIS\Pro"
+    try:
+        import winreg
+        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\ESRI\ArcGISPro") as k:
+            root = winreg.QueryValueEx(k, "InstallDir")[0]
+    except OSError:
+        pass
+    return os.path.join(root, r"bin\Python\envs\arcgispro-py3\python.exe")
+
+
 MARS_PROJECT = on_drive("Mars Project")
 GDB = on_drive(r"Mars Project\Mars Project.gdb")
 APRX = on_drive(r"Mars Project\Mars Project.aprx")

@@ -2,7 +2,7 @@
 
 **Owner:** Logan Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `Z:\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md`
-**Started:** 2026-09-18 · **Last updated:** 2026-10-09 (**§52 added: ready for the desktop: the `.aprx` opens whole on another drive letter (two absolute layer paths fixed), `audit_record.py` runs without the laptop's memory folder, and `HANDOFF-DESKTOP.md` audits every open task**; **§51 added: T4 stage 1, H2 not supported (the volcanic window's channels are shallower; no thermal separation); the desktop-day preflight, with a GPU-test false positive caught; the deep-learning script with a tested scorer; deep-learning libraries absent on the laptop**; **§50 added: every open decision answered (no rubric; the labels' class order; deep learning yes, boxes; 5 × 5 kept; plateau candidates kept); 13 classes and one map deleted after an inventory, `_removed_not_Mars` to the Recycle Bin; a training-split deep-learning export**; **§49 added: layout 13, T8's cross-tabulation against the geologic map as a sheet, and layout 14, the validation sheet (review precision and recall, Robbins reference), live in Pro and rerun after each review session**; **§48 added: the interim deck (23 slides) and report (15 pages) rebuilt with T5–T7; four presentation faults fixed, including a double-rounded κ**; **§47 added: tests T5, T6, T7; none supports the prospectus claim (H1 inconclusive at 1:20 M, H3 not supported, Q5 has no DEM-supported answer); §41's frame label corrected (the coordinates were right)**; **§11 q14, q16–q19, q25 brought up to date with §39–§46**; **§46 added: digitising by review (D10): `Review` / `ReviewNote` on the four candidate classes, `SourceID` on the two digitising classes, and `accept_reviewed.py`, which copies only accepted candidates**; **§45 added: the interim report is a living build from the same source as the deck; the interim now leads with the measured limits (D12); `verify_interim.py` checks every interim number against this record**; **§44 added: graticules on every map and layout 10, the locator, with the geologic map's volcanic units as the lava-flow reference**; **§43 added: T3 planet-wide (the THEMIS pair keeps a weak local signal, Viking the regional one); T8 (the classes are terrain classes, also against the geologic map); the lava-tube relabel tested**; **§42 added: the Athabasca Valles type area; T2 and the detector's precision against Robbins (11 % at ≥ 1 km); T3 local: the diurnal-contrast index does not track calibrated thermal inertia at 3 km; §24.3 and §26.3 qualified**; **§41 added: the three approved reference datasets downloaded, checked and in the project: the USGS geologic map, the Robbins craters and TES thermal inertia**; **§40 added: test T1, the thermal bands add +1.3 pt and terrain alone matches the full stack; every build script now finds its drive (§11 q22)**; **§39.4: the record, the plans, the build scripts, the project's layer and layout text and the GitHub page rewritten in an objective, impersonal voice**; **§39.3: the interim deck is now a living build in the Presentation 1 style with seven map slides; `verify_all.py` repaired after §37**; **§21.4 corrected: the interim deck was never blocked; the course template is now on `Z:` and both deck builders run (§39.2); §1: the interim is due mid-November; §39 added: the next-steps plan, `NEXT-STEPS.md`, and the interim plan, `INTERIM-PLAN.md`; §10: the USGS geologic map is named as a validation source but is not on disk**; **§38 added: layout 08, the mosaic itself at ±60° in four panels (visible, day IR, night IR, topography), each on its own map in the stack's native CRS**; 2026-10-07: **§37 added: everything that isn't Mars is out of the project, moved to `Z:\_removed_not_Mars\`, nothing deleted; §36.4: every classified raster's pixel values are now its class codes, the two GUI maps and `ius_sup_*` included**; earlier the same day, **§36: the ±60° landform maps recoded 0–3 → 1–4**; 2026-10-06: **§35 added: the project is backed up to a public GitHub repo, `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`, which is also its project page; §2.5's "no backup" is superseded**; 2026-10-03: **§32 added: the digitising map and layout 06 put the candidates and the empty digitising classes in Pro; basin layout 07; the classification smoothed 5 × 5, chosen by feature size**; earlier the same day, **§31 added: the fix. A corrected ±60° stack, a reclassification scored on held-out labels, every Mars map clipped to ±60°, a new map and layouts in the project**; 2026-10-02: **§30 added — the two GUI SVM classifications checked against the labelled polygons, the IAU craters and the DEM: the 29 Sep map follows its 4096-px processing tiles and scores below chance on its own training data; the 30 Sep map is mostly elevation**; earlier the same day, **§29.2 and §11 q23 — the two class schemas number lava tube and steep/windy hills the other way round; every labelled file follows the older one**; 2026-10-01: **§29 added — manual work in the Pro GUI, 2026-09-24 to 10-01, read from the logs and the gdb: hand training labels in four classes, a ±60° segmentation, two SVM classifications, the first two successful global Composite Bands runs, a deep-learning export — and `Landform_TrainingSamples_terrain` now holds the hand-drawn labels, which `make_typearea_supervised.py` would delete; §6, §8, §11, §13.2, §17.2, §27 reconciled**; 2026-09-19: **§28 added — the derived products move off the type area onto the mosaics' own grid; `build\grid60.py` is now the single definition of the ±60° extent, and the diurnal-contrast index exists at 15.2 bn px**; **§24 added — the day–night pair worked properly; calibrated thermal inertia is NOT derivable from the held 8-bit products, and the relative diurnal-contrast index that replaces it**; **§25 added — task 11 seeded with inferred channel candidates, and `Fill` caught flooding Ius Chasma 2,077 m deep**; earlier on 2026-09-18, a re-verification pass — most `[E]` items
+**Started:** 2026-09-18 · **Last updated:** 2026-10-13 (**§53 added: the first desktop session: pyramids on the four sources in 26 min (q6); q24 answered, the 29 Sep blocks are `ClassifyRaster`'s processing tiles; the deep-learning libraries and the deck libraries are absent on the desktop too; the junctions not yet recreated**); 2026-10-09 (**§52 added: ready for the desktop: the `.aprx` opens whole on another drive letter (two absolute layer paths fixed), `audit_record.py` runs without the laptop's memory folder, and `HANDOFF-DESKTOP.md` audits every open task**; **§51 added: T4 stage 1, H2 not supported (the volcanic window's channels are shallower; no thermal separation); the desktop-day preflight, with a GPU-test false positive caught; the deep-learning script with a tested scorer; deep-learning libraries absent on the laptop**; **§50 added: every open decision answered (no rubric; the labels' class order; deep learning yes, boxes; 5 × 5 kept; plateau candidates kept); 13 classes and one map deleted after an inventory, `_removed_not_Mars` to the Recycle Bin; a training-split deep-learning export**; **§49 added: layout 13, T8's cross-tabulation against the geologic map as a sheet, and layout 14, the validation sheet (review precision and recall, Robbins reference), live in Pro and rerun after each review session**; **§48 added: the interim deck (23 slides) and report (15 pages) rebuilt with T5–T7; four presentation faults fixed, including a double-rounded κ**; **§47 added: tests T5, T6, T7; none supports the prospectus claim (H1 inconclusive at 1:20 M, H3 not supported, Q5 has no DEM-supported answer); §41's frame label corrected (the coordinates were right)**; **§11 q14, q16–q19, q25 brought up to date with §39–§46**; **§46 added: digitising by review (D10): `Review` / `ReviewNote` on the four candidate classes, `SourceID` on the two digitising classes, and `accept_reviewed.py`, which copies only accepted candidates**; **§45 added: the interim report is a living build from the same source as the deck; the interim now leads with the measured limits (D12); `verify_interim.py` checks every interim number against this record**; **§44 added: graticules on every map and layout 10, the locator, with the geologic map's volcanic units as the lava-flow reference**; **§43 added: T3 planet-wide (the THEMIS pair keeps a weak local signal, Viking the regional one); T8 (the classes are terrain classes, also against the geologic map); the lava-tube relabel tested**; **§42 added: the Athabasca Valles type area; T2 and the detector's precision against Robbins (11 % at ≥ 1 km); T3 local: the diurnal-contrast index does not track calibrated thermal inertia at 3 km; §24.3 and §26.3 qualified**; **§41 added: the three approved reference datasets downloaded, checked and in the project: the USGS geologic map, the Robbins craters and TES thermal inertia**; **§40 added: test T1, the thermal bands add +1.3 pt and terrain alone matches the full stack; every build script now finds its drive (§11 q22)**; **§39.4: the record, the plans, the build scripts, the project's layer and layout text and the GitHub page rewritten in an objective, impersonal voice**; **§39.3: the interim deck is now a living build in the Presentation 1 style with seven map slides; `verify_all.py` repaired after §37**; **§21.4 corrected: the interim deck was never blocked; the course template is now on `Z:` and both deck builders run (§39.2); §1: the interim is due mid-November; §39 added: the next-steps plan, `NEXT-STEPS.md`, and the interim plan, `INTERIM-PLAN.md`; §10: the USGS geologic map is named as a validation source but is not on disk**; **§38 added: layout 08, the mosaic itself at ±60° in four panels (visible, day IR, night IR, topography), each on its own map in the stack's native CRS**; 2026-10-07: **§37 added: everything that isn't Mars is out of the project, moved to `Z:\_removed_not_Mars\`, nothing deleted; §36.4: every classified raster's pixel values are now its class codes, the two GUI maps and `ius_sup_*` included**; earlier the same day, **§36: the ±60° landform maps recoded 0–3 → 1–4**; 2026-10-06: **§35 added: the project is backed up to a public GitHub repo, `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`, which is also its project page; §2.5's "no backup" is superseded**; 2026-10-03: **§32 added: the digitising map and layout 06 put the candidates and the empty digitising classes in Pro; basin layout 07; the classification smoothed 5 × 5, chosen by feature size**; earlier the same day, **§31 added: the fix. A corrected ±60° stack, a reclassification scored on held-out labels, every Mars map clipped to ±60°, a new map and layouts in the project**; 2026-10-02: **§30 added — the two GUI SVM classifications checked against the labelled polygons, the IAU craters and the DEM: the 29 Sep map follows its 4096-px processing tiles and scores below chance on its own training data; the 30 Sep map is mostly elevation**; earlier the same day, **§29.2 and §11 q23 — the two class schemas number lava tube and steep/windy hills the other way round; every labelled file follows the older one**; 2026-10-01: **§29 added — manual work in the Pro GUI, 2026-09-24 to 10-01, read from the logs and the gdb: hand training labels in four classes, a ±60° segmentation, two SVM classifications, the first two successful global Composite Bands runs, a deep-learning export — and `Landform_TrainingSamples_terrain` now holds the hand-drawn labels, which `make_typearea_supervised.py` would delete; §6, §8, §11, §13.2, §17.2, §27 reconciled**; 2026-09-19: **§28 added — the derived products move off the type area onto the mosaics' own grid; `build\grid60.py` is now the single definition of the ±60° extent, and the diurnal-contrast index exists at 15.2 bn px**; **§24 added — the day–night pair worked properly; calibrated thermal inertia is NOT derivable from the held 8-bit products, and the relative diurnal-contrast index that replaces it**; **§25 added — task 11 seeded with inferred channel candidates, and `Fill` caught flooding Ius Chasma 2,077 m deep**; earlier on 2026-09-18, a re-verification pass — most `[E]` items
 promoted to `[V]`; Composite Bands attempt count corrected from three to four; laptop-vs-desktop
 constraint added as §2.1; **final-deliverable date answered — 8 December 2026**; `Z:`
 confirmed as the project's single home, §2.5; **§13 added — verified headless
@@ -758,6 +758,8 @@ The deliverables already say so. Keep it that way. **[E]**
 5. Broken references (§3) — clear them out of the maps? Needs a write, so Pro must be closed. **Answered 2026-10-07 for the non-Mars ones (§37):** the Enceladus and Mercury maps are out of the project. The one broken link left is the Jezero HiRISE mosaic, which is Mars and stays. **[V]**
 6. **Build pyramids on the four globals?** With the SSD copy ruled out (§2.2) this is now the
    **best speed-up available to the project**, not merely the cheapest. **Desktop job.** **[?]**
+   **Answered 2026-10-13: built** on all four, 26 min in all on the desktop, 15.0 GB of `.ovr` beside the
+   sources; an overview read is ~34× faster (§53.1). Panning in Pro is the author's to judge. **[V]**
 7. **Run Composite Bands / CRS harmonisation at ±60°.** **No longer a risk — a task.**
    The type-area run proves the recipe (§18): project first, snap to the day grid, bounded
    extent. It is `build\make_typearea_stack.py` pointed at a bigger window. Scale is
@@ -858,6 +860,10 @@ The deliverables already say so. Keep it that way. **[E]**
 24. **What in `ClassifyRaster` made the 29 Sep map blocky?** The IR input and the segmentation are
     seamless; only the classified output has the 4096-px seams (§30.2). Needs the `.afr` and the
     tool's settings from the desktop. Until then, do not use that map as a result. **[?]**
+    **Answered 2026-10-13 (§53.2): the processing tiles.** Rerun with the same `.ecd` and inputs, a window
+    aligned with the original tiles reproduces the map on 99.9995 % of pixels; offset by half a tile, the
+    seams move with the window. Which step inside the tool makes the tiles differ is not known **[?]**; the
+    `.afr` is gone from the desktop's Temp. The map stays unusable (§30.2). **[V]**
 25. **Fix the 7-band stack before training a deep-learning model on it?** Elevation alone
     reproduces 62% of the SVM made from it, and bands 6–7 are empty past ±60° (§30.3, §30.5). Open decision. **[?]** **Done 2026-10-03, adoption is an open decision (§31):** corrected stack,
     re-export, reclassification. **In use since:** layout 04, T1 and T8 are built on the corrected
@@ -4363,3 +4369,98 @@ smoothly when the Z drive is transferred to the desktop".
   empty memory for `F:`.
 - **Counted, not estimated:** 139 build scripts on the drive (138 in the public repo, without
   `neutral_voice.py`), 53 `.aprx` backups, 23 maps, 12 layouts, 24 feature classes.
+
+## 53. The first desktop session: pyramids, q24 answered, what the desktop lacks — 2026-10-13 **[V]**
+
+On `DESKTOP-PJS73RO` (the drive as `F:`), on request: "fix the junctions and continue with any other
+tasks". Pro was closed; nothing was written to the `.aprx` or the gdb.
+
+### 53.0 The desktop as found
+
+- **ArcGIS Pro 3.7 is installed on `D:\ArcGISPro\`.** The ArcGIS Python is
+  `D:\ArcGISPro\bin\Python\envs\arcgispro-py3\python.exe`, not the `C:\Program Files\...` path that
+  `HANDOFF-DESKTOP.md` §3 gave (the laptop's). The handoff is corrected.
+- **X0, the junctions: not yet done.** `F:\TypeArea`, `F:\Global60`, `F:\Athabasca` still target
+  `Z:\Mars Project\...`. The agent's shell refuses `rmdir` on those paths, so they are recreated by hand in
+  `cmd` (the commands in `HANDOFF-DESKTOP.md` §1). X1 (GPU test) and X2 (fine pass) read through them and
+  wait.
+- **X5 preflight** (`desktop_check.py`, `logs\desktop_check_DESKTOP-PJS73RO.json`): **torch, torchvision,
+  fastai and `arcgis.learn` do not import here either.** Esri's Deep Learning Libraries are absent on both
+  machines; installing them is a download that needs approval. The training-split export is intact
+  (3,622 chips, labels from `_60_train`).
+- **The system Python** is 3.13 (`py`; `python` is the Microsoft Store stub). `matplotlib`, `Pillow`,
+  `numpy` are present; **`python-pptx`, `python-docx` and `PyMuPDF` are not**, so the interim deck and
+  report builders cannot run on the desktop until they are installed (approval needed).
+- **Free space:** ~32 GB on `C:` (the fine pass checkpoints to `C:\MarsScratch\global60\`; each tile's
+  working folder is emptied after it, so this suffices), ~1.4 TB on `F:`.
+- **Checks on the desktop:** `audit_record.py` all pass (memory checks against the desktop's own memory
+  folder), `verify_all.py` 37 / 37.
+
+### 53.1 X4: pyramids on the four sources (§11 q6)
+
+`arcpy.management.BuildPyramids` on each root `.tif`, one at a time, defaults (log
+`logs\x4_pyramids_DESKTOP-PJS73RO.json`):
+
+| source | time | `.ovr` |
+|---|---|---|
+| THEMIS night IR v14 | 6 m 56 s | 4.27 GB |
+| HRSC/MOLA DEM | 4 m 09 s | 1.87 GB |
+| Viking MDIM 2.1 | 5 m 03 s | 2.79 GB |
+| THEMIS day IR v12 | 9 m 58 s | 6.09 GB |
+| **all four** | **26 m** | **15.0 GB** |
+
+The handoff's estimate was "hours"; the desktop's drive read far faster than the laptop's USB ceiling
+(§2.2). Pro wrote small `.tif.xml` metadata beside each source; the `.aux.xml` statistics sidecars are
+unchanged (byte-identical to the repo's copies). **Measured benefit** (`logs\x4_pyramid_timing.json`): a
+1/32-resolution read of a full-width 4,096-row strip of the night mosaic takes 0.03 s with the overviews
+and 1.01 s with them disabled, ~34×. Panning in Pro is the author's to judge.
+
+`verify_all.py`'s check "Pyramids are NOT built" failed on the new `.ovr` files, as it should; it now asserts
+the new fact (external `.ovr` present, sources still one IFD). **37 / 37.** Pro's Python path is no longer
+hard-coded: `paths.arcgis_python()` reads Pro's install folder from the registry (`osgeo_shim.py` used the
+laptop's path; tested on the desktop, central meridians Viking 0°, THEMIS 180°, DEM 0°).
+
+### 53.2 X6: what made the 29 Sep map blocky (§11 q24)
+
+**The settings, from the classifier definition** `Mars Project\ClassDefinitions_202609290010404137400.ecd`
+(the `.afr` the segmentation ran over is gone from the desktop's Temp; no `.afr` anywhere in Temp or
+Esri's app data):
+
+| | 29 Sep (`…290010404137400.ecd`) | 30 Sep (`…300147338582547.ecd`) |
+|---|---|---|
+| input | `Segmented_202609290011302066080` (3 bands) + Night IR as extra band | `CompositeBand`, 7 bands, pixel-based |
+| segment attributes | colour and mean; no size, sigma, compactness, rectangularity | — |
+| training | `new training.shp`, ≤ 500 samples per class | same |
+| RBF γ / cost C | **11.31** / 32,768 | 0.5 / 11,585 |
+| support vectors | **1,845** (of ≤ 2,000 samples) | 542 |
+| `CrossValidationRate` | **0.391** | 0.881 |
+
+A narrow kernel at the top of the cost range with nearly every sample a support vector: the 29 Sep
+model memorised its samples. That makes it sensitive to small changes in its inputs, an inference **[E]**.
+
+**The test** (`build\test_q24_tiles.py`, prediction and rule in its docstring before each run; logs
+`logs\q24_tiles.json`, `logs\q24_tiles_aligned.json`): the same `.ecd` and inputs, rerun with
+`ClassifyRaster` over an 8,192 px window copied to internal disk (58 s), centred on the original tile
+corner at tile column 40, row 8. The jump ratio is the class-change rate across a boundary over the median
+across all others (§30.2).
+
+| run | agreement with the original | jump at the original tile column | jump at the rerun's own tile column |
+|---|---|---|---|
+| window offset half a tile (2,048 px) | 87.6 % away from tile lines | original **43.0×**, rerun **1.17×** | original 1.83×, rerun **22.2×** |
+| control: window aligned with the original tiles | **99.9995 %** | — (the lines coincide) | — |
+
+- **Run 1 by its own rule: no verdict.** The rule required ≥ 90 % agreement away from the tile lines; it
+  was mis-specified, since whole tiles changing class is what the hypothesis predicts. The rule was not
+  changed after the fact; a control with its own rule (≥ 0.98 = reproduces) was written and run.
+- **The control reproduces the map** to 99.9995 %: the rerun is the same computation, and the only
+  difference in run 1 is where the processing tiles fall. In run 1 the seam moves with the window: flat
+  at the original column, 22× at the rerun's own. **q24: the 4,096-px blocks are `ClassifyRaster`'s
+  processing tiles over the segmented input.** **[V]**
+- Not seen in this window: a seam at the tile **row** (row ratios 0.4–1.3 in both maps). Which step inside
+  the tool makes neighbouring tiles differ (per-tile segment attributes is the obvious candidate) is not
+  known **[?]**.
+- **Consequence:** unchanged for the 29 Sep map, which stays unusable (§30.2). For any future GUI
+  `ClassifyRaster` over a segmented raster larger than one tile, check for 4,096-px seams before using it
+  (the §30.2 jump ratio does that). Scratch in `C:\MarsScratch\q24*` (internal disk, ~0.5 GB).
+
+**Counted:** 140 build scripts on the drive (`test_q24_tiles.py` new; 139 in the public repo).

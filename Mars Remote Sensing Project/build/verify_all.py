@@ -86,11 +86,12 @@ check("Viking is 92,160 x 46,080, 3 bands",
 check("DEM is 106,694 x 53,347, 16-bit",
       dims["DEM"][:2] == (106694, 53347) and dims["DEM"][3] == 16,
       "TIFF header tags 256/257/258")
-check("Pyramids are NOT built (1 IFD, no .ovr)",
+# Until 2026-10-13 this asserted the opposite (no pyramids); they were built on the desktop that day,
+# as external .ovr beside each source, leaving the sources themselves single-image TIFFs (KB §53.1).
+check("Pyramids built as external .ovr (sources still 1 IFD)",
       all(dims[k][4] == 1 for k in dims)
-      and not any(os.path.exists(os.path.join(Z, f + e))
-                  for f in TIFS.values() for e in (".ovr", ".rrd")),
-      "IFD chain length + sidecar absence")
+      and all(os.path.exists(os.path.join(Z, f + ".ovr")) for f in TIFS.values()),
+      "IFD chain length + .ovr sidecar present")
 
 mn, mx, me, sd, cnt = stats("THEMIS")
 check("THEMIS DN 1-255, mean 125.7, sigma 34.4",

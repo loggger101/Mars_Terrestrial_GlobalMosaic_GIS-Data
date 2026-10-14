@@ -1,0 +1,46 @@
+{
+ "Mars_MO_THEMIS-IR-Night_mosaic_60N60S_100m_v14.tif": {
+  "ok": true,
+  "seconds": 416,
+  "ovr": true,
+  "ovr_bytes": 4274577905,
+  "messages": [
+   "Start Time: Tuesday, October 13, 2026 9:21:39 PM",
+   "Succeeded at Tuesday, October 13, 2026 9:28:19 PM (Elapsed Time: 6 minutes 39 seconds)"
+  ],
+  "finished": "2026-10-13 21:28"
+ },
+ "Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif": {
+  "ok": true,
+  "seconds": 249,
+  "ovr": true,
+  "ovr_bytes": 1874589498,
+  "messages": [
+   "Start Time: Tuesday, October 13, 2026 9:28:22 PM",
+   "Succeeded at Tuesday, October 13, 2026 9:32:30 PM (Elapsed Time: 4 minutes 8 seconds)"
+  ],
+  "finished": "2026-10-13 21:32"
+ },
+ "Mars_Viking_MDIM21_ClrMosaic_global_232m.tif": {
+  "ok": true,
+  "seconds": 303,
+  "ovr": true,
+  "ovr_bytes": 2792519615,
+  "messages": [
+   "Start Time: Tuesday, October 13, 2026 9:32:30 PM",
+   "Succeeded at Tuesday, October 13, 2026 9:37:33 PM (Elapsed Time: 5 minutes 2 seconds)"
+  ],
+  "finished": "2026-10-13 21:37"
+ },
+ "Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif": {
+  "ok": true,
+  "seconds": 598,
+  "ovr": true,
+  "ovr_bytes": 6087266032,
+  "messages": [
+   "Start Time: Tuesday, October 13, 2026 9:37:33 PM",
+   "Succeeded at Tuesday, October 13, 2026 9:47:30 PM (Elapsed Time: 9 minutes 57 seconds)"
+  ],
+  "finished": "2026-10-13 21:47"
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "host": "DESKTOP-PJS73RO",
+ "drive": "F:\\",
+ "when": "2026-10-13 21:19",
+ "pro": "3.7",
+ "junctions": {
+  "TypeArea": false,
+  "Global60": false,
+  "Athabasca": false
+ },
+ "dl_libraries": {
+  "torch": "ModuleNotFoundError: No module named 'torch'",
+  "torchvision": "ModuleNotFoundError: No module named 'torchvision'",
+  "fastai": "ModuleNotFoundError: No module named 'fastai'",
+  "arcgis.learn": "ModuleNotFoundError: No module named 'torchvision'"
+ },
+ "cuda": {
+  "available": false,
+  "device": null,
+  "note": "torch not importable"
+ },
+ "train_export": {
+  "exists": true,
+  "labels_train_only": true,
+  "chips_stats": 3622,
+  "chips_found": 3622,
+  "intact": true
+ },
+ "x5_ready": false
+}
