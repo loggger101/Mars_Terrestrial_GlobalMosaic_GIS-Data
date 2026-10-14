@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 141, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 142, by purpose) · [backup and restore](docs/backup.md)
 
 ![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 
@@ -35,7 +35,7 @@ The interim report and presentation are due **mid-November 2026** and the final 
 | Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks |
 | Channel and crater candidates | done at ±60° (2026-10-14): 467,547 closed depressions ≥ 1 km and 973,879 channel segments, checked for tile seams and against the Robbins catalogue (KB §53.4); 2,610 channel candidates and 1,685 closed depressions in Ius Chasma, the same for Athabasca Valles, 5,144 basin candidates at ±60°; the Robbins crater catalogue (385,049) for reference |
 | Landform digitising | **open, the critical path**: next step 1 |
-| Map layouts | twelve layouts in the project (below), including the validation sheet, which fills in as the review proceeds |
+| Map layouts | fourteen layouts in the project (below), including the validation sheet, which fills in as the review proceeds, and the ±60° closed-depression and channel sheets (KB §53.6) |
 
 ### Next steps
 
@@ -44,7 +44,8 @@ In order, toward the interim (data cut 2 November) and the final on 8 December. 
 1. **Digitise the three landform layers** (task 11, the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. The map *Ius Chasma — digitising* and layout 06 put them over the machine prompts: the 188 steep, rock-floored channel candidates and the 1,685 crater candidates. Digitising starts as a review: each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, and `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins) is drawn by hand (KB §46). Hand work in Pro; no heavy processing. Layout 14 and `build/make_validation_sheet.py` turn each review session into the detector's precision and recall (KB §49). Then re-export the geodatabase so the backup holds the new features ([keeping the backup current](docs/backup.md#keeping-it-current)).
 2. **The choices are settled** (KB §50, 2026-10-09): the class order is that of the labels (1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground; `Composite Object Classes.ecs` is superseded); the plateau channel candidates stay and are rejected in review; the published map keeps its 5 × 5 smoothing; a deep-learning model is trained on the corrected stack with box labels, from a training-split export so it can be scored on the same held-out blocks as the SVM.
 3. **Run the desktop jobs**, too heavy for the laptop. Every build script finds its own drive, so they run from `F:` on the desktop; the no-space junctions were retargeted there on 2026-10-13 (KB §53.3).
-   - ~~the ±60° crater and channel fine pass~~: done 2026-10-14, 11 h 07 min on the desktop, checked with `verify_global60_candidates.py` (KB §53.4); the two ±60° sheets from it (layouts 11 and 12) are next;
+   - ~~the ±60° crater and channel fine pass~~: done 2026-10-14, 11 h 07 min on the desktop, checked with `verify_global60_candidates.py` (KB §53.4); its two ±60° sheets, layouts 11 and 12, are in the project (KB §53.6);
+   - the 200 m classification (X3): running on the desktop, the same model as the 400 m map;
    - ~~pyramids on the four source mosaics (q6)~~: done 2026-10-13, 26 min on the desktop (KB §53);
    - the deep-learning model: the GPU test passed (the 2080 Ti engages, q10); Esri's Deep Learning Libraries need an administrator install first (KB §53.5). Trained on `LabeledObjects/global60_svm_stack_200m_train/` only, scored on the held-out polygons.
 4. **Run the tests that wait for the review** on the laptop: gradient and thermal response by origin (H2, stage 2), once reviewed channels exist, and flow margins in IR against Viking (H1) again on lava margins digitised at Athabasca. The other tests have run (results below).
@@ -62,7 +63,7 @@ In order, toward the interim (data cut 2 November) and the final on 8 December. 
 - **Diurnal-contrast index**: calibrated thermal inertia can't be derived from the 8-bit, locally stretched THEMIS mosaics. A relative day–night contrast index can, and within the type area it is nearly independent of terrain (r = +0.11 against elevation, −0.25 against slope). It is not a restatement of topography, but against calibrated TES thermal inertia it barely tracks material (above), and it does not compare across the planet.
 - **Type-area supervised accuracy**: 62.7%, κ 0.41 on terrain-defined classes. The thermal index adds +0.4 points there, as it should on terrain classes.
 - **Channels**: `Fill` flooded Ius Chasma 2,077 m deep, and 56% of the stream cells in the first channel network were an artefact of it. Of the 2,610 candidates that remain, the 188 steep, rock-floored ones (1,037 km) are the ones worth digitising.
-- **Craters**: 1,685 closed-depression candidates ≥ 1 km; against the Robbins catalogue only 11% are catalogued craters (21% at ≥ 2 km), so they are prompts, not a crater count. Large craters are measured well: Perrotin within 7.1% in diameter. The detector can't see breached craters such as Oudemans. At ±60°, 68% of the 117 IAU craters ≥ 100 km are recovered within ±50% in diameter. **At ±60° (467,547 closed depressions)**, against Robbins: 15% of the candidates ≥ 1 km are catalogued craters, 62% of those ≥ 5 km and 83% of those ≥ 20 km, each far above a chance baseline (0.8–10%); recall levels off near half, since breached and degraded craters are invisible to it (KB §53.4).
+- **Craters**: 1,685 closed-depression candidates ≥ 1 km; against the Robbins catalogue only 11% are catalogued craters (21% at ≥ 2 km), so they are prompts, not a crater count. Large craters are measured well: Perrotin within 7.1% in diameter. The detector can't see breached craters such as Oudemans. At ±60°, 68% of the 117 IAU craters ≥ 100 km are recovered within ±50% in diameter. **At ±60° (467,547 closed depressions)**, against Robbins: 15% of the candidates ≥ 1 km are catalogued craters, 62% of those ≥ 5 km and 83% of those ≥ 20 km, each far above a chance baseline (0.8–10%); recall levels off near half, since breached and degraded craters are invisible to it (KB §53.4). Below ~5 km its density follows the DEM's makeup more than the craters: small candidates gather in north–south strips where the HRSC/MOLA blend is sharp, so it is not a density map of craters (layout 11, KB §53.6).
 
 The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.md`](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
 
@@ -75,6 +76,7 @@ The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.m
 | ![06](Mars%20Project/Global60/layouts/06_ius_digitising.png) Ius Chasma, digitising candidates | ![07](Mars%20Project/Global60/layouts/07_global60_basins.png) ±60° basin candidates |
 | ![08](Mars%20Project/Global60/layouts/08_global60_mosaic.png) The mosaic at ±60°: visible, day IR, night IR, topography | ![09](Mars%20Project/Global60/layouts/09_athabasca_digitising.png) Athabasca Valles, digitising candidates |
 | ![10](Mars%20Project/Global60/layouts/10_global60_locator.png) The ±60° locator: type areas and the geologic map's volcanic units | ![13](Mars%20Project/Global60/layouts/13_geomap_check.png) The classes against the USGS geologic map (T8) |
+| ![11](Mars%20Project/Global60/layouts/11_global60_depressions.png) ±60° closed depressions against the Robbins catalogue | ![12](Mars%20Project/Global60/layouts/12_global60_channels.png) ±60° routed channel network, order ≥ 3 |
 | ![14](Mars%20Project/Global60/layouts/14_validation.png) Validation: the candidates against review and the Robbins catalogue | |
 
 ## Source data
@@ -139,14 +141,14 @@ The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   141 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   142 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
     pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)
   OLD/                     prospectus and Presentation 1 (delivered)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 23 maps, all Mars, and 12 layouts
-  .backups/                53 earlier copies of the .aprx, 2026-09-18 to 10-09
+  Mars Project.aprx        the ArcGIS Pro project: 26 maps, all Mars, and 14 layouts
+  .backups/                55 earlier copies of the .aprx, 2026-09-18 to 10-14
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs

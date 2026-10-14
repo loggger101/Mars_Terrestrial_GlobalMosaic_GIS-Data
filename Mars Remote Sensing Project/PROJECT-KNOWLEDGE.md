@@ -4570,5 +4570,53 @@ complete this installation for all users"): a per-machine install. It failed at 
 2.3.5 import as before. Open: one approved UAC prompt (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`),
 or Esri's conda route into a clone (no admin; Esri calls that package set uncertified).
 
-**Counted:** 142 build scripts on the drive (`test_q24_tiles.py`, `retarget_junction.py`,
-`verify_global60_candidates.py` new; 141 in the public repo); 28 feature classes.
+### 53.6 Layouts 11 and 12: the fine pass as sheets, and what reading them found — 2026-10-14 **[V]**
+
+`build\make_global60_candidate_sheets.py` (new; rehearsed twice on a copy beside the `.aprx`, then run;
+backup `.backups\Mars Project 20261014-103821.aprx`; then `polish_layouts.py`, all 14 sheets exported to
+scratch and the two new ones read; log `logs\global60_candidate_sheets.json`):
+
+- **Layout 11, `11_global60_depressions`:** two frames on the same seven colour breaks, closed depressions
+  ≥ 1 km and Robbins craters ≥ 1 km, each counted per 0.5° cell of true spherical area (new rasters
+  `Global60\global60_depression_density_0p5deg.tif`, `global60_robbins_density_0p5deg.tif`, 720 × 240, Int16
+  per 10⁴ km², CM 180 grid); the §53.4 Robbins table with its chance baseline; the blind spots.
+- **Layout 12, `12_global60_channels`:** the routed network, Strahler order 3 (41,547 segments), 4 (3,170),
+  5 (97), over the ±60° hillshade; orders 1–2 (929,065) not drawn; the blind spots.
+- New maps "Mars ±60° — closed depressions", "— Robbins craters", "— channels", each clipped to ±60° with
+  the 30° graticule. **The project: 26 maps, 14 layouts.**
+
+**Found by reading the first export, not by any check:**
+
+1. **The detector's density does not follow the craters.** The draft caption said the two maps agree cell by
+   cell; the builder computes it: log-density r **−0.11** over cells with any count (0.28 if empty cells
+   are counted, which only inflates it). By 30° band the detector's mean density is nearly flat (33, 35,
+   40, 38 per 10⁴ km² from 60°N to 60°S) while Robbins' doubles (18, 25, 37, 29). The caption now says so.
+2. **North–south stripes and blocks** fill the detector's map. Not the tiles (§53.4 C3: seams clean, and
+   these are irregular, a few degrees wide, north–south). Prediction, written before looking further: if
+   they come from the DEM's makeup, they are strong in small candidates and fade in large ones. Held:
+   mapped by size, the 1–2 km candidates are a patchwork of north–south rectangles with none of the
+   geology Robbins' 1–2 km craters show, while ≥ 5 km candidates look like Robbins ≥ 5 km. By 1° cell,
+   detector against Robbins in the same size class: r **0.34** (1–2 km), **0.31** (2–5 km), **0.56**
+   (≥ 5 km); at 2°: 0.43, 0.41, 0.66 (the 2° figures from a one-off probe; the 1° ones are in the log). A first numeric stripe index (adjacent-column jumps over
+   adjacent-row jumps) came out ≈ 1.0 for every class including Robbins: counting noise swamps it at
+   these cell sizes, so it is not used. **Small closed depressions gather where the HRSC/MOLA blend is
+   sharp:** HRSC strips run north–south. Attributing it to HRSC strips is an inference **[E]**: no source
+   mask of the blend is held. **Consequence:** below ~5 km the detector's density maps the DEM's
+   resolution as much as the craters; no density comparison between regions should use it.
+3. **The channel network follows the DEM's makeup too, inversely.** Order ≥ 3 length per 1° cell against
+   the count of 1–2 km closed depressions: r **−0.36** (against Robbins 1–2 km craters −0.26, one-off probe). Where the DEM
+   holds many closed pits, the fill-depth mask (§25.1) removes their stream cells and breaks the network;
+   long high-order paths gather on smooth ground: the Tharsis and Elysium flanks, the Hellas rim, plains.
+   Real terrain and DEM sharpness both drive it; they are not separated **[E]**. 89.9 % of 40,579
+   sampled segment midpoints lie on ground under 2° (95.6 % of order 3 and up).
+4. Layout faults fixed before the real run: the legend title sat on the legend box; the table's last
+   column ran off the page; the first channel symbology (0.4 pt light blue) was invisible on the
+   hillshade; the channel legend printed each name twice; the legend touched the frame.
+
+**Also:** `tasklist` hung for 11 min inside a builder's "Pro is closed" check (every builder runs it); a
+fresh `tasklist` answered in 23 s. The hung child was stopped after Pro was confirmed closed. If a
+builder sits at 0 % CPU on start, look for a stuck `tasklist.exe` under it.
+
+**Counted:** 143 build scripts on the drive (`test_q24_tiles.py`, `retarget_junction.py`,
+`verify_global60_candidates.py`, `make_global60_candidate_sheets.py` new; 142 in the public repo); 28
+feature classes; 26 maps; 14 layouts; 55 `.aprx` backups.

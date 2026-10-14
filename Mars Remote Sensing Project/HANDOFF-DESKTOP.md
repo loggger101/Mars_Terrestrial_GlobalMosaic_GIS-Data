@@ -91,7 +91,8 @@ interim data cut **2 November**, digitising checkpoint **1 November**, data free
   `Global60\layouts`, including 01–03, whose real home is `TypeArea\layouts`: delete those three strays.
 - **The builders wipe and rebuild their maps.** Order when several run: `make_global60_maps.py`,
   `make_candidate_maps.py`, `make_mosaic_layout.py`, then `make_reference_maps.py` (graticules and layout
-  10 go on last), `make_geomap_sheet.py`, `make_validation_sheet.py`, then `polish_layouts.py`.
+  10 go on last), `make_geomap_sheet.py`, `make_validation_sheet.py`, `make_global60_candidate_sheets.py`
+  (layouts 11, 12; adds its own graticules; KB §53.6), then `polish_layouts.py`.
 - **Big writes go to internal disk first**, then one copy to the drive; the USB drive dropped off
   mid-write twice (§36.4). Reads cap near 112 MB/s: the drive, not the CPU, is the ceiling (§2.2).
   **Never propose copying the project to internal disk** (ruled out by the author).
