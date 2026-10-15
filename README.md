@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 142, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 146, by purpose) · [backup and restore](docs/backup.md)
 
 ![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 
@@ -21,7 +21,7 @@ This repository is the project page and an off-drive backup of the project. The 
 
 The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 
-## Where it stands (2026-10-14)
+## Where it stands (2026-10-15)
 
 The interim report and presentation are due **mid-November 2026** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source and rebuilt as results come in ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md).
 
@@ -32,8 +32,8 @@ The interim report and presentation are due **mid-November 2026** and the final 
 | Terrain derivatives | done at ±60°: slope in degrees on a metric grid, aspect, hillshade, no z-factor defect |
 | Band composite | done: a 7-band, 8-bit ±60° stack at 200 m with no raw elevation band, 97.3% co-valid |
 | Unsupervised classification | done for the type area (Iso Cluster, object-based segmentation, parameter sweep) |
-| Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks |
-| Channel and crater candidates | done at ±60° (2026-10-14): 467,547 closed depressions ≥ 1 km and 973,879 channel segments, checked for tile seams and against the Robbins catalogue (KB §53.4); 2,610 channel candidates and 1,685 closed depressions in Ius Chasma, the same for Athabasca Valles, 5,144 basin candidates at ±60°; the Robbins crater catalogue (385,049) for reference |
+| Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks; at 200 m too (2026-10-15): held-out 69.9 % raw, the same as 400 m raw (KB §55.3) |
+| Channel and crater candidates | done at ±60° (2026-10-14, the five tiles over 180° rerun 10-15 after a defective DEM edge column was patched, KB §54): 465,354 closed depressions ≥ 1 km and 969,822 channel segments, checked for tile seams and against the Robbins catalogue (KB §53.4, §54.4); 2,610 channel candidates and 1,685 closed depressions in Ius Chasma, the same for Athabasca Valles, 5,144 basin candidates at ±60°; the Robbins crater catalogue (385,049) for reference |
 | Landform digitising | **open, the critical path**: next step 1 |
 | Map layouts | fourteen layouts in the project (below), including the validation sheet, which fills in as the review proceeds, and the ±60° closed-depression and channel sheets (KB §53.6) |
 
@@ -45,7 +45,8 @@ In order, toward the interim (data cut 2 November) and the final on 8 December. 
 2. **The choices are settled** (KB §50, 2026-10-09): the class order is that of the labels (1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground; `Composite Object Classes.ecs` is superseded); the plateau channel candidates stay and are rejected in review; the published map keeps its 5 × 5 smoothing; a deep-learning model is trained on the corrected stack with box labels, from a training-split export so it can be scored on the same held-out blocks as the SVM.
 3. **Run the desktop jobs**, too heavy for the laptop. Every build script finds its own drive, so they run from `F:` on the desktop; the no-space junctions were retargeted there on 2026-10-13 (KB §53.3).
    - ~~the ±60° crater and channel fine pass~~: done 2026-10-14, 11 h 07 min on the desktop, checked with `verify_global60_candidates.py` (KB §53.4); its two ±60° sheets, layouts 11 and 12, are in the project (KB §53.6);
-   - the 200 m classification (X3): running on the desktop, the same model as the 400 m map;
+   - ~~the 200 m classification (X3)~~: done 2026-10-14, 6 h 52 min on the desktop, the same model as the 400 m map; a 2 km stripe along 180° traced to the source DEM's last column and fixed (KB §54); scored with majority filters 3–11 (KB §55.3); which filter the published 200 m map uses is still to choose;
+   - T1 with Pro's own SVM (the thermal-band test, KB §40.1, confirmed in Pro): running on the desktop, 200 m without the thermal bands, then three band sets at 400 m (KB §55.5);
    - ~~pyramids on the four source mosaics (q6)~~: done 2026-10-13, 26 min on the desktop (KB §53);
    - the deep-learning model: the GPU test passed (the 2080 Ti engages, q10); Esri's Deep Learning Libraries need an administrator install first (KB §53.5). Trained on `LabeledObjects/global60_svm_stack_200m_train/` only, scored on the held-out polygons.
 4. **Run the tests that wait for the review** on the laptop: gradient and thermal response by origin (H2, stage 2), once reviewed channels exist, and flow margins in IR against Viking (H1) again on lava margins digitised at Athabasca. The other tests have run (results below).
@@ -141,14 +142,14 @@ The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   142 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   146 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
     pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)
   OLD/                     prospectus and Presentation 1 (delivered)
 Mars Project/
   Mars Project.aprx        the ArcGIS Pro project: 26 maps, all Mars, and 14 layouts
-  .backups/                55 earlier copies of the .aprx, 2026-09-18 to 10-14
+  .backups/                57 earlier copies of the .aprx, 2026-09-18 to 10-15
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs

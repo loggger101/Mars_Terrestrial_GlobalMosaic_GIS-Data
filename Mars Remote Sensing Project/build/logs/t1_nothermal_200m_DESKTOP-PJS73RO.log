@@ -1,0 +1,7 @@
+1. 5-band stack (no thermal)
+  global60_svm_stack_200m_nothermal.tif  in 787 s
+2. train SVM on the same _60_train polygons
+  trained in 2861 s -> F:\Mars Project\Global60\global60_landforms_svm_nothermal.ecd
+3. classify ±60° at 200 m without thermal
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_nothermal\cls_200m_tiles\t_r00_c00.tif  in 1545 s
+   tile  1/21  r0 c0  00:25:44 elapsed

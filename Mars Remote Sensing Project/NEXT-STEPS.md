@@ -26,8 +26,23 @@ engages**, X2 smoke passed, **the full fine pass running since 22:24** (~16 h, c
 segments at ±60°, checked (`verify_global60_candidates.py`: seams clean; the type-area windows reproduce
 §42.3; against Robbins, precision 15 % at ≥ 1 km, 62 % at ≥ 5 km, 83 % at ≥ 20 km). The Deep Learning
 Libraries install needs an administrator (Error 1925 unelevated; the UAC prompt went unanswered).
-**Next:** the UAC-approved install (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`), then
-`desktop_check.py` and X5; X3; layouts 11 and 12 from the fine pass (Pro closed). Pro's Python here is on `D:` (§53.0).
+**2026-10-14/15 (§54): the 180° stripe fixed at its source.** G200 col 53346 of `global60_dem.tif` was the
+source DEM's own defective last column (the warp is exact); patched to the mean of its neighbours
+(`make_global_terrain.py --meridian-only`), derivatives and stack recomputed in a window, bit-identical
+elsewhere; the 200 m map's c03 tiles reclassified: stripe gone (change rate max |z| 3.6, was +29.8), seams
+clean, map unchanged outside cols 53342–53350. X2's five tiles over x = 0 rerun: 465,354 depressions /
+969,822 channels, `verify_global60_candidates.py` 12 / 12, seams 0.990 / 0.979; channels cross 180° again;
+a depression dip within ±6 km remains (source smoother there); Eridania (166–193°E, 30–45°S) now fills as
+a closed basin (−2,156 small pits). **Stale near 180°:** the 400 m map (layouts 11 and 12 since rebuilt, §55.4).
+**2026-10-15 overnight (§55): X3 scored, layouts 11 / 12 rebuilt, T1 in Pro running.** The 200 m map held-out
+0.699 / κ 0.532 raw, the same as 400 m raw (0.705 / 0.540); majority filters 3–11 built and scored (0.710 →
+0.738); a stack-wide line sweep found no second §54-type defect, only small source edges and DEM-blend strips
+(chips in `Global60\checks\`). T1 with Pro's SVM: 200 m without thermal running (~08:00), then 400 m without
+thermal, terrain only, without visible (queue to ~15:30, `logs\t1_queue_DESKTOP-PJS73RO.log`).
+**Next:** score the T1 runs (§55.5); **the author picks the 200 m published filter** (9 × 9 or 11 × 11 by the
+2 km rule, §55.3), then `make_global60_maps.py` with that `CLEAN` and layout 04; decide the 400 m map (redo its
+c03 column or mark it superseded); the UAC-approved install (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`),
+then `desktop_check.py` and X5. Pro's Python here is on `D:` (§53.0).
 
 > **Moving to the desktop? Read `HANDOFF-DESKTOP.md` first** (beside this file; KB §52): the first ten
 > minutes there (`F:`, junctions, `desktop_check.py --gpu`), the working rules, and every open task

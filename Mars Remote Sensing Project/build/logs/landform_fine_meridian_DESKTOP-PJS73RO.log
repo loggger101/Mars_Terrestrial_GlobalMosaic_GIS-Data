@@ -1,0 +1,96 @@
+==============================================================================
+CRATER + CHANNEL CANDIDATES OVER +/-60  (tasks 11 + 12, tiled)
+==============================================================================
+  <Grid G200 106694 x 35565 @ 200 m  X -10669400..10669400  Y -3556500..3556500  lat -60.000..+60.000  3.795 Gpx>
+  tiles       70 cores of 8192 px + 1024 px halo  (1638 km core, 205 km halo)
+  stream thr  1250 cells = 50 km2
+  scratch     C:\MarsScratch\global60  (internal SSD, KB 2.2)
+  [    0.9s] thermal index at 200 m  (reused)
+  [    0.9s] coarse basin pass  (reused)
+
+fine pass
+    tile   1/70  reused     0.0s   elapsed 0:00:01  projected 0:01:10
+    tile   2/70  reused     0.0s   elapsed 0:00:01  projected 0:00:35
+    tile   3/70  reused     0.0s   elapsed 0:00:01  projected 0:00:23
+    tile   4/70  reused     0.0s   elapsed 0:00:01  projected 0:00:17
+    tile   5/70  reused     0.0s   elapsed 0:00:01  projected 0:00:14
+    tile   6/70  reused     0.0s   elapsed 0:00:01  projected 0:00:11
+    tile   7/70  built   640.9s   elapsed 0:10:41  projected 1:46:58
+    tile   8/70  reused     0.0s   elapsed 0:10:41  projected 1:33:36
+    tile   9/70  reused     0.0s   elapsed 0:10:41  projected 1:23:12
+    tile  10/70  reused     0.0s   elapsed 0:10:41  projected 1:14:53
+    tile  11/70  reused     0.0s   elapsed 0:10:41  projected 1:08:04
+    tile  12/70  reused     0.0s   elapsed 0:10:41  projected 1:02:24
+    tile  13/70  reused     0.0s   elapsed 0:10:41  projected 0:57:36
+    tile  14/70  reused     0.0s   elapsed 0:10:41  projected 0:53:29
+    tile  15/70  reused     0.0s   elapsed 0:10:41  projected 0:49:55
+    tile  16/70  reused     0.0s   elapsed 0:10:41  projected 0:46:48
+    tile  17/70  reused     0.0s   elapsed 0:10:41  projected 0:44:03
+    tile  18/70  reused     0.0s   elapsed 0:10:41  projected 0:41:36
+    tile  19/70  reused     0.0s   elapsed 0:10:41  projected 0:39:24
+    tile  20/70  reused     0.0s   elapsed 0:10:41  projected 0:37:26
+    tile  21/70  built   698.9s   elapsed 0:22:20  projected 1:14:29
+    tile  22/70  reused     0.0s   elapsed 0:22:20  projected 1:11:06
+    tile  23/70  reused     0.0s   elapsed 0:22:20  projected 1:08:00
+    tile  24/70  reused     0.0s   elapsed 0:22:20  projected 1:05:10
+    tile  25/70  reused     0.0s   elapsed 0:22:20  projected 1:02:34
+    tile  26/70  reused     0.0s   elapsed 0:22:20  projected 1:00:10
+    tile  27/70  reused     0.0s   elapsed 0:22:20  projected 0:57:56
+    tile  28/70  reused     0.0s   elapsed 0:22:20  projected 0:55:52
+    tile  29/70  reused     0.0s   elapsed 0:22:20  projected 0:53:56
+    tile  30/70  reused     0.0s   elapsed 0:22:20  projected 0:52:08
+    tile  31/70  reused     0.0s   elapsed 0:22:20  projected 0:50:27
+    tile  32/70  reused     0.0s   elapsed 0:22:20  projected 0:48:53
+    tile  33/70  reused     0.0s   elapsed 0:22:20  projected 0:47:24
+    tile  34/70  reused     0.0s   elapsed 0:22:20  projected 0:46:00
+    tile  35/70  built   613.1s   elapsed 0:32:34  projected 1:05:08
+    tile  36/70  reused     0.0s   elapsed 0:32:34  projected 1:03:19
+    tile  37/70  reused     0.0s   elapsed 0:32:34  projected 1:01:36
+    tile  38/70  reused     0.0s   elapsed 0:32:34  projected 0:59:59
+    tile  39/70  reused     0.0s   elapsed 0:32:34  projected 0:58:27
+    tile  40/70  reused     0.0s   elapsed 0:32:34  projected 0:56:59
+    tile  41/70  reused     0.0s   elapsed 0:32:34  projected 0:55:36
+    tile  42/70  reused     0.0s   elapsed 0:32:34  projected 0:54:16
+    tile  43/70  reused     0.0s   elapsed 0:32:34  projected 0:53:01
+    tile  44/70  reused     0.0s   elapsed 0:32:34  projected 0:51:48
+    tile  45/70  reused     0.0s   elapsed 0:32:34  projected 0:50:39
+    tile  46/70  reused     0.0s   elapsed 0:32:34  projected 0:49:33
+    tile  47/70  reused     0.0s   elapsed 0:32:34  projected 0:48:30
+    tile  48/70  reused     0.0s   elapsed 0:32:34  projected 0:47:29
+    tile  49/70  built   811.0s   elapsed 0:46:05  projected 1:05:50
+    tile  50/70  reused     0.0s   elapsed 0:46:05  projected 1:04:31
+    tile  51/70  reused     0.0s   elapsed 0:46:05  projected 1:03:15
+    tile  52/70  reused     0.0s   elapsed 0:46:05  projected 1:02:02
+    tile  53/70  reused     0.0s   elapsed 0:46:05  projected 1:00:52
+    tile  54/70  reused     0.0s   elapsed 0:46:05  projected 0:59:44
+    tile  55/70  reused     0.0s   elapsed 0:46:05  projected 0:58:39
+    tile  56/70  reused     0.0s   elapsed 0:46:05  projected 0:57:36
+    tile  57/70  reused     0.0s   elapsed 0:46:05  projected 0:56:35
+    tile  58/70  reused     0.0s   elapsed 0:46:05  projected 0:55:37
+    tile  59/70  reused     0.0s   elapsed 0:46:05  projected 0:54:40
+    tile  60/70  reused     0.0s   elapsed 0:46:05  projected 0:53:46
+    tile  61/70  reused     0.0s   elapsed 0:46:05  projected 0:52:53
+    tile  62/70  reused     0.0s   elapsed 0:46:05  projected 0:52:01
+    tile  63/70  built   311.1s   elapsed 0:51:16  projected 0:56:58
+    tile  64/70  reused     0.0s   elapsed 0:51:16  projected 0:56:04
+    tile  65/70  reused     0.0s   elapsed 0:51:16  projected 0:55:12
+    tile  66/70  reused     0.0s   elapsed 0:51:16  projected 0:54:22
+    tile  67/70  reused     0.0s   elapsed 0:51:16  projected 0:53:34
+    tile  68/70  reused     0.0s   elapsed 0:51:16  projected 0:52:46
+    tile  69/70  reused     0.0s   elapsed 0:51:16  projected 0:52:00
+    tile  70/70  reused     0.0s   elapsed 0:51:16  projected 0:51:16
+
+merge
+  [ 3169.3s] merged: 465,030 fine + 324 coarse-only = 465,354 craters; 969,822 channel segments
+     fill-artefact discard across all tiles: 60.5% of stream cells
+  [ 3233.1s] wrote 465,354 -> Landform_CraterCandidates_auto_60
+  [ 3419.7s] wrote 969,822 -> Landform_ChannelCandidates_auto_60
+  [ 3667.6s] thermal index attached to 465,354 crater candidates
+
+==============================================================================
+  465,354 crater candidates, 969,822 channel segments over +/-60
+  Both classes are Confidence='inferred'. Landform_CraterRims and
+  Landform_ChannelCenterlines were not touched.
+  This is an inventory of CLOSED DEPRESSIONS - breached craters are
+  invisible to it (KB 26.3, Oudemans). Do not report it as complete.
+done in 1:01:07

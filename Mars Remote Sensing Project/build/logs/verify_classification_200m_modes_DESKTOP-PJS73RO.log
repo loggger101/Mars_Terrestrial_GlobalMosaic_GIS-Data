@@ -1,0 +1,65 @@
+﻿=== mode 3 00:48:50
+read 53347 x 17783 at 400 m, 16.9 s
+area shares {'Crater': 0.328, 'steep/windy hills': 0.024, 'lava tube': 0.104, 'Normal Ground': 0.544}
+held_out     183 polygons  accuracy 0.710  kappa 0.546  (one class everywhere 0.586)
+             producer's {'Crater': 0.56, 'steep/windy hills': 0.613, 'lava tube': 0.394, 'Normal Ground': 0.992}
+             won {'Crater': '103/124', 'steep/windy hills': '14/16', 'lava tube': '5/21', 'Normal Ground': '20/22'}
+training_set 329 polygons  accuracy 0.836  kappa 0.683  (one class everywhere 0.642)
+             producer's {'Crater': 0.644, 'steep/windy hills': 0.869, 'lava tube': 0.768, 'Normal Ground': 0.931}
+             won {'Crater': '127/177', 'steep/windy hills': '27/28', 'lava tube': '9/23', 'Normal Ground': '98/100'}
+IAU craters n=817: 'Crater' inside 0.527 vs ring 0.441; inside > ring 62.4%
+seam ratio (1.0 = no seams; the 29 Sep GUI map 2.77): {'tile_4096_at_100m': 0.997, 'tile_4096_at_200m': 0.992}
+elevation alone reproduces 55.1% (largest class alone 54.4%; the 30 Sep map: 62.1%)
+wrote F:\Mars Remote Sensing Project\build\logs\global60_classification_check_200m_mode3.json  (453 s)
+=== mode 5 00:56:30
+read 53347 x 17783 at 400 m, 13.3 s
+area shares {'Crater': 0.333, 'steep/windy hills': 0.022, 'lava tube': 0.101, 'Normal Ground': 0.545}
+held_out     183 polygons  accuracy 0.720  kappa 0.560  (one class everywhere 0.586)
+             producer's {'Crater': 0.578, 'steep/windy hills': 0.617, 'lava tube': 0.411, 'Normal Ground': 0.992}
+             won {'Crater': '103/124', 'steep/windy hills': '14/16', 'lava tube': '7/21', 'Normal Ground': '20/22'}
+training_set 329 polygons  accuracy 0.847  kappa 0.702  (one class everywhere 0.642)
+             producer's {'Crater': 0.661, 'steep/windy hills': 0.883, 'lava tube': 0.815, 'Normal Ground': 0.937}
+             won {'Crater': '130/177', 'steep/windy hills': '27/28', 'lava tube': '9/23', 'Normal Ground': '98/100'}
+IAU craters n=817: 'Crater' inside 0.541 vs ring 0.449; inside > ring 62.3%
+seam ratio (1.0 = no seams; the 29 Sep GUI map 2.77): {'tile_4096_at_100m': 1.0, 'tile_4096_at_200m': 0.991}
+elevation alone reproduces 55.1% (largest class alone 54.4%; the 30 Sep map: 62.1%)
+wrote F:\Mars Remote Sensing Project\build\logs\global60_classification_check_200m_mode5.json  (536 s)
+=== mode 7 01:05:37
+read 53347 x 17783 at 400 m, 22.7 s
+area shares {'Crater': 0.336, 'steep/windy hills': 0.021, 'lava tube': 0.098, 'Normal Ground': 0.545}
+held_out     183 polygons  accuracy 0.728  kappa 0.569  (one class everywhere 0.586)
+             producer's {'Crater': 0.59, 'steep/windy hills': 0.621, 'lava tube': 0.427, 'Normal Ground': 0.992}
+             won {'Crater': '104/124', 'steep/windy hills': '14/16', 'lava tube': '7/21', 'Normal Ground': '20/22'}
+training_set 329 polygons  accuracy 0.854  kappa 0.716  (one class everywhere 0.642)
+             producer's {'Crater': 0.674, 'steep/windy hills': 0.894, 'lava tube': 0.847, 'Normal Ground': 0.942}
+             won {'Crater': '131/177', 'steep/windy hills': '27/28', 'lava tube': '9/23', 'Normal Ground': '98/100'}
+IAU craters n=817: 'Crater' inside 0.552 vs ring 0.455; inside > ring 62.2%
+seam ratio (1.0 = no seams; the 29 Sep GUI map 2.77): {'tile_4096_at_100m': 1.001, 'tile_4096_at_200m': 1.003}
+elevation alone reproduces 55.2% (largest class alone 54.5%; the 30 Sep map: 62.1%)
+wrote F:\Mars Remote Sensing Project\build\logs\global60_classification_check_200m_mode7.json  (519 s)
+=== mode 9 01:14:54
+read 53347 x 17783 at 400 m, 22.3 s
+area shares {'Crater': 0.338, 'steep/windy hills': 0.02, 'lava tube': 0.096, 'Normal Ground': 0.546}
+held_out     183 polygons  accuracy 0.734  kappa 0.577  (one class everywhere 0.586)
+             producer's {'Crater': 0.599, 'steep/windy hills': 0.624, 'lava tube': 0.439, 'Normal Ground': 0.992}
+             won {'Crater': '104/124', 'steep/windy hills': '14/16', 'lava tube': '7/21', 'Normal Ground': '20/22'}
+training_set 329 polygons  accuracy 0.860  kappa 0.727  (one class everywhere 0.642)
+             producer's {'Crater': 0.683, 'steep/windy hills': 0.901, 'lava tube': 0.868, 'Normal Ground': 0.945}
+             won {'Crater': '135/177', 'steep/windy hills': '27/28', 'lava tube': '9/23', 'Normal Ground': '98/100'}
+IAU craters n=817: 'Crater' inside 0.560 vs ring 0.459; inside > ring 62.7%
+seam ratio (1.0 = no seams; the 29 Sep GUI map 2.77): {'tile_4096_at_100m': 0.998, 'tile_4096_at_200m': 0.999}
+elevation alone reproduces 55.3% (largest class alone 54.6%; the 30 Sep map: 62.1%)
+wrote F:\Mars Remote Sensing Project\build\logs\global60_classification_check_200m_mode9.json  (516 s)
+=== mode 11 01:23:46
+read 53347 x 17783 at 400 m, 14.8 s
+area shares {'Crater': 0.339, 'steep/windy hills': 0.019, 'lava tube': 0.094, 'Normal Ground': 0.547}
+held_out     183 polygons  accuracy 0.738  kappa 0.583  (one class everywhere 0.586)
+             producer's {'Crater': 0.607, 'steep/windy hills': 0.627, 'lava tube': 0.446, 'Normal Ground': 0.992}
+             won {'Crater': '107/124', 'steep/windy hills': '14/16', 'lava tube': '8/21', 'Normal Ground': '20/22'}
+training_set 329 polygons  accuracy 0.865  kappa 0.736  (one class everywhere 0.642)
+             producer's {'Crater': 0.691, 'steep/windy hills': 0.908, 'lava tube': 0.883, 'Normal Ground': 0.948}
+             won {'Crater': '137/177', 'steep/windy hills': '27/28', 'lava tube': '8/23', 'Normal Ground': '98/100'}
+IAU craters n=817: 'Crater' inside 0.568 vs ring 0.462; inside > ring 62.9%
+seam ratio (1.0 = no seams; the 29 Sep GUI map 2.77): {'tile_4096_at_100m': 0.998, 'tile_4096_at_200m': 1.005}
+elevation alone reproduces 55.4% (largest class alone 54.7%; the 30 Sep map: 62.1%)
+wrote F:\Mars Remote Sensing Project\build\logs\global60_classification_check_200m_mode11.json  (707 s)

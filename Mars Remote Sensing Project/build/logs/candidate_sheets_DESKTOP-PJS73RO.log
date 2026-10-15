@@ -1,10 +1,10 @@
-﻿backup F:\Mars Project\.backups\Mars Project 20261014-103821.aprx
+﻿backup F:\Mars Project\.backups\Mars Project 20261015-004917.aprx
 1. density rasters
-   467547 candidates, 352796 Robbins craters; log-density r over cells with any count -0.11; bands {'30-60N': (33, 18), '0-30N': (35, 25), '0-30S': (40, 37), '30-60S': (38, 29)}
+   465354 candidates, 352796 Robbins craters; log-density r over cells with any count -0.11; bands {'30-60N': (33, 18), '0-30N': (35, 25), '0-30S': (40, 37), '30-60S': (37, 29)}
    detector vs Robbins by size, 1° cells: {'1-2': 0.34, '2-5': 0.31, '>=5': 0.56}
 2. channel plateau share (every 24th segment)
-   40579 sampled, 89.9 % on < 2°
-   order >= 3 km per 1° cell vs 1-2 km closed depressions: r = -0.36
+   40410 sampled, 89.8 % on < 2°
+   order >= 3 km per 1° cell vs 1-2 km closed depressions: r = -0.35
 3. maps
    graticule -> Mars ±60° — closed depressions
    graticule -> Mars ±60° — Robbins craters

@@ -1,3 +1,45 @@
 4. classify ±60° at 200 m
   classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r00_c00.tif  in 1656 s
    tile  1/21  r0 c0  00:27:35 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r00_c01.tif  in 1735 s
+   tile  2/21  r0 c1  00:56:31 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r00_c02.tif  in 1583 s
+   tile  3/21  r0 c2  01:22:54 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r00_c03.tif  in 1508 s
+   tile  4/21  r0 c3  01:48:02 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r00_c04.tif  in 1509 s
+   tile  5/21  r0 c4  02:13:11 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r00_c05.tif  in 1550 s
+   tile  6/21  r0 c5  02:39:01 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r00_c06.tif  in 923 s
+   tile  7/21  r0 c6  02:54:25 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r01_c00.tif  in 1687 s
+   tile  8/21  r1 c0  03:22:32 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r01_c01.tif  in 1706 s
+   tile  9/21  r1 c1  03:50:58 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r01_c02.tif  in 1649 s
+   tile 10/21  r1 c2  04:18:27 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r01_c03.tif  in 1692 s
+   tile 11/21  r1 c3  04:46:39 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r01_c04.tif  in 1660 s
+   tile 12/21  r1 c4  05:14:19 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r01_c05.tif  in 1707 s
+   tile 13/21  r1 c5  05:42:46 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r01_c06.tif  in 980 s
+   tile 14/21  r1 c6  05:59:06 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r02_c00.tif  in 409 s
+   tile 15/21  r2 c0  06:05:55 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r02_c01.tif  in 386 s
+   tile 16/21  r2 c1  06:12:21 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r02_c02.tif  in 404 s
+   tile 17/21  r2 c2  06:19:05 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r02_c03.tif  in 408 s
+   tile 18/21  r2 c3  06:25:54 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r02_c04.tif  in 420 s
+   tile 19/21  r2 c4  06:32:54 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r02_c05.tif  in 424 s
+   tile 20/21  r2 c5  06:39:58 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r02_c06.tif  in 392 s
+   tile 21/21  r2 c6  06:46:30 elapsed
+  mosaic 21 tiles -> F:\Mars Project\Global60\global60_landforms_svm_200m.tif
+  mosaic done, pixel = class code, 06:52:13 total

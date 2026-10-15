@@ -1,0 +1,51 @@
+ERROR 8: global60_dem.tif.ovr, band 1: GDALRasterBand::RasterIO(): attempt to write to dataset opened in read-only mode.
+==============================================================================
+TERRAIN DERIVATIVES OVER +/-60  (task 4 at analysis-extent scale)
+==============================================================================
+  <Grid G200 106694 x 35565 @ 200 m  X -10669400..10669400  Y -3556500..3556500  lat -60.000..+60.000  3.795 Gpx>
+
+the 180 deg column only (patch in place, windowed derivatives)
+  proof: the window reproduces each full-raster derivative before the patch
+    global60_slope_deg.tif   window == file on columns 53332-53360: True
+    global60_aspect.tif      window == file on columns 53332-53360: True
+    global60_hillshade.tif   window == file on columns 53332-53360: True
+  column 53346: 24335 nodata -> 0; changed 35370 of 35565 rows; neighbours both valid in 35565
+Traceback (most recent call last):
+  File "F:\Mars Remote Sensing Project\build\make_global_terrain.py", line 236, in <module>
+    main()
+    ~~~~^^
+  File "F:\Mars Remote Sensing Project\build\make_global_terrain.py", line 221, in main
+    meridian_only()
+    ~~~~~~~~~~~~~^^
+  File "F:\Mars Remote Sensing Project\build\make_global_terrain.py", line 162, in meridian_only
+    refresh_overviews(DEM, MERIDIAN_COL, MERIDIAN_COL)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Mars Remote Sensing Project\build\make_global_terrain.py", line 136, in refresh_overviews
+    subprocess.check_call([exe, "-ro", "-r", "average", "--quiet",
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           "--partial-refresh-from-projwin", repr(ulx), repr(g.oy), repr(lrx), repr(g.ymin),
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                           path])
+                           ^^^^^^
+  File "D:\ArcGISPro\bin\Python\envs\arcgispro-py3\Lib\subprocess.py", line 419, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['D:\\ArcGISPro\\bin\\Python\\envs\\arcgispro-py3\\Library\\bin\\gdaladdo.exe', '-ro', '-r', 'average', '--quiet', '--partial-refresh-from-projwin', '-200.0', '3556500.0', '0.0', '-3556500.0', 'F:\\Global60\\global60_dem.tif']' returned non-zero exit status 1.
+==============================================================================
+TERRAIN DERIVATIVES OVER +/-60  (task 4 at analysis-extent scale)
+==============================================================================
+  <Grid G200 106694 x 35565 @ 200 m  X -10669400..10669400  Y -3556500..3556500  lat -60.000..+60.000  3.795 Gpx>
+
+the 180 deg column only (patch in place, windowed derivatives)
+  proof: the window reproduces each full-raster derivative before the patch
+    global60_slope_deg.tif   window == file on columns 53332-53360: False
+    global60_aspect.tif      window == file on columns 53332-53360: False
+    global60_hillshade.tif   window == file on columns 53332-53360: False
+  global60_dem.tif already patched: col 53346 (x -200..0 m, source col 106693, its defective last column) = round-half-up mean of cols 53345 and 53347; 2026-10-14
+    overviews refreshed over columns 53346-53346
+    global60_slope_deg.tif   columns 53345-53347 rewritten, 101701 pixels changed
+    overviews refreshed over columns 53345-53347
+    global60_aspect.tif      columns 53345-53347 rewritten, 99248 pixels changed
+    global60_hillshade.tif   columns 53345-53347 rewritten, 82160 pixels changed
+    overviews refreshed over columns 53345-53347
+
+done in 0:00:17

@@ -1,0 +1,16 @@
+﻿backup F:\Mars Project\.backups\Mars Project 20261014-103821.aprx
+1. density rasters
+   467547 candidates, 352796 Robbins craters; log-density r over cells with any count -0.11; bands {'30-60N': (33, 18), '0-30N': (35, 25), '0-30S': (40, 37), '30-60S': (38, 29)}
+   detector vs Robbins by size, 1° cells: {'1-2': 0.34, '2-5': 0.31, '>=5': 0.56}
+2. channel plateau share (every 24th segment)
+   40579 sampled, 89.9 % on < 2°
+   order >= 3 km per 1° cell vs 1-2 km closed depressions: r = -0.36
+3. maps
+   graticule -> Mars ±60° — closed depressions
+   graticule -> Mars ±60° — Robbins craters
+   graticule -> Mars ±60° — channels
+4. layout 11
+    F:\Mars Project\Global60\layouts\11_global60_depressions.png
+5. layout 12
+    F:\Mars Project\Global60\layouts\12_global60_channels.png
+saved. layouts: ['01_visible', '10_global60_locator', '13_geomap_check', '14_validation', '11_global60_depressions', '12_global60_channels', '02_night_ir', '03_classification', '05_svm_checks', '04_global60_landforms', '06_ius_digitising', '07_global60_basins', '08_global60_mosaic', '09_athabasca_digitising']

@@ -1,13 +1,13 @@
 {
- "when": "2026-10-14 09:38",
+ "when": "2026-10-15 00:36",
  "checks": {
   "C1 crater count = run log": {
    "ok": true,
-   "detail": "467547"
+   "detail": "465354"
   },
   "C1 channel count = run log": {
    "ok": true,
-   "detail": "973879"
+   "detail": "969822"
   },
   "C1 CRS Mars_Equidistant_Cylindrical_CM180": {
    "ok": true,
@@ -35,11 +35,11 @@
   },
   "C3 crater density on column seams / mid-tile (0.85-1.15)": {
    "ok": true,
-   "detail": "0.985"
+   "detail": "0.990"
   },
   "C3 crater density on row seams / mid-tile (0.85-1.15)": {
    "ok": true,
-   "detail": "0.961"
+   "detail": "0.979"
   },
   "C3 near-duplicate rate at seams / elsewhere (<= 1.5)": {
    "ok": true,
@@ -47,155 +47,155 @@
   },
   "C5b observed precision above the 3-diameter-shift baseline at every Dmin": {
    "ok": true,
-   "detail": "1:15.3%>0.8%, 2:29.3%>1.4%, 5:62.2%>4.0%, 10:79.2%>7.1%, 20:83.0%>10.2%, 50:78.5%>9.9%, 100:69.0%>8.3%"
+   "detail": "1:15.3%>0.8%, 2:29.2%>1.4%, 5:62.2%>4.0%, 10:79.2%>7.1%, 20:83.1%>10.1%, 50:78.5%>9.6%, 100:69.0%>7.0%"
   }
  },
  "preservation": {
-  "coarse-pass": 323,
-  "fine-pass": 467224
+  "coarse-pass": 324,
+  "fine-pass": 465030
  },
  "seams": {
-  "col_ratio": 0.9853574504737296,
-  "row_ratio": 0.961121157323689,
+  "col_ratio": 0.990467937608319,
+  "row_ratio": 0.9788018433179724,
   "n_col_seams": 13,
   "n_row_seams": 4
  },
  "near_duplicates": {
-  "all": 101,
+  "all": 103,
   "rate_near_seams": 0.0,
-  "rate_elsewhere": 0.00021704513464319714
+  "rate_elsewhere": 0.00022239015437763144
  },
  "c5_2deg_control_holds": false,
  "robbins_shifted_2deg": {
   "1": {
    "robbins": 352796,
-   "candidates": 467547,
-   "recall": 0.01001145137699974,
-   "precision": 0.007515821938756959
+   "candidates": 465354,
+   "recall": 0.009949092393337793,
+   "precision": 0.007503964723629753
   },
   "2": {
    "robbins": 118124,
-   "candidates": 142902,
-   "recall": 0.016313365615793572,
-   "precision": 0.013372800940504682
+   "candidates": 142308,
+   "recall": 0.01620331177406793,
+   "precision": 0.013337268459960087
   },
   "5": {
    "robbins": 43049,
-   "candidates": 31043,
-   "recall": 0.028339798833886966,
-   "precision": 0.038817124633572786
+   "candidates": 30901,
+   "recall": 0.028153964087435247,
+   "precision": 0.03873661046568072
   },
   "10": {
    "robbins": 21990,
-   "candidates": 12838,
-   "recall": 0.04197362437471578,
-   "precision": 0.07064963389936127
+   "candidates": 12783,
+   "recall": 0.04165529786266485,
+   "precision": 0.07040600797934757
   },
   "20": {
    "robbins": 9784,
-   "candidates": 5400,
-   "recall": 0.05733851185609158,
-   "precision": 0.10277777777777777
+   "candidates": 5372,
+   "recall": 0.05682747342600163,
+   "precision": 0.10238272524199553
   },
   "50": {
    "robbins": 1857,
-   "candidates": 1025,
-   "recall": 0.06623586429725363,
-   "precision": 0.11902439024390243
+   "candidates": 1019,
+   "recall": 0.06515885837372105,
+   "precision": 0.11776251226692837
   },
   "100": {
    "robbins": 269,
-   "candidates": 145,
-   "recall": 0.10037174721189591,
-   "precision": 0.18620689655172415
+   "candidates": 142,
+   "recall": 0.09293680297397769,
+   "precision": 0.176056338028169
   }
  },
  "robbins_shifted_3D": {
   "1": {
    "robbins": 352796,
-   "candidates": 467547,
-   "recall": 0.011227451558407691,
-   "precision": 0.008463320265128426
+   "candidates": 465354,
+   "recall": 0.0111537545777163,
+   "precision": 0.008449481470020672
   },
   "2": {
    "robbins": 118124,
-   "candidates": 142902,
-   "recall": 0.01720226202973147,
-   "precision": 0.014177548249849547
+   "candidates": 142308,
+   "recall": 0.01710913954827131,
+   "precision": 0.014159428844478175
   },
   "5": {
    "robbins": 43049,
-   "candidates": 31043,
-   "recall": 0.028966991103161515,
-   "precision": 0.04000901974680282
+   "candidates": 30901,
+   "recall": 0.02885084438662919,
+   "precision": 0.04003106695576195
   },
   "10": {
    "robbins": 21990,
-   "candidates": 12838,
-   "recall": 0.041791723510686676,
-   "precision": 0.07096120891104533
+   "candidates": 12783,
+   "recall": 0.041564347430650295,
+   "precision": 0.07087538136587655
   },
   "20": {
    "robbins": 9784,
-   "candidates": 5400,
-   "recall": 0.056929681112019626,
-   "precision": 0.10185185185185185
+   "candidates": 5372,
+   "recall": 0.05631643499591169,
+   "precision": 0.10145197319434103
   },
   "50": {
    "robbins": 1857,
-   "candidates": 1025,
-   "recall": 0.05546580506192784,
-   "precision": 0.09853658536585366
+   "candidates": 1019,
+   "recall": 0.053850296176628974,
+   "precision": 0.09617271835132483
   },
   "100": {
    "robbins": 269,
-   "candidates": 145,
-   "recall": 0.04460966542750929,
-   "precision": 0.08275862068965517
+   "candidates": 142,
+   "recall": 0.03717472118959108,
+   "precision": 0.07042253521126761
   }
  },
  "robbins": {
   "1": {
    "robbins": 352796,
-   "candidates": 467547,
-   "recall": 0.2053991541854216,
-   "precision": 0.15331292896756904
+   "candidates": 465354,
+   "recall": 0.20412929851812378,
+   "precision": 0.15308345904408258
   },
   "2": {
    "robbins": 118124,
-   "candidates": 142902,
-   "recall": 0.3596644204395381,
-   "precision": 0.29280206015311194
+   "candidates": 142308,
+   "recall": 0.3577427110494057,
+   "precision": 0.2924572054979341
   },
   "5": {
    "robbins": 43049,
-   "candidates": 31043,
-   "recall": 0.4598016214081628,
-   "precision": 0.6219437554360081
+   "candidates": 30901,
+   "recall": 0.4576180631373551,
+   "precision": 0.6218568978350215
   },
   "10": {
    "robbins": 21990,
-   "candidates": 12838,
-   "recall": 0.4799454297407913,
-   "precision": 0.792257360959651
+   "candidates": 12783,
+   "recall": 0.47771714415643474,
+   "precision": 0.7920675897676601
   },
   "20": {
    "robbins": 9784,
-   "candidates": 5400,
-   "recall": 0.4829313164349959,
-   "precision": 0.8303703703703704
+   "candidates": 5372,
+   "recall": 0.48068274734260014,
+   "precision": 0.8309754281459419
   },
   "50": {
    "robbins": 1857,
-   "candidates": 1025,
-   "recall": 0.46095853527194397,
-   "precision": 0.7853658536585366
+   "candidates": 1019,
+   "recall": 0.45826602046311254,
+   "precision": 0.7850834151128557
   },
   "100": {
    "robbins": 269,
-   "candidates": 145,
-   "recall": 0.3903345724907063,
-   "precision": 0.6896551724137931
+   "candidates": 142,
+   "recall": 0.3828996282527881,
+   "precision": 0.6901408450704225
   }
  },
  "ius_window": {

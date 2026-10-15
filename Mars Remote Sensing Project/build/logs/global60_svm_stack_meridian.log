@@ -1,0 +1,10 @@
+  Viking window warped, 0:01:12
+  viking_red   margin identical True | inside, where valid before, identical True | pixels changed 216291
+  viking_green margin identical True | inside, where valid before, identical True | pixels changed 216291
+  viking_blue  margin identical True | inside, where valid before, identical True | pixels changed 216291
+  night_ir     margin identical True | inside, where valid before, identical True | pixels changed 216291
+  day_ir       margin identical True | inside, where valid before, identical True | pixels changed 216291
+  slope_deg    margin identical True | inside, where valid before, identical False | pixels changed 246356
+  relief_m     margin identical True | inside, where valid before, identical False | pixels changed 302547
+  nodata pixels in columns 53342-53350: 219384 before, 3093 after
+  written; overviews refreshed over columns 53342-53350

@@ -40,6 +40,10 @@ Added before run 2 (not changing C5's rule, a second control beside it):
 
 Run 2, 2026-10-14: C5b passes at every Dmin (e.g. >= 5 km 62.2 % against 4.0 %). From run 2 on, C5's 2°
 control is kept in the log as information (it fails as written, run 1) and C5b is the gate.
+
+Run 3, 2026-10-15: after the five fine tiles over x = 0 were rerun on the patched DEM (KB §54), C1's
+counts are that run's log (logs\landform_fine_meridian_DESKTOP-PJS73RO.log): 465,354 / 969,822.
+Prediction unchanged for C2-C5b; C3's seams are expected to stay within 0.85-1.15.
 """
 import os, sys, json, time
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -55,7 +59,7 @@ OUT = os.path.join(HERE, "logs", "global60_candidates_check.json")
 FC_C = os.path.join(GDB, "Landform_CraterCandidates_auto_60")
 FC_L = os.path.join(GDB, "Landform_ChannelCandidates_auto_60")
 ROBBINS = os.path.join(GDB, "Ref_Craters_Robbins2020")
-EXPECT = {"craters": 467547, "channels": 973879}
+EXPECT = {"craters": 465354, "channels": 969822}     # run 3 (2026-10-15); runs 1-2: 467,547 / 973,879
 OX, OY, RES, NX, NY, CORE = -10669400.0, 3556500.0, 200.0, 106694, 35565, 8192
 R_KM = 3396.19
 res = {"when": time.strftime("%Y-%m-%d %H:%M")}

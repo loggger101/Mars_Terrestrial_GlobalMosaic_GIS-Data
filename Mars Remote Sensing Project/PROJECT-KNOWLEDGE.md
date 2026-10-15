@@ -4620,3 +4620,194 @@ builder sits at 0 % CPU on start, look for a stuck `tasklist.exe` under it.
 **Counted:** 143 build scripts on the drive (`test_q24_tiles.py`, `retarget_junction.py`,
 `verify_global60_candidates.py`, `make_global60_candidate_sheets.py` new; 142 in the public repo); 28
 feature classes; 26 maps; 14 layouts; 55 `.aprx` backups.
+
+
+## 54. The 180° stripe: the DEM's edge column, patched; the 200 m map and X2 redone there — 2026-10-14/15 **[V]**
+
+**Found** in the X3 200 m map (and the 400 m one): a 10 px (2 km) stripe of excess Crater / hills / lava
+tube along 180° (G200 x ≈ 0), column change rate 0.26–0.28 against ~0.10, worst at +9° to +43°. Traced to
+G200 column **53346** (x −200..0 m) of `global60_dem.tif`: nodata in 24,335 of 35,565 rows, wrong values
+elsewhere (row 12000: −3232 m against −3197 / −3204 m either side); slope 13–16× rougher at 53345–53348,
+relief (9 × 9) 2–9× at 53342–53351, and the stack's 7 bands nodata at 53342–53350 wherever the column was.
+
+### 54.1 Cause: the source, not the warp
+
+- `Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif` is 106,694 px of 0.003374120830641° = **359.99845°**: it ends
+  0.46 px (≈ 92 m) short of +180°, and its **last column** (src 106693, lon 179.9951–179.9984) is the bad one:
+  nodata in the same 24,335 rows; where valid, off the mean of its neighbours by median −4.5 m, p95 92.5 m
+  (mean |2nd difference| 29.5 m against 0.3–0.8 m on normal columns). Src columns 106692 and 0 are normal.
+- `global60_dem.tif` **is exactly the rolled source** (target col c = src col (c − 53347) mod 106694, row
+  r = src row r + 8891): 0 mismatches over 8 full rows. The roll puts src 106693 at G200 53346. The source
+  has no good pixel for that position, and no other DEM is held.
+
+### 54.2 The fix (option A of three, on request of the author: mean / copy nearest / nodata)
+
+- `make_global_terrain.py`: `patch_meridian()` sets col 53346 = round-half-up mean of cols 53345 and 53347
+  (src 106692 and src 0, both real pixels), in place, metadata `MERIDIAN_PATCH`; a full build now runs it
+  after the warp. `--meridian-only` patches an existing DEM and recomputes slope / aspect / hillshade in a
+  33-column window, **after proving the window reproduces each full-raster file bit for bit** (True for all
+  three); only cols 53345–53347 were rewritten (101,701 / 99,248 / 82,160 pixels changed), an assert holds
+  every other column identical; the .ovr refreshed over those columns (`gdaladdo --partial-refresh`).
+  Log `logs\global_terrain_meridian.log`. Column 53346: 24,335 nodata → 0.
+- `make_global60_svm_stack.py --patch-cols 53342 53350`: those columns recomputed with the stack's own
+  `strip()` code and the **stored** stretch, not a new one. STRETCH holds 3 decimals; the slope p99 was
+  recomputed exactly as `percentiles()` did from the pre-patch slope (2,926,448 samples, as the 2 Oct log):
+  **17.7923641204834** (`EXACT_LIM`). The patched slope would give 17.7823: a full rerun would have
+  restretched the whole band and changed the map outside 180°. Gate before writing: every band identical
+  in the margin columns, bands 1–5 identical inside wherever valid before (all True). Nodata in the patched
+  columns 219,384 → 3,093 px. Log `logs\global60_svm_stack_meridian.log`.
+- **Residual, from the source:** relief is back within ~5 % of its neighbours; slope at col 53346 averages
+  2.07° against ~1.45° (+40 %), at 53348 1.18° (−17 %). The two real pixels either side of 180° are 2.46 px
+  apart, not 2, and the source's edge columns are smoother (lag-1 |dz| 1.8–2.1 m against 3.2–3.4).
+  `check_meridian_columns.py` (new; rule ≤ 2× the window's second-difference roughness) fails before
+  (slope 48×) and still fails after (slope 7.4× at 53346, DEM 4.8× at 53347): no fill of one column removes it.
+- Backups of every touched pixel (cols 53330–53362 of the five rasters, the pre-fix 200 m map, the three
+  c03 tiles): `%LOCALAPPDATA%\Temp\mars_scratch\meridian_backup_20261014\`.
+
+### 54.3 The 200 m map: tile column c03 reclassified
+
+`t_r00_c03`, `t_r01_c03`, `t_r02_c03` (the classify tiles holding col 53346) reclassified, re-mosaicked
+(`--classify-only --cell 200`, Pro closed, 1 h 19 min; log `logs\global60_classify_200m_c03_DESKTOP-PJS73RO.log`).
+`check_landform_columns.py` (new; reproduces the two checks that found the stripe):
+
+| | before | after |
+|---|---|---|
+| change rate, cols 53340–53355 (reference 53000–53300, 53400–53700: 0.0999 ± 0.0060) | 0.078–0.279, max z **+29.8**, mean 1.60× | 0.078–0.117, max abs z **3.6**, mean 0.87× — **pass** |
+| tile seams every 16384 px (6 columns, 2 rows), abs z | ≤ 1.27 | ≤ 1.27 — **pass** |
+| class shares in cols 53340–53355 (Crater / hills / lava tube / Normal) vs ±100 px away 25.5 / 2.0 / 9.1 / 63.4 % | 24.5 / 2.9 / 7.7 / 65.0 % | 21.5 / 1.7 / 6.7 / 70.0 % |
+| no-class pixels there | 221,767 | 5,476 |
+
+Pre and post maps differ **only** in cols 53342–53350 (238,966 px); 0 px elsewhere, inside c03 or out.
+Logs `logs\landform_columns_200m_pre.json`, `_post.json`. **The 400 m map still carries the stripe** (not redone).
+
+### 54.4 X2 over x = 0: found, rerun on the five tiles, and what is left
+
+**Before** (`check_x2_meridian.py`, new; within 60 km of x = 0): closed depressions per 2 km band 7 and 10 at
+x = 0 against 50.0 ± 8.8 (a ~16 km wide deficit); channel end points per 400 m band 200 and 198 against
+41.1 ± 8.5; polylines straddling x = 0: 28 against 176–215 at ±2, ±20, ±40 km. The column cut the network.
+
+**Rerun on request of the author:** the five fine tiles whose core + halo holds col 53346 (tiles 006, 020,
+034, 048, 062; core 49152–57343; neighbours' halos stop at 50175 / 56320), their checkpoints moved aside,
+the other 65 and the coarse pass reused (the coarse 1600 m average saw the bad column at ⅛ weight),
+merged; 2026-10-14 23:32 to 10-15 00:33, 1 h 01 min, log `logs\landform_fine_meridian_DESKTOP-PJS73RO.log`.
+Both classes backed up first to `C:\MarsScratch\global60\pre_meridian_20261014\x2_pre.gdb` (with the five old
+checkpoints). Every row's `MappedOn` is the rerun's date, 2026-10-15.
+
+- **Counts:** 465,354 closed depressions (465,030 fine + 324 coarse-only; was 467,547) and 969,822 channel
+  segments (was 973,879); fill-artefact discard 60.5 % (was 60.1 %).
+- **x = 0 after:** crossings **150** against 133–167 — fixed. Channel ends 56 and 63 against 33.3 ± 7.2 (was
+  ~4.8×, now ~1.8×). Depressions in the six bands within ±6 km 31, 15, 16, 19, 22, 27 against 45.4 ± 6.8:
+  the dip is half filled (6-band mean 0.48 of the reference; was ~0.2), and **still abnormal**: the same test
+  at 208 control meridians every 100 km gives median 0.99, min 0.70, 1.4 % failing. The rule fails.
+- **Why it is left: the source is smoother there.** North–south roughness of the DEM within ±40 px of col
+  53346 is 0.80–0.84 of the ±300 px window (0.24 at +30° to +40°, 0.58–0.69 at 0–10° and −20° to −10°).
+  §53.6 showed the detector's small depressions follow the DEM's sharpness; a ~16 km band of smoother
+  blend along 180° gives fewer ≥ 1 km pits. Inference **[E]**: no source mask of the blend is held.
+- **Far from x = 0, a real change of drainage.** Tiles 048 and 062 lost 2,156 and 239 depressions (median D
+  1.5–1.7 km) at **166–193°E, 30–45°S** and **176–189°E, 51–57°S**; ground with fill depth > 1 m in tile 048
+  grew by 8.2 M px (~330,000 km²). The nodata column was an outlet: those regions drained through it. Now
+  closed, they fill as basins and swallow their small pits, as Hellas and every closed basin does under the
+  fill-depth rule (§25.1, §26.3). The first region is Eridania, a known closed basin. Elsewhere in the five
+  tiles 99 % of positions are unchanged (006: +47 net, 020: −1, 034: −26 within 179–184°E).
+- `verify_global60_candidates.py` run 3 (C1 counts set to this run's log, noted in its docstring): **12 checks,
+  0 failed**; C3 seams **0.990** (columns), **0.979** (rows); near-duplicates 0.0000 / 0.0002; Robbins
+  precision 15.3 / 29.2 / 62.2 / 79.2 / 83.1 % at ≥ 1 / 2 / 5 / 10 / 20 km (run 2: 15.3 / 29.3 / 62.2 / 79.2 /
+  83.0); Ius and Athabasca windows unchanged (1,709, 1,819). Run 2's log kept as `global60_candidates_check_run2.json`.
+
+### 54.5 Not redone, now stale near 180°
+
+`global60_landforms_svm_400m.tif` (and its mode filters); layouts 11 and 12 and the density rasters
+`global60_depression_density_0p5deg.tif` (built from the 467,547-row class: Eridania and the 180° band
+changed); the §53.4 table's counts (the §53.4 numbers stay true of run 2); `.aux.xml` statistics of the DEM and
+derivatives (one column of 106,694). **Counted:** 147 build scripts on the drive at 2026-10-15 01:00 (`check_meridian_columns.py`,
+`check_landform_columns.py`, `check_x2_meridian.py` new here; the public repo not yet synced).
+
+## 55. X3 scored, the stack swept for line artefacts, layouts 11 and 12 rebuilt, T1 in Pro started — 2026-10-15 **[V]**
+
+Overnight on DESKTOP-PJS73RO, after §54. Read-only checks unless a file is named as written.
+
+### 55.1 Checks after the 180° fix
+
+- `verify_global60.py`: 6 pass, 0 fail (the patched DEM, slope, aspect, hillshade still pixel-coincident).
+- The 200 m map, whole-raster check (column and row change rates, 16384 px tile edges): every seam |z| ≤ 1.3;
+  values 1–4 and 255 only; nodata 2.659 % (was 2.665 %, the patched column now classified); shares Crater
+  31.52 / hills 2.53 / lava tube 10.44 / Normal 55.51 %; col 53347 change rate 0.117 (robust z 3.9 against
+  ±64 columns, 4th of the map's top ten, the others 3.5–5.0): the §54.2 residual, not a stripe.
+  Agreement with the 400 m map (its pixel against the 200 m top-left pixel of each 2 × 2): **92.10 %**.
+- **No hand-drawn polygon lies within 1° of 180°** (512 / 329 train / 183 test; nearest −166.2°, ~800 km): the
+  SVM was never trained or scored on the bad column. The model stands and held-out scores are unaffected.
+- Feature density in a 4 km band at 180° against 60 other meridians, every gdb class with ≥ 500 rows: only the
+  two X2 classes deviated before the rerun. After it (centroids, 120 control meridians): channels 1.11 (±2 km)
+  and 1.02 (±6 km) of the mean; depressions 0.41 and 0.50, **inside the range of the control meridians**
+  (min 0.39 and 0.36): low beside its neighbours (§54.4), not outside the planet-wide spread, because the
+  plains around 180° are smooth too. Basins ≥ 20 km 2 against 1.0; Robbins 61 against 71.
+- `.aux.xml` statistics recalculated (`CalculateStatistics`, OVERWRITE) on the DEM (−8528..21226 m, mean
+  −541.47), slope (0..82.40°, mean 2.191), aspect, hillshade: the §54.5 stale item closed.
+
+### 55.2 The 7-band stack swept for line artefacts
+
+Every row and column of all 7 bands of `global60_svm_stack_200m.tif`: mean |difference| between adjacent
+columns (rows) against a ±64 running median (robust z > 8 flagged), and nodata per column (row). 636 s.
+No second defect like §54. What it found, all small:
+
+| where | bands | what | size |
+|---|---|---|---|
+| col 53347 (180°) | Viking R, G, B | brightness step, z 13–14: the Viking source's own edge | 1 px |
+| cols 17782 (60.0°E), 88912 (300.0°E) | night, day IR | one column pair unusually SMOOTH (z −23 to −39): THEMIS tile joins | 1 px; the map changes class less there (z −5) |
+| first / last 4 rows (±60°) | relief | the 9 × 9 window truncated at the grid edge (rows 4 and 35561: z 340, 100) | 0.8 km each edge; the map's last rows change class at 0.71 |
+| cols 0–7, last col | Viking | smoothed / duplicated at the 0°/360° edge | ~5 px |
+| cols 18333, 88163, 90211, 102499; row 22230 | slope, relief | DEM steps 2.2–4× local roughness, each ~500 km long | see below |
+
+Nodata jumps between rows (366) all lie at 59.75–60°: the coverage edge. Image chips (hillshade, DEM, slope,
+Viking; 200 km) at each DEM step: `Mars Project\Global60\checks\dem_step_chips_20261015\`. **297.5°E is a real
+escarpment.** 345.8°E (39°N) is the edge of a ~25 km smoothed strip of the HRSC/MOLA blend (gap fill: slope
+and depressions vanish inside it); 304.4°E (5°N) a sharp blend seam plus a smoothed strip; 61.9°E faint
+seams; −15.0° a ~15 km step. All belong to the source blend (layout 11's caption already says the detector's
+stripes and blocks are the DEM's makeup); none is fixable here. Results `edge_sweep.json` (session scratch, summarised here).
+
+### 55.3 X3 scored: the 200 m map and its majority filters
+
+`verify_global60_classification.py --cell 200` (reads the 400 m level; 379 s), then `--raster` for each filter.
+New: `make_global60_landforms_clean.py --cell 200 --size 3 5 7 9 11` (each ~9.5 min; 6.17 / 9.62 / 11.72 /
+13.22 % of pixels changed at 3 / 5 / 7 / 9). Held-out, 183 polygons (one class everywhere 0.586):
+
+| map | 200 m acc / κ | 400 m acc / κ (§32.2) |
+|---|---|---|
+| raw | **0.699 / 0.532** | 0.705 / 0.540 |
+| 3 × 3 | 0.710 / 0.546 | 0.723 / 0.562 |
+| 5 × 5 | 0.720 / 0.560 | 0.735 / 0.578 (published) |
+| 7 × 7 | 0.728 / 0.569 | 0.743 / 0.589 |
+| 9 × 9 | 0.734 / 0.577 | 0.751 / 0.599 |
+| 11 × 11 | 0.738 / 0.583 | — |
+
+Raw 200 m: producer's Crater 0.543, hills 0.608, lava tube 0.376, Normal 0.991; polygons won 102/124, 14/16,
+5/21, 20/22; training set 0.820 / 0.654; IAU craters 'Crater' inside 0.513 against ring 0.432 (62.8 %);
+seam ratios 0.998 / 0.990; elevation alone reproduces 54.9 %. **Halving the cell bought no held-out
+accuracy**: the 200 m map matches the 400 m one raw, and trails it filter for filter by ~1.5 pt, because the
+same window covers half the ground. By §32.2's rule (filter by feature size, not score) the 2 km window at
+200 m is 9 × 9 (1.8 km) or 11 × 11 (2.2 km); **the choice of published filter, and so layout 04, is the
+author's** and is not made here. `make_global60_maps.py` still has `CLEAN = 5`. Logs
+`logs\global60_classification_check_200m*.json`, `logs\verify_classification_200m_modes_DESKTOP-PJS73RO.log`.
+
+### 55.4 Layouts 11 and 12 rebuilt from the post-fix X2
+
+`make_global60_candidate_sheets.py` (Pro closed; .aprx backed up to `.backups\Mars Project 20261015-004917.aprx`),
+then `polish_layouts.py` (backup `20261015-005251`; fonts on 11 and 12 only, every other sheet "no change").
+465,354 candidates; bands per 10⁴ km² 30–60S now 37 (was 38); r −0.11 unchanged; plateau share 89.8 % (40,410
+sampled); order ≥ 3 vs 1–2 km depressions r −0.35 (was −0.36). Both density rasters rewritten. Both sheets
+exported and read: correct. Left as found: on 12 the legend box starts left of the map frame, and "0°E" and "0°"
+overlap at the centre. The §54.5 stale item for 11 / 12 is closed; the 400 m map remains stale.
+
+### 55.5 T1 confirmed in Pro: started, results pending
+
+`make_t1_pro_confirm.py` (new): copies band subsets of the stack exactly (`gdal.Translate`, no resampling),
+trains Pro's SVM on the same `_60_train` polygons (max 1000 per class, as X3), classifies ±60° with X3's tiling in
+its own scratch folder, mosaics and recodes; `--set nothermal | novisible | terrain` names every output. It writes
+only `global60_svm_stack_200m_<set>.tif`, `global60_landforms_svm_<set>.ecd`, `global60_landforms_svm_<set>_<cell>m.tif`.
+- Run 1, 200 m without thermal: launched 2026-10-14 23:57 (PID 57304); stack 787 s (12.5 GB); **training
+  2861 s** (Pro computes the new stack's statistics first); classification from ~00:58, ~7 h.
+- Queued behind it (`t1_queue.ps1`, log `logs\t1_queue_DESKTOP-PJS73RO.log`): score run 1 at 200 m, then at
+  400 m without thermal (`--reuse-ecd`), terrain only, without visible, each scored with
+  `verify_global60_classification.py --cell 400 --raster`. The 400 m comparison is the existing 400 m map
+  (raw 0.705 / 0.540, same .ecd and split). Results go in the next section. **Counted:** 147 build scripts (`.py`, `.ps1`,
+`.bat` in `build\`; the §54.5 count already included `make_t1_pro_confirm.py`, 144 of them `.py`).

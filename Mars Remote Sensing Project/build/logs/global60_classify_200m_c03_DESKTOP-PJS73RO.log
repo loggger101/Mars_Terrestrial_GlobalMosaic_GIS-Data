@@ -1,0 +1,9 @@
+4. classify ±60° at 200 m
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r00_c03.tif  in 1802 s
+   tile  4/21  r0 c3  00:30:02 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r01_c03.tif  in 2023 s
+   tile 11/21  r1 c3  01:03:46 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_200m_tiles\t_r02_c03.tif  in 519 s
+   tile 18/21  r2 c3  01:12:25 elapsed
+  mosaic 21 tiles -> F:\Mars Project\Global60\global60_landforms_svm_200m.tif
+  mosaic done, pixel = class code, 01:18:33 total

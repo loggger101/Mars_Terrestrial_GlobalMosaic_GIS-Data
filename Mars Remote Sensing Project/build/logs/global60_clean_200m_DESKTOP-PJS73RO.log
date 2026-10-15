@@ -1,0 +1,11 @@
+﻿=== size 3 23:58:04
+mode 3x3: 6.17% of valid pixels changed class -> F:\Mars Project\Global60\global60_landforms_svm_200m_mode3.tif  (644 s)
+=== size 5 00:08:56
+mode 5x5: 9.62% of valid pixels changed class -> F:\Mars Project\Global60\global60_landforms_svm_200m_mode5.tif  (565 s)
+=== size 7 00:18:28
+mode 7x7: 11.72% of valid pixels changed class -> F:\Mars Project\Global60\global60_landforms_svm_200m_mode7.tif  (562 s)
+=== size 9 00:28:00
+mode 9x9: 13.22% of valid pixels changed class -> F:\Mars Project\Global60\global60_landforms_svm_200m_mode9.tif  (572 s)
+=== size 11 00:37:39
+mode 11x11: 14.38% of valid pixels changed class -> F:\Mars Project\Global60\global60_landforms_svm_200m_mode11.tif  (573 s)
+done 00:47:21

@@ -23,8 +23,11 @@ classes differ in, without saying "high or low", which is what made the old map 
 
 Writes  Z:\Mars Project\Global60\global60_svm_stack_200m.tif   (+ .ovr, statistics)
 Run on the laptop: ~35 GB of strip reads over USB. Holds the machine awake while it runs.
+
+`--patch-cols C0 C1` recomputes only G200 columns C0..C1 of the existing stack, with its stored
+stretch (2026-10-14: 53342 53350, the 180 deg column's slope and 9 x 9 relief footprint; KB §54).
 """
-import os, sys, time, ctypes
+import os, sys, time, ctypes, subprocess
 import numpy as np
 from osgeo import gdal
 from scipy import ndimage
@@ -82,25 +85,28 @@ def mean2x2(a):
     return out
 
 
-def readers():
+def readers(vik=None, x0=0, nx=None):
+    """`x0`, `nx`: a column window (default the whole width); `vik`: an open Viking G200 dataset
+    whose column 0 is G200 column x0 (default VIK200, the full-width warp)."""
     dsets = [gdal.Open(G.SRC_DAY), gdal.Open(G.SRC_NIGHT), gdal.Open(SLOPE), gdal.Open(DEM)]   # kept alive: a band dies with its dataset
     day = dsets[0].GetRasterBand(1)
     night = dsets[1].GetRasterBand(1)
     off = G.check()
-    vik = gdal.Open(VIK200)
+    vx = 0 if vik is not None else x0
+    vik = vik if vik is not None else gdal.Open(VIK200)
     vb = [vik.GetRasterBand(i + 1) for i in range(3)]
     slope = dsets[2].GetRasterBand(1)
     dem = dsets[3].GetRasterBand(1)
-    nx, ny = G.G200.nx, G.G200.ny
+    nx, ny = nx or G.G200.nx, G.G200.ny
 
     def strip(y0, h):
         """All seven raw bands for G200 rows y0..y0+h, plus a validity mask."""
-        n = night.ReadAsArray(0, 2 * y0, 2 * nx, 2 * h)
-        d = day.ReadAsArray(off["dx"], off["dy"] + 2 * y0, 2 * nx, 2 * h)
-        v = [b.ReadAsArray(0, y0, nx, h) for b in vb]
-        s = slope.ReadAsArray(0, y0, nx, h).astype(np.float32)
+        n = night.ReadAsArray(2 * x0, 2 * y0, 2 * nx, 2 * h)
+        d = day.ReadAsArray(off["dx"] + 2 * x0, off["dy"] + 2 * y0, 2 * nx, 2 * h)
+        v = [b.ReadAsArray(vx, y0, nx, h) for b in vb]
+        s = slope.ReadAsArray(x0, y0, nx, h).astype(np.float32)
         a0, a1 = max(0, y0 - HALO), min(ny, y0 + h + HALO)
-        z = dem.ReadAsArray(0, a0, nx, a1 - a0).astype(np.float32)
+        z = dem.ReadAsArray(x0, a0, nx, a1 - a0).astype(np.float32)
         zv = z > -32000
 
         hi = ndimage.maximum_filter(np.where(zv, z, -1e9), size=9, mode="wrap")
@@ -136,7 +142,73 @@ def scale(x, lo, hi):
     return (np.clip((x.astype(np.float32) - lo) / (hi - lo), 0, 1) * 254 + 1).astype(np.uint8)
 
 
+# The 2 Oct stack's limits at full precision where STRETCH's 3 decimals are not enough. slope_deg
+# p99 recomputed 2026-10-14 exactly as percentiles() did, from the pre-patch slope (2,926,448
+# samples, as the run logged); the patched slope would give 17.7823, so a full rerun would restretch
+# the whole band.
+EXACT_LIM = {"slope_deg": (0.0, 17.7923641204834)}
+
+
+def patch_columns(c0, c1, margin=8):
+    """Recompute G200 columns c0..c1 of the existing stack in place (the 180 deg column, KB §54).
+
+    The stretch limits are read back from the stack's STRETCH metadata, never recomputed, so the
+    rest of the stack stays bit-identical. Gate before writing: every band in the margin columns
+    (4..margin px outside c0..c1; the 9 x 9 relief wrap only spoils the outer 4) must equal the
+    stack as it is, and inside c0..c1 bands 1-5 must equal it wherever it was valid."""
+    import re
+    ds = gdal.Open(OUT, gdal.GA_Update)
+    lim = [tuple(float(v) for v in re.search(r"%s p1=([-\d.]+) p99=([-\d.]+)" % n,
+                                            ds.GetMetadataItem("STRETCH")).groups()) for n in NAMES]
+    for i, n in enumerate(NAMES):           # STRETCH is rounded to 3 decimals; use the exact value
+        if n in EXACT_LIM:
+            assert all(abs(a - b) < 5e-4 for a, b in zip(EXACT_LIM[n], lim[i])), n
+            lim[i] = EXACT_LIM[n]
+    x0, nx, ny = c0 - margin, c1 - c0 + 1 + 2 * margin, G.G200.ny
+    t = time.time()
+    vik = gdal.Warp("", G.SRC_VIKING, format="MEM", warpMemoryLimit=2048,
+                    **G.G200.sub(x0, 0, nx, ny).warp_kwargs("bilinear", nodata=0))
+    print("  Viking window warped, %s" % hms(time.time() - t))
+    strip = readers(vik, x0, nx)
+    new = np.zeros((7, ny, nx), np.uint8)
+    for y0 in range(0, ny, STRIP):
+        h = min(STRIP, ny - y0)
+        raw, ok = strip(y0, h)
+        allok = np.logical_and.reduce(ok)
+        for i in range(7):
+            o = scale(raw[i], *lim[i]); o[~allok] = 0
+            new[i, y0:y0 + h] = o
+    old = ds.ReadAsArray(x0, 0, nx, ny)
+    m = np.r_[4:margin, nx - margin:nx - 4]
+    inner = slice(margin, nx - margin)
+    for i, n in enumerate(NAMES):
+        same = np.array_equal(new[i][:, m], old[i][:, m])
+        was = old[i][:, inner] > 0
+        keep = np.array_equal(new[i][:, inner][was], old[i][:, inner][was])
+        print("  %-12s margin identical %s | inside, where valid before, identical %s | pixels changed %d"
+              % (n, same, keep, int((new[i][:, inner] != old[i][:, inner]).sum())))
+        if not same or (i < 5 and not keep):
+            raise SystemExit("window does not reproduce the stack - not writing")
+    print("  nodata pixels in columns %d-%d: %d before, %d after"
+          % (c0, c1, int((old[0][:, inner] == 0).sum()), int((new[0][:, inner] == 0).sum())))
+    for i in range(7):
+        ds.GetRasterBand(i + 1).WriteArray(new[i][:, inner], c0, 0)
+    ds.SetMetadataItem("MERIDIAN_PATCH", "cols %d-%d recomputed after the DEM's col 53346 patch; "
+                       "stretch from STRETCH; 2026-10-14" % (c0, c1))
+    ds.FlushCache(); ds = None
+    exe = os.path.join(os.path.dirname(sys.executable), "Library", "bin", "gdaladdo.exe")
+    g = G.G200
+    subprocess.check_call([exe, "-r", "average", "--quiet", "--partial-refresh-from-projwin",
+                           repr(g.ox + c0 * g.res), repr(g.oy), repr(g.ox + (c1 + 1) * g.res),
+                           repr(g.ymin), OUT])
+    print("  written; overviews refreshed over columns %d-%d" % (c0, c1))
+
+
 def main():
+    if "--patch-cols" in sys.argv:
+        k = sys.argv.index("--patch-cols")
+        patch_columns(int(sys.argv[k + 1]), int(sys.argv[k + 2]))
+        return
     keep_awake(True)
     t0 = time.time()
     print("1. Viking onto G200"); warp_viking()
