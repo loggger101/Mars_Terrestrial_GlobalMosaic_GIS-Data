@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 146, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 147, by purpose) · [backup and restore](docs/backup.md)
 
 ![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 
@@ -46,7 +46,7 @@ In order, toward the interim (data cut 2 November) and the final on 8 December. 
 3. **Run the desktop jobs**, too heavy for the laptop. Every build script finds its own drive, so they run from `F:` on the desktop; the no-space junctions were retargeted there on 2026-10-13 (KB §53.3).
    - ~~the ±60° crater and channel fine pass~~: done 2026-10-14, 11 h 07 min on the desktop, checked with `verify_global60_candidates.py` (KB §53.4); its two ±60° sheets, layouts 11 and 12, are in the project (KB §53.6);
    - ~~the 200 m classification (X3)~~: done 2026-10-14, 6 h 52 min on the desktop, the same model as the 400 m map; a 2 km stripe along 180° traced to the source DEM's last column and fixed (KB §54); scored with majority filters 3–11 (KB §55.3); which filter the published 200 m map uses is still to choose;
-   - T1 with Pro's own SVM (the thermal-band test, KB §40.1, confirmed in Pro): running on the desktop, 200 m without the thermal bands, then three band sets at 400 m (KB §55.5);
+   - T1 with Pro's own SVM (the thermal-band test, KB §40.1): confirmed at 200 m on 2026-10-15, the thermal bands add +1.36 pt [+0.46, +2.47] held-out, helping craters and hills and hurting lava tube (KB §56); three band sets at 400 m running;
    - ~~pyramids on the four source mosaics (q6)~~: done 2026-10-13, 26 min on the desktop (KB §53);
    - the deep-learning model: the GPU test passed (the 2080 Ti engages, q10); Esri's Deep Learning Libraries need an administrator install first (KB §53.5). Trained on `LabeledObjects/global60_svm_stack_200m_train/` only, scored on the held-out polygons.
 4. **Run the tests that wait for the review** on the laptop: gradient and thermal response by origin (H2, stage 2), once reviewed channels exist, and flow margins in IR against Viking (H1) again on lava margins digitised at Athabasca. The other tests have run (results below).
@@ -55,7 +55,7 @@ In order, toward the interim (data cut 2 November) and the final on 8 December. 
 ## Results so far
 
 - **±60° landform classification**: a support vector machine on the hand-drawn labels, scored on 183 polygons in 15° blocks it never saw. **70.5%, κ 0.54** per pixel; **73.5%, κ 0.58** after a 5 × 5 majority filter, against 58.6% for one class everywhere. Normal Ground is reliable (99% producer's, 78% user's) and Crater behaves as cratered terrain. **The lava tube class isn't usable** (2% user's accuracy): 44 polygons are too few for a planet-scale class.
-- **Does thermal infrared help? (test T1)**: on the same held-out split, the thermal bands add **+1.3 points** (95% interval +0.6 to +2.2). Slope and relief alone score 68.6%, κ 0.51, as well as all seven bands: the hand-drawn classes are landforms, and terrain decides them.
+- **Does thermal infrared help? (test T1)**: on the same held-out split, the thermal bands add **+1.3 points** (95% interval +0.6 to +2.2). Pro's own SVM over the whole ±60° at 200 m gives the same, **+1.36 points** (+0.46 to +2.47), from crater and hill terrain; lava tube scores better without the thermal bands (KB §56). Slope and relief alone score 68.6%, κ 0.51, as well as all seven bands: the hand-drawn classes are landforms, and terrain decides them.
 - **Against calibrated thermal inertia (T3)**: across ±60°, TES thermal inertia tracks Viking red (r −0.36), while the THEMIS mosaics keep only a weak signal inside regions (|r| ≈ 0.1). In the two type areas the diurnal-contrast index does not track it (r −0.22 to ≈ 0); Viking albedo does at Athabasca (−0.55, −0.64). Where a calibrated product can check, visible albedo carries the material signal.
 - **Against the USGS geologic map (T8, T2)**: the classes sit where terrain puts them, and volcanic plains can't be separated from other plains in these bands, so lava flows are shown from the map's volcanic units. At Athabasca the flood lava (`lAv`) is the least cratered large unit: 1,122 catalogued craters per million km², against 1,760 and 2,183 on the older units.
 - **The prospectus' hypotheses (T5–T7)**: no band separates the geologic map's lava contacts at Athabasca much better than chance (day IR 21.0%, Viking red 12.3%, chance 10%; the 1:20 M map is too coarse to settle it). The composite's Iso Cluster classes are the least reproducible input (west- vs east-trained agreement 0.40, against 0.61–0.89 for single bands). No channel threshold keeps first-order streams on real slopes: only 30.8–36.7% lie on ≥ 2°, so the tributary order count is a setting, not a measurement.
@@ -142,7 +142,7 @@ The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   146 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   147 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
     pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)

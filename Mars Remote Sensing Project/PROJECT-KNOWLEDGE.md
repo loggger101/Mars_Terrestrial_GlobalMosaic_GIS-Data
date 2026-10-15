@@ -4809,5 +4809,37 @@ only `global60_svm_stack_200m_<set>.tif`, `global60_landforms_svm_<set>.ecd`, `g
 - Queued behind it (`t1_queue.ps1`, log `logs\t1_queue_DESKTOP-PJS73RO.log`): score run 1 at 200 m, then at
   400 m without thermal (`--reuse-ecd`), terrain only, without visible, each scored with
   `verify_global60_classification.py --cell 400 --raster`. The 400 m comparison is the existing 400 m map
-  (raw 0.705 / 0.540, same .ecd and split). Results go in the next section. **Counted:** 147 build scripts (`.py`, `.ps1`,
+  (raw 0.705 / 0.540, same .ecd and split). Results: §56. **Counted:** 147 build scripts (`.py`, `.ps1`,
 `.bat` in `build\`; the §54.5 count already included `make_t1_pro_confirm.py`, 144 of them `.py`).
+
+## 56. T1 confirmed with Pro's SVM at 200 m: the thermal bands add +1.4 pt — 2026-10-15 **[V]**
+
+Run 1 of §55.5 finished 07:27: classification 6 h 28 min (21 tiles; training 2861 s before it). Scored by
+`verify_global60_classification.py --cell 200 --raster global60_landforms_svm_nothermal_200m.tif` (the same
+split, the same .ecd settings, the same tiling and the same 400 m reading as the all-band map, §55.3), and by
+`score_t1_bootstrap.py` (new): paired bootstrap of the two maps over whole held-out polygons, 1,000 resamples,
+seed 60, as §40.1. Checked first on raw vs 5 × 5 at 200 m: it reproduces verify's 0.699 / 0.532 and
+0.720 / 0.560 exactly.
+
+| 200 m, raw, held-out (183 polygons) | all 7 bands | without thermal | difference, 95 % CI |
+|---|---|---|---|
+| accuracy | 0.699 | 0.685 | **+1.36 pt** [+0.46, +2.47] |
+| kappa | 0.532 | 0.516 | **+0.016** [+0.005, +0.026] |
+| producer's: Crater / hills / lava tube / Normal | 0.543 / 0.608 / 0.376 / 0.991 | 0.524 / 0.553 / 0.461 / 0.993 | |
+| polygons won: Crater / hills / lava tube / Normal | 102 / 14 / 5 / 20 | 93 / 11 / 13 / 20 | of 124 / 16 / 21 / 22 |
+| training set accuracy / kappa | 0.820 / 0.654 | 0.818 / 0.650 | |
+| IAU craters: 'Crater' inside vs ring | 0.513 vs 0.432 (62.8 %) | 0.468 vs 0.425 (55.8 %) | |
+| seam ratios; elevation alone reproduces | 0.998, 0.990; 54.9 % | 0.997, 0.996; 54.4 % | |
+
+- **T1 holds with Pro's SVM.** The gain matches §40.1's numpy maximum-likelihood result (+1.3 pt [+0.6, +2.2])
+  in size and sign; both intervals exclude zero. The central claim stands at this size: the thermal bands add a
+  small, real amount to the ±60° landform classification on the hand-drawn labels.
+- **Not uniformly.** The thermal bands help Crater (+1.9 pt producer's, 9 more polygons won, and IAU craters read
+  as Crater more often: 62.8 % against 55.8 %) and steep/windy hills (+5.5 pt), and they **hurt lava tube**
+  (−8.5 pt; 5 of 21 polygons won with them, 13 of 21 without). Lava tube is the class closest to the volcanic
+  plains that §43.2–43.3 found the classifier cannot separate; read the gain as coming from crater and hill
+  terrain, not from lava.
+- The 400 m band sets (without thermal, terrain only, without visible) are running in the queue
+  (`logs\t1_queue_DESKTOP-PJS73RO.log`), each followed by its bootstrap against the 400 m all-band map. Their
+  results will be added here. Logs: `global60_classification_check_nothermal_200m.json`,
+  `t1_bootstrap_200m_vs_nothermal_200m.json`. **Counted:** 148 build scripts (145 `.py`).

@@ -37,9 +37,11 @@ a closed basin (−2,156 small pits). **Stale near 180°:** the 400 m map (layou
 **2026-10-15 overnight (§55): X3 scored, layouts 11 / 12 rebuilt, T1 in Pro running.** The 200 m map held-out
 0.699 / κ 0.532 raw, the same as 400 m raw (0.705 / 0.540); majority filters 3–11 built and scored (0.710 →
 0.738); a stack-wide line sweep found no second §54-type defect, only small source edges and DEM-blend strips
-(chips in `Global60\checks\`). T1 with Pro's SVM: 200 m without thermal running (~08:00), then 400 m without
-thermal, terrain only, without visible (queue to ~15:30, `logs\t1_queue_DESKTOP-PJS73RO.log`).
-**Next:** score the T1 runs (§55.5); **the author picks the 200 m published filter** (9 × 9 or 11 × 11 by the
+(chips in `Global60\checks\`). **T1 confirmed with Pro's SVM (§56):** at 200 m the thermal bands add +1.36 pt
+[+0.46, +2.47], κ +0.016, matching §40.1; they help Crater and hills and hurt lava tube. The 400 m band sets
+(without thermal, terrain only, without visible) and their bootstraps run in the queue to ~16:00
+(`logs\t1_queue_DESKTOP-PJS73RO.log`).
+**Next:** add the 400 m T1 results to §56; **the author picks the 200 m published filter** (9 × 9 or 11 × 11 by the
 2 km rule, §55.3), then `make_global60_maps.py` with that `CLEAN` and layout 04; decide the 400 m map (redo its
 c03 column or mark it superseded); the UAC-approved install (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`),
 then `desktop_check.py` and X5. Pro's Python here is on `D:` (§53.0).
