@@ -33,7 +33,8 @@ python build_interim_live.py "..\NEXT STUFF\Mars Global Mosaic - Interim Present
 - **`build\build_interim_live.py`** lays it out in `le_theme.py` (the Presentation 1 design):
   title, goals, spectral bands, the correlation table, tasks and percent complete, the processing
   log, a "Preliminary Results" divider, one slide per figure, issues, next steps with schedule.
-  25 slides since the 2026-10-09 rebuild (T8 table and T4, KB §51; report 17 pages, 16 figures); 23 after
+  28 slides since the 2026-10-16 rebuild (layouts 11 and 12, T1 in Pro, the 200 m published map, KB §57.3;
+  report 20 pages, 19 figures); 25 after the 2026-10-09 rebuild (T8 table and T4, KB §51); 23 after
   the T5–T7 rebuild (KB §48); the count follows `FIGURES`. The
   report (`build_interim_report_live.py`) keeps each figure, its takeaways and its source on one page.
 - The 13 Sep deck is kept in `NEXT STUFF\.backup_20261008\`. `build_interim_le.py` (the September
@@ -128,7 +129,7 @@ content → what is true now:
 | 5 | DEM derivatives | rebuilt in degrees on a metric grid, WARNING 000869 gone, type area and ±60° | §20, §28.8 |
 | 6 | Image-gradient products | renamed `Gradient_*` manually; not used further | §7 |
 | 7 | Jezero context | unchanged: hosted services only, HiRISE link dead | §3 |
-| 8 | Classification | Iso Cluster on Mars; supervised on terrain labels 62.7 %; the two GUI SVMs checked and found wanting; corrected ±60° SVM **73.5 %, κ 0.58 held out**; thermal ablation T1 (+1.3 pt); scored against the geologic map, T8 | §19, §27, §30–§32, §40.1, §43.2 |
+| 8 | Classification | Iso Cluster on Mars; supervised on terrain labels 62.7 %; the two GUI SVMs checked and found wanting; corrected ±60° SVM **73.5 %, κ 0.58 held out** at 400 m, published since 2026-10-16 at 200 m, 11 × 11: **73.8 %, κ 0.58**; thermal ablation T1 (+1.3 pt), confirmed with Pro's SVM (+1.36 / +1.97 pt); scored against the geologic map, T8 | §19, §27, §30–§32, §40.1, §43.2, §55.3, §56, §57 |
 | 9 | CRS harmonisation | **done**: type area at 100 m; ±60° on G100/G200 | §18, §28.1 |
 | 10 | Visible + IR composite | **done**: type area 8.8 s; the two GUI global composites; the corrected 7-band ±60° stack | §18, §29, §31.2 |
 | 11 | Landform digitising | classes exist and are **empty**; 512 training polygons drawn manually; candidates seeded at both type areas; **review fields and `accept_reviewed.py` ready** | §19.4, §25, §29.2, §46 |
@@ -152,7 +153,7 @@ Ordered as a talk would run: data → method → result → limit.
    68 % of large IAU craters recovered at ±60°. Show the miss. (§26, §28.11, layout 07)
 6. **Channels, and the Fill trap** — Fill raised Ius Chasma 2,077 m; 56 % of the first network was
    artefact; 188 steep, rock-floored candidates. (§25, layout 06)
-7. **The hand-drawn labels → a scored classification** — 73.5 % / κ 0.58 on blocks the model never saw; the
+7. **The hand-drawn labels → a scored classification** — 73.8 % / κ 0.58 (200 m, 11 × 11; 400 m: 73.5 %) on blocks the model never saw; the
    checks that caught the 29/30 Sep maps. (§30–§32, layouts 04, 05)
 8. **What the references showed** — T1: the thermal bands add +1.3 pt and terrain alone matches the
    full stack; T3: the index does not track calibrated thermal inertia, Viking albedo does; T2:

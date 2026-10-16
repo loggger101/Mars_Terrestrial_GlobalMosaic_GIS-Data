@@ -4946,7 +4946,7 @@ Rebuilt in the X3 order (§55.3, HANDOFF §5.1), Pro closed, each step backing u
 (`.backups\Mars Project 20261016-1152*` to `-1155*`): `make_global60_maps.py --cell 200` (76 s),
 `make_reference_maps.py` (graticules back on the maps the first one wipes), `polish_layouts.py --export`.
 The map "Mars ±60° Analysis" now shows `global60_landforms_svm_200m_mode11.tif` on top, the raw 200 m map
-under it (off). Layout 04 read after export: held-out **74 %, κ 0.58** (§55.3: 0.738 / 0.583), raw 70 %, κ 0.53;
+under it (off). Layout 04 read after export: held-out **74 %, κ 0.58** (§55.3: 0.738 / 0.583, i.e. 73.8 %), raw 70 %, κ 0.53;
 producer's Crater 61 %, hills 63 %, lava tube 45 %, Normal 99 %; user's lava tube 2 %; training 86 %, κ 0.74;
 elevation alone 55 %; seam ratio 1.00; IAU 'Crater' inside 57 % against ring 46 %. One fault found by reading
 and fixed ("a 11 × 11"; now "Smoothed by majority filter, 11 × 11 (2.2 km)."). Sheets 04, 05 and 10 copied
@@ -5000,5 +5000,28 @@ the stale columns cannot affect (no training or held-out polygon within 1° of �
 - **Catalogue:** `github_catalog_rasters.py` marks all five 400 m maps superseded (§57.2), the raw one
   also stale at 180° and kept as T1's baseline.
 - **Still quoting the 400 m 5 × 5 map as published:** the interim sources (`interim.py`,
-  `verify_interim.py`, `INTERIM-PLAN.md`), to change at the next interim rebuild; `build\aprx_live\`
-  (an `audit_aprx.py` snapshot, stale since before §57).
+  `INTERIM-PLAN.md`; `verify_interim.py` names 73.5 % only as a docstring example), changed in §57.3;
+  `build\aprx_live\` (an `audit_aprx.py` snapshot, stale since before §57; left as it is).
+
+### 57.3 The interim rebuilt — 2026-10-16 **[V]**
+
+The interim deck and report last built 2026-10-09 (§51); rebuilt from the record with everything since.
+`interim.py`: status date 16 October; progress rows (pyramids done, the 200 m map 73.8 %, 465,354 closed
+depressions, 14 layouts); the log's three 18 Sep rows merged (13 rows: 14 overflow, HANDOFF §5.5) and two
+added (13–15 Oct desktop runs and §54; 14–16 Oct the 200 m map, T1 in Pro, §57); **new figures**: layouts 11
+and 12 (HANDOFF §5.4) and T1 in Pro; the landform slide on the 200 m 11 × 11 map; T8's numbers from §57.1;
+issues (thermal 1.3–2.0 pt with two classifiers; 15.3 % / 62.2 % across ±60°; the 180° column among the
+solved); next steps and schedule without the finished desktop runs.
+
+- `make_fig_t1_pro.py` (new): the four T1 comparisons from the `t1_bootstrap_*.json` logs, each a dot with its
+  95 % interval, resolved in blue, not resolved open grey; the pair validated with the dataviz checker
+  (normal-vision ΔE 25, CVD ΔE 21; the grey is neutral on purpose, every row labelled in ink).
+  `make_fig_t8.py` rerun on the §57.1 JSON.
+- `make_interim_figs.py`: layout 11's Robbins table, its note and its legend heading are hidden for the slide
+  (fine print at slide size; the slide states the numbers); the sheet in Pro is unchanged.
+- Deck **28 slides**, report **20 pages, 19 figures**; both rendered (PowerPoint and Word COM) and every changed
+  slide and page read. Found by reading and fixed: layout 11's table and a duplicate legend on its slide; the
+  issues slide reaching the bottom edge; two log cells wrapping. `verify_interim.py`: all 249 numbers in the
+  record (73.8 % added to §57's text, where it belongs). The 10-09 files are kept in `NEXT STUFF\.backup_20261016\`.
+- Not changed: the percent-complete column (the author's; dashes) and the due date (unknown).
+  **Counted:** 148 build scripts (`make_fig_t1_pro.py` new).

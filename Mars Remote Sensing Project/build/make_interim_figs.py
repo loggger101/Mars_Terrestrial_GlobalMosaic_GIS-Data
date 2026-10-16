@@ -12,7 +12,7 @@ opened, never saved, so the layouts are untouched and Pro may be open.
 
   "C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" make_interim_figs.py
 """
-import os, sys, time
+import os, re, sys, time
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import arcpy
 from PIL import Image, ImageChops
@@ -28,7 +28,9 @@ PAD = 12                                   # px of white kept round the trimmed 
 # The sheet's prose, by element name as the three layout builders write them. Headings
 # (hA-hD on 08, h29/h30 on 05) stay: they label panels the slide cannot label for them.
 DROP = {"title", "subtitle", "credit", "notes", "checks", "acc_head", "acc_body",
-        "cA", "cB", "cC", "cD", "s29", "s30", "t29", "t30"}
+        "cA", "cB", "cC", "cD", "s29", "s30", "t29", "t30",
+        "legend_title", "table_title", "table_note"}        # 11: its Robbins table is fine print on a slide
+TABLE_CELL = re.compile(r"t\d+_\d+(_bg)?$")                  # 11's table cells, t<row>_<col> (make_global60_candidate_sheets.py)
 
 
 def trim(path):
@@ -52,7 +54,7 @@ def main():
     for n in wanted:
         t = time.time()
         lyt = have[n]
-        hidden = [e for e in lyt.listElements() if e.name in DROP]
+        hidden = [e for e in lyt.listElements() if e.name in DROP or TABLE_CELL.match(e.name)]
         for e in hidden:
             e.visible = False
         out = os.path.join(OUT, n + ".png")

@@ -16,7 +16,7 @@ Slide text is written in a neutral, impersonal voice.
 """
 from content import DECK_TITLE, COURSE, AUTHOR, TITLE        # unchanged since the prospectus
 
-STATUS_DATE = "9 October 2026"
+STATUS_DATE = "16 October 2026"
 
 MISSION = (
     "Assemble one co-registered visible and thermal-infrared mosaic of Mars in ArcGIS Pro, over "
@@ -62,26 +62,25 @@ CORRELATION = {   # Ius type area, 100.00% co-valid, §18.3
 PROGRESS = [   # (task, what is true now, percentage or None)                   KB
     ("Scope, targets and type area", "Ius Chasma and Athabasca Valles type areas; ±60° extent decided", None),  # §14.3 §16 §42.1
     ("Raster acquisition", "Three globals + THEMIS Night IR", None),                                     # §15
-    ("Statistics, stretches, pyramids", "All products overviewed; the four source globals still not", None),  # §28 §29
+    ("Statistics, stretches, pyramids", "Done: all products overviewed, the four source globals in 26 min", None),  # §28 §29 §53
     ("Grouped mosaic viewer", "Done", None),
     ("DEM terrain derivatives", "Rebuilt in degrees, type area and ±60°; WARNING 000869 gone", None),  # §20 §28.8
     ("Image-gradient products", "Renamed Gradient_*; not used further", None),                          # §7
     ("Jezero context", "Hosted services only; the dead HiRISE link removed", None),                     # §3 §50
-    ("Classification", "±60° SVM on hand-drawn labels: 73.5%, κ 0.58 held out", None),          # §32.2
+    ("Classification", "±60° SVM on hand-drawn labels, 200 m: 73.8%, κ 0.58 held out", None),   # §55.3 §57
     ("CRS harmonisation", "Done: one 100 m / 200 m grid over ±60°", None),                    # §18 §28.1
     ("Visible + IR composite", "Done: type area; 7-band ±60° stack", None),                   # §18 §31.2
     ("Landform digitising", "Classes ready and empty; candidates reviewable; validation sheet ready; 512 training polygons drawn", None),  # §19.4 §29.2 §46 §49
-    ("Crater inventory", "Robbins catalogue in the project (385,049); 5,144 basins ≥ 20 km at ±60°", None),  # §41 §28.11
-    ("Map layouts", "12 layouts, from none, with graticules", None),                                    # §38 §42.1 §44 §49
+    ("Crater inventory", "Robbins catalogue in the project (385,049); 465,354 closed depressions ≥ 1 km at ±60°", None),  # §41 §54.4
+    ("Map layouts", "14 layouts, from none, with graticules", None),                                    # §38 §44 §49 §53.6
     ("Report and presentations", "Interim deck and report are living builds from one source", None),  # §45
 ]
 PROGRESS_SEPT = [90, 100, 70, 100, 80, 70, 20, 20, 15, 5, 0, 0, 0, 25]   # the 13 Sep deck, for comparison
 
 # ------------------------------------------------------------------ processing log
 LOG = [   # (date, what, outcome, §)
-    ("18 Sep", "Type-area stack: four inputs on one 100 m grid", "Composite in 8.8 s, 100% co-valid", "§18"),
-    ("18 Sep", "THEMIS Night IR acquired", "14.14 GB, pixel-aligned with day IR", "§15"),
-    ("18 Sep", "Slope and hillshade rebuilt on a metric grid", "Slope in degrees; z-factor warning gone", "§20"),
+    ("18 Sep", "Night IR acquired; type-area stack; slope on a metric grid",     # 14 rows overflow: 18 Sep in one
+     "Four inputs on one 100 m grid, 100% co-valid; slope in degrees", "§15–20"),
     ("19 Sep", "±60° grids and diurnal contrast index", "15.2 bn px in 36.3 min", "§28"),
     ("19 Sep", "Channel and crater candidates, Ius", "2,610 channels; 1,685 closed depressions in 49 s", "§25–26"),
     ("19 Sep", "Basins at ±60°", "5,144 ≥ 20 km in 48 s", "§28.11"),
@@ -93,6 +92,10 @@ LOG = [   # (date, what, outcome, §)
     ("8 Oct", "Reference data, Athabasca, tests T1–T3 and T8", "Thermal adds +1.3 points; ten layouts", "§38–44"),
     ("8–9 Oct", "Digitising by review; tests T4–T7; validation sheet",          # 14 rows overflow the slide
      "No support for H1–H3 or a tributary count; 12 layouts", "§46–51"),
+    ("13–15 Oct", "Desktop: pyramids; ±60° craters and channels ≥ 1 km; 180° DEM fix",
+     "465,354 closed depressions, 969,822 channel segments", "§53–54"),
+    ("14–16 Oct", "200 m classification; T1 with Pro's SVM; the published map",
+     "73.8%, κ 0.58; thermal adds +1.36 and +1.97 points", "§55–57"),
 ]
 
 # ------------------------------------------------------------------ figures (preliminary results)
@@ -137,6 +140,20 @@ FIGURES = [
                  "Diameter error median +2.2%",
                  "Misses breached craters by construction: they are not closed"],
          source="§28.11"),
+    dict(title="Closed depressions ≥ 1 km across ±60°",
+         images=[("layout", "11_global60_depressions")],
+         points=["465,354 closed depressions ≥ 1 km, from an 11-hour run on the desktop",
+                 "Against Robbins: 15.3% are catalogued craters at ≥ 1 km, 62.2% at ≥ 5 km, 83.1% at ≥ 20 km",
+                 "Below ~5 km their density follows the DEM's sharpness, not the craters (r −0.11)",
+                 "A map of large craters and a list of prompts, not a crater inventory"],
+         source="§53.4, §53.6, §54.4, §55.4"),
+    dict(title="Channels across ±60°",
+         images=[("layout", "12_global60_channels")],
+         points=["969,822 routed channel segments; orders 3–5 drawn",
+                 "60.5% of stream cells discarded as fill artefact (Ius alone: 56%)",
+                 "89.8% lie on ground under 2°: plateau channels are DEM noise",
+                 "No channel reference exists at ±60°, so the network is not scored"],
+         source="§53.4, §53.6, §54.4, §55.4"),
     dict(title="Ius Chasma: candidates to digitise",
          images=[("layout", "06_ius_digitising")],
          points=["Fill raised the canyon floor 2,077 m; 56% of the first channel network was artefact",
@@ -154,16 +171,17 @@ FIGURES = [
     dict(title="Landforms at ±60°, scored on labels the model never saw",
          images=[("layout", "04_global60_landforms")],
          points=["SVM on 512 hand-drawn polygons, split by whole 15° blocks",
-                 "73.5%, κ 0.58 held out (one class everywhere: 58.6%)",
+                 "200 m, smoothed 11 × 11 (2.2 km): 73.8%, κ 0.58 held out (one class everywhere: 58.6%)",
+                 "Halving the cell bought no accuracy: 69.9% raw at 200 m, 70.5% at 400 m",
                  "Normal Ground and cratered terrain are solid; lava tube is not (2% user's)"],
-         source="§31.3, §32.2"),
+         source="§31.3, §55.3, §57"),
     dict(title="The landform classes against the USGS geologic map",
          images=[("file", r"interim_img\t8_enrichment.png")],          # layout 13 is the Pro sheet; its table, legible
          points=["Each cell: how much more often a class occurs in a unit group than across ±60° (×1 = no link)",
-                 "\"Lava tube\" is not enriched on volcanic plains (×0.87) but on volcano flanks and aprons (×3.34, ×4.12)",
-                 "75% of the volcanic plains come out Normal Ground",
+                 "\"Lava tube\" is not enriched on volcanic plains (×0.84) but on volcano flanks and aprons (×3.30, ×4.29)",
+                 "76% of the volcanic plains come out Normal Ground",
                  "A coherent terrain map, not a lava-flow map: lava flows come from the geologic map"],
-         source="§43.2, §49"),
+         source="§43.2, §49, §57.1"),
     dict(title="Does thermal infrared improve the classification?",
          images=[("file", r"interim_img\thermal_ablation.png")],
          points=["Slope and relief alone: 68.6%, κ 0.51 held out; all seven bands: 67.0%, κ 0.50",
@@ -171,6 +189,13 @@ FIGURES = [
                  "Without terrain, visible and thermal score below one class everywhere (58.6%)",
                  "The labelled classes are landforms, so terrain decides them; the thermal claim needs material labels"],
          source="§40"),
+    dict(title="The thermal gain, confirmed with ArcGIS Pro's own SVM",
+         images=[("file", r"interim_img\t1_pro.png")],
+         points=["Retrained with the published model's settings, without each band group, over the whole ±60°",
+                 "Thermal adds +1.36 points at 200 m (+0.46 to +2.47) and +1.97 at 400 m (+1.08 to +3.35)",
+                 "It helps craters and hills and hurts lava tube; dropping visible or both groups leaves the score tied",
+                 "Terrain alone ties the score but makes a poor crater map: 34 of 124 crater polygons"],
+         source="§56, §56.1"),
     dict(title="Do the infrared mosaics show lava-flow edges Viking misses? (H1)",
          images=[("file", r"interim_img\t5_margins.png")],
          points=["Profiles across the geologic map's lava contacts at Athabasca: does each band tell the units apart?",
@@ -212,7 +237,7 @@ ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
     ("The thermal signal is weak where it can be checked",
      "Against calibrated TES thermal inertia, the THEMIS mosaics keep only a weak local signal (|r| ≈ 0.1 "
      "within 15° blocks) and none across the planet; Viking albedo tracks it (r −0.31 to −0.36). In the "
-     "classification the thermal bands add 1.3 points (§40.1, §42.4, §43.1)."),
+     "classification the thermal bands add 1.3–2.0 points, with two classifiers (§40.1, §42.4, §43.1, §56)."),
     ("The landform classes are terrain classes",
      "Slope and relief alone match all seven bands; against the geologic map the classes sit where terrain "
      "puts them, and \"lava tube\" marks volcano flanks, not lava plains (§40.1, §43.2)."),
@@ -220,8 +245,8 @@ ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
      "Volcanic plains are not separable from other plains in these bands; a fifth \"volcanic\" class tested "
      "below chance. The USGS map's volcanic units are the lava-flow reference (§43.3, §44)."),
     ("Closed depressions are not a crater count",
-     "Only 11–13% of the detector's ≥ 1 km candidates are catalogued craters; the Robbins catalogue "
-     "(385,049 craters) is the crater reference (§42.3)."),
+     "Of the candidates ≥ 1 km, 11–13% in the type areas and 15.3% across ±60° are catalogued craters; "
+     "from 5 km up most are (62.2%). Robbins (385,049 craters) is the crater reference (§42.3, §54.4)."),
     ("Four hypotheses tested, none supported",
      "No band separates the geologic map's lava contacts much better than chance (the map is too coarse to "
      "settle H1); the composite's classes are the least reproducible input (H3); no channel threshold keeps "
@@ -233,21 +258,22 @@ ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
     ("250 GB on one USB drive",
      "Reads cap near 112 MB/s, and the drive has dropped off mid-write; big outputs are built on internal disk first (§2.2, §36.4)."),
     ("Solved since September",
-     "Three coordinate frames, the z-factor defect, four failed global composites, the missing night mosaic (§15, §18, §20)."),
+     "Three coordinate frames, the z-factor defect, four failed global composites, the missing night mosaic, "
+     "a defective DEM column at 180° (§15–20, §54)."),
 ]
 
 NEXT_STEPS = [
     "Digitise Ius Chasma and Athabasca Valles: accept or reject the machine candidates, then draw what they miss",
-    "Craters and channels ≥ 1 km across ±60° on the desktop (a 7-hour resumable run), scored against Robbins",
+    "Score the machine candidates against the reviewed features: the validation sheet (layout 14)",
     "Hypothesis H2 again, on reviewed channels with their origin set",
-    "A deep-learning model on the desktop GPU, trained on the training split and scored on the held-out polygons",
+    "A deep-learning model on the desktop GPU, once Esri's Deep Learning Libraries are installed; "
+    "trained on the training split and scored on the held-out polygons",
     "Flow margins in visible against infrared at Athabasca, retested on digitised margins: hypothesis H1",
-    "Pyramids on the four source mosaics, for faster work in ArcGIS Pro",
 ]
 
 SCHEDULE = [   # (when, what)
-    ("8–25 Oct", "Digitising by review starts; desktop runs: junctions, pyramids, ±60° crater and channel pass"),
-    ("26 Oct – 1 Nov", "±60° crater and channel sheets; H1 and H2 on digitised features"),
+    ("8–25 Oct", "Digitising by review starts; desktop runs done: pyramids, ±60° crater and channel pass, 200 m map, T1 in Pro"),
+    ("26 Oct – 1 Nov", "H1 and H2 on digitised features; the deep-learning model"),
     ("mid-Nov", "Interim presentation and report"),
     ("14–22 Nov", "Validation against the digitised landforms; data freeze"),
     ("23 Nov – 4 Dec", "Final report and presentation"),
