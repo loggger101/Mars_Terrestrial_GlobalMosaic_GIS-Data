@@ -7,7 +7,8 @@ Landform_ChannelCandidates_auto_60. Writes build\logs\global60_candidates_check.
 
 Predictions and rules, written before the first run:
 
-  C1  counts equal the run's own log (467,547 craters, 973,879 channel segments, 2026-10-14), CRS is
+  C1  counts equal the run's own log (465,354 craters, 969,822 channel segments: run 3, 2026-10-15, after
+      the five tiles over 180° were rerun, KB §54.4; runs 1-2: 467,547 / 973,879), CRS is
       Mars_Equidistant_Cylindrical_CM180, no empty geometry, every point inside the G200 grid.
   C2  the crater filters hold on every fine-pass candidate (KB 26.4): diameter >= 1 km, aspect <= 2.0,
       fill ratio >= 0.55; coarse-pass ones >= 20 km.

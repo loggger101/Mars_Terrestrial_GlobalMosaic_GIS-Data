@@ -11,7 +11,8 @@ r"""Puts the ±60° work INTO the ArcGIS project, where it shows when the projec
   5. gives the type-area sheets 01 and 02 a map each, so they show Viking and night IR in Pro
      instead of the classification that 03 shares the old map with
 
-Pro must be closed. The .aprx is copied to Z:\Mars Project\.backups\ first.
+Pro must be closed. The .aprx is copied to <drive>\Mars Project\.backups\ first.
+Run with --cell 200 for the published map (the 200 m 11 x 11 one, KB §57); the default cell is 400.
 Needs make_global60_svm_stack.py, make_global60_classification.py and
 verify_global60_classification.py to have run. Run polish_layouts.py afterwards (KB §33).
 """

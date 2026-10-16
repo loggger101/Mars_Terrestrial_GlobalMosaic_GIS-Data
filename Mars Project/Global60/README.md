@@ -1,12 +1,12 @@
 # `Global60` — derived products at the analysis extent
 
-Everything in this folder is on the **same content area as the source mosaics at
-`Z:\`**, not on the Ius Chasma type area. That is the whole point of the folder:
-`Z:\Mars Project\TypeArea\` holds the `ius_*` products for one 15 × 7° box, and
+Everything in this folder is on the **same content area as the source mosaics at the drive
+root**, not on the Ius Chasma type area. That is the whole point of the folder:
+`<drive>\Mars Project\TypeArea\` holds the `ius_*` products for one 15 × 7° box, and
 this holds the `global60_*` products for the full ±60° analysis extent.
 
-Started 2026-09-19. See `PROJECT-KNOWLEDGE.md` §28 (the grid and the first products) and §31–32
-(the classification).
+Started 2026-09-19. See `PROJECT-KNOWLEDGE.md` §28 (the grid and the first products), §31–32 and §55–57
+(the classification), §54 (the 180° column patched in the DEM and its derivatives), §56 (T1).
 
 ## The grid
 
@@ -49,17 +49,21 @@ is **never resampled** — it is a window read, not a warp.
 |---|---|---|
 | `global60_thermal_contrast.tif` | G100 | diurnal-contrast index ×10000, Int16, nodata −32768 |
 | `global60_thermal_contrast_200m.tif` | G200 | the index aggregated to the DEM grid |
-| `global60_dem.tif` | G200 | HRSC/MOLA, exact, Int16 |
+| `global60_dem.tif` | G200 | HRSC/MOLA, exact, Int16; the source's defective last column patched at 180° (§54) |
 | `global60_slope_deg.tif` | G200 | slope in **degrees** on a metric grid |
 | `global60_aspect.tif` | G200 | aspect |
 | `global60_hillshade.tif` | G200 | 225° / 45° |
 | `global60_svm_stack_200m.tif` | G200 | the 7-band classification stack, 8-bit, no elevation band (§31.2) |
 | `global60_landforms_svm.ecd` | | the support vector machine, trained on the training split of the hand-drawn labels (§31) |
-| `global60_landforms_svm_400m.tif` | 400 m | the landform classification; pixel = class code 1–4, 255 none |
-| `global60_landforms_svm_400m_mode3 / 5 / 7 / 9.tif` | 400 m | the same after an n × n majority filter; `_mode5` is the one to use (§32.2) |
+| `global60_landforms_svm_200m.tif` | G200 | the landform classification at 200 m; pixel = class code 1–4, 255 none (§55.3) |
+| `global60_landforms_svm_200m_mode3 / 5 / 7 / 9 / 11.tif` | G200 | the same after an n × n majority filter; **`_mode11` (2.2 km) is the published map** (§57) |
+| `global60_landforms_svm_400m.tif`, `_400m_mode3 / 5 / 7 / 9.tif` | 400 m | the earlier 400 m classification and its filters; superseded, not redone after the 180° fix (§57.2) |
+| `global60_landforms_svm_<set>.ecd`, `global60_svm_stack_200m_<set>.tif`, `global60_landforms_svm_<set>_<cell>m.tif` | G200 / 400 m | test T1: the model retrained without band groups, `<set>` = `nothermal`, `novisible`, `terrain` (§56) |
+| `global60_depression_density_0p5deg.tif`, `global60_robbins_density_0p5deg.tif` | 0.5° | closed depressions and Robbins craters ≥ 1 km per 10⁴ km² (layout 11, §53.6) |
 | `smoke60_*.tif` | G100 | smoke-test windows of the pipeline: Viking, day, night, 4- and 5-band composites (§28.11) |
 | `global60_svm_s_ClassifyRaste*.crf` | | temporary outputs `ClassifyRaster` wrote on 2 Oct; no layer uses them |
-| `layouts\` | | PNG exports of layouts 04–07 |
+| `layouts\` | | PNG exports of layouts 04–14 |
+| `checks\` | | image chips of the DEM steps found by the stack's line sweep (§55.2) |
 | `_0based_originals\` | | the landform maps before their pixel values became the class codes (§36) |
 
 The full-extent harmonised bands and Composite Bands (`global60_viking`, `_composite_4band`, …)
@@ -80,14 +84,14 @@ meaningless — but it means a value from one cannot be quoted against the other
 ## Checking it
 
 ```
-"C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" verify_global60.py
+<ArcGIS Pro Python> verify_global60.py
 ```
 
 Checks every product's corners to the millimetre, its cell size, its shape, its
 CRS, and — for 200 m products — that it nests on the 100 m grid. Non-zero exit
 if anything fails.
 
-## `Z:\Global60`
+## `<drive>\Global60`
 
 A junction to this folder, for the legacy Spatial Analyst tools that reject the
-space in `Mars Project` (KB §19.1). Same pattern as `Z:\TypeArea`.
+space in `Mars Project` (KB §19.1). Same pattern as `<drive>\TypeArea`.

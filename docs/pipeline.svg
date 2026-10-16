@@ -72,7 +72,7 @@
 
   <!-- results -->
   <rect class="b out" x="1020" y="34" width="180" height="56" rx="6"/>
-  <text x="1032" y="57" class="t">±60° landform map</text><text x="1032" y="76" class="s">400 m · 73.5%, κ 0.58</text>
+  <text x="1032" y="57" class="t">±60° landform map</text><text x="1032" y="76" class="s">200 m · 73.8%, κ 0.58</text>
   <rect class="b open" x="1020" y="234" width="180" height="56" rx="6"/>
   <text x="1032" y="257" class="t">Hand digitising</text><text x="1032" y="276" class="s">open: the critical path</text>
   <line x1="970" y1="62" x2="1018" y2="62"/>
