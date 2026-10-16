@@ -241,6 +241,13 @@ def main():
     gold = group(m, "Superseded: the 29\u201330 Sep GUI SVMs (KB \u00a730)", visible=False)
     add(m, os.path.join(GDB, "Classified_202609292109007048151"), "29 Sep SVM \u2014 tile artefact", False, gold)
     add(m, os.path.join(GDB, "Classified_202609300147338582853"), "30 Sep SVM \u2014 mostly elevation", False, gold)
+    g400 = None
+    if CELL == 200:
+        # the published map until 2026-10-16, kept to compare; never redone after the 180\u00b0 fix (KB \u00a757.2)
+        g400 = group(m, "Superseded: the 400 m map, published to 2026-10-16 (KB \u00a757.2)", visible=False)
+        add(m, os.path.join(G60, "global60_landforms_svm_400m_mode5.tif"),
+            "400 m SVM, 5 \u00d7 5 majority \u2014 stale near 180\u00b0 (KB \u00a754)", False, g400)
+        add(m, os.path.join(G60, "global60_landforms_svm_400m.tif"), "400 m SVM, raw per pixel", False, g400)
     gc = group(m, "Reference", visible=False)
     add(m, os.path.join(GDB, "MARS_nomenclature_craters_gt100km_March2019"), "IAU craters > 100 km", False, gc)
     add(m, os.path.join(GDB, "MARS_nomenclature_craters_lt100km_March2019"), "IAU craters < 100 km", False, gc)
@@ -248,7 +255,8 @@ def main():
     # Pro auto-arranges what is added (and a new group lands on top), which put the opaque hillshade
     # over the classification. Set the drawing order explicitly, top to bottom.
     top = ([ext.name, tst.name, trn.name] + ([cls.name] if cls is not None else [])
-           + ([raw.name] if raw is not None and raw is not cls else []) + [gc.name, gold.name, gin.name])
+           + ([raw.name] if raw is not None and raw is not cls else []) + [gc.name]
+           + ([g400.name] if g400 is not None else []) + [gold.name, gin.name])
     order(m, top)
     print("   drawing order:", [l.name for l in m.listLayers()])
 

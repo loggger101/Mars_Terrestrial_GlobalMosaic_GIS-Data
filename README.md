@@ -149,7 +149,7 @@ Mars Remote Sensing Project/
   OLD/                     prospectus and Presentation 1 (delivered)
 Mars Project/
   Mars Project.aprx        the ArcGIS Pro project: 26 maps, all Mars, and 14 layouts
-  .backups/                65 earlier copies of the .aprx, 2026-09-18 to 10-16
+  .backups/                68 earlier copies of the .aprx, 2026-09-18 to 10-16
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs

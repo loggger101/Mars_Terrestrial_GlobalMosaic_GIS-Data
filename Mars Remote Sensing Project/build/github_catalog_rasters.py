@@ -38,14 +38,15 @@ G60 = {
     "global60_slope_deg.tif": "Slope in **degrees**, from the DEM on a metric grid (KB §28.8).",
     "global60_aspect.tif": "Aspect in degrees clockwise from north (gdaldem, Horn); flat ground is NoData.",
     "global60_hillshade.tif": "Hillshade, sun azimuth 225°, altitude 45° (gdaldem, Horn).",
-    "global60_landforms_svm_400m.tif": "Landform classification, SVM on the hand-drawn labels, per pixel at 400 m "
-        "(KB §31.3): 70.5 %, κ 0.54 on held-out polygons. Not redone after the 180° fix (KB §54): stale in a "
-        "few columns at 180°. " + LANDFORM_VALUES + ".",
-    "global60_landforms_svm_400m_mode3.tif": "The same, 3 × 3 majority filter (KB §32.2).",
-    "global60_landforms_svm_400m_mode5.tif": "The same, 5 × 5 majority filter: the published version until "
-        "2026-10-16 (73.5 %, κ 0.58 held out; KB §32.2), replaced by the 200 m 11 × 11 map (KB §57).",
-    "global60_landforms_svm_400m_mode7.tif": "The same, 7 × 7 majority filter.",
-    "global60_landforms_svm_400m_mode9.tif": "The same, 9 × 9 majority filter.",
+    "global60_landforms_svm_400m.tif": "**Superseded 2026-10-16 by the 200 m 11 × 11 map** (KB §57.2). Landform "
+        "classification, SVM on the hand-drawn labels, per pixel at 400 m (KB §31.3): 70.5 %, κ 0.54 on held-out "
+        "polygons. Never redone after the 180° fix (KB §54): stale in a few columns at 180°. Kept as the 400 m "
+        "baseline of T1 (KB §56.1). " + LANDFORM_VALUES + ".",
+    "global60_landforms_svm_400m_mode3.tif": "Superseded (KB §57.2). The same, 3 × 3 majority filter (KB §32.2).",
+    "global60_landforms_svm_400m_mode5.tif": "**Superseded** (KB §57.2). The same, 5 × 5 majority filter: the "
+        "published version until 2026-10-16 (73.5 %, κ 0.58 held out; KB §32.2).",
+    "global60_landforms_svm_400m_mode7.tif": "Superseded (KB §57.2). The same, 7 × 7 majority filter.",
+    "global60_landforms_svm_400m_mode9.tif": "Superseded (KB §57.2). The same, 9 × 9 majority filter.",
     "global60_landforms_svm_200m.tif": "Landform classification at 200 m (X3, KB §55.3), the same SVM and split: "
         "69.9 %, κ 0.53 held out; its 180° column reclassified after the fix (KB §54). " + LANDFORM_VALUES + ".",
     "global60_landforms_svm_200m_mode3.tif": "The same, 3 × 3 majority filter (KB §55.3).",

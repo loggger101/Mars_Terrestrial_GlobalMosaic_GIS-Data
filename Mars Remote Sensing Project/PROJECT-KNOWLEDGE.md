@@ -4984,3 +4984,21 @@ in `exports\README.md`; an assert stops any file over 95 MB reaching the clone. 
 gdb (X2's smoke run recreates them, HANDOFF §5.1) and are exported; deleting them is the author's call.
 **Not done:** a new release (the GeoPackage and the new rasters wait for the next
 `github_release_bundle.py`, before the interim, HANDOFF §5.6).
+
+### 57.2 The 400 m map superseded — 2026-10-16
+
+**Author's decision, 2026-10-16:** the 400 m map (`global60_landforms_svm_400m.tif` and its filters 3–9) is
+**superseded by the 200 m 11 × 11 map**; its c03 column is **not** rerun after the 180° fix (§54), so it
+stays stale in a few columns at 180°. Nothing is deleted. It remains the 400 m baseline of T1 (§56.1), which
+the stale columns cannot affect (no training or held-out polygon within 1° of ±180°, §56.1), and of the
+§32.2 / §55.3 filter tables.
+
+- **Project:** `make_global60_maps.py --cell 200` now adds a group "Superseded: the 400 m map, published to
+  2026-10-16 (KB §57.2)" to "Mars ±60° Analysis", off, holding the 5 × 5 and the raw 400 m maps, beside the
+  29–30 Sep group (§30). No layout shows them; layout 04 re-read after the rebuild, unchanged.
+  `make_reference_maps.py` and `polish_layouts.py` rerun; sheets 04, 05, 10 copied into `Global60\layouts\`.
+- **Catalogue:** `github_catalog_rasters.py` marks all five 400 m maps superseded (§57.2), the raw one
+  also stale at 180° and kept as T1's baseline.
+- **Still quoting the 400 m 5 × 5 map as published:** the interim sources (`interim.py`,
+  `verify_interim.py`, `INTERIM-PLAN.md`), to change at the next interim rebuild; `build\aprx_live\`
+  (an `audit_aprx.py` snapshot, stale since before §57).

@@ -1,8 +1,8 @@
-backup F:\Mars Project\.backups\Mars Project 20261016-115454.aprx
+backup F:\Mars Project\.backups\Mars Project 20261016-124439.aprx
 1. tile grid
   Check_Tiles_4096px_60: 954 tiles of 410 km
 2. map: Mars ±60° Analysis
-   drawing order: ['Analysis extent ±60°', 'Hand-drawn labels — held out (scored, never trained on)', 'Hand-drawn labels — used to train', 'Landforms — SVM, 11 × 11 majority (±60°, 200 m)', 'Landforms — raw per-pixel SVM (±60°, 200 m)', 'Reference', 'IAU craters > 100 km', 'IAU craters < 100 km', 'Basin candidates ≥ 20 km (auto)', 'Superseded: the 29–30 Sep GUI SVMs (KB §30)', '29 Sep SVM — tile artefact', '30 Sep SVM — mostly elevation', 'Inputs (±60°, 200 m)', 'Stack: Viking RGB (bands 1–3 of 7)', 'Diurnal contrast index — compare within one area only (KB §28.10)', 'Slope (degrees)', 'Elevation (HRSC/MOLA)', 'Hillshade']
+   drawing order: ['Analysis extent ±60°', 'Hand-drawn labels — held out (scored, never trained on)', 'Hand-drawn labels — used to train', 'Landforms — SVM, 11 × 11 majority (±60°, 200 m)', 'Landforms — raw per-pixel SVM (±60°, 200 m)', 'Reference', 'IAU craters > 100 km', 'IAU craters < 100 km', 'Basin candidates ≥ 20 km (auto)', 'Superseded: the 400 m map, published to 2026-10-16 (KB §57.2)', '400 m SVM, 5 × 5 majority — stale near 180° (KB §54)', '400 m SVM, raw per pixel', 'Superseded: the 29–30 Sep GUI SVMs (KB §30)', '29 Sep SVM — tile artefact', '30 Sep SVM — mostly elevation', 'Inputs (±60°, 200 m)', 'Stack: Viking RGB (bands 1–3 of 7)', 'Diurnal contrast index — compare within one area only (KB §28.10)', 'Slope (degrees)', 'Elevation (HRSC/MOLA)', 'Hillshade']
 3. check maps
 4. clip every Mars map to ±60°
    clipped: Mars

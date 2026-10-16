@@ -50,8 +50,9 @@ catalogues brought up to date; the two X2 classes are too big for git and wait, 
 next release (`github_release_bundle.py`, before the interim).
 **Next:** ~~add the 400 m T1 results to §56~~ (done, §56.1); ~~**the author picks the 200 m published filter** (9 × 9 or 11 × 11 by the
 2 km rule, §55.3), then `make_global60_maps.py` with that `CLEAN` and layout 04~~ (done, §57); ~~move layout 13
-and the GitHub catalogue to the 200 m 11 × 11 map~~ (done, §57.1); decide the 400 m map (redo its
-c03 column or mark it superseded); the UAC-approved install (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`),
+and the GitHub catalogue to the 200 m 11 × 11 map~~ (done, §57.1); ~~decide the 400 m map~~ (superseded,
+c03 not rerun, §57.2); at the next interim rebuild, move `interim.py` / `INTERIM-PLAN.md` to the 200 m 11 × 11
+map; the UAC-approved install (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`),
 then `desktop_check.py` and X5. Pro's Python here is on `D:` (§53.0).
 
 > **Moving to the desktop? Read `HANDOFF-DESKTOP.md` first** (beside this file; KB §52): the first ten

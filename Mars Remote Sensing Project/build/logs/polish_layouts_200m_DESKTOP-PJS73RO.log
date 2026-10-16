@@ -1,17 +1,17 @@
-backup F:\Mars Project\.backups\Mars Project 20261016-120601.aprx
+backup F:\Mars Project\.backups\Mars Project 20261016-124534.aprx
 01_visible             no change
 02_night_ir            no change
 03_classification      no change
-04_global60_landforms  no change
-05_svm_checks          no change
+04_global60_landforms  21 fonts, no-data note, legend heading 11 pt, legend heading 11 pt, legend heading 11 pt, legend: extent named once
+05_svm_checks          11 fonts, legend heading 11 pt
 06_ius_digitising      no change
 07_global60_basins     no change
 08_global60_mosaic     no change
 09_athabasca_digitising no change
-10_global60_locator    no change
+10_global60_locator    21 fonts, legend heading 11 pt, legend heading 11 pt, legend heading 11 pt
 11_global60_depressions no change
 12_global60_channels   no change
-13_geomap_check        26 fonts, legend heading 11 pt, legend heading 11 pt, legend heading 11 pt, legend heading 11 pt
+13_geomap_check        no change
 14_validation          no change
 saved F:\Mars Project\Mars Project.aprx
 exported to C:\Users\Owner\AppData\Local\Temp\claude\F--\a336c2d9-9e10-465b-abab-28e249068502\scratchpad\export
