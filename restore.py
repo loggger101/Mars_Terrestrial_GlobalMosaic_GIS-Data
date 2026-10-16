@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 r"""Rebuild the Mars Global Mosaic project drive from this repository and its releases.
 
-    python restore.py --dest E:\                    everything: the tree, both releases
+    python restore.py --dest E:\                    everything: the tree, the newest data and derivatives releases
     python restore.py --dest E:\ --dry-run          say what would happen, download nothing
     python restore.py --dest E:\ --only typearea    only assets whose name contains "typearea"
     python restore.py --dest E:\ --no-tree          releases only
@@ -33,9 +33,20 @@ HERE = Path(__file__).resolve().parent
 API = f"https://api.github.com/repos/{REPO}/releases"
 
 
-def releases():
+def releases(every=False):
+    """The newest release of each kind ("data-...", "derivatives-..."), newest first: a newer data release
+    holds the whole bundle again, so an older one adds nothing but download. every=True: all of them."""
     with urllib.request.urlopen(urllib.request.Request(API, headers={"Accept": "application/vnd.github+json"})) as r:
-        return json.load(r)
+        rels = sorted(json.load(r), key=lambda x: x["created_at"], reverse=True)
+    if every:
+        return rels
+    seen, out = set(), []
+    for x in rels:
+        kind = x["tag_name"].rsplit("-", 3)[0]
+        if kind not in seen:
+            seen.add(kind)
+            out.append(x)
+    return out
 
 
 def sha256(path):
@@ -139,6 +150,8 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true", help="overwrite existing files")
     ap.add_argument("--clean", action="store_true", help="delete <dest>\\_downloads when done")
+    ap.add_argument("--all-releases", action="store_true",
+                    help="also older releases of each kind (newest first; files already placed are kept)")
     a = ap.parse_args()
     dest = a.dest.resolve()
     dl = dest / "_downloads"
@@ -153,7 +166,7 @@ def main():
                     place(p, to / p.relative_to(HERE / folder), a.force)
 
     total = 0
-    for rel in releases():
+    for rel in releases(a.all_releases):
         assets = [x for x in rel["assets"] if a.only in x["name"] or x["name"].startswith("SHA256SUMS")]
         if not any(destination(x["name"], dest)[0] != "skip" for x in assets):
             continue

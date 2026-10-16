@@ -12,7 +12,9 @@ Assets, each part under 1.9 GB (GitHub's limit is 2 GiB per file); files are the
 byte for byte, so a restore is an unzip:
   typearea-partN.zip         Z:\Mars Project\TypeArea\, whole: the Ius Chasma stack and every
                              derivative, classification and model (§18-27)
-  global60-classification.zip  the ±60° SVM maps (raw + mode 3/5/7/9), the model, smoke tests
+  global60-classification[-partN].zip  the ±60° SVM maps (400 m raw + mode 3/5/7/9; since 2026-10-16
+                             also 200 m raw + mode 3-11 and the four T1 maps), the models, the two
+                             0.5° density grids, smoke tests
   npy-caches.zip             decimated arrays of the globals behind the figures (§9); the five
                              ~950 MB *_ov400.npy are left out, they are views of the tifs above
   mars_project_vectors.gpkg.zip, Classified_*.tif   from github_export_gdb.py
@@ -43,6 +45,7 @@ def groups():
     yield "typearea", MP, files_under(MP / "TypeArea")
     yield "global60-classification", MP, sorted(
         [p for p in g60.glob("global60_landforms_svm*") if p.is_file() and p.suffix != ".ovr"]
+        + [p for p in g60.glob("global60_*_density_0p5deg.tif*") if p.is_file() and p.suffix != ".ovr"]  # §53.6
         + [p for p in g60.glob("smoke60_*") if p.is_file()]
         + [p for d in g60.glob("*.crf") for p in files_under(d)] + [g60 / "README.md"])
     yield "npy-caches", RSP, sorted(p for p in (RSP / "build").rglob("*.npy")

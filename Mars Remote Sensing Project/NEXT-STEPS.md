@@ -52,7 +52,8 @@ next release (`github_release_bundle.py`, before the interim).
 2 km rule, §55.3), then `make_global60_maps.py` with that `CLEAN` and layout 04~~ (done, §57); ~~move layout 13
 and the GitHub catalogue to the 200 m 11 × 11 map~~ (done, §57.1); ~~decide the 400 m map~~ (superseded,
 c03 not rerun, §57.2); ~~at the next interim rebuild, move `interim.py` / `INTERIM-PLAN.md` to the 200 m 11 × 11
-map~~ (interim rebuilt 2026-10-16: 28 slides, 20 pages, §57.3); the UAC-approved install (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`),
+map~~ (interim rebuilt 2026-10-16: 28 slides, 20 pages, §57.3); ~~GitHub data release~~ (`data-2026-10-16`,
+5.9 GB, §57.4; a new derivatives release with the §54 patch only if wanted); the UAC-approved install (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`),
 then `desktop_check.py` and X5. Pro's Python here is on `D:` (§53.0).
 
 > **Moving to the desktop? Read `HANDOFF-DESKTOP.md` first** (beside this file; KB §52): the first ten

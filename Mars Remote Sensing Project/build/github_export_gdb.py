@@ -75,6 +75,7 @@ ABOUT = {
 # Too big for git (their .gdbtable files reach 246 and 113 MB; GitHub refuses files over 100 MB):
 # exported to the release GeoPackage only, and listed in exports\README.md as such (KB §57).
 RELEASE_ONLY = {"Landform_CraterCandidates_auto_60", "Landform_ChannelCandidates_auto_60"}
+RELEASE = "data-2026-10-16"            # the release whose GeoPackage holds them (KB §57.4)
 MAX_FILE = 95 * 1000 * 1000
 SYSTEM_FIELDS = {"OBJECTID", "FID", "Shape", "SHAPE", "Shape_Length", "Shape_Area"}
 
@@ -160,8 +161,9 @@ the labels and nomenclature are in geographic `Mars_2000_(Sphere)`.
 |---|---|---|---|---|---|
 """ + "\n".join(rows) + "\n"
     if release_only:
-        text += ("\n**In the release GeoPackage only** (too big for git: GitHub refuses files over 100 MB). "
-                 "Not in a release until the next one is made (`github_release_bundle.py`):\n\n"
+        text += ("\n**In the release GeoPackage only** (too big for git: GitHub refuses files over 100 MB): "
+                 f"`mars_project_vectors.gpkg.zip` in [`{RELEASE}`](https://github.com/loggger101/"
+                 f"Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/{RELEASE}):\n\n"
                  + "\n".join(f"- `{fc}`: {n:,} rows. {ABOUT.get(fc, '')}" for fc, n in release_only.items()) + "\n")
     (fgdb.parent / "README.md").write_text(text, encoding="utf-8", newline="\n")
     arcpy.management.ClearWorkspaceCache()
@@ -206,7 +208,8 @@ if __name__ == "__main__":
     if "--catalog-only" in sys.argv:   # rewrite exports\README.md from the export already in the repo
         fgdb = REPO / "exports" / "mars_project_vectors.gdb"
         arcpy.env.workspace = str(fgdb)
-        catalog(fgdb, arcpy.ListFeatureClasses())
+        catalog(fgdb, arcpy.ListFeatureClasses(),
+                {fc: int(arcpy.management.GetCount(os.path.join(SRC, fc))[0]) for fc in sorted(RELEASE_ONLY)})
         sys.exit(0)
     if "--rasters-only" in sys.argv:
         svm_maps()

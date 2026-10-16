@@ -20,7 +20,7 @@ MP = DRIVE / "Mars Project"
 REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
             Path.home() / "OneDrive" / "Documents" / "GitHub" / "Mars_Terrestrial_GlobalMosaic_GIS-Data")
 URL = "https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/"
-DATA, DERIV = "data-2026-10-06", "derivatives-2026-10-06"
+DATA, DERIV = "data-2026-10-16", "derivatives-2026-10-06"     # data refreshed 2026-10-16 (KB §57.4)
 
 LANDFORM_VALUES = "Classes 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class"
 IUS_SUP_VALUES = ("Classes 1 crater interior, 2 steep wall, 3 moderate wall, 4 chasma floor, 5 plateau flank, "
@@ -121,14 +121,16 @@ IUS = {
     "val/perrotin_fill.tif": "Perrotin: filled DEM.",
     "val/perrotin_depth.tif": "Perrotin: fill depth. Recovered within −7.1 % in diameter.",
 }
-# Made after the 2026-10-06 releases: listed, but in no release until the next one (HANDOFF §5.6)
-UNRELEASED = {n for n in G60 if n.startswith(("global60_landforms_svm_200m", "global60_landforms_svm_nothermal",
-              "global60_landforms_svm_novisible", "global60_landforms_svm_terrain", "global60_svm_stack_200m_"))
-              } | {"global60_depression_density_0p5deg.tif", "global60_robbins_density_0p5deg.tif"}
-# Patched in place at the 180° column on 2026-10-14 (KB §54): the release holds the copy from before
+# In the data release's global60-classification zips (github_release_bundle.py's group), not the derivatives
+IN_DATA = ("global60_landforms", "smoke60", "global60_depression_density", "global60_robbins_density")
+# In no release: exact band copies of the stack, rebuilt by make_t1_pro_confirm.py in ~15 min (KB §56)
+UNRELEASED = {n for n in G60 if n.startswith("global60_svm_stack_200m_")}
+# Patched in place at the 180° column on 2026-10-14 (KB §54): the derivatives release holds the copy from before
 PATCHED = {"global60_dem.tif", "global60_slope_deg.tif", "global60_aspect.tif", "global60_hillshade.tif",
            "global60_svm_stack_200m.tif"}
-PATCH_NOTE = " **Patched 2026-10-14 at the 180° column (KB §54); the release copy predates the patch.**"
+PATCH_NOTE = (" **Patched 2026-10-14 at the 180° column (KB §54); the release copy predates the patch: after "
+              "restoring, run `make_global_terrain.py --meridian-only`, then `make_global60_svm_stack.py "
+              "--patch-cols 53342 53350` (KB §54.2).**")
 CM0 = "Classified_202609300147338582853"   # the one raster on a 0° central meridian (Viking's grid)
 GDB = {
     "Classified_202609292109007048151": "The 29 Sep SVM classification made in the Pro GUI. Follows its 4096-px "
@@ -170,10 +172,10 @@ def main():
     g60, ius, crs, frames = [], [], set(), {}
     for p in sorted((MP / "Global60").glob("*.tif")):
         i = info(str(p)); crs.add(i["srs"]); frames[p.name] = i
-        big = p.name in G60 and not p.name.startswith(("global60_landforms", "smoke60"))
-        where = rel(DERIV, p.name + ".part*") if big else rel(DATA, "global60-classification.zip")
+        big = p.name in G60 and not p.name.startswith(IN_DATA)
+        where = rel(DERIV, p.name + ".part*") if big else rel(DATA, "global60-classification-part*.zip")
         if p.name in UNRELEASED:
-            where = "not yet (next release)"
+            where = "none (re-computable, KB §56)"
         desc = G60.get(p.name)
         if desc and p.name in PATCHED:
             desc += PATCH_NOTE
@@ -222,7 +224,8 @@ Viking's 231.5 m global grid, so its x runs −180 to +180°E. The ±60° grids:
 ([`Global60/README.md`](../Mars%20Project/Global60/README.md)).
 
 **Sizes** are on the drive; the release copies are the same bytes (split into 1.9 GB pieces where
-the file is bigger), except the files marked as patched after the release and those not yet in one.
+the file is bigger), except the files marked as patched after the release and the three T1 stacks, which
+are in none.
 The `.ovr` pyramids are not in the releases: build them after restoring.
 
 ## ±60° analysis extent: `Mars Project/Global60/`

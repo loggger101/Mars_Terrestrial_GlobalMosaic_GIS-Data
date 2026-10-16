@@ -1,20 +1,20 @@
 # Backup, releases and restoring
 
 The project's working copy is an external drive. This repository is its off-drive backup: the tree
-holds everything small, and two GitHub releases hold the rasters. This page lists what is in the
+holds everything small, and GitHub releases hold the rasters: the newest data release and the derivatives release. This page lists what is in the
 releases, how the backup is kept current, and how to rebuild the drive from it. Each raster is
 described in [rasters.md](rasters.md), each vector layer in [the layer catalog](../exports/README.md).
 
 ## What is in the releases
 
-[`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06), about 4.4 GB:
+[`data-2026-10-16`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-16), about 5.9 GB (it replaces [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06), kept for its history):
 
 | Asset | What |
 |---|---|
 | `typearea-part*.zip` | the whole Ius Chasma type area: stack, terrain, thermal index, segmentations, classifications, models |
-| `global60-classification.zip` | the ±60° SVM maps (raw and 3/5/7/9 majority), the model, smoke tests |
+| `global60-classification-part*.zip` | the ±60° SVM maps: 200 m raw and 3–11 majority (the published map is the 200 m 11 × 11 one), 400 m raw and 3–9 (superseded), the four T1 band-set maps; the models; the two 0.5° density grids; smoke tests |
 | `Classified_*.tif` | the two SVM maps made in the Pro GUI on 29 and 30 September (superseded, kept); pixel value = class code 1–4, NoData 255, since 2026-10-07 |
-| `mars_project_vectors.gpkg.zip` | the same vector layers as `exports/`, as a GeoPackage |
+| `mars_project_vectors.gpkg.zip` | the vector layers as a GeoPackage: those in `exports/`, plus the two ±60° candidate classes too big for git (465,354 closed depressions, 969,822 channel segments) |
 | `npy-caches.zip` | decimated arrays of the globals that the figures are drawn from |
 | `SHA256SUMS.txt` | checksums |
 
@@ -22,7 +22,7 @@ described in [rasters.md](rasters.md), each vector layer in [the layer catalog](
 
 | Asset | What |
 |---|---|
-| `global60_*.tif.partNNN` | the ±60° derivatives, original bytes cut into 1.9 GB pieces: the 7-band classification stack, the diurnal-contrast index (100 m and 200 m), DEM, slope in degrees, aspect, hillshade |
+| `global60_*.tif.partNNN` | the ±60° derivatives, original bytes cut into 1.9 GB pieces: the 7-band classification stack, the diurnal-contrast index (100 m and 200 m), DEM, slope in degrees, aspect, hillshade. The DEM, slope, aspect, hillshade and stack predate the 2026-10-14 patch at 180°: after restoring, run `make_global_terrain.py --meridian-only`, then `make_global60_svm_stack.py --patch-cols 53342 53350` (KB §54.2) |
 | `global60-sidecars.zip` | their statistics and lineage (`.aux.xml`, `.xml`) |
 | `labeledobjects-part*.zip` | both deep-learning exports: the 1 October one from Pro and the ±60° re-export |
 | `Segmented_202609290011302066080.tif*` | the ±60° mean-shift segmentation made in Pro on 29 September |
@@ -75,7 +75,7 @@ python restore.py --dest E:\ --dry-run
 python restore.py --dest E:\
 ```
 
-It copies the repository's folders into place, downloads both releases (about 79 GB), checks every download against GitHub's SHA-256, unzips each bundle where it belongs, rejoins the split rasters into `Mars Project/Global60/` and checks each against its whole-file hash. Downloads resume if interrupted, and it never overwrites an existing file unless given `--force`. `--only <text>` restores just the assets whose names contain that text. The two Pro-GUI SVM maps, the segmentation and the GeoPackage go to `Mars Project/restored_from_gdb/`.
+It copies the repository's folders into place, downloads the newest data release and the derivatives release (about 80 GB; `--all-releases` adds the older ones), checks every download against GitHub's SHA-256, unzips each bundle where it belongs, rejoins the split rasters into `Mars Project/Global60/` and checks each against its whole-file hash. Downloads resume if interrupted, and it never overwrites an existing file unless given `--force`. `--only <text>` restores just the assets whose names contain that text. The two Pro-GUI SVM maps, the segmentation and the GeoPackage go to `Mars Project/restored_from_gdb/`.
 
 Then, by hand:
 

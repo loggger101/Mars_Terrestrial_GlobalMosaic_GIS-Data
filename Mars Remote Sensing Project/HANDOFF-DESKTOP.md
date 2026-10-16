@@ -248,8 +248,9 @@ candidates with their measured recall (`NEXT-STEPS.md` §6 contingency).
   `C:\Users\Loggg\Mars_deleted_2026-10-09\` (not on this drive, not on the desktop) (§50.1).
 - `.aprx` backups accumulate in `Mars Project\.backups\` (53 by 2026-10-09); the README's count is checked
   by CI, so update it when backups are added.
-- The release GeoPackage of 2026-10-06 still holds the two deleted smoke classes; refresh with the next
-  release (§5.6).
+- ~~The release GeoPackage of 2026-10-06 still holds the two deleted smoke classes~~: replaced by
+  `data-2026-10-16` (KB §57.4), whose GeoPackage holds the two `_60_smoke` classes that X2's smoke run
+  recreated; deleting them from the gdb is the author's call (KB §57.1).
 
 ### 5.9 Ruled out: do not propose again (`NEXT-STEPS.md` §10)
 

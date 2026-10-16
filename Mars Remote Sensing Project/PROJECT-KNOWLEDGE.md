@@ -5025,3 +5025,26 @@ solved); next steps and schedule without the finished desktop runs.
   record (73.8 % added to §57's text, where it belongs). The 10-09 files are kept in `NEXT STUFF\.backup_20261016\`.
 - Not changed: the percent-complete column (the author's; dashes) and the due date (unknown).
   **Counted:** 148 build scripts (`make_fig_t1_pro.py` new).
+
+### 57.4 GitHub release `data-2026-10-16` — 2026-10-16 **[V]**
+
+On the author's request: `github_export_gdb.py --rasters-only` (the two GUI SVM maps staged; the GeoPackage
+from §57.1, all 26 classes), then `github_release_bundle.py --upload data-2026-10-16` (log
+`logs\github_release_data-2026-10-16_DESKTOP-PJS73RO.log`). **10 assets, 5.9 GB:** `typearea-part1..3.zip`
+(920 / 1,182 / 1,058 MB; 0.26 GB less than on 10-06, after the §50 deletions), `global60-classification-part1.zip`
+and `-part2.zip` (1,794 / 278 MB: every `global60_landforms_svm*` map and model, 200 m, 400 m and T1, the two 0.5°
+density grids, added to the bundle's group, and the smoke tests), `npy-caches.zip` (35 MB),
+`mars_project_vectors.gpkg.zip` (161 MB; with the two X2 classes, §57.1), the two `Classified_*.tif`,
+`SHA256SUMS.txt`. **Checked after upload:** all 9 assets' GitHub SHA-256 equal `SHA256SUMS.txt`. Release notes
+say what is new and that `data-2026-10-06` is replaced (kept, not deleted); the new release is "Latest".
+
+- **Not in it:** the three T1 stacks (exact band copies, `make_t1_pro_confirm.py` rebuilds them; "none" in the
+  catalogue) and a new derivatives release: `derivatives-2026-10-06` stays, its DEM, slope, aspect, hillshade
+  and stack predating §54; the catalogue and `docs/backup.md` give the two §54.2 commands that patch them after a
+  restore.
+- **Catalogues:** `github_catalog_rasters.py` names `data-2026-10-16` and `global60-classification-part*.zip`;
+  `github_export_gdb.py` names the release holding the two release-only classes, and `--catalog-only` now keeps
+  that list. README quick start and `docs/backup.md` point at the new release.
+- **`restore.py`** (repo only): took every release, so a restore would also have downloaded the superseded
+  data release (4.4 GB) and kept none of it; it now takes the newest release of each kind (`--all-releases`
+  for every one). Dry run against the live releases: `data-2026-10-16` + `derivatives-2026-10-06`, 80.3 GB.
