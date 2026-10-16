@@ -5,7 +5,7 @@ the laptop and `F:` on the desktop; every build script finds its own drive (`bui
 
 **Start here, in this order:**
 1. `Mars Remote Sensing Project\HANDOFF-DESKTOP.md`: the first ten minutes on a machine, where
-   everything is, the working rules, and every open task with its command (written 2026-10-09).
+   everything is, the working rules, and every open task with its command (kept current each session).
 2. `Mars Remote Sensing Project\NEXT-STEPS.md`, section "Resume here": the state at the last stop.
 3. `Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md`: the record and the authority on what is true.
 

@@ -5058,3 +5058,23 @@ in `C:\MarsScratch\global60\`, `global60_smoke\`, `q24\`, `q24_aligned\` (1.0 GB
 `build\*_ov400.npy` written by `verify_global60_classification.py` and read by no script (13.2 GB; a rescore
 writes one again). **Kept:** the §54 rollback copies (`mars_scratch\meridian_backup_20261014\`,
 `C:\MarsScratch\global60\pre_meridian_20261014\`), the two `_60_smoke` classes, the T1 stacks, the interim backup.
+
+### 57.6 The plans and the project page brought to the current state — 2026-10-16
+
+On request, the public repository was checked against the drive (`github_sync.py --dry-run`: nothing to copy,
+the clone level with `origin/main`) and cleared of parts that only record the past.
+
+- **No longer mirrored** (`github_sync.py`; on the drive and in git history still): `Mars Project\.backups\`
+  (68 `.aprx` snapshots; git versions `Mars Project.aprx` itself), `build\aprx_live\` (an `audit_aprx.py`
+  extract, stale since before §57), Presentation 1's figure folders `build\le_img\` and `build\pres1_img\`
+  except the files `interim.py` still shows (read from it at run time: `global60_thermal.png`), Presentation 1's
+  `.pptx` (its PDF stays in `OLD\`), the drive root's `new training.*` (the 30 Sep near copy of the hand-drawn
+  labels, §29.2) and a 15 Sep screenshot. 359 files, ~136 MB of the 325 MB tree. `tools/check_repo.py` no longer
+  counts `.aprx` backups; `docs/backup.md` lists what the drive alone holds.
+- **Rewritten to the current state, done items removed rather than struck:** `NEXT-STEPS.md` (403 → ~200
+  lines; section numbers 0–10 kept, since scripts and this record cite them; open decisions renumbered D14–D16),
+  `HANDOFF-DESKTOP.md` (now the operating guide for either machine; §5.1 desktop tasks, §5.7 open questions and
+  §5.8 housekeeping current), `INTERIM-PLAN.md` (the 2026-10-08 staleness tables replaced by the current
+  pipeline, progress facts and results), the README (status, next steps, results; the usage example on the
+  published map: shares 32.8 / 1.8 / 9.3 / 56.1 %, the same at a tenth and at full resolution; `lonlat`
+  within 3 × 10⁻¹⁴° of PROJ). This record is kept whole: it is the history by design.

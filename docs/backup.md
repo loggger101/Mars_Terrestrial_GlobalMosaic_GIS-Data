@@ -30,7 +30,7 @@ described in [rasters.md](rasters.md), each vector layer in [the layer catalog](
 
 `restore.py` ([Restoring](#restoring)) rejoins and checks them. [`tools/check_remote.py`](../tools/check_remote.py), run by hand, checks both releases' assets against their checksum files without downloading them. By hand: `cat global60_dem.tif.part* > global60_dem.tif` (or `copy /b a.part001+a.part002 a` in `cmd`), then check it against the sums.
 
-Not backed up anywhere but the drive: the `.ovr` pyramids (Build Pyramids re-creates them), `Global60/_0based_originals/` (the ±60° landform maps before their recode, KB §36) and the other geodatabase rasters, mostly legacy products the knowledge base finds defective and superseded (percent-rise slopes on a degree grid, a global composite mixing raw elevation with 8-bit bands).
+Not backed up anywhere but the drive (git history holds the files the repository once mirrored): the `.aprx` snapshots in `Mars Project/.backups/` (git versions `Mars Project.aprx` itself), the unpacked copy of the `.aprx` in `build/aprx_live/`, Presentation 1's figure folders (`build/le_img/`, most of `build/pres1_img/`) and its `.pptx` (the PDF is in `OLD/`), the 30 Sep "new training" shapefile (a near copy of `Landform_TrainingSamples_terrain`), the three T1 band-subset stacks (re-computable), the `.ovr` pyramids (Build Pyramids re-creates them), `Global60/_0based_originals/` (the ±60° landform maps before their recode, KB §36) and the other geodatabase rasters, mostly legacy products the knowledge base finds defective and superseded (percent-rise slopes on a degree grid, a global composite mixing raw elevation with 8-bit bands).
 
 ## Keeping it current
 

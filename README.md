@@ -23,48 +23,39 @@ The four sources sit in three coordinate frames. Everything is put on one grid r
 
 ## Where it stands (2026-10-16)
 
-The interim report and presentation are due **mid-November 2026** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source and rebuilt as results come in ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md).
+The interim report and presentation are due **mid-November 2026** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source and rebuilt as results come in ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); how to work on the project is [`HANDOFF-DESKTOP.md`](Mars%20Remote%20Sensing%20Project/HANDOFF-DESKTOP.md).
 
 | Task | State |
 |---|---|
-| Raster acquisition, including THEMIS Night IR | done; all four inputs match their published sizes; the night mosaic its MD5 too |
+| Raster acquisition, including THEMIS Night IR | done; all four inputs match their published sizes, the night mosaic its MD5 too |
 | CRS harmonisation (the gate) | done at ±60°: one grid, defined once in [`grid60.py`](Mars%20Remote%20Sensing%20Project/build/grid60.py) and read from the night mosaic |
-| Terrain derivatives | done at ±60°: slope in degrees on a metric grid, aspect, hillshade, no z-factor defect |
+| Terrain derivatives | done at ±60°: slope in degrees on a metric grid, aspect, hillshade |
 | Band composite | done: a 7-band, 8-bit ±60° stack at 200 m with no raw elevation band, 97.3% co-valid |
 | Unsupervised classification | done for the type area (Iso Cluster, object-based segmentation, parameter sweep) |
-| Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks; at 200 m too: held-out 69.9 % raw, the same as 400 m raw (KB §55.3); **published since 2026-10-16 as the 200 m map with an 11 × 11 (2.2 km) majority filter, 73.8 %, κ 0.58** (KB §57) |
-| Channel and crater candidates | done at ±60° (2026-10-14, the five tiles over 180° rerun 10-15 after a defective DEM edge column was patched, KB §54): 465,354 closed depressions ≥ 1 km and 969,822 channel segments, checked for tile seams and against the Robbins catalogue (KB §53.4, §54.4); 2,610 channel candidates and 1,685 closed depressions in Ius Chasma, the same for Athabasca Valles, 5,144 basin candidates at ±60°; the Robbins crater catalogue (385,049) for reference |
-| Landform digitising | **open, the critical path**: next step 1 |
-| Map layouts | fourteen layouts in the project (below), including the validation sheet, which fills in as the review proceeds, and the ±60° closed-depression and channel sheets (KB §53.6) |
+| Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks; **published as the 200 m map with an 11 × 11 (2.2 km) majority filter, 73.8%, κ 0.58** |
+| Channel and crater candidates | done at ±60°: 465,354 closed depressions ≥ 1 km and 969,822 channel segments, checked against the Robbins catalogue; in both type areas; 5,144 basins ≥ 20 km |
+| Landform digitising | **open, the critical path** |
+| Map layouts | fourteen, below |
 
 ### Next steps
 
-In order, toward the interim (data cut 2 November) and the final on 8 December. The full list, with who does what and when, is the "Resume here" section of [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md). Every open task, audited on 2026-10-09 with its command, cost and test of done, is in [`HANDOFF-DESKTOP.md`](Mars%20Remote%20Sensing%20Project/HANDOFF-DESKTOP.md), written for the move to the desktop. Every open question behind them is numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
+The full list, with who does what, is the "Resume here" section of [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); open questions are numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
 
-1. **Digitise the three landform layers** (task 11, the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. The map *Ius Chasma — digitising* and layout 06 put them over the machine prompts: the 188 steep, rock-floored channel candidates and the 1,685 crater candidates. Digitising starts as a review: each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, and `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins) is drawn by hand (KB §46). Hand work in Pro; no heavy processing. Layout 14 and `build/make_validation_sheet.py` turn each review session into the detector's precision and recall (KB §49). Then re-export the geodatabase so the backup holds the new features ([keeping the backup current](docs/backup.md#keeping-it-current)).
-2. **The choices are settled** (KB §50, 2026-10-09): the class order is that of the labels (1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground; `Composite Object Classes.ecs` is superseded); the plateau channel candidates stay and are rejected in review; the published map is smoothed at ~2 km (5 × 5 at 400 m; since 2026-10-16 the 200 m map, 11 × 11, KB §57); a deep-learning model is trained on the corrected stack with box labels, from a training-split export so it can be scored on the same held-out blocks as the SVM.
-3. **Run the desktop jobs**, too heavy for the laptop. Every build script finds its own drive, so they run from `F:` on the desktop; the no-space junctions were retargeted there on 2026-10-13 (KB §53.3).
-   - ~~the ±60° crater and channel fine pass~~: done 2026-10-14, 11 h 07 min on the desktop, checked with `verify_global60_candidates.py` (KB §53.4); its two ±60° sheets, layouts 11 and 12, are in the project (KB §53.6);
-   - ~~the 200 m classification (X3)~~: done 2026-10-14, 6 h 52 min on the desktop, the same model as the 400 m map; a 2 km stripe along 180° traced to the source DEM's last column and fixed (KB §54); scored with majority filters 3–11 (KB §55.3); published with the 11 × 11 filter on 2026-10-16, layouts 04 and 13 rebuilt on it (KB §57);
-   - T1 with Pro's own SVM (the thermal-band test, KB §40.1): confirmed at 200 m on 2026-10-15, the thermal bands add +1.36 pt [+0.46, +2.47] held-out, helping craters and hills and hurting lava tube (KB §56); ~~the three band sets at 400 m~~ done 2026-10-16: +1.97 pt [+1.08, +3.35] at 400 m; without the visible bands, or on terrain alone, the score ties the full stack inside wide intervals (KB §56.1);
-   - ~~pyramids on the four source mosaics (q6)~~: done 2026-10-13, 26 min on the desktop (KB §53);
-   - the deep-learning model: the GPU test passed (the 2080 Ti engages, q10); Esri's Deep Learning Libraries need an administrator install first (KB §53.5). Trained on `LabeledObjects/global60_svm_stack_200m_train/` only, scored on the held-out polygons.
-4. **Run the tests that wait for the review** on the laptop: gradient and thermal response by origin (H2, stage 2), once reviewed channels exist, and flow margins in IR against Viking (H1) again on lava margins digitised at Athabasca. The other tests have run (results below).
-5. **Write the interim and the final report and presentation**, from the layouts and the results above.
+1. **Review the machine candidates and digitise the three landform layers** (the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. Each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, starting with the 188 steep, rock-floored channel candidates and the 1,685 closed depressions at Ius Chasma; `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins at Athabasca) is drawn by hand. Layout 14 turns each session into the detector's precision and recall.
+2. **Deep learning** on the desktop GPU, once Esri's Deep Learning Libraries are installed: trained on the training split only and scored on the same held-out polygons as the SVM.
+3. **The retests that wait for the review**: volcanic against fluvial channels by origin (H2, stage 2), and flow margins in IR against Viking on lava margins digitised at Athabasca (H1).
+4. **The interim and the final report and presentation**, from the layouts and the results below.
 
 ## Results so far
 
-- **±60° landform classification**: a support vector machine on the hand-drawn labels, scored on 183 polygons in 15° blocks it never saw. **70.5%, κ 0.54** per pixel; **73.5%, κ 0.58** after a 5 × 5 majority filter, against 58.6% for one class everywhere. At 200 m the published map (11 × 11, 2.2 km) scores **73.8%, κ 0.58** (KB §55.3, §57). Normal Ground is reliable (99% producer's, 78% user's) and Crater behaves as cratered terrain. **The lava tube class isn't usable** (2% user's accuracy): 44 polygons are too few for a planet-scale class.
-- **Does thermal infrared help? (test T1)**: on the same held-out split, the thermal bands add **+1.3 points** (95% interval +0.6 to +2.2). Pro's own SVM over the whole ±60° at 200 m gives the same, **+1.36 points** (+0.46 to +2.47), from crater and hill terrain; lava tube scores better without the thermal bands (KB §56). At 400 m: **+1.97 points** (+1.08 to +3.35); leaving out the Viking bands (74.7%) or both spectral groups (70.8%) ties the full stack (70.5%) inside wide intervals, but terrain alone makes a poor crater map (KB §56.1). Slope and relief alone score 68.6%, κ 0.51, as well as all seven bands: the hand-drawn classes are landforms, and terrain decides them.
-- **Against calibrated thermal inertia (T3)**: across ±60°, TES thermal inertia tracks Viking red (r −0.36), while the THEMIS mosaics keep only a weak signal inside regions (|r| ≈ 0.1). In the two type areas the diurnal-contrast index does not track it (r −0.22 to ≈ 0); Viking albedo does at Athabasca (−0.55, −0.64). Where a calibrated product can check, visible albedo carries the material signal.
+- **±60° landform classification**: a support vector machine on the hand-drawn labels, scored on 183 polygons in 15° blocks it never saw. The published map (200 m, 11 × 11) scores **73.8%, κ 0.58**, against 58.6% for one class everywhere; per pixel 69.9%, κ 0.53. Normal Ground is reliable (99% producer's) and Crater behaves as cratered terrain. **The lava tube class isn't usable** (2% user's accuracy).
+- **Does thermal infrared help? (test T1)**: yes, a little. With ArcGIS Pro's SVM over the whole ±60°, leaving the thermal bands out costs **1.36 points** at 200 m (95% interval 0.46 to 2.47) and **1.97** at 400 m (1.08 to 3.35), from crater and hill terrain; lava tube scores better without them. A numpy classifier on the same split gives +1.3. Leaving out the Viking bands, or both spectral groups, ties the full stack inside wide intervals, but terrain alone makes a poor crater map. The hand-drawn classes are landforms, and terrain decides them.
+- **Against calibrated thermal inertia (T3)**: across ±60°, TES thermal inertia tracks Viking red (r −0.36), while the THEMIS mosaics keep only a weak signal inside regions (|r| ≈ 0.1); in the two type areas the diurnal-contrast index does not track it. Where a calibrated product can check, visible albedo carries the material signal.
 - **Against the USGS geologic map (T8, T2)**: the classes sit where terrain puts them, and volcanic plains can't be separated from other plains in these bands, so lava flows are shown from the map's volcanic units. At Athabasca the flood lava (`lAv`) is the least cratered large unit: 1,122 catalogued craters per million km², against 1,760 and 2,183 on the older units.
-- **The prospectus' hypotheses (T5–T7)**: no band separates the geologic map's lava contacts at Athabasca much better than chance (day IR 21.0%, Viking red 12.3%, chance 10%; the 1:20 M map is too coarse to settle it). The composite's Iso Cluster classes are the least reproducible input (west- vs east-trained agreement 0.40, against 0.61–0.89 for single bands). No channel threshold keeps first-order streams on real slopes: only 30.8–36.7% lie on ≥ 2°, so the tributary order count is a setting, not a measurement.
-- **Volcanic against fluvial channels (T4, H2, stage 1)**: by type area, the volcanic (Athabasca) channel candidates are shallower than the fluvial (Ius) ones, median 1.4 against 10.2 m per km, the opposite of the hypothesis, and thermal response tells them apart no better than chance (AUC 0.50). The window, not the origin, sets the gradient; H2 is retested on reviewed channels (KB §51).
-- **Two earlier SVM maps checked and superseded**: one follows its 4096-pixel processing tiles and scores below chance on its own training data; rerunning its classifier on a window aligned with those tiles reproduces it to 99.9995%, and shifting the window moves the seams, so the blocks are the tool's processing tiles (KB §53). The other is mostly an elevation map.
-- **Diurnal-contrast index**: calibrated thermal inertia can't be derived from the 8-bit, locally stretched THEMIS mosaics. A relative day–night contrast index can, and within the type area it is nearly independent of terrain (r = +0.11 against elevation, −0.25 against slope). It is not a restatement of topography, but against calibrated TES thermal inertia it barely tracks material (above), and it does not compare across the planet.
-- **Type-area supervised accuracy**: 62.7%, κ 0.41 on terrain-defined classes. The thermal index adds +0.4 points there, as it should on terrain classes.
-- **Channels**: `Fill` flooded Ius Chasma 2,077 m deep, and 56% of the stream cells in the first channel network were an artefact of it. Of the 2,610 candidates that remain, the 188 steep, rock-floored ones (1,037 km) are the ones worth digitising.
-- **Craters**: 1,685 closed-depression candidates ≥ 1 km; against the Robbins catalogue only 11% are catalogued craters (21% at ≥ 2 km), so they are prompts, not a crater count. Large craters are measured well: Perrotin within 7.1% in diameter. The detector can't see breached craters such as Oudemans. At ±60°, 68% of the 117 IAU craters ≥ 100 km are recovered within ±50% in diameter. **At ±60° (467,547 closed depressions)**, against Robbins: 15% of the candidates ≥ 1 km are catalogued craters, 62% of those ≥ 5 km and 83% of those ≥ 20 km, each far above a chance baseline (0.8–10%); recall levels off near half, since breached and degraded craters are invisible to it (KB §53.4). Below ~5 km its density follows the DEM's makeup more than the craters: small candidates gather in north–south strips where the HRSC/MOLA blend is sharp, so it is not a density map of craters (layout 11, KB §53.6).
+- **Craters**: across ±60°, 465,354 closed depressions ≥ 1 km; against the Robbins catalogue 15.3% of them are catalogued craters, 62.2% of those ≥ 5 km and 83.1% of those ≥ 20 km, each far above a chance baseline; recall levels off near half, since breached and degraded craters are invisible to a closed-depression detector. Below ~5 km the density follows the DEM's makeup more than the craters (layout 11). Large craters are measured well: Perrotin within 7.1% in diameter.
+- **Channels**: `Fill` flooded Ius Chasma 2,077 m deep, and 56% of the stream cells in the first network were an artefact of it; of the 2,610 candidates left, 188 steep, rock-floored ones are worth digitising. Across ±60°, 969,822 routed segments (layout 12); 89.8% lie on ground under 2°, so plateau channels are DEM noise. No channel reference exists at ±60° to score them.
+- **The prospectus' hypotheses (T4–T7)**: no band separates the geologic map's lava contacts at Athabasca much better than chance (H1, at 1:20 M); the volcanic channel candidates are shallower than the fluvial ones and thermal response doesn't tell them apart (H2, stage 1); the composite's Iso Cluster classes are the least reproducible input (H3); no channel threshold keeps first-order streams on real slopes, so the tributary order count is a setting, not a measurement (Q5).
+- **Two earlier SVM maps made in the Pro GUI, checked and superseded**: one follows its 4096-pixel processing tiles and scores below chance on its own training data; the other is mostly an elevation map.
 
 The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.md`](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
 
@@ -111,7 +102,7 @@ from osgeo import gdal
 import numpy as np, math
 gdal.UseExceptions()
 
-ds = gdal.Open("Global60/global60_landforms_svm_400m_mode5.tif")   # 400 m, 53,347 x 17,783
+ds = gdal.Open("Global60/global60_landforms_svm_200m_mode11.tif")  # 200 m, 106,694 x 35,565
 band = ds.GetRasterBand(1)
 # A tenth of the full resolution is plenty for an overview.
 a = band.ReadAsArray(buf_xsize=ds.RasterXSize // 10, buf_ysize=ds.RasterYSize // 10)
@@ -128,10 +119,10 @@ def lonlat(col, row):
     return 180 + math.degrees(x / R), math.degrees(y / R)           # longitude 0–360°E, latitude
 ```
 
-It prints Crater 33.2%, steep/windy hills 1.7%, lava tube 9.5%, Normal Ground 55.5%, the same shares as a full-resolution count. `lonlat` agrees with PROJ's own transform to 10⁻¹³ degrees.
+It prints Crater 32.8%, steep/windy hills 1.8%, lava tube 9.3%, Normal Ground 56.1%, the same shares as a full-resolution count. `lonlat` agrees with PROJ's own transform to 10⁻¹³ degrees.
 
 - **Coordinate system.** Almost everything is in `Mars_Equidistant_Cylindrical_CM180`: metres on the Mars sphere (R = 3,396,190 m) with the **central meridian at 180°**, so x runs 0–360°E. The CRS is embedded in each file; keep it. Reprojecting to an Earth CRS, or assuming a 0° meridian, puts features half a planet away. The exception is the 30 Sep SVM map, `Classified_202609300147338582853`: same projection, but **central meridian 0°**, on Viking's grid. The hand-drawn labels and the IAU nomenclature are in geographic `Mars_2000_(Sphere)`.
-- **The landform map** to use is `global60_landforms_svm_400m_mode5.tif`. Its pixel values are the class codes: **1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class**, the same codes as the training labels; the attribute table adds names and colours. Read the lava tube class as unreliable (above). Every classified raster in the project follows the same rule: pixel value = class code.
+- **The landform map** to use is `global60_landforms_svm_200m_mode11.tif` (the 400 m maps are its superseded predecessors). Its pixel values are the class codes: **1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class**, the same codes as the training labels; the attribute table adds names and colours. Read the lava tube class as unreliable (above). Every classified raster in the project follows the same rule: pixel value = class code.
 - **The training labels** are `Landform_TrainingSamples_terrain` in [`exports/`](exports/README.md), with the same class codes 1–4. One class schema in the project swaps 2 and 3; the layer catalog says which.
 - **What each raster is**, with its grid, data type, NoData and the release that holds it: [docs/rasters.md](docs/rasters.md).
 
@@ -144,12 +135,10 @@ Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
   build/                   148 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
-    pres1_img/, le_img/    figures
   NEXT STUFF/              interim report and presentation (in progress)
-  OLD/                     prospectus and Presentation 1 (delivered)
+  OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
 Mars Project/
   Mars Project.aprx        the ArcGIS Pro project: 26 maps, all Mars, and 14 layouts
-  .backups/                68 earlier copies of the .aprx, 2026-09-18 to 10-16
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs
@@ -162,7 +151,7 @@ docs/
   backup.md                the release assets, keeping the backup current, restoring the drive
   scripts.md               every build script by purpose, with the Python it needs
   pipeline.svg             the diagram above
-drive-root/                source-raster sidecars; the "new training" shapefile; a 3D-view screenshot
+drive-root/                the source rasters' sidecars and the night mosaic's PDS label and MD5
 restore.py                 rebuilds the drive from this repository and its releases
 tools/check_repo.py        the checks CI runs on every push: page links, Python syntax, file sizes,
                            and that the counts this page states match the tree

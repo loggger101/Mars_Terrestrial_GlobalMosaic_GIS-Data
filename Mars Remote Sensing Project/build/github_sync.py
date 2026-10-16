@@ -46,12 +46,21 @@ SKIP_DIR_SUFFIX = (".crf", ".gdb")
 # Dated snapshots of the record and scripts (.backup_YYYYMMDD, .py_backup_YYYYMMDD): history, kept on
 # the drive and in git history, not on the project page (KB §39.4).
 SKIP_DIR_PREFIX = (".backup_", ".py_backup_")
-SKIP_FILES = {"neutral_voice.py"}
+# History, not current work, kept on the drive and in git history only (KB §57.6): the .aprx snapshots (git
+# versions Mars Project.aprx itself), a stale unpacked copy of the .aprx, Presentation 1's figure folders.
+SKIP_DIRS |= {".backups", "aprx_live", "le_img"}
+SKIP_FILES = {"neutral_voice.py",
+              "ocean first pres LE.pptx"}     # Presentation 1, delivered; its PDF stays in OLD\
 RASTER = {".tif", ".tiff", ".ovr", ".img", ".jp2"}
+# pres1_img\ holds Presentation 1's figures; only those the interim still shows are mirrored
+PRES1_USED = set(re.findall(r"pres1_img\\([\w.-]+)",(DRIVE / "Mars Remote Sensing Project" / "build" /
+                                                         "interim.py").read_text(encoding="utf-8")))
 
 
 def keep_rsp(p):   # Mars Remote Sensing Project
     # neutral_voice.py lists the personal phrasings it removes, so it stays off the public page (KB §39.4)
+    if p.parent.name == "pres1_img" and p.name not in PRES1_USED:
+        return False
     return p.suffix.lower() not in {".npy", ".pyc"} and p.name not in SKIP_FILES
 
 
@@ -60,7 +69,9 @@ def keep_mp(p):    # Mars Project
 
 
 def keep_root(p):  # drive root, files only
-    return p.suffix.lower() not in RASTER
+    # "new training.*": the 30 Sep export of the hand-drawn labels, a near copy of the gdb class in exports\
+    # (KB §29.2); the screenshot: a 3D view from 15 Sep
+    return p.suffix.lower() not in RASTER and not p.name.startswith(("new training.", "Screenshot "))
 
 
 TREES = [  # (source, destination in repo, recurse, filter)

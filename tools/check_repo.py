@@ -8,8 +8,8 @@
 2. Every Python file parses (syntax only: most need arcpy or GDAL to run).
 3. No file is over GitHub's 100 MB limit.
 4. CITATION.cff names the same title and repository URL as the README.
-5. The counts the project page states match the tree: build scripts (README and docs/scripts.md),
-   .aprx backups and layouts. Numbers typed into a page go stale silently; this catches it.
+5. The counts the project page states match the tree: build scripts (README and docs/scripts.md)
+   and layouts. Numbers typed into a page go stale silently; this catches it.
 
 Exit code 1 and a list of failures if anything is wrong. Stdlib only.
 """
@@ -75,7 +75,6 @@ def counts():
         ("build scripts", readme, r"\[build scripts\]\([^)]*\) \(all (\d+),", scripts),
         ("build scripts", index, r"All (\d+) scripts", scripts),
         ("rows in the script index", index, None, scripts),
-        (".aprx backups", readme, r"\.backups/\s+(\d+) earlier copies", len(list((mp / ".backups").glob("*.aprx")))),
         ("layouts", readme, r"Mars Project\.aprx\s+.*?(\d+) layouts", len(list(mp.glob("*/layouts/*.png")))),
     ]
     for what, text, pattern, actual in stated:
