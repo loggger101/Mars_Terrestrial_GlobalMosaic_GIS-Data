@@ -1,0 +1,17 @@
+backup F:\Mars Project\.backups\Mars Project 20261016-115521.aprx
+1. graticule and type-area feature classes
+  Graticule_30deg    17 rows
+  Graticule_2deg     25 rows
+  Type_Areas         2 rows
+2. locator map and layout 10
+    F:\Mars Project\Global60\layouts\10_global60_locator.png
+3. graticules on the maps
+   graticule -> Mars ±60° Analysis
+   graticule -> Mars ±60° — basins
+   graticule -> Mars ±60° — locator
+   graticule -> Ius Chasma — digitising
+   graticule -> Athabasca Valles — digitising
+   graticule -> Ius Chasma — visible
+   graticule -> Ius Chasma — night IR
+   graticule -> Ius Chasma Type Area
+saved. layouts: ['01_visible', '10_global60_locator', '13_geomap_check', '14_validation', '11_global60_depressions', '12_global60_channels', '02_night_ir', '03_classification', '05_svm_checks', '04_global60_landforms', '06_ius_digitising', '07_global60_basins', '08_global60_mosaic', '09_athabasca_digitising']

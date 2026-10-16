@@ -41,9 +41,10 @@ CHECK_PATH = os.path.join(HERE, "logs", "global60_classification_check_%dm.json"
 # and a rerun once it and its check exist adds the layer and layout 04.
 HAVE_CLS = os.path.exists(CLS_PATH) and os.path.exists(CHECK_PATH)
 CHECK = json.load(open(CHECK_PATH)) if HAVE_CLS else None
-# The published layer is the 5 x 5 (2 km) majority-filtered map, KB §32.2: half the ~4 km resolving
-# limit of a 400 m map. The window was fixed by feature size; polygon scores rise with any smoothing.
-CLEAN = 5
+# The published layer is the ~2 km majority-filtered map, KB §32.2: half the ~4 km resolving limit of a
+# 400 m map. The window is fixed by feature size, never by score (polygon scores rise with any smoothing):
+# 5 x 5 at 400 m; 11 x 11 (2.2 km) at 200 m, the author's pick of 9 x 9 / 11 x 11 (KB §55.3, §57).
+CLEAN = {200: 11, 400: 5}[CELL]
 CLEAN_PATH = CLS_PATH.replace(".tif", "_mode%d.tif" % CLEAN)
 CLEAN_CHECK = os.path.join(HERE, "logs", "global60_classification_check_%dm_mode%d.json" % (CELL, CLEAN))
 HAVE_CLEAN = HAVE_CLS and os.path.exists(CLEAN_PATH) and os.path.exists(CLEAN_CHECK)
@@ -281,7 +282,8 @@ def main():
             text(0.45, 7.80, "Mars \u00b160\u00b0 \u2014 landform classification", 21, "title", bold=True),
             text(0.45, 7.22, "Support vector machine on the 512 hand-drawn labels, over a corrected 7-band stack: "
                  "Viking RGB, THEMIS night + day IR, slope (\u00b0), local relief.\nNo raw elevation band."
-                 + (" Smoothed with a %d \u00d7 %d (2 km) majority filter." % (CLEAN, CLEAN) if HAVE_CLEAN else ""),
+                 + (" Smoothed by majority filter, %d \u00d7 %d (%g km)." % (CLEAN, CLEAN, CLEAN * CELL / 1000.0)
+                    if HAVE_CLEAN else ""),
                  10, "subtitle", colour=(70, 70, 70)),
             text(0.45, 2.95, "Scored on %d held-out polygons: whole 15\u00b0 blocks the classifier never saw"
                  % ho["polygons"], 10.5, "acc_head", bold=True),

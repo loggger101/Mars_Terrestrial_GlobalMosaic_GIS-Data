@@ -10,8 +10,10 @@ Prediction, written before the run: "lava tube" NOT enriched in the volcanic gro
 because §31.3 found it right 2 % of the time; "Crater" enriched in the impact (i) and highland (h)
 groups; "Normal Ground" enriched in the lowland / plains groups (l, p).
 
-The 5 x 5 majority map (§32.2) is read at its 1.6 km overview; unit groups are rasterised on a
-0.02° lon/lat grid and sampled at each pixel's centre. Read-only; writes build\logs\geomap_check.json.
+The published map (since KB §57 the 200 m 11 x 11 majority map; until then the 400 m 5 x 5 one, §32.2,
+whose result is kept as logs\geomap_check_400m_mode5.json) is read at its 1.6 km overview; unit groups
+are rasterised on a 0.02° lon/lat grid and sampled at each pixel's centre. Read-only; writes
+build\logs\geomap_check.json, naming the map it read ("map").
 """
 import os, sys, json
 import numpy as np
@@ -23,7 +25,7 @@ from paths import GDB
 import grid60 as G
 
 gdal.UseExceptions(); ogr.UseExceptions()
-CLS = os.path.join(G.OUTDIR, "global60_landforms_svm_400m_mode5.tif")
+CLS = os.path.join(G.OUTDIR, "global60_landforms_svm_200m_mode11.tif")   # the published map, KB §57
 NAMES = {1: "Crater", 2: "steep/windy hills", 3: "lava tube", 4: "Normal Ground"}
 OUT = os.path.join(HERE, "logs", "geomap_check.json")
 STEP = 0.02
@@ -73,7 +75,7 @@ def main():
     print("classification read at %.0f m: %d x %d; %.1f%% of pixels have both a class and a unit" % (cell, W, H, 100 * ok.mean()))
     c, g, ww = cls[ok], u[ok], w[ok]
     p_class = {k: ww[c == k].sum() / ww.sum() for k in NAMES}
-    res = {"cell_m": cell, "p_class": {NAMES[k]: float(v) for k, v in p_class.items()}, "groups": {}}
+    res = {"map": os.path.basename(CLS), "cell_m": cell, "p_class": {NAMES[k]: float(v) for k, v in p_class.items()}, "groups": {}}
     print("\n  %-6s %8s   %s" % ("group", "area %", "   ".join("%-18s" % NAMES[k] for k in NAMES)))
     for code, gname in sorted(names_of.items(), key=lambda kv: kv[1]):
         sel = g == code

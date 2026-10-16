@@ -4,3 +4,30 @@
 2026-10-15 07:27:07  start verify_t1_nothermal_200m : F:\Mars Remote Sensing Project\build\verify_global60_classification.py --cell 200 --raster F:\Mars Project\Global60\global60_landforms_svm_nothermal_200m.tif
 2026-10-15 07:31:20  end   verify_t1_nothermal_200m : exit 0
 2026-10-15 07:31:20  start t1_nothermal_400m : F:\Mars Remote Sensing Project\build\make_t1_pro_confirm.py --cell 400 --set nothermal --reuse-ecd
+2026-10-15 12:11:22  [lane2] lane up (novisible 400 m beside the main queue)
+2026-10-15 12:11:22  [lane2] start t1_novisible_400m : "F:\Mars Remote Sensing Project\build\make_t1_pro_confirm.py" --cell 400 --set novisible --reuse-ecd
+2026-10-15 18:20:48  end   t1_nothermal_400m : exit 0
+2026-10-15 18:20:48  start verify_t1_nothermal_400m : F:\Mars Remote Sensing Project\build\verify_global60_classification.py --cell 400 --raster F:\Mars Project\Global60\global60_landforms_svm_nothermal_400m.tif
+2026-10-15 18:25:32  end   verify_t1_nothermal_400m : exit 0
+2026-10-15 18:25:32  start t1_terrain_400m : F:\Mars Remote Sensing Project\build\make_t1_pro_confirm.py --cell 400 --set terrain --reuse-ecd
+2026-10-16 03:13:19  [lane2] end   t1_novisible_400m : exit 0
+2026-10-16 03:13:19  [lane2] start verify_t1_novisible_400m : "F:\Mars Remote Sensing Project\build\verify_global60_classification.py" --cell 400 --raster "F:\Mars Project\Global60\global60_landforms_svm_novisible_400m.tif"
+2026-10-16 03:18:33  [lane2] end   verify_t1_novisible_400m : exit 0
+2026-10-16 03:18:33  [lane2] lane done
+2026-10-16 06:49:20  end   t1_terrain_400m : exit 0
+2026-10-16 06:49:20  start verify_t1_terrain_400m : F:\Mars Remote Sensing Project\build\verify_global60_classification.py --cell 400 --raster F:\Mars Project\Global60\global60_landforms_svm_terrain_400m.tif
+2026-10-16 06:53:32  end   verify_t1_terrain_400m : exit 0
+2026-10-16 06:53:32  start t1_novisible_400m : F:\Mars Remote Sensing Project\build\make_t1_pro_confirm.py --cell 400 --set novisible --reuse-ecd
+2026-10-16 06:55:40  end   t1_novisible_400m : exit 0
+2026-10-16 06:55:40  start verify_t1_novisible_400m : F:\Mars Remote Sensing Project\build\verify_global60_classification.py --cell 400 --raster F:\Mars Project\Global60\global60_landforms_svm_novisible_400m.tif
+2026-10-16 06:59:48  end   verify_t1_novisible_400m : exit 0
+2026-10-16 06:59:48  queue done
+2026-10-16 06:59:48  [boot] start F:\Mars Project\Global60\global60_landforms_svm_nothermal_200m.tif
+2026-10-16 07:01:49  [boot] end   F:\Mars Project\Global60\global60_landforms_svm_nothermal_200m.tif : exit 0
+2026-10-16 07:01:49  [boot] start F:\Mars Project\Global60\global60_landforms_svm_nothermal_400m.tif
+2026-10-16 07:03:48  [boot] end   F:\Mars Project\Global60\global60_landforms_svm_nothermal_400m.tif : exit 0
+2026-10-16 07:03:48  [boot] start F:\Mars Project\Global60\global60_landforms_svm_terrain_400m.tif
+2026-10-16 07:05:46  [boot] end   F:\Mars Project\Global60\global60_landforms_svm_terrain_400m.tif : exit 0
+2026-10-16 07:05:46  [boot] start F:\Mars Project\Global60\global60_landforms_svm_novisible_400m.tif
+2026-10-16 07:07:45  [boot] end   F:\Mars Project\Global60\global60_landforms_svm_novisible_400m.tif : exit 0
+2026-10-16 07:07:45  [boot] bootstrap queue done

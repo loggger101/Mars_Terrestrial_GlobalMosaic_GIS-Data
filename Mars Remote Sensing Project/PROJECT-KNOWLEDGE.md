@@ -4843,3 +4843,144 @@ seed 60, as §40.1. Checked first on raw vs 5 × 5 at 200 m: it reproduces verif
   (`logs\t1_queue_DESKTOP-PJS73RO.log`), each followed by its bootstrap against the 400 m all-band map. Their
   results will be added here. Logs: `global60_classification_check_nothermal_200m.json`,
   `t1_bootstrap_200m_vs_nothermal_200m.json`. **Counted:** 148 build scripts (145 `.py`).
+
+### 56.1 The 400 m band sets — 2026-10-15 evening **[V]**
+
+The 400 m runs reuse each set's `.ecd` (trained on the 200 m stack, as the all-band 400 m map's was) and
+classify on the 400 m lattice. Without thermal: 10 h 49 min (07:31–18:20), 21 tiles at 30–47 min each; slower
+than the 200 m run because from 12:11 the "without visible" set ran beside it (second lane, its own stack,
+`.ecd`, scratch tiles and logs `*_lane2_*`; the queue's own "without visible" step then finds every tile done
+and only redoes the mosaic). Scored and bootstrapped as §56, against `global60_landforms_svm_400m.tif`.
+
+**The all-band 400 m map predates §54** (the 180° stripe). No held-out or training polygon lies within 1° of
+±180° (checked on both `_60_test` and `_60_train`), so the stripe cannot enter these scores or the training.
+
+| 400 m, raw, held-out (183 polygons) | all 7 bands | without thermal | difference, 95 % CI |
+|---|---|---|---|
+| accuracy | 0.705 | 0.685 | **+1.97 pt** [+1.08, +3.35] |
+| kappa | 0.540 | 0.516 | **+0.024** [+0.013, +0.037] |
+| producer's: Crater / hills / lava tube / Normal | 0.553 / 0.606 / 0.394 / 0.991 | 0.524 / 0.554 / 0.464 / 0.993 | |
+| polygons won: Crater / hills / lava tube / Normal | 103 / 14 / 4 / 20 | 93 / 11 / 12 / 20 | of 124 / 16 / 21 / 22 |
+| training set accuracy / kappa | 0.828 / 0.670 | 0.817 / 0.649 | |
+| IAU craters: 'Crater' inside vs ring | 0.525 vs 0.443 (61.8 %) | 0.467 vs 0.424 (55.7 %) | |
+| seam ratios; elevation alone reproduces | 1.002, 0.995; 54.6 % | 0.991, 0.988; 54.4 % | |
+
+- **The thermal gain holds at 400 m**, a little larger than at 200 m (+1.97 against +1.36 pt); the intervals
+  overlap. The map without thermal scores the same at both cells (0.685 / 0.516, producer's within 0.004),
+  so the two differences part only because the all-band map scores higher at 400 m than at 200 m
+  (0.705 against 0.699, §55.3).
+- **The same pattern as at 200 m:** with thermal, Crater +2.9 pt producer's (10 more polygons won) and hills
+  +5.2 pt; lava tube −7.0 pt (4 of 21 polygons won with thermal, 12 of 21 without).
+- Logs: `global60_classification_check_nothermal_400m.json`, `t1_bootstrap_400m_vs_nothermal_400m.json`.
+
+**Without visible** (bands 4–7: night IR, day IR, slope, relief; lane 2): stack 981 s, training 5070 s, 21 tiles
+in 13 h 21 min beside the other runs, ended 2026-10-16 03:13.
+
+| 400 m, raw, held-out (183 polygons) | all 7 bands | without visible | difference, 95 % CI |
+|---|---|---|---|
+| accuracy | 0.705 | 0.747 | **−4.26 pt** [−10.96, +2.18] (83 % of resamples favour no visible) |
+| kappa | 0.540 | 0.600 | −0.060 [−0.138, +0.016] |
+| producer's: Crater / hills / lava tube / Normal | 0.553 / 0.606 / 0.394 / 0.991 | 0.596 / 0.864 / 0.241 / 0.993 | |
+| polygons won: Crater / hills / lava tube / Normal | 103 / 14 / 4 / 20 | 84 / 16 / 1 / 18 | of 124 / 16 / 21 / 22 |
+| training set accuracy / kappa | 0.828 / 0.670 | 0.815 / 0.636 | |
+| IAU craters: 'Crater' inside vs ring | 0.525 vs 0.443 (61.8 %) | 0.509 vs 0.481 (53.0 %) | |
+| seam ratios; elevation alone reproduces | 1.002, 0.995; 54.6 % | 1.018, 1.021; 56.4 % | |
+
+- **Leaving the Viking bands out does not hurt the held-out score; the point estimate rises 4.3 pt**, but the
+  interval includes zero, so the visible bands' effect on these labels is not resolved either way. The
+  direction agrees with §40.1 (without visible 68.1 % against 67.0 % for all bands, also inside the intervals).
+- **Where it moves:** hills producer's 0.606 → 0.864 (16 of 16 polygons won) and Crater area +4.3 pt, while
+  lava tube falls to 1 of 21 and fewer Crater polygons are won (84 against 103): the area-weighted score is
+  carried by a few large hill and crater polygons, which is why the interval is wide. The map without
+  visible is also a worse crater map by the IAU test (53.0 % against 61.8 %) and has slight seams (1.02).
+- Read with §40.1: **the hand-drawn classes are terrain classes**; the visible bands mostly add noise to
+  them, and thermal adds a small, resolved amount. Logs: `global60_classification_check_novisible_400m.json`,
+  `t1_bootstrap_400m_vs_novisible_400m.json`. The queue's own "without visible" step (06:53) found the `.ecd` and
+  every tile done and rebuilt the mosaic in 2 min; rescored identically (0.747 / 0.600).
+
+**Terrain only** (bands 6–7: slope, relief; queue): training and 21 tiles, 18:25 → 06:49 on 2026-10-16 (mosaic
+total 10 h 45 min); scored 06:53, bootstraps of all four pairs 06:59–07:07 (`t1_bootstrap_DESKTOP-PJS73RO.log`;
+the two pairs already run reproduce their numbers exactly).
+
+| 400 m, raw, held-out (183 polygons) | all 7 bands | terrain only | difference, 95 % CI |
+|---|---|---|---|
+| accuracy | 0.705 | 0.708 | −0.30 pt [−6.54, +7.73] (47 % of resamples favour terrain only) |
+| kappa | 0.540 | 0.551 | −0.012 [−0.092, +0.071] |
+| producer's: Crater / hills / lava tube / Normal | 0.553 / 0.606 / 0.394 / 0.991 | 0.528 / 0.857 / 0.292 / 0.995 | |
+| polygons won: Crater / hills / lava tube / Normal | 103 / 14 / 4 / 20 | **34** / 16 / 3 / 19 | of 124 / 16 / 21 / 22 |
+| training set accuracy / kappa | 0.828 / 0.670 | 0.803 / 0.612 | |
+| IAU craters: 'Crater' inside vs ring | 0.525 vs 0.443 (61.8 %) | 0.445 vs 0.441 (**47.1 %**) | |
+| seam ratios; elevation alone reproduces | 1.002, 0.995; 54.6 % | 1.020, 1.024; 57.7 % | |
+
+- **Terrain only ties the full stack on the area-weighted score**, as in §40.1 (68.6 % against 67.0 %), with a
+  wide interval. **It is not the same map:** it wins only 34 of 124 Crater polygons (all bands 103) and its
+  'Crater' no longer marks IAU craters (47.1 % inside > ring, below the 50 % of no signal). The tie comes from
+  hills (0.857) and Normal Ground, which hold most of the held-out area.
+
+**T1 in Pro, all four comparisons** (paired bootstrap, 183 held-out polygons, 1,000 resamples, seed 60; the
+difference is "all 7 bands minus the set"):
+
+| cell | band set | accuracy / κ | all bands minus set, accuracy [95 % CI] | resolved? |
+|---|---|---|---|---|
+| 200 m | without thermal | 0.685 / 0.516 | +1.36 pt [+0.46, +2.47] | yes |
+| 400 m | without thermal | 0.685 / 0.516 | +1.97 pt [+1.08, +3.35] | yes |
+| 400 m | without visible | 0.747 / 0.600 | −4.26 pt [−10.96, +2.18] | no |
+| 400 m | terrain only | 0.708 / 0.551 | −0.30 pt [−6.54, +7.73] | no |
+
+- **The thermal gain is the one difference that is resolved at both cells; T1 holds with Pro's SVM.** Dropping
+  the visible bands or both spectral groups leaves the area-weighted score unchanged within wide intervals,
+  as §40.1 found with its numpy classifier: the hand-drawn classes are landform classes.
+- **Per class the band sets differ a lot even where the score ties.** The full stack makes the best crater map
+  (103 Crater polygons, 61.8 % on the IAU test); terrain only is the best hills map and a poor crater map.
+  The published maps stay on all 7 bands. **T1 is closed** (NEXT-STEPS §4).
+
+## 57. The 200 m map published with an 11 × 11 majority filter; layout 04 rebuilt — 2026-10-16 **[V]**
+
+**Author's decision, 2026-10-16:** the published ±60° landform map is the 200 m map smoothed **11 × 11
+(2.2 km)**, the larger of §55.3's two windows by the 2 km rule. `make_global60_maps.py` now takes the window
+from the cell, `CLEAN = {200: 11, 400: 5}[CELL]`, so a run at the default 400 m (and every script importing
+it at 400 m, e.g. `make_geomap_sheet.py`) still gets the 5 × 5 map; the subtitle prints the window and its
+width in km instead of a fixed "(2 km)".
+
+Rebuilt in the X3 order (§55.3, HANDOFF §5.1), Pro closed, each step backing up the `.aprx`
+(`.backups\Mars Project 20261016-1152*` to `-1155*`): `make_global60_maps.py --cell 200` (76 s),
+`make_reference_maps.py` (graticules back on the maps the first one wipes), `polish_layouts.py --export`.
+The map "Mars ±60° Analysis" now shows `global60_landforms_svm_200m_mode11.tif` on top, the raw 200 m map
+under it (off). Layout 04 read after export: held-out **74 %, κ 0.58** (§55.3: 0.738 / 0.583), raw 70 %, κ 0.53;
+producer's Crater 61 %, hills 63 %, lava tube 45 %, Normal 99 %; user's lava tube 2 %; training 86 %, κ 0.74;
+elevation alone 55 %; seam ratio 1.00; IAU 'Crater' inside 57 % against ring 46 %. One fault found by reading
+and fixed ("a 11 × 11"; now "Smoothed by majority filter, 11 × 11 (2.2 km)."). Sheets 04, 05 and 10 copied
+from the export into `Global60\layouts\` (the builders' own PNGs there are written before polishing).
+
+**Still on the 400 m 5 × 5 map:** layout 13 and `logs\geomap_check.json` (`make_geomap_check.py` names the
+400 m file), the GitHub raster catalogue (`github_catalog_rasters.py` calls the 400 m 5 × 5 map "the
+published version"), and the 400 m map itself is still the pre-§54 one near 180°. Moving them is a separate
+step; until then layout 04 and layout 13 show different versions of the classification.
+
+### 57.1 T8 and layout 13 on the 200 m map; the GitHub catalogues brought up to date — 2026-10-16
+
+**T8 rerun** (`make_geomap_check.py`, now on `global60_landforms_svm_200m_mode11.tif`, read at its 1.6 km
+overview, 34 s; the JSON names its map, and `make_geomap_sheet.py` refuses a JSON for another map). The 400 m
+5 × 5 result is kept as `logs\geomap_check_400m_mode5.json`. **No finding changes:** every enrichment moves by
+≤ 0.07 except lava tube on aprons, ×4.12 → ×4.29 (lava tube on tu ×1.35 → ×1.28, v ×0.87 → ×0.84, ve ×3.34 → ×3.30;
+Crater on h ×1.34 both, i ×1.39 both; Normal Ground on l ×1.67 → ×1.66, v ×1.38 both); 76 % of the volcanic
+plains come out Normal Ground (was 75 %); class shares 34 / 2 / 9 / 55 %. Layout 13 rebuilt
+(`make_geomap_sheet.py --cell 200`, then `polish_layouts.py`), read after export: subtitle "11 × 11
+majority, read at 1.6 km", table and notes agree with the JSON; copied into `Global60\layouts\`.
+
+**`github_catalog_rasters.py`:** the 200 m 11 × 11 map is "the published version since 2026-10-16", the 400 m
+5 × 5 one "until 2026-10-16", the 400 m raw map flagged stale near 180°; described for the first time: the
+200 m map and its five filters, the four T1 maps and three T1 stacks (§56), the two 0.5° density grids
+(§53.6). Files made after the 2026-10-06 releases say **"not yet (next release)"** instead of naming a
+release asset that does not hold them, and the five files patched by §54 (DEM, slope, aspect, hillshade, the
+200 m stack) say that the release copy predates the patch. 32 Global60 rasters, 0 undescribed.
+
+**`github_export_gdb.py`:** the repo's vector export dated from 2026-10-09, before X2. A full export makes
+`.gdbtable` files of 246 and 113 MB for the two X2 classes (465,354 depressions, 969,822 channel segments),
+which GitHub refuses (> 100 MB). They are now **release-only** (`RELEASE_ONLY`): in the GeoPackage
+(679 MB, all 26 classes) but not in the repo's `.gdb` (24 classes, largest file 24.5 MB), and listed so
+in `exports\README.md`; an assert stops any file over 95 MB reaching the clone. Both are re-computable (X2,
+~11 h); the hand-drawn labels stay in git. The two `_60_smoke` classes that §50 deleted are back in the
+gdb (X2's smoke run recreates them, HANDOFF §5.1) and are exported; deleting them is the author's call.
+**Not done:** a new release (the GeoPackage and the new rasters wait for the next
+`github_release_bundle.py`, before the interim, HANDOFF §5.6).

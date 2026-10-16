@@ -61,7 +61,21 @@ ABOUT = {
     "MARS_nomenclature_craters_gt100km_March2019": "IAU/USGS Gazetteer, March 2019: named craters over 100 km.",
     "MARS_nomenclature_craters_lt100km_March2019": "IAU/USGS Gazetteer, March 2019: named craters under 100 km.",
     "MARS_nomenclature_misc_March2019": "IAU/USGS Gazetteer, March 2019: other named features.",
+    "Landform_CraterCandidates_auto_60": "Closed depressions ≥ 1 km over ±60°, the X2 fine pass (KB §53.4; the tiles "
+        "over 180° rerun, §54).",
+    "Landform_ChannelCandidates_auto_60": "Channel segments over ±60°, the X2 fine pass (KB §53.4, §54).",
+    "Landform_CraterCandidates_auto_ath": "Crater candidates over the Athabasca Valles type area (KB §42.1).",
+    "Landform_ChannelCandidates_auto_ath": "Channel candidates over the Athabasca Valles type area (KB §42.1).",
+    "Landform_CraterCandidates_auto_60_smoke": "X2's smoke-test window (KB §53.3), recreated by the smoke run.",
+    "Landform_ChannelCandidates_auto_60_smoke": "X2's smoke-test window (KB §53.3), recreated by the smoke run.",
+    "Graticule_30deg": "Latitude / longitude lines every 30° over ±60°, labelled (KB §44).",
+    "Graticule_2deg": "Lines every 2° over the two type-area windows (KB §44).",
+    "Type_Areas": "The Ius Chasma and Athabasca Valles windows as polygons (KB §44).",
 }
+# Too big for git (their .gdbtable files reach 246 and 113 MB; GitHub refuses files over 100 MB):
+# exported to the release GeoPackage only, and listed in exports\README.md as such (KB §57).
+RELEASE_ONLY = {"Landform_CraterCandidates_auto_60", "Landform_ChannelCandidates_auto_60"}
+MAX_FILE = 95 * 1000 * 1000
 SYSTEM_FIELDS = {"OBJECTID", "FID", "Shape", "SHAPE", "Shape_Length", "Shape_Area"}
 
 arcpy.env.overwriteOutput = True
@@ -87,13 +101,18 @@ def vectors():
     bad = 0
     for fc in fcs:
         n = int(arcpy.management.GetCount(fc)[0])
-        arcpy.management.Copy(os.path.join(SRC, fc), str(fgdb / fc))
+        dests = (gpkg,) if fc in RELEASE_ONLY else (fgdb, gpkg)
+        if fc not in RELEASE_ONLY:
+            arcpy.management.Copy(os.path.join(SRC, fc), str(fgdb / fc))
         arcpy.conversion.ExportFeatures(os.path.join(SRC, fc), str(gpkg / fc))
-        counts = {int(arcpy.management.GetCount(str(d / fc))[0]) for d in (fgdb, gpkg)}
+        counts = {int(arcpy.management.GetCount(str(d / fc))[0]) for d in dests}
         ok = counts == {n}
         bad += not ok
         print(f"{'ok' if ok else 'MISMATCH'}\t{n:>6}\t{fc}", flush=True)
     arcpy.management.ClearWorkspaceCache()
+    big = [(f.name, f.stat().st_size) for f in fgdb.iterdir() if f.stat().st_size > MAX_FILE]
+    assert not big, "files over %d MB would be refused by GitHub; add their class to RELEASE_ONLY: %s" % (
+        MAX_FILE // 10**6, big)
     dst = out / fgdb.name
     dst.mkdir(exist_ok=True)
     for old in dst.iterdir():
@@ -102,13 +121,16 @@ def vectors():
     for f in fgdb.iterdir():
         if f.suffix != ".lock":
             shutil.copy2(f, dst / f.name)
-    print(f"{len(fcs)} feature classes -> {dst}\n{' ' * 23}and {gpkg}")
-    catalog(dst, fcs)
+    kept = [fc for fc in fcs if fc not in RELEASE_ONLY]
+    print(f"{len(kept)} feature classes -> {dst}\n{len(fcs):>2} feature classes -> {gpkg}")
+    catalog(dst, kept, {fc: int(arcpy.management.GetCount(str(gpkg / fc))[0]) for fc in fcs if fc in RELEASE_ONLY})
     return bad
 
 
-def catalog(fgdb, fcs):
-    """exports\\README.md: one row per class, read back from the export itself."""
+def catalog(fgdb, fcs, release_only=None):
+    """exports\\README.md: one row per class, read back from the export itself; release_only = {class: rows}
+    for the classes in the GeoPackage only."""
+    release_only = release_only or {}
     rows = []
     for fc in fcs:
         p = str(fgdb / fc)
@@ -137,6 +159,10 @@ the labels and nomenclature are in geographic `Mars_2000_(Sphere)`.
 | Layer | Geometry | Rows | CRS | What it is | Fields |
 |---|---|---|---|---|---|
 """ + "\n".join(rows) + "\n"
+    if release_only:
+        text += ("\n**In the release GeoPackage only** (too big for git: GitHub refuses files over 100 MB). "
+                 "Not in a release until the next one is made (`github_release_bundle.py`):\n\n"
+                 + "\n".join(f"- `{fc}`: {n:,} rows. {ABOUT.get(fc, '')}" for fc, n in release_only.items()) + "\n")
     (fgdb.parent / "README.md").write_text(text, encoding="utf-8", newline="\n")
     arcpy.management.ClearWorkspaceCache()
     print("catalog ->", fgdb.parent / "README.md")

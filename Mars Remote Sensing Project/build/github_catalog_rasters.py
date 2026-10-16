@@ -39,12 +39,34 @@ G60 = {
     "global60_aspect.tif": "Aspect in degrees clockwise from north (gdaldem, Horn); flat ground is NoData.",
     "global60_hillshade.tif": "Hillshade, sun azimuth 225°, altitude 45° (gdaldem, Horn).",
     "global60_landforms_svm_400m.tif": "Landform classification, SVM on the hand-drawn labels, per pixel at 400 m "
-        "(KB §31.3): 70.5 %, κ 0.54 on held-out polygons. " + LANDFORM_VALUES + ".",
+        "(KB §31.3): 70.5 %, κ 0.54 on held-out polygons. Not redone after the 180° fix (KB §54): stale in a "
+        "few columns at 180°. " + LANDFORM_VALUES + ".",
     "global60_landforms_svm_400m_mode3.tif": "The same, 3 × 3 majority filter (KB §32.2).",
-    "global60_landforms_svm_400m_mode5.tif": "The same, **5 × 5 majority filter: the published version** "
-        "(73.5 %, κ 0.58 held out; KB §32.2).",
+    "global60_landforms_svm_400m_mode5.tif": "The same, 5 × 5 majority filter: the published version until "
+        "2026-10-16 (73.5 %, κ 0.58 held out; KB §32.2), replaced by the 200 m 11 × 11 map (KB §57).",
     "global60_landforms_svm_400m_mode7.tif": "The same, 7 × 7 majority filter.",
     "global60_landforms_svm_400m_mode9.tif": "The same, 9 × 9 majority filter.",
+    "global60_landforms_svm_200m.tif": "Landform classification at 200 m (X3, KB §55.3), the same SVM and split: "
+        "69.9 %, κ 0.53 held out; its 180° column reclassified after the fix (KB §54). " + LANDFORM_VALUES + ".",
+    "global60_landforms_svm_200m_mode3.tif": "The same, 3 × 3 majority filter (KB §55.3).",
+    "global60_landforms_svm_200m_mode5.tif": "The same, 5 × 5 majority filter.",
+    "global60_landforms_svm_200m_mode7.tif": "The same, 7 × 7 majority filter.",
+    "global60_landforms_svm_200m_mode9.tif": "The same, 9 × 9 majority filter.",
+    "global60_landforms_svm_200m_mode11.tif": "The same, **11 × 11 (2.2 km) majority filter: the published version** "
+        "since 2026-10-16 (73.8 %, κ 0.58 held out; KB §55.3, §57).",
+    "global60_landforms_svm_nothermal_200m.tif": "Test T1 in Pro (KB §56): the 200 m classification without the "
+        "thermal bands: 68.5 %, κ 0.52 held out. " + LANDFORM_VALUES + ".",
+    "global60_landforms_svm_nothermal_400m.tif": "T1 at 400 m without the thermal bands (KB §56.1): 68.5 %, κ 0.52.",
+    "global60_landforms_svm_novisible_400m.tif": "T1 at 400 m without the Viking bands (KB §56.1): 74.7 %, κ 0.60.",
+    "global60_landforms_svm_terrain_400m.tif": "T1 at 400 m on slope and relief only (KB §56.1): 70.8 %, κ 0.55.",
+    "global60_svm_stack_200m_nothermal.tif": "Bands 1–3, 6, 7 of the classification stack, copied exactly (T1, KB §56).",
+    "global60_svm_stack_200m_novisible.tif": "Bands 4–7 of the classification stack, copied exactly (T1, KB §56.1).",
+    "global60_svm_stack_200m_terrain.tif": "Bands 6–7 (slope, relief) of the classification stack, copied exactly "
+        "(T1, KB §56.1).",
+    "global60_depression_density_0p5deg.tif": "Closed depressions ≥ 1 km (X2) per 10⁴ km², counted per 0.5° cell of "
+        "true area (layout 11, KB §53.6, §55.4).",
+    "global60_robbins_density_0p5deg.tif": "Robbins craters ≥ 1 km per 10⁴ km² on the same 0.5° cells (layout 11, "
+        "KB §53.6).",
     "smoke60_composite_4band.tif": "Smoke-test window of the ±60° pipeline (KB §28.11): Viking RGB + day IR.",
     "smoke60_composite_5band.tif": "Smoke-test window: Viking RGB + day IR + night IR.",
     "smoke60_day.tif": "Smoke-test window: THEMIS day IR.",
@@ -98,6 +120,14 @@ IUS = {
     "val/perrotin_fill.tif": "Perrotin: filled DEM.",
     "val/perrotin_depth.tif": "Perrotin: fill depth. Recovered within −7.1 % in diameter.",
 }
+# Made after the 2026-10-06 releases: listed, but in no release until the next one (HANDOFF §5.6)
+UNRELEASED = {n for n in G60 if n.startswith(("global60_landforms_svm_200m", "global60_landforms_svm_nothermal",
+              "global60_landforms_svm_novisible", "global60_landforms_svm_terrain", "global60_svm_stack_200m_"))
+              } | {"global60_depression_density_0p5deg.tif", "global60_robbins_density_0p5deg.tif"}
+# Patched in place at the 180° column on 2026-10-14 (KB §54): the release holds the copy from before
+PATCHED = {"global60_dem.tif", "global60_slope_deg.tif", "global60_aspect.tif", "global60_hillshade.tif",
+           "global60_svm_stack_200m.tif"}
+PATCH_NOTE = " **Patched 2026-10-14 at the 180° column (KB §54); the release copy predates the patch.**"
 CM0 = "Classified_202609300147338582853"   # the one raster on a 0° central meridian (Viking's grid)
 GDB = {
     "Classified_202609292109007048151": "The 29 Sep SVM classification made in the Pro GUI. Follows its 4096-px "
@@ -141,7 +171,12 @@ def main():
         i = info(str(p)); crs.add(i["srs"]); frames[p.name] = i
         big = p.name in G60 and not p.name.startswith(("global60_landforms", "smoke60"))
         where = rel(DERIV, p.name + ".part*") if big else rel(DATA, "global60-classification.zip")
-        g60.append(row(p.name, G60.get(p.name), i, p.stat().st_size, where))
+        if p.name in UNRELEASED:
+            where = "not yet (next release)"
+        desc = G60.get(p.name)
+        if desc and p.name in PATCHED:
+            desc += PATCH_NOTE
+        g60.append(row(p.name, desc, i, p.stat().st_size, where))
     ta = MP / "TypeArea"
     for p in sorted(ta.glob("*.tif")) + sorted((ta / "val").glob("*.tif")):
         key = p.relative_to(ta).as_posix()
@@ -186,7 +221,8 @@ Viking's 231.5 m global grid, so its x runs −180 to +180°E. The ±60° grids:
 ([`Global60/README.md`](../Mars%20Project/Global60/README.md)).
 
 **Sizes** are on the drive; the release copies are the same bytes (split into 1.9 GB pieces where
-the file is bigger). The `.ovr` pyramids are not in the releases: build them after restoring.
+the file is bigger), except the files marked as patched after the release and those not yet in one.
+The `.ovr` pyramids are not in the releases: build them after restoring.
 
 ## ±60° analysis extent: `Mars Project/Global60/`
 

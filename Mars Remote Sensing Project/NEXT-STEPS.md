@@ -39,10 +39,18 @@ a closed basin (−2,156 small pits). **Stale near 180°:** the 400 m map (layou
 0.738); a stack-wide line sweep found no second §54-type defect, only small source edges and DEM-blend strips
 (chips in `Global60\checks\`). **T1 confirmed with Pro's SVM (§56):** at 200 m the thermal bands add +1.36 pt
 [+0.46, +2.47], κ +0.016, matching §40.1; they help Crater and hills and hurt lava tube. The 400 m band sets
-(without thermal, terrain only, without visible) and their bootstraps run in the queue to ~16:00
-(`logs\t1_queue_DESKTOP-PJS73RO.log`).
-**Next:** add the 400 m T1 results to §56; **the author picks the 200 m published filter** (9 × 9 or 11 × 11 by the
-2 km rule, §55.3), then `make_global60_maps.py` with that `CLEAN` and layout 04; decide the 400 m map (redo its
+(without thermal, terrain only, without visible) and their bootstraps run in the queue
+(`logs\t1_queue_DESKTOP-PJS73RO.log`). **All done 2026-10-16 07:07 (§56.1); T1 closed.** At 400 m the thermal
+bands add +1.97 pt [+1.08, +3.35] (resolved, as at 200 m); without visible (0.747) and terrain only (0.708)
+tie the full stack (0.705) inside wide intervals, but terrain only is a poor crater map (34 of 124 Crater
+polygons; IAU test 47 %). Nothing is running on the desktop.
+**2026-10-16 (§57): the author picked 11 × 11;** layout 04 rebuilt on the 200 m 11 × 11 map (held-out 74 %,
+κ 0.58). Then (§57.1) T8 and layout 13 moved to it (no finding changes), the GitHub raster and vector
+catalogues brought up to date; the two X2 classes are too big for git and wait, with the new rasters, for the
+next release (`github_release_bundle.py`, before the interim).
+**Next:** ~~add the 400 m T1 results to §56~~ (done, §56.1); ~~**the author picks the 200 m published filter** (9 × 9 or 11 × 11 by the
+2 km rule, §55.3), then `make_global60_maps.py` with that `CLEAN` and layout 04~~ (done, §57); ~~move layout 13
+and the GitHub catalogue to the 200 m 11 × 11 map~~ (done, §57.1); decide the 400 m map (redo its
 c03 column or mark it superseded); the UAC-approved install (`D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`),
 then `desktop_check.py` and X5. Pro's Python here is on `D:` (§53.0).
 

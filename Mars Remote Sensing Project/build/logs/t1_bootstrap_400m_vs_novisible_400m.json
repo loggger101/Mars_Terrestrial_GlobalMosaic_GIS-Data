@@ -1,0 +1,26 @@
+{
+ "a": "F:\\Mars Project\\Global60\\global60_landforms_svm_400m.tif",
+ "b": "F:\\Mars Project\\Global60\\global60_landforms_svm_novisible_400m.tif",
+ "polygons": 183,
+ "boot": 1000,
+ "seed": 60,
+ "a_acc_kappa": [
+  0.7047,
+  0.5398
+ ],
+ "b_acc_kappa": [
+  0.7473,
+  0.5999
+ ],
+ "diff_acc": 0.0426,
+ "diff_acc_ci95": [
+  -0.0218,
+  0.1096
+ ],
+ "diff_kappa": 0.0601,
+ "diff_kappa_ci95": [
+  -0.0158,
+  0.1375
+ ],
+ "share_boot_b_better_acc": 0.831
+}

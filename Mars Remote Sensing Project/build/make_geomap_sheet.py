@@ -4,7 +4,8 @@ r"""Layout 13: the ±60° landform classes against the USGS geologic map, as a s
 T8 was measured by make_geomap_check.py (logs\geomap_check.json) and had no sheet (NEXT-STEPS §7
 row 13). This puts it in the project:
 
-  map "Mars ±60° — geologic check"   the published 5 x 5 classification over hillshade, the SIM 3292
+  map "Mars ±60° — geologic check"   the published classification over hillshade (run with --cell 200:
+                                     the 11 x 11 map, KB §57), the SIM 3292
                                      unit contacts, the volcanic groups (v, ve, vf) outlined, graticule
   layout 13_geomap_check             the map, and the cross-tabulation as a table of native layout
                                      elements (editable in Pro): per unit group, its share of the ±60°
@@ -147,6 +148,9 @@ def notes(res):
 
 def main():
     res = json.load(open(LOG))
+    # the table must describe the map the sheet shows (pass --cell 200 for the published map, KB §57)
+    assert res.get("map") == os.path.basename(CLEAN_PATH), \
+        "%s scored %s, the sheet would show %s" % (LOG, res.get("map"), os.path.basename(CLEAN_PATH))
     missing = [g for g, _ in GROUPS if g not in res["groups"]]
     assert not missing, "groups missing from %s: %s" % (LOG, missing)
     if "--aprx" not in sys.argv:

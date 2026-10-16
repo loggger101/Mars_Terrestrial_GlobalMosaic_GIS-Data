@@ -1,0 +1,49 @@
+1. 4-band stack (novisible)
+  global60_svm_stack_200m_novisible.tif  in 981 s
+2. train SVM on the same _60_train polygons
+  trained in 5070 s -> F:\Mars Project\Global60\global60_landforms_svm_novisible.ecd
+3. classify ±60° at 400 m, band set novisible [4, 5, 6, 7]
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r00_c00.tif  in 3157 s
+   tile  1/21  r0 c0  00:52:37 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r00_c01.tif  in 2825 s
+   tile  2/21  r0 c1  01:39:42 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r00_c02.tif  in 2769 s
+   tile  3/21  r0 c2  02:25:52 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r00_c03.tif  in 2484 s
+   tile  4/21  r0 c3  03:07:15 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r00_c04.tif  in 2812 s
+   tile  5/21  r0 c4  03:54:07 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r00_c05.tif  in 2640 s
+   tile  6/21  r0 c5  04:38:07 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r00_c06.tif  in 2110 s
+   tile  7/21  r0 c6  05:13:17 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r01_c00.tif  in 2610 s
+   tile  8/21  r1 c0  05:56:47 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r01_c01.tif  in 3048 s
+   tile  9/21  r1 c1  06:47:35 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r01_c02.tif  in 3432 s
+   tile 10/21  r1 c2  07:44:47 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r01_c03.tif  in 3396 s
+   tile 11/21  r1 c3  08:41:23 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r01_c04.tif  in 3257 s
+   tile 12/21  r1 c4  09:35:40 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r01_c05.tif  in 3491 s
+   tile 13/21  r1 c5  10:33:52 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r01_c06.tif  in 2083 s
+   tile 14/21  r1 c6  11:08:35 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r02_c00.tif  in 830 s
+   tile 15/21  r2 c0  11:22:25 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r02_c01.tif  in 1445 s
+   tile 16/21  r2 c1  11:46:30 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r02_c02.tif  in 826 s
+   tile 17/21  r2 c2  12:00:16 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r02_c03.tif  in 1399 s
+   tile 18/21  r2 c3  12:23:35 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r02_c04.tif  in 975 s
+   tile 19/21  r2 c4  12:39:50 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r02_c05.tif  in 1324 s
+   tile 20/21  r2 c5  13:01:54 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\t1_novisible\cls_400m_tiles\t_r02_c06.tif  in 1004 s
+   tile 21/21  r2 c6  13:18:38 elapsed
+  mosaic 21 tiles -> F:\Mars Project\Global60\global60_landforms_svm_novisible_400m.tif
+  mosaic done, pixel = class code, 13:20:59 total
