@@ -244,6 +244,8 @@ candidates with their measured recall (`NEXT-STEPS.md` §6 contingency).
 - **`_removed_not_Mars` (711 MB) is in the drive's Recycle Bin**, sent from the laptop's Windows account
   (`$RECYCLE.BIN\S-1-5-21-...-1001`). It frees space only when emptied; restoring it is easiest on the
   laptop. Emptying it is the author's call.
+- **The desktop's own Recycle Bins** hold ~21 GB of finished scratch and caches sent there on 2026-10-16
+  (KB §57.5); emptying them is the author's call.
 - **Copies of the 13 deleted feature classes and the "mars" map** are on the laptop's internal disk only:
   `C:\Users\Loggg\Mars_deleted_2026-10-09\` (not on this drive, not on the desktop) (§50.1).
 - `.aprx` backups accumulate in `Mars Project\.backups\` (53 by 2026-10-09); the README's count is checked

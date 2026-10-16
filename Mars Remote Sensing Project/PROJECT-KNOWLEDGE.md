@@ -5048,3 +5048,13 @@ say what is new and that `data-2026-10-06` is replaced (kept, not deleted); the 
 - **`restore.py`** (repo only): took every release, so a restore would also have downloaded the superseded
   data release (4.4 GB) and kept none of it; it now takes the newest release of each kind (`--all-releases`
   for every one). Dry run against the live releases: `data-2026-10-16` + `derivatives-2026-10-06`, 80.3 GB.
+
+### 57.5 Housekeeping: finished scratch to the Recycle Bin — 2026-10-16
+
+On the author's choice of groups, sent to the Recycle Bin (not deleted; space returns when it is emptied, the
+author's call): the release staging folder `%LOCALAPPDATA%\Temp\mars_github_dist` (6.2 GB, uploaded and
+verified, §57.4); the T1 classify tiles `mars_scratch\t1_*` (0.5 GB); X2's fine-pass checkpoints and coarse files
+in `C:\MarsScratch\global60\`, `global60_smoke\`, `q24\`, `q24_aligned\` (1.0 GB); the 15
+`build\*_ov400.npy` written by `verify_global60_classification.py` and read by no script (13.2 GB; a rescore
+writes one again). **Kept:** the §54 rollback copies (`mars_scratch\meridian_backup_20261014\`,
+`C:\MarsScratch\global60\pre_meridian_20261014\`), the two `_60_smoke` classes, the T1 stacks, the interim backup.
