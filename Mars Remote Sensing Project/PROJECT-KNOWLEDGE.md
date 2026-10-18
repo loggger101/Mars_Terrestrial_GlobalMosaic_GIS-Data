@@ -2,7 +2,7 @@
 
 **Owner:** Logan Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-16 (§57). Each section is dated in its heading, the newest at the end; §11 holds the open questions.
+**Started:** 2026-09-18 · **Last updated:** 2026-10-18 (§58). Each section is dated in its heading, the newest at the end; §11 holds the open questions.
 
 This is the durable record of what is actually true about this project, kept so that no
 deliverable ever has to be written from assumption again. It replaces guesswork, not judgment.
@@ -5087,3 +5087,35 @@ pixel by pixel with its mirrored PNG. Fixed:
 - **Left as they are:** history stated as history (the 3 Oct log row of the interim, the superseded map's
   catalogue entry, `fix_landform_values.py` naming the 10-06 release), and ~20 docstrings that give paths as
   `Z:\...`, the laptop's letter, while the code finds its drive at run time (§40.2).
+
+## 58. A laptop check-in after the desktop sessions: junctions, the clone, the sync comparison — 2026-10-18 **[V]**
+
+On the laptop, on request ("familiarize yourself with the current state of this project", then "continue
+working on the project where you can (mostly updating your memory and other stray parts for now)").
+Nothing was written to the `.aprx`, the gdb or any raster. Nothing on the drive is newer than §57: the newest
+log is `logs\github_release_data-2026-10-16_DESKTOP-PJS73RO.log` (2026-10-16 14:56), the newest file the
+record itself (16:01). The review had not started.
+
+- **The drive-root junctions are broken on the laptop.** `Z:\TypeArea`, `Z:\Global60` and `Z:\Athabasca`
+  are junctions targeting `F:\Mars Project\...` since §53.3 (`Get-Item`: LinkType Junction), and
+  `Test-Path Z:\TypeArea\*` is False. A junction stores an absolute target, so it serves one drive letter at
+  a time. Scripts that call `paths.junction()` stop with a message instead of failing inside Spatial Analyst;
+  the message now names `retarget_junction.py` with this machine's paths for a broken junction (it used to
+  give `rmdir` + `mklink /J`, which an agent's shell may refuse, §53.0). Tested on the laptop: `TypeArea`
+  prints the retarget command, a missing name prints `mklink /J`, both exit 1. Not retargeted here: no
+  Spatial Analyst work was due, and each retarget breaks the other machine. `HANDOFF-DESKTOP.md` §1 says so.
+  A relative directory symlink would serve both letters, but replacing a junction is the author's call.
+- **The laptop's clone of the public repo was 7 commits behind `origin/main`** (HEAD at §56's commit, the
+  working tree clean, no `*-DESKTOP-PJS73RO.*` conflict copies): the desktop's §56.1–§57.7 commits had not
+  reached it. Fast-forwarded (`git pull --ff-only`) to the §57.7 audit commit. Fetch and compare before any
+  git work on either machine (HANDOFF §6 step 5).
+- **`github_sync.py` reported 94 phantom copies after the pull.** It called a file unchanged only when size
+  and whole-second mtime matched, and a checkout stamps files with the time of the checkout; the drive and
+  the clone were byte-identical (checked on the record, `NEXT-STEPS.md`, `interim.py`,
+  `make_global60_maps.py` and a layout PNG). It now compares bytes when sizes match and mtimes differ.
+  Checked on planted files: same size and different bytes reads as changed, identical bytes with another
+  mtime as unchanged; the dry run then lists only the edited script. Its docstring no longer says that
+  `.backups` and `new training.*` are mirrored (they stopped in §57.6).
+- **The agent's memory** (the laptop's, `Z--`) brought up to §57: the desktop backlog, the plans, the task
+  status, the published map, the ±60° candidates, the release and the junction warning; `audit_record.py`
+  memory checks pass.

@@ -10,9 +10,10 @@ none of them ran on the desktop. They now build their paths with on_drive():
 DRIVE is two levels above build\ (build -> Mars Remote Sensing Project -> drive root), taken with
 os.path.abspath, not resolve(), so a copy reached through a junction keeps its own root.
 
-The two no-space junctions Spatial Analyst needs (§19.1), <drive>\TypeArea and <drive>\Global60,
-store an absolute target. Made on Z:, they point at Z:\... and are broken on F:. junction() checks
-and says how to recreate one; nothing here changes the file system.
+The no-space junctions Spatial Analyst needs (§19.1), <drive>\TypeArea, Global60 and Athabasca,
+store an absolute target, so they work on one drive letter at a time (since §53.3 they point at F:,
+so they are broken on Z:, §58). junction() checks and prints the fix; nothing here changes the file
+system.
 """
 import os
 
@@ -32,12 +33,15 @@ def junction(name):
     alias = on_drive(name)
     target = on_drive(os.path.join("Mars Project", name))
     if not os.path.isdir(alias):
-        stale = os.path.lexists(alias)        # e.g. made on Z:, still pointing at Z:\..., seen from F:
-        raise SystemExit('%s junction %s. Fix it once (cmd, on this machine):\n%s'
-                         '  mklink /J "%s" "%s"'
-                         % ("broken" if stale else "missing", alias,
-                            '  rmdir "%s"\n' % alias.rstrip("\\") if stale else "",
-                            alias.rstrip("\\"), target))
+        a = alias.rstrip("\\")
+        if os.path.lexists(alias):            # e.g. retargeted on F:, seen from Z: (KB §58)
+            raise SystemExit('broken junction %s (it targets another drive letter). Retarget it in place,\n'
+                             'removing nothing (from build\\, either Python):\n'
+                             '  py retarget_junction.py "%s" "%s"\n'
+                             'The other machine then needs the same command with its own letter.'
+                             % (alias, a, target))
+        raise SystemExit('missing junction %s. Make it once (cmd, on this machine):\n  mklink /J "%s" "%s"'
+                         % (alias, a, target))
     return alias
 
 

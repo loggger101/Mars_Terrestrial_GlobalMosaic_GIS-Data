@@ -14,9 +14,9 @@ the desktop alike. Z: is only ever READ.
 What goes to the repo, mirrored under the same folder names as on the drive:
   Mars Remote Sensing Project\  everything except .npy caches and __pycache__
   Mars Project\                 the .aprx, models, logs, metadata sidecars, layouts: every file
-                                except raster payloads (.tif/.ovr), the gdb and DL chips; .backups (the
-                                .aprx snapshots from before git) included
-  <drive root>\  -> drive-root\ sidecars of the four globals and the "new training" shapefile
+                                except raster payloads (.tif/.ovr), the gdb and DL chips; not .backups
+                                (the .aprx snapshots; git versions the .aprx itself, KB §57.6)
+  <drive root>\  -> drive-root\ sidecars of the four globals (not "new training.*", KB §57.6)
 Any single file over 95 MB is skipped and reported (GitHub refuses files over 100 MB).
 
 What does not, and where it goes instead:
@@ -28,7 +28,7 @@ What does not, and where it goes instead:
 Files that vanish from the drive are removed from the mirror too; git history keeps them.
 Stdlib only: runs on either Python.
 """
-import os, re, sys, shutil, subprocess, time
+import filecmp, os, re, sys, shutil, subprocess, time
 from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -174,7 +174,11 @@ def same(a, b):
     if not b.exists():
         return False
     sa, sb = a.stat(), b.stat()
-    return sa.st_size == sb.st_size and int(sa.st_mtime) == int(sb.st_mtime)
+    if sa.st_size != sb.st_size:
+        return False
+    # A git checkout or pull stamps files with the time of the checkout, so equal size with a different
+    # mtime is compared byte for byte; otherwise every pull on the other machine reports phantom copies.
+    return int(sa.st_mtime) == int(sb.st_mtime) or filecmp.cmp(a, b, shallow=False)
 
 
 def main():

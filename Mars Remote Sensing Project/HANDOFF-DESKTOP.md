@@ -1,7 +1,7 @@
 # Working on the Mars Global Mosaic: the operating guide
 
 How to pick the project up on either machine: the first ten minutes, where everything is, the working rules,
-every open task with its command, and the end of a session. Current to 2026-10-16.
+every open task with its command, and the end of a session. Current to 2026-10-18.
 **Read this file first, then `NEXT-STEPS.md` "Resume here", then `PROJECT-KNOWLEDGE.md` as needed.** The
 record (`PROJECT-KNOWLEDGE.md`, "KB" below, § numbers point into it) is the authority on what is true; this
 file and `NEXT-STEPS.md` are plans. When they disagree, the KB wins and the plan is fixed.
@@ -25,7 +25,10 @@ Deadlines: digitising checkpoint **1 November**, interim data cut **2 November**
    `python "<drive>\Mars Remote Sensing Project\build\desktop_check.py" --gpu`. It checks the three no-space
    junctions (`<drive>\TypeArea`, `Global60`, `Athabasca`, which Spatial Analyst needs; on `F:` they were
    retargeted in place with `build\retarget_junction.py`, KB §53.3), the GPU (it engages on the 2080 Ti, q10)
-   and the deep-learning preflight (the libraries need an administrator install, KB §53.5).
+   and the deep-learning preflight (the libraries need an administrator install, KB §53.5). **A junction
+   stores an absolute target, so it works on one drive letter at a time:** since 2026-10-13 all three
+   point at `F:\Mars Project\...` and are empty on the laptop (KB §58). Before any Spatial Analyst run on
+   `Z:`, retarget them; the desktop then needs them retargeted back.
 5. **What changed since last time?** `NEXT-STEPS.md` "Resume here", the review tally (`python
    build\accept_reviewed.py`, a dry run), and the GP history (KB §29 shows how).
 
