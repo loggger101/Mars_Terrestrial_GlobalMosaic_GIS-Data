@@ -766,6 +766,9 @@ The deliverables already say so. Keep it that way. **[E]**
    The chain has one untested link — q10, whether `GPU_THEN_CPU` really engages on that card.
    Settle q10 and this follows. If run 6 was on the laptop, the desktop should beat those
    timings, though §2.2 argues the USB bus caps the gain either way. **[?]**
+   **Answered by q10 (2026-10-13, §53.3):** `GPU_THEN_CPU` engages on the 2080 Ti and says so, so run 6,
+   which logged no compatible GPU, ran on the laptop. The other §8 runs carry no such line and stay
+   unattributed (§58). **[V]**
 9. ~~Copy the rasters to the desktop's internal SSD?~~ **Answered 2026-09-18: no. The project
    stays on `Z:` permanently — it will outgrow both computers** (§2.2). The old framing also
    undercounted the footprint by 5×. **[V]**
@@ -774,7 +777,9 @@ The deliverables already say so. Keep it that way. **[E]**
     reports the GPU in use (WARNING 010453: it also drives the display). **[V]**
 11. ~~What internal disk does the desktop have, and how much free space?~~ **Moot** — it was
     only needed to plan the copy in q9, which is now settled. Still worth knowing for **scratch
-    space** (§2.2), which is a far smaller ask. **[?]**
+    space** (§2.2), which is a far smaller ask. **[?]** **Answered 2026-10-13 (§53.0):** ~32 GB free on the
+    desktop's `C:` (scratch in `C:\MarsScratch\`, enough with the fine pass's per-tile clean-up, §53.3),
+    ~1.4 TB on the drive as `F:`; ArcGIS Pro is installed on `D:`. **[V]**
 12. **Rewrite the globals as internally tiled, compressed copies?** On a permanently I/O-bound
     pipeline this trades spare CPU for scarce bandwidth and would also fix the whole-row read
     penalty (§2.2, §9). Needs a test on one raster before committing — and space for the
@@ -842,6 +847,10 @@ The deliverables already say so. Keep it that way. **[E]**
     `Z:\Global60` junction were repointed, so the `.aprx` opens whole on `F:`. ~~The scripts still
     assume `Z:`.~~ **Answered 2026-10-08 (§40.2): every build script finds its drive.** Left for the
     desktop: recreate the two no-space junctions there once (the scripts print the command). **[V]**
+    **Done 2026-10-13 (§53.3):** all three junctions retargeted in place to `F:`
+    (`retarget_junction.py`). A junction serves one drive letter at a time, so they are broken on the
+    laptop since; `paths.junction()` prints the retarget command (§58). The `.aprx` itself opens whole on
+    `Z:`: 145 layers, 0 broken, none through a junction (§58). **[V]**
 23. **Which class schema is kept?** `Composite Object Classes.ecs` (1 Oct) numbers lava tube 2 and
     steep/windy hills 3; the hand-drawn labels, both SVM definitions and the deep-learning export use the
     reverse (§29.2). Settle it before training a model on the export or drawing samples under
@@ -869,6 +878,8 @@ The deliverables already say so. Keep it that way. **[E]**
 27. **How much smoothing to publish?** Held-out scores rise with every majority window, from 70.5 %
     raw to 75.1 % at 9 × 9, because the labelled polygons are large. 5 × 5 was chosen by feature size (§32.2).
     Open decision. **[?]** **Answered 2026-10-09: keep 5 × 5.** Nothing changes (§50). **[V]**
+    **Superseded 2026-10-16 (§57):** the published map is the 200 m map smoothed 11 × 11 (2.2 km, the
+    same ~2 km rule at the finer cell), 73.8 %, κ 0.58 held out; the 400 m 5 × 5 map is superseded (§57.2). **[V]**
 
 ---
 
@@ -5119,3 +5130,38 @@ record itself (16:01). The review had not started.
 - **The agent's memory** (the laptop's, `Z--`) brought up to §57: the desktop backlog, the plans, the task
   status, the published map, the ±60° candidates, the release and the junction warning; `audit_record.py`
   memory checks pass.
+
+### 58.1 The audit continued: the project on the laptop, every ±60° raster, the open questions
+
+On request ("continue auditing and working"), the same day. Read-only toward the `.aprx`, the gdb and the
+rasters.
+
+- **The `.aprx` opens whole on `Z:`** (`arcpy.mp`, read only, never saved): 26 maps, 14 layouts (01–14),
+  145 non-group layers (137 sourced on `Z:`, 7 hosted services, 1 with no data source), **0 broken**, none read through a
+  drive-root junction. The broken junctions (§58) therefore affect only Spatial Analyst scripts, which stop
+  at `paths.junction()`, not the project in Pro.
+- **`verify_interim.py`:** all 249 numbers in `interim.py` appear in this record.
+- **`verify_global60.py` now checks every ±60° raster, not only the six built on 2026-09-19.** It had never
+  been extended past the terrain and the thermal index, and it reported the five Composite Bands products
+  ruled out in q7 as "not built yet", as if they were work still to do. Added: the 7-band stack, the six
+  200 m landform maps (raw and filters 3–11, the published `_mode11` among them), the five 400 m maps, the
+  three T1 stacks and four T1 maps (§56), and layout 11's two density grids (§53.6); the five composites
+  are listed as "ruled out (NEXT-STEPS 10)", and flagged if one ever appears. Two lattices are defined in
+  the script from G200: **G400**, the same origin with ceil(n / 2) cells, 53,347 × 17,783, so it reaches
+  200 m past the south edge where G200's 35,565 rows are odd; and **D05**, G200's exact extent in 720 × 240
+  cells, which are not square (29,637.2 m across, 29,637.5 m down): the first run assumed square 0.5°
+  cells and failed both grids on the cell height and the south edge, which is how the real grid was found.
+  Result: **27 pass, 0 fail**; every product projected, CM 180, R 3,396,190, named, and the 200 m and
+  400 m ones nest on the 100 m grid. Planted mismatches fail as they should (a 400 m map against G200, the
+  published map against G400, a density grid against G200: each "shape ..., expected ...").
+- **§11 brought up to date:** q8 (run 6 was the laptop, by q10), q11 (the desktop's disk space, §53.0),
+  q22 (the junctions retargeted to `F:`, broken on `Z:`; the `.aprx` whole on `Z:`) and q27 (the 5 × 5
+  answer superseded by the 200 m 11 × 11 map, §57) carried no note of what §53–§57 settled. Still open:
+  q12 (tiled copies), q15 (does the GUI segmentation de-speckle), q24's inner question (which step inside
+  `ClassifyRaster` makes tiles differ), and the segmentation date in q14.
+- The agent's memories reviewed in full against §53–§57; five more corrected (the GUI work, the 29 Sep
+  map's cause, graticules as data since §44, the `_removed_not_Mars` folder in the Recycle Bin since §50,
+  the project's map and layout counts).
+- **Not done here:** the knowledge vault's Mars pages (`Github Knowledge`, a separate repository with its
+  own re-ingest procedure) still describe the project at §34 and the 400 m map; refreshing them is a task
+  for that vault.
