@@ -38,7 +38,7 @@ All 148 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 |---|---|---|
 | [`grid60.py`](../Mars%20Remote%20Sensing%20Project/build/grid60.py) | ArcGIS | The canonical +/-60 deg target grid, and the only place it is defined. |
 | [`make_extent.py`](../Mars%20Remote%20Sensing%20Project/build/make_extent.py) | either | The mapping extent: 360 degrees of longitude, 60 N to 60 S. |
-| [`make_global60_candidate_sheets.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_candidate_sheets.py) | ArcGIS | Layouts 11 and 12: the ±60° fine pass as two sheets (NEXT-STEPS §3 item 8, HANDOFF §5.4, KB §53.4). |
+| [`make_global60_candidate_sheets.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_candidate_sheets.py) | ArcGIS | Layouts 11 and 12: the ±60° fine pass as two sheets (KB §53.6, §55.4). |
 | [`make_global60_classification.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_classification.py) | ArcGIS | The ±60° landform classification, redone on the corrected stack (KB §31). |
 | [`make_global60_dl_export.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_dl_export.py) | ArcGIS | Re-export the hand-labelled deep-learning training data from the corrected ±60° stack (KB §29.6, §31). |
 | [`make_global60_landforms_clean.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_landforms_clean.py) | ArcGIS | Majority (mode) filter on the ±60° landform classification (KB §32). |

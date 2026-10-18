@@ -33,8 +33,11 @@ python verify_interim.py
 - **`build\build_interim_live.py`** lays it out in `le_theme.py`: title, goals, spectral bands, the correlation
   table, tasks and percent complete, the processing log, a "Preliminary Results" divider, one slide per figure,
   issues, next steps with schedule. **28 slides; the report 20 pages, 19 figures** (2026-10-16, KB §57.3).
-- **After every rebuild:** back up the live files, render (`render_pdf.ps1` for the deck, Word COM for the
-  report), rasterise and **read every changed slide and page** (HANDOFF §5.5 has the commands and the known fits).
+- **After every rebuild:** back up the live files; render the deck with `render_pdf.ps1 -Deck <pptx> -Pdf <pdf>`
+  from PowerShell and the report through Word COM (KB §51.5); rasterise with PyMuPDF and **read every changed slide
+  and page**; then `verify_interim.py`, and check each new number by hand against its own section.
+- **Known fits:** the log table holds 13 rows (a 14th overflows); a whole tall layout is unreadable on a slide, so draw
+  a chart from its log (as for T8 and T1); titles over ~60 characters wrap onto the accent rule.
 
 **Still to do on the deck** (none blocks a rebuild):
 1. **Percentages** in the progress table: the author's to set (`PROGRESS` in `interim.py`); the slide shows
@@ -135,11 +138,11 @@ Assumes **~13 November**; if the date is later, the slack goes to data work, not
 
 - **"Global"** → "±60°" or "the analysis extent" (§16.5).
 - **"Thermal inertia"** → "diurnal contrast" or "relative thermal response"; the held products cannot give
-  inertia (§24). §19.3 and §18.4 of the record still use the old word in places.
+  inertia (§24).
 - **"Crater inventory"** → "closed depressions ≥ 1 km"; quote **68 %** for the large IAU craters, not 75 %
   (§26, §28.11).
 - **Composite Bands failed four times on 9–13 Sep** (five with the 24 Sep cancel), not three (§8).
-- **The SegmentMeanShift of 9 Sep ran on the Mars DEM**, not Mercury (§14.5 #3).
+- **The SegmentMeanShift of 8 Sep (logged as 9 Sep) ran on the Mars DEM**, not Mercury (§14.5, defect 2).
 - **The lava tube class is not a result** (§31.3). Don't show it as one.
 - **The published map is the 200 m 11 × 11 one**; the 400 m 5 × 5 figures (73.5 %) are its predecessor (§57).
 - Elevation is not a classification band; the corrected stack has none (§31.2).

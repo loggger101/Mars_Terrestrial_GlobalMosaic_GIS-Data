@@ -2,8 +2,9 @@
 
 The plan. `PROJECT-KNOWLEDGE.md` ("KB", § numbers point into it) is the record and the authority on what
 is true; when the two disagree, the KB wins and this file is fixed. Done work is recorded there and
-**removed** from here, not struck through. The interim has its own plan, `INTERIM-PLAN.md`; how to work
-on either machine is `HANDOFF-DESKTOP.md`.
+**removed** from here, not struck through; sections 1–10 keep their numbers (scripts and the KB cite them). The
+interim has its own plan, `INTERIM-PLAN.md`; how to work on either machine, including the start-of-session
+checklist, is `HANDOFF-DESKTOP.md`.
 
 | deadline | date |
 |---|---|
@@ -24,8 +25,9 @@ column fixed at its source (§54); the 200 m classification, **published as the 
 T1 confirmed with Pro's SVM (thermal +1.36 pt at 200 m, +1.97 at 400 m, §56); T8 rerun on the published map
 (§57.1); the interim rebuilt, 28 slides and 20 pages (§57.3); GitHub release `data-2026-10-16` (§57.4).
 The project: 26 maps, 14 layouts; nothing is running on the desktop.
-**2026-10-18, laptop (§58):** nothing new on the drive since; the drive-root junctions point at `F:` and are
-broken on the laptop (retarget before any Spatial Analyst run there); the laptop's clone fast-forwarded.
+**2026-10-18, laptop (§58, §59):** no new data since; the drive-root junctions point at `F:` and are broken on
+the laptop (retarget before any Spatial Analyst run there); the record and the plans condensed, nothing measured
+changed.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).
@@ -44,16 +46,6 @@ is the critical path, and only the author can do it (§6).
 **Waiting on the author:** items 1, 3 and 6; whether to delete the two recreated `_60_smoke` classes
 (KB §57.1); whether to publish a derivatives release carrying the §54 patch (33 GB; the catalogue says how
 to patch a restore instead, §57.4); emptying the Recycle Bins (~21 GB of finished scratch, §57.5).
-
----
-
-## 0. Start of every session (two minutes, saves hours)
-
-1. Which machine? (`hostname`: the desktop is `DESKTOP-PJS73RO`, drive `F:`; the laptop, drive `Z:`.)
-2. Is ArcGIS Pro closed before any write to the `.aprx` or the gdb?
-3. Is anything still running? (`Get-CimInstance Win32_Process` for `python.exe`; the queue logs in `build\logs\`.)
-4. **What changed since last time?** New rows in the review fields (`python build\accept_reviewed.py`, a dry
-   run), files on the drive, GP history (KB §29 shows how). Plan from that, not from this file's snapshot.
 
 ---
 
@@ -106,7 +98,7 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 4. When lava margins exist at Athabasca: give `make_flow_margin_test.py` a `--margins` source
    (`Landform_LavaFlowMargins` in place of the SIM 3292 contacts) and rerun T5 (H1). The script needs the
    `<drive>\Athabasca` junction (retarget it first on the laptop, KB §58.2).
-5. `github_export_gdb.py`, then the end-of-session sequence (`HANDOFF-DESKTOP.md` §6).
+5. `github_export_gdb.py`, then the end-of-session sequence (`HANDOFF-DESKTOP.md` §4).
 
 ---
 
@@ -189,6 +181,10 @@ the ±60° decision · 3 co-registration and the frames trap · 4 the thermal pa
 closes on a measured number and a sheet. **No final builder exists yet:** write one on the interim's pattern
 (one source module, charts from logs, layouts exported by script), early enough to rehearse.
 
+**Before each deadline:** a new GitHub data release (`github_release_bundle.py --upload data-YYYY-MM-DD`), then
+point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE` at it, then run
+`tools/check_remote.py` by hand (KB §57.4). Check that the releases hold every figure the documents need.
+
 ---
 
 ## 8. Schedule
@@ -209,13 +205,11 @@ closes on a measured number and a sheet. **No final builder exists yet:** write 
 
 - **The drive is the only full copy** of the project; GitHub holds the tree and the releases, not the gdb's
   rasters. The USB drive has dropped off mid-write twice (§36.4): big writes go to internal disk first, then one
-  copy. **Before each deadline, check the releases hold every figure it needs.**
+  copy (§7 has the release step).
 - **Two deadlines three weeks apart** compete for the same days: hence the hard cut on 2 Nov and documents
   built by script, not by hand.
 - **The thermal argument is weaker than the prospectus says** (§28.10, §43.1): write both documents around what
-  is measured.
-- **The record's old sections say "thermal inertia"** (§18.4, §19.3); quoting them would reintroduce the error
-  (`INTERIM-PLAN.md` §7).
+  is measured; the wording traps are `INTERIM-PLAN.md` §7.
 - **The review may not start in time:** the §6 contingency is the plan for that case.
 
 ---

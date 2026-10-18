@@ -34,7 +34,7 @@ Not backed up anywhere but the drive (git history holds the files the repository
 
 ## Keeping it current
 
-Run from `Mars Remote Sensing Project\build\` on the drive; each script finds the drive from its own location, so `Z:` and `F:` both work.
+Run from `Mars Remote Sensing Project\build\` on the drive; each script finds the drive from its own location, so `Z:` and `F:` both work. "ArcGIS Python" below is ArcGIS Pro's `arcgispro-py3` environment: `C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe` on the laptop, `D:\ArcGISPro\...` on the desktop.
 
 ```bash
 python github_sync.py --commit
@@ -64,7 +64,7 @@ rewrites [rasters.md](rasters.md) from the rasters' own headers (a few seconds).
 "C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" github_release_large.py derivatives-YYYY-MM-DD
 ```
 
-does the same for the large products: about two hours at 10 MB/s, resumable, and it stages one 1.9 GB piece at a time.
+does the same for the large products, staging one 1.9 GB piece at a time and resuming where it stopped. The 74.4 GB release of 2026-10-06 took about 16 hours over home Wi-Fi: run it on AC power with the lid open, wired if possible.
 
 ## Restoring
 
@@ -81,7 +81,7 @@ Then, by hand:
 
 1. Download the four source rasters ([links](../README.md#source-data)) to the drive root.
 2. Create `Mars Project/Mars Project.gdb` in Pro and copy the feature classes from `exports/mars_project_vectors.gdb` into it.
-3. Re-create the directory junctions `Z:\TypeArea` and `Z:\Global60`, which the legacy Spatial Analyst tools need (they reject the space in "Mars Project").
-4. Build pyramids on the large rasters.
+3. Re-create the directory junctions at the drive root, `TypeArea`, `Global60` and `Athabasca`, each pointing at its folder under `Mars Project\`, which the legacy Spatial Analyst tools need (they reject the space in "Mars Project"). A junction serves one drive letter; the scripts print the command when one is missing.
+4. Build pyramids on the four source rasters.
 
 The `.aprx` stores relative paths, so it opens from any drive letter. Layers that pointed at rasters not restored will show as broken until the `build/` scripts rebuild them.

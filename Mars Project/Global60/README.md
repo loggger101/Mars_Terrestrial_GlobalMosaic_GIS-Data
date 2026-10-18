@@ -80,13 +80,12 @@ were never built at ±60°: only their smoke-test windows exist. The classificat
 
 **The thermal index is not thermal inertia.** Both THEMIS mosaics are 8-bit DN
 with no radiometric scaling, so calibrated inertia is not derivable from them
-(KB §24.1). This is a *relative* index: high = large diurnal swing = dust,
-low = damped = bedrock.
+(KB §24.1). This is a *relative* index: high = large diurnal swing, low = damped.
 
-**It is stretched over ±60°, not over Ius.** The percentiles come from the whole
-extent, so the numbers here are **not comparable** to `ius_thermal_contrast.tif`.
-That is deliberate — a planet-wide index scaled to one canyon would be
-meaningless — but it means a value from one cannot be quoted against the other.
+**At ±60° it is local texture, never a material map.** Both THEMIS mosaics are
+locally contrast-normalised, so the index cannot separate dusty from rocky
+provinces (KB §28.10): compare values only within one area. It is also stretched
+over ±60°, so its numbers are **not comparable** to `ius_thermal_contrast.tif`.
 
 ## Checking it
 

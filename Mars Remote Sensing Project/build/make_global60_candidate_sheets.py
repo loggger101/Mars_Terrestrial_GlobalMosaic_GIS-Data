@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Layouts 11 and 12: the ±60° fine pass as two sheets (NEXT-STEPS §3 item 8, HANDOFF §5.4, KB §53.4).
+r"""Layouts 11 and 12: the ±60° fine pass as two sheets (KB §53.6, §55.4).
 
   11_global60_depressions   closed depressions >= 1 km per 0.5° cell, beside the Robbins & Hynek 2020
                             catalogue on the same colour breaks; the Robbins table of
