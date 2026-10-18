@@ -104,7 +104,8 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
    channels exist. **Stage 2 is not written yet:** when the counts are reached, extend the script to compare
    by `Origin` (sample the type-area index along the reviewed channels), prediction and rule written first.
 4. When lava margins exist at Athabasca: give `make_flow_margin_test.py` a `--margins` source
-   (`Landform_LavaFlowMargins` in place of the SIM 3292 contacts) and rerun T5 (H1).
+   (`Landform_LavaFlowMargins` in place of the SIM 3292 contacts) and rerun T5 (H1). The script needs the
+   `<drive>\Athabasca` junction (retarget it first on the laptop, KB §58.2).
 5. `github_export_gdb.py`, then the end-of-session sequence (`HANDOFF-DESKTOP.md` §6).
 
 ---

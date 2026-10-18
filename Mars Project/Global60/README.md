@@ -27,6 +27,13 @@ the downloaded imagery by construction.
 every 200 m cell edge falls on a 100 m cell edge. The two nest, so a 200 m
 product and a 100 m product overlay without a reproject.
 
+Two more lattices are derived from `G200` (defined in `verify_global60.py`, §58.1):
+
+- **400 m** (the T1 maps and the superseded 400 m classification): the same origin, 53,347 × 17,783
+  cells. G200's 35,565 rows are odd, so the last 400 m row reaches 200 m past the south edge.
+- **0.5°** (layout 11's density grids): G200's exact extent in 720 × 240 cells, which are not square
+  (29,637.2 m across, 29,637.5 m down).
+
 **The template is `Mars_MO_THEMIS-IR-Night_mosaic_60N60S_100m_v14.tif`**, per
 KB §16.4: it is the binding raster, and the day mosaic sits at an exact integer
 offset from it (+1 px in x, +17,783 px in y). So on this grid the day–night pair
@@ -57,9 +64,9 @@ is **never resampled** — it is a window read, not a warp.
 | `global60_landforms_svm.ecd` | | the support vector machine, trained on the training split of the hand-drawn labels (§31) |
 | `global60_landforms_svm_200m.tif` | G200 | the landform classification at 200 m; pixel = class code 1–4, 255 none (§55.3) |
 | `global60_landforms_svm_200m_mode3 / 5 / 7 / 9 / 11.tif` | G200 | the same after an n × n majority filter; **`_mode11` (2.2 km) is the published map** (§57) |
-| `global60_landforms_svm_400m.tif`, `_400m_mode3 / 5 / 7 / 9.tif` | 400 m | the earlier 400 m classification and its filters; superseded, not redone after the 180° fix (§57.2) |
+| `global60_landforms_svm_400m.tif`, `_400m_mode3 / 5 / 7 / 9.tif` | 400 m (53,347 × 17,783) | the earlier 400 m classification and its filters; superseded, not redone after the 180° fix (§57.2) |
 | `global60_landforms_svm_<set>.ecd`, `global60_svm_stack_200m_<set>.tif`, `global60_landforms_svm_<set>_<cell>m.tif` | G200 / 400 m | test T1: the model retrained without band groups, `<set>` = `nothermal`, `novisible`, `terrain` (§56) |
-| `global60_depression_density_0p5deg.tif`, `global60_robbins_density_0p5deg.tif` | 0.5° | closed depressions and Robbins craters ≥ 1 km per 10⁴ km² (layout 11, §53.6) |
+| `global60_depression_density_0p5deg.tif`, `global60_robbins_density_0p5deg.tif` | 0.5° (720 × 240) | closed depressions and Robbins craters ≥ 1 km per 10⁴ km² (layout 11, §53.6) |
 | `smoke60_*.tif` | G100 | smoke-test windows of the pipeline: Viking, day, night, 4- and 5-band composites (§28.11) |
 | `global60_svm_s_ClassifyRaste*.crf` | | temporary outputs `ClassifyRaster` wrote on 2 Oct; no layer uses them |
 | `layouts\` | | PNG exports of layouts 04–14 |
@@ -88,10 +95,13 @@ meaningless — but it means a value from one cannot be quoted against the other
 ```
 
 Checks every product's corners to the millimetre, its cell size, its shape, its
-CRS, and — for 200 m products — that it nests on the 100 m grid. Non-zero exit
-if anything fails.
+CRS, and — for 200 m and 400 m products — that it nests on the 100 m grid. Non-zero exit
+if anything fails. Since 2026-10-18 it covers every `global60_*.tif` (27 at that date; not the `smoke60_*` windows)
+and reports the never-built harmonised bands as ruled out; add a new product to its `EXPECTED` list.
 
 ## `<drive>\Global60`
 
 A junction to this folder, for the legacy Spatial Analyst tools that reject the
-space in `Mars Project` (KB §19.1). Same pattern as `<drive>\TypeArea`.
+space in `Mars Project` (KB §19.1). Same pattern as `<drive>\TypeArea`. A junction stores an
+absolute target, so it serves one drive letter at a time: since 2026-10-13 it points at `F:`
+(the desktop) and is broken on the laptop's `Z:` until retargeted (`build\retarget_junction.py`, KB §58).

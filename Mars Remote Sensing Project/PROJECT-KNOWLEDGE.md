@@ -5165,3 +5165,34 @@ rasters.
 - **Not done here:** the knowledge vault's Mars pages (`Github Knowledge`, a separate repository with its
   own re-ingest procedure) still describe the project at §34 and the 400 m map; refreshing them is a task
   for that vault.
+
+### 58.2 The audit, third pass: the review tally, X2's post-rerun figures, the READMEs, the scripts
+
+On request ("continue auditing"), the same day. Read-only except the files named.
+
+- **The review has not started:** `accept_reviewed.py` (dry run) counts 0 accept / 0 reject / 0 unsure in
+  every candidate class (Ius channels 2,610, Athabasca channels 3,283, Ius closed depressions 1,685,
+  Athabasca 1,709: 9,287), and `Landform_ChannelCenterlines` and `Landform_CraterRims` hold 0 copied rows.
+  `audit_record.py` under the ArcGIS Python also checks the gdb: **28 feature classes, 15 rasters**, as §6
+  and §13.2 state.
+- **No figure from X2's run 2 (before §54.4) is quoted as current** in `interim.py`, the three plans, the
+  catalogues, `Global60\README.md` or the public README (searched for 467,547, 973,879, the run-2 order
+  counts, 142,902, 31,043, 60.1 %, 89.9 %). **Layout 12 prints run-3 figures this record did not hold**; from
+  `logs\global60_candidate_sheets.json` (2026-10-15 00:52): segments by Strahler order 1–5 **564,882 /
+  360,236 / 41,442 / 3,165 / 97** (sum 969,822; orders 1–2 together 925,118), 6.17 million km in all; of
+  40,410 sampled midpoints **89.8 %** lie on ground under 2°, **96.7 % of order 3 and up** (run 2, §53.6:
+  95.6 %); by order 86.5 / 94.2 / 96.9 / 94.0 / 100 %. The sheet's "97 %" and its order counts are these.
+- **`INTERIM-PLAN.md`** agrees with this record (the progress facts, hypotheses, wording traps); its open
+  deck items (percentages, the 54.4 DN province figure, small legends) stand.
+- **`Global60\README.md`** now describes the 400 m lattice (53,347 × 17,783, reaching 200 m past the south
+  edge) and the 0.5° grid (720 × 240, non-square cells), says what `verify_global60.py` covers since §58.1,
+  and that the `<drive>\Global60` junction serves one drive letter at a time. The copy inside release
+  `data-2026-10-16` (`global60-classification-part2.zip`) predates this edit; the next data release
+  carries it (as in §57.7).
+- **Build scripts:** no code path hard-codes `Z:`, and every remaining mention of the 400 m 5 × 5 map or
+  73.5 % is history stated as history (the catalogue's superseded entry, the interim's 3 Oct log row, the
+  superseded group in `make_global60_maps.py`). Of the after-review scripts (NEXT-STEPS §3), only
+  `make_flow_margin_test.py` (T5) needs a junction: it resolves `WS = junction(...)` at import, though it
+  reads only through `arcpy.Raster` and `RasterToNumPyArray`, which accept paths with spaces. On the laptop it
+  stops at the junction message until the junction is retargeted. Not changed: a run is the only test, and
+  it would overwrite `logs\t5_flow_margins.json`; the change belongs with the T5 rerun on digitised margins.
