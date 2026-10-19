@@ -32,7 +32,7 @@ python verify_interim.py
   `make_fig_tests567.py`.
 - **`build\build_interim_live.py`** lays it out in `le_theme.py`: title, goals, spectral bands, the correlation
   table, tasks and percent complete, the processing log, a "Preliminary Results" divider, one slide per figure,
-  issues, next steps with schedule. **28 slides; the report 20 pages, 19 figures** (2026-10-16, KB §57.3).
+  issues, next steps with schedule. **28 slides; the report 19 pages, 19 figures** (2026-10-19, KB §62).
 - **After every rebuild:** back up the live files; render the deck with `render_pdf.ps1 -Deck <pptx> -Pdf <pdf>`
   from PowerShell and the report through Word COM (KB §51.5); rasterise with PyMuPDF and **read every changed slide
   and page**; then `verify_interim.py`, and check each new number by hand against its own section.
@@ -42,9 +42,9 @@ python verify_interim.py
 **Still to do on the deck** (none blocks a rebuild):
 1. **Percentages** in the progress table: the author's to set (`PROGRESS` in `interim.py`); the slide shows
    13 Sep's next to a dash.
-2. **The province figure quotes 54.4 DN** (`pres1_img\global60_thermal.png`, five boxes), while KB §28.10 and
-   layout 08 quote **47.67 DN** (seven provinces). Both are real; the slide says "these five boxes". Regenerate
-   one consistent, light-background version before the final.
+2. **Layout 08's caption A** names Tharsis among the dusty provinces of the 47.7 DN figure, which covers Arabia
+   Terra and Amazonis against Syrtis Major and Acidalia (KB §28.10, §62); fix in `make_mosaic_layout.py` at the next
+   layout rebuild.
 3. **Legends are small** on the 05 and 07 slides; give them more room or a larger export.
 
 ## 1. What exists
@@ -54,7 +54,7 @@ Everything is in `<drive>\Mars Remote Sensing Project\NEXT STUFF\`:
 | file | built by |
 |---|---|
 | `Mars Global Mosaic - Interim Presentation.pptx` (28 slides) | `build_interim_live.py` + `interim.py` |
-| `Mars Mosaic - Interim Report.docx` (20 pages) | `build_interim_report_live.py` + `interim.py` |
+| `Mars Mosaic - Interim Report.docx` (19 pages) | `build_interim_report_live.py` + `interim.py` |
 | `2 Interim Presentation Template.pptx` | the course |
 
 Earlier versions are kept on the drive in `NEXT STUFF\.backup_*` (not mirrored to GitHub).

@@ -79,7 +79,7 @@ All 148 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`make_fig_craters.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_craters.py) | ArcGIS | Figure: candidate craters for the Ius Chasma type area, the size-frequency distribution the gazetteer cannot give, and the validation - including the failure. |
 | [`make_fig_daynight.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_daynight.py) | ArcGIS | Day / night / difference over the Ius Chasma type area. |
 | [`make_fig_fusion.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_fusion.py) | ArcGIS | Ius Chasma fusion figure - HSV composite so colour carries thermal information while relief still reads. |
-| [`make_fig_global60.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_global60.py) | ArcGIS | The +/-60 thermal figure - and why it cannot be read as a material map. |
+| [`make_fig_global60.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_global60.py) | either | The +/-60 province test: can the day-night pair discriminate material? (KB 28.10) |
 | [`make_fig_segmentation.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_segmentation.py) | ArcGIS | Segmentation parameter sweep, shown on a zoom across the Ius Chasma wall. |
 | [`make_fig_supervised.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_supervised.py) | ArcGIS | Figure: task 7's supervised half, with the accuracy assessment made visible - including the comparison that does NOT support the easy story. |
 | [`make_fig_svm_check.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_svm_check.py) | either | Figure: the two Pro-GUI SVM classifications (KB §29, §30) checked against independent evidence. |

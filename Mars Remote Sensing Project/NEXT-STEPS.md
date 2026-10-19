@@ -28,6 +28,8 @@ The project: 26 maps, 14 layouts; nothing is running on the desktop.
 **2026-10-18, laptop (§58–§61):** no new data since; the drive-root junctions point at `F:` and are broken on
 the laptop (retarget before any Spatial Analyst run there); the record and the plans condensed, two scripts freed
 from a hard-coded `F:`, every sheet re-polished and the interim rebuilt from them, nothing measured changed.
+**2026-10-19, laptop (§62):** the province figure redrawn light from §28.10's tables (47.67 DN covers four
+provinces, −0.0009 seven); slide 11 updated; the interim rebuilt, 28 slides and 19 pages.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).

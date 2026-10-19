@@ -56,14 +56,17 @@ exports every sheet; the PNGs here are the polished exports.
 
 ## Result charts
 
-Drawn from the tests' JSON logs in [`build/logs/`](../Mars%20Remote%20Sensing%20Project/build/logs), never retyped. They
-are the interim deck's figures, in [`build/interim_img/`](../Mars%20Remote%20Sensing%20Project/build/interim_img).
+Drawn from the tests' JSON logs in [`build/logs/`](../Mars%20Remote%20Sensing%20Project/build/logs) (the province chart
+from the KB's own §28.10 tables), never retyped. They are the interim deck's figures, in
+[`build/interim_img/`](../Mars%20Remote%20Sensing%20Project/build/interim_img) (the province chart in
+[`build/pres1_img/`](../Mars%20Remote%20Sensing%20Project/build/pres1_img)).
 
 | | What it shows | Made by · log |
 |---|---|---|
 | <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/t1_pro.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/t1_pro.png" width="300"></a> | **T1 in ArcGIS Pro: what each band group adds.** Held-out accuracy of the full stack minus the stack without the group, with a paired-bootstrap 95 % interval. The thermal bands add 1.36 points at 200 m and 1.97 at 400 m, both resolved. KB §56, §56.1. | `make_fig_t1_pro.py` · `t1_bootstrap_*.json` |
 | <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/thermal_ablation.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/thermal_ablation.png" width="300"></a> | **T1 with a numpy classifier: held-out accuracy by band set**, against the 58.6 % of one class everywhere. Every set that includes slope and relief clears it; the spectral bands alone do not. KB §40.1. | `make_fig_ablation.py` · `thermal_ablation.json` |
 | <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/tes_check.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/tes_check.png" width="300"></a> | **T3: which layer tracks calibrated thermal inertia (TES)?** Correlation across ±60° and within 15° blocks. Viking red does (r −0.36); the THEMIS pair keeps only a weak local signal. KB §42.4, §43.1. | `make_fig_tes.py` · `tes_global_check.json` |
+| <a href="../Mars%20Remote%20Sensing%20Project/build/pres1_img/global60_thermal.png"><img src="../Mars%20Remote%20Sensing%20Project/build/pres1_img/global60_thermal.png" width="300"></a> | **Can the day–night pair tell material apart across ±60°?** A: the diurnal-contrast index over seven provinces, dusty against rocky −0.0009 with scatter of 0.13–0.23 inside each. B: day IR, night IR and Viking red over the four provinces with tabulated DN; every province repeats the THEMIS mosaic-wide mean and spread, and Viking separates dusty from rocky by 47.67 DN, the THEMIS pair by −0.19 and +0.02. KB §28.10, §62. | `make_fig_global60.py` · KB §28.10's tables, parsed at run time |
 | <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/t8_enrichment.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/t8_enrichment.png" width="300"></a> | **T8: each class's enrichment on each geologic unit group**, P(class \| group) ÷ P(class). Layout 13's table, legible at slide size. KB §43.2, §57.1. | `make_fig_t8.py` · `geomap_check.json` |
 | <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/t4_channels.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/t4_channels.png" width="300"></a> | **T4 (H2, stage 1): volcanic against fluvial channels.** The Athabasca candidates are shallower than Ius's, and thermal response does not tell the two windows apart (AUC 0.50). KB §51.1. | `make_fig_t4.py` · `t4_channel_h2.json` |
 | <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/t5_margins.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/t5_margins.png" width="300"></a> | **T5 (H1): does IR show lava-flow margins?** The share of 905 profiles across the geologic map's `lAv` contacts that each band separates; every interval reaches chance. KB §47.2. | `make_fig_tests567.py` · `t5_flow_margins.json` |
@@ -95,6 +98,5 @@ the layouts above.
 
 | | What it shows | Made by |
 |---|---|---|
-| <a href="../Mars%20Remote%20Sensing%20Project/build/pres1_img/global60_thermal.png"><img src="../Mars%20Remote%20Sensing%20Project/build/pres1_img/global60_thermal.png" width="300"></a> | **Can the day–night pair tell material apart across ±60°?** Five provinces in Viking red and in the diurnal-contrast index: Viking separates dusty from rocky by 54.4 DN, both THEMIS mosaics by under 0.3 DN, because they are contrast-stretched region by region. From Presentation 1, in its dark style; layout 08 quotes 47.67 DN over seven provinces (both are real). KB §28.10. | `make_fig_global60.py` |
 | [`pipeline.svg`](pipeline.svg) | The pipeline diagram on the front page. | by hand |
 | [`OLD/ocean first pres LE.pdf`](../Mars%20Remote%20Sensing%20Project/OLD/ocean%20first%20pres%20LE.pdf) | Presentation 1 as delivered (history, not corrected). KB §14.5. | — |

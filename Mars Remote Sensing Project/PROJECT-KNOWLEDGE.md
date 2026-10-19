@@ -28,7 +28,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | sources, the three frames, the ±60° grid | §3, §4, §15, §16, §28.1–§28.2 |
 | the ArcGIS project and the gdb | §5, §6 |
 | how scripted work is done, and its traps | §2, §9, §12, §13 |
-| what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1, §56 |
+| what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1, §56, §62 |
 | classification: type area | §19, §23, §27 |
 | classification: ±60°, the published map | §31, §32.2, §55.3, §57 |
 | craters and closed depressions | §26, §28.11, §42.3, §53.4, §53.6 |
@@ -1362,8 +1362,12 @@ contrast-normalised, their DN is local contrast, not radiance.** Viking keeps it
   §41) can do it. Calibrated inertia then tracks Viking, not the THEMIS pair (§43.1).
 - **Absence of a suspected artefact is not evidence of signal.**
 
-(`pres1_img\global60_thermal.png` quotes 54.4 DN over five boxes: another box set; quote the set with its
-number, §39.3.)
+**Which provinces each number covers (§62):** the index difference (−0.0009) is three dusty (Arabia Terra,
+Amazonis, Tharsis) against four rocky (Syrtis Major, Acidalia, Hellas floor, Valles Marineris); the DN rows
+(47.67 DN for Viking) equal, within the per-province table's rounding, the means of its two dusty and two rocky
+provinces (Arabia Terra and Amazonis; Syrtis Major and Acidalia). The box coordinates of 2026-09-19 are not
+recorded **[?]**. `pres1_img\global60_thermal.png` charts these tables since 2026-10-19 (§62); its earlier
+version quoted 54.4 DN from five boxes of its own (`logs\global_fig2.log`).
 
 ### 28.11 The staged scripts smoke-tested; the basin pass done **[V]**
 
@@ -1863,8 +1867,9 @@ How it runs is section 0 of `INTERIM-PLAN.md`. Lessons:
   Hide the prose for the export; a tall sheet becomes a chart instead (§51.5).
 - **A legend exports blank once its map frame is hidden**: cut legends out as the difference between the sheet
   exported with and without them.
-- Province figures: `pres1_img\global60_thermal.png` quotes **54.4 DN over five boxes**, §28.10 **47.67 DN over
-  seven provinces**: two box sets, so quote the set with its number.
+- Province figures: quote a number with its province set. Since 2026-10-19 `pres1_img\global60_thermal.png` and
+  the deck quote §28.10 only: −0.0009 (index, seven provinces) and 47.67 DN (Viking, four provinces) (§62); the
+  54.4 DN of its Presentation 1 version came from five boxes of its own.
 
 ### 39.4 The project's text in an objective, impersonal voice **[V]**
 
@@ -2866,3 +2871,33 @@ On the laptop, ArcGIS Pro closed. Nothing measured changed.
   and a planted broken image.
 - Not changed: the layouts' footer gives "Logan Edwards" (the public name in the repo is "Logan M Edwards"); the
   province figure (`pres1_img\global60_thermal.png`) is still the dark Presentation 1 version (`INTERIM-PLAN.md`, section 0).
+
+## 62. The province figure redrawn from §28.10, light style; the interim rebuilt — 2026-10-19 **[V]**
+
+On the laptop; nothing measured, no raster read, nothing written to the `.aprx` or the gdb.
+
+- **`build\make_fig_global60.py` rewritten** (old version in `build\.py_backup_20261019\`, with the dark PNG). It
+  parses §28.10's three tables from this file at run time and draws two panels in the palette and type of
+  `make_fig_tes.py`: **A**, the diurnal-contrast index over the seven provinces (mean ± sd); **B**, day IR, night IR
+  and Viking red DN ± sd for the four provinces with tabulated DN, the whole-mosaic mean ± sd as a band, and the
+  dusty − rocky differences −0.19, +0.02 and +47.67 DN. System Python, matplotlib only; the Viking cache and the
+  source mosaics are no longer read. Output `pres1_img\global60_thermal.png`, 2300 × 980 px.
+- **What the tables cover, found by recomputing them:** the −0.0009 reproduces only as three dusty against four
+  rocky (−0.000925; with Syrtis and Acidalia alone as rocky it would be −0.0037). The dusty and rocky DN rows are the
+  means of the two dusty and two rocky provinces of the per-province table: Viking 123.50 and 75.80 against 123.50
+  and 75.82; day 125.55 and 125.80 against 125.61 and 125.80; night 124.45 and 124.45 against 124.50 and 124.49.
+  So **47.67 DN is four provinces, not seven**; INTERIM-PLAN and §39.3 said seven. §28.10 now says which set each
+  number covers.
+- **The script checks this before drawing** and stops otherwise: the recomputed index difference must round to the
+  recorded one, and each DN row must lie within 0.07 DN of its two-province mean. Proved on two planted defects
+  (Hellas floor counted dusty; the Viking rocky row moved 6 DN): both stop it.
+- **The deck's slide 11** (`interim.py`) now says 47.67 DN, −0.19 and +0.02 DN, and −0.0009 over seven provinces,
+  instead of "54.4 DN (these five boxes)". Rebuilt: 28 slides; the report **19 pages** (the wide figure is shorter
+  than the tall dark one), 19 figures; live files backed up to `NEXT STUFF\.backup_20261019\`. `make_interim_figs.py`
+  not rerun (no layout changed). Both rendered; slide 11 and report page 5 read. `verify_interim.py`: 251 numbers,
+  all in the record.
+- Repo: the figure's row in `docs/figures.md` moved from "Other" to "Result charts" and rewritten; the README shows
+  the chart under T3 with the province result.
+- Not changed: layout 08's caption A says "Bright dust (Arabia, Tharsis, Amazonis) against dark, rocky Syrtis Major
+  and Acidalia: 47.7 DN apart", which names Tharsis among the dusty provinces of a number that does not include it
+  (`make_mosaic_layout.py`; fixing it means a layout rebuild and polish).

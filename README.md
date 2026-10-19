@@ -72,6 +72,12 @@ Across ±60°, TES thermal inertia tracks Viking red (r −0.36), while the THEM
 
 *Correlation of each layer with log thermal inertia from TES (~3 km cells): blue across all of ±60°, orange the median inside 15° blocks.*
 
+The province test shows why. Over seven provinces with textbook thermal-inertia contrast, the diurnal-contrast index differs between dusty and rocky by −0.0009, against scatter of 0.13–0.23 inside each. Every province repeats the mosaic-wide mean and spread of both THEMIS mosaics, which are stretched region by region, while Viking red separates dusty from rocky by 47.67 DN.
+
+[<img src="Mars%20Remote%20Sensing%20Project/build/pres1_img/global60_thermal.png" width="720" alt="Province test: the diurnal-contrast index over seven provinces, and day IR, night IR and Viking red DN over four">](Mars%20Remote%20Sensing%20Project/build/pres1_img/global60_thermal.png)
+
+*A: index mean ± sd per province. B: DN mean ± sd in each source, the grey band the whole mosaic's; the numbers are dusty − rocky. KB §28.10.*
+
 ### Against the USGS geologic map (T8, T2)
 
 The classes sit where terrain puts them, and volcanic plains can't be separated from other plains in these bands, so lava flows are shown from the map's volcanic units (layout 10). At Athabasca the flood lava (`lAv`) is the least cratered large unit: 1,122 catalogued craters per million km², against 1,760 and 2,183 on the older units.
