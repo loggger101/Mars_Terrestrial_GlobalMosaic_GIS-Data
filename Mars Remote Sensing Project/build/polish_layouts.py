@@ -26,6 +26,11 @@ make_candidate_maps.py). Idempotent: every step checks before it changes anythin
               03's "Graticule 2°" entry and the "Analysis extent ±60°" entries of 04, 10 and 13
               had no visible symbol (the extent outline is the frame edge): removed from the legend,
               the layers kept. 07's IAU entry printed its name as heading and label: once now.
+  (KB §63, 2026-10-19)
+  credit      every sheet's footer said "Logan Edwards"; the public name is "Logan M Edwards"
+              (the builders' CREDIT now says so too).
+  08          caption A named Tharsis among the dusty provinces of the 47.7 DN difference, which
+              covers Arabia and Amazonis against Syrtis Major and Acidalia only (KB §62).
 
 Pro must be closed. The .aprx is backed up first. --aprx <copy> rehearses on a copy, which must
 sit BESIDE the real .aprx (it stores relative paths, §31.5). --export <dir> writes every sheet to
@@ -56,6 +61,8 @@ LEGEND_DROP = {"03_classification": ("Graticule",), "04_global60_landforms": ("A
 
 SUBTITLE_02 = ("THEMIS Night IR v14, 100 m. Bright = warmer at night than its surroundings, as rock and "
                "coarse debris are.\nLocal contrast, not calibrated thermal inertia (KB \u00a728.10).")
+NAME_OLD, NAME_NEW = "Logan Edwards  ·", "Logan M Edwards  ·"
+CAP08_OLD, CAP08_NEW = "Bright dust (Arabia, Tharsis, Amazonis)", "Bright dust (Arabia, Amazonis)"
 NODATA_NOTE_04 = ("Grey streaks: no class. Gaps between THEMIS orbits leave 2.6% of the band "
                   "unclassified, 19% south of 48\u00b0S.")
 
@@ -135,6 +142,18 @@ def main():
         n = refont(cim.elements)
         if n:
             changed.append("%d fonts" % n)
+
+        for e in cim.elements:
+            t = getattr(getattr(e, "graphic", None), "text", None)
+            if isinstance(t, str) and NAME_OLD in t:
+                e.graphic.text = t.replace(NAME_OLD, NAME_NEW)
+                changed.append("credit name")
+
+        if lyt.name == "08_global60_mosaic":
+            g = graphic(cim, "cA")
+            if g is not None and CAP08_OLD in g.graphic.text:
+                g.graphic.text = g.graphic.text.replace(CAP08_OLD, CAP08_NEW)
+                changed.append("caption A")
 
         if lyt.name == "02_night_ir":
             g = graphic(cim, "subtitle")

@@ -135,7 +135,7 @@ def main():
              "same 200 m grid of the analysis extent.", 10, "subtitle", colour=grey),
         # top row
         text(xl, yt + fh + 0.08, "A  Visible: Viking MDIM 2.1 colour", head, "hA", bold=True),
-        text(xl, yt - 0.42, "Real albedo. Bright dust (Arabia, Tharsis, Amazonis) against dark, rocky\n"
+        text(xl, yt - 0.42, "Real albedo. Bright dust (Arabia, Amazonis) against dark, rocky\n"
              "Syrtis Major and Acidalia: 47.7 DN apart in the red band.", cap, "cA", colour=dark),
         text(xr, yt + fh + 0.08, "B  THEMIS Day IR", head, "hB", bold=True),
         text(xr, yt - 0.42, "Bright = warm by day. Dust is bright in visible light and cool by day:\n"

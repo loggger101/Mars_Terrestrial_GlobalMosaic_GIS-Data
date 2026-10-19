@@ -7,11 +7,11 @@ Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Institute of 
 
 An ArcGIS Pro project that co-registers Viking visible color, THEMIS day and night thermal infrared and the HRSC/MOLA elevation model of Mars, then uses the stack to map three landform families: volcanic flow units, fluvial channels and valley networks, and impact craters. The scientific hook is Athabasca Valles, mapped for decades as a water-cut outflow channel before it was reinterpreted as flood lava. Morphology together with thermal response is this project's way of telling the two apart.
 
-The analysis extent is **±60° latitude** (86.6% of the surface), set by the coverage of the THEMIS night mosaic. The detail work is done in two type areas: **Ius Chasma**, western Valles Marineris (271–286°E, 6–13°S), carved by water and collapse, and **Athabasca Valles** (150–162°E, 4–14°N), on flood lava.
+The analysis extent is **±60° latitude** (86.6% of the surface), set by the coverage of the THEMIS night mosaic. The detail work is done in two type areas: **Ius Chasma**, western Valles Marineris (271–286°E, 6–13°S), carved by water and collapse, and **Athabasca Valles** (150–162°E, 4–14°N), on flood lava. Layout 10 shows where they are; 01, 02 and 15 show each one in the inputs ([layouts](#layouts)).
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 148, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 149, by purpose) · [backup and restore](docs/backup.md)
 
 [![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 *The published landform map: four classes over ±60°, scored on hand-drawn polygons the classifier never saw (layout 04).*
@@ -36,7 +36,7 @@ The interim report and presentation are due **mid-November 2026** and the final 
 | Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks; **published as the 200 m map with an 11 × 11 (2.2 km) majority filter, 73.8%, κ 0.58** |
 | Channel and crater candidates | done at ±60°: 465,354 closed depressions ≥ 1 km and 969,822 channel segments, checked against the Robbins catalogue; in both type areas; 5,144 basins ≥ 20 km |
 | Landform digitising | **open, the critical path** |
-| Map layouts | fourteen, below |
+| Map layouts | fifteen, below |
 
 ### Next steps
 
@@ -80,7 +80,7 @@ The province test shows why. Over seven provinces with textbook thermal-inertia 
 
 ### Against the USGS geologic map (T8, T2)
 
-The classes sit where terrain puts them, and volcanic plains can't be separated from other plains in these bands, so lava flows are shown from the map's volcanic units (layout 10). At Athabasca the flood lava (`lAv`) is the least cratered large unit: 1,122 catalogued craters per million km², against 1,760 and 2,183 on the older units.
+The classes sit where terrain puts them, and volcanic plains can't be separated from other plains in these bands, so lava flows are shown from the map's volcanic units (layout 10). At Athabasca the flood lava (`lAv`) is the least cratered large unit: 1,122 catalogued craters per million km², against 1,760 and 2,183 on the older units (layout 15 outlines the unit on all four inputs).
 
 [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/t8_enrichment.png" width="720" alt="T8: enrichment of each class on each geologic unit group">](Mars%20Remote%20Sensing%20Project/build/interim_img/t8_enrichment.png)
 
@@ -117,14 +117,19 @@ Made in the Pro GUI: one follows its 4096-pixel processing tiles and scores belo
 
 ## Layouts
 
-The 14 map sheets in the ArcGIS Pro project. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections.
+The 15 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets are centred on 0°E; 08 and the type-area sheets on 180°E, the mosaics' own grid.
 
-**The data**
+**The data at ±60°**
 
 | | |
 |---|---|
-| [![10](Mars%20Project/Global60/layouts/10_global60_locator.png)](Mars%20Project/Global60/layouts/10_global60_locator.png) **10** · The analysis extent, the two type areas and the geologic map's volcanic units | [![08](Mars%20Project/Global60/layouts/08_global60_mosaic.png)](Mars%20Project/Global60/layouts/08_global60_mosaic.png) **08** · The four inputs at ±60°: visible, day IR, night IR, topography |
-| [![01](Mars%20Project/TypeArea/layouts/01_visible.png)](Mars%20Project/TypeArea/layouts/01_visible.png) **01** · Ius Chasma, visible (Viking colour) | [![02](Mars%20Project/TypeArea/layouts/02_night_ir.png)](Mars%20Project/TypeArea/layouts/02_night_ir.png) **02** · Ius Chasma, night-time thermal infrared |
+| [![10](Mars%20Project/Global60/layouts/10_global60_locator.png)](Mars%20Project/Global60/layouts/10_global60_locator.png) **10** · Where everything is: the analysis extent, the two type areas and the geologic map's volcanic units | [![08](Mars%20Project/Global60/layouts/08_global60_mosaic.png)](Mars%20Project/Global60/layouts/08_global60_mosaic.png) **08** · The four inputs at ±60°: visible, day IR, night IR, topography |
+
+**The two type areas**
+
+| | | |
+|---|---|---|
+| [![01](Mars%20Project/TypeArea/layouts/01_visible.png)](Mars%20Project/TypeArea/layouts/01_visible.png) **01** · Ius Chasma, visible (Viking colour) | [![02](Mars%20Project/TypeArea/layouts/02_night_ir.png)](Mars%20Project/TypeArea/layouts/02_night_ir.png) **02** · Ius Chasma, night-time thermal infrared | [![15](Mars%20Project/Global60/layouts/15_athabasca_type_area.png)](Mars%20Project/Global60/layouts/15_athabasca_type_area.png) **15** · Athabasca Valles in its four inputs, with the flood-lava unit `lAv` outlined |
 
 **Classification**
 
@@ -135,17 +140,15 @@ The 14 map sheets in the ArcGIS Pro project. Click one for the full sheet; [figu
 
 **Craters and channels**
 
-| | |
-|---|---|
-| [![11](Mars%20Project/Global60/layouts/11_global60_depressions.png)](Mars%20Project/Global60/layouts/11_global60_depressions.png) **11** · Closed depressions ≥ 1 km against the Robbins catalogue | [![07](Mars%20Project/Global60/layouts/07_global60_basins.png)](Mars%20Project/Global60/layouts/07_global60_basins.png) **07** · Basin and crater candidates ≥ 20 km |
-| [![12](Mars%20Project/Global60/layouts/12_global60_channels.png)](Mars%20Project/Global60/layouts/12_global60_channels.png) **12** · The channel network routed on the DEM, order ≥ 3 | |
+| | | |
+|---|---|---|
+| [![11](Mars%20Project/Global60/layouts/11_global60_depressions.png)](Mars%20Project/Global60/layouts/11_global60_depressions.png) **11** · Closed depressions ≥ 1 km against the Robbins catalogue | [![07](Mars%20Project/Global60/layouts/07_global60_basins.png)](Mars%20Project/Global60/layouts/07_global60_basins.png) **07** · Basin and crater candidates ≥ 20 km | [![12](Mars%20Project/Global60/layouts/12_global60_channels.png)](Mars%20Project/Global60/layouts/12_global60_channels.png) **12** · The channel network routed on the DEM, order ≥ 3 |
 
 **Digitising and validation**
 
-| | |
-|---|---|
-| [![06](Mars%20Project/Global60/layouts/06_ius_digitising.png)](Mars%20Project/Global60/layouts/06_ius_digitising.png) **06** · Ius Chasma, candidates to digitise | [![09](Mars%20Project/Global60/layouts/09_athabasca_digitising.png)](Mars%20Project/Global60/layouts/09_athabasca_digitising.png) **09** · Athabasca Valles, candidates to digitise |
-| [![14](Mars%20Project/Global60/layouts/14_validation.png)](Mars%20Project/Global60/layouts/14_validation.png) **14** · Validation: the candidates against review and the Robbins catalogue | |
+| | | |
+|---|---|---|
+| [![06](Mars%20Project/Global60/layouts/06_ius_digitising.png)](Mars%20Project/Global60/layouts/06_ius_digitising.png) **06** · Ius Chasma, candidates to digitise | [![09](Mars%20Project/Global60/layouts/09_athabasca_digitising.png)](Mars%20Project/Global60/layouts/09_athabasca_digitising.png) **09** · Athabasca Valles, candidates to digitise | [![14](Mars%20Project/Global60/layouts/14_validation.png)](Mars%20Project/Global60/layouts/14_validation.png) **14** · Validation: the candidates against review and the Robbins catalogue |
 
 ## Source data
 
@@ -209,12 +212,12 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   148 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   149 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
   NEXT STUFF/              interim report and presentation (in progress)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 26 maps, all Mars, and 14 layouts
+  Mars Project.aprx        the ArcGIS Pro project: 30 maps, all Mars, and 15 layouts
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs

@@ -60,7 +60,7 @@ CLASS_COLOURS = {"Crater": (255, 0, 0), "steep/windy hills": (28, 119, 85),
                  "lava tube": (158, 25, 147), "Normal Ground": (81, 51, 13)}   # the RAT colours
 NOT_MARS = ("Map", "Map1", "Enceladus", "Mercury", "mars")   # Earth, Enceladus, Mercury, broken HiRISE
 PAGE_W, PAGE_H = 11.0, 8.5
-CREDIT = ("Logan Edwards  \u00b7  OCN 4704 Remote Sensing  \u00b7  Mars Global Mosaic  \u00b7  "
+CREDIT = ("Logan M Edwards  \u00b7  OCN 4704 Remote Sensing  \u00b7  Mars Global Mosaic  \u00b7  "
           "analysis extent \u00b160\u00b0 latitude (the THEMIS night mosaic)  \u00b7  Mars 2000 sphere")
 
 assert not any("ArcGISPro" in l for l in os.popen("tasklist").read().splitlines()), "close ArcGIS Pro first"

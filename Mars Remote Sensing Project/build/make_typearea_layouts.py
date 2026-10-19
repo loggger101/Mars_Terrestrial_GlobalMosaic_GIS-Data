@@ -115,7 +115,7 @@ def recolour_classes(layer):
         return False
 
 
-CREDIT = ("Logan Edwards  \u00b7  OCN 4704 Remote Sensing  \u00b7  Mars Global Mosaic\n"
+CREDIT = ("Logan M Edwards  \u00b7  OCN 4704 Remote Sensing  \u00b7  Mars Global Mosaic\n"
           "Equidistant Cylindrical, central meridian 180\u00b0, Mars 2000 sphere "
           "(R = 3 396 190 m)  \u00b7  100 m/pixel  \u00b7  271\u2013286\u00b0E, 13\u20136\u00b0S")
 SHEETS = [

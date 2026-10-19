@@ -225,9 +225,9 @@ stack script's 100 m grid snapped to the day mosaic (§18.1).
 
 ## 5. Project structure
 
-`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-18 (§58.1) **[V]**: **26 maps, all in
-Mars coordinate systems, and 14 layouts**; 145 non-group layers, 0 broken, none reading through a
-junction; 7 hosted services (Esri OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
+`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-19 (§63) **[V]**: **30 maps, all in
+Mars coordinate systems, and 15 layouts**; 0 broken data sources, none reading through a junction (145
+non-group layers on 2026-10-18, §58.1; layout 15 added four maps and 13 layers); 7 hosted services (Esri OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
 `defaultGeodatabase` = `<drive>\Mars Project\Mars Project.gdb`; `homeFolder` = `<drive>\Mars Project`. The
 `.aprx` stores relative paths, so it opens from either drive letter.
 
@@ -243,8 +243,12 @@ junction; 7 hosted services (Esri OnMars MDIM, CTX, MOLA/HRSC, the Perseverance 
 | `11_global60_depressions`, `12_global60_channels` | the ±60° fine pass | `make_global60_candidate_sheets.py` (§53.6, §55.4) |
 | `13_geomap_check` | T8, the classes against the geologic map | `make_geomap_sheet.py --cell 200` (§49, §57.1) |
 | `14_validation` | the review's precision and recall | `make_validation_sheet.py` (§49) |
+| `15_athabasca_type_area` | Athabasca Valles: visible, night IR, day IR, topography, with unit `lAv` | `make_athabasca_layout.py` (§63) |
 
-Polished exports are in `Mars Project\TypeArea\layouts\` (01–03) and `Mars Project\Global60\layouts\` (04–14);
+The ±60° sheets (04, 05, 07, 10–13) draw in geographic `GCS_Mars_2000`, so 0°E is at the centre; 08 and the
+type-area sheets draw in `Mars_Equidistant_Cylindrical_CM180`. **[V]**
+
+Polished exports are in `Mars Project\TypeArea\layouts\` (01–03) and `Mars Project\Global60\layouts\` (04–15);
 the builders' own PNGs are written before `polish_layouts.py` runs, so copy the polished export over them.
 
 - **Map names are not unique**: two maps are named `Mars` (one `Mars_2000_(Sphere)`, one
@@ -482,7 +486,7 @@ older one**. A false claim wearing a `[V]` is worse than none.
 | `verify*`, `check_*`, `test_*` | checks claims against the project files |
 | bare noun | a module: `paths.py`, `grid60.py`, `areas.py`, `interim.py`, `le_theme.py`, `layoutkit.py` |
 
-**Counted 2026-10-18:** 149 build scripts on the drive (146 `.py`, 3 `.ps1`); 148 in the public repo, which leaves out
+**Counted 2026-10-19:** 150 build scripts on the drive (147 `.py`, 3 `.ps1`); 149 in the public repo, which leaves out
 `neutral_voice.py`. The repo's `docs/scripts.md` catalogues them; `tools/check_repo.py` fails if the README's count drifts.
 
 **Every figure has a script that regenerates it.** Type-area products are `ius_*` in `Mars Project\TypeArea\`
@@ -2901,3 +2905,26 @@ On the laptop; nothing measured, no raster read, nothing written to the `.aprx` 
 - Not changed: layout 08's caption A says "Bright dust (Arabia, Tharsis, Amazonis) against dark, rocky Syrtis Major
   and Acidalia: 47.7 DN apart", which names Tharsis among the dusty provinces of a number that does not include it
   (`make_mosaic_layout.py`; fixing it means a layout rebuild and polish).
+
+## 63. Layout 15, the Athabasca type area; footers and 08's caption fixed; the repo's layouts reviewed — 2026-10-19 **[V]**
+
+On the laptop, ArcGIS Pro closed. Nothing measured; no raster written.
+
+- **Why a new sheet:** Athabasca Valles is the scientific hook, but its only layout was 09 (candidates over a
+  hillshade); Ius Chasma has its visible and night-IR sheets (01, 02). **`build\make_athabasca_layout.py`** builds
+  four maps (`Athabasca Valles — visible / night IR / day IR / topography`, from the existing `ath_*` rasters) and
+  layout **`15_athabasca_type_area`** in the four-panel form of 08: unit `lAv` of SIM 3292 outlined on every panel,
+  the 2° graticule, a scale bar; captions from §42.1, §42.2, §42.4 and §47.2 only. The DEM's range in caption D is
+  read from `ath_dem.tif` at run time: **−4,495 to 1,945 m**. The diurnal-contrast index is not a panel (§42.4).
+  Rehearsed on a copy beside the `.aprx` (kept in `.backups\` as `Mars Project rehearse-ath 20261019.aprx`), then run
+  on the real one; exported and read twice (a legend element replaced by a drawn swatch; the scale bar's label
+  frequency set to divisions only, the default added a "25").
+- **`polish_layouts.py`**: every footer "Logan Edwards" → "Logan M Edwards", the public name (also the builders'
+  `CREDIT` in `make_global60_maps.py` and `make_typearea_layouts.py`); 08's caption A no longer names Tharsis
+  (§62; also fixed in `make_mosaic_layout.py`). All 15 sheets polished, exported, copied into `TypeArea\layouts\`
+  and `Global60\layouts\`. The project: **30 maps, 15 layouts, 0 broken data sources**.
+- **Map frames, checked:** the ±60° sheets draw in geographic `GCS_Mars_2000` (0°E at the centre); 08 and the
+  type-area sheets in `Mars_Equidistant_Cylindrical_CM180`. The repo's `docs/figures.md` said every map was
+  CM 180: corrected. §5 records it.
+- Not changed: the interim deck and report still say 14 layouts and do not show 15 (`interim.py` line 75); the crops
+  in `build\interim_img\` were not re-exported (`make_interim_figs.py` hides each sheet's prose, footer included).

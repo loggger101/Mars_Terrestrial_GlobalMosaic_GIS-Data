@@ -24,12 +24,15 @@ column fixed at its source (§54); the 200 m classification, **published as the 
 (2.2 km) majority filter, 73.8 %, κ 0.58 held out** (§55.3, §57), the 400 m map superseded (§57.2);
 T1 confirmed with Pro's SVM (thermal +1.36 pt at 200 m, +1.97 at 400 m, §56); T8 rerun on the published map
 (§57.1); the interim rebuilt, 28 slides and 20 pages (§57.3); GitHub release `data-2026-10-16` (§57.4).
-The project: 26 maps, 14 layouts; nothing is running on the desktop.
+The project: 30 maps, 15 layouts (§63); nothing is running on the desktop.
 **2026-10-18, laptop (§58–§61):** no new data since; the drive-root junctions point at `F:` and are broken on
 the laptop (retarget before any Spatial Analyst run there); the record and the plans condensed, two scripts freed
 from a hard-coded `F:`, every sheet re-polished and the interim rebuilt from them, nothing measured changed.
 **2026-10-19, laptop (§62):** the province figure redrawn light from §28.10's tables (47.67 DN covers four
 provinces, −0.0009 seven); slide 11 updated; the interim rebuilt, 28 slides and 19 pages.
+**2026-10-19, laptop (§63):** layout 15 added, the Athabasca Valles type area in visible, night IR, day IR and
+topography with unit `lAv`; every footer now gives "Logan M Edwards"; 08's caption no longer names Tharsis.
+The interim deck still says 14 layouts and does not show 15 (an author's call: the deck was not rebuilt).
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).

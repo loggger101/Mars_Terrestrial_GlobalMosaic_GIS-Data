@@ -36,7 +36,7 @@ plans. When they disagree, the KB wins and the plan is fixed.
 | the interim plan | `Mars Remote Sensing Project\INTERIM-PLAN.md` (the living build and its commands §0; progress facts §3; hypotheses §5; timeline §6; wording traps §7) |
 | scripts | `Mars Remote Sensing Project\build\` (149 `.py` / `.ps1`; catalogue in the repo's `docs/scripts.md`); logs and test results in `build\logs\` |
 | interim deck and report | `Mars Remote Sensing Project\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx` (28 slides) and `Mars Mosaic - Interim Report.docx` (19 pages), built from `build\interim.py` |
-| ArcGIS project | `Mars Project\Mars Project.aprx` (26 maps, 14 layouts, KB §5); `Mars Project\Mars Project.gdb` (KB §6); `.aprx` backups in `Mars Project\.backups\` (one per write; drive only) |
+| ArcGIS project | `Mars Project\Mars Project.aprx` (30 maps, 15 layouts, KB §5); `Mars Project\Mars Project.gdb` (KB §6); `.aprx` backups in `Mars Project\.backups\` (one per write; drive only) |
 | layout PNGs | `Mars Project\Global60\layouts\` (04–14) and `Mars Project\TypeArea\layouts\` (01–03) |
 | ±60° products | `Mars Project\Global60\` (its `README.md` lists them): `global60_svm_stack_200m.tif` (the 7-band stack), **`global60_landforms_svm_200m_mode11.tif` (the published map)**; `build\grid60.py` defines the grid |
 | type areas | `Mars Project\TypeArea\` (`ius_*`) and `Mars Project\Athabasca\` (`ath_*`); windows in `build\areas.py` |
@@ -62,7 +62,8 @@ plans. When they disagree, the KB wins and the plan is fixed.
 - **The builders wipe and rebuild their maps.** Order when several run: `make_global60_maps.py --cell 200`
   (the published map; the default cell is 400), `make_candidate_maps.py`, `make_mosaic_layout.py`,
   `make_reference_maps.py` (graticules back on the maps the first one wipes), `make_geomap_sheet.py --cell 200`,
-  `make_validation_sheet.py`, `make_global60_candidate_sheets.py`, then `polish_layouts.py` (§57).
+  `make_validation_sheet.py`, `make_global60_candidate_sheets.py`, `make_athabasca_layout.py` (layout 15; adds
+  its own graticule), then `polish_layouts.py` (§57, §63).
 - **After any layout builder, run `polish_layouts.py`** (Arial everywhere), export with `--export <scratch>`,
   **read every changed sheet** (`isOverflowing` catches none of the defects found by reading, §33, §49), and
   copy the polished sheets into `Global60\layouts\`: the builders' own PNGs there are written before polishing.

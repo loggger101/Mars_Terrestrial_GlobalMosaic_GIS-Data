@@ -5,14 +5,15 @@ Click a thumbnail for the full-size file. "KB §N" is a section of
 [`PROJECT-KNOWLEDGE.md`](../Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md); scripts are in
 [`build/`](../Mars%20Remote%20Sensing%20Project/build) and described in [scripts.md](scripts.md).
 
-- [Map layouts](#map-layouts): the 14 sheets in the ArcGIS Pro project, exported at 150 dpi
+- [Map layouts](#map-layouts): the 15 sheets in the ArcGIS Pro project, exported at 150 dpi
 - [Result charts](#result-charts): the tests, drawn from their logs
 - [Check images](#check-images): the DEM steps found by the stack's line sweep
 - [Interim crops](#interim-crops): the layouts as the interim deck uses them
 - [Other](#other)
 
-Every map is equidistant cylindrical on the Mars sphere, central meridian 180°. The analysis extent is ±60° latitude, the
-coverage of the THEMIS night mosaic.
+The ±60° sheets (04, 05, 07, 10–13) are drawn in geographic Mars 2000 coordinates with 0°E at the centre; 08 and the
+type-area sheets (01–03, 06, 09, 14, 15) are equidistant cylindrical on the Mars sphere, central meridian 180°, the
+mosaics' own grid. The analysis extent is ±60° latitude, the coverage of the THEMIS night mosaic.
 
 ## Map layouts
 
@@ -28,6 +29,7 @@ exports every sheet; the PNGs here are the polished exports.
 | <a href="../Mars%20Project/Global60/layouts/08_global60_mosaic.png"><img src="../Mars%20Project/Global60/layouts/08_global60_mosaic.png" width="300"></a> | **08 · The four inputs at ±60°.** Viking colour, THEMIS day IR, THEMIS night IR and the HRSC/MOLA topography, each on the same grid. Black streaks in the south: no THEMIS coverage. KB §38. | `make_mosaic_layout.py` |
 | <a href="../Mars%20Project/TypeArea/layouts/01_visible.png"><img src="../Mars%20Project/TypeArea/layouts/01_visible.png" width="300"></a> | **01 · Ius Chasma, visible.** Viking MDIM 2.1 resampled to the type area's 100 m grid. KB §18, §22. | `make_typearea_layouts.py` |
 | <a href="../Mars%20Project/TypeArea/layouts/02_night_ir.png"><img src="../Mars%20Project/TypeArea/layouts/02_night_ir.png" width="300"></a> | **02 · Ius Chasma, night-time thermal infrared.** THEMIS Night IR v14. Bright is warmer at night than the surroundings: local contrast, not calibrated thermal inertia. KB §22, §28.10. | `make_typearea_layouts.py` |
+| <a href="../Mars%20Project/Global60/layouts/15_athabasca_type_area.png"><img src="../Mars%20Project/Global60/layouts/15_athabasca_type_area.png" width="300"></a> | **15 · Athabasca Valles, the four inputs.** Viking colour, THEMIS night and day IR, and the DEM over its hillshade at 100 m, with the geologic map's flood-lava unit `lAv` outlined on each; captions give each band's correlations and the T2 and T5 results there. KB §42, §47.2, §63. | `make_athabasca_layout.py` |
 
 ### Classification
 
