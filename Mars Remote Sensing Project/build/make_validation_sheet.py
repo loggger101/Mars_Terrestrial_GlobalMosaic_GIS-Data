@@ -191,7 +191,7 @@ def build(res):
         els.append(text(fx, y0 + fh + 0.06, areas.AREAS[key]["name"], 10.5, "label_" + key, bold=True))
     els += table(res, 0.45, 2.70)
     els.append(text(0.45, 0.55, notes(res), 7.6, "notes", colour=(40, 40, 40)))
-    els.append(text(0.45, 0.28, CREDIT, 7.5, "credit", colour=(90, 90, 90)))
+    els.append(text(0.45, 0.16, areas.credit(["ius", "ath"]), 7.5, "credit", colour=(90, 90, 90)))  # KB §64
     add_text(lyt, els)
     order_legend = [n for n in maps["ius"][1]]
     legend_classes(p, lyt, frames["ius"][0], 0.45, 3.80, 10.1, 0.9, order_legend, names=False, cols=5)

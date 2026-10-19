@@ -116,10 +116,12 @@ def digitising(p, key, sr, camera_from=None):
     lyt = page(p, lname)
     aspect = W / H
     wide = aspect >= 1.6
-    fh_max = 4.71
+    # a squarer window takes the height down to the notes: at 4.71 in Athabasca left a third of the
+    # page empty under its legend (KB §64)
+    y0, fh_max = (2.42, 4.71) if wide else (1.45, 5.68)
     fw = 10.10 if wide else fh_max * aspect
     fh = fw / aspect
-    mf = lyt.createMapFrame(poly_geom(0.45, 2.42, fw, fh), m, "frame")
+    mf = lyt.createMapFrame(poly_geom(0.45, y0, fw, fh), m, "frame")
     if camera_from is not None:
         mf.camera.X, mf.camera.Y, mf.camera.scale = camera_from.camera.X, camera_from.camera.Y, camera_from.camera.scale
     else:
@@ -136,15 +138,16 @@ def digitising(p, key, sr, camera_from=None):
              "where routing follows DEM noise.\nMagenta: %d closed depressions \u2265 1 km; only %.0f%% match a catalogued (Robbins) "
              "crater (KB \u00a742.3). %s"
              % (n_good, n_all, why, n_all - n_good, 100 * plateau, n_crat, 100 * prec, breached), 8.8, "notes", colour=(40, 40, 40)),
-        text(0.45, 0.40, CREDIT, 7.5, "credit", colour=(90, 90, 90))])
+        text(0.45, 0.22, areas.credit([key]), 7.5, "credit", colour=(90, 90, 90))])
     names = [good.name, cr.name, "Channel centrelines", "Crater rims", "Lava flow margins"]
     if wide:
         surrounds(p, lyt, mf, (0.50, 1.72), (10.25, 1.52))   # 9.95 sat against the legend box (KB §34)
         legend_classes(p, lyt, mf, 4.3, 2.30, 5.4, 0.62, names, names=False, cols=3)
     else:                                                     # a squarer window: legend beside the frame
-        x = 0.45 + fw + 0.35
-        surrounds(p, lyt, mf, (x, 2.55), (10.25, 2.45))
-        legend_classes(p, lyt, mf, x, 7.10, 10.55 - x, 2.4, names, names=False, cols=1)
+        x = 0.45 + fw + 0.35                                  # a legend's border sits 0.15 in outside it:
+        surrounds(p, lyt, mf, (x, 1.75), (10.25, 2.55))       # right edge 10.40 puts it on the 10.55 margin;
+                                                              # the arrow above the bar (a 0-200 km bar reaches it)
+        legend_classes(p, lyt, mf, x, y0 + fh - 0.15, 10.40 - x, 2.4, names, names=False, cols=1)
     out = os.path.join(OUTD, lname + ".png"); lyt.exportToPNG(out, resolution=150); print("   ", out)
     return m
 
@@ -207,7 +210,7 @@ def main():
              "and Isidis come out unprompted.\nThe missing third are the breached craters: not closed depressions, "
              "so invisible to this method (KB \u00a726, \u00a728.11).", 9.2, "notes", colour=(40, 40, 40)),
         text(0.45, 0.40, CREDIT, 7.5, "credit", colour=(90, 90, 90))])
-    legend_classes(p, lyt, mf, 7.25, 3.30, 3.3, 1.9, [bas.name, iau.name], names=True, cols=1)
+    legend_classes(p, lyt, mf, 7.10, 3.30, 3.3, 1.9, [bas.name, iau.name], names=True, cols=1)
     out = os.path.join(OUTD, "07_global60_basins.png"); lyt.exportToPNG(out, resolution=150); print("   ", out)
 
     p.save()

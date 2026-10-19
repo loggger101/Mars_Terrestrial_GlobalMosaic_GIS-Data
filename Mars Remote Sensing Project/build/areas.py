@@ -48,6 +48,23 @@ def current():
     return a
 
 
+def window(key):
+    """'271–286°E, 13–6°S': the window as the type-area footers print it."""
+    a = AREAS[key]
+    return "%d–%d°E, %d–%d°%s" % (a["lon"][0], a["lon"][1], abs(a["lat"][0]), abs(a["lat"][1]),
+                                                     "S" if a["lat"][1] <= 0 else "N")
+
+
+def credit(keys):
+    """The footer of a sheet drawn on the type-area grids: the author line, then the CRS and the
+    window(s). The ±60° footer (make_global60_maps.CREDIT) names the wrong frame for these (KB §64)."""
+    where = (window(keys[0]) if len(keys) == 1
+             else ";  ".join("%s %s" % (AREAS[k]["name"], window(k)) for k in keys))
+    return ("Logan M Edwards  ·  OCN 4704 Remote Sensing  ·  Mars Global Mosaic\n"
+            "Equidistant Cylindrical, central meridian 180°, Mars 2000 sphere (R = 3 396 190 m)  ·  "
+            "100 m/pixel  ·  " + where)
+
+
 def name(a, stem):
     """<prefix>_<stem>, e.g. ius_dem.tif / ath_dem.tif."""
     return "%s_%s" % (a["prefix"], stem)

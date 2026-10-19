@@ -316,7 +316,7 @@ def main():
                     100 * CHECK["iau_craters"]["crater_inside"], 100 * CHECK["iau_craters"]["crater_ring"],
                     CHECK["iau_craters"]["n"]), 8.6, "checks", colour=(70, 70, 70)),
             text(0.45, 0.30, CREDIT, 7.5, "credit", colour=(90, 90, 90))])
-        legend_classes(p, lyt, mf, 7.25, 3.30, 3.3, 1.9, [cls.name, tst.name, ext.name], cols=2)
+        legend_classes(p, lyt, mf, 7.10, 3.30, 3.3, 1.9, [cls.name, tst.name, ext.name], cols=2)  # border on the margin
         out = os.path.join(OUTD, "04_global60_landforms.png"); lyt.exportToPNG(out, resolution=150)
         print("   ", out)
 

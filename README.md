@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 149, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 150, by purpose) · [backup and restore](docs/backup.md)
 
 [![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 *The published landform map: four classes over ±60°, scored on hand-drawn polygons the classifier never saw (layout 04).*
@@ -55,6 +55,10 @@ The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.m
 
 A support vector machine on the hand-drawn labels, scored on 183 polygons in 15° blocks it never saw. The published map (200 m, 11 × 11, the map at the top) scores **73.8%, κ 0.58**, against 58.6% for one class everywhere; per pixel 69.9%, κ 0.53. Normal Ground is reliable (99% producer's) and Crater behaves as cratered terrain. **The lava tube class isn't usable** (2% user's accuracy).
 
+[<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/accuracy_200m.png" width="760" alt="The published map's held-out confusion matrix, and held-out accuracy against the majority filter window at 200 m and 400 m">](Mars%20Remote%20Sensing%20Project/build/interim_img/accuracy_200m.png)
+
+*A: where each hand-drawn class's held-out area lands on the map; each row sums to 100%, the diagonal is producer's accuracy and the row under it user's. Most lava-tube pixels fall on Crater polygons. B: each step of smoothing gains 0.4–1.8 points; the 400 m map (superseded) runs 0.6–1.7 points above the 200 m one at each window.*
+
 ### Does thermal infrared help? (test T1)
 
 Yes, a little. With ArcGIS Pro's SVM over the whole ±60°, leaving the thermal bands out costs **1.36 points** at 200 m (95% interval 0.46 to 2.47) and **1.97** at 400 m (1.08 to 3.35), from crater and hill terrain; lava tube scores better without them. A numpy classifier on the same split gives +1.3. Leaving out the Viking bands, or both spectral groups, ties the full stack inside wide intervals, but terrain alone makes a poor crater map. The hand-drawn classes are landforms, and terrain decides them.
@@ -85,6 +89,18 @@ The classes sit where terrain puts them, and volcanic plains can't be separated 
 [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/t8_enrichment.png" width="720" alt="T8: enrichment of each class on each geologic unit group">](Mars%20Remote%20Sensing%20Project/build/interim_img/t8_enrichment.png)
 
 *How strongly each class gathers on each unit group of SIM 3292: red over-represented, blue under-represented (layout 13 has the map).*
+
+Relabelling the lava-tube polygons as the map's volcanic units doesn't rescue a lava class: as a third class it is found on 21% of its held-out area, and as a fifth class only 30% of what it calls volcanic is, below the 38% share of volcanic ground in the test blocks. The four hand-drawn classes stay.
+
+[<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/lava_relabel.png" width="720" alt="The lava-tube relabel test: held-out accuracy of four class schemes">](Mars%20Remote%20Sensing%20Project/build/interim_img/lava_relabel.png)
+
+*Held-out accuracy on the Crater, hills and Normal Ground polygons for each scheme, classifier at 1.6 km (KB §43.3).*
+
+T2 counts craters per unit. The catalogue ranks the flood lava lowest at Athabasca; the closed-depression detector reverses it, counting pits on flat lava that are not craters, so it can't date surfaces.
+
+[<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/t2_density.png" width="720" alt="T2: craters of 1 km and larger per million square kilometres on each geologic unit, catalogue against detector">](Mars%20Remote%20Sensing%20Project/build/interim_img/t2_density.png)
+
+*Craters ≥ 1 km per 10⁶ km² on each unit of at least 20,000 km² in the two windows: blue the Robbins & Hynek catalogue, orange the detector. Relative density only, not an age (KB §42.2).*
 
 ### Craters
 
@@ -117,7 +133,7 @@ Made in the Pro GUI: one follows its 4096-pixel processing tiles and scores belo
 
 ## Layouts
 
-The 15 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets are centred on 0°E; 08 and the type-area sheets on 180°E, the mosaics' own grid.
+The 15 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets, 08 included, are centred on 0°E; the type-area sheets are drawn on the mosaics' own grid, central meridian 180°.
 
 **The data at ±60°**
 
@@ -212,7 +228,7 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   149 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   150 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
   NEXT STUFF/              interim report and presentation (in progress)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)

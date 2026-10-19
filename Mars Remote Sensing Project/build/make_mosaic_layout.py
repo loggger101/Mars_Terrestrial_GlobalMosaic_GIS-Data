@@ -29,7 +29,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import grid60 as G
 from layoutkit import text, rgb, poly_geom
-from make_global60_maps import get_map, page, add_text, CREDIT, BKDIR, OUTD
+from make_global60_maps import get_map, page, add_text, extent_polygon, CREDIT, BKDIR, OUTD
 
 APRX = (sys.argv[sys.argv.index("--aprx") + 1] if "--aprx" in sys.argv
         else on_drive(r"Mars Project\Mars Project.aprx"))
@@ -39,11 +39,12 @@ HS = os.path.join(G.OUTDIR, "global60_hillshade.tif")
 NAME = "08_global60_mosaic"
 VIS, DAY, NIGHT, TOPO = ("Mosaic \u00b160\u00b0 \u2014 " + s for s in ("visible", "day IR", "night IR", "topography"))
 
-# The four maps draw in the stack's own CRS (Mars_Equidistant_Cylindrical_CM180), not the GCS the
-# other ±60° maps use: reprojected, the raster's edge at 0°/360° left a white seam down the middle
-# of each small frame. Native, the edges are the frame edges and nothing is resampled.
-NATIVE = arcpy.Describe(STACK).spatialReference
-EXTENT = arcpy.Describe(STACK).extent
+# The four maps draw in GCS_Mars_2000 centred on 0°E, as every other ±60° sheet does (04, 05, 07,
+# 10-13). Until 2026-10-19 they drew in the stack's own CRS, centred on 180°E, because reprojected the
+# raster's 0°/360° edge had left a white seam down each small frame (KB §38); a reader comparing 08
+# with 04 then saw the planet turned half round. The seam falls on 0°E, under the graticule's
+# meridian (make_reference_maps.py adds it), and the no-data colour is black, not the page's white.
+MARS = arcpy.SpatialReference(104905)
 
 assert not any("ArcGISPro" in l for l in os.popen("tasklist").read().splitlines()), "close ArcGIS Pro first"
 
@@ -70,7 +71,7 @@ def one_layer_map(p, name, path, label, band_index=None):
     the whole stack is stored relative. The band path is added only to borrow its single-band
     stretch colorizer, then removed."""
     m = get_map(p, name)
-    m.spatialReference = NATIVE
+    m.spatialReference = MARS
     if band_index is None:
         l = m.addDataFromPath(path)
     else:
@@ -105,7 +106,7 @@ def main():
     mn, ln = one_layer_map(p, NIGHT, band("night_ir"), "THEMIS Night IR (band 4 of the \u00b160\u00b0 stack)", 3)
     unstretched(ln)
     mt = get_map(p, TOPO)
-    mt.spatialReference = NATIVE
+    mt.spatialReference = MARS
     dem = mt.addDataFromPath(DEM); dem.name = "Elevation, HRSC/MOLA blend (200 m)"
     hs = mt.addDataFromPath(HS); hs.name = "Hillshade 225\u00b0/45\u00b0"
     sym = dem.symbology
@@ -115,6 +116,8 @@ def main():
     dem.symbology = sym
     dem.transparency = 35
     mt.moveLayer(dem, hs, "AFTER")                  # (reference, moved): hillshade goes under the colour
+    for l in (dem, hs):                              # as unstretched() does for the stack's bands
+        d = l.getDefinition("V3"); d.colorizer.noDataColor = rgb(0, 0, 0); l.setDefinition(d)
     for m in (mv, md, mn, mt):
         print("   %s: %s" % (m.name, [l.name for l in m.listLayers()]))
 
@@ -126,7 +129,7 @@ def main():
     frames = [(mv, xl, yt), (md, xr, yt), (mn, xl, yb), (mt, xr, yb)]
     for i, (m, x, y) in enumerate(frames):
         mf = lyt.createMapFrame(poly_geom(x, y, fw, fh), m, "frame%d" % (i + 1))
-        mf.camera.setExtent(EXTENT)
+        mf.camera.setExtent(extent_polygon().projectAs(MARS).extent)
     grey, dark = (70, 70, 70), (40, 40, 40)
     head = 11; cap = 8.3
     add_text(lyt, [
@@ -155,7 +158,7 @@ def main():
              "so visible colour is one dimension; day IR and night IR\nadd two more. Effective dimensionality \u2248 3. "
              "Caveat: both THEMIS mosaics are locally contrast-normalised 8-bit products, so compare brightness\n"
              "within a region, never across the planet (KB \u00a728.10). Across \u00b160\u00b0 the regional material "
-             "signal is carried by Viking albedo.\nEach panel is drawn on the mosaics' own grid, centred on 180°E. "
+             "signal is carried by Viking albedo.\nEach panel is centred on 0°E, as the other ±60° sheets are. "
              "Black streaks in the south: no THEMIS cover there; the stack keeps only pixels valid in every band "
              "(97.3 %).", 8.6, "notes", colour=dark),
         text(0.45, 0.40, CREDIT, 7.5, "credit", colour=(90, 90, 90))])

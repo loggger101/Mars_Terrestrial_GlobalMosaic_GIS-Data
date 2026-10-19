@@ -126,6 +126,9 @@ def hillshade(m, name="Hillshade (±60°, 200 m)"):
     return add(m, os.path.join(G.OUTDIR, "global60_hillshade.tif"), name)   # not the junction (KB §34)
 
 
+TABLE_W = [0.44, 0.66, 0.53, 0.47, 0.47]     # ends at 10.55 in, the page margin (it ran to 10.76, KB §64)
+
+
 def table(x, y_top, rows, widths, size=8.2):
     """rows[0] is the header; returns the elements; y_top is the top edge of the header row."""
     els, h = [], 0.20
@@ -252,7 +255,7 @@ def main():
              % (r_cells, bands["30-60N"]["detector"], bands["30-60N"]["robbins"], bands["0-30S"]["detector"],
                 bands["0-30S"]["robbins"], r_size["1-2"], r_size[">=5"]), 7.9, "notes", colour=(40, 40, 40)),
         text(0.45, 0.40, CREDIT, 7.5, "credit", colour=(90, 90, 90))]
-        + table(7.98, 4.42, rows, [0.50, 0.70, 0.58, 0.50, 0.50], size=7.6))
+        + table(7.98, 4.42, rows, TABLE_W, size=7.6))
     legend_classes(p, lyt, mfa, 7.98, 6.92, 2.4, 2.0, [ld.name], names=False, cols=1)
     out = os.path.join(OUTD, L11 + ".png"); lyt.exportToPNG(out, resolution=150); print("   ", out)
 

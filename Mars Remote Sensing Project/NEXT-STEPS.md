@@ -34,6 +34,11 @@ provinces, −0.0009 seven); slide 11 updated; the interim rebuilt, 28 slides an
 topography with unit `lAv`; every footer now gives "Logan M Edwards"; 08's caption no longer names Tharsis.
 The interim deck still says 14 layouts and does not show 15 (the author's call: leave it for now).
 Release `data-2026-10-19` (§63.2) adds `athabasca.zip`: both type areas are now backed up; `check_remote.py` passes.
+**2026-10-19, laptop (§64):** all 15 sheets read again for quality and accuracy: 08 now centred on 0°E like the
+other ±60° sheets, with a graticule; 09's map enlarged; type-area footers name their CRS; scale bars, legends,
+11's table and 13's footer kept inside the page margin. Three results drawn as charts for the first time
+(`make_fig_checks.py`: the published map's confusion and filter sweep, T2, the lava-tube relabel). The interim
+deck's crop of 08 predates the recentring (deck left as it is).
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).

@@ -12,7 +12,8 @@ r"""Graticules on the sheets, and layout 10: the ±60° locator with both type a
 CIMGraticule would not render (§22.3), so the graticule is plain data. Lines are densified every
 0.5° so they bend correctly in the CM 180 projection. The graticule layers are added to the ±60°
 and type-area maps here, AFTER the other builders (which wipe their maps): run this after
-make_global60_maps / make_candidate_maps / make_mosaic_layout, then polish_layouts.py.
+make_global60_maps / make_candidate_maps / make_mosaic_layout, then polish_layouts.py. Layout 08's
+four panels take the 30° graticule with smaller labels (KB §64).
 
 Every feature class it writes carries MappedBy = this script's name; one holding other rows is
 never replaced. Pro must be closed; the .aprx is backed up first. --aprx <copy> rehearses on a copy
@@ -38,6 +39,8 @@ MARKER = "make_reference_maps.py"
 LOCATOR, LNAME = "Mars ±60° — locator", "10_global60_locator"
 G30, G2, TA = "Graticule_30deg", "Graticule_2deg", "Type_Areas"
 MAPS_30 = ["Mars ±60° Analysis", "Mars ±60° — basins", LOCATOR]
+# layout 08's four small panels (4.8 in wide), centred on 0°E since 2026-10-19 (KB §64): smaller labels
+MAPS_30_SMALL = ["Mosaic ±60° — " + s for s in ("visible", "day IR", "night IR", "topography")]
 MAPS_2 = ["Ius Chasma — digitising", "Athabasca Valles — digitising", "Ius Chasma — visible",
           "Ius Chasma — night IR", "Ius Chasma Type Area"]
 GRAT_NAME = {G30: "Graticule 30°", G2: "Graticule 2°"}
@@ -201,7 +204,7 @@ def build_locator(p):
              "so lava flows are shown from the map.\nAthabasca Valles lies in unit lAv, Late Amazonian volcanic.", 9.2, "notes",
              colour=(40, 40, 40)),
         text(0.45, 0.40, CREDIT, 7.5, "credit", colour=(90, 90, 90))])
-    legend_classes(p, lyt, mf, 7.25, 3.30, 3.3, 1.2, [ta.name, v.name, ext.name], names=False, cols=1)
+    legend_classes(p, lyt, mf, 7.10, 3.30, 3.3, 1.2, [ta.name, v.name, ext.name], names=False, cols=1)
     out = os.path.join(OUTD, LNAME + ".png"); lyt.exportToPNG(out, resolution=150); print("   ", out)
 
 
@@ -218,6 +221,8 @@ def main():
     print("3. graticules on the maps")
     for name in MAPS_30:
         add_graticule(p, name, G30, 7)
+    for name in MAPS_30_SMALL:
+        add_graticule(p, name, G30, 5.5)
     for name in MAPS_2:
         add_graticule(p, name, G2, 7)
     p.save()

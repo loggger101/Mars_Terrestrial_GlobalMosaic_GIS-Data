@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-19 (§63).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-19 (§64).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -27,7 +27,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 |---|---|
 | sources, the three frames, the ±60° grid | §3, §4, §15, §16, §28.1–§28.2 |
 | the ArcGIS project and the gdb | §5, §6 |
-| the map layouts: builders, polish, defects found by reading | §5, §22, §33, §61, §63 |
+| the map layouts: builders, polish, defects found by reading | §5, §22, §33, §61, §63, §64 |
 | how scripted work is done, and its traps | §2, §9, §12, §13 |
 | what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1, §56, §62 |
 | classification: type area | §19, §23, §27 |
@@ -246,8 +246,8 @@ non-group layers on 2026-10-18, §58.1; layout 15 added four maps and 13 layers)
 | `14_validation` | the review's precision and recall | `make_validation_sheet.py` (§49) |
 | `15_athabasca_type_area` | Athabasca Valles: visible, night IR, day IR, topography, with unit `lAv` | `make_athabasca_layout.py` (§63) |
 
-The ±60° sheets (04, 05, 07, 10–13) draw in geographic `GCS_Mars_2000`, so 0°E is at the centre; 08 and the
-type-area sheets draw in `Mars_Equidistant_Cylindrical_CM180`. **[V]**
+The ±60° sheets (04, 05, 07, 08, 10–13) draw in geographic `GCS_Mars_2000`, so 0°E is at the centre (08 since §64);
+the type-area sheets (01–03, 06, 09, 14, 15) draw in `Mars_Equidistant_Cylindrical_CM180`, and their footers name it. **[V]**
 
 Polished exports are in `Mars Project\TypeArea\layouts\` (01–03) and `Mars Project\Global60\layouts\` (04–15);
 the builders' own PNGs are written before `polish_layouts.py` runs, so copy the polished export over them.
@@ -487,7 +487,7 @@ older one**. A false claim wearing a `[V]` is worse than none.
 | `verify*`, `check_*`, `test_*` | checks claims against the project files |
 | bare noun | a module: `paths.py`, `grid60.py`, `areas.py`, `interim.py`, `le_theme.py`, `layoutkit.py` |
 
-**Counted 2026-10-19:** 150 build scripts on the drive (147 `.py`, 3 `.ps1`); 149 in the public repo, which leaves out
+**Counted 2026-10-19 (§64):** 151 build scripts on the drive (148 `.py`, 3 `.ps1`); 150 in the public repo, which leaves out
 `neutral_voice.py`. The repo's `docs/scripts.md` catalogues them; `tools/check_repo.py` fails if the README's count drifts.
 
 **Every figure has a script that regenerates it.** Type-area products are `ius_*` in `Mars Project\TypeArea\`
@@ -1829,8 +1829,9 @@ record keeps the Mercury settings because the inherited segmentation parameters 
 - Drawn from the stack (G200, already stretched, overviews built): about a second per export.
 - **The diurnal index is deliberately not a panel** (§28.10); the captions say the THEMIS panels are locally
   normalised (why B and C look near-uniform grey at this scale) and that Viking albedo carries the regional signal.
-- **The maps draw in the stack's own CRS**, centred on 180°E: reprojected, the raster's 0°/360° edge left a white
-  seam down each small frame.
+- ~~The maps draw in the stack's own CRS, centred on 180°E~~ (to 2026-10-19): reprojected, the raster's 0°/360° edge
+  had left a white seam down each small frame. **Since §64 they draw in `GCS_Mars_2000`, centred on 0°E like every other
+  ±60° sheet**, with the 30° graticule; no seam shows (the 0°E meridian line would cover a one-pixel one).
 - **`Map.moveLayer(reference, moved, …)`: the reference layer comes first.**
 - Band layers are added as the whole stack with the band chosen in the colorizer, not by a band path, which Pro
   stores absolute (§52).
@@ -2968,3 +2969,41 @@ At the author's request the same day. Laptop, Wi-Fi.
 - **The README quick start rerun verbatim** on the new release: download, unzip, the Python block: Crater 32.8 %,
   steep/windy hills 1.8 %, lava tube 9.3 %, Normal Ground 56.1 %, as the README says; the downloaded
   `global60_landforms_svm_200m_mode11.tif` has the drive copy's SHA-256.
+
+## 64. All fifteen sheets read for quality and accuracy; 08 recentred; three results given charts — 2026-10-19 **[V]**
+
+On the laptop, ArcGIS Pro closed. Nothing measured; no raster written. At the author's request: every analysed
+result that matters should have a proper depiction, and the layouts should be of proper quality and accuracy.
+
+**Every sheet exported and read.** Defects found, and the fix:
+
+| sheet | defect | fix |
+|---|---|---|
+| 08 | the only ±60° sheet centred on 180°E (§38): beside 04 or 10 the planet sat half a turn round; no graticule | `make_mosaic_layout.py` draws the four maps in `GCS_Mars_2000` centred on 0°E; `make_reference_maps.py` adds the 30° graticule at 5.5 pt (`MAPS_30_SMALL`); the note says so |
+| 06, 09, 14 | footer named the ±60° extent and "Mars 2000 sphere" on sheets drawn on the type-area grid | `areas.credit()` gives the CRS line of 01–03 and 15 with each window; used by `make_candidate_maps.py` and `make_validation_sheet.py` |
+| 09 | the map filled 4.7 in of an 8.5 in page; a third of the page empty | the frame runs down to the notes (5.68 in high); legend, scale bar and north arrow beside it |
+| 01–03, 06, 09 | scale bar's first division split in two: "0 20 40" crowded into the start | `polish_layouts.py`: no subdivisions, a label at every division (0 40 80 120 160; 0 50 … 200) |
+| 04, 07, 13 | legend border ran to 10.68–10.70 in, past the 10.55 in margin the map frames keep (a legend's border is drawn 0.15 in outside its element) | builders place them so x + width = 10.40; `polish_layouts.py` moves any that do not |
+| 11 | the Robbins table ran to 10.76 in | columns narrowed (`TABLE_W` in the builder; `polish_layouts.py` moves the 80 cells in place, since rerunning the builder recomputes 1.4 million features) |
+| 13 | footer ran to 10.8 in; the enrichment key to 10.61 | the footer's second clause on its own line; key swatches 0.768 in |
+
+Nothing else wrong was found: every number printed on a sheet was checked against its JSON log or this record
+(04 against `global60_classification_check_200m_mode11.json`; 10's type-area boxes against `areas.py` to the
+pixel; 12's order counts sum to 969,822). Rehearsed on a copy beside the `.aprx` (kept in the scratch folder), then
+`make_candidate_maps.py`, `make_mosaic_layout.py`, `make_reference_maps.py`, `make_geomap_sheet.py --cell 200`,
+`make_validation_sheet.py` and `polish_layouts.py` on the real one; a second polish run changes nothing but 03's
+legend (dropped again each run, as before; harmless). All 15 sheets exported, read, and copied into
+`TypeArea\layouts\` and `Global60\layouts\`. Layout 14 now reads "Read 2026-10-19 03:30"; its counts are unchanged
+(0 of 9,287 reviewed).
+
+**Three results had a log and a table here but no figure.** `build\make_fig_checks.py` draws them from the logs
+into `build\interim_img\`:
+
+- `accuracy_200m.png`: the published map's held-out confusion, area-weighted, rows summing to 100 % (§57): of the area
+  the map calls lava tube inside held-out polygons, 94 % lies on Crater polygons, hence its 2 % user's accuracy;
+  and held-out accuracy against the majority window at 200 m and 400 m (§55.3).
+- `t2_density.png`: T2, craters ≥ 1 km per 10⁶ km² per unit, Robbins against the detector (§42.2).
+- `lava_relabel.png`: the lava-tube relabel, variants A–D (§43.3).
+
+The README shows all three under its results, `docs/figures.md` lists them. Not changed: the interim deck (the
+author's call, §63); its crop of 08 in `build\interim_img\` predates the recentring.

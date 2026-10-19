@@ -121,7 +121,7 @@ def table(res, x0, ytop):
 def key(x, ytop):
     els = [text(x, ytop - 0.16, "Enrichment: P(class | group) ÷ P(class); ×1 = no association", 7.6,
                 "key_head", bold=True)]
-    w = 0.78
+    w = 0.768                                   # five swatches end on the 10.55 in margin (KB §64)
     for i, (_, _, fill, ink, lab) in enumerate(BINS):
         xx = x + i * (w + 0.04)
         els.append(rect(xx, ytop - 0.48, w, 0.2, "key_r%d" % i, fill))
@@ -173,9 +173,10 @@ def main():
              "landforms, the units geologic. Each cell: enrichment, and the class's share of the group."
              % (CLEAN, CLEAN, res["cell_m"] / 1000.0), 9.6, "subtitle", colour=(70, 70, 70)),
         text(6.55, 0.62, notes(res), 7.6, "notes", colour=(40, 40, 40)),
-        text(0.45, 0.30, CREDIT + "  ·  groups under 2%% of the area omitted unless relevant (%.1f%% shown)"
+        # on one line the footer ran 0.5 in past the page margin (KB §64)
+        text(0.45, 0.22, CREDIT + "\nUnit groups under 2%% of the area are omitted unless relevant (%.1f%% of it shown)."
              % (100 * total), 7.5, "credit", colour=(90, 90, 90))] + tab + key(6.55, 2.50))
-    legend_classes(p, lyt, mf, 6.55, 3.66, 4.0, 1.0, legend_names, names=False, cols=2)
+    legend_classes(p, lyt, mf, 6.55, 3.66, 3.85, 1.0, legend_names, names=False, cols=2)
     out = os.path.join(OUTD, LNAME + ".png"); lyt.exportToPNG(out, resolution=150); print("   ", out)
     p.save()
     print("saved. layouts:", sorted(x.name for x in p.listLayouts()))

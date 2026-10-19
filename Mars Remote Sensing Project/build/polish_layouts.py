@@ -31,6 +31,14 @@ make_candidate_maps.py). Idempotent: every step checks before it changes anythin
               (the builders' CREDIT now says so too).
   08          caption A named Tharsis among the dusty provinces of the 47.7 DN difference, which
               covers Arabia and Amazonis against Syrtis Major and Acidalia only (KB §62).
+  (KB §64, 2026-10-19, from reading all fifteen sheets)
+  scale bars  the first division split in two crowded "0 20 40" into the bar's start (01-03, 06,
+              09): no subdivisions, a label at every division.
+  legends     a legend whose border ran past the 10.55 in page margin (04, 07, 10, 13: to 10.70)
+              moves left until it ends there; the builders now place them so.
+  11          the "matching a Robbins crater" table ran to 10.76 in: its columns narrowed to
+              make_global60_candidate_sheets.TABLE_W in place (rerunning that builder recomputes
+              1.4 million features).
 
 Pro must be closed. The .aprx is backed up first. --aprx <copy> rehearses on a copy, which must
 sit BESIDE the real .aprx (it stores relative paths, §31.5). --export <dir> writes every sheet to
@@ -63,6 +71,10 @@ SUBTITLE_02 = ("THEMIS Night IR v14, 100 m. Bright = warmer at night than its su
                "coarse debris are.\nLocal contrast, not calibrated thermal inertia (KB \u00a728.10).")
 NAME_OLD, NAME_NEW = "Logan Edwards  ·", "Logan M Edwards  ·"
 CAP08_OLD, CAP08_NEW = "Bright dust (Arabia, Tharsis, Amazonis)", "Bright dust (Arabia, Amazonis)"
+RIGHT = 10.40                                       # a legend's x + width; its border ends 0.15 in further
+T11_OLD = [0.50, 0.70, 0.58, 0.50, 0.50]
+T11_NEW = [0.44, 0.66, 0.53, 0.47, 0.47]            # = make_global60_candidate_sheets.TABLE_W
+T11_X = 7.98
 NODATA_NOTE_04 = ("Grey streaks: no class. Gaps between THEMIS orbits leave 2.6% of the band "
                   "unclassified, 19% south of 48\u00b0S.")
 
@@ -125,6 +137,45 @@ def halo_graticules(p):
                 done = True
             if done:
                 l.setDefinition(d); n += 1
+    return n
+
+
+def scale_bars(lyt):
+    """No subdivisions, a label at each division. Returns the number changed."""
+    n = 0
+    for sb in lyt.listElements("MAPSURROUND_ELEMENT"):
+        d = sb.getDefinition("V3")
+        if not hasattr(d, "subdivisions"):            # north arrows
+            continue
+        if d.subdivisions == 0 and d.labelFrequency == "Divisions":
+            continue
+        d.subdivisions = 0
+        d.labelFrequency = "Divisions"
+        sb.setDefinition(d); n += 1
+    return n
+
+
+def table_11(lyt):
+    """Narrow the Robbins table's columns in place: each cell keeps its row, moves to its new column."""
+    cells = [e for e in lyt.listElements() if e.name.startswith("t")]     # rects and texts alike
+    first = [e for e in cells if e.name == "t0_0_bg"]
+    if not first or abs(first[0].elementWidth - T11_OLD[0]) > abs(first[0].elementWidth - T11_NEW[0]):
+        return 0                                      # already narrowed (or no table)
+    left = lambda ws, j: T11_X + sum(ws[:j])
+    n = 0
+    for el in cells:
+        parts = el.name.split("_")
+        if len(parts) < 2 or not parts[1].isdigit():
+            continue
+        j = int(parts[1])
+        if el.name.endswith("_bg"):
+            el.elementWidth = el.elementWidth - T11_OLD[j] + T11_NEW[j]     # left edge stays
+            el.elementPositionX += left(T11_NEW, j) - left(T11_OLD, j)
+        elif j == 0:                                  # left-aligned: follows the left edge
+            el.elementPositionX += left(T11_NEW, j) - left(T11_OLD, j)
+        else:                                         # right-aligned: follows the right edge
+            el.elementPositionX += (left(T11_NEW, j) + T11_NEW[j]) - (left(T11_OLD, j) + T11_OLD[j])
+        n += 1
     return n
 
 
@@ -200,12 +251,22 @@ def main():
                 if v is not None and abs(getattr(leg, attr) - v) > 0.005:
                     setattr(leg, attr, v)
                     changed.append("legend %s %.2f" % (attr[7:] if attr != "elementWidth" else "width", v))
+            if leg.elementPositionX + leg.elementWidth > RIGHT + 0.005:   # border past the page margin
+                leg.elementPositionX = RIGHT - leg.elementWidth
+                changed.append("legend x %.2f (margin)" % leg.elementPositionX)
             if lyt.name == "07_global60_basins" and leg.fittingStrategy != "ManualColumns":
                 leg.fittingStrategy = "ManualColumns"
                 leg.columnCount = 2
                 changed.append("legend: manual columns")
             if leg.isOverflowing:
                 print("   %s: legend OVERFLOWING" % lyt.name)
+        n = scale_bars(lyt)
+        if n:
+            changed.append("%d scale bar(s): no subdivisions" % n)
+        if lyt.name == "11_global60_depressions":
+            n = table_11(lyt)
+            if n:
+                changed.append("table: %d cells to the margin" % n)
         if lyt.name == "06_ius_digitising":
             for el in lyt.listElements("MAPSURROUND_ELEMENT", "narrow"):
                 if el.elementPositionX < ARROW_X_06 - 0.01:   # its "N" sat against the legend box
