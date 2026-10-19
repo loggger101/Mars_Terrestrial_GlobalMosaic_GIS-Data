@@ -20,7 +20,7 @@ MP = DRIVE / "Mars Project"
 REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
             Path.home() / "OneDrive" / "Documents" / "GitHub" / "Mars_Terrestrial_GlobalMosaic_GIS-Data")
 URL = "https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/"
-DATA, DERIV = "data-2026-10-16", "derivatives-2026-10-06"     # data refreshed 2026-10-16 (KB §57.4)
+DATA, DERIV = "data-2026-10-19", "derivatives-2026-10-06"     # data refreshed 2026-10-19, adds Athabasca (KB §57.4, §63.2)
 
 LANDFORM_VALUES = "Classes 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class"
 IUS_SUP_VALUES = ("Classes 1 crater interior, 2 steep wall, 3 moderate wall, 4 chasma floor, 5 plateau flank, "
@@ -144,9 +144,9 @@ ATH = {   # the same chain as Ius, run with --area ath (KB §42.1)
     "ath_strord.tif": "Stream order.",
     "ath_cratermask.tif": "The 1,709 closed depressions ≥ 1 km as a raster, one id each (KB §42.1).",
 }
-# No data release holds Athabasca\ yet: github_release_bundle.py bundles it as athabasca.zip from 2026-10-19
-# (KB §63). Set this to the tag of the first data release that carries it.
-ATH_RELEASE = None
+# The data release that holds Athabasca\ as athabasca.zip (github_release_bundle.py, since 2026-10-19); None
+# would mark it "none yet". data-2026-10-16 and earlier do not carry it (KB §63.1, §63.2).
+ATH_RELEASE = DATA
 # In the data release's global60-classification zips (github_release_bundle.py's group), not the derivatives
 IN_DATA = ("global60_landforms", "smoke60", "global60_depression_density", "global60_robbins_density")
 # In no release: exact band copies of the stack, rebuilt by make_t1_pro_confirm.py in ~15 min (KB §56)

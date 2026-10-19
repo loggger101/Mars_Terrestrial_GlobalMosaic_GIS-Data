@@ -167,10 +167,10 @@ Three coordinate frames, not two: check `Central_Meridian` per file before readi
 
 ArcGIS Pro is not required. The rasters are GeoTIFFs and the vectors come as a file geodatabase and a GeoPackage; QGIS and GDAL read all of them.
 
-**Quick start.** Download the landform maps (1.8 GB; the published one unzips to `Global60/global60_landforms_svm_200m_mode11.tif`) and unzip them:
+**Quick start.** Download the landform maps (1.9 GB; the published one unzips to `Global60/global60_landforms_svm_200m_mode11.tif`) and unzip them:
 
 ```bash
-curl -LO https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/download/data-2026-10-16/global60-classification-part1.zip
+curl -LO https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/download/data-2026-10-19/global60-classification-part1.zip
 unzip global60-classification-part1.zip
 ```
 
@@ -241,7 +241,7 @@ CITATION.cff               how to cite the project ("Cite this repository" on Gi
 
 ## Backup and restore
 
-The rasters are in two releases: [`data-2026-10-16`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-16) (5.9 GB: the Ius Chasma type area, the ±60° landform maps, the GUI SVM maps, caches, the GeoPackage with the ±60° candidates; it replaces `data-2026-10-06`) and [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) (74.4 GB: the ±60° derivatives, split into 1.9 GB pieces, and the deep-learning exports). The Athabasca type area's rasters join the next data release; until then they are on the drive only. [`restore.py`](restore.py) rebuilds the drive from a clone and those two releases, checking every file against its SHA-256:
+The rasters are in two releases: [`data-2026-10-19`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-19) (7.3 GB: both type areas, Ius Chasma and Athabasca Valles, the ±60° landform maps, the GUI SVM maps, caches, the GeoPackage with the ±60° candidates; it replaces `data-2026-10-16`) and [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) (74.4 GB: the ±60° derivatives, split into 1.9 GB pieces, and the deep-learning exports). [`restore.py`](restore.py) rebuilds the drive from a clone and those two releases, checking every file against its SHA-256:
 
 ```bash
 python restore.py --dest E:\ --dry-run

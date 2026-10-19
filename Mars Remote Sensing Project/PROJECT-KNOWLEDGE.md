@@ -39,7 +39,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | the GUI work of 24 Sep–1 Oct and its checks | §29, §30, §53.2 |
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
-| GitHub backup and releases | §35, §57.4, §63 (Athabasca not yet in a release) |
+| GitHub backup and releases | §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca) |
 | the interim builds | §39.3, §45, §48, §51.5, §57.3 |
 
 ---
@@ -2945,3 +2945,26 @@ On the laptop, ArcGIS Pro closed. Nothing measured; no raster written.
   `Global60\README.md`'s `layouts\` row (04–15); `restore.py`'s docstring (no "new training" shapefile since §57.6,
   the Athabasca junction); the README's status heading re-dated 2026-10-19. `verify_interim.py` 251 numbers, all
   in the record; `verify_all.py` 37 / 37.
+
+### 63.2 Release `data-2026-10-19`: the Athabasca type area backed up
+
+At the author's request the same day. Laptop, Wi-Fi.
+
+- **Staged:** `github_export_gdb.py --rasters --repo <scratch>`, so the repo's `exports/` was not rewritten (the gdb
+  has not changed since 2026-10-16 12:45, before that export): 26 feature classes, every row count matched, the
+  catalogue identical to the repo's but for row order; the two GUI SVM maps re-exported at exactly the 10-16 asset
+  sizes (249,261,023 and 238,247,660 bytes).
+- **Published** with `github_release_bundle.py --upload data-2026-10-19`: 11 assets, **7.3 GB**: `typearea-part1..3`,
+  **`athabasca.zip`** (145 files, 918 MB), `global60-classification-part1/2` (part 1 still holds the published
+  `_mode11` map; 1.9 GB now), `npy-caches.zip`, the GeoPackage, the two `Classified_*.tif`, `SHA256SUMS.txt`. It
+  replaces `data-2026-10-16` (kept); `restore.py` takes the newest data release, so it now restores Athabasca too.
+- **Pointed at it:** `github_catalog_rasters.py` (`DATA`, `ATH_RELEASE`; `docs/rasters.md` regenerated, 0 rows on
+  the old tag), `github_export_gdb.py` (`RELEASE`; `--catalog-only` rewrote `exports/README.md`), the README's
+  quick start and backup section, `docs/backup.md`, `CITATION.cff` (`date-released`).
+- **`github_export_gdb.py --catalog-only` no longer restamps the export date** with the day it runs: it keeps the
+  date of the export it describes (2026-10-16 here). File times can't give it: a `git pull` restamped the clone's
+  gdb files 2026-10-18.
+- `GITHUB_TOKEN=$(gh auth token) python tools/check_remote.py`: **72 release assets, 4 source mosaics, all pass.**
+- **The README quick start rerun verbatim** on the new release: download, unzip, the Python block: Crater 32.8 %,
+  steep/windy hills 1.8 %, lava tube 9.3 %, Normal Ground 56.1 %, as the README says; the downloaded
+  `global60_landforms_svm_200m_mode11.tif` has the drive copy's SHA-256.

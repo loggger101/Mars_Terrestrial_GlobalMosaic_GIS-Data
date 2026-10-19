@@ -75,7 +75,7 @@ ABOUT = {
 # Too big for git (their .gdbtable files reach 246 and 113 MB; GitHub refuses files over 100 MB):
 # exported to the release GeoPackage only, and listed in exports\README.md as such (KB §57).
 RELEASE_ONLY = {"Landform_CraterCandidates_auto_60", "Landform_ChannelCandidates_auto_60"}
-RELEASE = "data-2026-10-16"            # the release whose GeoPackage holds them (KB §57.4)
+RELEASE = "data-2026-10-19"            # the release whose GeoPackage holds them (KB §57.4, §63.2)
 MAX_FILE = 95 * 1000 * 1000
 SYSTEM_FIELDS = {"OBJECTID", "FID", "Shape", "SHAPE", "Shape_Length", "Shape_Area"}
 
@@ -128,10 +128,11 @@ def vectors():
     return bad
 
 
-def catalog(fgdb, fcs, release_only=None):
+def catalog(fgdb, fcs, release_only=None, when=None):
     """exports\\README.md: one row per class, read back from the export itself; release_only = {class: rows}
-    for the classes in the GeoPackage only."""
+    for the classes in the GeoPackage only; when = the export's date (default today)."""
     release_only = release_only or {}
+    when = when or time.strftime('%Y-%m-%d')
     rows = []
     for fc in fcs:
         p = str(fgdb / fc)
@@ -141,7 +142,7 @@ def catalog(fgdb, fcs, release_only=None):
                     f"{d.spatialReference.name} | {ABOUT.get(fc, '')} | {', '.join(f'`{x}`' for x in fields)} |")
     text = f"""# Vector layers from `Mars Project.gdb`
 
-Exported by [`github_export_gdb.py`](../Mars%20Remote%20Sensing%20Project/build/github_export_gdb.py) on {time.strftime('%Y-%m-%d')}.
+Exported by [`github_export_gdb.py`](../Mars%20Remote%20Sensing%20Project/build/github_export_gdb.py) on {when}.
 Every feature class in the project geodatabase except the third-party reference layers (`Ref_*`:
 the USGS geologic map and the Robbins crater database, available from their publishers). Row counts
 were checked against the source.
@@ -208,8 +209,13 @@ if __name__ == "__main__":
     if "--catalog-only" in sys.argv:   # rewrite exports\README.md from the export already in the repo
         fgdb = REPO / "exports" / "mars_project_vectors.gdb"
         arcpy.env.workspace = str(fgdb)
+        # the export's own date, kept from the catalog it rewrites, not today's: --catalog-only re-exports
+        # nothing. File times can't tell: a git pull restamps the clone's files (KB §63.2).
+        import re
+        old = (fgdb.parent / "README.md").read_text(encoding="utf-8")
+        when = re.search(r"\) on (\d{4}-\d\d-\d\d)\.", old).group(1)
         catalog(fgdb, arcpy.ListFeatureClasses(),
-                {fc: int(arcpy.management.GetCount(os.path.join(SRC, fc))[0]) for fc in sorted(RELEASE_ONLY)})
+                {fc: int(arcpy.management.GetCount(os.path.join(SRC, fc))[0]) for fc in sorted(RELEASE_ONLY)}, when)
         sys.exit(0)
     if "--rasters-only" in sys.argv:
         svm_maps()
