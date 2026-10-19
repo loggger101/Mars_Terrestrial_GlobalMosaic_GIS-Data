@@ -36,6 +36,8 @@ make_candidate_maps.py). Idempotent: every step checks before it changes anythin
               09): no subdivisions, a label at every division.
   legends     a legend whose border ran past the 10.55 in page margin (04, 07, 10, 13: to 10.70)
               moves left until it ends there; the builders now place them so.
+  03          (KB §65) the legend auto-added every map layer, so the graticule entry came back on
+              each run; auto-add off, and a title: the ten clusters carry no landform names.
   11          the "matching a Robbins crater" table ran to 10.76 in: its columns narrowed to
               make_global60_candidate_sheets.TABLE_W in place (rerunning that builder recomputes
               1.4 million features).
@@ -75,6 +77,7 @@ RIGHT = 10.40                                       # a legend's x + width; its 
 T11_OLD = [0.50, 0.70, 0.58, 0.50, 0.50]
 T11_NEW = [0.44, 0.66, 0.53, 0.47, 0.47]            # = make_global60_candidate_sheets.TABLE_W
 T11_X = 7.98
+LEGEND_TITLE = {"03_classification": "Iso Cluster class (spectral clusters, not named landforms)"}
 NODATA_NOTE_04 = ("Grey streaks: no class. Gaps between THEMIS orbits leave 2.6% of the band "
                   "unclassified, 19% south of 48\u00b0S.")
 
@@ -232,6 +235,16 @@ def main():
                 if s is not None and getattr(s, "height", 0) > HEADING_PT:
                     s.height = HEADING_PT
                     changed.append("legend heading %g pt" % HEADING_PT)
+            if lyt.name in LEGEND_DROP and d.autoAdd:     # or the dropped layers come back on the next open
+                d.autoAdd = False
+                changed.append("legend: auto-add off")
+            want = LEGEND_TITLE.get(lyt.name)
+            if want and (not d.showTitle or d.title != want):
+                d.showTitle, d.title = True, want
+                ts = getattr(getattr(d, "titleSymbol", None), "symbol", None)
+                if ts is not None:
+                    ts.fontFamilyName, ts.fontStyleName, ts.height = FONT, "Bold", 10
+                changed.append("legend title")
             keep = [it for it in d.items if not it.name.startswith(LEGEND_DROP.get(lyt.name, ()))]
             if len(keep) < len(d.items):                  # no visible symbol on the sheet
                 changed.append("legend: dropped %s" % ", ".join(it.name for it in d.items if it not in keep))

@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-19 (§64).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-19 (§65).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -27,7 +27,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 |---|---|
 | sources, the three frames, the ±60° grid | §3, §4, §15, §16, §28.1–§28.2 |
 | the ArcGIS project and the gdb | §5, §6 |
-| the map layouts: builders, polish, defects found by reading | §5, §22, §33, §61, §63, §64 |
+| the map layouts: builders, polish, defects found by reading | §5, §22, §33, §61, §63, §64, §65 |
 | how scripted work is done, and its traps | §2, §9, §12, §13 |
 | what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1, §56, §62 |
 | classification: type area | §19, §23, §27 |
@@ -957,7 +957,7 @@ frees the dataset (§9).
 **The parameters matter far more than the classifier.** **Recommended: 14 / 14 / minimum 30 px**, by the
 project's resolution rule: **~10 pixels across a feature are needed to map its margin, so at 100 m the limit
 is ~1 km** (§14). 14/14/30's mean run, 18.6 px ≈ 1.9 km, sits just above it; 9/9/80's 3.7 km is below the
-stated resolving power and flattens the plateau into one unit (`build\pres1_img\ius_segmentation_sweep.png`).
+stated resolving power and flattens the plateau into one unit (`build\pres1_img\ius_segmentation_sweep.png`; the repo's light copy in `interim_img\`, §65).
 Lower detail is slower, not cheaper: 9/9/80 took 8× longer than 20/20/5.
 
 ### 23.6 Segmentation does not scale to ±60° **[V]**
@@ -971,7 +971,7 @@ segmentation without asking (`NEXT-STEPS.md` §10). One was run in the GUI anywa
 
 ## 24. The day–night pair, worked properly — 2026-09-19 **[V]**
 
-`build\make_typearea_thermal.py` and `make_fig_thermal.py` → `build\pres1_img\ius_thermal_contrast.png`.
+`build\make_typearea_thermal.py` and `make_fig_thermal.py` → `build\pres1_img\ius_thermal_contrast.png` (`--light`: `interim_img\`, §65).
 
 ### 24.1 Calibrated thermal inertia is NOT derivable from the held products **[V]**
 
@@ -1054,7 +1054,7 @@ then routes across. On `fill − dem`:
 
 | | |
 |---|---|
-| scene raised at all (> 1 m) | **21.8 %**, 80,238 km² |
+| scene raised at all (> 1 m) | **21.7 %** (21.746 %; read "21.8 %" to §65), 80,238 km² |
 | raised > 100 m | 9.1 % |
 | **maximum raise** | **2,077 m** |
 | **stream cells on filled ground** | **56.1 %** |
@@ -1064,7 +1064,7 @@ then routes across. On `fill − dem`:
 
 **The fix is a mask:** keep only cells with `fill − dem ≤ 1 m`. The script prints the discard every run and
 stores `FillDepthM` per segment (mean 0.073 m, max 0.889 m over the kept set). **It generalises** to every
-closed basin and crater interior (§28.6). Figure: `build\pres1_img\ius_channel_candidates.png`.
+closed basin and crater interior (§28.6). Figure: `build\pres1_img\ius_channel_candidates.png` (`--light`: `interim_img\`, §65).
 
 ### 25.2 What came out **[V]**
 
@@ -3007,3 +3007,34 @@ into `build\interim_img\`:
 
 The README shows all three under its results, `docs/figures.md` lists them. Not changed: the interim deck (the
 author's call, §63); its crop of 08 in `build\interim_img\` predates the recentring.
+
+## 65. The type-area results drawn for the repo; 07's size classes and 03's legend; a rounding slip — 2026-10-19 **[V]**
+
+On the laptop, ArcGIS Pro closed. Nothing measured; no raster written. The same request as §64, continued.
+
+- **Four type-area results had no depiction in the repo.** Their only figures were Presentation 1's navy slides
+  in `build\pres1_img\`, which the repo no longer mirrors (§57.6): the segmentation sweep (§23.5), the
+  diurnal-contrast index (§24), the channel candidates with the `Fill` trap (§25.1), and the closed depressions
+  with the Oudemans / Perrotin check (§26). `make_fig_segmentation.py`, `make_fig_thermal.py`,
+  `make_fig_channels.py` and `make_fig_craters.py` take **`--light`**, which writes the repo's light style to
+  `build\interim_img\`; without it they still write Presentation 1's originals. All four now read the real
+  `Mars Project\TypeArea\` folder, not the junction, which is broken on whichever machine it does not point at
+  (§58). The README shows each beside its result; `docs/figures.md` has a "Type-area figures" section.
+- **Wording brought to the record**, in both modes: the index panels say "mean index per object-based class" and
+  "same steepness, opposite sign" (they said "every class separates" and "not a topography proxy"), and the
+  suptitle cites §24; the crater figure says "closed depressions, not a crater count" (it said "candidate craters",
+  against §42.3) and calls the overlay what it is, depression depth (fill − DEM), not "depth Fill removed"; the
+  sweep's 9 / 9 / 80 caption says "far coarser than the 1 km the grid can map" (it said "below the 1 km limit").
+- **A rounding slip fixed:** the `Fill` figure's title said **23 %** of the scene flooded, and §25.1 said **21.8 %**.
+  `ius_filldepth.tif` read whole: 8,023,834 of 36,897,650 cells raised > 1 m = **21.746 %**, 80,238 km²; so
+  **21.7 %**. The title is now computed from the raster; §25.1 corrected.
+- **Layout 07:** the five basin size classes were natural breaks (20–41, 41–81, 81–220, 220–1,027, 1,027–2,697 km);
+  now **20–40, 40–80, 80–200, 200–1,000, 1,000–2,697 km** (3,541, 1,295, 282, 22 and 4 basins), `BASIN_BREAKS` in
+  `make_candidate_maps.py`. The IAU layer's smallest crater is 100.8 km, so its legend's "> 100 km" stands.
+- **Layout 03:** the legend auto-added every layer of its map, so the graticule entry that `polish_layouts.py`
+  dropped came back on each open, and polish was not idempotent there. Auto-add is now off; the legend has a title,
+  "Iso Cluster class (spectral clusters, not named landforms)". **A second polish run now changes nothing on any sheet.**
+- Smaller: the public name in three deck scripts' docstrings (`le_theme.py`, `build_interim_le.py`,
+  `build_pres1_le.py`); `make_fig_craters.py`'s first line, which `docs/scripts.md` quotes; `INTERIM-PLAN.md`'s
+  layout count. Rebuilt with `make_candidate_maps.py`, `make_reference_maps.py` and `polish_layouts.py` (rehearsed
+  on a copy first); all 15 sheets exported, 03 and 07 read, the polished sheets copied into the layout folders.

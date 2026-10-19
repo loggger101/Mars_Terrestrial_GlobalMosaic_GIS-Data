@@ -7,6 +7,7 @@ Click a thumbnail for the full-size file. "KB §N" is a section of
 
 - [Map layouts](#map-layouts): the 15 sheets in the ArcGIS Pro project, exported at 150 dpi
 - [Result charts](#result-charts): the tests, drawn from their logs
+- [Type-area figures](#type-area-figures): the Ius Chasma results behind the method choices
 - [Check images](#check-images): the DEM steps found by the stack's line sweep
 - [Interim crops](#interim-crops): the layouts as the interim deck uses them
 - [Other](#other)
@@ -77,6 +78,20 @@ from the KB's own §28.10 tables), never retyped. They are the interim deck's fi
 | <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/t5_margins.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/t5_margins.png" width="300"></a> | **T5 (H1): does IR show lava-flow margins?** The share of 905 profiles across the geologic map's `lAv` contacts that each band separates; every interval reaches chance. KB §47.2. | `make_fig_tests567.py` · `t5_flow_margins.json` |
 | <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/t6_stability.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/t6_stability.png" width="300"></a> | **T6 (H3): is the composite more stable than one input?** Agreement of west- and east-trained maps (ARI) and spatial coherence; the composites are the least reproducible. KB §47.3. | `make_fig_tests567.py` · `t6_composite_stability.json` |
 | <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/t7_orders.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/t7_orders.png" width="300"></a> | **T7 (Q5): how many stream orders does the DEM resolve?** The highest order falls with the channel threshold, and no threshold puts half the first-order cells on real slopes: the count is a setting. KB §47.4. | `make_fig_tests567.py` · `t7_order_sweep.json` |
+
+## Type-area figures
+
+The Ius Chasma results that set the method: the segmentation parameters, the `Fill` mask, the detector's limits and
+what the day–night pair can show. Drawn from the type-area rasters with `--light`, which writes these to
+[`build/interim_img/`](../Mars%20Remote%20Sensing%20Project/build/interim_img); without it, each script writes
+Presentation 1's navy original (not mirrored).
+
+| | What it shows | Made by |
+|---|---|---|
+| <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/ius_segmentation_sweep.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/ius_segmentation_sweep.png" width="300"></a> | **The segmentation sweep.** The same 170 × 110 km of the chasma wall per pixel and at three object-based settings; boundary pixels fall from 43.1 % to 13.0 % at 14 / 14 / 30, the settings chosen, whose 1.9 km mean run sits just above the grid's 1 km mapping limit. KB §23.5. | `make_fig_segmentation.py --light` |
+| <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/ius_thermal_contrast.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/ius_thermal_contrast.png" width="300"></a> | **The diurnal-contrast index at Ius Chasma.** The map, its mean per object-based class, and the class means against slope: the two steepest classes, 4.4° apart, sit 0.46 apart at opposite signs. Relative 8-bit DN, not inertia; at ~3 km it does not track TES. KB §24, §42.4. | `make_fig_thermal.py --light` |
+| <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/ius_channel_candidates.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/ius_channel_candidates.png" width="300"></a> | **Channel candidates and the `Fill` trap.** A: the 2,610 candidates by diurnal-contrast index. B: where `Fill` raised the DEM (21.7 % of the area, up to 2,077 m); 56.1 % of the first network ran across it. KB §25. | `make_fig_channels.py --light` |
+| <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/ius_crater_candidates.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/ius_crater_candidates.png" width="300"></a> | **Closed depressions and the detector's limit.** The 1,685 depressions ≥ 1 km, their size-frequency, and two named craters: Oudemans, breached, missed; Perrotin found within 7.1 %. KB §26, §42.3. | `make_fig_craters.py --light` |
 
 ## Check images
 

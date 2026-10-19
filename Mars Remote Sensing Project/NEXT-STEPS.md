@@ -39,6 +39,10 @@ other ±60° sheets, with a graticule; 09's map enlarged; type-area footers name
 11's table and 13's footer kept inside the page margin. Three results drawn as charts for the first time
 (`make_fig_checks.py`: the published map's confusion and filter sweep, T2, the lava-tube relabel). The interim
 deck's crop of 08 predates the recentring (deck left as it is).
+**2026-10-19, laptop (§65):** four type-area results (segmentation sweep, diurnal-contrast index, `Fill` trap,
+closed depressions with Oudemans / Perrotin) drawn light for the repo with `--light`, wording brought to the
+record; §25.1's flooded share corrected to 21.7 %; layout 07's size classes rounded; 03's legend titled, and
+`polish_layouts.py` now idempotent on every sheet.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).

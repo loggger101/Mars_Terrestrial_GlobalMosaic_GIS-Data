@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Interim presentation, in Logan Edwards' deck design.
+"""Interim presentation, in Logan M Edwards' deck design.
 
 Covers every heading the supplied '2 Interim Presentation Template.pptx'
 asks for, in its order:

@@ -77,11 +77,11 @@ All 150 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`make_fig_channels.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_channels.py) | ArcGIS | Figure: candidate channel centrelines over Ius Chasma, triaged thermally, with the filled-basin exclusion shown rather than hidden. |
 | [`make_fig_checks.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_checks.py) | either | Three results that had a log and a KB table but no figure (KB §64), for the repo and the deck. |
 | [`make_fig_classification.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_classification.py) | ArcGIS | Ius Chasma unsupervised classification, 10 classes, over the day-IR relief. |
-| [`make_fig_craters.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_craters.py) | ArcGIS | Figure: candidate craters for the Ius Chasma type area, the size-frequency distribution the gazetteer cannot give, and the validation - including the failure. |
+| [`make_fig_craters.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_craters.py) | ArcGIS | Figure: closed depressions >= 1 km over Ius Chasma (crater candidates), their size-frequency distribution the gazetteer cannot give, and the validation - including the failure. |
 | [`make_fig_daynight.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_daynight.py) | ArcGIS | Day / night / difference over the Ius Chasma type area. |
 | [`make_fig_fusion.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_fusion.py) | ArcGIS | Ius Chasma fusion figure - HSV composite so colour carries thermal information while relief still reads. |
 | [`make_fig_global60.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_global60.py) | either | The +/-60 province test: can the day-night pair discriminate material? (KB 28.10) |
-| [`make_fig_segmentation.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_segmentation.py) | ArcGIS | Segmentation parameter sweep, shown on a zoom across the Ius Chasma wall. |
+| [`make_fig_segmentation.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_segmentation.py) | ArcGIS | Segmentation parameter sweep, shown on a zoom across the Ius Chasma wall (KB §23.5). |
 | [`make_fig_supervised.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_supervised.py) | ArcGIS | Figure: task 7's supervised half, with the accuracy assessment made visible - including the comparison that does NOT support the easy story. |
 | [`make_fig_svm_check.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_svm_check.py) | either | Figure: the two Pro-GUI SVM classifications (KB §29, §30) checked against independent evidence. |
 | [`make_fig_t1_pro.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_t1_pro.py) | either | Figure for test T1 in Pro (KB §56, §56.1): what each left-out band group is worth, with its interval. |
@@ -113,10 +113,10 @@ All 150 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`audit_text.py`](../Mars%20Remote%20Sensing%20Project/build/audit_text.py) | either | Audit the parts nobody has checked yet: the calendar, leftover placeholders, and numbers that appear in more than one place and must agree. |
 | [`build_interim_deck.py`](../Mars%20Remote%20Sensing%20Project/build/build_interim_deck.py) | system | Interim presentation, following '2 Interim Presentation Template.pptx'. |
 | [`build_interim_docx.py`](../Mars%20Remote%20Sensing%20Project/build/build_interim_docx.py) | either | Written interim progress report, mirroring the interim presentation template's section order. Typography matches '1 Project Statement.pdf': Times New Roman 12 pt. |
-| [`build_interim_le.py`](../Mars%20Remote%20Sensing%20Project/build/build_interim_le.py) | system | Interim presentation, in Logan Edwards' deck design. |
+| [`build_interim_le.py`](../Mars%20Remote%20Sensing%20Project/build/build_interim_le.py) | system | Interim presentation, in Logan M Edwards' deck design. |
 | [`build_interim_live.py`](../Mars%20Remote%20Sensing%20Project/build/build_interim_live.py) | system | The living interim presentation, in the Presentation 1 design (KB §39.3). |
 | [`build_interim_report_live.py`](../Mars%20Remote%20Sensing%20Project/build/build_interim_report_live.py) | either | The living interim report: the same content and figures as the living deck (KB §45). |
-| [`build_pres1_le.py`](../Mars%20Remote%20Sensing%20Project/build/build_pres1_le.py) | system | Presentation 1, in Logan Edwards' deck design -- trimmed for a short slot. |
+| [`build_pres1_le.py`](../Mars%20Remote%20Sensing%20Project/build/build_pres1_le.py) | system | Presentation 1, in Logan M Edwards' deck design -- trimmed for a short slot. |
 | [`build_pres1_styled.py`](../Mars%20Remote%20Sensing%20Project/build/build_pres1_styled.py) | system | Presentation 1 -- dark redesign, same words. |
 | [`build_pres1_v2.py`](../Mars%20Remote%20Sensing%20Project/build/build_pres1_v2.py) | system | Presentation 1, second revision -- every template bullet, and the evidence. |
 | [`build_prospectus_deck.py`](../Mars%20Remote%20Sensing%20Project/build/build_prospectus_deck.py) | system | Presentation 1 - Project Prospectus, following '1 Project Statement.pdf'. |
@@ -124,7 +124,7 @@ All 150 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`content.py`](../Mars%20Remote%20Sensing%20Project/build/content.py) | either | Shared content for the Mars global mosaic project deliverables. |
 | [`deck_helpers.py`](../Mars%20Remote%20Sensing%20Project/build/deck_helpers.py) | system | Slide-building helpers that match the supplied template's typography. |
 | [`deck_short.py`](../Mars%20Remote%20Sensing%20Project/build/deck_short.py) | either | Short forms of the content blocks, for the spoken deck only. |
-| [`le_theme.py`](../Mars%20Remote%20Sensing%20Project/build/le_theme.py) | system | Logan Edwards' deck design, measured from 'ocean first pres LE.pdf'. |
+| [`le_theme.py`](../Mars%20Remote%20Sensing%20Project/build/le_theme.py) | system | Logan M Edwards' deck design, measured from 'ocean first pres LE.pdf'. |
 | [`pdf_pages.py`](../Mars%20Remote%20Sensing%20Project/build/pdf_pages.py) | either | Rasterise a PDF to page PNGs, and flag obvious layout faults. |
 | [`verify2.py`](../Mars%20Remote%20Sensing%20Project/build/verify2.py) | either | Second pass: check what verify_all.py did NOT. |
 | [`verify_all.py`](../Mars%20Remote%20Sensing%20Project/build/verify_all.py) | either | Final sweep: assert every disk-checkable claim in the deliverables. |

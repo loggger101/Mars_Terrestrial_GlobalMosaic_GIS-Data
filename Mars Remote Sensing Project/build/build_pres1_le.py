@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Presentation 1, in Logan Edwards' deck design -- trimmed for a short slot.
+"""Presentation 1, in Logan M Edwards' deck design -- trimmed for a short slot.
 
 Slide order still follows '1 Project Statement.pdf' and covers all eleven of
 its bullets, but the talk is cut to 16 slides from 22:

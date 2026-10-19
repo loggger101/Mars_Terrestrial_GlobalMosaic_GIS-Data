@@ -46,6 +46,7 @@ PROMPT = {"ius": (GOOD, "steep and rock-floored",
           "ath": ("ThermIdx < -0.15", "rock-floored",
                   "are rock-floored (thermal index < \u22120.15): start there; on these lava plains slope cannot help")}
 PAGE_W, PAGE_H = 11.0, 8.5
+BASIN_BREAKS = [40, 80, 200, 1000]          # km; the fifth class runs to the largest (KB §65)
 
 assert not any("ArcGISPro" in l for l in os.popen("tasklist").read().splitlines()), "close ArcGIS Pro first"
 
@@ -182,9 +183,13 @@ def main():
     for br in sym.renderer.classBreaks:           # whole-km labels, one colour: size carries diameter
         br.symbol.color = {"RGB": [0, 197, 255, 100]}
     bas.symbology = sym
+    # round class limits (KB §65): the natural breaks read 20-41, 41-81, 81-220, 220-1027, 1027-2697 km
+    dmax = max(r[0] for r in arcpy.da.SearchCursor(os.path.join(GDB, "Landform_BasinCandidates_auto_60"),
+                                                   ["DiameterKm"]))
     d = bas.getDefinition("V3")                    # labels set through arcpy.mp did not stick; set them in the CIM
-    for br in d.renderer.breaks:
-        br.label = "%d\u2013%d km" % (round(lo), round(br.upperBound)); lo = br.upperBound
+    for br, ub in zip(d.renderer.breaks, BASIN_BREAKS + [dmax]):
+        br.upperBound = ub
+        br.label = "{:,.0f}\u2013{:,.0f} km".format(lo, ub); lo = ub
     bas.setDefinition(d)
     sym = iau.symbology
     sym.renderer.symbol.color = {"RGB": [0, 0, 0, 0]}

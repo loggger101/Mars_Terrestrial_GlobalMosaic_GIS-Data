@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Logan Edwards' deck design, measured from 'ocean first pres LE.pdf'.
+"""Logan M Edwards' deck design, measured from 'ocean first pres LE.pdf'.
 
   960 x 540 pt  |  Aptos Display titles, Aptos body
   60 pt title / 18 pt caption / 12 pt sub-line

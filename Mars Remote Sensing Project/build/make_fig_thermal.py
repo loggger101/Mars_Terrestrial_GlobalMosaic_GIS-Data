@@ -7,7 +7,9 @@ Three panels:
   B  mean index per object-based class, sorted
   C  slope vs index per class - the decoupling argument in one plot
 
-Reads <drive>\TypeArea\ius_thermal_contrast.tif (make_typearea_thermal.py).
+Reads <drive>\TypeArea\ius_thermal_contrast.tif (make_typearea_thermal.py). --light writes the repo's
+light version to interim_img\ (KB §65). The index is relative (8-bit DN, each band stretched on its own)
+and at ~3 km does not track calibrated TES inertia (§42.4): the titles say what the panels show, no more.
 """
 import os, numpy as np
 import os, sys
@@ -18,10 +20,18 @@ import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 gdal.UseExceptions()
 
-OUT = junction("TypeArea")
+OUT = on_drive(r"Mars Project\TypeArea")      # the junction holds one drive letter (KB §58)
 P = lambda n: os.path.join(OUT, n)
 LON0, LON1, LAT0, LAT1 = 271.0, 286.0, -13.0, -6.0
-BG, CY, SUB = "#0E2841", "#0E9ED4", "#9ED8ED"
+# --light (KB §65): the repo's light style, written to interim_img\ beside the other result charts;
+# without it, Presentation 1's navy original in pres1_img\. Wording follows the record in both.
+LIGHT = "--light" in sys.argv
+if LIGHT:
+    BG, TITLE, SUB, EDGE, HEAD, ACC = "white", "#1A1A1A", "#5A6570", "#D9DEE3", "#1A1A1A", "#2a78d6"
+else:
+    BG, TITLE, SUB, EDGE, HEAD, ACC = "#0E2841", "#0E9ED4", "#9ED8ED", "#2A4A66", "white", "#0E9ED4"
+CY = TITLE
+IMG_DIR = on_drive(r"Mars Remote Sensing Project\build\%s" % ("interim_img" if LIGHT else "pres1_img"))
 W = 1200
 
 
@@ -78,21 +88,21 @@ axA.set_ylabel("Latitude (\u00b0)", color=SUB)
 cb = fig.colorbar(im, ax=axA, orientation="horizontal", fraction=0.045,
                   pad=0.115, aspect=55)
 cb.ax.tick_params(colors=SUB, labelsize=9)
-cb.outline.set_color("#2A4A66")
-cb.set_label("←  damped: bedrock / coarse           swings hard: dust / fines  →",
+cb.outline.set_color(EDGE)
+cb.set_label("←  damped: rock, coarse debris           large day–night swing: dust-like  →",
              color=SUB, fontsize=9.5, labelpad=6)
 
 # ---- B  per-class means
 axB = fig.add_subplot(gs[1, 0])
 y = np.arange(len(rows))
 cols = plt.cm.RdBu_r(plt.Normalize(-0.5, 0.5)([r["idx"] for r in rows]))
-axB.barh(y, [r["idx"] for r in rows], color=cols, edgecolor="#2A4A66", height=0.72)
+axB.barh(y, [r["idx"] for r in rows], color=cols, edgecolor=EDGE, height=0.72)
 axB.set_yticks(y)
 axB.set_yticklabels(["class %d  (%.0f%%)" % (r["k"], 100 * f) for r, f in zip(rows, frac)],
                     color=SUB, fontsize=9)
 axB.axvline(0, color=SUB, lw=0.8)
 axB.set_xlabel("mean diurnal-contrast index", color=SUB)
-axB.set_title("B   Every class separates on the index", color=CY, fontsize=12,
+axB.set_title("B   Mean index per object-based class (14/14/30)", color=CY, fontsize=12,
               pad=9, loc="left")
 
 # ---- C  the decoupling
@@ -109,14 +119,14 @@ for r in rows:
 a = next(r for r in rows if r["k"] == 2)
 b = next(r for r in rows if r["k"] == 8)
 axC.annotate("", xy=(b["slope"], b["idx"]), xytext=(a["slope"], a["idx"]),
-             arrowprops=dict(arrowstyle="<->", color=CY, lw=1.4, ls="--"), zorder=2)
+             arrowprops=dict(arrowstyle="<->", color=ACC, lw=1.4, ls="--"), zorder=2)
 axC.text(0.55, 0.30, "the two steepest classes:\n%.1f\u00b0 apart in slope,\n%.2f apart in index"
          % (abs(a["slope"] - b["slope"]), abs(a["idx"] - b["idx"])),
-         transform=axC.transAxes, color=CY, fontsize=8.5, va="center", ha="left")
+         transform=axC.transAxes, color=ACC, fontsize=8.5, va="center", ha="left")
 axC.axhline(0, color=SUB, lw=0.8)
 axC.set_xlabel("mean slope (\u00b0)", color=SUB)
 axC.set_ylabel("mean diurnal-contrast index", color=SUB)
-axC.set_title("C   Not a topography proxy", color=CY, fontsize=12, pad=9, loc="left")
+axC.set_title("C   Index against slope: same steepness, opposite sign", color=CY, fontsize=12, pad=9, loc="left")
 axC.text(0.985, 0.035, "marker area ∝ class area", transform=axC.transAxes,
          color=SUB, fontsize=8, ha="right")
 
@@ -124,13 +134,13 @@ for a_ in (axA, axB, axC):
     a_.set_facecolor(BG)
     a_.tick_params(colors=SUB, labelsize=9)
     for sp in a_.spines.values():
-        sp.set_color("#2A4A66")
+        sp.set_color(EDGE)
 
-fig.suptitle("Ius Chasma type area  \u00b7  271\u2013286\u00b0E, 13\u20136\u00b0S  \u00b7  "
-             "relative index from 8-bit DN, not calibrated thermal inertia",
-             color="white", fontsize=15, y=0.977, x=0.085, ha="left")
+fig.suptitle("Ius Chasma, 271\u2013286\u00b0E, 13\u20136\u00b0S  \u00b7  a relative index from 8-bit DN, "
+             "not calibrated thermal inertia (KB \u00a724)",
+             color=HEAD, fontsize=14, y=0.977, x=0.085, ha="left")
 fig.tight_layout(rect=[0, 0, 1, 0.958])
-out = on_drive(r"Mars Remote Sensing Project\build\pres1_img\ius_thermal_contrast.png")
+out = os.path.join(IMG_DIR, "ius_thermal_contrast.png")
 fig.savefig(out, dpi=115, facecolor=BG)
 print("wrote", out)
 print("class order (coldest index first):",

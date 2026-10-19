@@ -32,7 +32,7 @@ The interim report and presentation are due **mid-November 2026** and the final 
 | CRS harmonisation (the gate) | done at ±60°: one grid, defined once in [`grid60.py`](Mars%20Remote%20Sensing%20Project/build/grid60.py) and read from the night mosaic |
 | Terrain derivatives | done at ±60°: slope in degrees on a metric grid, aspect, hillshade |
 | Band composite | done: a 7-band, 8-bit ±60° stack at 200 m with no raw elevation band, 97.3% co-valid |
-| Unsupervised classification | done for the type area (Iso Cluster, object-based segmentation, parameter sweep) |
+| Unsupervised classification | done for the type area (Iso Cluster, object-based segmentation, [parameter sweep](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_segmentation_sweep.png)) |
 | Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks; **published as the 200 m map with an 11 × 11 (2.2 km) majority filter, 73.8%, κ 0.58** |
 | Channel and crater candidates | done at ±60°: 465,354 closed depressions ≥ 1 km and 969,822 channel segments, checked against the Robbins catalogue; in both type areas; 5,144 basins ≥ 20 km |
 | Landform digitising | **open, the critical path** |
@@ -76,6 +76,12 @@ Across ±60°, TES thermal inertia tracks Viking red (r −0.36), while the THEM
 
 *Correlation of each layer with log thermal inertia from TES (~3 km cells): blue across all of ±60°, orange the median inside 15° blocks.*
 
+Inside a type area the day–night pair does carry a signal that topography doesn't: at Ius Chasma the diurnal-contrast index correlates with slope at only −0.25, and the two steepest object classes sit at opposite signs. Whether that is material is untestable below the ~3 km TES resolves.
+
+[<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/ius_thermal_contrast.png" width="640" alt="Ius Chasma diurnal-contrast index, its mean per class, and the class means against slope">](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_thermal_contrast.png)
+
+*A: the index over Ius Chasma (day and night IR each stretched on its own, then differenced; relative, not inertia). B: its mean per object-based class. C: the same means against slope (KB §24).*
+
 The province test shows why. Over seven provinces with textbook thermal-inertia contrast, the diurnal-contrast index differs between dusty and rocky by −0.0009, against scatter of 0.13–0.23 inside each. Every province repeats the mosaic-wide mean and spread of both THEMIS mosaics, which are stretched region by region, while Viking red separates dusty from rocky by 47.67 DN.
 
 [<img src="Mars%20Remote%20Sensing%20Project/build/pres1_img/global60_thermal.png" width="720" alt="Province test: the diurnal-contrast index over seven provinces, and day IR, night IR and Viking red DN over four">](Mars%20Remote%20Sensing%20Project/build/pres1_img/global60_thermal.png)
@@ -106,9 +112,17 @@ T2 counts craters per unit. The catalogue ranks the flood lava lowest at Athabas
 
 Across ±60°, 465,354 closed depressions ≥ 1 km; against the Robbins catalogue 15.3% of them are catalogued craters, 62.2% of those ≥ 5 km and 83.1% of those ≥ 20 km, each far above a chance baseline; recall levels off near half, since breached and degraded craters are invisible to a closed-depression detector. Below ~5 km the density follows the DEM's makeup more than the craters (layout 11). Large craters are measured well: Perrotin within 7.1% in diameter.
 
+[<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/ius_crater_candidates.png" width="640" alt="Ius Chasma closed depressions, their size-frequency, and the Oudemans miss and Perrotin hit">](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_crater_candidates.png)
+
+*Ius Chasma: the 1,685 closed depressions ≥ 1 km (A) and their size-frequency (B); C and D, the detector on two named craters: Oudemans is breached into the canyon (its lowest rim point 33 m below its floor), so it is not a closed depression and is missed; Perrotin is found within 7.1% (KB §26).*
+
 ### Channels
 
-`Fill` flooded Ius Chasma 2,077 m deep, and 56% of the stream cells in the first network were an artefact of it; of the 2,610 candidates left, 188 steep, rock-floored ones are worth digitising (layout 06). Across ±60°, 969,822 routed segments (layout 12); 89.8% lie on ground under 2°, so plateau channels are DEM noise. No channel reference exists at ±60° to score them.
+`Fill` flooded Ius Chasma 2,077 m deep (21.7% of the type area raised by more than 1 m), and 56% of the stream cells in the first network were an artefact of it; of the 2,610 candidates left, 188 steep, rock-floored ones are worth digitising (layout 06). Across ±60°, 969,822 routed segments (layout 12); 89.8% lie on ground under 2°, so plateau channels are DEM noise. No channel reference exists at ±60° to score them.
+
+[<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/ius_channel_candidates.png" width="640" alt="Ius Chasma channel candidates by diurnal-contrast index, and the depth Fill added">](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_channel_candidates.png)
+
+*Ius Chasma. A: the 2,610 channel candidates, coloured by the diurnal-contrast index. B: where `Fill` raised the DEM, which is what the channel network had been routed across before the mask (KB §25.1).*
 
 ### The prospectus' hypotheses (T4–T7)
 
