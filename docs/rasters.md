@@ -1,11 +1,12 @@
 # Rasters
 
-Every raster backed up in the [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases), read from its own header by
+Every raster backed up in the [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases), and the Athabasca type area's (see its
+section for which release holds them), read from its own header by
 [`github_catalog_rasters.py`](../Mars%20Remote%20Sensing%20Project/build/github_catalog_rasters.py)
-on 2026-10-16. "KB §N" is a section of
+on 2026-10-19. "KB §N" is a section of
 [`PROJECT-KNOWLEDGE.md`](../Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
 [`restore.py`](../restore.py) puts each one back where the table's first column says, under
-`Mars Project/Global60/`, `Mars Project/TypeArea/` or `Mars Project/restored_from_gdb/`. The type-area
+`Mars Project/Global60/`, `Mars Project/TypeArea/`, `Mars Project/Athabasca/` or `Mars Project/restored_from_gdb/`. The type-area
 zip also holds `TypeArea/_0based_originals/`, the `ius_sup_*` maps before the recode below; they are not listed.
 
 **Classified rasters** hold the class code itself as the pixel value. Before 2026-10-07 they held
@@ -14,7 +15,7 @@ ClassifyRaster's 0-based values instead (KB §36), so a copy downloaded earlier 
 **Coordinate system.** Every raster here is equidistant cylindrical on the Mars sphere
 (R = 3,396,190 m), in metres, and all but one have the **central meridian at 180°**, so x runs
 0–360°E. Software that assumes Earth or a 0° meridian will misplace them. The CRS is named
-`Mars_Equidistant_Cylindrical_CM180` in `Global60/` and `TypeArea/`; the validation windows under
+`Mars_Equidistant_Cylindrical_CM180` in `Global60/`, `TypeArea/` and `Athabasca/`; the validation windows under
 `TypeArea/val/` carry the same projection unnamed (`unknown`), and the geodatabase rasters call it
 `SimpleCylindrical_Mars`. **The exception is `Classified_202609300147338582853`, the 30 Sep map: central meridian 0°**, on
 Viking's 231.5 m global grid, so its x runs −180 to +180°E. The ±60° grids: 100 m is 213,388 × 71,130 and 200 m is
@@ -113,6 +114,34 @@ are on their own grids.
 | `val/perrotin_dem.tif` | Crater-detector validation window, Perrotin: DEM. | 5,335 × 5,335 @ 100 m | Int16 | -32768 | 29 MB | [`data-2026-10-16`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-16) `typearea-part*.zip` |
 | `val/perrotin_depth.tif` | Perrotin: fill depth. Recovered within −7.1 % in diameter. | 5,335 × 5,335 @ 100 m | Float32 | none | 11 MB | [`data-2026-10-16`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-16) `typearea-part*.zip` |
 | `val/perrotin_fill.tif` | Perrotin: filled DEM. | 5,335 × 5,335 @ 100 m | Int16 | 32767 | 27 MB | [`data-2026-10-16`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-16) `typearea-part*.zip` |
+
+## Athabasca Valles type area: `Mars Project/Athabasca/`
+
+The second type area (KB §42), on one 100 m grid, 7,114 × 5,929, 150–162°E, 4–14°N, built by the same scripts as
+Ius with `--area ath`; layouts 09 and 15 draw from it. **No release holds it yet**: `github_release_bundle.py` adds it as `athabasca.zip` from the next data release. Until then it is on the drive only, re-computable from `build/` (`make_typearea_stack.py --area ath`, then the terrain, thermal and candidate scripts, KB §42.1).
+
+| File | What it is | Grid | Type | NoData | Size | In release |
+|---|---|---|---|---|---|---|
+| `ath_aspect.tif` | Aspect in degrees. | 7,114 × 5,929 @ 100 m | Float32 | 3.4e+38 | 173 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_composite_4band.tif` | Viking R, G, B + day IR. | 7,114 × 5,929 @ 100 m | Byte × 4 | 0 | 108 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_composite_5band.tif` | Viking R, G, B + day IR + night IR. | 7,114 × 5,929 @ 100 m | Byte × 5 | 0 | 149 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_cratermask.tif` | The 1,709 closed depressions ≥ 1 km as a raster, one id each (KB §42.1). | 7,114 × 5,929 @ 100 m | Int32 | 0 | 0 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_day.tif` | THEMIS day IR, a window read (never warped). | 7,114 × 5,929 @ 100 m | Byte | 0 | 35 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_dem.tif` | HRSC/MOLA elevation in metres, cubic convolution from 200 m to 100 m. | 7,114 × 5,929 @ 100 m | Int16 | -32768 | 20 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_dn_diff.tif` | Raw day − night DN difference (KB §24.2). | 7,114 × 5,929 @ 100 m | Float32 | -9999 | 52 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_fac.tif` | Flow accumulation, cells. | 7,114 × 5,929 @ 100 m | Float32 | 3.4e+38 | 47 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_fdr.tif` | Flow direction (D8) on the filled DEM. | 7,114 × 5,929 @ 100 m | Byte | 0 | 10 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_fill.tif` | `Fill` of the DEM: 38.8 % of the first stream cells lay on filled ground (KB §42.1). | 7,114 × 5,929 @ 100 m | Int16 | 32767 | 22 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_filldepth.tif` | Fill − DEM in metres: the crater detector's input (KB §26). | 7,114 × 5,929 @ 100 m | Int32 | -2.147e+09 | 12 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_hillshade.tif` | Hillshade, 225° / 45°. | 7,114 × 5,929 @ 100 m | Byte | 255 | 14 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_night.tif` | THEMIS night IR, a window read. | 7,114 × 5,929 @ 100 m | Byte | 0 | 35 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_slope_deg.tif` | Slope in degrees (mean 1.8°: smooth lava plains, KB §42.1). | 7,114 × 5,929 @ 100 m | Float32 | -3.403e+38 | 173 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_slope_pct.tif` | Slope in percent rise. | 7,114 × 5,929 @ 100 m | Float32 | -3.403e+38 | 173 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_streams.tif` | Stream cells: > 5,000 upslope cells, filled ground masked out (KB §25). | 7,114 × 5,929 @ 100 m | Byte | 0 | 1 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_strlink.tif` | Stream links. | 7,114 × 5,929 @ 100 m | Int32 | 2.147e+09 | 3 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_strord.tif` | Stream order. | 7,114 × 5,929 @ 100 m | Int32 | -2.147e+09 | 5 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_thermal_contrast.tif` | Diurnal-contrast index in [−1, 1], each band scaled by its own p2–p98 over this window only. Does not track calibrated thermal inertia here (KB §42.4). | 7,114 × 5,929 @ 100 m | Float32 | -9999 | 90 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
+| `ath_viking.tif` | Viking RGB, cubic convolution onto the Athabasca 100 m grid (KB §42.1). | 7,114 × 5,929 @ 100 m | Byte × 3 | 0 | 51 MB | none yet: `athabasca.zip` in the next data release (KB §63) |
 
 ## From the geodatabase: `Mars Project/restored_from_gdb/`
 

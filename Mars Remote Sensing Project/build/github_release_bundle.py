@@ -12,6 +12,9 @@ Assets, each part under 1.9 GB (GitHub's limit is 2 GiB per file); files are the
 byte for byte, so a restore is an unzip:
   typearea-partN.zip         <drive>\Mars Project\TypeArea\, whole: the Ius Chasma stack and every
                              derivative, classification and model (§18-27)
+  athabasca.zip              <drive>\Mars Project\Athabasca\, whole: the second type area's stack,
+                             terrain, thermal index and channel rasters (§42.1; layout 15). Added
+                             2026-10-19 (§63): data-2026-10-16 and earlier do not hold it
   global60-classification[-partN].zip  the ±60° SVM maps (400 m raw + mode 3/5/7/9; since 2026-10-16
                              also 200 m raw + mode 3-11 and the four T1 maps), the models, the two
                              0.5° density grids, smoke tests
@@ -43,6 +46,7 @@ def files_under(d):
 def groups():
     g60 = MP / "Global60"
     yield "typearea", MP, files_under(MP / "TypeArea")
+    yield "athabasca", MP, files_under(MP / "Athabasca")
     yield "global60-classification", MP, sorted(
         [p for p in g60.glob("global60_landforms_svm*") if p.is_file() and p.suffix != ".ovr"]
         + [p for p in g60.glob("global60_*_density_0p5deg.tif*") if p.is_file() and p.suffix != ".ovr"]  # §53.6

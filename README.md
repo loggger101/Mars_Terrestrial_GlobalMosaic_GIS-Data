@@ -22,7 +22,7 @@ This repository is the project page and an off-drive backup of the project. The 
 
 The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 
-## Where it stands (2026-10-16)
+## Where it stands (2026-10-19)
 
 The interim report and presentation are due **mid-November 2026** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source and rebuilt as results come in ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); how to work on the project is [`HANDOFF-DESKTOP.md`](Mars%20Remote%20Sensing%20Project/HANDOFF-DESKTOP.md).
 
@@ -241,7 +241,7 @@ CITATION.cff               how to cite the project ("Cite this repository" on Gi
 
 ## Backup and restore
 
-The rasters are in two releases: [`data-2026-10-16`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-16) (5.9 GB: the type area, the ±60° landform maps, the GUI SVM maps, caches, the GeoPackage with the ±60° candidates; it replaces `data-2026-10-06`) and [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) (74.4 GB: the ±60° derivatives, split into 1.9 GB pieces, and the deep-learning exports). [`restore.py`](restore.py) rebuilds the drive from a clone and those two releases, checking every file against its SHA-256:
+The rasters are in two releases: [`data-2026-10-16`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-16) (5.9 GB: the Ius Chasma type area, the ±60° landform maps, the GUI SVM maps, caches, the GeoPackage with the ±60° candidates; it replaces `data-2026-10-06`) and [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) (74.4 GB: the ±60° derivatives, split into 1.9 GB pieces, and the deep-learning exports). The Athabasca type area's rasters join the next data release; until then they are on the drive only. [`restore.py`](restore.py) rebuilds the drive from a clone and those two releases, checking every file against its SHA-256:
 
 ```bash
 python restore.py --dest E:\ --dry-run

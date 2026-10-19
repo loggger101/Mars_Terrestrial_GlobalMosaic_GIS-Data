@@ -9,12 +9,12 @@ r"""Rebuild the Mars Global Mosaic project drive from this repository and its re
 Run it from a clone of the repo. It lays the drive out as the knowledge base expects:
 
     <dest>\Mars Remote Sensing Project\     the repo folder, plus npy-caches.zip
-    <dest>\Mars Project\                    the repo folder, plus TypeArea\, Global60\ rasters
+    <dest>\Mars Project\                    the repo folder, plus TypeArea\, Athabasca\, Global60\ rasters
                                             (split files rejoined), LabeledObjects\
     <dest>\Mars Project\restored_from_gdb\  the GUI SVM maps and the ±60° segmentation, which
                                             lived inside Mars Project.gdb, and the GeoPackage of
                                             the vector layers (also in <repo>\exports\)
-    <dest>\                                 the drive-root sidecars and "new training" shapefile
+    <dest>\                                 the drive-root sidecars, the night mosaic's PDS label and MD5
 
 Every download is checked against the release's SHA-256 (GitHub records one per asset), and every
 rejoined file against the whole-file hash in SHA256SUMS. Downloads resume if interrupted and
@@ -22,7 +22,7 @@ are kept in <dest>\_downloads until --clean. Existing files are never overwritte
 The four source mosaics are not in the releases; the README links them.
 
 Not restored: Mars Project.gdb itself (create it in Pro and copy in exports\mars_project_vectors.gdb),
-the .ovr pyramids (Build Pyramids), and the Z:\TypeArea / Z:\Global60 junctions (docs/backup.md, Restoring).
+the .ovr pyramids (Build Pyramids), and the TypeArea / Global60 / Athabasca junctions (docs/backup.md, Restoring).
 Stdlib only, Python 3.9+.
 """
 import argparse, hashlib, json, os, shutil, sys, urllib.request, zipfile
@@ -129,7 +129,7 @@ def whole_hashes(sums_file):
 def destination(name, dest):
     """Where an asset's contents go, by its name."""
     mp, rsp = dest / "Mars Project", dest / "Mars Remote Sensing Project"
-    if name.startswith(("typearea", "global60-classification", "global60-sidecars", "labeledobjects")):
+    if name.startswith(("typearea", "athabasca", "global60-classification", "global60-sidecars", "labeledobjects")):
         return "unzip", mp
     if name.startswith("npy-caches"):
         return "unzip", rsp

@@ -69,7 +69,7 @@ is **never resampled** — it is a window read, not a warp.
 | `global60_depression_density_0p5deg.tif`, `global60_robbins_density_0p5deg.tif` | 0.5° (720 × 240) | closed depressions and Robbins craters ≥ 1 km per 10⁴ km² (layout 11, §53.6) |
 | `smoke60_*.tif` | G100 | smoke-test windows of the pipeline: Viking, day, night, 4- and 5-band composites (§28.11) |
 | `global60_svm_s_ClassifyRaste*.crf` | | temporary outputs `ClassifyRaster` wrote on 2 Oct; no layer uses them |
-| `layouts\` | | PNG exports of layouts 04–14 |
+| `layouts\` | | PNG exports of layouts 04–15, polished (06, 09, 14 and 15 show the type areas; 01–03 are in `TypeArea\layouts\`) |
 | `checks\` | | image chips of the DEM steps found by the stack's line sweep (§55.2) |
 | `_0based_originals\` | | the landform maps before their pixel values became the class codes (§36) |
 

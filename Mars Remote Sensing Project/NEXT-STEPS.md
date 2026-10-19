@@ -32,7 +32,9 @@ from a hard-coded `F:`, every sheet re-polished and the interim rebuilt from the
 provinces, −0.0009 seven); slide 11 updated; the interim rebuilt, 28 slides and 19 pages.
 **2026-10-19, laptop (§63):** layout 15 added, the Athabasca Valles type area in visible, night IR, day IR and
 topography with unit `lAv`; every footer now gives "Logan M Edwards"; 08's caption no longer names Tharsis.
-The interim deck still says 14 layouts and does not show 15 (an author's call: the deck was not rebuilt).
+The interim deck still says 14 layouts and does not show 15 (the author's call: leave it for now).
+`Mars Project\Athabasca\` is in no release yet (§63.1): the next `github_release_bundle.py --upload` carries it as
+`athabasca.zip`; then set `ATH_RELEASE` in `github_catalog_rasters.py` and rerun it.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).

@@ -18,6 +18,8 @@ described in [rasters.md](rasters.md), each vector layer in [the layer catalog](
 | `npy-caches.zip` | decimated arrays of the globals that the figures are drawn from |
 | `SHA256SUMS.txt` | checksums |
 
+The next data release adds `athabasca.zip`: `Mars Project/Athabasca/` whole, the second type area's stack, terrain, thermal index and channel rasters (about 1.2 GB on the drive), which layouts 09 and 15 draw from. No earlier release holds it; [rasters.md](rasters.md#athabasca-valles-type-area-mars-projectathabasca) lists the files.
+
 [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06), 74.4 GB in 46 assets: the products that take hours to rebuild.
 
 | Asset | What |
@@ -30,7 +32,7 @@ described in [rasters.md](rasters.md), each vector layer in [the layer catalog](
 
 `restore.py` ([Restoring](#restoring)) rejoins and checks them. [`tools/check_remote.py`](../tools/check_remote.py), run by hand, checks both releases' assets against their checksum files without downloading them. By hand: `cat global60_dem.tif.part* > global60_dem.tif` (or `copy /b a.part001+a.part002 a` in `cmd`), then check it against the sums.
 
-Not backed up anywhere but the drive (git history holds the files the repository once mirrored): the `.aprx` snapshots in `Mars Project/.backups/` (git versions `Mars Project.aprx` itself), the unpacked copy of the `.aprx` in `build/aprx_live/`, Presentation 1's figure folders (`build/le_img/`, most of `build/pres1_img/`) and its `.pptx` (the PDF is in `OLD/`), the 30 Sep "new training" shapefile (a near copy of `Landform_TrainingSamples_terrain`), the three T1 band-subset stacks (re-computable), the `.ovr` pyramids (Build Pyramids re-creates them), `Global60/_0based_originals/` (the ±60° landform maps before their recode, KB §36) and the other geodatabase rasters, mostly legacy products the knowledge base finds defective and superseded (percent-rise slopes on a degree grid, a global composite mixing raw elevation with 8-bit bands).
+Not backed up anywhere but the drive (git history holds the files the repository once mirrored): `Mars Project/Athabasca/` until the next data release (above; re-computable with the type-area scripts' `--area ath`, KB §42.1), the `.aprx` snapshots in `Mars Project/.backups/` (git versions `Mars Project.aprx` itself), the unpacked copy of the `.aprx` in `build/aprx_live/`, Presentation 1's figure folders (`build/le_img/`, most of `build/pres1_img/`) and its `.pptx` (the PDF is in `OLD/`), the 30 Sep "new training" shapefile (a near copy of `Landform_TrainingSamples_terrain`), the three T1 band-subset stacks (re-computable), the `.ovr` pyramids (Build Pyramids re-creates them), `Global60/_0based_originals/` (the ±60° landform maps before their recode, KB §36) and the other geodatabase rasters, mostly legacy products the knowledge base finds defective and superseded (percent-rise slopes on a degree grid, a global composite mixing raw elevation with 8-bit bands).
 
 ## Keeping it current
 

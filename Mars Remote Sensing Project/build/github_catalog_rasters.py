@@ -121,6 +121,32 @@ IUS = {
     "val/perrotin_fill.tif": "Perrotin: filled DEM.",
     "val/perrotin_depth.tif": "Perrotin: fill depth. Recovered within −7.1 % in diameter.",
 }
+ATH = {   # the same chain as Ius, run with --area ath (KB §42.1)
+    "ath_viking.tif": "Viking RGB, cubic convolution onto the Athabasca 100 m grid (KB §42.1).",
+    "ath_day.tif": "THEMIS day IR, a window read (never warped).",
+    "ath_night.tif": "THEMIS night IR, a window read.",
+    "ath_dem.tif": "HRSC/MOLA elevation in metres, cubic convolution from 200 m to 100 m.",
+    "ath_composite_4band.tif": "Viking R, G, B + day IR.",
+    "ath_composite_5band.tif": "Viking R, G, B + day IR + night IR.",
+    "ath_slope_deg.tif": "Slope in degrees (mean 1.8°: smooth lava plains, KB §42.1).",
+    "ath_slope_pct.tif": "Slope in percent rise.",
+    "ath_aspect.tif": "Aspect in degrees.",
+    "ath_hillshade.tif": "Hillshade, 225° / 45°.",
+    "ath_dn_diff.tif": "Raw day − night DN difference (KB §24.2).",
+    "ath_thermal_contrast.tif": "Diurnal-contrast index in [−1, 1], each band scaled by its own p2–p98 over this "
+        "window only. Does not track calibrated thermal inertia here (KB §42.4).",
+    "ath_fill.tif": "`Fill` of the DEM: 38.8 % of the first stream cells lay on filled ground (KB §42.1).",
+    "ath_filldepth.tif": "Fill − DEM in metres: the crater detector's input (KB §26).",
+    "ath_fdr.tif": "Flow direction (D8) on the filled DEM.",
+    "ath_fac.tif": "Flow accumulation, cells.",
+    "ath_streams.tif": "Stream cells: > 5,000 upslope cells, filled ground masked out (KB §25).",
+    "ath_strlink.tif": "Stream links.",
+    "ath_strord.tif": "Stream order.",
+    "ath_cratermask.tif": "The 1,709 closed depressions ≥ 1 km as a raster, one id each (KB §42.1).",
+}
+# No data release holds Athabasca\ yet: github_release_bundle.py bundles it as athabasca.zip from 2026-10-19
+# (KB §63). Set this to the tag of the first data release that carries it.
+ATH_RELEASE = None
 # In the data release's global60-classification zips (github_release_bundle.py's group), not the derivatives
 IN_DATA = ("global60_landforms", "smoke60", "global60_depression_density", "global60_robbins_density")
 # In no release: exact band copies of the stack, rebuilt by make_t1_pro_confirm.py in ~15 min (KB §56)
@@ -185,6 +211,13 @@ def main():
         key = p.relative_to(ta).as_posix()
         i = info(str(p)); crs.add(i["srs"]); frames[key] = i
         ius.append(row(key, IUS.get(key), i, p.stat().st_size, rel(DATA, "typearea-part*.zip")))
+    ad = MP / "Athabasca"
+    ath = []
+    for p in sorted(ad.glob("*.tif")):
+        i = info(str(p)); crs.add(i["srs"]); frames["Athabasca/" + p.name] = i
+        where = (rel(ATH_RELEASE, "athabasca.zip") if ATH_RELEASE else
+                 "none yet: `athabasca.zip` in the next data release (KB §63)")
+        ath.append(row(p.name, ATH.get(p.name), i, p.stat().st_size, where))
     gdb = []
     for name, desc in GDB.items():
         i = info(f"OpenFileGDB:{MP / 'Mars Project.gdb'}:{name}")
@@ -198,16 +231,18 @@ def main():
     assert not odd and crs - {"unknown"} == {"Mars_Equidistant_Cylindrical_CM180"}, \
         f"coordinate systems changed; rewrite the note: {odd} {crs}"
     missing = [n for n in G60 if not (MP / "Global60" / n).exists()] + \
-              [n for n in IUS if not (ta / n).exists()]
+              [n for n in IUS if not (ta / n).exists()] + \
+              [n for n in ATH if not (ad / n).exists()]
 
     text = f"""# Rasters
 
-Every raster backed up in the [releases]({URL.rsplit("/tag/", 1)[0]}), read from its own header by
+Every raster backed up in the [releases]({URL.rsplit("/tag/", 1)[0]}), and the Athabasca type area's (see its
+section for which release holds them), read from its own header by
 [`github_catalog_rasters.py`](../Mars%20Remote%20Sensing%20Project/build/github_catalog_rasters.py)
 on {time.strftime('%Y-%m-%d')}. "KB §N" is a section of
 [`PROJECT-KNOWLEDGE.md`](../Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
 [`restore.py`](../restore.py) puts each one back where the table's first column says, under
-`Mars Project/Global60/`, `Mars Project/TypeArea/` or `Mars Project/restored_from_gdb/`. The type-area
+`Mars Project/Global60/`, `Mars Project/TypeArea/`, `Mars Project/Athabasca/` or `Mars Project/restored_from_gdb/`. The type-area
 zip also holds `TypeArea/_0based_originals/`, the `ius_sup_*` maps before the recode below; they are not listed.
 
 **Classified rasters** hold the class code itself as the pixel value. Before 2026-10-07 they held
@@ -216,7 +251,7 @@ ClassifyRaster's 0-based values instead (KB §36), so a copy downloaded earlier 
 **Coordinate system.** Every raster here is equidistant cylindrical on the Mars sphere
 (R = 3,396,190 m), in metres, and all but one have the **central meridian at 180°**, so x runs
 0–360°E. Software that assumes Earth or a 0° meridian will misplace them. The CRS is named
-`Mars_Equidistant_Cylindrical_CM180` in `Global60/` and `TypeArea/`; the validation windows under
+`Mars_Equidistant_Cylindrical_CM180` in `Global60/`, `TypeArea/` and `Athabasca/`; the validation windows under
 `TypeArea/val/` carry the same projection unnamed (`unknown`), and the geodatabase rasters call it
 `SimpleCylindrical_Mars`. **The exception is `{CM0}`, the 30 Sep map: central meridian 0°**, on
 Viking's 231.5 m global grid, so its x runs −180 to +180°E. The ±60° grids: 100 m is 213,388 × 71,130 and 200 m is
@@ -241,6 +276,15 @@ are on their own grids.
 {head}
 {chr(10).join(ius)}
 
+## Athabasca Valles type area: `Mars Project/Athabasca/`
+
+The second type area (KB §42), on one 100 m grid, 7,114 × 5,929, 150–162°E, 4–14°N, built by the same scripts as
+Ius with `--area ath`; layouts 09 and 15 draw from it. {"In " + rel(ATH_RELEASE, "athabasca.zip") + "." if ATH_RELEASE
+else "**No release holds it yet**: `github_release_bundle.py` adds it as `athabasca.zip` from the next data release. Until then it is on the drive only, re-computable from `build/` (`make_typearea_stack.py --area ath`, then the terrain, thermal and candidate scripts, KB §42.1)."}
+
+{head}
+{chr(10).join(ath)}
+
 ## From the geodatabase: `Mars Project/restored_from_gdb/`
 
 Made in the Pro GUI and kept inside `Mars Project.gdb`; exported as DEFLATE GeoTIFF for the release.
@@ -253,8 +297,8 @@ Made in the Pro GUI and kept inside `Mars Project.gdb`; exported as DEFLATE GeoT
     out = REPO / "docs" / "rasters.md"
     out.parent.mkdir(exist_ok=True)
     out.write_text(text, encoding="utf-8", newline="\n")
-    undescribed = sum(r.count("(not described)") for r in g60 + ius + gdb)
-    print(f"{len(g60)} Global60, {len(ius)} TypeArea, {len(gdb)} gdb rasters -> {out}")
+    undescribed = sum(r.count("(not described)") for r in g60 + ius + ath + gdb)
+    print(f"{len(g60)} Global60, {len(ius)} TypeArea, {len(ath)} Athabasca, {len(gdb)} gdb rasters -> {out}")
     print(f"undescribed: {undescribed}, described but missing: {len(missing)}")
 
 

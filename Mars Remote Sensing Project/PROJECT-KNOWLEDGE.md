@@ -1,8 +1,8 @@
 # Mars Global Mosaic — Project Knowledge Base
 
-**Owner:** Logan Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
+**Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-18 (§61).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-19 (§63).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -27,6 +27,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 |---|---|
 | sources, the three frames, the ±60° grid | §3, §4, §15, §16, §28.1–§28.2 |
 | the ArcGIS project and the gdb | §5, §6 |
+| the map layouts: builders, polish, defects found by reading | §5, §22, §33, §61, §63 |
 | how scripted work is done, and its traps | §2, §9, §12, §13 |
 | what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1, §56, §62 |
 | classification: type area | §19, §23, §27 |
@@ -38,7 +39,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | the GUI work of 24 Sep–1 Oct and its checks | §29, §30, §53.2 |
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
-| GitHub backup and releases | §35, §57.4 |
+| GitHub backup and releases | §35, §57.4, §63 (Athabasca not yet in a release) |
 | the interim builds | §39.3, §45, §48, §51.5, §57.3 |
 
 ---
@@ -2928,3 +2929,19 @@ On the laptop, ArcGIS Pro closed. Nothing measured; no raster written.
   CM 180: corrected. §5 records it.
 - Not changed: the interim deck and report still say 14 layouts and do not show 15 (`interim.py` line 75); the crops
   in `build\interim_img\` were not re-exported (`make_interim_figs.py` hides each sheet's prose, footer included).
+  The author's decision the same day: leave the deck as it is for now.
+
+### 63.1 The repo audited for stale parts: Athabasca is in no release
+
+- **`Mars Project\Athabasca\` (20 rasters, 1.18 GB, the source of layouts 09 and 15) is in no GitHub release**,
+  and the raster catalogue and `restore.py` did not know it: `github_release_bundle.py` bundled `TypeArea\` only.
+  Now `github_release_bundle.py` adds an `athabasca` group (one zip, under the 1.9 GB part size); `restore.py`
+  (repo-only) unzips `athabasca*` into `Mars Project\`; `github_catalog_rasters.py` writes an Athabasca section to
+  `docs/rasters.md` from the rasters' headers (20 described, none missing, the CRS assertion holds), marked
+  "none yet" until `ATH_RELEASE` is set to the first data release that carries it. `docs/backup.md` and the
+  README say so. **Until the next `github_release_bundle.py --upload data-YYYY-MM-DD`, the drive is its only
+  copy**; it is re-computable with the type-area chain's `--area ath` (§42.1).
+- Smaller: this file's header (last updated, owner's public name), a "where to look" row for the layouts;
+  `Global60\README.md`'s `layouts\` row (04–15); `restore.py`'s docstring (no "new training" shapefile since §57.6,
+  the Athabasca junction); the README's status heading re-dated 2026-10-19. `verify_interim.py` 251 numbers, all
+  in the record; `verify_all.py` 37 / 37.
