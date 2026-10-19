@@ -14,8 +14,10 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import numpy as np
 from osgeo import gdal
 gdal.UseExceptions()
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive
 
-GDIR = r"F:\Mars Project\Global60"
+GDIR = on_drive(r"Mars Project\Global60")
 BK = os.path.join(os.environ["LOCALAPPDATA"], "Temp", "mars_scratch", "meridian_backup_20261014")
 X0, X1 = 53330, 53362
 CHECK = range(53340, 53356)

@@ -21,7 +21,7 @@ Bands:  1-3 Viking MDIM 2.1 R, G, B     (bilinear warp 231.5 m -> 200 m)
 Relief stands in for the DEM: it says "rough or smooth here", which is what the four landform
 classes differ in, without saying "high or low", which is what made the old map an elevation map.
 
-Writes  Z:\Mars Project\Global60\global60_svm_stack_200m.tif   (+ .ovr, statistics)
+Writes  <drive>\Mars Project\Global60\global60_svm_stack_200m.tif   (+ .ovr, statistics)
 Run on the laptop: ~35 GB of strip reads over USB. Holds the machine awake while it runs.
 
 `--patch-cols C0 C1` recomputes only G200 columns C0..C1 of the existing stack, with its stored

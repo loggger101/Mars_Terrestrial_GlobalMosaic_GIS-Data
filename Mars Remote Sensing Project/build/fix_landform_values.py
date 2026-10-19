@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 r"""Recode the five ±60° landform maps so pixel value = class code (KB §36). ArcGIS Python.
 
-    python fix_landform_values.py              the five maps in Z:\Mars Project\Global60
+    python fix_landform_values.py              the five maps in <drive>\Mars Project\Global60
     python fix_landform_values.py --dir <d>    the same names in another folder (rehearsal)
 
 Before: pixel 0 Crater, 1 steep/windy hills, 2 lava tube, 3 Normal Ground (ClassifyRaster's

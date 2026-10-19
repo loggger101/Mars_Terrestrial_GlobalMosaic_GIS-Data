@@ -22,8 +22,10 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import numpy as np
 from osgeo import gdal
 gdal.UseExceptions()
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from paths import on_drive
 
-MAP = r"F:\Mars Project\Global60\global60_landforms_svm_200m.tif"
+MAP = on_drive(r"Mars Project\Global60\global60_landforms_svm_200m.tif")
 TILE, ND, R_MARS = 16384, 255, 3396190.0
 STRIPE = np.arange(53340, 53356)
 REF = np.r_[53000:53301, 53400:53701]

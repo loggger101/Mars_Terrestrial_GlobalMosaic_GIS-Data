@@ -8,7 +8,7 @@ export, so stride is 128, half a chip) on
 global60_svm_stack_200m.tif, so every chip is inside ±60° and every band is 8-bit 1-255.
 
 The GUI export is left as it is. This writes a NEW folder:
-  Z:\Mars Project\LabeledObjects\global60_svm_stack_200m\
+  <drive>\Mars Project\LabeledObjects\global60_svm_stack_200m\
 Labels: the hand-drawn Landform_TrainingSamples_terrain, read only. Chips exist only where the stack does,
 so the parts of the labelled polygons north of 60°N fall away by themselves.
 

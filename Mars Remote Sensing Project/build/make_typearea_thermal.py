@@ -12,7 +12,7 @@ This script (a) proves that limit from the data, (b) builds the index, and
 (c) tests it against the object-based classification and the terrain, to see
 whether it carries information the other bands do not.
 
-Outputs to the area's no-space junction (Z:\TypeArea for Ius) - legacy SA tools reject the space.
+Outputs to the area's no-space junction (<drive>\TypeArea for Ius) - legacy SA tools reject the space.
 """
 import os, sys, time
 import numpy as np

@@ -7,7 +7,7 @@ Three panels:
   B  mean index per object-based class, sorted
   C  slope vs index per class - the decoupling argument in one plot
 
-Reads Z:\TypeArea\ius_thermal_contrast.tif (make_typearea_thermal.py).
+Reads <drive>\TypeArea\ius_thermal_contrast.tif (make_typearea_thermal.py).
 """
 import os, numpy as np
 import os, sys

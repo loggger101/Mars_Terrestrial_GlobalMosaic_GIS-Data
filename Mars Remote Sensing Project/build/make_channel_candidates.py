@@ -11,7 +11,7 @@ These are candidates, not mapping. They are written to a SEPARATE feature class
 - Landform_ChannelCandidates_auto - so Landform_ChannelCenterlines stays a clean
 surface for manual digitising. Confidence is 'inferred' on every row.
 
-Run with the ArcGIS interpreter. Scratch work happens under Z:\TypeArea because
+Run with the ArcGIS interpreter. Scratch work happens under <drive>\TypeArea because
 legacy Spatial Analyst tools reject the space in "Mars Project".
 """
 import os, time, arcpy

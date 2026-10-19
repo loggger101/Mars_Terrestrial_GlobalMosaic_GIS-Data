@@ -7,7 +7,7 @@ r"""The ±60° landform classification, redone on the corrected stack (KB §31).
      Whole 15° x 15° blocks go to one side or the other, so a test polygon never sits beside
      a training polygon from the same patch of ground (the §27 rule).
   3. Train Support Vector Machine on the _train polygons over global60_svm_stack_200m.tif
-  4. Classify Raster -> Z:\Mars Project\Global60\global60_landforms_svm_<cell>m.tif
+  4. Classify Raster -> <drive>\Mars Project\Global60\global60_landforms_svm_<cell>m.tif
      The model is trained on the 200 m stack either way. Classifying all of ±60° at 200 m is
      ~15 h on the laptop (smoke-timed, 14 µs/px), so the laptop run is --cell 400 (~4 h) and
      --cell 200 is a desktop job.

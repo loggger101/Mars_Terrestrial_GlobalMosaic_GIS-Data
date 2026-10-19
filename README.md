@@ -128,7 +128,7 @@ It prints Crater 32.8%, steep/windy hills 1.8%, lava tube 9.3%, Normal Ground 56
 
 ## What is in this repository
 
-The folders mirror the drive, so a path in the knowledge base (`Z:\Mars Project\…`) maps directly onto one here.
+The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Project\…`) maps directly onto one here.
 
 ```
 Mars Remote Sensing Project/

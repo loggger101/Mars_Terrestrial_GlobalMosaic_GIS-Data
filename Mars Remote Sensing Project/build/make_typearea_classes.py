@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from paths import on_drive, junction
 from arcpy.sa import *
 
-OUT = junction("TypeArea")        # junction to Z:\Mars Project\TypeArea -- legacy Spatial
+OUT = junction("TypeArea")        # junction to <drive>\Mars Project\TypeArea -- legacy Spatial
                              # Analyst grid-expression parser rejects spaces in paths
 SRC = os.path.join(OUT, "ius_composite_5band.tif")
 arcpy.CheckOutExtension("Spatial")

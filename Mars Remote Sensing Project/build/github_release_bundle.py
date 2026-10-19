@@ -10,7 +10,7 @@ the two GUI SVM maps in <dist>, and this picks them up.
 
 Assets, each part under 1.9 GB (GitHub's limit is 2 GiB per file); files are the originals,
 byte for byte, so a restore is an unzip:
-  typearea-partN.zip         Z:\Mars Project\TypeArea\, whole: the Ius Chasma stack and every
+  typearea-partN.zip         <drive>\Mars Project\TypeArea\, whole: the Ius Chasma stack and every
                              derivative, classification and model (§18-27)
   global60-classification[-partN].zip  the ±60° SVM maps (400 m raw + mode 3/5/7/9; since 2026-10-16
                              also 200 m raw + mode 3-11 and the four T1 maps), the models, the two

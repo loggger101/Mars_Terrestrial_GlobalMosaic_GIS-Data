@@ -7,7 +7,7 @@ B  the spatial train/test split - the thing that makes the number honest
 C  confusion matrix on held-out blocks, spectral stack
 D  three stacks compared, with the circular one marked as such
 
-Reads Z:\TypeArea\ius_sup_spectral.tif and sup_confusion.npy from
+Reads <drive>\TypeArea\ius_sup_spectral.tif and sup_confusion.npy from
 make_typearea_supervised.py (order: spectral, thermal, augmented).
 """
 import os, numpy as np

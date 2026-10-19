@@ -2,7 +2,7 @@
 
 **Owner:** Logan Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-18 (§59).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-18 (§60).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -2822,3 +2822,22 @@ efficiently. 5,197 lines / 340 KB became a smaller file; the full wording to thi
 - Checked: every number in the condensed file was in the original; every number the plans, READMEs and `interim.py` quote
   is still here (`verify_interim.py`); every `§` reference in the record, the plans, the scripts and the repo's pages
   resolves; `audit_record.py` passes.
+
+## 60. The audit, fourth pass: two scripts tied to `F:`, the docstring paths — 2026-10-18 **[V]**
+
+On the laptop; nothing written to the `.aprx`, the gdb or any raster. The repo and the drive matched before the
+pass (`github_sync.py`: 0 copied, 687 unchanged).
+
+- **`check_landform_columns.py` and `check_meridian_columns.py` (§54) hard-coded `F:\Mars Project\Global60`** in
+  code, so neither ran on the laptop. Both now build the path with `paths.on_drive()`; imported under the ArcGIS
+  Python, each resolves to an existing `Z:\Mars Project\...` path. No other live script hard-codes a drive letter
+  (searched for `[A-Z]:\` and `[A-Z]:/` in quoted strings; the `.py_backup_*` folders are snapshots and left as
+  they are).
+- **The docstrings §57.7 counted:** 12 that gave a location as `Z:\...` now say `<drive>\...` or "the drive".
+  Left as written, because they describe what happened on `Z:`: `content.py`, `housekeeping_d9.py`,
+  `remove_non_mars.py`, `repoint_junction_layers.py`, the comments in `verify_all.py`, and the example
+  command in `retarget_junction.py`.
+- The README's "what is in this repository" line now gives the knowledge base's paths as `<drive>\...`.
+- Checked current, no change: `HANDOFF-DESKTOP.md`, `NEXT-STEPS.md`, `drive-root/CLAUDE.md`, `Global60\README.md`,
+  `docs/backup.md`, `CITATION.cff`, and the generated `exports/README.md`, `docs/rasters.md` and
+  `docs/scripts.md` (149 scripts on the drive, 148 in the repo, as §12 says).

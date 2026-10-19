@@ -3,7 +3,7 @@ r"""Prove that every +/-60 product lands on the downloaded mosaics' own grid.
 
 Requirement, 2026-09-19: the data produced must be for the analysis extent
 rather than the type area, and must sit in the same content area as the
-mosaics on Z:\ and the products that live beside them.
+mosaics on the drive and the products that live beside them.
 
 "Same content area" is checkable, so this checks it rather than asserting it.
 For each product, against grid60's G100 / G200, or the 400 m lattice (G400) and the 0.5 degree

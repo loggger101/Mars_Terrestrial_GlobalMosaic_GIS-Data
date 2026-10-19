@@ -4,7 +4,7 @@ r"""The canonical +/-60 deg target grid, and the only place it is defined.
 KB 16.4: "Clip or snap everything to the night raster's extent, since it is the
 binding one and the day grid aligns to it exactly." This module is that rule as
 code. Nothing here is hardcoded from a table - the grid is READ from the night
-mosaic on Z:\ every time, so a product built through this module is by
+mosaic on the drive every time, so a product built through this module is by
 construction on the same content area as the downloaded mosaics.
 
 Two nested grids, both with the night mosaic's origin and footprint:
