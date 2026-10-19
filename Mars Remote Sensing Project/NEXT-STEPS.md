@@ -25,9 +25,9 @@ column fixed at its source (§54); the 200 m classification, **published as the 
 T1 confirmed with Pro's SVM (thermal +1.36 pt at 200 m, +1.97 at 400 m, §56); T8 rerun on the published map
 (§57.1); the interim rebuilt, 28 slides and 20 pages (§57.3); GitHub release `data-2026-10-16` (§57.4).
 The project: 26 maps, 14 layouts; nothing is running on the desktop.
-**2026-10-18, laptop (§58–§60):** no new data since; the drive-root junctions point at `F:` and are broken on
+**2026-10-18, laptop (§58–§61):** no new data since; the drive-root junctions point at `F:` and are broken on
 the laptop (retarget before any Spatial Analyst run there); the record and the plans condensed, two scripts freed
-from a hard-coded `F:`, nothing measured changed.
+from a hard-coded `F:`, every sheet re-polished and the interim rebuilt from them, nothing measured changed.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).

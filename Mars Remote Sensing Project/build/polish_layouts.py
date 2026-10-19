@@ -18,6 +18,14 @@ make_candidate_maps.py). Idempotent: every step checks before it changes anythin
               of the legend box.
   07          the legend broke the five basin size classes across two columns, under the IAU
               entry; now basins in column 1, IAU craters in column 2.
+  (KB §61, 2026-10-18, from reading every sheet again)
+  graticules  white labels with no halo vanished on light ground (layout 11's density maps,
+              the chasma walls on 01-02); every graticule label now has a dark halo.
+  legends     a legend's border is drawn ~0.15 in outside its position: on 12 and 14 it stood
+              left of the map frame, on 03 and 06 it cut into the frame's bottom edge.
+              03's "Graticule 2°" entry and the "Analysis extent ±60°" entries of 04, 10 and 13
+              had no visible symbol (the extent outline is the frame edge): removed from the legend,
+              the layers kept. 07's IAU entry printed its name as heading and label: once now.
 
 Pro must be closed. The .aprx is backed up first. --aprx <copy> rehearses on a copy, which must
 sit BESIDE the real .aprx (it stores relative paths, §31.5). --export <dir> writes every sheet to
@@ -40,6 +48,11 @@ HEADING_PT = 11
 SUB04_OLD = "local relief. No raw elevation band.\nSmoothed"
 SUB04_NEW = "local relief.\nNo raw elevation band. Smoothed"
 ARROW_X_06 = 10.25
+HALO_RGB, HALO_PT = [40, 40, 40, 100], 1.2          # as the type-area labels (make_reference_maps.py)
+LEGEND_POS = {"03_classification": (None, 2.22, None), "06_ius_digitising": (None, 2.22, None),
+              "12_global60_channels": (0.60, None, None), "14_validation": (0.60, None, 9.80)}  # x, y, width
+LEGEND_DROP = {"03_classification": ("Graticule",), "04_global60_landforms": ("Analysis extent",),
+               "10_global60_locator": ("Analysis extent",), "13_geomap_check": ("Analysis extent",)}
 
 SUBTITLE_02 = ("THEMIS Night IR v14, 100 m. Bright = warmer at night than its surroundings, as rock and "
                "coarse debris are.\nLocal contrast, not calibrated thermal inertia (KB \u00a728.10).")
@@ -80,12 +93,41 @@ def graphic(cim, name):
     return next((e for e in cim.elements if e.name == name), None)
 
 
+def halo_graticules(p):
+    """A dark halo on every graticule label class. Returns the number of layers changed."""
+    n = 0
+    for m in p.listMaps():
+        for l in m.listLayers():
+            if not l.name.startswith("Graticule") or not l.supports("SHOWLABELS"):
+                continue
+            d = l.getDefinition("V3")
+            done = False
+            for c in d.labelClasses:
+                s = c.textSymbol.symbol
+                cur = getattr(getattr(s, "haloSymbol", None), "symbolLayers", None) or []
+                if (s.haloSize == HALO_PT and cur
+                        and list(getattr(cur[0].color, "values", [])) == HALO_RGB):
+                    continue
+                fill = arcpy.cim.CreateCIMObjectFromClassName("CIMSolidFill", "V3")
+                col = arcpy.cim.CreateCIMObjectFromClassName("CIMRGBColor", "V3"); col.values = HALO_RGB
+                fill.color = col
+                halo = arcpy.cim.CreateCIMObjectFromClassName("CIMPolygonSymbol", "V3")
+                halo.symbolLayers = [fill]
+                s.haloSymbol = halo
+                s.haloSize = HALO_PT
+                done = True
+            if done:
+                l.setDefinition(d); n += 1
+    return n
+
+
 def main():
     if "--aprx" not in sys.argv:
         os.makedirs(BKDIR, exist_ok=True)
         bk = os.path.join(BKDIR, "Mars Project %s.aprx" % time.strftime("%Y%m%d-%H%M%S"))
         shutil.copy2(APRX, bk); print("backup", bk)
     p = arcpy.mp.ArcGISProject(APRX)
+    print("graticule halos         %d layers" % halo_graticules(p))
 
     for lyt in sorted(p.listLayouts(), key=lambda l: l.name):
         cim = lyt.getDefinition("V3")
@@ -120,18 +162,25 @@ def main():
                 if s is not None and getattr(s, "height", 0) > HEADING_PT:
                     s.height = HEADING_PT
                     changed.append("legend heading %g pt" % HEADING_PT)
-            if lyt.name == "04_global60_landforms":
-                for it in d.items:
-                    if it.name.startswith("Analysis extent") and it.showLayerName:
-                        it.showLayerName = False          # the label already says it
-                        changed.append("legend: extent named once")
+            keep = [it for it in d.items if not it.name.startswith(LEGEND_DROP.get(lyt.name, ()))]
+            if len(keep) < len(d.items):                  # no visible symbol on the sheet
+                changed.append("legend: dropped %s" % ", ".join(it.name for it in d.items if it not in keep))
+                d.items = keep
             if lyt.name == "07_global60_basins":
                 for it in d.items:
                     want = it.name.startswith("IAU")
                     if it.newColumn != want:
                         it.newColumn = want
                         changed.append("legend: %s %s" % ("break before" if want else "no break", it.name[:20]))
+                    if want and it.showLayerName:         # heading and label said the same
+                        it.showLayerName = False
+                        changed.append("legend: IAU named once")
             leg.setDefinition(d)
+            x, y, w = LEGEND_POS.get(lyt.name, (None, None, None))
+            for attr, v in (("elementWidth", w), ("elementPositionX", x), ("elementPositionY", y)):
+                if v is not None and abs(getattr(leg, attr) - v) > 0.005:
+                    setattr(leg, attr, v)
+                    changed.append("legend %s %.2f" % (attr[7:] if attr != "elementWidth" else "width", v))
             if lyt.name == "07_global60_basins" and leg.fittingStrategy != "ManualColumns":
                 leg.fittingStrategy = "ManualColumns"
                 leg.columnCount = 2

@@ -2,7 +2,7 @@
 
 **Owner:** Logan Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-18 (§60).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-18 (§61).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -2841,3 +2841,28 @@ pass (`github_sync.py`: 0 copied, 687 unchanged).
 - Checked current, no change: `HANDOFF-DESKTOP.md`, `NEXT-STEPS.md`, `drive-root/CLAUDE.md`, `Global60\README.md`,
   `docs/backup.md`, `CITATION.cff`, and the generated `exports/README.md`, `docs/rasters.md` and
   `docs/scripts.md` (149 scripts on the drive, 148 in the repo, as §12 says).
+
+## 61. Every sheet read again; layout fixes; the interim rebuilt; the repo's figures indexed — 2026-10-18 **[V]**
+
+On the laptop, ArcGIS Pro closed. Nothing measured changed.
+
+- **All 14 layout exports and the 8 result charts read.** Defects found: on 11 the graticule labels (white, no halo)
+  vanished on the light density maps, and were faint on the chasma walls of 01–02; a legend's border is drawn ~0.15 in
+  outside its position, so on 12 and 14 it stood left of the map frame and on 03 and 06 it cut into the frame's bottom
+  edge; 03's "Graticule 2°" and the "Analysis extent ±60°" entries of 04, 10 and 13 had no visible symbol (the extent
+  outline is the frame edge); 07's IAU entry printed its name twice; 14 said "Read 2026-10-08".
+- **Fixed in `polish_layouts.py`**, so a rebuild keeps them: a dark halo (RGB 40, 1.2 pt) on every graticule label
+  class (14 layers), the four legends moved, the symbol-less entries dropped from the legends (the layers kept), 07's
+  IAU entry named once. Rehearsed on a copy first (kept in `.backups\` as `Mars Project rehearse-polish 20261018.aprx`),
+  then `make_validation_sheet.py` (tally unchanged: 0 of 9,287 reviewed) and the polish on the real `.aprx`; every sheet
+  exported and read, and the polished PNGs copied into `TypeArea\layouts\` and `Global60\layouts\`.
+- **The interim rebuilt from the new sheets**: `make_interim_figs.py` (11 layouts at 200 dpi), the deck (28 slides) and
+  the report (20 pages, 19 figures), live files backed up to `NEXT STUFF\.backup_20261018\`; both rendered and read;
+  `verify_interim.py`: 249 numbers, all in the KB.
+- **The repo**: a new `docs/figures.md` lists every image with its builder script and sections, thumbnails linked to
+  the full files; the README shows the result charts beside the results they back and groups the layouts by theme with
+  captions. `tools/check_repo.py` now also reads HTML `src`/`href` links and fails when an image or PDF in the tree is
+  missing from `docs/figures.md` (the interim's layout crops count as one group); proved on a planted unindexed file
+  and a planted broken image.
+- Not changed: the layouts' footer gives "Logan Edwards" (the public name in the repo is "Logan M Edwards"); the
+  province figure (`pres1_img\global60_thermal.png`) is still the dark Presentation 1 version (`INTERIM-PLAN.md`, section 0).

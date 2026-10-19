@@ -7,13 +7,14 @@ Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Institute of 
 
 An ArcGIS Pro project that co-registers Viking visible color, THEMIS day and night thermal infrared and the HRSC/MOLA elevation model of Mars, then uses the stack to map three landform families: volcanic flow units, fluvial channels and valley networks, and impact craters. The scientific hook is Athabasca Valles, mapped for decades as a water-cut outflow channel before it was reinterpreted as flood lava. Morphology together with thermal response is this project's way of telling the two apart.
 
-The analysis extent is **±60° latitude** (86.6% of the surface), set by the coverage of the THEMIS night mosaic. The detail work is done in a type area at **Ius Chasma**, western Valles Marineris (~271–286°E, 6–13°S).
+The analysis extent is **±60° latitude** (86.6% of the surface), set by the coverage of the THEMIS night mosaic. The detail work is done in two type areas: **Ius Chasma**, western Valles Marineris (271–286°E, 6–13°S), carved by water and collapse, and **Athabasca Valles** (150–162°E, 4–14°N), on flood lava.
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [build scripts](docs/scripts.md) (all 148, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 148, by purpose) · [backup and restore](docs/backup.md)
 
-![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)
+[![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)](Mars%20Project/Global60/layouts/04_global60_landforms.png)
+*The published landform map: four classes over ±60°, scored on hand-drawn polygons the classifier never saw (layout 04).*
 
 ## How it works
 
@@ -48,28 +49,97 @@ The full list, with who does what, is the "Resume here" section of [`NEXT-STEPS.
 
 ## Results so far
 
-- **±60° landform classification**: a support vector machine on the hand-drawn labels, scored on 183 polygons in 15° blocks it never saw. The published map (200 m, 11 × 11) scores **73.8%, κ 0.58**, against 58.6% for one class everywhere; per pixel 69.9%, κ 0.53. Normal Ground is reliable (99% producer's) and Crater behaves as cratered terrain. **The lava tube class isn't usable** (2% user's accuracy).
-- **Does thermal infrared help? (test T1)**: yes, a little. With ArcGIS Pro's SVM over the whole ±60°, leaving the thermal bands out costs **1.36 points** at 200 m (95% interval 0.46 to 2.47) and **1.97** at 400 m (1.08 to 3.35), from crater and hill terrain; lava tube scores better without them. A numpy classifier on the same split gives +1.3. Leaving out the Viking bands, or both spectral groups, ties the full stack inside wide intervals, but terrain alone makes a poor crater map. The hand-drawn classes are landforms, and terrain decides them.
-- **Against calibrated thermal inertia (T3)**: across ±60°, TES thermal inertia tracks Viking red (r −0.36), while the THEMIS mosaics keep only a weak signal inside regions (|r| ≈ 0.1); in the two type areas the diurnal-contrast index does not track it. Where a calibrated product can check, visible albedo carries the material signal.
-- **Against the USGS geologic map (T8, T2)**: the classes sit where terrain puts them, and volcanic plains can't be separated from other plains in these bands, so lava flows are shown from the map's volcanic units. At Athabasca the flood lava (`lAv`) is the least cratered large unit: 1,122 catalogued craters per million km², against 1,760 and 2,183 on the older units.
-- **Craters**: across ±60°, 465,354 closed depressions ≥ 1 km; against the Robbins catalogue 15.3% of them are catalogued craters, 62.2% of those ≥ 5 km and 83.1% of those ≥ 20 km, each far above a chance baseline; recall levels off near half, since breached and degraded craters are invisible to a closed-depression detector. Below ~5 km the density follows the DEM's makeup more than the craters (layout 11). Large craters are measured well: Perrotin within 7.1% in diameter.
-- **Channels**: `Fill` flooded Ius Chasma 2,077 m deep, and 56% of the stream cells in the first network were an artefact of it; of the 2,610 candidates left, 188 steep, rock-floored ones are worth digitising. Across ±60°, 969,822 routed segments (layout 12); 89.8% lie on ground under 2°, so plateau channels are DEM noise. No channel reference exists at ±60° to score them.
-- **The prospectus' hypotheses (T4–T7)**: no band separates the geologic map's lava contacts at Athabasca much better than chance (H1, at 1:20 M); the volcanic channel candidates are shallower than the fluvial ones and thermal response doesn't tell them apart (H2, stage 1); the composite's Iso Cluster classes are the least reproducible input (H3); no channel threshold keeps first-order streams on real slopes, so the tributary order count is a setting, not a measurement (Q5).
-- **Two earlier SVM maps made in the Pro GUI, checked and superseded**: one follows its 4096-pixel processing tiles and scores below chance on its own training data; the other is mostly an elevation map.
+The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.md`](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md); every chart is drawn from a test's log, never retyped ([figures](docs/figures.md) lists each one with its script).
 
-The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.md`](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
+### ±60° landform classification
+
+A support vector machine on the hand-drawn labels, scored on 183 polygons in 15° blocks it never saw. The published map (200 m, 11 × 11, the map at the top) scores **73.8%, κ 0.58**, against 58.6% for one class everywhere; per pixel 69.9%, κ 0.53. Normal Ground is reliable (99% producer's) and Crater behaves as cratered terrain. **The lava tube class isn't usable** (2% user's accuracy).
+
+### Does thermal infrared help? (test T1)
+
+Yes, a little. With ArcGIS Pro's SVM over the whole ±60°, leaving the thermal bands out costs **1.36 points** at 200 m (95% interval 0.46 to 2.47) and **1.97** at 400 m (1.08 to 3.35), from crater and hill terrain; lava tube scores better without them. A numpy classifier on the same split gives +1.3. Leaving out the Viking bands, or both spectral groups, ties the full stack inside wide intervals, but terrain alone makes a poor crater map. The hand-drawn classes are landforms, and terrain decides them.
+
+| What each band group adds (ArcGIS Pro SVM) | Held-out accuracy by band set (numpy classifier, 400 m) |
+|---|---|
+| [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/t1_pro.png" alt="T1: accuracy the thermal bands add, with 95% intervals">](Mars%20Remote%20Sensing%20Project/build/interim_img/t1_pro.png) | [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/thermal_ablation.png" alt="T1: held-out accuracy for seven band sets">](Mars%20Remote%20Sensing%20Project/build/interim_img/thermal_ablation.png) |
+| Dot: accuracy with all bands minus accuracy without the group; line: paired-bootstrap 95% interval over the 183 held-out polygons. Right of 0, the group helps. | Cyan: band sets that include slope and relief. The dashed line is one class everywhere. |
+
+### Against calibrated thermal inertia (T3)
+
+Across ±60°, TES thermal inertia tracks Viking red (r −0.36), while the THEMIS mosaics keep only a weak signal inside regions (|r| ≈ 0.1); in the two type areas the diurnal-contrast index does not track it. Where a calibrated product can check, visible albedo carries the material signal.
+
+[<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/tes_check.png" width="640" alt="T3: correlation of each layer with TES thermal inertia">](Mars%20Remote%20Sensing%20Project/build/interim_img/tes_check.png)
+
+*Correlation of each layer with log thermal inertia from TES (~3 km cells): blue across all of ±60°, orange the median inside 15° blocks.*
+
+### Against the USGS geologic map (T8, T2)
+
+The classes sit where terrain puts them, and volcanic plains can't be separated from other plains in these bands, so lava flows are shown from the map's volcanic units (layout 10). At Athabasca the flood lava (`lAv`) is the least cratered large unit: 1,122 catalogued craters per million km², against 1,760 and 2,183 on the older units.
+
+[<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/t8_enrichment.png" width="720" alt="T8: enrichment of each class on each geologic unit group">](Mars%20Remote%20Sensing%20Project/build/interim_img/t8_enrichment.png)
+
+*How strongly each class gathers on each unit group of SIM 3292: red over-represented, blue under-represented (layout 13 has the map).*
+
+### Craters
+
+Across ±60°, 465,354 closed depressions ≥ 1 km; against the Robbins catalogue 15.3% of them are catalogued craters, 62.2% of those ≥ 5 km and 83.1% of those ≥ 20 km, each far above a chance baseline; recall levels off near half, since breached and degraded craters are invisible to a closed-depression detector. Below ~5 km the density follows the DEM's makeup more than the craters (layout 11). Large craters are measured well: Perrotin within 7.1% in diameter.
+
+### Channels
+
+`Fill` flooded Ius Chasma 2,077 m deep, and 56% of the stream cells in the first network were an artefact of it; of the 2,610 candidates left, 188 steep, rock-floored ones are worth digitising (layout 06). Across ±60°, 969,822 routed segments (layout 12); 89.8% lie on ground under 2°, so plateau channels are DEM noise. No channel reference exists at ±60° to score them.
+
+### The prospectus' hypotheses (T4–T7)
+
+No band separates the geologic map's lava contacts at Athabasca much better than chance (H1, at 1:20 M); the volcanic channel candidates are shallower than the fluvial ones and thermal response doesn't tell them apart (H2, stage 1); the composite's Iso Cluster classes are the least reproducible input (H3); no channel threshold keeps first-order streams on real slopes, so the tributary order count is a setting, not a measurement (Q5).
+
+<details>
+<summary>The four charts</summary>
+
+| T4 (H2): volcanic against fluvial channels | T5 (H1): flow margins in each band |
+|---|---|
+| [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/t4_channels.png" alt="T4: channel gradient and AUC">](Mars%20Remote%20Sensing%20Project/build/interim_img/t4_channels.png) | [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/t5_margins.png" alt="T5: share of lava-contact profiles each band separates">](Mars%20Remote%20Sensing%20Project/build/interim_img/t5_margins.png) |
+| Median gradient per window, and how well gradient and thermal response tell the windows apart (0.5 = chance). | Share of 905 profiles across 10 `lAv` contacts each band separates; chance is 10%. |
+| **T6 (H3): stability of each input** | **T7 (Q5): stream orders against the threshold** |
+| [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/t6_stability.png" alt="T6: stability and coherence per input">](Mars%20Remote%20Sensing%20Project/build/interim_img/t6_stability.png) | [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/t7_orders.png" alt="T7: highest Strahler order and first-order share on slopes">](Mars%20Remote%20Sensing%20Project/build/interim_img/t7_orders.png) |
+| Agreement of maps trained on the west and east halves (ARI), and spatial coherence. | Highest Strahler order, and the share of first-order cells on slopes ≥ 2°, as the channel threshold changes. |
+
+</details>
+
+### Two earlier SVM maps, checked and superseded
+
+Made in the Pro GUI: one follows its 4096-pixel processing tiles and scores below chance on its own training data; the other is mostly an elevation map (layout 05).
 
 ## Layouts
 
+The 14 map sheets in the ArcGIS Pro project. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections.
+
+**The data**
+
 | | |
 |---|---|
-| ![01](Mars%20Project/TypeArea/layouts/01_visible.png) Ius Chasma, visible | ![02](Mars%20Project/TypeArea/layouts/02_night_ir.png) Ius Chasma, night IR |
-| ![03](Mars%20Project/TypeArea/layouts/03_classification.png) Ius Chasma, classification | ![05](Mars%20Project/Global60/layouts/05_svm_checks.png) Checks on the earlier SVM maps |
-| ![06](Mars%20Project/Global60/layouts/06_ius_digitising.png) Ius Chasma, digitising candidates | ![07](Mars%20Project/Global60/layouts/07_global60_basins.png) ±60° basin candidates |
-| ![08](Mars%20Project/Global60/layouts/08_global60_mosaic.png) The mosaic at ±60°: visible, day IR, night IR, topography | ![09](Mars%20Project/Global60/layouts/09_athabasca_digitising.png) Athabasca Valles, digitising candidates |
-| ![10](Mars%20Project/Global60/layouts/10_global60_locator.png) The ±60° locator: type areas and the geologic map's volcanic units | ![13](Mars%20Project/Global60/layouts/13_geomap_check.png) The classes against the USGS geologic map (T8) |
-| ![11](Mars%20Project/Global60/layouts/11_global60_depressions.png) ±60° closed depressions against the Robbins catalogue | ![12](Mars%20Project/Global60/layouts/12_global60_channels.png) ±60° routed channel network, order ≥ 3 |
-| ![14](Mars%20Project/Global60/layouts/14_validation.png) Validation: the candidates against review and the Robbins catalogue | |
+| [![10](Mars%20Project/Global60/layouts/10_global60_locator.png)](Mars%20Project/Global60/layouts/10_global60_locator.png) **10** · The analysis extent, the two type areas and the geologic map's volcanic units | [![08](Mars%20Project/Global60/layouts/08_global60_mosaic.png)](Mars%20Project/Global60/layouts/08_global60_mosaic.png) **08** · The four inputs at ±60°: visible, day IR, night IR, topography |
+| [![01](Mars%20Project/TypeArea/layouts/01_visible.png)](Mars%20Project/TypeArea/layouts/01_visible.png) **01** · Ius Chasma, visible (Viking colour) | [![02](Mars%20Project/TypeArea/layouts/02_night_ir.png)](Mars%20Project/TypeArea/layouts/02_night_ir.png) **02** · Ius Chasma, night-time thermal infrared |
+
+**Classification**
+
+| | |
+|---|---|
+| [![04](Mars%20Project/Global60/layouts/04_global60_landforms.png)](Mars%20Project/Global60/layouts/04_global60_landforms.png) **04** · The published ±60° landform map, scored | [![13](Mars%20Project/Global60/layouts/13_geomap_check.png)](Mars%20Project/Global60/layouts/13_geomap_check.png) **13** · The classes against the USGS geologic map (T8) |
+| [![03](Mars%20Project/TypeArea/layouts/03_classification.png)](Mars%20Project/TypeArea/layouts/03_classification.png) **03** · Ius Chasma, unsupervised (Iso Cluster, 10 classes) | [![05](Mars%20Project/Global60/layouts/05_svm_checks.png)](Mars%20Project/Global60/layouts/05_svm_checks.png) **05** · The first two SVM maps, checked and superseded |
+
+**Craters and channels**
+
+| | |
+|---|---|
+| [![11](Mars%20Project/Global60/layouts/11_global60_depressions.png)](Mars%20Project/Global60/layouts/11_global60_depressions.png) **11** · Closed depressions ≥ 1 km against the Robbins catalogue | [![07](Mars%20Project/Global60/layouts/07_global60_basins.png)](Mars%20Project/Global60/layouts/07_global60_basins.png) **07** · Basin and crater candidates ≥ 20 km |
+| [![12](Mars%20Project/Global60/layouts/12_global60_channels.png)](Mars%20Project/Global60/layouts/12_global60_channels.png) **12** · The channel network routed on the DEM, order ≥ 3 | |
+
+**Digitising and validation**
+
+| | |
+|---|---|
+| [![06](Mars%20Project/Global60/layouts/06_ius_digitising.png)](Mars%20Project/Global60/layouts/06_ius_digitising.png) **06** · Ius Chasma, candidates to digitise | [![09](Mars%20Project/Global60/layouts/09_athabasca_digitising.png)](Mars%20Project/Global60/layouts/09_athabasca_digitising.png) **09** · Athabasca Valles, candidates to digitise |
+| [![14](Mars%20Project/Global60/layouts/14_validation.png)](Mars%20Project/Global60/layouts/14_validation.png) **14** · Validation: the candidates against review and the Robbins catalogue | |
 
 ## Source data
 
