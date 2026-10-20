@@ -36,7 +36,7 @@ plans. When they disagree, the KB wins and the plan is fixed.
 | the interim plan | `Mars Remote Sensing Project\INTERIM-PLAN.md` (the living build and its commands §0; progress facts §3; hypotheses §5; timeline §6; wording traps §7) |
 | scripts | `Mars Remote Sensing Project\build\` (151 `.py` / `.ps1`; catalogue in the repo's `docs/scripts.md`); logs and test results in `build\logs\` |
 | interim deck and report | `Mars Remote Sensing Project\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx` (28 slides) and `Mars Mosaic - Interim Report.docx` (19 pages), built from `build\interim.py` |
-| ArcGIS project | `Mars Project\Mars Project.aprx` (31 maps, 15 layouts, KB §5); `Mars Project\Mars Project.gdb` (KB §6); `.aprx` backups in `Mars Project\.backups\` (one per write; drive only) |
+| ArcGIS project | `Mars Project\Mars Project.aprx` (31 maps, 16 layouts, KB §5); `Mars Project\Mars Project.gdb` (KB §6); `.aprx` backups in `Mars Project\.backups\` (one per write; drive only) |
 | layout PNGs | `Mars Project\Global60\layouts\` (04–14) and `Mars Project\TypeArea\layouts\` (01–03) |
 | ±60° products | `Mars Project\Global60\` (its `README.md` lists them): `global60_svm_stack_200m.tif` (the 7-band stack), **`global60_landforms_svm_200m_mode11.tif` (the published map)**; `build\grid60.py` defines the grid |
 | type areas | `Mars Project\TypeArea\` (`ius_*`) and `Mars Project\Athabasca\` (`ath_*`); windows in `build\areas.py` |

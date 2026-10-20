@@ -229,7 +229,7 @@ stack script's 100 m grid snapped to the day mosaic (§18.1).
 ## 5. Project structure
 
 `Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-19 (§63, §66.3) **[V]**: **31 maps, all in
-Mars coordinate systems, and 15 layouts**; 0 broken data sources, none reading through a junction (145
+Mars coordinate systems, and 16 layouts** (16 since §66.4); 0 broken data sources, none reading through a junction (145
 non-group layers on 2026-10-18, §58.1; layout 15 added four maps and 13 layers; X5's map one map and 6 layers,
 §66.3); 7 hosted services (Esri OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
 `defaultGeodatabase` = `<drive>\Mars Project\Mars Project.gdb`; `homeFolder` = `<drive>\Mars Project`. The
@@ -248,11 +248,12 @@ non-group layers on 2026-10-18, §58.1; layout 15 added four maps and 13 layers;
 | `13_geomap_check` | T8, the classes against the geologic map | `make_geomap_sheet.py --cell 200` (§49, §57.1) |
 | `14_validation` | the review's precision and recall | `make_validation_sheet.py` (§49) |
 | `15_athabasca_type_area` | Athabasca Valles: visible, night IR, day IR, topography, with unit `lAv` | `make_athabasca_layout.py` (§63) |
+| `16_x5_detections` | X5, the deep-learning detector, scored per held-out polygon | `make_dl_map.py` (§66.4) |
 
-The ±60° sheets (04, 05, 07, 08, 10–13) draw in geographic `GCS_Mars_2000`, so 0°E is at the centre (08 since §64);
+The ±60° sheets (04, 05, 07, 08, 10–13, 16) draw in geographic `GCS_Mars_2000`, so 0°E is at the centre (08 since §64);
 the type-area sheets (01–03, 06, 09, 14, 15) draw in `Mars_Equidistant_Cylindrical_CM180`, and their footers name it. **[V]**
 
-Polished exports are in `Mars Project\TypeArea\layouts\` (01–03) and `Mars Project\Global60\layouts\` (04–15);
+Polished exports are in `Mars Project\TypeArea\layouts\` (01–03) and `Mars Project\Global60\layouts\` (04–16);
 the builders' own PNGs are written before `polish_layouts.py` runs, so copy the polished export over them.
 
 - **Map names are not unique**: two maps are named `Mars` (one `Mars_2000_(Sphere)`, one
@@ -3138,7 +3139,7 @@ first on a copy beside the `.aprx`, the copy then moved off the drive):
 - **Map "X5 — deep-learning detections (held out)"**, top to bottom: the 30° graticule, the detections outlined in
   the class colours, the held-out labels outlined and filled at 35 %, the training labels (off), the ±60° extent,
   the ±60° hillshade. A trial export of one block (lon −45…−30°, lat −15…0°) and of ±60° was read: both draw.
-  **No layout yet**: a result should also get one (§31); open, the author's call.
+  **No layout yet**: a result should also get one (§31); made in §66.4.
 - **Checked:** `--score` on the gdb class reproduces §66.2's recall, precision and counts exactly (1,838 boxes);
   `logs\dl_heldout_score.json` now names the gdb class. The project: **31 maps, 15 layouts**.
 - **Two empty leftovers deleted, on the author's approval:** `DL_Detections_heldout_20261019_56` and `_7050`
@@ -3148,3 +3149,26 @@ first on a copy beside the `.aprx`, the copy then moved off the drive):
   every row count checked. A first attempt stopped on *WinError 1224* (OneDrive still held a file of the
   previous copy) with the clone's gdb half-written; the rerun completed, and its 180 files match the fresh
   export byte for byte. The copy overwrites but never removes files, so compare after any interrupted export.
+
+### 66.4 Layout 16, X5's sheet; the interim's deep-learning lines brought current — 2026-10-20 **[V]**
+
+On the desktop, Pro closed. Nothing new measured: the sheet prints §66.1–66.2 and two figures computed from the gdb
+class at run time, logged to `logs\dl_sheet.json`.
+
+- **`16_x5_detections`** (`make_dl_map.py` now also builds it): frame A, the X5 map over ±60° (the 14 windows);
+  frame B, the block with the most held-out polygons, **57, at 75–90°E, 30–15°S**; the per-polygon table from
+  `logs\dl_heldout_score.json` with each class's one-class rate; the limits (boxes on area classes, §50; not
+  comparable with the SVM's per-pixel score; no verdict rule before the run). Rehearsed on a copy beside the
+  `.aprx`, polished and read; **reading found** the scale bar's labels unreadable over B's hillshade (moved beside B,
+  titled "Scale of B") and the held-out layer's legend heading wrapping to three lines (layer renamed "Held-out
+  labels (never trained on)"). Then built on the real `.aprx` (backups `20261020-001308`, `-001516`);
+  `polish_layouts.py` changed nothing on 01–15 and gave 16 Arial and 11 pt legend headings; the polished export,
+  pixel-identical to the rehearsal's that was read, copied into `Global60\layouts\`. The project: **31 maps, 16
+  layouts**.
+- **The interim:** `interim.py`'s next step said the model would come "once Esri's Deep Learning Libraries are
+  installed", and the schedule put it in 26 Oct – 1 Nov. Now the next step names the result (Crater precision
+  87.6 % against 71.1 % for always naming Crater; the two rare classes never named, §66.2) and the schedule lists
+  the detector among the desktop runs done. **No X5 slide was added** (what the deck shows is the author's call;
+  it still shows 14 layouts, §63). Rebuilt with the live files backed up to `NEXT STUFF\.backup_20261020\`: 28
+  slides, 19 pages; rendered through PowerPoint and Word, compared page by page with the previous build: **only
+  slide 28 and report page 19 changed**, both read. `verify_interim.py`: all **253** numbers found in this record.

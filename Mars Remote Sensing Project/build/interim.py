@@ -266,14 +266,14 @@ NEXT_STEPS = [
     "Digitise Ius Chasma and Athabasca Valles: accept or reject the machine candidates, then draw what they miss",
     "Score the machine candidates against the reviewed features: the validation sheet (layout 14)",
     "Hypothesis H2 again, on reviewed channels with their origin set",
-    "A deep-learning model on the desktop GPU, once Esri's Deep Learning Libraries are installed; "
-    "trained on the training split and scored on the held-out polygons",
+    "Deep learning past the first detector: scored on the held-out polygons, it beats always naming Crater "
+    "(87.6% against 71.1%) but never names the two rare classes (§66.2)",
     "Flow margins in visible against infrared at Athabasca, retested on digitised margins: hypothesis H1",
 ]
 
 SCHEDULE = [   # (when, what)
-    ("8–25 Oct", "Digitising by review starts; desktop runs done: pyramids, ±60° crater and channel pass, 200 m map, T1 in Pro"),
-    ("26 Oct – 1 Nov", "H1 and H2 on digitised features; the deep-learning model"),
+    ("8–25 Oct", "Digitising by review starts; desktop runs done: pyramids, ±60° crater and channel pass, 200 m map, T1 in Pro, the deep-learning detector"),
+    ("26 Oct – 1 Nov", "H1 and H2 on digitised features"),
     ("mid-Nov", "Interim presentation and report"),
     ("14–22 Nov", "Validation against the digitised landforms; data freeze"),
     ("23 Nov – 4 Dec", "Final report and presentation"),

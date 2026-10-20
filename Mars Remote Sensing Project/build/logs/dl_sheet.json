@@ -1,0 +1,67 @@
+{
+ "when": "2026-10-20 00:15",
+ "score": {
+  "recall": {
+   "Crater": 0.41935483870967744,
+   "steep/windy hills": 0.0,
+   "lava tube": 0.0,
+   "Normal Ground": 0.22727272727272727
+  },
+  "recall_n": {
+   "Crater": 124,
+   "steep/windy hills": 16,
+   "lava tube": 21,
+   "Normal Ground": 22
+  },
+  "precision": {
+   "Crater": 0.875968992248062,
+   "steep/windy hills": null,
+   "lava tube": null,
+   "Normal Ground": 0.5694444444444444
+  },
+  "precision_n": {
+   "Crater": 129,
+   "steep/windy hills": 0,
+   "lava tube": 0,
+   "Normal Ground": 72
+  },
+  "detections": 1838,
+  "layer": "F:\\Mars Project\\Mars Project.gdb\\DL_Detections_heldout_20261019",
+  "scored": "2026-10-19 23:41"
+ },
+ "boxes_by_class": {
+  "Normal Ground": 870,
+  "Crater": 968
+ },
+ "boxes_in_heldout_polygons": 201,
+ "in_polygons_by_polygon_class": {
+  "Normal Ground": 42,
+  "Crater": 143,
+  "steep/windy hills": 14,
+  "lava tube": 2
+ },
+ "one_class_precision": {
+  "Crater": 0.7114427860696517,
+  "steep/windy hills": 0.06965174129353234,
+  "lava tube": 0.009950248756218905,
+  "Normal Ground": 0.208955223880597
+ },
+ "zoom_block": {
+  "lon": 75,
+  "lat": -30,
+  "polygons": 57,
+  "extent_deg": [
+   77.75891043990083,
+   -24.824893616559166,
+   90.11643700389703,
+   -15.37953552148565
+  ]
+ },
+ "validation_ap": {
+  "Crater": 0.010331632482001973,
+  "Normal Ground": 0.008771929541352197,
+  "lava tube": 0.0,
+  "steep/windy hills": 0.0
+ },
+ "blocks": 14
+}

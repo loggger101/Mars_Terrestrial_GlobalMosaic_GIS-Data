@@ -32,7 +32,7 @@ python verify_interim.py
   `make_fig_tests567.py`.
 - **`build\build_interim_live.py`** lays it out in `le_theme.py`: title, goals, spectral bands, the correlation
   table, tasks and percent complete, the processing log, a "Preliminary Results" divider, one slide per figure,
-  issues, next steps with schedule. **28 slides; the report 19 pages, 19 figures** (2026-10-19, KB §62).
+  issues, next steps with schedule. **28 slides; the report 19 pages, 19 figures** (2026-10-20, KB §66.4).
 - **After every rebuild:** back up the live files; render the deck with `render_pdf.ps1 -Deck <pptx> -Pdf <pdf>`
   from PowerShell and the report through Word COM (KB §51.5); rasterise with PyMuPDF and **read every changed slide
   and page**; then `verify_interim.py`, and check each new number by hand against its own section.
@@ -83,7 +83,7 @@ Percent Complete · Preliminary Results (if available) · Project Issues and Hur
 | 10 | Visible + IR composite | done: type areas; the 7-band ±60° stack | §18, §31.2 |
 | 11 | Landform digitising | classes ready and **empty**; candidates reviewable; validation sheet ready; 512 training polygons drawn | §29.2, §46, §49 |
 | 12 | Crater inventory | 465,354 closed depressions ≥ 1 km at ±60°, 15.3 % catalogued at ≥ 1 km, 62.2 % at ≥ 5 km; the Robbins catalogue (385,049) | §41, §53.4, §54.4 |
-| 13 | Map layouts | 15 layouts, from none, with graticules (the deck still shows 14, §63) | §44, §49, §53.6, §63 |
+| 13 | Map layouts | 16 layouts, from none, with graticules (the deck still shows 14, §63, §66.4) | §44, §49, §53.6, §63, §66.4 |
 | 14 | Report and presentations | Presentation 1 and the prospectus delivered; the interim deck and report are living builds | §1, §45, §57.3 |
 
 ## 4. The results the interim shows, each with its layout or figure
@@ -103,8 +103,8 @@ this list (KB §12.1).
    caught the 29/30 Sep maps (layout 05). (§30–§32, §57)
 7. **What the tests showed**: T1 thermal +1.3 to +2.0 pt with two classifiers, the classes are terrain classes;
    T8 against the geologic map; T2–T7. (§40.1, §42–§43, §47, §51, §56)
-8. **What is not done**: the review and digitising, lava flows mapped from the mosaic, deep learning.
-   (`NEXT-STEPS.md`)
+8. **What is not done**: the review and digitising, lava flows mapped from the mosaic. Deep learning is scored
+   (layout 16, KB §66.2) but has no slide: the deck names it under next steps only. (`NEXT-STEPS.md`)
 
 ## 5. Hypotheses and questions — where each stands
 

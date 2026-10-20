@@ -22,7 +22,7 @@ This repository is the project page and an off-drive backup of the project. The 
 
 The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 
-## Where it stands (2026-10-19)
+## Where it stands (2026-10-20)
 
 The interim report and presentation are due **mid-November 2026** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source and rebuilt as results come in ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); how to work on the project is [`HANDOFF-DESKTOP.md`](Mars%20Remote%20Sensing%20Project/HANDOFF-DESKTOP.md).
 
@@ -35,15 +35,16 @@ The interim report and presentation are due **mid-November 2026** and the final 
 | Unsupervised classification | done for the type area (Iso Cluster, object-based segmentation, [parameter sweep](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_segmentation_sweep.png)) |
 | Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks; **published as the 200 m map with an 11 × 11 (2.2 km) majority filter, 73.8%, κ 0.58** |
 | Channel and crater candidates | done at ±60°: 465,354 closed depressions ≥ 1 km and 969,822 channel segments, checked against the Robbins catalogue; in both type areas; 5,144 basins ≥ 20 km |
+| Deep learning | done at ±60°: a RetinaNet detector on the 7-band stack, scored per held-out polygon (layout 16) |
 | Landform digitising | **open, the critical path** |
-| Map layouts | fifteen, below |
+| Map layouts | sixteen, below |
 
 ### Next steps
 
 The full list, with who does what, is the "Resume here" section of [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); open questions are numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
 
 1. **Review the machine candidates and digitise the three landform layers** (the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. Each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, starting with the 188 steep, rock-floored channel candidates and the 1,685 closed depressions at Ius Chasma; `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins at Athabasca) is drawn by hand. Layout 14 turns each session into the detector's precision and recall.
-2. **Deep learning** on the desktop GPU: a RetinaNet model trained on the training split's 7-band chips and scored per held-out polygon (KB §66.1–66.2): Crater recall 41.9 %, precision 87.6 % against a 71.1 % one-class baseline; it never predicts the two rare classes. Its detections are in the geodatabase and on a map in the project.
+2. **Deep learning** on the desktop GPU: a RetinaNet model trained on the training split's 7-band chips and scored per held-out polygon (KB §66.1–66.2): Crater recall 41.9 %, precision 87.6 % against a 71.1 % one-class baseline; it never predicts the two rare classes. Its detections are in the geodatabase, on a map in the project and on layout 16; whether to try a detector that names the rare classes is open.
 3. **The retests that wait for the review**: volcanic against fluvial channels by origin (H2, stage 2), and flow margins in IR against Viking on lava margins digitised at Athabasca (H1).
 4. **The interim and the final report and presentation**, from the layouts and the results below.
 
@@ -147,7 +148,7 @@ Made in the Pro GUI: one follows its 4096-pixel processing tiles and scores belo
 
 ## Layouts
 
-The 15 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets, 08 included, are centred on 0°E; the type-area sheets are drawn on the mosaics' own grid, central meridian 180°.
+The 16 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets, 08 included, are centred on 0°E; the type-area sheets are drawn on the mosaics' own grid, central meridian 180°.
 
 **The data at ±60°**
 
@@ -167,6 +168,7 @@ The 15 map sheets in the ArcGIS Pro project, grouped by what they show. Click on
 |---|---|
 | [![04](Mars%20Project/Global60/layouts/04_global60_landforms.png)](Mars%20Project/Global60/layouts/04_global60_landforms.png) **04** · The published ±60° landform map, scored | [![13](Mars%20Project/Global60/layouts/13_geomap_check.png)](Mars%20Project/Global60/layouts/13_geomap_check.png) **13** · The classes against the USGS geologic map (T8) |
 | [![03](Mars%20Project/TypeArea/layouts/03_classification.png)](Mars%20Project/TypeArea/layouts/03_classification.png) **03** · Ius Chasma, unsupervised (Iso Cluster, 10 classes) | [![05](Mars%20Project/Global60/layouts/05_svm_checks.png)](Mars%20Project/Global60/layouts/05_svm_checks.png) **05** · The first two SVM maps, checked and superseded |
+| [![16](Mars%20Project/Global60/layouts/16_x5_detections.png)](Mars%20Project/Global60/layouts/16_x5_detections.png) **16** · A deep-learning detector (X5), scored per held-out polygon | |
 
 **Craters and channels**
 
@@ -247,7 +249,7 @@ Mars Remote Sensing Project/
   NEXT STUFF/              interim report and presentation (in progress)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 31 maps, all Mars, and 15 layouts
+  Mars Project.aprx        the ArcGIS Pro project: 31 maps, all Mars, and 16 layouts
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs

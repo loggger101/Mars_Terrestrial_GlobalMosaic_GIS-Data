@@ -40,6 +40,7 @@ exports every sheet; the PNGs here are the polished exports.
 | <a href="../Mars%20Project/Global60/layouts/13_geomap_check.png"><img src="../Mars%20Project/Global60/layouts/13_geomap_check.png" width="300"></a> | **13 · The classes against the USGS geologic map (test T8).** How strongly each class gathers on each unit group: an association, not an accuracy. KB §43.2, §57.1. | `make_geomap_sheet.py --cell 200` |
 | <a href="../Mars%20Project/TypeArea/layouts/03_classification.png"><img src="../Mars%20Project/TypeArea/layouts/03_classification.png" width="300"></a> | **03 · Ius Chasma, unsupervised classification.** Iso Cluster, 10 classes, on the five-band stack. KB §19, §22. | `make_typearea_layouts.py` |
 | <a href="../Mars%20Project/Global60/layouts/05_svm_checks.png"><img src="../Mars%20Project/Global60/layouts/05_svm_checks.png" width="300"></a> | **05 · The first two SVM maps, checked and superseded.** The 29 Sep map follows its 4096-pixel tiles; the 30 Sep map is mostly elevation. KB §30, §31.1. | `make_global60_maps.py` |
+| <a href="../Mars%20Project/Global60/layouts/16_x5_detections.png"><img src="../Mars%20Project/Global60/layouts/16_x5_detections.png" width="300"></a> | **16 · A deep-learning detector, scored on held-out ground (X5).** RetinaNet on the 7-band stack, 1,838 boxes round the 183 held-out polygons; per polygon, Crater recall 41.9 % and precision 87.6 % against 71.1 % for always naming Crater; the two rare classes never named. Not comparable with 04's per-pixel score. KB §66. | `make_dl_map.py` |
 
 ### Craters and channels
 
