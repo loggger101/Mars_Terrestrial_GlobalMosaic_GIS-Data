@@ -1,0 +1,50 @@
+started Mon 10/19/2026 21:54:41.24  
+Downloading: "https://download.pytorch.org/models/resnet50-11ad3fa6.pth" to C:\Users\Owner/.cache\torch\hub\checkpoints\resnet50-11ad3fa6.pth
+Finding optimum learning rate.
+█epoch     train_loss  valid_loss  time    
+█0         11.125582   #na#        01:15     
+LR Finder is complete, type {learner_name}.recorder.plot() to see the graph.
+[2K[2K█epoch     train_loss  valid_loss  average_precision  time    
+Learning Rate - slice(3.6307805477010154e-05, 0.0003630780547701015, None)
+Training model...
+epoch      training loss        validation loss      average_precision    time                
+██0         1.586642    484.500916  0.055464           04:51     
+0          1.5866422653198242   484.50091552734375   0.05546410754323006  00:04:51             
+██1         1.246549    17.149532   0.015833           02:10     
+1          1.2465488910675049   17.149532318115234   0.0158331748098135   00:02:10             
+██2         1.155605    1.566667    0.004776           02:05     
+2          1.155605435371399    1.5666671991348267   0.004775890614837408 00:02:05             
+██3         1.116875    1.937045    0.002810           02:03     
+3          1.116875410079956    1.9370450973510742   0.0028099839109927416 00:02:03             
+██4         1.138288    1.859174    0.001852           02:04     
+4          1.1382882595062256   1.8591738939285278   0.0018518519354984164 00:02:04             
+██5         1.050189    3.184627    0.005888           02:04     
+5          1.0501888990402222   3.184627056121826    0.00588760944083333  00:02:04             
+██6         1.078800    2.457603    0.075272           02:06     
+6          1.078799843788147    2.4576032161712646   0.07527180761098862  00:02:06             
+██7         1.014780    3.787224    0.003454           02:04     
+7          1.0147804021835327   3.7872235774993896   0.0034539406187832355 00:02:04             
+██8         0.988005    2.502134    0.035716           02:06     
+Epoch 8: early stopping
+8          0.9880051016807556   2.502133846282959    0.03571584075689316  00:02:06             
+████average_precision_score: {Crater: 0.010331632482001973, Normal Ground: 0.008771929541352197, lava tube: 0.0, steep/windy hills: 0.0}
+Detection threshold: 0.5, IOU(Intersection Over Union) threshold: 0.1 .
+Computing model metrics...
+█Start Time: Monday, October 19, 2026 9:55:58 PM
+Learning Rate - slice(3.6307805477010154e-05, 0.0003630780547701015, None)
+Training model...
+epoch      training loss        validation loss      average_precision    time                
+0          1.5866422653198242   484.50091552734375   0.05546410754323006  00:04:51             
+1          1.2465488910675049   17.149532318115234   0.0158331748098135   00:02:10             
+2          1.155605435371399    1.5666671991348267   0.004775890614837408 00:02:05             
+3          1.116875410079956    1.9370450973510742   0.0028099839109927416 00:02:03             
+4          1.1382882595062256   1.8591738939285278   0.0018518519354984164 00:02:04             
+5          1.0501888990402222   3.184627056121826    0.00588760944083333  00:02:04             
+6          1.078799843788147    2.4576032161712646   0.07527180761098862  00:02:06             
+7          1.0147804021835327   3.7872235774993896   0.0034539406187832355 00:02:04             
+8          0.9880051016807556   2.502133846282959    0.03571584075689316  00:02:06             
+average_precision_score: {Crater: 0.010331632482001973, Normal Ground: 0.008771929541352197, lava tube: 0.0, steep/windy hills: 0.0}
+Detection threshold: 0.5, IOU(Intersection Over Union) threshold: 0.1 .
+Succeeded at Monday, October 19, 2026 10:21:20 PM (Elapsed Time: 25 minutes 22 seconds)
+trained in 1595 s -> F:\Mars Project\DLModels\global60_retinanet_20261019
+finished Mon 10/19/2026 21:54:41.24  

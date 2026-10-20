@@ -106,6 +106,18 @@ in this project. `180E_col53346_after_fix` shows the 180° column after its patc
 | <a href="../Mars%20Project/Global60/checks/dem_step_chips_20261015/345.8E_col102499_a.png"><img src="../Mars%20Project/Global60/checks/dem_step_chips_20261015/345.8E_col102499_a.png" width="250"></a><br>345.8°E (a), a seam | <a href="../Mars%20Project/Global60/checks/dem_step_chips_20261015/345.8E_col102499_b.png"><img src="../Mars%20Project/Global60/checks/dem_step_chips_20261015/345.8E_col102499_b.png" width="250"></a><br>345.8°E (b), a seam | <a href="../Mars%20Project/Global60/checks/dem_step_chips_20261015/61.9E_col18333.png"><img src="../Mars%20Project/Global60/checks/dem_step_chips_20261015/61.9E_col18333.png" width="250"></a><br>61.9°E, a seam |
 | <a href="../Mars%20Project/Global60/checks/dem_step_chips_20261015/15.0S_row22230.png"><img src="../Mars%20Project/Global60/checks/dem_step_chips_20261015/15.0S_row22230.png" width="250"></a><br>15.0°S (a row), a seam | | |
 
+## Deep-learning model (X5)
+
+Written by `TrainDeepLearningModel` beside the model in
+[`Mars Project/DLModels/global60_retinanet_20261019/`](../Mars%20Project/DLModels/global60_retinanet_20261019) (the
+weights, 137–146 MB, stay on the drive). Validation chips come from the training split: **not the held-out score**.
+KB §66.1.
+
+| | What it shows | Made by |
+|---|---|---|
+| <a href="../Mars%20Project/DLModels/global60_retinanet_20261019/ModelCharacteristics/loss_graph.png"><img src="../Mars%20Project/DLModels/global60_retinanet_20261019/ModelCharacteristics/loss_graph.png" width="300"></a> | **Training and validation loss**, nine epochs of RetinaNet on the 7-band chips; early stopping kept epoch 3 (validation loss 1.567). | `make_dl_model.py --train` |
+| <a href="../Mars%20Project/DLModels/global60_retinanet_20261019/ModelCharacteristics/show_results.png"><img src="../Mars%20Project/DLModels/global60_retinanet_20261019/ModelCharacteristics/show_results.png" width="300"></a> | **Labels against predictions** on five validation chips: the right class on crater and plains chips, boxes unlike the labels' whole-chip extents (validation AP ≤ 0.010 per class). | `make_dl_model.py --train` |
+
 ## Interim crops
 
 [`build/interim_img/`](../Mars%20Remote%20Sensing%20Project/build/interim_img) also holds each layout the interim deck

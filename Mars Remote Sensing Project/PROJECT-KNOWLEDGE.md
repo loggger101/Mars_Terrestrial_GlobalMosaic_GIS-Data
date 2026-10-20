@@ -3057,4 +3057,33 @@ On the desktop, ArcGIS Pro closed, no job running from `arcgispro-py3`. Closes �
   **3,622 chips**, labels from the training split; Slope 23.6 s CPU-only against 12.1 s GPU_THEN_CPU, GPU engaged.
   **"X5 ready to train: True."** One warning: `fastai` imports the deprecated `pkg_resources` (harmless today;
   setuptools ≥ 81 drops it).
-- Not done: X5 itself. Which detection models take 7-band input is still unverified **[?]** (`NEXT-STEPS.md` §5).
+
+### 66.1 X5 trained: RetinaNet on the training-split chips — 2026-10-19 **[V]**
+
+`make_dl_model.py --train --model RETINANET --epochs 20` (batch 8, chip 256, 10 % validation, backbone frozen,
+early stopping), detached, `logs\dl_train_DESKTOP-PJS73RO.log`; the script now prints the tool's messages.
+**RetinaNet takes the 7-band input**: the `.emd` reads `IsMultispectral` true, `ExtractBands` 0–6, ResNet-50
+backbone (ImageNet weights fetched from `download.pytorch.org` into `~\.cache\torch`), arcgis.learn 2.4.3. The tool
+ran 21:55:58 → 22:21:20, **25 min 22 s** (epoch 1 4 min 51 s with the learning-rate finder, then ~2 min 05 s each;
+GPU ~27 %, 4.2 GB). Learning rate 3.6e-5 to 3.6e-4.
+
+| epoch | train loss | valid loss | AP |
+|---|---|---|---|
+| 1 | 1.587 | 484.501 | 0.055 |
+| 2 | 1.247 | 17.150 | 0.016 |
+| 3 | 1.156 | **1.567** | 0.005 |
+| 4 | 1.117 | 1.937 | 0.003 |
+| 5 | 1.138 | 1.859 | 0.002 |
+| 6 | 1.050 | 3.185 | 0.006 |
+| 7 | 1.079 | 2.458 | 0.075 |
+| 8 | 1.015 | 3.787 | 0.003 |
+| 9 | 0.988 | 2.502 | 0.036 |
+
+**Early stopping after epoch 9; the saved model is epoch 3's** (`monitored_valid_loss` 1.567).
+`Mars Project\DLModels\global60_retinanet_20261019\` (`.emd`, `.pth` 146 MB, `.dlpk` 137 MB,
+`model_metrics.html`, `ModelCharacteristics\`). **Validation average precision per class: Crater 0.010, Normal
+Ground 0.009, lava tube 0, steep/windy hills 0.** The sample sheet (`show_results.png`) puts the right class on
+crater and plains chips with boxes that do not match the labels' extents: the whole-chip boxes on area classes
+that §50 named a limit. These are validation numbers on chips drawn from the training split, **not the held-out
+score**: that needs `--detect --emd <model>` and then `--score`. Which other detection models take 7-band input
+remains unverified **[?]**.

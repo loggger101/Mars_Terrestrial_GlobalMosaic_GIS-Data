@@ -12,9 +12,9 @@ libraries, CUDA, the training-split export intact). Training reads ONLY
 LabeledObjects\global60_svm_stack_200m_train\ (329 training polygons, §50.2): the all-labels export holds
 the held-out polygons and would make the score meaningless.
 
-STATUS: --train and --detect have not run (no deep-learning libraries on the laptop, §51); tool parameter
-names were checked against Pro 3.7's signatures. Which detection models accept 7-band input is not
-verified here [?]; --model chooses. --score and --score-selftest are tested.
+STATUS: --train ran on the desktop 2026-10-19 (RETINANET takes the 7 bands; 25 min, early-stopped; §66.1);
+--detect has not run. Whether other detection models accept 7-band input is not verified [?]; --model
+chooses. --score and --score-selftest are tested.
 
 The score, at polygon level (boxes cannot score per pixel on area classes, §31.4):
   recall per class      share of held-out polygons whose own class's detection boxes cover >= 50 % of them
@@ -111,6 +111,7 @@ def train():
     arcpy.ia.TrainDeepLearningModel(in_folder=TRAIN, out_folder=out, max_epochs=arg("--epochs", 20),
                                     model_type=model, batch_size=arg("--batch", 8), validation_percentage=10,
                                     stop_training="STOP_TRAINING", freeze="FREEZE_MODEL", chip_size=256)
+    print(arcpy.GetMessages())
     print("trained in %.0f s -> %s" % (time.time() - t, out))
 
 

@@ -1,0 +1,67 @@
+{
+    "training_validation_loss_per_epoch": [
+        {
+            "epoch": 0,
+            "training_loss": "1.5866422653198242",
+            "validation_loss": "484.50092",
+            "average_precision": 0.05546410754323006,
+            "time": "00:04:51"
+        },
+        {
+            "epoch": 1,
+            "training_loss": "1.2465488910675049",
+            "validation_loss": "17.149532",
+            "average_precision": 0.0158331748098135,
+            "time": "00:02:10"
+        },
+        {
+            "epoch": 2,
+            "training_loss": "1.155605435371399",
+            "validation_loss": "1.5666672",
+            "average_precision": 0.004775890614837408,
+            "time": "00:02:05"
+        },
+        {
+            "epoch": 3,
+            "training_loss": "1.116875410079956",
+            "validation_loss": "1.9370451",
+            "average_precision": 0.0028099839109927416,
+            "time": "00:02:03"
+        },
+        {
+            "epoch": 4,
+            "training_loss": "1.1382882595062256",
+            "validation_loss": "1.8591739",
+            "average_precision": 0.0018518519354984164,
+            "time": "00:02:04"
+        },
+        {
+            "epoch": 5,
+            "training_loss": "1.0501888990402222",
+            "validation_loss": "3.184627",
+            "average_precision": 0.00588760944083333,
+            "time": "00:02:04"
+        },
+        {
+            "epoch": 6,
+            "training_loss": "1.078799843788147",
+            "validation_loss": "2.4576032",
+            "average_precision": 0.07527180761098862,
+            "time": "00:02:06"
+        },
+        {
+            "epoch": 7,
+            "training_loss": "1.0147804021835327",
+            "validation_loss": "3.7872236",
+            "average_precision": 0.0034539406187832355,
+            "time": "00:02:04"
+        },
+        {
+            "epoch": 8,
+            "training_loss": "0.9880051016807556",
+            "validation_loss": "2.5021338",
+            "average_precision": 0.03571584075689316,
+            "time": "00:02:06"
+        }
+    ]
+}

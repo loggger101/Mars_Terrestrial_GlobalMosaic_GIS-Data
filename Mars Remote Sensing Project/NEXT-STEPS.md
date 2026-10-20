@@ -44,7 +44,8 @@ closed depressions with Oudemans / Perrotin) drawn light for the repo with `--li
 record; §25.1's flooded share corrected to 21.7 %; layout 07's size classes rounded; 03's legend titled, and
 `polish_layouts.py` now idempotent on every sheet.
 **2026-10-19, desktop (§66):** the Deep Learning Libraries 3.7.1901 installed (the author answered the UAC prompt);
-`desktop_check.py --gpu` says X5 is ready to train on the 2080 Ti. X5 itself has not run.
+`desktop_check.py --gpu` says X5 is ready to train on the 2080 Ti. **X5 trained (§66.1):** RetinaNet takes the 7 bands,
+25 min, early-stopped, epoch 3 kept; validation AP ≤ 0.010 per class. Not yet detected or scored on the held-out set.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).
@@ -55,7 +56,7 @@ is the critical path, and only the author can do it (§6).
 |---|---|---|---|---|
 | 1 | **Review the Ius candidates**, then Athabasca | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
-| 3 | **X5, deep learning** (the libraries are in, §66) | agent, desktop | §5 | held-out recall and precision in the KB beside the SVM's |
+| 3 | **X5, deep learning**: trained (§66.1); detect and score on the held-out polygons next | agent, desktop | §5 | held-out recall and precision in the KB beside the SVM's |
 | 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
 | 5 | The interim: due date and the percent-complete column from the author; rebuild after each result | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 
@@ -142,7 +143,7 @@ the cut dates.
 
 | # | job | cost | notes |
 |---|---|---|---|
-| X5 | deep learning on the 2080 Ti (approved, q25) | hours | the libraries are installed and the preflight passes (KB §66): `make_dl_model.py --train [--model RETINANET] [--epochs 20]`, `--detect --emd <model.emd>`, `--score <detections fc>`. Train on `LabeledObjects\global60_svm_stack_200m_train\` only; score on the 183 held-out polygons. Never run before; which detection models take 7-band input is unverified **[?]** |
+| X5 | deep learning on the 2080 Ti (approved, q25) | hours | trained 2026-10-19, RetinaNet, model `DLModels\global60_retinanet_20261019\` (KB §66.1); next `--detect --emd <that .emd>`, then `--score`: `make_dl_model.py --train [--model RETINANET] [--epochs 20]`, `--detect --emd <model.emd>`, `--score <detections fc>`. Train on `LabeledObjects\global60_svm_stack_200m_train\` only; score on the 183 held-out polygons. Never run before; which detection models take 7-band input is unverified **[?]** |
 | X7 | optional, q12: one source mosaic as a tiled, compressed copy, timed against the original | ~1 h | only if panning stays slow after the pyramids (§53.1) |
 
 Done on the desktop and recorded: X0 junctions, X1 GPU, X2 fine pass, X3 200 m classification, X4
