@@ -228,9 +228,10 @@ stack script's 100 m grid snapped to the day mosaic (§18.1).
 
 ## 5. Project structure
 
-`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-19 (§63) **[V]**: **30 maps, all in
+`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-19 (§63, §66.3) **[V]**: **31 maps, all in
 Mars coordinate systems, and 15 layouts**; 0 broken data sources, none reading through a junction (145
-non-group layers on 2026-10-18, §58.1; layout 15 added four maps and 13 layers); 7 hosted services (Esri OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
+non-group layers on 2026-10-18, §58.1; layout 15 added four maps and 13 layers; X5's map one map and 6 layers,
+§66.3); 7 hosted services (Esri OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
 `defaultGeodatabase` = `<drive>\Mars Project\Mars Project.gdb`; `homeFolder` = `<drive>\Mars Project`. The
 `.aprx` stores relative paths, so it opens from either drive letter.
 
@@ -264,9 +265,10 @@ the builders' own PNGs are written before `polish_layouts.py` runs, so copy the 
 
 ## 6. Geodatabase inventory
 
-`Mars Project.gdb`, read with `arcpy` on 2026-10-18 (§58.2). All of §6 is **[V]**.
+`Mars Project.gdb`, read with `arcpy` on 2026-10-18 (§58.2); X5's detections added 2026-10-19 (§66.3). All of §6
+is **[V]**.
 
-### Feature classes — 28 present
+### Feature classes — 29 present
 
 | Dataset | Geometry | Rows | Made by |
 |---|---|---|---|
@@ -286,6 +288,7 @@ the builders' own PNGs are written before `polish_layouts.py` runs, so copy the 
 | `Landform_CraterCandidates_auto_60_smoke`, `Landform_ChannelCandidates_auto_60_smoke` | Point, Polyline | 8,098, 5,305 | X2's smoke run (§53.3); deleting them is open decision D14 |
 | `Landform_TrainingSamples_terrain` | Polygon | 512 | **the hand-drawn labels** (§29.2); never overwrite |
 | `Landform_TrainingSamples_terrain_60_train`, `_60_test` | Polygon | 329, 183 | the labels clipped to ±60° and split by 15° blocks (§31.3) |
+| `DL_Detections_heldout_20261019` | Polygon | 1,838 | X5's RetinaNet boxes around the held-out labels (§66.2); stack SR, XY domain widened 400 km (§66.3) |
 | `TrainingSamples_202609290009589587982` | Polygon | 455 | manual (GUI), 29 Sep (§29.2) |
 | `Analysis_Extent_60` | Polygon | 1 | the ±60° clip shape (§31) |
 | `Check_Tiles_4096px_60` | Polygon | 954 | the §30.2 tile grid (§31.1) |
@@ -3121,4 +3124,27 @@ detector separates the two common classes well above the one-class baselines (Cr
 rare classes. **No prediction or verdict rule was written into the script before it ran** (§51.3 defines the
 metric only, against the §47 practice), so this is a measurement, not a test of a hypothesis; it is polygon-level
 and **not comparable** with the SVM's per-pixel 73.8 %, κ 0.58 (§57). The detections are not yet in
-the gdb or the `.aprx`.
+the gdb or the `.aprx` (§66.3 puts them there).
+
+### 66.3 X5's detections in the gdb and a map in the `.aprx` — 2026-10-19 **[V]**
+
+`build\make_dl_map.py` (Pro closed; `.aprx` backed up to `.backups\Mars Project 20261019-234048.aprx`; rehearsed
+first on a copy beside the `.aprx`, the copy then moved off the drive):
+
+- **`DL_Detections_heldout_20261019`**, 1,838 polygons copied from the shapefile beside the model; fields `Class`,
+  `Classvalue`, `Confidence`, `Model`, `MappedBy`. Written in the stack's SR with the XY domain widened by 400 km
+  (an explicit SR carries its own domain; §66.2). The script asserts the row count and the extent (< 1 m) against
+  the shapefile, and refuses a class holding rows it did not write.
+- **Map "X5 — deep-learning detections (held out)"**, top to bottom: the 30° graticule, the detections outlined in
+  the class colours, the held-out labels outlined and filled at 35 %, the training labels (off), the ±60° extent,
+  the ±60° hillshade. A trial export of one block (lon −45…−30°, lat −15…0°) and of ±60° was read: both draw.
+  **No layout yet**: a result should also get one (§31); open, the author's call.
+- **Checked:** `--score` on the gdb class reproduces §66.2's recall, precision and counts exactly (1,838 boxes);
+  `logs\dl_heldout_score.json` now names the gdb class. The project: **31 maps, 15 layouts**.
+- **Two empty leftovers deleted, on the author's approval:** `DL_Detections_heldout_20261019_56` and `_7050`
+  (0 rows each, the tool's schema `Class`, `Confidence`), written by the failed detect runs 1 and 2 (§66.2) and
+  found by the vector export. Each asserted empty before `Delete`; the gdb is back to 29 feature classes.
+- **`github_export_gdb.py`:** 25 classes to the repo's `exports\mars_project_vectors.gdb`, 27 to the GeoPackage,
+  every row count checked. A first attempt stopped on *WinError 1224* (OneDrive still held a file of the
+  previous copy) with the clone's gdb half-written; the rerun completed, and its 180 files match the fresh
+  export byte for byte. The copy overwrites but never removes files, so compare after any interrupted export.
