@@ -1,0 +1,198 @@
+{
+ "label": "C:\\MarsScratch\\x5c\\classified\\global60_unet_x5c_20261020",
+ "400m": {
+  "accuracy": 0.9875,
+  "kappa": 0.9767,
+  "polygons": 183,
+  "one_class_everywhere": 0.5862,
+  "producers": {
+   "Crater": 0.99,
+   "steep/windy hills": 0.998,
+   "lava tube": 0.826,
+   "Normal Ground": 0.983
+  },
+  "users": {
+   "Crater": 0.991,
+   "steep/windy hills": 0.934,
+   "lava tube": 0.707,
+   "Normal Ground": 0.998
+  },
+  "polygons_majority_own_class": {
+   "Crater": "119/124",
+   "steep/windy hills": "16/16",
+   "lava tube": "20/21",
+   "Normal Ground": "15/22"
+  },
+  "classified_share_of_window_pixels": 0.9998,
+  "confusion_area_weighted": [
+   [
+    0.5806,
+    0.0047,
+    0.0003,
+    0.0006
+   ],
+   [
+    0.0001,
+    0.0671,
+    0.0,
+    0.0
+   ],
+   [
+    0.001,
+    0.0,
+    0.005,
+    0.0
+   ],
+   [
+    0.0039,
+    0.0,
+    0.0018,
+    0.3348
+   ]
+  ]
+ },
+ "200m": {
+  "accuracy": 0.9874,
+  "kappa": 0.9766,
+  "polygons": 183,
+  "one_class_everywhere": 0.5862,
+  "producers": {
+   "Crater": 0.99,
+   "steep/windy hills": 0.998,
+   "lava tube": 0.825,
+   "Normal Ground": 0.983
+  },
+  "users": {
+   "Crater": 0.991,
+   "steep/windy hills": 0.933,
+   "lava tube": 0.707,
+   "Normal Ground": 0.998
+  },
+  "polygons_majority_own_class": {
+   "Crater": "119/124",
+   "steep/windy hills": "16/16",
+   "lava tube": "20/21",
+   "Normal Ground": "15/22"
+  },
+  "classified_share_of_window_pixels": 0.9998,
+  "confusion_area_weighted": [
+   [
+    0.5805,
+    0.0048,
+    0.0003,
+    0.0006
+   ],
+   [
+    0.0001,
+    0.0671,
+    0.0,
+    0.0
+   ],
+   [
+    0.001,
+    0.0,
+    0.005,
+    0.0
+   ],
+   [
+    0.0039,
+    0.0,
+    0.0018,
+    0.3348
+   ]
+  ]
+ },
+ "iau_craters_400m": {
+  "n": 4,
+  "crater_inside": 1.0,
+  "crater_ring": 0.588,
+  "pct_inside_gt_ring": 100.0
+ },
+ "scored": "2026-10-20 04:48",
+ "luts": {
+  "x5c_block_-165_+15.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_-165_+30.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_-135_-15.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_-135_+00.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_-090_+15.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_-075_-15.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_-060_-30.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_-060_-15.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_-045_-15.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_+000_+00.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_+015_+00.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_+060_+00.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_+060_+30.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "x5c_block_+075_-30.tif": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  }
+ }
+}

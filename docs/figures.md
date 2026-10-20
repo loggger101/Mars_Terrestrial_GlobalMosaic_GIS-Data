@@ -119,6 +119,19 @@ KB §66.1.
 | <a href="../Mars%20Project/DLModels/global60_retinanet_20261019/ModelCharacteristics/loss_graph.png"><img src="../Mars%20Project/DLModels/global60_retinanet_20261019/ModelCharacteristics/loss_graph.png" width="300"></a> | **Training and validation loss**, nine epochs of RetinaNet on the 7-band chips; early stopping kept epoch 3 (validation loss 1.567). | `make_dl_model.py --train` |
 | <a href="../Mars%20Project/DLModels/global60_retinanet_20261019/ModelCharacteristics/show_results.png"><img src="../Mars%20Project/DLModels/global60_retinanet_20261019/ModelCharacteristics/show_results.png" width="300"></a> | **Labels against predictions** on five validation chips: the right class on crater and plains chips, boxes unlike the labels' whole-chip extents (validation AP ≤ 0.010 per class). | `make_dl_model.py --train` |
 
+### X5b and X5c (2026-10-20)
+
+The retrained detector and the U-Net, in [`global60_retinanet_x5b_20261020/`](../Mars%20Project/DLModels/global60_retinanet_x5b_20261020)
+and [`global60_unet_x5c_20261020/`](../Mars%20Project/DLModels/global60_unet_x5c_20261020); validation chips from the
+training split, **not the held-out score** (KB §66.5–66.6).
+
+| | What it shows | Made by |
+|---|---|---|
+| <a href="../Mars%20Project/DLModels/global60_retinanet_x5b_20261020/ModelCharacteristics/loss_graph.png"><img src="../Mars%20Project/DLModels/global60_retinanet_x5b_20261020/ModelCharacteristics/loss_graph.png" width="300"></a> | **X5b loss**, 30 epochs with the backbone unfrozen and no early stopping; validation loss 428 after the first epoch, 1.2–4.4 after; epoch 16 kept (1.203). | `make_dl_model.py --train` |
+| <a href="../Mars%20Project/DLModels/global60_retinanet_x5b_20261020/ModelCharacteristics/show_results.png"><img src="../Mars%20Project/DLModels/global60_retinanet_x5b_20261020/ModelCharacteristics/show_results.png" width="300"></a> | **X5b labels against predictions** on five validation chips, all Normal Ground: three get no box, one two boxes smaller than the label, one a box close to it (its validation AP for Normal Ground is 0.000). | `make_dl_model.py --train` |
+| <a href="../Mars%20Project/DLModels/global60_unet_x5c_20261020/ModelCharacteristics/loss_graph.png"><img src="../Mars%20Project/DLModels/global60_unet_x5c_20261020/ModelCharacteristics/loss_graph.png" width="300"></a> | **X5c loss**, the U-Net, 30 epochs; validation loss 0.466 to 0.029, epoch 29 kept. | `make_dl_pixels.py --train` |
+| <a href="../Mars%20Project/DLModels/global60_unet_x5c_20261020/ModelCharacteristics/show_results.png"><img src="../Mars%20Project/DLModels/global60_unet_x5c_20261020/ModelCharacteristics/show_results.png" width="300"></a> | **X5c labels against predictions** on five validation chips: the labelled crater right, and the whole chip around it called Crater too (the provinces of KB §66.6). | `make_dl_pixels.py --train` |
+
 ## Interim crops
 
 [`build/interim_img/`](../Mars%20Remote%20Sensing%20Project/build/interim_img) also holds each layout the interim deck

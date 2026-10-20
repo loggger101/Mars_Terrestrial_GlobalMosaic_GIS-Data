@@ -1,0 +1,225 @@
+{
+ "svm_200m_mode11": {
+  "label": "svm_200m_mode11",
+  "400m": {
+   "accuracy": 0.7383,
+   "kappa": 0.5827,
+   "polygons": 183,
+   "one_class_everywhere": 0.5862,
+   "producers": {
+    "Crater": 0.607,
+    "steep/windy hills": 0.628,
+    "lava tube": 0.448,
+    "Normal Ground": 0.992
+   },
+   "users": {
+    "Crater": 0.933,
+    "steep/windy hills": 0.507,
+    "lava tube": 0.024,
+    "Normal Ground": 0.803
+   },
+   "polygons_majority_own_class": {
+    "Crater": "107/124",
+    "steep/windy hills": "14/16",
+    "lava tube": "8/21",
+    "Normal Ground": "20/22"
+   },
+   "classified_share_of_window_pixels": 0.9998,
+   "confusion_area_weighted": [
+    [
+     0.3556,
+     0.0407,
+     0.1084,
+     0.0815
+    ],
+    [
+     0.0224,
+     0.0422,
+     0.002,
+     0.0007
+    ],
+    [
+     0.0025,
+     0.0003,
+     0.0027,
+     0.0006
+    ],
+    [
+     0.0008,
+     0.0,
+     0.0019,
+     0.3378
+    ]
+   ]
+  },
+  "200m": {
+   "accuracy": 0.7383,
+   "kappa": 0.5826,
+   "polygons": 183,
+   "one_class_everywhere": 0.5862,
+   "producers": {
+    "Crater": 0.606,
+    "steep/windy hills": 0.628,
+    "lava tube": 0.449,
+    "Normal Ground": 0.992
+   },
+   "users": {
+    "Crater": 0.933,
+    "steep/windy hills": 0.508,
+    "lava tube": 0.024,
+    "Normal Ground": 0.803
+   },
+   "polygons_majority_own_class": {
+    "Crater": "107/124",
+    "steep/windy hills": "14/16",
+    "lava tube": "8/21",
+    "Normal Ground": "20/22"
+   },
+   "classified_share_of_window_pixels": 0.9998,
+   "confusion_area_weighted": [
+    [
+     0.3555,
+     0.0406,
+     0.1085,
+     0.0816
+    ],
+    [
+     0.0224,
+     0.0422,
+     0.002,
+     0.0006
+    ],
+    [
+     0.0025,
+     0.0003,
+     0.0027,
+     0.0006
+    ],
+    [
+     0.0008,
+     0.0,
+     0.0019,
+     0.3378
+    ]
+   ]
+  },
+  "iau_craters_400m": {
+   "n": 4,
+   "crater_inside": 0.404,
+   "crater_ring": 0.254,
+   "pct_inside_gt_ring": 100.0
+  }
+ },
+ "svm_200m": {
+  "label": "svm_200m",
+  "400m": {
+   "accuracy": 0.6985,
+   "kappa": 0.532,
+   "polygons": 183,
+   "one_class_everywhere": 0.5862,
+   "producers": {
+    "Crater": 0.542,
+    "steep/windy hills": 0.607,
+    "lava tube": 0.376,
+    "Normal Ground": 0.991
+   },
+   "users": {
+    "Crater": 0.925,
+    "steep/windy hills": 0.454,
+    "lava tube": 0.017,
+    "Normal Ground": 0.78
+   },
+   "polygons_majority_own_class": {
+    "Crater": "102/124",
+    "steep/windy hills": "14/16",
+    "lava tube": "5/21",
+    "Normal Ground": "20/22"
+   },
+   "classified_share_of_window_pixels": 0.9998,
+   "confusion_area_weighted": [
+    [
+     0.3179,
+     0.0485,
+     0.126,
+     0.0938
+    ],
+    [
+     0.0223,
+     0.0408,
+     0.0032,
+     0.0009
+    ],
+    [
+     0.0025,
+     0.0005,
+     0.0023,
+     0.0007
+    ],
+    [
+     0.0011,
+     0.0,
+     0.0019,
+     0.3375
+    ]
+   ]
+  },
+  "200m": {
+   "accuracy": 0.6985,
+   "kappa": 0.5319,
+   "polygons": 183,
+   "one_class_everywhere": 0.5862,
+   "producers": {
+    "Crater": 0.542,
+    "steep/windy hills": 0.608,
+    "lava tube": 0.378,
+    "Normal Ground": 0.991
+   },
+   "users": {
+    "Crater": 0.924,
+    "steep/windy hills": 0.454,
+    "lava tube": 0.017,
+    "Normal Ground": 0.779
+   },
+   "polygons_majority_own_class": {
+    "Crater": "102/124",
+    "steep/windy hills": "14/16",
+    "lava tube": "5/21",
+    "Normal Ground": "20/22"
+   },
+   "classified_share_of_window_pixels": 0.9998,
+   "confusion_area_weighted": [
+    [
+     0.3178,
+     0.0486,
+     0.1257,
+     0.094
+    ],
+    [
+     0.0224,
+     0.0409,
+     0.0031,
+     0.0008
+    ],
+    [
+     0.0025,
+     0.0005,
+     0.0023,
+     0.0007
+    ],
+    [
+     0.0011,
+     0.0,
+     0.0019,
+     0.3375
+    ]
+   ]
+  },
+  "iau_craters_400m": {
+   "n": 4,
+   "crater_inside": 0.412,
+   "crater_ring": 0.309,
+   "pct_inside_gt_ring": 75.0
+  }
+ },
+ "scored": "2026-10-20 04:43"
+}

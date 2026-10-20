@@ -1,0 +1,47 @@
+{
+ "rule": "drop boxes < 16 px thin touching the chip edge on that side; drop chips left empty",
+ "main": {
+  "chips_in": 3622,
+  "chips_out": 3338,
+  "boxes_in": {
+   "Normal Ground": 2704,
+   "Crater": 1968,
+   "lava tube": 292,
+   "steep/windy hills": 329
+  },
+  "slivers": {
+   "Normal Ground": 254,
+   "lava tube": 29,
+   "Crater": 287,
+   "steep/windy hills": 49
+  },
+  "boxes_out": {
+   "Normal Ground": 2450,
+   "Crater": 1681,
+   "lava tube": 263,
+   "steep/windy hills": 280
+  }
+ },
+ "rare": {
+  "chips_in": 1430,
+  "chips_out": 1419,
+  "boxes_in": {
+   "Crater": 338,
+   "steep/windy hills": 2597,
+   "lava tube": 1702,
+   "Normal Ground": 235
+  },
+  "slivers": {
+   "Crater": 62,
+   "steep/windy hills": 283,
+   "lava tube": 108,
+   "Normal Ground": 38
+  },
+  "boxes_out": {
+   "Crater": 276,
+   "steep/windy hills": 2314,
+   "lava tube": 1594,
+   "Normal Ground": 197
+  }
+ }
+}

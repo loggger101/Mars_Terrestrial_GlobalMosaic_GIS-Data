@@ -1,0 +1,19 @@
+{
+ "in_folder": [
+  "C:\\MarsScratch\\x5b\\main_clean",
+  "C:\\MarsScratch\\x5b\\rare_clean"
+ ],
+ "out_folder": "C:\\MarsScratch\\x5b\\models\\global60_retinanet_x5b_20261020",
+ "max_epochs": 30,
+ "model_type": "RETINANET",
+ "batch_size": 8,
+ "validation_percentage": 10,
+ "stop_training": "CONTINUE_TRAINING",
+ "freeze": "UNFREEZE_MODEL",
+ "chip_size": 256,
+ "monitor": "VALID_LOSS",
+ "host": "DESKTOP-PJS73RO",
+ "seconds": 6014,
+ "finished": "2026-10-20 02:32",
+ "script": "make_dl_model.py"
+}

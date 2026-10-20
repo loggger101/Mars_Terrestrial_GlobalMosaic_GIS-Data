@@ -1,0 +1,275 @@
+{
+ "recall": {
+  "Crater": 0.43548387096774194,
+  "steep/windy hills": 0.25,
+  "lava tube": 0.047619047619047616,
+  "Normal Ground": 0.045454545454545456
+ },
+ "recall_n": {
+  "Crater": 124,
+  "steep/windy hills": 16,
+  "lava tube": 21,
+  "Normal Ground": 22
+ },
+ "recall_hits": {
+  "Crater": 54,
+  "steep/windy hills": 4,
+  "lava tube": 1,
+  "Normal Ground": 1
+ },
+ "precision": {
+  "Crater": 1.0,
+  "steep/windy hills": 1.0,
+  "lava tube": 0.05405405405405406,
+  "Normal Ground": 1.0
+ },
+ "precision_n": {
+  "Crater": 88,
+  "steep/windy hills": 11,
+  "lava tube": 37,
+  "Normal Ground": 48
+ },
+ "precision_hits": {
+  "Crater": 88,
+  "steep/windy hills": 11,
+  "lava tube": 2,
+  "Normal Ground": 48
+ },
+ "one_class_rate": {
+  "Crater": 0.6467391304347826,
+  "steep/windy hills": 0.07608695652173914,
+  "lava tube": 0.010869565217391304,
+  "Normal Ground": 0.266304347826087
+ },
+ "detections": 1024,
+ "primary_cutoff": 0.3,
+ "by_cutoff": {
+  "0.1": {
+   "recall": {
+    "Crater": 0.5564516129032258,
+    "steep/windy hills": 0.5,
+    "lava tube": 0.047619047619047616,
+    "Normal Ground": 0.13636363636363635
+   },
+   "recall_n": {
+    "Crater": 124,
+    "steep/windy hills": 16,
+    "lava tube": 21,
+    "Normal Ground": 22
+   },
+   "recall_hits": {
+    "Crater": 69,
+    "steep/windy hills": 8,
+    "lava tube": 1,
+    "Normal Ground": 3
+   },
+   "precision": {
+    "Crater": 0.9358288770053476,
+    "steep/windy hills": 0.9230769230769231,
+    "lava tube": 0.03125,
+    "Normal Ground": 0.9102040816326531
+   },
+   "precision_n": {
+    "Crater": 187,
+    "steep/windy hills": 26,
+    "lava tube": 64,
+    "Normal Ground": 245
+   },
+   "precision_hits": {
+    "Crater": 175,
+    "steep/windy hills": 24,
+    "lava tube": 2,
+    "Normal Ground": 223
+   },
+   "one_class_rate": {
+    "Crater": 0.47701149425287354,
+    "steep/windy hills": 0.05747126436781609,
+    "lava tube": 0.013409961685823755,
+    "Normal Ground": 0.4521072796934866
+   },
+   "detections": 5810
+  },
+  "0.2": {
+   "recall": {
+    "Crater": 0.5,
+    "steep/windy hills": 0.4375,
+    "lava tube": 0.047619047619047616,
+    "Normal Ground": 0.09090909090909091
+   },
+   "recall_n": {
+    "Crater": 124,
+    "steep/windy hills": 16,
+    "lava tube": 21,
+    "Normal Ground": 22
+   },
+   "recall_hits": {
+    "Crater": 62,
+    "steep/windy hills": 7,
+    "lava tube": 1,
+    "Normal Ground": 2
+   },
+   "precision": {
+    "Crater": 1.0,
+    "steep/windy hills": 0.9473684210526315,
+    "lava tube": 0.04,
+    "Normal Ground": 0.9125
+   },
+   "precision_n": {
+    "Crater": 112,
+    "steep/windy hills": 19,
+    "lava tube": 50,
+    "Normal Ground": 80
+   },
+   "precision_hits": {
+    "Crater": 112,
+    "steep/windy hills": 18,
+    "lava tube": 2,
+    "Normal Ground": 73
+   },
+   "one_class_rate": {
+    "Crater": 0.6130268199233716,
+    "steep/windy hills": 0.0842911877394636,
+    "lava tube": 0.011494252873563218,
+    "Normal Ground": 0.29118773946360155
+   },
+   "detections": 2135
+  },
+  "0.3": {
+   "recall": {
+    "Crater": 0.43548387096774194,
+    "steep/windy hills": 0.25,
+    "lava tube": 0.047619047619047616,
+    "Normal Ground": 0.045454545454545456
+   },
+   "recall_n": {
+    "Crater": 124,
+    "steep/windy hills": 16,
+    "lava tube": 21,
+    "Normal Ground": 22
+   },
+   "recall_hits": {
+    "Crater": 54,
+    "steep/windy hills": 4,
+    "lava tube": 1,
+    "Normal Ground": 1
+   },
+   "precision": {
+    "Crater": 1.0,
+    "steep/windy hills": 1.0,
+    "lava tube": 0.05405405405405406,
+    "Normal Ground": 1.0
+   },
+   "precision_n": {
+    "Crater": 88,
+    "steep/windy hills": 11,
+    "lava tube": 37,
+    "Normal Ground": 48
+   },
+   "precision_hits": {
+    "Crater": 88,
+    "steep/windy hills": 11,
+    "lava tube": 2,
+    "Normal Ground": 48
+   },
+   "one_class_rate": {
+    "Crater": 0.6467391304347826,
+    "steep/windy hills": 0.07608695652173914,
+    "lava tube": 0.010869565217391304,
+    "Normal Ground": 0.266304347826087
+   },
+   "detections": 1024
+  },
+  "0.4": {
+   "recall": {
+    "Crater": 0.3467741935483871,
+    "steep/windy hills": 0.25,
+    "lava tube": 0.047619047619047616,
+    "Normal Ground": 0.0
+   },
+   "recall_n": {
+    "Crater": 124,
+    "steep/windy hills": 16,
+    "lava tube": 21,
+    "Normal Ground": 22
+   },
+   "recall_hits": {
+    "Crater": 43,
+    "steep/windy hills": 4,
+    "lava tube": 1,
+    "Normal Ground": 0
+   },
+   "precision": {
+    "Crater": 1.0,
+    "steep/windy hills": 1.0,
+    "lava tube": 0.09523809523809523,
+    "Normal Ground": 1.0
+   },
+   "precision_n": {
+    "Crater": 66,
+    "steep/windy hills": 7,
+    "lava tube": 21,
+    "Normal Ground": 3
+   },
+   "precision_hits": {
+    "Crater": 66,
+    "steep/windy hills": 7,
+    "lava tube": 2,
+    "Normal Ground": 3
+   },
+   "one_class_rate": {
+    "Crater": 0.865979381443299,
+    "steep/windy hills": 0.08247422680412371,
+    "lava tube": 0.020618556701030927,
+    "Normal Ground": 0.030927835051546393
+   },
+   "detections": 471
+  },
+  "0.5": {
+   "recall": {
+    "Crater": 0.22580645161290322,
+    "steep/windy hills": 0.1875,
+    "lava tube": 0.047619047619047616,
+    "Normal Ground": 0.0
+   },
+   "recall_n": {
+    "Crater": 124,
+    "steep/windy hills": 16,
+    "lava tube": 21,
+    "Normal Ground": 22
+   },
+   "recall_hits": {
+    "Crater": 28,
+    "steep/windy hills": 3,
+    "lava tube": 1,
+    "Normal Ground": 0
+   },
+   "precision": {
+    "Crater": 1.0,
+    "steep/windy hills": 1.0,
+    "lava tube": 0.3333333333333333,
+    "Normal Ground": null
+   },
+   "precision_n": {
+    "Crater": 44,
+    "steep/windy hills": 5,
+    "lava tube": 6,
+    "Normal Ground": 0
+   },
+   "precision_hits": {
+    "Crater": 44,
+    "steep/windy hills": 5,
+    "lava tube": 2,
+    "Normal Ground": 0
+   },
+   "one_class_rate": {
+    "Crater": 0.8727272727272727,
+    "steep/windy hills": 0.09090909090909091,
+    "lava tube": 0.03636363636363636,
+    "Normal Ground": 0.0
+   },
+   "detections": 241
+  }
+ },
+ "layer": "C:\\MarsScratch\\x5\\global60_retinanet_x5b_20261020\\dl_det_heldout_global60_retinanet_x5b_20261020.shp",
+ "scored": "2026-10-20 02:59"
+}

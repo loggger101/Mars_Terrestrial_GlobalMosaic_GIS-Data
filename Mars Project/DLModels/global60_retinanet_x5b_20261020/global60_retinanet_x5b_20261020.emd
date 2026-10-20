@@ -1,0 +1,186 @@
+{
+    "Framework": "arcgis.learn.models._inferencing",
+    "InferenceFunction": "[Functions]System\\DeepLearning\\ArcGISLearn\\ArcGISObjectDetector.py",
+    "ModelConfiguration": "_RetinaNet_Inference",
+    "ModelType": "ObjectDetection",
+    "ExtractBands": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+    ],
+    "ModelParameters": {
+        "scales": [
+            1,
+            0.8,
+            0.63
+        ],
+        "ratios": [
+            0.5,
+            1,
+            2
+        ],
+        "backbone": "resnet50",
+        "backend": "pytorch"
+    },
+    "Classes": [
+        {
+            "Value": 1,
+            "Name": "Crater",
+            "Color": [
+                139,
+                18,
+                20
+            ]
+        },
+        {
+            "Value": 4,
+            "Name": "Normal Ground",
+            "Color": [
+                114,
+                223,
+                154
+            ]
+        },
+        {
+            "Value": 3,
+            "Name": "lava tube",
+            "Color": [
+                203,
+                53,
+                234
+            ]
+        },
+        {
+            "Value": 2,
+            "Name": "steep/windy hills",
+            "Color": [
+                224,
+                125,
+                114
+            ]
+        }
+    ],
+    "ModelFormat": "NCHW",
+    "MinCellSize": {
+        "x": 200,
+        "y": 200,
+        "spatialReference": {
+            "wkt": "PROJCS[\"Mars_Equidistant_Cylindrical_CM180\",GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_Sphere_IAU_IAG\",3396190.0,0.0]],PRIMEM[\"Reference_Meridian\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Equidistant_Cylindrical\"],PARAMETER[\"False_Easting\",0.0],PARAMETER[\"False_Northing\",0.0],PARAMETER[\"Central_Meridian\",180.0],PARAMETER[\"Standard_Parallel_1\",0.0],UNIT[\"Meter\",1.0]]"
+        }
+    },
+    "MaxCellSize": {
+        "x": 200,
+        "y": 200,
+        "spatialReference": {
+            "wkt": "PROJCS[\"Mars_Equidistant_Cylindrical_CM180\",GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_Sphere_IAU_IAG\",3396190.0,0.0]],PRIMEM[\"Reference_Meridian\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Equidistant_Cylindrical\"],PARAMETER[\"False_Easting\",0.0],PARAMETER[\"False_Northing\",0.0],PARAMETER[\"Central_Meridian\",180.0],PARAMETER[\"Standard_Parallel_1\",0.0],UNIT[\"Meter\",1.0]]"
+        }
+    },
+    "SupportsVariableTileSize": false,
+    "ArcGISLearnVersion": "2.4.3",
+    "monitored_valid_loss": 1.2029426097869873,
+    "ModelFile": "global60_retinanet_x5b_20261020.pth",
+    "ImageHeight": 256,
+    "ImageWidth": 256,
+    "ImageSpaceUsed": "MAP_SPACE",
+    "LearningRate": "slice('4.3652e-05', '4.3652e-04', None)",
+    "ModelName": "RetinaNet",
+    "backend": "pytorch",
+    "average_precision_score": {
+        "Crater": 0.34344764826232055,
+        "Normal Ground": 0.0,
+        "lava tube": 0.5185270994915214,
+        "steep/windy hills": 0.537514351598567
+    },
+    "resize_to": null,
+    "IsMultispectral": true,
+    "IsImageNetNormalization": true,
+    "Bands": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "ImageryType": "MultiSpectral",
+    "NormalizationStats": {
+        "band_min_values": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ],
+        "band_max_values": [
+            255.0,
+            255.0,
+            255.0,
+            255.0,
+            255.0,
+            255.0,
+            255.0
+        ],
+        "band_mean_values": [
+            142.03469848632812,
+            103.83523559570312,
+            90.40248107910156,
+            104.59229278564453,
+            125.54080963134766,
+            49.38565444946289,
+            51.80312728881836
+        ],
+        "band_std_values": [
+            52.046451568603516,
+            44.952293395996094,
+            43.5743293762207,
+            46.61293411254883,
+            42.65512466430664,
+            67.64183807373047,
+            68.73957061767578
+        ],
+        "scaled_min_values": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "scaled_max_values": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ],
+        "scaled_mean_values": [
+            0.5552546977996826,
+            0.4048631191253662,
+            0.35197824239730835,
+            0.4078436493873596,
+            0.4903181195259094,
+            0.19049468636512756,
+            0.20001229643821716
+        ],
+        "scaled_std_values": [
+            0.20346461236476898,
+            0.1752731204032898,
+            0.16965481638908386,
+            0.18176089227199554,
+            0.16659586131572723,
+            0.26091402769088745,
+            0.2654040455818176
+        ]
+    },
+    "DoNormalize": true
+}

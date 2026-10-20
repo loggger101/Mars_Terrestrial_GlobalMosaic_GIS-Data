@@ -3172,3 +3172,164 @@ class at run time, logged to `logs\dl_sheet.json`.
   it still shows 14 layouts, §63). Rebuilt with the live files backed up to `NEXT STUFF\.backup_20261020\`: 28
   slides, 19 pages; rendered through PowerPoint and Word, compared page by page with the previous build: **only
   slide 28 and report page 19 changed**, both read. `verify_interim.py`: all **253** numbers found in this record.
+
+### 66.5 X5b: the detector retrained with the backbone unfrozen, no early stopping, rare-class chips and cleaned boxes — 2026-10-20
+
+The author's request, 2026-10-20: improve the detector and the deep-learning process, and turn off the early
+stopping that ended X5 after 9 of 20 epochs. **Written before the run** (the §47 practice §66.2 missed).
+
+**What X5 got wrong, from its record and its export:**
+
+- **The backbone was frozen** (`FREEZE_MODEL`, the tool's default). Four of the seven bands (night IR, day IR,
+  slope, relief) are not RGB; the ImageNet layers behind the re-initialised first layer could not adapt to them.
+- **Early stopping** (patience 5 epochs on a validation loss that swung from 484.5 to 1.6 to 3.8) ended the run at
+  epoch 9; the one-cycle learning-rate schedule never reached its low-rate end.
+- **The rare classes had 329 and 292 boxes** against 1,968 and 2,704 (§50.2), and the model never named them.
+- **Edge slivers:** a polygon that only clips a chip's edge still gives a box. In the training export, boxes
+  under 16 px (3.2 km) thin that touch the chip edge on that side: Crater 287 of 1,968, hills 49 of 329, lava tube
+  29 of 292, Normal Ground 254 of 2,704; 284 of the 3,622 chips hold nothing else.
+- **Process:** a second `--detect` would have reused X5's finished windows in `C:\MarsScratch\x5`; `--score`
+  overwrote the one score file that layout 16 reads; the model folder was named by date only; the run's settings
+  were not saved beside the model.
+
+**What changes (`make_dl_model.py`, `make_global60_dl_export.py --rare`):**
+
+- `make_global60_dl_export.py --rare`: chips around the 51 training hills and lava tube polygons (each buffered
+  55 km in the stack's SR; a chip must lie wholly inside the mask) at **stride 64**, labelled from the whole
+  training split, to `C:\MarsScratch\x5b\export_rare`.
+- `--prepare`: cleaned copies of the training export and of the rare chips in `C:\MarsScratch\x5b\main_clean`,
+  `rare_clean`, without the edge slivers or the chips they leave empty; counts in `logs\dl_prepare_x5b.json`.
+- `--train` defaults: backbone **unfrozen**, early stopping **off**, **30 epochs**, the model on internal disk then
+  copied to `DLModels\global60_retinanet_x5b_20261020\` with `run_config.json` and `training_messages.txt`.
+  arcgis.learn still keeps the epoch with the lowest validation loss whether or not it stops early
+  (`fit(checkpoint=True)`, which the tool always passes). Validation is still the tool's random 10 % of chips,
+  which overlap their neighbours by half: optimistic, used only to pick the epoch.
+- `--detect` at threshold **0.1**, into the model's own folder; `--score` at cutoffs 0.1–0.5 from that one layer,
+  into `logs\dl_heldout_score_x5b.json`, refusing to overwrite another layer's file. The rescored X5 matches §66.2
+  exactly (cutoff 0.3); at 0.4 its Crater recall falls to 29.0 % and its Normal Ground recall to 0.
+
+Unchanged from X5, so the two compare: RetinaNet, ResNet-50, chip 256, batch 8, the tool's default augmentation,
+the same held-out polygons and windows, the same scorer.
+
+**Verdict rule, at the primary cutoff 0.3** (also in the script's docstring): X5b improves on X5 if (a) Crater
+recall > 41.9 % with Crater precision ≥ 71.1 %, (b) Normal Ground recall > 22.7 % with its precision ≥ 20.9 %, and
+(c) at least one rare class is named in a held-out polygon of its own class at least once. All three: improved;
+(a) and (b) without (c): better on the common classes only; otherwise not improved. The other cutoffs are
+reported, never used to pick a winner. **Prediction:** (a) and (b) hold; (c) holds for hills, not for lava tube
+(its 23 training polygons are narrow and its SVM user's accuracy was 2 %, §57).
+
+**The run** (`logs\run_x5b.cmd` → `logs\dl_x5b_DESKTOP-PJS73RO.log`; 00:51 → 02:58):
+
+- **The rare export**, 855 s: **1,430 chips**, 4,872 boxes (hills 2,597, lava tube 1,702, Crater 338, Normal
+  Ground 235). **`--prepare`** (`logs\dl_prepare_x5b.json`): main 3,622 → **3,338 chips**, 5,293 → 4,674 boxes
+  (slivers dropped: Crater 287, hills 49, lava tube 29, Normal Ground 254); rare 1,430 → **1,419 chips** (slivers
+  62, 283, 108, 38). Training boxes after both: Crater 1,957, hills 2,594, lava tube 1,857, Normal Ground 2,647.
+- **Training**, 6,014 s (**1 h 40 min**; epoch 1 4 min 43 s with the learning-rate finder, then ~3 min 07 s;
+  GPU ~4.7 GB): all **30 epochs** ran. Validation loss 428.1 at epoch 1 (as X5's 484.5), 1.96 at epoch 4, then
+  swinging between 1.20 and 4.37 while the training loss fell steadily to 0.460; validation AP rose to 0.35–0.44
+  from epoch 9 on (X5: ≤ 0.075). **The kept model is epoch 16** (valid loss **1.203**, AP 0.350); by epoch 30 the
+  validation loss stood at 1.70 against a training loss of 0.46, the start of overfitting. Validation AP per class:
+  Crater 0.343, hills 0.538, lava tube 0.519, **Normal Ground 0.000**; the rare classes' figures are inflated, their
+  chips overlapping by three quarters at stride 64. `DLModels\global60_retinanet_x5b_20261020\`.
+- **Detection** at threshold 0.1, ~25 min (1,517 s in the 14 windows, 65–229 s each): **5,810 boxes** kept; 1,024 at ≥ 0.3 (Crater
+  508, lava tube 298, Normal Ground 173, hills 45), against X5's 1,838 (968 Crater, 870 Normal Ground).
+
+**The held-out score at the primary cutoff 0.3** (`logs\dl_heldout_score_x5b.json`):
+
+| class | polygons | recall X5 → **X5b** | in-polygon detections X5 → X5b | precision X5 → **X5b** |
+|---|---|---|---|---|
+| Crater | 124 | 41.9 % → **43.5 %** (54) | 129 → 88 | 87.6 % → **100 %** (88) |
+| steep/windy hills | 16 | 0 → **25.0 %** (4) | 0 → 11 | — → **100 %** (11) |
+| lava tube | 21 | 0 → **4.8 %** (1) | 0 → 37 | — → **5.4 %** (2) |
+| Normal Ground | 22 | 22.7 % → **4.5 %** (1) | 72 → 48 | 56.9 % → **100 %** (48) |
+
+All of X5b's 35 wrong in-polygon detections are lava tube boxes: 31 on Crater polygons, 3 on hills, 1 on Normal
+Ground. X5's 47 were Normal Ground boxes on craters (30) and hills (1) and Crater boxes on hills (13), lava tube
+(2) and Normal Ground (1). Normal Ground boxes are fewer and smaller (median 655 km² against X5's 1,372 km²), and the recall
+needs a polygon ≥ 50 % covered, which large plains polygons rarely are. Other cutoffs, descriptive only: at 0.1,
+Crater 55.6 % / 93.6 %, hills 50.0 % / 92.3 %, lava tube 4.8 % / 3.1 %, Normal Ground 13.6 % / 91.0 %
+(recall / precision); at 0.5, Crater 22.6 % / 100 %, hills 18.8 % / 100 %.
+
+**Verdict by the rule: not improved.** (a) holds (43.5 % > 41.9 %, by two polygons; precision 100 %), (c) holds
+(hills named 11 times in hills polygons, lava tube twice), **(b) fails** (Normal Ground recall 4.5 % against
+22.7 %). The prediction was wrong twice: (b) failed, and lava tube was named. **Reading:** X5b names three classes
+with no class confusion among them and finds a quarter of the hills polygons that X5 never named; its one
+systematic error is lava tube, over-predicted on cratered ground after the rare chips raised its boxes six-fold,
+and it gave up Normal Ground coverage. A tuned X5d (fewer lava tube chips, Normal Ground restored) would be chosen
+by looking at these held-out numbers, which would make them a validation set; any next round needs a validation
+split of its own first (training blocks held back), not another look at the 14 held-out blocks.
+
+### 66.6 X5c: a pixel classifier (U-Net) beside the box detector, scored per pixel like the SVM — 2026-10-20
+
+**The author's decision, 2026-10-20:** after X5b, train a pixel classifier on the same training split and score it
+per pixel on the held-out polygons. This reverses, for this one model, the "boxes only" of q26 (§50; §31.4 had
+named `Classified_Tiles` the better fit for area classes). **Written before the run.**
+
+- `build\make_dl_pixels.py --export`: `Classified_Tiles` from `Landform_TrainingSamples_terrain_60_train`, 256 px
+  chips, stride 128, chips with features only, to `C:\MarsScratch\x5c\export_tiles`. Unlabelled ground is 0.
+- `--train`: U-Net, ResNet-34, `class_balancing True`, `ignore_classes [0]` (the loss never teaches that
+  unlabelled ground is a class), backbone unfrozen, early stopping off, 30 epochs, batch 8, 10 % validation;
+  the model to `DLModels\global60_unet_x5c_20261020\` with its settings and messages.
+- `--classify`: one raster per X5 window (the held-out polygons' extent + 25 km, snapped to the stack), GPU.
+- `--score`: `svmcheck.training_score`, the code behind §31.3 and §57, area-weighted, each window on its own
+  polygons, at 400 m (the 400 m lattice of the 200 m grid, as §57 scored) and at 200 m.
+  `logs\dl_pixels_score_x5c.json`.
+- **The scorer checked first:** `--score-svm` runs it on the SVM maps' windows and gives the published numbers,
+  the 11 × 11 map **0.7383, κ 0.5827** at 400 m (§57: 73.8 %, κ 0.583) and the unfiltered 200 m map **0.6985,
+  κ 0.532** (§57: 70 %, κ 0.53); at 200 m the same to 0.0001. `logs\dl_pixels_score_svm_baseline.json`.
+
+**Verdict rule, at 400 m:** X5c beats the published SVM map if its held-out accuracy and κ both exceed 0.7383 and
+0.5827; within 2 points of accuracy either way is a match; below that the SVM stays the better map. Producer's and
+user's accuracy per class are reported, the rare classes' above all. **Prediction:** a match, with lava tube's user's
+accuracy still under 10 % (§57: 2 %).
+
+**The run** (`logs\run_x5c.cmd` → `logs\dl_x5c_DESKTOP-PJS73RO.log`; export `logs\dl_x5c_export_DESKTOP-PJS73RO.log`):
+
+- **Export**, 358 s, during X5b's training: **3,622 chips**, the same chips and 5,293 features as §50.2.
+- **Training**, 02:58 → 04:11, 4,376 s (**1 h 13 min**; ~2 min 19 s an epoch, 30 epochs). Validation loss 0.466 →
+  0.029, falling almost throughout (one spike, 1.40 at epoch 6); **the kept model is epoch 29** (valid loss
+  **0.0291**), pixel accuracy 0.992 on the labelled pixels of the validation chips. Per class on those chips:
+  recall 0.985–0.995, **precision 0.10–0.53** (Crater 0.354, hills 0.235, lava tube 0.101, Normal Ground 0.530):
+  the model assigns a class to every pixel, unlabelled ground included, and those pixels count against it.
+  `DLModels\global60_unet_x5c_20261020\` (`.pth` 165 MB, `.dlpk` 156 MB, drive only).
+- **Classification**, 04:11 → 04:30, **19 min** (61–168 s a window), 14 rasters at 200 m, values 1–4 named in
+  the attribute table, 99.98 % of window pixels classified; copied to the model's `classified_heldout\`.
+
+**The held-out score** (`logs\dl_pixels_score_x5c.json`; the SVM columns from `logs\dl_pixels_score_svm_baseline.json`,
+same code, same windows):
+
+| at 400 m | X5c U-Net | SVM, 11 × 11 (published) | SVM, unfiltered 200 m |
+|---|---|---|---|
+| **accuracy, κ** | **98.75 %, 0.977** | 73.83 %, 0.583 | 69.85 %, 0.532 |
+| producer's: Crater, hills, lava tube, Normal Ground | 99.0, 99.8, 82.6, 98.3 % | 60.7, 62.8, 44.8, 99.2 % | |
+| user's: Crater, hills, lava tube, Normal Ground | 99.1, 93.4, **70.7**, 99.8 % | 93.3, 50.7, **2.4**, 80.3 % | |
+| polygons won (own class > 50 %) | 119/124, 16/16, 20/21, 15/22 | 107/124, 14/16, 8/21, 20/22 | |
+
+At 200 m: 98.74 %, κ 0.977. **Verdict by the rule: X5c beats the published SVM map** (both figures above it); the
+prediction (a match, lava tube's user's accuracy < 10 %) was wrong on both counts.
+
+**What the number does and does not show, read from the windows** (three mixed blocks and the busiest one drawn
+beside the Viking colour and the SVM map):
+
+- **It paints terrain provinces, not features.** In the 57-crater block at 75–90°E it calls 93 % of the window
+  Crater, the plains between the craters included, so every crater polygon is right; the validation sheet shows
+  the same, a whole chip called Crater around one labelled crater. In mixed blocks it does separate classes: at
+  −90…−75°E, 15–30°N (8 Crater, 15 lava tube, 8 Normal Ground polygons) lava tube lies along the lava tube
+  polygons, Normal Ground round the plains polygons, Crater on the crater cluster; at −60…−45°E, 15–0°S hills
+  follow the chasma walls and scarps beyond the labelled hills polygons. The held-out labels mark areas that are
+  mostly single-class at 50 km, and a model that sees 51 km of context gets those areas right; the SVM, pixel by
+  pixel, did not. Whether the provinces it draws outside the labels are right is not measured.
+- **Tile seams:** straight-edged rectangular patches at 60–75°E, 30–45°N and in the lava tube block, where
+  neighbouring 256 px tiles were classified from different context. The SVM map shows none (§31.3).
+- **The crater test (§31.3) is inconclusive:** only **4** named IAU craters ≥ 5 km lie wholly in the windows clear
+  of every labelled polygon (U-Net 'Crater' inside 1.00 against ring 0.59; SVM 0.40 against 0.25). A ±60°
+  classification would give hundreds (§31.3: 817).
+- Neighbouring blocks share provinces: a held-out block next to a training block of the same terrain is easier
+  than new terrain. The SVM had the same advantage under the same split.
+
+**So:** under the project's own held-out test the U-Net is the best landform map made so far, by 25 points, and
+the first to make lava tube usable (user's 70.7 % against 2.4 %); it is a map of terrain provinces with tile seams,
+not of individual features, and it exists only in the 14 windows. Not yet in the gdb, the `.aprx` or a layout.
+**Open for the author:** a ±60° U-Net classification (~8 h on the GPU at the windows' rate, ~25 × their area; it
+would also give the crater test its hundreds of craters and a seam count), and whether the U-Net map replaces the
+SVM map as the published one.

@@ -1,0 +1,14 @@
+rare mode: mask = 51 training steep/windy hills + lava tube polygons buffered 55 km; stride 64
+exported in 855 s -> C:\MarsScratch\x5b\export_rare
+images = 1430 *7*256*256
+
+Class feature statistics:
+features = 4872
+features per image = [min = 1, mean = 3.41, max = 15]
+classes = 4
+cls name                                  cls value     images   features    min size   mean size    max size
+Crater                                            1        236        338   187210.83   49394824.30   175913277.15
+steep/windy hills                                 2        792       2597     3930.57   227506357.66   1762078694.01
+lava tube                                         3        638       1702       16.11   303439431.88   2621440000.00
+Normal Ground                                     4         80        235      371.25   172790352.09   1966659461.19
+

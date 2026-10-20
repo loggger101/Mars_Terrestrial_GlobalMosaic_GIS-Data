@@ -51,6 +51,13 @@ Ground 22.7 % and 56.9 % (baseline 20.9 %); hills and lava tube never predicted.
 `DL_Detections_heldout_20261019` and the map "X5 — deep-learning detections (held out)"; **layout 16** (§66.4).
 **2026-10-20, desktop (§66.4):** layout 16 built and read; the interim's deep-learning next step and schedule line
 brought current (no X5 slide added: the author's call); rebuilt, only slide 28 and report page 19 changed.
+**2026-10-20, desktop (§66.5–66.6), at the author's request to improve the detector:** **X5b**, RetinaNet retrained
+with the backbone unfrozen, no early stopping (30 epochs, epoch 16 kept), rare-class chips (`make_global60_dl_export.py
+--rare`) and edge slivers dropped (`make_dl_model.py --prepare`): names hills (25 % recall, 100 % precision) and
+Crater at 100 % precision, but Normal Ground recall fell to 4.5 % and lava tube is over-predicted on craters, so
+**not improved** by its rule. **X5c**, a U-Net pixel classifier (the author's yes, reversing q26 for this model,
+`make_dl_pixels.py`): **98.75 %, κ 0.977 held out** against the published SVM map's 73.8 %, κ 0.583 under the same
+scorer; lava tube user's 70.7 % (SVM 2.4 %); a map of terrain provinces with tile seams, only in the 14 windows.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).
@@ -61,7 +68,7 @@ is the critical path, and only the author can do it (§6).
 |---|---|---|---|---|
 | 1 | **Review the Ius candidates**, then Athabasca | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
-| 3 | **X5, deep learning**: done to layout 16 (§66.1–66.4); whether the interim gets an X5 slide, and whether to try a detector that names the rare classes | author | §5 | held-out recall and precision in the KB beside the SVM's |
+| 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). For the author: a ±60° U-Net classification (~8 h GPU), whether it replaces the SVM map, whether the interim gets a deep-learning slide; any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
 | 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
 | 5 | The interim: due date and the percent-complete column from the author; rebuild after each result | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 
@@ -148,7 +155,7 @@ the cut dates.
 
 | # | job | cost | notes |
 |---|---|---|---|
-| X5 | deep learning on the 2080 Ti (approved, q25) | hours | trained, detected and scored 2026-10-19, RetinaNet, model and detections in `DLModels\global60_retinanet_20261019\` (KB §66.1–66.2); the detections in the gdb, a map and layout 16, `make_dl_map.py` (§66.3–66.4). Commands: `make_dl_model.py --train [--model RETINANET] [--epochs 20]`, `--detect --emd <model.emd>`, `--score <detections>`. Train on `LabeledObjects\global60_svm_stack_200m_train\` only; score on the 183 held-out polygons. Which other detection models take 7-band input is unverified **[?]** |
+| X5 | deep learning on the 2080 Ti (approved, q25) | hours | trained, detected and scored 2026-10-19, RetinaNet, model and detections in `DLModels\global60_retinanet_20261019\` (KB §66.1–66.2); the detections in the gdb, a map and layout 16, `make_dl_map.py` (§66.3–66.4). X5b and X5c 2026-10-20 (§66.5–66.6): `DLModels\global60_retinanet_x5b_20261020\`, `global60_unet_x5c_20261020\`; queues `build\logs\run_x5b.cmd`, `run_x5c.cmd`. Commands: `make_dl_model.py --prepare`, `--train [--tag] [--data a;b] [--epochs 30] [--freeze] [--early-stop]`, `--detect --emd <model.emd> [--threshold]`, `--score <detections> --out <json>`; `make_dl_pixels.py --export`, `--train`, `--classify --emd`, `--score <folder>`, `--score-svm`. Train on `LabeledObjects\global60_svm_stack_200m_train\` only; score on the 183 held-out polygons. Which other detection models take 7-band input is unverified **[?]** |
 | X7 | optional, q12: one source mosaic as a tiled, compressed copy, timed against the original | ~1 h | only if panning stays slow after the pyramids (§53.1) |
 
 Done on the desktop and recorded: X0 junctions, X1 GPU, X2 fine pass, X3 200 m classification, X4
