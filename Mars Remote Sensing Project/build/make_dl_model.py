@@ -12,9 +12,11 @@ libraries, CUDA, the training-split export intact). Training reads ONLY
 LabeledObjects\global60_svm_stack_200m_train\ (329 training polygons, §50.2): the all-labels export holds
 the held-out polygons and would make the score meaningless.
 
-STATUS: --train ran on the desktop 2026-10-19 (RETINANET takes the 7 bands; 25 min, early-stopped; §66.1);
---detect has not run. Whether other detection models accept 7-band input is not verified [?]; --model
-chooses. --score and --score-selftest are tested.
+STATUS: --train ran on the desktop 2026-10-19 (RETINANET takes the 7 bands; 25 min, early-stopped; §66.1).
+--detect runs one window per held-out 15° block, no mask, into C:\MarsScratch\x5\ (--outdir); it and --score
+ran 2026-10-19 (23 min; §66.2).
+Whether other detection models accept 7-band input is not verified [?]; --model chooses. --score and
+--score-selftest are tested.
 
 The score, at polygon level (boxes cannot score per pixel on area classes, §31.4):
   recall per class      share of held-out polygons whose own class's detection boxes cover >= 50 % of them
@@ -57,9 +59,14 @@ def heldout(sr):
 def score(dets, sr, polys=None):
     """dets: [(polygon geometry, class value)] in sr. Returns the polygon-level score."""
     polys = polys if polys is not None else heldout(sr)
+    # extent prefilters (pure speed-ups: a box whose extent misses a polygon's cannot touch it)
+    box = lambda g: (g.extent.XMin, g.extent.YMin, g.extent.XMax, g.extent.YMax)
+    meet = lambda a, b: a[0] <= b[2] and b[0] <= a[2] and a[1] <= b[3] and b[1] <= a[3]
+    dbox = [box(d) for d, c in dets]
+    pbox = [box(g) for g, v in polys]
     rec = {k: [0, 0] for k in NAMES}
-    for g, v in polys:
-        own = [d for d, c in dets if c == v and not d.disjoint(g)]
+    for (g, v), pb in zip(polys, pbox):
+        own = [d for (d, c), db in zip(dets, dbox) if c == v and meet(db, pb) and not d.disjoint(g)]
         cover = 0.0
         if own:
             u = own[0]
@@ -70,7 +77,9 @@ def score(dets, sr, polys=None):
     prec = {k: [0, 0] for k in NAMES}
     for d, c in dets:
         cen = d.centroid
-        hit = next((v for g, v in polys if g.contains(arcpy.PointGeometry(cen, sr))), None)
+        pt = (cen.X, cen.Y, cen.X, cen.Y)
+        hit = next((v for (g, v), pb in zip(polys, pbox) if meet(pt, pb)
+                    and g.contains(arcpy.PointGeometry(cen, sr))), None)
         if hit is None:
             continue
         prec[c][1] += 1; prec[c][0] += hit == c
@@ -119,17 +128,47 @@ def detect():
     ready()
     model = arg("--emd", "")
     assert model.endswith(".emd") and os.path.exists(model), "--emd <trained model .emd>"
+    stamp = time.strftime("%Y%m%d")                         # the start's date, though the run may pass midnight
     arcpy.CheckOutExtension("ImageAnalyst")
-    sr = arcpy.Describe(STACK).spatialReference
-    # only around the held-out polygons: a 25 km buffer as the processing mask
-    mask = os.path.join(arcpy.env.scratchGDB, "heldout_mask")
-    arcpy.analysis.Buffer(TEST, mask, "25 Kilometers", dissolve_option="ALL")
-    arcpy.env.mask = mask
     arcpy.env.processorType = "GPU"
-    out = os.path.join(GDB, "DL_Detections_heldout_%s" % time.strftime("%Y%m%d"))
-    arcpy.ia.DetectObjectsUsingDeepLearning(STACK, out, model, "padding 64;threshold 0.3;batch_size 8",
-                                            "NMS", "Confidence", "Class", 0, "PROCESS_AS_MOSAICKED_IMAGE")
-    print("detections ->", out)
+    arcpy.env.overwriteOutput = True
+    sr = arcpy.Describe(STACK).spatialReference
+    # One window per held-out 15° block (its polygons' extent + 25 km), no mask. A geographic mask (the buffer of
+    # the test class, degrees) made the tool fail with ERROR 000599, outside the geometry domain, however the
+    # output was written; the same buffer projected to the stack's SR stalled for 17 min on one 300 km window
+    # that runs in 147 s without it (2026-10-19, KB §66.2). Each window keeps the boxes that touch its own
+    # polygons' extent, so the windows' 25 km overlaps are not counted twice.
+    blocks = {}
+    with arcpy.da.SearchCursor(TEST, ["SHAPE@"]) as c:          # native geographic: 15° blocks by centroid
+        for (g,) in c:
+            k = (int(g.centroid.X // 15) * 15, int(g.centroid.Y // 15) * 15)
+            e = g.projectAs(sr).extent
+            b = blocks.get(k, (e.XMin, e.YMin, e.XMax, e.YMax))
+            blocks[k] = (min(b[0], e.XMin), min(b[1], e.YMin), max(b[2], e.XMax), max(b[3], e.YMax))
+    outdir = arg("--outdir", r"C:\MarsScratch\x5")      # internal disk first (KB §36.4)
+    os.makedirs(outdir, exist_ok=True)
+    kept = []
+    for i, (k, core) in enumerate(sorted(blocks.items())):
+        part = os.path.join(outdir, "dl_det_block_%+04d_%+03d.shp" % k)
+        if not arcpy.Exists(part):                          # rerunnable: finished windows are kept
+            arcpy.env.extent = "%f %f %f %f" % (core[0] - 25e3, core[1] - 25e3, core[2] + 25e3, core[3] + 25e3)
+            t = time.time()
+            arcpy.ia.DetectObjectsUsingDeepLearning(STACK, part, model, "padding 64;threshold 0.3;batch_size 8",
+                                                    "NMS", "Confidence", "Class", 0, "PROCESS_AS_MOSAICKED_IMAGE")
+            print("block %2d/%d lon %4d lat %4d: %6s boxes in %4.0f s" % (
+                i + 1, len(blocks), k[0], k[1], arcpy.management.GetCount(part)[0], time.time() - t), flush=True)
+        core_poly = arcpy.Extent(*core).polygon
+        with arcpy.da.SearchCursor(part, ["SHAPE@", "Class", "Confidence"]) as c:
+            kept += [r for r in c if not r[0].disjoint(core_poly)]
+    arcpy.env.extent = None
+    out = os.path.join(outdir, "dl_detections_heldout_%s.shp" % stamp)
+    arcpy.management.CreateFeatureclass(outdir, os.path.basename(out), "POLYGON", spatial_reference=sr)
+    arcpy.management.AddField(out, "Class", "TEXT", field_length=32)
+    arcpy.management.AddField(out, "Confidence", "DOUBLE")
+    with arcpy.da.InsertCursor(out, ["SHAPE@", "Class", "Confidence"]) as c:
+        for r in kept:
+            c.insertRow(r)
+    print("detections ->", out, len(kept))
 
 
 def score_layer(fc):

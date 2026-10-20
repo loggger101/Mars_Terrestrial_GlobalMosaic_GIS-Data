@@ -3087,3 +3087,38 @@ crater and plains chips with boxes that do not match the labels' extents: the wh
 that §50 named a limit. These are validation numbers on chips drawn from the training split, **not the held-out
 score**: that needs `--detect --emd <model>` and then `--score`. Which other detection models take 7-band input
 remains unverified **[?]**.
+
+### 66.2 X5 detected and scored on the held-out polygons — 2026-10-19 **[V]**
+
+**Three failed runs first, the cause found by probe.** `--detect` as written (the 25 km buffer of the test class as
+`arcpy.env.mask`) failed three times with *ERROR 000599: Falls outside of output geometry domains* (logs
+`dl_detect_score_run1/2/3_failed_*.log`), writing to the gdb, to the gdb with a widened XY domain on the output SR,
+and to a shapefile. A guess that boxes past the 0°E edge broke the domain was wrong (the nearest held-out polygon
+is 451 km from the edge; a planted box 12.8 km past the edge does fail a default-domain class, but neither the
+`XYDomain` nor the `outputCoordinateSystem` environment reached the tool's own table). **Probes on one 300 km
+window settled it:** no mask, 33 boxes in 147 s; the same window with the geographic buffer as the mask, ERROR 000599
+in 74 s; the buffer projected to the stack's SR, still running after 17 min at ~0 % CPU and I/O (stopped).
+**`detect()` now runs one window per held-out 15° block** (its polygons' extent + 25 km, no mask; 14 blocks,
+~5.0 M km²), keeps each window's boxes that touch its own polygons' extent, and merges them into
+`C:\MarsScratch\x5\dl_detections_heldout_20261019.shp`, copied to
+`Mars Project\DLModels\global60_retinanet_20261019\detections_heldout_20261019\`. 23:10:09 → 23:33:35, **23 min 26 s**
+(66–166 s a block); **2,032 boxes, 1,838 kept** (968 Crater, 870 Normal Ground; confidence 30.0–74.4 against the
+0.3 threshold). **The model never predicts steep/windy hills or lava tube.** `--score` (7 s; its extent prefilters
+leave `--score-selftest` 4/4), `logs\dl_heldout_score.json`:
+
+| class | held-out polygons | recall (≥ 50 % covered by own-class boxes) | in-polygon detections | precision | all-one-class labeller |
+|---|---|---|---|---|---|
+| Crater | 124 | **41.9 %** (52) | 129 | **87.6 %** (113) | 71.1 % |
+| Normal Ground | 22 | **22.7 %** (5) | 72 | **56.9 %** (41) | 20.9 % |
+| steep/windy hills | 16 | 0 | 0 | — | — |
+| lava tube | 21 | 0 | 0 | — | — |
+
+Of the 201 detections centred in a held-out polygon, 143 fall in Crater polygons (71.1 %; Crater is 57.6 % of the
+held-out area, Normal Ground 35.2 %, hills 6.6 %, lava tube 0.6 %). The wrong ones: 30 Normal Ground boxes on Crater
+polygons, 13 Crater boxes on hills, 2 on lava tube, 1 on Normal Ground; 1 Normal Ground box on hills. **Reading:** the
+detector separates the two common classes well above the one-class baselines (Crater +16.5 pt, Normal Ground
++36.0 pt in precision) but finds under half the crater polygons and a fifth of the plains, and nothing of the two
+rare classes. **No prediction or verdict rule was written into the script before it ran** (§51.3 defines the
+metric only, against the §47 practice), so this is a measurement, not a test of a hypothesis; it is polygon-level
+and **not comparable** with the SVM's per-pixel 73.8 %, κ 0.58 (§57). The detections are not yet in
+the gdb or the `.aprx`.

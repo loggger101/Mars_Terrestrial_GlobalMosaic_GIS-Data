@@ -1,0 +1,36 @@
+detect started Mon 10/19/2026 22:34:08.58
+Traceback (most recent call last):
+  File "F:\Mars Remote Sensing Project\build\make_dl_model.py", line 162, in <module>
+    detect()
+    ~~~~~~^^
+  File "F:\Mars Remote Sensing Project\build\make_dl_model.py", line 138, in detect
+    arcpy.ia.DetectObjectsUsingDeepLearning(STACK, out, model, "padding 64;threshold 0.3;batch_size 8",
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                            "NMS", "Confidence", "Class", 0, "PROCESS_AS_MOSAICKED_IMAGE")
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ArcGISPro\Resources\ArcPy\arcpy\__init__.py", line 2782, in wrapped
+    result = fn(*args, **kwargs)
+  File "D:\ArcGISPro\Resources\ArcPy\arcpy\ia\Functions.py", line 4723, in DetectObjectsUsingDeepLearning
+    return Wrapper(
+        in_raster,
+    ...<9 lines>...
+        in_objects_of_interest,
+    )
+  File "D:\ArcGISPro\Resources\ArcPy\arcpy\sa\Utils.py", line 44, in swapper
+    result = wrapper(*args, **kwargs)
+  File "D:\ArcGISPro\Resources\ArcPy\arcpy\ia\Functions.py", line 4708, in Wrapper
+    result = arcpy.gp.DetectObjectsUsingDeepLearning_ia(
+        in_raster,
+    ...<9 lines>...
+        in_objects_of_interest,
+    )
+  File "D:\ArcGISPro\Resources\ArcPy\arcpy\geoprocessing\_base.py", line 541, in <lambda>
+    return lambda *args: val(*gp_fixargs(args, True))
+                         ~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+arcgisscripting.ExecuteError:  [Failed to generate table]
+The coordinates or measures are out of bounds.
+ERROR 000599: Falls outside of output geometry domains.
+ERROR 000599: Falls outside of output geometry domains.
+Failed to execute (DetectObjectsUsingDeepLearning).
+
+FAILED detect exit 1 
