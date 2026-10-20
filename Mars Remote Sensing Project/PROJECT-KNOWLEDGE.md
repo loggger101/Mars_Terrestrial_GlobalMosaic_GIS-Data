@@ -113,6 +113,8 @@ detected."* Not GPU tools: `IsoCluster`, `MLClassify`, `SegmentMeanShift`, `Comp
   ImageAnalyst. Its Python: `C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe` on the
   laptop, `D:\ArcGISPro\bin\Python\envs\arcgispro-py3\python.exe` on the desktop; `paths.arcgis_python()`
   finds it from the registry. **Never `propy.bat`** (it does not quote its own path).
+- **Deep Learning Libraries 3.7.1901: on the desktop only** (installed 2026-10-19, §66; `torch`, `torchvision`,
+  `fastai`, `arcgis.learn`, CUDA on the 2080 Ti). The laptop has none, so X5 runs on the desktop.
 - **Two Pythons, neither does both jobs:**
 
 | | ArcGIS Python | System Python (3.14.6 laptop; `py -3.13` desktop) |
@@ -2461,6 +2463,7 @@ and is not scored.
 Run elevated, the UAC prompt went unanswered; unelevated it ends with **Error 1925** (a per-machine install), before any
 file was written. Open: one approved UAC prompt for `D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi`, or
 Esri's conda route into a cloned environment (no admin; Esri calls that package set uncertified).
+**Closed 2026-10-19:** installed elevated with the author at the screen (§66).
 
 ### 53.6 Layouts 11 and 12, and what reading them found — 2026-10-14 **[V]**
 
@@ -3038,3 +3041,20 @@ On the laptop, ArcGIS Pro closed. Nothing measured; no raster written. The same 
   `build_pres1_le.py`); `make_fig_craters.py`'s first line, which `docs/scripts.md` quotes; `INTERIM-PLAN.md`'s
   layout count. Rebuilt with `make_candidate_maps.py`, `make_reference_maps.py` and `polish_layouts.py` (rehearsed
   on a copy first); all 15 sheets exported, 03 and 07 read, the polished sheets copied into the layout folders.
+
+## 66. The Deep Learning Libraries installed on the desktop; the X5 preflight ready — 2026-10-19 **[V]**
+
+On the desktop, ArcGIS Pro closed, no job running from `arcgispro-py3`. Closes §53.5.
+
+- **Checked first:** `ProDeepLearning.msi` (18,209,792 bytes) still Authenticode **Valid**, signed by Environmental
+  Systems Research Institute, Inc. (§53.3).
+- **Installed** with `msiexec /i ProDeepLearning.msi /passive /norestart /l*v`, elevated; the author answered the
+  UAC prompt. 21:39:08 → 21:45:11, **6 min 6 s**, exit code **0**. The log
+  (`D:\MarsDownloads\dl_libs_37\install_admin.log`, drive D: only): *"Deep Learning Libraries for ArcGIS Pro",
+  version 3.7.1901, "Installation success or error status: 0"*.
+- **`desktop_check.py --gpu`** (`logs\desktop_check_DESKTOP-PJS73RO.json`): the three junctions ok; `torch`,
+  `torchvision`, `fastai`, `arcgis.learn` import; CUDA sees the **RTX 2080 Ti**; the training-split export holds
+  **3,622 chips**, labels from the training split; Slope 23.6 s CPU-only against 12.1 s GPU_THEN_CPU, GPU engaged.
+  **"X5 ready to train: True."** One warning: `fastai` imports the deprecated `pkg_resources` (harmless today;
+  setuptools ≥ 81 drops it).
+- Not done: X5 itself. Which detection models take 7-band input is still unverified **[?]** (`NEXT-STEPS.md` §5).

@@ -43,6 +43,8 @@ deck's crop of 08 predates the recentring (deck left as it is).
 closed depressions with Oudemans / Perrotin) drawn light for the repo with `--light`, wording brought to the
 record; §25.1's flooded share corrected to 21.7 %; layout 07's size classes rounded; 03's legend titled, and
 `polish_layouts.py` now idempotent on every sheet.
+**2026-10-19, desktop (§66):** the Deep Learning Libraries 3.7.1901 installed (the author answered the UAC prompt);
+`desktop_check.py --gpu` says X5 is ready to train on the 2080 Ti. X5 itself has not run.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).
@@ -53,12 +55,11 @@ is the critical path, and only the author can do it (§6).
 |---|---|---|---|---|
 | 1 | **Review the Ius candidates**, then Athabasca | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
-| 3 | **Deep Learning Libraries**: one install as administrator (the author at the screen, for the UAC prompt) | author + agent | `D:\MarsDownloads\dl_libs_37\extracted\ProDeepLearning.msi` (downloaded, CRC and Esri signature checked, KB §53.5); then `desktop_check.py` | the X5 preflight says ready |
-| 4 | **X5, deep learning** | agent, desktop | §5 | held-out recall and precision in the KB beside the SVM's |
-| 5 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
-| 6 | The interim: due date and the percent-complete column from the author; rebuild after each result | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
+| 3 | **X5, deep learning** (the libraries are in, §66) | agent, desktop | §5 | held-out recall and precision in the KB beside the SVM's |
+| 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
+| 5 | The interim: due date and the percent-complete column from the author; rebuild after each result | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 
-**Waiting on the author:** items 1, 3 and 6; whether to delete the two recreated `_60_smoke` classes
+**Waiting on the author:** items 1 and 5; whether to delete the two recreated `_60_smoke` classes
 (KB §57.1); whether to publish a derivatives release carrying the §54 patch (33 GB; the catalogue says how
 to patch a restore instead, §57.4); emptying the Recycle Bins (~21 GB of finished scratch, §57.5).
 
@@ -141,7 +142,7 @@ the cut dates.
 
 | # | job | cost | notes |
 |---|---|---|---|
-| X5 | deep learning on the 2080 Ti (approved, q25) | hours | after the install (Resume here, item 3): `make_dl_model.py --train [--model RETINANET] [--epochs 20]`, `--detect --emd <model.emd>`, `--score <detections fc>`. Train on `LabeledObjects\global60_svm_stack_200m_train\` only; score on the 183 held-out polygons. Never run before; which detection models take 7-band input is unverified **[?]** |
+| X5 | deep learning on the 2080 Ti (approved, q25) | hours | the libraries are installed and the preflight passes (KB §66): `make_dl_model.py --train [--model RETINANET] [--epochs 20]`, `--detect --emd <model.emd>`, `--score <detections fc>`. Train on `LabeledObjects\global60_svm_stack_200m_train\` only; score on the 183 held-out polygons. Never run before; which detection models take 7-band input is unverified **[?]** |
 | X7 | optional, q12: one source mosaic as a tiled, compressed copy, timed against the original | ~1 h | only if panning stays slow after the pyramids (§53.1) |
 
 Done on the desktop and recorded: X0 junctions, X1 GPU, X2 fine pass, X3 200 m classification, X4
@@ -206,7 +207,7 @@ point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE
 
 | window | focus |
 |---|---|
-| **16 Oct – 1 Nov** | Review and digitising (§6); after each session §3. The install and X5 when the author is at the screen. **1 Nov: digitising checkpoint.** |
+| **16 Oct – 1 Nov** | Review and digitising (§6); after each session §3. X5 on the desktop (the install is done, KB §66). **1 Nov: digitising checkpoint.** |
 | **2 Nov** | **Interim data cut.** What is measured goes in; the rest goes to the final. |
 | **2–12 Nov** | The interim per `INTERIM-PLAN.md` §6: rebuild, read every page, `verify_interim.py`, review. Data work pauses except overnight runs. |
 | **~13 Nov** | **Interim due.** |

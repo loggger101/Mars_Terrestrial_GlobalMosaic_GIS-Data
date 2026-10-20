@@ -1,7 +1,7 @@
 {
  "host": "DESKTOP-PJS73RO",
  "drive": "F:\\",
- "when": "2026-10-13 22:14",
+ "when": "2026-10-19 21:46",
  "pro": "3.7",
  "junctions": {
   "TypeArea": true,
@@ -9,15 +9,14 @@
   "Athabasca": true
  },
  "dl_libraries": {
-  "torch": "ModuleNotFoundError: No module named 'torch'",
-  "torchvision": "ModuleNotFoundError: No module named 'torchvision'",
-  "fastai": "ModuleNotFoundError: No module named 'fastai'",
-  "arcgis.learn": "ModuleNotFoundError: No module named 'torchvision'"
+  "torch": "ok",
+  "torchvision": "ok",
+  "fastai": "ok",
+  "arcgis.learn": "ok"
  },
  "cuda": {
-  "available": false,
-  "device": null,
-  "note": "torch not importable"
+  "available": true,
+  "device": "NVIDIA GeForce RTX 2080 Ti"
  },
  "train_export": {
   "exists": true,
@@ -26,26 +25,26 @@
   "chips_found": 3622,
   "intact": true
  },
- "x5_ready": false,
+ "x5_ready": true,
  "x1": {
   "CPU_ONLY": {
-   "seconds": 10.4,
+   "seconds": 23.6,
    "no_gpu_message": false,
    "messages": [
-    "Start Time: Tuesday, October 13, 2026 10:14:48 PM",
-    "Succeeded at Tuesday, October 13, 2026 10:14:55 PM (Elapsed Time: 7.63 seconds)"
+    "Start Time: Monday, October 19, 2026 9:49:38 PM",
+    "Succeeded at Monday, October 19, 2026 9:49:48 PM (Elapsed Time: 9.85 seconds)"
    ]
   },
   "GPU_THEN_CPU": {
-   "seconds": 2.9,
+   "seconds": 12.1,
    "no_gpu_message": false,
    "messages": [
-    "Start Time: Tuesday, October 13, 2026 10:14:56 PM",
+    "Start Time: Monday, October 19, 2026 9:49:48 PM",
     "WARNING 010453: The GPU being used is connected to your display. This may cause the computer to appear unresponsive. The display driver may reboot the GPU if the computation takes too long.",
-    "Succeeded at Tuesday, October 13, 2026 10:14:58 PM (Elapsed Time: 2.77 seconds)"
+    "Succeeded at Monday, October 19, 2026 9:50:00 PM (Elapsed Time: 11.57 seconds)"
    ]
   },
   "gpu_engaged": true,
-  "output_folder": "C:\\Users\\Owner\\AppData\\Local\\Temp\\x1_gpu_mckzxyy6"
+  "output_folder": "C:\\Users\\Owner\\AppData\\Local\\Temp\\x1_gpu_lix7zue_"
  }
 }

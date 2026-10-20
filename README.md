@@ -43,7 +43,7 @@ The interim report and presentation are due **mid-November 2026** and the final 
 The full list, with who does what, is the "Resume here" section of [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); open questions are numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
 
 1. **Review the machine candidates and digitise the three landform layers** (the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. Each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, starting with the 188 steep, rock-floored channel candidates and the 1,685 closed depressions at Ius Chasma; `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins at Athabasca) is drawn by hand. Layout 14 turns each session into the detector's precision and recall.
-2. **Deep learning** on the desktop GPU, once Esri's Deep Learning Libraries are installed: trained on the training split only and scored on the same held-out polygons as the SVM.
+2. **Deep learning** on the desktop GPU (Esri's Deep Learning Libraries are installed and the preflight passes): trained on the training split only and scored on the same held-out polygons as the SVM.
 3. **The retests that wait for the review**: volcanic against fluvial channels by origin (H2, stage 2), and flow margins in IR against Viking on lava margins digitised at Athabasca (H1).
 4. **The interim and the final report and presentation**, from the layouts and the results below.
 
