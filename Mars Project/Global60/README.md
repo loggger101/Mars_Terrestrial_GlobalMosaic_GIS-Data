@@ -64,6 +64,7 @@ is **never resampled** — it is a window read, not a warp.
 | `global60_landforms_svm.ecd` | | the support vector machine, trained on the training split of the hand-drawn labels (§31) |
 | `global60_landforms_svm_200m.tif` | G200 | the landform classification at 200 m; pixel = class code 1–4, 255 none (§55.3) |
 | `global60_landforms_svm_200m_mode3 / 5 / 7 / 9 / 11.tif` | G200 | the same after an n × n majority filter; **`_mode11` (2.2 km) is the published map** (§57) |
+| `global60_landforms_unet_200m.tif` | G200 | the U-Net (X5c) landform map, class codes 1–4, 0 none; held out 98.8 %, κ 0.979, but a province map with 256 px tile seams, not published (KB §66.7) |
 | `global60_landforms_svm_400m.tif`, `_400m_mode3 / 5 / 7 / 9.tif` | 400 m (53,347 × 17,783) | the earlier 400 m classification and its filters; superseded, not redone after the 180° fix (§57.2) |
 | `global60_landforms_svm_<set>.ecd`, `global60_svm_stack_200m_<set>.tif`, `global60_landforms_svm_<set>_<cell>m.tif` | G200 / 400 m | test T1: the model retrained without band groups, `<set>` = `nothermal`, `novisible`, `terrain` (§56) |
 | `global60_depression_density_0p5deg.tif`, `global60_robbins_density_0p5deg.tif` | 0.5° (720 × 240) | closed depressions and Robbins craters ≥ 1 km per 10⁴ km² (layout 11, §53.6) |

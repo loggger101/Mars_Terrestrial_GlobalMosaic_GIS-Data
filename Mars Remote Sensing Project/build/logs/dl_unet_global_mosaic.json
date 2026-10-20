@@ -1,0 +1,18 @@
+{
+ "raster": "C:\\MarsScratch\\x5c\\global\\global60_landforms_unet_200m.tif",
+ "tiles": 243,
+ "pixels_by_value": [
+  100914302,
+  1926362174,
+  31640590,
+  179293893,
+  1556361151
+ ],
+ "class_share": {
+  "Crater": 0.5215,
+  "steep/windy hills": 0.0086,
+  "lava tube": 0.0485,
+  "Normal Ground": 0.4214
+ },
+ "made": "2026-10-20 17:37"
+}

@@ -1,0 +1,127 @@
+{
+ "rat": {
+  "1": "Crater",
+  "2": "steep/windy hills",
+  "3": "lava tube",
+  "4": "Normal Ground"
+ },
+ "share_area_weighted": {
+  "Crater": 0.55,
+  "steep/windy hills": 0.01,
+  "lava tube": 0.048,
+  "Normal Ground": 0.392
+ },
+ "held_out": {
+  "polygons": 183,
+  "accuracy": 0.988,
+  "kappa": 0.979,
+  "one_class_everywhere": 0.586,
+  "producers": {
+   "Crater": 0.992,
+   "steep/windy hills": 0.993,
+   "lava tube": 0.799,
+   "Normal Ground": 0.985
+  },
+  "users": {
+   "Crater": 0.991,
+   "steep/windy hills": 0.945,
+   "lava tube": 0.755,
+   "Normal Ground": 0.999
+  },
+  "polygons_majority_own_class": {
+   "Crater": "119/124",
+   "steep/windy hills": "16/16",
+   "lava tube": "20/21",
+   "Normal Ground": "16/22"
+  },
+  "confusion_area_weighted": [
+   [
+    0.5816,
+    0.0039,
+    0.0003,
+    0.0005
+   ],
+   [
+    0.0005,
+    0.0667,
+    0.0,
+    0.0
+   ],
+   [
+    0.0012,
+    0.0,
+    0.0049,
+    0.0
+   ],
+   [
+    0.0039,
+    0.0,
+    0.0013,
+    0.3353
+   ]
+  ]
+ },
+ "training_set": {
+  "polygons": 329,
+  "accuracy": 0.993,
+  "kappa": 0.986,
+  "one_class_everywhere": 0.642,
+  "producers": {
+   "Crater": 0.992,
+   "steep/windy hills": 1.0,
+   "lava tube": 0.999,
+   "Normal Ground": 0.993
+  },
+  "users": {
+   "Crater": 0.989,
+   "steep/windy hills": 0.964,
+   "lava tube": 0.977,
+   "Normal Ground": 0.997
+  },
+  "polygons_majority_own_class": {
+   "Crater": "167/177",
+   "steep/windy hills": "28/28",
+   "lava tube": "23/23",
+   "Normal Ground": "72/100"
+  },
+  "confusion_area_weighted": [
+   [
+    0.3129,
+    0.0004,
+    0.0001,
+    0.002
+   ],
+   [
+    0.0,
+    0.0212,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0212,
+    0.0
+   ],
+   [
+    0.0035,
+    0.0004,
+    0.0004,
+    0.6379
+   ]
+  ]
+ },
+ "iau_craters": {
+  "n": 817,
+  "crater_inside": 0.912,
+  "crater_ring": 0.824,
+  "pct_inside_gt_ring": 56.8,
+  "px_m": 400
+ },
+ "seam_ratio": {
+  "tile_4096_at_100m": 5.527,
+  "tile_4096_at_200m": 5.746
+ },
+ "elevation_only_reproduces": 0.679,
+ "largest_class_alone": 0.55
+}

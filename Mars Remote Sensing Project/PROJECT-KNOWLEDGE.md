@@ -3333,3 +3333,70 @@ not of individual features, and it exists only in the 14 windows. Not yet in the
 **Open for the author:** a ±60° U-Net classification (~8 h on the GPU at the windows' rate, ~25 × their area; it
 would also give the crater test its hundreds of craters and a seam count), and whether the U-Net map replaces the
 SVM map as the published one.
+
+### 66.7 X5c over all of ±60° — 2026-10-20
+
+**The author's yes, 2026-10-20:** classify all of ±60° with the U-Net and score it as the SVM maps were. **Written
+before the results.**
+
+- `make_dl_pixels.py --classify-global`: **243 tile cores** of 4,096 × 4,096 px on the G200 grid, each classified
+  with a 256 px (51.2 km) margin that `--mosaic` cuts away, so no core edge is a window edge; tiles in
+  `C:\MarsScratch\x5c\global\tiles\`. Two test tiles took 136 s and 83 s; launched 11:50 (`logs\run_x5c_global.cmd`
+  → `logs\dl_x5c_global_DESKTOP-PJS73RO.log`).
+- `--mosaic` → **`Global60\global60_landforms_unet_200m.tif`**: G200, U8, class values 1–4 (0 none), LZW,
+  nearest-neighbour overviews, an attribute table with `Class_name`; class shares in
+  `logs\dl_unet_global_mosaic.json`.
+- **Scored by `verify_global60_classification.py --cell 200 --raster`**, the script behind every SVM figure in §31.3
+  and §57 (held-out and training accuracy, the IAU crater test, elevation bins, its 4,096 px seam ratio), and by
+  `make_dl_pixels.py --seams`, which folds class changes by column and row phase at periods 128, 256 and 4,096 px,
+  run on the U-Net map and on the two SVM maps for comparison (`logs\dl_seams.json`).
+
+**Predictions:** held out, the same as in the windows to within 0.5 points (the windows hold every held-out
+polygon); the crater test's 'Crater' inside minus ring smaller than the published SVM map's (57 − 46 = 11 points,
+§57), since the windows show cratered provinces painted whole; a seam ratio above 1.5 at 128 or 256 px for the
+U-Net and near 1.0 for both SVM maps; elevation bins reproduce more of the U-Net map than of the SVM map's 55 %
+(provinces follow elevation more than pixels do).
+
+**The run:** 11:50 → 17:36, **5 h 46 min** for 243 tiles (63–136 s each, ~85 s typical; GPU), mosaic 17:36, scored
+and seam-checked by 17:43. `Global60\global60_landforms_unet_200m.tif`, **61 MB** (LZW; overviews 31 MB): Crater
+**52.2 %**, Normal Ground **42.1 %**, lava tube **4.85 %**, hills **0.86 %** of the classified pixels; 100.9 M pixels
+(2.7 %) none, where the stack has no data. `verify_global60.py`: **28 pass**, the new product exactly on G200.
+
+**Scored by `verify_global60_classification.py`** (`logs\global60_classification_check_global60_landforms_unet_200m.json`),
+beside the published SVM map's file of §57 (`..._200m_mode11.json`):
+
+| | U-Net ±60° | SVM 200 m, 11 × 11 (published) |
+|---|---|---|
+| **held out** | **98.8 %, κ 0.979** (producer's 99.2, 99.3, 79.9, 98.5 %) | 73.8 %, κ 0.583 |
+| user's: Crater, hills, lava tube, Normal Ground | 99.1, 94.5, **75.5**, 99.9 % | 93.3, 50.7, **2.4**, 80.3 % |
+| training polygons | 99.3 %, κ 0.986 | 86 %, κ 0.74 |
+| area shares (cos-weighted) | Crater 55.0, hills 1.0, lava tube 4.8, Normal Ground 39.2 % | 33.9, 1.9, 9.4, 54.7 % |
+| IAU craters ≥ 5 km, n 817: 'Crater' inside / ring | **91.2 / 82.4 %**, inside > ring 56.8 % | 56.8 / 46.2 %, 62.9 % |
+| elevation bins alone reproduce | **67.9 %** | 55.4 % |
+| seam ratio, 4,096 px tiles | **5.53** (100 m), **5.75** (200 m) | 1.00 |
+
+**`--seams`** (`logs\dl_seams.json`; ratio of the highest phase's class-change rate to the median phase's): U-Net
+**8.58 / 9.20** (columns / rows) at **256 px**, both at phase 255, 4.94 / 5.19 at 128 px; SVM 11 × 11 1.01 / 1.03 and
+unfiltered 1.00 / 1.03. The U-Net's seams are the classification tool's own 256 px tiles (phase 255 = the boundary
+between pixels 255 and 256 of every tile; the 4,096 px ratios inherit them, 4,096 being a multiple of 256). Class
+changes per neighbouring pixel pair: U-Net 0.011, SVM 11 × 11 0.023, unfiltered SVM 0.123.
+
+**Every prediction held:** held out within 0.5 points of the windows' 98.75 %; the crater test's gap 8.8 points
+against the SVM's 10.6; seams 8.6–9.2 at 256 px against ~1.0; elevation bins 67.9 % against 55.4 %.
+
+**A seam probe on one tile** (rows 16,384–20,479, columns 57,344–61,439): padding 64 as run, 256 px ratio **6.97**;
+padding 112, **4.47** in 344 s (4 × the time: ~23 h for ±60°); padding 64 with test-time augmentation, **7.98** in
+147 s. Each changes 6–8 % of the tile's pixels. Larger padding reduces the seams, never removes them.
+
+**Reading:** drawn whole, the map is a coherent province map: the southern highlands Crater, the northern lowlands
+Normal Ground, lava tube on Tharsis and Elysium, hills along Valles Marineris; it is far smoother than the SVM's
+(half its class changes) and gives lava tube half the SVM's area at 31 times its user's accuracy. It is also what
+the windows suggested: 'Crater' covers 82 % of the ground round named craters and 91 % inside, so it marks cratered
+terrain, not craters (the SVM's 57 / 46 % separates them slightly better), and elevation alone reproduces 68 % of
+it. The held-out score measures agreement with hand-drawn areas, which the U-Net matches at province scale. **The
+256 px seams make it unfit to publish as it stands.** Not in the gdb, the `.aprx` or a layout.
+
+**Open for the author:** whether the U-Net map replaces the SVM map as the published one, or stands beside it as
+the province map; a seam remedy first (classify twice on tile grids offset by 128 px and keep, per pixel, the pass
+whose pixel lies farther from its tile edge: ~12 h; or larger padding, ~23 h and seams remaining); a layout. The
+243 tiles (`C:\MarsScratch\x5c\global\tiles\`) are scratch, to the Recycle Bin on the author's word.

@@ -1,0 +1,83 @@
+{
+ "global60_landforms_unet_200m.tif": {
+  "columns_128": {
+   "ratio": 4.936,
+   "at_phase": 127
+  },
+  "rows_128": {
+   "ratio": 5.193,
+   "at_phase": 127
+  },
+  "columns_256": {
+   "ratio": 8.582,
+   "at_phase": 255
+  },
+  "rows_256": {
+   "ratio": 9.2,
+   "at_phase": 255
+  },
+  "columns_4096": {
+   "ratio": 9.03,
+   "at_phase": 1279
+  },
+  "rows_4096": {
+   "ratio": 10.003,
+   "at_phase": 3839
+  },
+  "change_rate": 0.0114
+ },
+ "global60_landforms_svm_200m_mode11.tif": {
+  "columns_128": {
+   "ratio": 1.005,
+   "at_phase": 30
+  },
+  "rows_128": {
+   "ratio": 1.018,
+   "at_phase": 106
+  },
+  "columns_256": {
+   "ratio": 1.009,
+   "at_phase": 144
+  },
+  "rows_256": {
+   "ratio": 1.031,
+   "at_phase": 234
+  },
+  "columns_4096": {
+   "ratio": 1.072,
+   "at_phase": 3016
+  },
+  "rows_4096": {
+   "ratio": 1.429,
+   "at_phase": 2794
+  },
+  "change_rate": 0.0229
+ },
+ "global60_landforms_svm_200m.tif": {
+  "columns_128": {
+   "ratio": 1.002,
+   "at_phase": 50
+  },
+  "rows_128": {
+   "ratio": 1.015,
+   "at_phase": 3
+  },
+  "columns_256": {
+   "ratio": 1.004,
+   "at_phase": 199
+  },
+  "rows_256": {
+   "ratio": 1.029,
+   "at_phase": 3
+  },
+  "columns_4096": {
+   "ratio": 1.057,
+   "at_phase": 3005
+  },
+  "rows_4096": {
+   "ratio": 1.42,
+   "at_phase": 3
+  },
+  "change_rate": 0.1225
+ }
+}

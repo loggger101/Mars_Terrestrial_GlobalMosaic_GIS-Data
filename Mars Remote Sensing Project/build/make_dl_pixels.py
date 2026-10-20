@@ -8,6 +8,16 @@ beside the box detector, which reverses the "boxes only" of q26 (§50) for this 
     python make_dl_pixels.py --classify --emd <model .emd>   one raster per held-out 15° window (as X5's)
     python make_dl_pixels.py --score <folder of window rasters> [--out <json>]
     python make_dl_pixels.py --score-svm       the same scorer on the published SVM map's windows (the baseline)
+    python make_dl_pixels.py --classify-global --emd <model .emd> [--tiles N]
+                                               all of ±60° in 4,096 px tiles, each read with a 256 px margin
+    python make_dl_pixels.py --mosaic          the tiles' cores into Global60\global60_landforms_unet_200m.tif
+    python make_dl_pixels.py --seams <raster> [<raster> ...]
+                                               class changes by column and row phase, for periodic tile seams
+
+The ±60° map (the author's yes, 2026-10-20, KB §66.7): tile cores 4,096 x 4,096 px on the G200 grid, each classified
+with a 256 px (51.2 km) margin that is then cut away, so no core edge is a window edge. Written on internal disk
+(C:\MarsScratch\x5c\global), mosaicked there, then copied to Global60. It is scored by
+verify_global60_classification.py --cell 200 --raster <it>, the script behind every SVM figure in §31.3 and §57.
 
 Labels: Landform_TrainingSamples_terrain_60_train only; unlabelled ground is value 0 in the tiles and is ignored
 by the loss (ignore_classes [0]), so the model is never taught that unlabelled ground is a class. class_balancing
@@ -285,8 +295,138 @@ def score_svm():
     print("->", out)
 
 
+CORE, MARGIN = 4096, 256
+GLOBAL = os.path.join(WORK, "global")
+UNET_MAP = "global60_landforms_unet_200m.tif"
+
+
+def tiles():
+    """[(row0, col0, nrows, ncols)] cores on the G200 grid, row-major."""
+    return [(r, c, min(CORE, G.G200.ny - r), min(CORE, G.G200.nx - c))
+            for r in range(0, G.G200.ny, CORE) for c in range(0, G.G200.nx, CORE)]
+
+
+def classify_global():
+    ready()
+    emd = arg("--emd", "")
+    assert emd.endswith(".emd") and os.path.exists(emd), "--emd <trained model .emd>"
+    outdir = os.path.join(GLOBAL, "tiles")
+    os.makedirs(outdir, exist_ok=True)
+    arcpy.CheckOutExtension("ImageAnalyst")
+    arcpy.env.processorType = "GPU"
+    arcpy.env.overwriteOutput = True
+    arcpy.env.snapRaster = STACK
+    arcpy.env.cellSize = STACK
+    T = tiles()[:arg("--tiles", 10 ** 6)]
+    t0 = time.time(); done = 0
+    for i, (r, c, nr, nc) in enumerate(T):
+        part = os.path.join(outdir, "t_r%05d_c%06d.tif" % (r, c))
+        if os.path.exists(part):                                 # rerunnable: finished tiles are kept
+            continue
+        x0 = G.G200.ox + (c - MARGIN) * 200.0; x1 = G.G200.ox + (c + nc + MARGIN) * 200.0
+        y1 = G.G200.oy - (r - MARGIN) * 200.0; y0 = G.G200.oy - (r + nr + MARGIN) * 200.0
+        arcpy.env.extent = arcpy.Extent(x0, y0, x1, y1)
+        t = time.time()
+        res = arcpy.ia.ClassifyPixelsUsingDeepLearning(STACK, emd, "padding 64;batch_size 8;predict_background False",
+                                                       "PROCESS_AS_MOSAICKED_IMAGE")
+        res.save(part)
+        done += 1
+        left = sum(1 for (a, b, _, _) in T[i + 1:]
+                   if not os.path.exists(os.path.join(outdir, "t_r%05d_c%06d.tif" % (a, b))))
+        el = time.time() - t0
+        print("tile %3d/%d row %5d col %6d: %4.0f s; %d to go, ~%.1f h" % (
+            i + 1, len(T), r, c, time.time() - t, left, el / done * left / 3600), flush=True)
+    arcpy.env.extent = None
+    print("classified ->", outdir)
+
+
+def mosaic():
+    outdir = os.path.join(GLOBAL, "tiles")
+    out = os.path.join(GLOBAL, UNET_MAP)
+    T = tiles()
+    missing = [t for t in T if not os.path.exists(os.path.join(outdir, "t_r%05d_c%06d.tif" % t[:2]))]
+    assert not missing, "%d tiles missing, first %s" % (len(missing), missing[0])
+    sr = arcpy.Describe(STACK).spatialReference
+    drv = gdal.GetDriverByName("GTiff")
+    ds = drv.Create(out, G.G200.nx, G.G200.ny, 1, gdal.GDT_Byte,
+                    ["TILED=YES", "COMPRESS=LZW", "BIGTIFF=YES", "BLOCKXSIZE=512", "BLOCKYSIZE=512"])
+    ds.SetGeoTransform((G.G200.ox, 200.0, 0, G.G200.oy, 0, -200.0))
+    ds.SetProjection(gdal.Open(STACK).GetProjection())
+    b = ds.GetRasterBand(1)
+    b.SetNoDataValue(0)
+    count = np.zeros(5, np.int64)
+    for r, c, nr, nc in T:
+        p = os.path.join(outdir, "t_r%05d_c%06d.tif" % (r, c))
+        lut = lut_of(p)                                          # pixel -> 0..3 by class name; 255 none
+        t = gdal.Open(p)
+        gt = t.GetGeoTransform()
+        c0 = int(round((gt[0] - G.G200.ox) / 200.0)); r0 = int(round((G.G200.oy - gt[3]) / 200.0))
+        a = t.GetRasterBand(1).ReadAsArray(c - c0, r - r0, nc, nr)   # the core only
+        v = lut[a.astype(np.int64).clip(0, 255)]
+        v = np.where(v == 255, 0, v + 1).astype(np.uint8)        # class values 1-4, 0 none
+        count += np.bincount(v.ravel(), minlength=5)
+        b.WriteArray(v, c, r)
+    b.FlushCache()
+    ds.BuildOverviews("NEAREST", [2, 4, 8, 16, 32, 64])
+    ds = None
+    arcpy.management.CalculateStatistics(out)
+    arcpy.management.BuildRasterAttributeTable(out, "Overwrite")
+    arcpy.management.AddField(out, "Class_name", "TEXT", field_length=32)
+    with arcpy.da.UpdateCursor(out, ["Value", "Class_name"]) as cur:
+        for row in cur:
+            cur.updateRow([row[0], NAMES[int(row[0]) - 1]])
+    share = {NAMES[i]: round(float(count[i + 1] / count[1:].sum()), 4) for i in range(4)}
+    json.dump(dict(raster=out, tiles=len(T), pixels_by_value=count.tolist(), class_share=share,
+                   made=time.strftime("%Y-%m-%d %H:%M")),
+              open(os.path.join(HERE, "logs", "dl_unet_global_mosaic.json"), "w"), indent=1)
+    print("mosaic ->", out, share, "none", int(count[0]))
+    final = os.path.join(G.OUTDIR, UNET_MAP)
+    assert not os.path.exists(final), "REFUSING: %s exists" % final
+    for f in os.listdir(GLOBAL):
+        if f.startswith(UNET_MAP):
+            shutil.copy2(os.path.join(GLOBAL, f), G.OUTDIR)
+    print("copied ->", final)
+
+
+def seams(paths):
+    """Class changes between neighbouring pixels, folded by column (and row) index modulo each period P; a tile seam
+    of period P puts one phase far above the rest. Ratio = the highest phase's rate over the median phase's."""
+    out = {}
+    for p in paths:
+        ds = gdal.Open(p); b = ds.GetRasterBand(1)
+        nx, ny = ds.RasterXSize, ds.RasterYSize
+        cch = np.zeros(nx - 1); cn = np.zeros(nx - 1); rch = np.zeros(ny - 1); rn = np.zeros(ny - 1)
+        prev = None
+        for y in range(0, ny, 1024):
+            a = b.ReadAsArray(0, y, nx, min(1024, ny - y))
+            if prev is not None:                                 # the row pair across the strip edge
+                a = np.vstack([prev, a]); y -= 1
+            v = (a != 0) & (a != 255)                            # 0 none here, 255 none in the SVM maps
+            ok = v[:, 1:] & v[:, :-1]
+            cch += ((a[:, 1:] != a[:, :-1]) & ok).sum(0); cn += ok.sum(0)
+            okr = v[1:] & v[:-1]
+            rch[y:y + a.shape[0] - 1] += ((a[1:] != a[:-1]) & okr).sum(1); rn[y:y + a.shape[0] - 1] += okr.sum(1)
+            prev = a[-1:]
+        res = {}
+        for P in (128, 256, 4096):
+            for name, ch, n in (("columns", cch, cn), ("rows", rch, rn)):
+                ph = np.array([ch[k::P].sum() / max(n[k::P].sum(), 1) for k in range(P)])
+                res["%s_%d" % (name, P)] = dict(ratio=round(float(ph.max() / np.median(ph)), 3),
+                                                 at_phase=int(ph.argmax()))
+        res["change_rate"] = round(float(cch.sum() / cn.sum()), 4)
+        out[os.path.basename(p)] = res
+        print(os.path.basename(p), json.dumps(res), flush=True)
+    json.dump(out, open(os.path.join(HERE, "logs", "dl_seams.json"), "w"), indent=1)
+
+
 if __name__ == "__main__":
-    if "--export" in sys.argv:
+    if "--classify-global" in sys.argv:
+        classify_global()
+    elif "--mosaic" in sys.argv:
+        mosaic()
+    elif "--seams" in sys.argv:
+        seams(sys.argv[sys.argv.index("--seams") + 1:])
+    elif "--export" in sys.argv:
         export()
     elif "--train" in sys.argv:
         train()
