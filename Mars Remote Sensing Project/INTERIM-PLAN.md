@@ -83,7 +83,7 @@ Percent Complete · Preliminary Results (if available) · Project Issues and Hur
 | 10 | Visible + IR composite | done: type areas; the 7-band ±60° stack | §18, §31.2 |
 | 11 | Landform digitising | classes ready and **empty**; candidates reviewable; validation sheet ready; 512 training polygons drawn | §29.2, §46, §49 |
 | 12 | Crater inventory | 465,354 closed depressions ≥ 1 km at ±60°, 15.3 % catalogued at ≥ 1 km, 62.2 % at ≥ 5 km; the Robbins catalogue (385,049) | §41, §53.4, §54.4 |
-| 13 | Map layouts | 16 layouts, from none, with graticules (the deck still shows 14, §63, §66.4) | §44, §49, §53.6, §63, §66.4 |
+| 13 | Map layouts | 17 layouts, from none, with graticules (the deck still shows 14, §63, §66.4, §66.9) | §44, §49, §53.6, §63, §66.4, §66.9 |
 | 14 | Report and presentations | Presentation 1 and the prospectus delivered; the interim deck and report are living builds | §1, §45, §57.3 |
 
 ## 4. The results the interim shows, each with its layout or figure

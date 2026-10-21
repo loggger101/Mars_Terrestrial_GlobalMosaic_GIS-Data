@@ -416,9 +416,14 @@ def mosaic():
     arcpy.management.CalculateStatistics(out)
     arcpy.management.BuildRasterAttributeTable(out, "Overwrite")
     arcpy.management.AddField(out, "Class_name", "TEXT", field_length=32)
-    with arcpy.da.UpdateCursor(out, ["Value", "Class_name"]) as cur:
+    for f in ("Classvalue", "Red", "Green", "Blue"):           # as the SVM maps carry them (KB §66.9)
+        arcpy.management.AddField(out, f, "LONG")
+    colours = {"Crater": (255, 0, 0), "steep/windy hills": (28, 119, 85), "lava tube": (158, 25, 147),
+               "Normal Ground": (81, 51, 13)}
+    with arcpy.da.UpdateCursor(out, ["Value", "Class_name", "Classvalue", "Red", "Green", "Blue"]) as cur:
         for row in cur:
-            cur.updateRow([row[0], NAMES[int(row[0]) - 1]])
+            n = NAMES[int(row[0]) - 1]
+            cur.updateRow([row[0], n, row[0]] + list(colours[n]))
     share = {NAMES[i]: round(float(count[i + 1] / count[1:].sum()), 4) for i in range(4)}
     rec = dict(raster=out, tiles=len(T), pixels_by_value=count.tolist(), class_share=share,
                made=time.strftime("%Y-%m-%d %H:%M"))

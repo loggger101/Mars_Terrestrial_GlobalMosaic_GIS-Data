@@ -228,10 +228,10 @@ stack script's 100 m grid snapped to the day mosaic (§18.1).
 
 ## 5. Project structure
 
-`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-19 (§63, §66.3) **[V]**: **31 maps, all in
-Mars coordinate systems, and 16 layouts** (16 since §66.4); 0 broken data sources, none reading through a junction (145
+`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-21 (§63, §66.9) **[V]**: **32 maps, all in
+Mars coordinate systems, and 17 layouts** (17 since §66.9); 0 broken data sources, none reading through a junction (145
 non-group layers on 2026-10-18, §58.1; layout 15 added four maps and 13 layers; X5's map one map and 6 layers,
-§66.3); 7 hosted services (Esri OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
+§66.3; X5c's one map and 9 layers, §66.9); 7 hosted services (Esri OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
 `defaultGeodatabase` = `<drive>\Mars Project\Mars Project.gdb`; `homeFolder` = `<drive>\Mars Project`. The
 `.aprx` stores relative paths, so it opens from either drive letter.
 
@@ -249,11 +249,12 @@ non-group layers on 2026-10-18, §58.1; layout 15 added four maps and 13 layers;
 | `14_validation` | the review's precision and recall | `make_validation_sheet.py` (§49) |
 | `15_athabasca_type_area` | Athabasca Valles: visible, night IR, day IR, topography, with unit `lAv` | `make_athabasca_layout.py` (§63) |
 | `16_x5_detections` | X5, the deep-learning detector, scored per held-out polygon | `make_dl_map.py` (§66.4) |
+| `17_x5c_unet_provinces` | X5c, the U-Net terrain-province map, beside the published SVM map | `make_unet_map.py` (§66.9) |
 
 The ±60° sheets (04, 05, 07, 08, 10–13, 16) draw in geographic `GCS_Mars_2000`, so 0°E is at the centre (08 since §64);
 the type-area sheets (01–03, 06, 09, 14, 15) draw in `Mars_Equidistant_Cylindrical_CM180`, and their footers name it. **[V]**
 
-Polished exports are in `Mars Project\TypeArea\layouts\` (01–03) and `Mars Project\Global60\layouts\` (04–16);
+Polished exports are in `Mars Project\TypeArea\layouts\` (01–03) and `Mars Project\Global60\layouts\` (04–17);
 the builders' own PNGs are written before `polish_layouts.py` runs, so copy the polished export over them.
 
 - **Map names are not unique**: two maps are named `Mars` (one `Mars_2000_(Sphere)`, one
@@ -269,7 +270,7 @@ the builders' own PNGs are written before `polish_layouts.py` runs, so copy the 
 `Mars Project.gdb`, read with `arcpy` on 2026-10-18 (§58.2); X5's detections added 2026-10-19 (§66.3). All of §6
 is **[V]**.
 
-### Feature classes — 29 present
+### Feature classes — 30 present
 
 | Dataset | Geometry | Rows | Made by |
 |---|---|---|---|
@@ -290,6 +291,7 @@ is **[V]**.
 | `Landform_TrainingSamples_terrain` | Polygon | 512 | **the hand-drawn labels** (§29.2); never overwrite |
 | `Landform_TrainingSamples_terrain_60_train`, `_60_test` | Polygon | 329, 183 | the labels clipped to ±60° and split by 15° blocks (§31.3) |
 | `DL_Detections_heldout_20261019` | Polygon | 1,838 | X5's RetinaNet boxes around the held-out labels (§66.2); stack SR, XY domain widened 400 km (§66.3) |
+| `DL_UNet_Heldout_Scores_20261020` | Polygon | 183 | the held-out labels with each one's own-class share and majority class under the U-Net (two passes) and the published SVM map, at 400 m (§66.9) |
 | `TrainingSamples_202609290009589587982` | Polygon | 455 | manual (GUI), 29 Sep (§29.2) |
 | `Analysis_Extent_60` | Polygon | 1 | the ±60° clip shape (§31) |
 | `Check_Tiles_4096px_60` | Polygon | 954 | the §30.2 tile grid (§31.1) |
@@ -3453,3 +3455,37 @@ nothing else that the record measures: the map remains a terrain-province map (�
 made it unfit to publish. **Open for the author:** whether it replaces the SVM map as the published one or stands
 beside it; a layout, and its place in the gdb and the `.aprx`; the scratch tiles (`C:\MarsScratch\x5c\global\tiles\`,
 `tiles_b\`) to the Recycle Bin on the author's word.
+
+### 66.9 The U-Net map in the project beside the published SVM map; layout 17 — 2026-10-21 **[V]**
+
+**The author's decision, 2026-10-21:** the SVM map (11 × 11, §57) stays the published landform map; the two-pass
+U-Net map (§66.8) goes into the project beside it as the terrain-province map, with a layout of its own.
+`build\make_unet_map.py` (Pro closed; `.aprx` backed up to `.backups\Mars Project 20261021-170556.aprx`; rehearsed
+twice on a copy beside the `.aprx`, the copy then moved off the drive):
+
+- **The two U-Net rasters' attribute tables** gained `Classvalue`, `Red`, `Green`, `Blue`, as the SVM maps carry
+  them, so Pro draws them in the class colours; `make_dl_pixels.py --mosaic` now writes them itself.
+- **`DL_UNet_Heldout_Scores_20261020`**, 183 polygons: the held-out labels, each with its own-class share and majority
+  class under the U-Net and under the published SVM map, scored at 400 m with `svmcheck.training_score` on each 15°
+  block's window. **Checked:** summed area-weighted, they give **0.9893** and **0.7383**, the two maps' held-out
+  accuracies (§66.8, §57), and the script stops if they differ by 0.002; polygons whose own class holds more than
+  half: **U-Net 173, SVM 149**, the per-class counts of §66.8 (120 + 16 + 20 + 17) and of §66.7's SVM column
+  (107 + 14 + 8 + 20); no polygon lacks a score under either map. The raster itself stays in `Global60\`, as every
+  ±60° product does; the gdb holds the records.
+- **Map "X5c — U-Net terrain provinces (±60°)"**, 9 layers, top to bottom: the 30° graticule, the held-out labels
+  outlined in their class colours over a white halo, the training labels (off), the ±60° extent, the two-pass map at
+  30 % transparency, the one-pass map (off), the published SVM map (off), the hillshade.
+- **Layout `17_x5c_unet_provinces`**: frame A, the map over ±60° with the area shares (Crater 55 %, Normal Ground
+  39 %, lava tube 4.7 %, hills 1.0 %); frame B, the held-out block with the most classes (3; 31 polygons;
+  270–285°E, 15–30°N); the two maps under the same scorer (held out, polygons won, user's accuracy per class, the
+  IAU crater test, elevation bins, seams), every figure read from the logs at run time and kept in
+  `logs\dl_unet_sheet.json`; what it is (terrain provinces; lava tube usable) and is not (single features); the
+  SVM map named as the published one. **Reading the rehearsal found** the subtitle running past the margin
+  (shortened), the held-out outlines invisible where the map agrees with them, a class colour on the same colour
+  (a white halo layer added under them), and the grey no-data streaks unexplained (a note added). Thin polygons
+  still show only their outline at the frame's scale; at full resolution (rendered separately) the 15 lava tube
+  polygons of frame B's block lie inside or along a lava tube province covering 38 % of their window, all 15 own
+  class 1.00 in the records.
+- **Built on the real `.aprx`**: `polish_layouts.py` changed nothing on 01–16 and gave 17 Arial and 11 pt legend
+  headings; the polished export is pixel-identical to the rehearsal's that was read, copied into
+  `Global60\layouts\`. `arcpy.mp`: **32 maps, 17 layouts**, 0 broken data sources. 30 feature classes.

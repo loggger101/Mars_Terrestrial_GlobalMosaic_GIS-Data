@@ -1,0 +1,353 @@
+{
+ "when": "2026-10-21 17:07",
+ "unet": {
+  "rat": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "share_area_weighted": {
+   "Crater": 0.551,
+   "steep/windy hills": 0.01,
+   "lava tube": 0.047,
+   "Normal Ground": 0.393
+  },
+  "held_out": {
+   "polygons": 183,
+   "accuracy": 0.989,
+   "kappa": 0.98,
+   "one_class_everywhere": 0.586,
+   "producers": {
+    "Crater": 0.993,
+    "steep/windy hills": 0.994,
+    "lava tube": 0.824,
+    "Normal Ground": 0.985
+   },
+   "users": {
+    "Crater": 0.991,
+    "steep/windy hills": 0.951,
+    "lava tube": 0.771,
+    "Normal Ground": 0.999
+   },
+   "polygons_majority_own_class": {
+    "Crater": "120/124",
+    "steep/windy hills": "16/16",
+    "lava tube": "20/21",
+    "Normal Ground": "17/22"
+   },
+   "confusion_area_weighted": [
+    [
+     0.5821,
+     0.0035,
+     0.0002,
+     0.0004
+    ],
+    [
+     0.0004,
+     0.0668,
+     0.0,
+     0.0
+    ],
+    [
+     0.0011,
+     0.0,
+     0.005,
+     0.0
+    ],
+    [
+     0.0039,
+     0.0,
+     0.0012,
+     0.3354
+    ]
+   ]
+  },
+  "training_set": {
+   "polygons": 329,
+   "accuracy": 0.993,
+   "kappa": 0.987,
+   "one_class_everywhere": 0.642,
+   "producers": {
+    "Crater": 0.992,
+    "steep/windy hills": 1.0,
+    "lava tube": 0.999,
+    "Normal Ground": 0.994
+   },
+   "users": {
+    "Crater": 0.989,
+    "steep/windy hills": 0.966,
+    "lava tube": 0.979,
+    "Normal Ground": 0.997
+   },
+   "polygons_majority_own_class": {
+    "Crater": "166/177",
+    "steep/windy hills": "28/28",
+    "lava tube": "23/23",
+    "Normal Ground": "76/100"
+   },
+   "confusion_area_weighted": [
+    [
+     0.313,
+     0.0004,
+     0.0001,
+     0.0019
+    ],
+    [
+     0.0,
+     0.0212,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     0.0212,
+     0.0
+    ],
+    [
+     0.0034,
+     0.0003,
+     0.0003,
+     0.6381
+    ]
+   ]
+  },
+  "iau_craters": {
+   "n": 817,
+   "crater_inside": 0.913,
+   "crater_ring": 0.826,
+   "pct_inside_gt_ring": 55.8,
+   "px_m": 400
+  },
+  "seam_ratio": {
+   "tile_4096_at_100m": 1.137,
+   "tile_4096_at_200m": 1.178
+  },
+  "elevation_only_reproduces": 0.68,
+  "largest_class_alone": 0.551
+ },
+ "svm": {
+  "rat": {
+   "1": "Crater",
+   "2": "steep/windy hills",
+   "3": "lava tube",
+   "4": "Normal Ground"
+  },
+  "share_area_weighted": {
+   "Crater": 0.339,
+   "steep/windy hills": 0.019,
+   "lava tube": 0.094,
+   "Normal Ground": 0.547
+  },
+  "held_out": {
+   "polygons": 183,
+   "accuracy": 0.738,
+   "kappa": 0.583,
+   "one_class_everywhere": 0.586,
+   "producers": {
+    "Crater": 0.607,
+    "steep/windy hills": 0.627,
+    "lava tube": 0.446,
+    "Normal Ground": 0.992
+   },
+   "users": {
+    "Crater": 0.933,
+    "steep/windy hills": 0.507,
+    "lava tube": 0.024,
+    "Normal Ground": 0.803
+   },
+   "polygons_majority_own_class": {
+    "Crater": "107/124",
+    "steep/windy hills": "14/16",
+    "lava tube": "8/21",
+    "Normal Ground": "20/22"
+   },
+   "confusion_area_weighted": [
+    [
+     0.3556,
+     0.0406,
+     0.1085,
+     0.0814
+    ],
+    [
+     0.0224,
+     0.0422,
+     0.002,
+     0.0007
+    ],
+    [
+     0.0025,
+     0.0003,
+     0.0027,
+     0.0006
+    ],
+    [
+     0.0008,
+     0.0,
+     0.0019,
+     0.3378
+    ]
+   ]
+  },
+  "training_set": {
+   "polygons": 329,
+   "accuracy": 0.865,
+   "kappa": 0.736,
+   "one_class_everywhere": 0.642,
+   "producers": {
+    "Crater": 0.691,
+    "steep/windy hills": 0.908,
+    "lava tube": 0.883,
+    "Normal Ground": 0.948
+   },
+   "users": {
+    "Crater": 0.904,
+    "steep/windy hills": 0.504,
+    "lava tube": 0.228,
+    "Normal Ground": 0.954
+   },
+   "polygons_majority_own_class": {
+    "Crater": "137/177",
+    "steep/windy hills": "27/28",
+    "lava tube": "8/23",
+    "Normal Ground": "98/100"
+   },
+   "confusion_area_weighted": [
+    [
+     0.2181,
+     0.0185,
+     0.0508,
+     0.028
+    ],
+    [
+     0.0011,
+     0.0192,
+     0.0008,
+     0.0
+    ],
+    [
+     0.0009,
+     0.0002,
+     0.0187,
+     0.0014
+    ],
+    [
+     0.0213,
+     0.0002,
+     0.0118,
+     0.6088
+    ]
+   ]
+  },
+  "iau_craters": {
+   "n": 817,
+   "crater_inside": 0.568,
+   "crater_ring": 0.462,
+   "pct_inside_gt_ring": 62.9,
+   "px_m": 400
+  },
+  "seam_ratio": {
+   "tile_4096_at_100m": 0.998,
+   "tile_4096_at_200m": 1.005
+  },
+  "elevation_only_reproduces": 0.554,
+  "largest_class_alone": 0.547
+ },
+ "seams_256": {
+  "unet": {
+   "columns_128": {
+    "ratio": 1.19,
+    "at_phase": 127
+   },
+   "rows_128": {
+    "ratio": 1.176,
+    "at_phase": 3
+   },
+   "columns_256": {
+    "ratio": 1.221,
+    "at_phase": 255
+   },
+   "rows_256": {
+    "ratio": 1.201,
+    "at_phase": 255
+   },
+   "columns_4096": {
+    "ratio": 1.326,
+    "at_phase": 3839
+   },
+   "rows_4096": {
+    "ratio": 2.056,
+    "at_phase": 2795
+   },
+   "change_rate": 0.0114
+  },
+  "svm": {
+   "columns_128": {
+    "ratio": 1.005,
+    "at_phase": 30
+   },
+   "rows_128": {
+    "ratio": 1.018,
+    "at_phase": 106
+   },
+   "columns_256": {
+    "ratio": 1.009,
+    "at_phase": 144
+   },
+   "rows_256": {
+    "ratio": 1.031,
+    "at_phase": 234
+   },
+   "columns_4096": {
+    "ratio": 1.072,
+    "at_phase": 3016
+   },
+   "rows_4096": {
+    "ratio": 1.429,
+    "at_phase": 2794
+   },
+   "change_rate": 0.0229
+  }
+ },
+ "mosaic": {
+  "raster": "C:\\MarsScratch\\x5c\\global\\global60_landforms_unet_200m_seamfix.tif",
+  "tiles": 243,
+  "pixels_by_value": [
+   100914302,
+   1928689530,
+   30957571,
+   175001613,
+   1559009094
+  ],
+  "class_share": {
+   "Crater": 0.5222,
+   "steep/windy hills": 0.0084,
+   "lava tube": 0.0474,
+   "Normal Ground": 0.4221
+  },
+  "made": "2026-10-21 03:22",
+  "share_from_pass_b": 0.4935,
+  "share_a_b_disagree": 0.0273
+ },
+ "won": {
+  "unet": 173,
+  "svm": 149
+ },
+ "zoom_block": {
+  "lon": -90,
+  "lat": 15,
+  "classes": [
+   "Crater",
+   "Normal Ground",
+   "lava tube"
+  ],
+  "polygons": 31,
+  "extent_deg": [
+   -89.99556431306826,
+   18.38182608670303,
+   -75.91472283404914,
+   27.212573525209564
+  ]
+ }
+}

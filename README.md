@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 390 GB with all derived rasters). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 152, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 153, by purpose) · [backup and restore](docs/backup.md)
 
 [![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 *The published landform map: four classes over ±60°, scored on hand-drawn polygons the classifier never saw (layout 04).*
@@ -35,16 +35,16 @@ The interim report and presentation are due **mid-November 2026** and the final 
 | Unsupervised classification | done for the type area (Iso Cluster, object-based segmentation, [parameter sweep](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_segmentation_sweep.png)) |
 | Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks; **published as the 200 m map with an 11 × 11 (2.2 km) majority filter, 73.8%, κ 0.58** |
 | Channel and crater candidates | done at ±60°: 465,354 closed depressions ≥ 1 km and 969,822 channel segments, checked against the Robbins catalogue; in both type areas; 5,144 basins ≥ 20 km |
-| Deep learning | done on the held-out blocks: a RetinaNet detector (layout 16) and its retrain, scored per held-out polygon; a U-Net pixel classifier over ±60°, **98.9%, κ 0.980 held out** against the SVM map's 73.8% under the same scorer: a terrain-province map, its tile seams removed by a second, offset pass; not yet published |
+| Deep learning | done on the held-out blocks: a RetinaNet detector (layout 16) and its retrain, scored per held-out polygon; a U-Net pixel classifier over ±60°, **98.9%, κ 0.980 held out** against the SVM map's 73.8% under the same scorer: a terrain-province map, its tile seams removed by a second, offset pass, shown beside the published SVM map (layout 17) |
 | Landform digitising | **open, the critical path** |
-| Map layouts | sixteen, below |
+| Map layouts | seventeen, below |
 
 ### Next steps
 
 The full list, with who does what, is the "Resume here" section of [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); open questions are numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
 
 1. **Review the machine candidates and digitise the three landform layers** (the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. Each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, starting with the 188 steep, rock-floored channel candidates and the 1,685 closed depressions at Ius Chasma; `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins at Athabasca) is drawn by hand. Layout 14 turns each session into the detector's precision and recall.
-2. **Deep learning** on the desktop GPU: a RetinaNet model trained on the training split's 7-band chips and scored per held-out polygon (KB §66.1–66.2): Crater recall 41.9 %, precision 87.6 % against a 71.1 % one-class baseline; it never predicts the two rare classes. Its detections are in the geodatabase, on a map in the project and on layout 16; a retrain (X5b: backbone unfrozen, no early stopping, rare-class chips) names the hills but loses the plains (KB §66.5). A U-Net pixel classifier on the same split (X5c, KB §66.6) scores **98.75 %, κ 0.977** on the held-out polygons against the published SVM map's 73.8 %, κ 0.583 under the same scorer, and lava tube's user's accuracy rises from 2.4 % to 70.7 %; it maps terrain provinces rather than single features. Run over all of ±60° (KB §66.7) it keeps 98.8 %, κ 0.979, and a second pass on a tile grid offset by 128 px removes the seams the tool's 256 px tiles left (KB §66.8); open: whether it replaces the SVM map.
+2. **Deep learning** on the desktop GPU: a RetinaNet model trained on the training split's 7-band chips and scored per held-out polygon (KB §66.1–66.2): Crater recall 41.9 %, precision 87.6 % against a 71.1 % one-class baseline; it never predicts the two rare classes. Its detections are in the geodatabase, on a map in the project and on layout 16; a retrain (X5b: backbone unfrozen, no early stopping, rare-class chips) names the hills but loses the plains (KB §66.5). A U-Net pixel classifier on the same split (X5c, KB §66.6) scores **98.75 %, κ 0.977** on the held-out polygons against the published SVM map's 73.8 %, κ 0.583 under the same scorer, and lava tube's user's accuracy rises from 2.4 % to 70.7 %; it maps terrain provinces rather than single features. Run over all of ±60° (KB §66.7) it keeps 98.8 %, κ 0.979, and a second pass on a tile grid offset by 128 px removes the seams the tool's 256 px tiles left (KB §66.8); the SVM map stays the published one, and the U-Net map stands beside it as the province map, with layout 17 and per-polygon records in the geodatabase (KB §66.9).
 3. **The retests that wait for the review**: volcanic against fluvial channels by origin (H2, stage 2), and flow margins in IR against Viking on lava margins digitised at Athabasca (H1).
 4. **The interim and the final report and presentation**, from the layouts and the results below.
 
@@ -168,7 +168,7 @@ The 16 map sheets in the ArcGIS Pro project, grouped by what they show. Click on
 |---|---|
 | [![04](Mars%20Project/Global60/layouts/04_global60_landforms.png)](Mars%20Project/Global60/layouts/04_global60_landforms.png) **04** · The published ±60° landform map, scored | [![13](Mars%20Project/Global60/layouts/13_geomap_check.png)](Mars%20Project/Global60/layouts/13_geomap_check.png) **13** · The classes against the USGS geologic map (T8) |
 | [![03](Mars%20Project/TypeArea/layouts/03_classification.png)](Mars%20Project/TypeArea/layouts/03_classification.png) **03** · Ius Chasma, unsupervised (Iso Cluster, 10 classes) | [![05](Mars%20Project/Global60/layouts/05_svm_checks.png)](Mars%20Project/Global60/layouts/05_svm_checks.png) **05** · The first two SVM maps, checked and superseded |
-| [![16](Mars%20Project/Global60/layouts/16_x5_detections.png)](Mars%20Project/Global60/layouts/16_x5_detections.png) **16** · A deep-learning detector (X5), scored per held-out polygon | |
+| [![16](Mars%20Project/Global60/layouts/16_x5_detections.png)](Mars%20Project/Global60/layouts/16_x5_detections.png) **16** · A deep-learning detector (X5), scored per held-out polygon | [![17](Mars%20Project/Global60/layouts/17_x5c_unet_provinces.png)](Mars%20Project/Global60/layouts/17_x5c_unet_provinces.png) **17** · Terrain provinces from a U-Net (X5c), beside the published SVM map |
 
 **Craters and channels**
 
@@ -244,12 +244,12 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   152 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   153 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
   NEXT STUFF/              interim report and presentation (in progress)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 31 maps, all Mars, and 16 layouts
+  Mars Project.aprx        the ArcGIS Pro project: 32 maps, all Mars, and 17 layouts
   Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs

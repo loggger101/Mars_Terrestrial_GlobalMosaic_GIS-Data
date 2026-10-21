@@ -24,7 +24,7 @@ column fixed at its source (§54); the 200 m classification, **published as the 
 (2.2 km) majority filter, 73.8 %, κ 0.58 held out** (§55.3, §57), the 400 m map superseded (§57.2);
 T1 confirmed with Pro's SVM (thermal +1.36 pt at 200 m, +1.97 at 400 m, §56); T8 rerun on the published map
 (§57.1); the interim rebuilt, 28 slides and 20 pages (§57.3); GitHub release `data-2026-10-16` (§57.4).
-The project: 31 maps, 16 layouts (§63, §66.4); nothing is running on the desktop.
+The project: 32 maps, 17 layouts (§63, §66.4, §66.9); nothing is running on the desktop.
 **2026-10-18, laptop (§58–§61):** no new data since; the drive-root junctions point at `F:` and are broken on
 the laptop (retarget before any Spatial Analyst run there); the record and the plans condensed, two scripts freed
 from a hard-coded `F:`, every sheet re-polished and the interim rebuilt from them, nothing measured changed.
@@ -65,6 +65,9 @@ SVM ~1.0), not removed by padding 112 or test-time augmentation.
 **2026-10-21, desktop (§66.8), the author's yes:** a second pass offset by 128 px, each pixel from the pass farther
 from a tile edge: `Global60\global60_landforms_unet_200m_seamfix.tif`, seams 8.6–9.2 → **1.2**, held out **98.9 %,
 κ 0.980**, crater test and elevation unchanged. Nothing is running on the desktop.
+**2026-10-21, desktop (§66.9), the author's decision:** the SVM map stays the published one; the two-pass U-Net
+map joins the project beside it as the province map: map "X5c — U-Net terrain provinces (±60°)", layout
+**17_x5c_unet_provinces**, and `DL_UNet_Heldout_Scores_20261020` (each held-out polygon under both maps).
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).
@@ -75,7 +78,7 @@ is the critical path, and only the author can do it (§6).
 |---|---|---|---|---|
 | 1 | **Review the Ius candidates**, then Athabasca | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
-| 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). ±60° U-Net map made (§66.7), its seams removed by a second pass (§66.8). For the author: whether it replaces the SVM map or stands beside it, a layout, whether the interim gets a deep-learning slide; any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
+| 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). ±60° U-Net map made (§66.7), seams removed (§66.8), in the project beside the published SVM map with layout 17 (§66.9). For the author: whether the interim gets a deep-learning slide; any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
 | 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
 | 5 | The interim: due date and the percent-complete column from the author; rebuild after each result | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 
