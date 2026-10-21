@@ -11,6 +11,7 @@ left: map frames, legends, scale bars, north arrows. This happens in memory only
 opened, never saved, so the layouts are untouched and Pro may be open.
 
   "C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" make_interim_figs.py
+      [--only 16_x5_detections,17_x5c_unet_provinces]   just these, the other exports kept as they are
 """
 import os, re, sys, time
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -29,8 +30,9 @@ PAD = 12                                   # px of white kept round the trimmed 
 # (hA-hD on 08, h29/h30 on 05) stay: they label panels the slide cannot label for them.
 DROP = {"title", "subtitle", "credit", "notes", "checks", "acc_head", "acc_body",
         "cA", "cB", "cC", "cD", "s29", "s30", "t29", "t30",
-        "legend_title", "table_title", "table_note"}        # 11: its Robbins table is fine print on a slide
-TABLE_CELL = re.compile(r"t\d+_\d+(_bg)?$")                  # 11's table cells, t<row>_<col> (make_global60_candidate_sheets.py)
+        "legend_title", "table_title", "table_note",          # 11: its Robbins table is fine print on a slide
+        "findings"}                                           # 16, 17 (make_dl_map.py, make_unet_map.py)
+TABLE_CELL = re.compile(r"t\d+_\d+(_bg)?$")                  # 11's, 16's, 17's table cells, t<row>_<col> (make_global60_candidate_sheets.py)
 
 
 def trim(path):
@@ -51,6 +53,11 @@ def main():
     missing = [n for n in wanted if n not in have]
     if missing:
         sys.exit("layouts not in the project: %s" % missing)
+    if "--only" in sys.argv:
+        only = sys.argv[sys.argv.index("--only") + 1].split(",")
+        if set(only) - set(wanted):
+            sys.exit("not named in interim.py's FIGURES: %s" % sorted(set(only) - set(wanted)))
+        wanted = only
     for n in wanted:
         t = time.time()
         lyt = have[n]
@@ -79,8 +86,10 @@ def main():
         if box is None:
             sys.exit("%s: the legend drew nothing" % n)
         l, t_, r, b_ = box
-        a.crop((max(0, l - PAD), max(0, t_ - PAD), r + PAD, b_ + PAD)).save(
-            os.path.join(OUT, n + "__legend.png"), optimize=True)
+        # the white margin is added, not cropped: a map frame within PAD of the legend (16, 17) would show in it
+        lg = Image.new("RGB", (r - l + 2 * PAD, b_ - t_ + 2 * PAD), (255, 255, 255))
+        lg.paste(a.crop(box), (PAD, PAD))
+        lg.save(os.path.join(OUT, n + "__legend.png"), optimize=True)
         a.close(); b.close(); os.remove(whole)
         trim(m)
         print("  %-24s + __map, __legend (%d x %d px)" % ("", r - l + 2 * PAD, b_ - t_ + 2 * PAD))

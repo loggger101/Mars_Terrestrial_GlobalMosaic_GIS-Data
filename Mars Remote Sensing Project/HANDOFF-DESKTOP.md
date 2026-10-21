@@ -35,7 +35,7 @@ plans. When they disagree, the KB wins and the plan is fixed.
 | the plan | `Mars Remote Sensing Project\NEXT-STEPS.md` ("Resume here"; standing §1; decisions §2; after-review steps §3; tests §4; desktop jobs §5; the review §6; figures and the final §7; schedule §8; risks §9; ruled out §10) |
 | the interim plan | `Mars Remote Sensing Project\INTERIM-PLAN.md` (the living build and its commands §0; progress facts §3; hypotheses §5; timeline §6; wording traps §7) |
 | scripts | `Mars Remote Sensing Project\build\` (154 `.py` / `.ps1`; catalogue in the repo's `docs/scripts.md`); logs and test results in `build\logs\` |
-| interim deck and report | `Mars Remote Sensing Project\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx` (28 slides) and `Mars Mosaic - Interim Report.docx` (19 pages), built from `build\interim.py` |
+| interim deck and report | `Mars Remote Sensing Project\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx` (30 slides) and `Mars Mosaic - Interim Report.docx` (21 pages), built from `build\interim.py` |
 | ArcGIS project | `Mars Project\Mars Project.aprx` (32 maps, 17 layouts, KB §5); `Mars Project\Mars Project.gdb` (KB §6); `.aprx` backups in `Mars Project\.backups\` (one per write; drive only) |
 | layout PNGs | `Mars Project\Global60\layouts\` (04–14) and `Mars Project\TypeArea\layouts\` (01–03) |
 | ±60° products | `Mars Project\Global60\` (its `README.md` lists them): `global60_svm_stack_200m.tif` (the 7-band stack), **`global60_landforms_svm_200m_mode11.tif` (the published map)**; `build\grid60.py` defines the grid |
@@ -43,7 +43,7 @@ plans. When they disagree, the KB wins and the plan is fixed.
 | reference data | `Mars Project\Reference\` (USGS SIM 3292, Robbins craters, TES thermal inertia; third-party, never mirrored) |
 | deep-learning exports | `Mars Project\LabeledObjects\global60_svm_stack_200m_train\` (**train on this one only**); `...\global60_svm_stack_200m\` holds the held-out labels too: never train on it |
 | source mosaics | the drive root: Viking MDIM 2.1 colour, THEMIS day IR v12, THEMIS night IR v14 (±60°), HRSC/MOLA blend DEM; pyramids built |
-| public backup and project page | GitHub `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`; clone at `~\OneDrive\Documents\GitHub\Mars_Terrestrial_GlobalMosaic_GIS-Data`; releases `data-2026-10-19` (both type areas) and `derivatives-2026-10-06` (KB §35, §57.4, §63.2) |
+| public backup and project page | GitHub `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`; clone at `~\OneDrive\Documents\GitHub\Mars_Terrestrial_GlobalMosaic_GIS-Data`; releases `data-2026-10-21` (both type areas, the U-Net maps, the deep-learning models) and `derivatives-2026-10-06` (KB §35, §57.4, §63.2, §66.10) |
 | agent memories (private) | the laptop's, mirrored read-only to `~\OneDrive\Documents\Github Knowledge\memory\loggg\z-drive\`; the desktop has its own for `F:` |
 
 ## 3. Working rules (each one learned the hard way; KB section in brackets)

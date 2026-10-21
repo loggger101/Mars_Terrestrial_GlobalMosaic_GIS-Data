@@ -17,7 +17,11 @@ byte for byte, so a restore is an unzip:
                              2026-10-19 (§63): data-2026-10-16 and earlier do not hold it
   global60-classification[-partN].zip  the ±60° SVM maps (400 m raw + mode 3/5/7/9; since 2026-10-16
                              also 200 m raw + mode 3-11 and the four T1 maps), the models, the two
-                             0.5° density grids, smoke tests
+                             0.5° density grids, smoke tests; since 2026-10-21 the two U-Net maps
+                             (one pass and two passes, §66.7-66.8)
+  dl-models.zip              <drive>\Mars Project\DLModels\, whole: the three trained deep-learning
+                             models (X5, X5b, X5c: .pth, .emd, .dlpk), their loss graphs and the
+                             detections (§66). Added 2026-10-21: hours of GPU to retrain
   npy-caches.zip             decimated arrays of the globals behind the figures (§9); the five
                              ~950 MB *_ov400.npy are left out, they are views of the tifs above
   mars_project_vectors.gpkg.zip, Classified_*.tif   from github_export_gdb.py
@@ -49,9 +53,11 @@ def groups():
     yield "athabasca", MP, files_under(MP / "Athabasca")
     yield "global60-classification", MP, sorted(
         [p for p in g60.glob("global60_landforms_svm*") if p.is_file() and p.suffix != ".ovr"]
+        + [p for p in g60.glob("global60_landforms_unet*") if p.is_file() and p.suffix != ".ovr"]  # §66.7-66.8
         + [p for p in g60.glob("global60_*_density_0p5deg.tif*") if p.is_file() and p.suffix != ".ovr"]  # §53.6
         + [p for p in g60.glob("smoke60_*") if p.is_file()]
         + [p for d in g60.glob("*.crf") for p in files_under(d)] + [g60 / "README.md"])
+    yield "dl-models", MP, files_under(MP / "DLModels")                                        # §66
     yield "npy-caches", RSP, sorted(p for p in (RSP / "build").rglob("*.npy")
                                     if not p.name.endswith("_ov400.npy"))
     gpkg = DIST / "mars_project_vectors.gpkg"

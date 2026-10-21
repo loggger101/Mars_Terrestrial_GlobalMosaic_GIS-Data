@@ -20,7 +20,7 @@ MP = DRIVE / "Mars Project"
 REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
             Path.home() / "OneDrive" / "Documents" / "GitHub" / "Mars_Terrestrial_GlobalMosaic_GIS-Data")
 URL = "https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/"
-DATA, DERIV = "data-2026-10-19", "derivatives-2026-10-06"     # data refreshed 2026-10-19, adds Athabasca (KB §57.4, §63.2)
+DATA, DERIV = "data-2026-10-21", "derivatives-2026-10-06"     # data refreshed 2026-10-21, adds the U-Net maps (KB §57.4, §63.2, §66.10)
 
 LANDFORM_VALUES = "Classes 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class"
 IUS_SUP_VALUES = ("Classes 1 crater interior, 2 steep wall, 3 moderate wall, 4 chasma floor, 5 plateau flank, "
@@ -60,6 +60,11 @@ G60 = {
     "global60_landforms_svm_nothermal_400m.tif": "T1 at 400 m without the thermal bands (KB §56.1): 68.5 %, κ 0.52.",
     "global60_landforms_svm_novisible_400m.tif": "T1 at 400 m without the Viking bands (KB §56.1): 74.7 %, κ 0.60.",
     "global60_landforms_svm_terrain_400m.tif": "T1 at 400 m on slope and relief only (KB §56.1): 70.8 %, κ 0.55.",
+    "global60_landforms_unet_200m_seamfix.tif": "**The terrain-province map** beside the published SVM map (layout 17, "
+        "KB §66.8–66.9): a U-Net on the same stack and labels, two passes on tile grids 128 px apart; 98.9 %, κ 0.980 "
+        "held out. Provinces, not single features.",
+    "global60_landforms_unet_200m.tif": "The U-Net terrain-province map in one pass (KB §66.7): 98.8 %, κ 0.979 held "
+        "out, with seams on the tool's 256 px tiles. Superseded by `_seamfix` below, kept.",
     "global60_svm_stack_200m_nothermal.tif": "Bands 1–3, 6, 7 of the classification stack, copied exactly (T1, KB §56).",
     "global60_svm_stack_200m_novisible.tif": "Bands 4–7 of the classification stack, copied exactly (T1, KB §56.1).",
     "global60_svm_stack_200m_terrain.tif": "Bands 6–7 (slope, relief) of the classification stack, copied exactly "

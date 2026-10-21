@@ -16,7 +16,7 @@ Slide text is written in a neutral, impersonal voice.
 """
 from content import DECK_TITLE, COURSE, AUTHOR, TITLE        # unchanged since the prospectus
 
-STATUS_DATE = "16 October 2026"
+STATUS_DATE = "21 October 2026"
 
 MISSION = (
     "Assemble one co-registered visible and thermal-infrared mosaic of Mars in ArcGIS Pro, over "
@@ -72,7 +72,7 @@ PROGRESS = [   # (task, what is true now, percentage or None)                   
     ("Visible + IR composite", "Done: type area; 7-band ±60° stack", None),                   # §18 §31.2
     ("Landform digitising", "Classes ready and empty; candidates reviewable; validation sheet ready; 512 training polygons drawn", None),  # §19.4 §29.2 §46 §49
     ("Crater inventory", "Robbins catalogue in the project (385,049); 465,354 closed depressions ≥ 1 km at ±60°", None),  # §41 §54.4
-    ("Map layouts", "14 layouts, from none, with graticules", None),                                    # §38 §44 §49 §53.6
+    ("Map layouts", "17 layouts, from none, with graticules", None),                     # §38 §44 §49 §53.6 §63 §66.4 §66.9
     ("Report and presentations", "Interim deck and report are living builds from one source", None),  # §45
 ]
 PROGRESS_SEPT = [90, 100, 70, 100, 80, 70, 20, 20, 15, 5, 0, 0, 0, 25]   # the 13 Sep deck, for comparison
@@ -86,8 +86,8 @@ LOG = [   # (date, what, outcome, §)
     ("19 Sep", "Basins at ±60°", "5,144 ≥ 20 km in 48 s", "§28.11"),
     ("24–30 Sep", "Global composites in the Pro GUI (desktop)", "First successes: 2 h 52 m, 3 h 10 m", "§29"),
     ("29 Sep", "Hand-drawn training polygons; SVMs", "Four classes; two ±60° maps", "§29"),
-    ("2 Oct", "The first two SVM maps checked", "Tile artefact; mostly elevation", "§30"),
-    ("3 Oct", "Corrected stack; SVM scored held out", "73.5%, κ 0.58 (5 × 5)", "§31–32"),
+    ("2–3 Oct", "First SVM maps checked; corrected stack scored held out",   # merged: 14 rows overflow
+     "Tile artefact, mostly elevation; then 73.5%, κ 0.58", "§30–32"),
     ("6–7 Oct", "Backup to GitHub; class codes", "Public repository; pixel = class code", "§35–36"),
     ("8 Oct", "Reference data, Athabasca, tests T1–T3 and T8", "Thermal adds +1.3 points; ten layouts", "§38–44"),
     ("8–9 Oct", "Digitising by review; tests T4–T7; validation sheet",          # 14 rows overflow the slide
@@ -96,6 +96,8 @@ LOG = [   # (date, what, outcome, §)
      "465,354 closed depressions, 969,822 channel segments", "§53–54"),
     ("14–16 Oct", "200 m classification; T1 with Pro's SVM; the published map",
      "73.8%, κ 0.58; thermal adds +1.36 and +1.97 points", "§55–57"),
+    ("19–21 Oct", "Deep learning: a box detector, then a U-Net over ±60°",
+     "U-Net 98.9%, κ 0.98 held out: terrain provinces", "§66"),
 ]
 
 # ------------------------------------------------------------------ figures (preliminary results)
@@ -196,6 +198,23 @@ FIGURES = [
                  "It helps craters and hills and hurts lava tube; dropping visible or both groups leaves the score tied",
                  "Terrain alone ties the score but makes a poor crater map: 34 of 124 crater polygons"],
          source="§56, §56.1"),
+    dict(title="Deep learning, 1: a detector that draws boxes",
+         images=[("layout", "16_x5_detections")], map_left=True,      # frame A over B: map left, legend right
+         points=["RetinaNet on the 7-band stack, trained on the training blocks only, scored on the 183 held-out polygons",
+                 "Crater: 41.9% of polygons found, 87.6% of boxes right, against 71.1% for always naming Crater",
+                 "Normal Ground: 22.7% found, 56.9% right; hills and lava tube never named",
+                 "Retrained with the backbone unfrozen for 30 epochs: hills named, but Normal Ground found "
+                 "falls to 4.5%, so not improved"],
+         source="§66.1, §66.2, §66.5"),
+    dict(title="Deep learning, 2: a U-Net maps terrain provinces",
+         images=[("layout", "17_x5c_unet_provinces")], map_left=True,
+         points=["A pixel classifier on the same stack and labels, over all of ±60°; a second pass offset "
+                 "128 px removes its tile seams",
+                 "Held out: 98.9%, κ 0.980, against the published SVM map's 73.8%, κ 0.583, under the same scorer",
+                 "Lava tube becomes usable: 77.1% user's accuracy against 2.4%",
+                 "Provinces, not features: 'Crater' covers 82.6% of the ring round named craters; "
+                 "the SVM map stays the published one"],
+         source="§66.6–66.9"),
     dict(title="Do the infrared mosaics show lava-flow edges Viking misses? (H1)",
          images=[("file", r"interim_img\t5_margins.png")],
          points=["Profiles across the geologic map's lava contacts at Athabasca: does each band tell the units apart?",
@@ -266,13 +285,13 @@ NEXT_STEPS = [
     "Digitise Ius Chasma and Athabasca Valles: accept or reject the machine candidates, then draw what they miss",
     "Score the machine candidates against the reviewed features: the validation sheet (layout 14)",
     "Hypothesis H2 again, on reviewed channels with their origin set",
-    "Deep learning past the first detector: scored on the held-out polygons, it beats always naming Crater "
-    "(87.6% against 71.1%) but never names the two rare classes (§66.2)",
+    "Deep learning: the U-Net's province map stands beside the published SVM map; any further tuning first "
+    "needs validation blocks of its own, so the held-out score stays a test (§66.5, §66.9)",
     "Flow margins in visible against infrared at Athabasca, retested on digitised margins: hypothesis H1",
 ]
 
 SCHEDULE = [   # (when, what)
-    ("8–25 Oct", "Digitising by review starts; desktop runs done: pyramids, ±60° crater and channel pass, 200 m map, T1 in Pro, the deep-learning detector"),
+    ("8–25 Oct", "Digitising by review starts; desktop runs done: pyramids, ±60° crater and channel pass, 200 m map, T1 in Pro, the deep-learning detector and U-Net"),
     ("26 Oct – 1 Nov", "H1 and H2 on digitised features"),
     ("mid-Nov", "Interim presentation and report"),
     ("14–22 Nov", "Validation against the digitised landforms; data freeze"),

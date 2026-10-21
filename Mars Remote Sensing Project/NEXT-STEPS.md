@@ -68,6 +68,10 @@ from a tile edge: `Global60\global60_landforms_unet_200m_seamfix.tif`, seams 8.6
 **2026-10-21, desktop (§66.9), the author's decision:** the SVM map stays the published one; the two-pass U-Net
 map joins the project beside it as the province map: map "X5c — U-Net terrain provinces (±60°)", layout
 **17_x5c_unet_provinces**, and `DL_UNet_Heldout_Scores_20261020` (each held-out polygon under both maps).
+**2026-10-21, desktop (§66.10), the author's request:** the interim gains two deep-learning slides (layouts 16 and
+17; 30 slides, report 21 pages, every changed page read). Release **`data-2026-10-21`**, 12 assets, 7.71 GB: the
+GeoPackage with all 28 classes, both U-Net maps and, new, `dl-models.zip` (the three trained models);
+`check_remote.py` passes, the quick start reproduces, the catalogues point at it.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).
@@ -78,7 +82,7 @@ is the critical path, and only the author can do it (§6).
 |---|---|---|---|---|
 | 1 | **Review the Ius candidates**, then Athabasca | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
-| 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). ±60° U-Net map made (§66.7), seams removed (§66.8), in the project beside the published SVM map with layout 17 (§66.9). For the author: whether the interim gets a deep-learning slide; any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
+| 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). ±60° U-Net map made (§66.7), seams removed (§66.8), in the project beside the published SVM map with layout 17 (§66.9), in the interim and the release `data-2026-10-21` (§66.10). For the author: any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
 | 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
 | 5 | The interim: due date and the percent-complete column from the author; rebuild after each result | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 

@@ -39,7 +39,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | the GUI work of 24 Sep–1 Oct and its checks | §29, §30, §53.2 |
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
-| GitHub backup and releases | §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca) |
+| GitHub backup and releases | §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca), §66.10 (`data-2026-10-21`, the first with the deep-learning models) |
 | the interim builds | §39.3, §45, §48, §51.5, §57.3 |
 
 ---
@@ -1724,7 +1724,7 @@ Source mosaics and IAU nomenclature keep their producers' terms. The public name
 | `Mars Project\`: the `.aprx`, `.atbx`, `.ecd` / `.ecs`, `GpMessages`, sidecars, RATs, models, layout PNGs, `LabeledObjects\` metadata | repo, same folder name |
 | the drive root: the sources' `.aux.xml`, the night mosaic's `.lbl` / `.md5` | repo, `drive-root\` |
 | the gdb's feature classes, the 512 labels included | repo, `exports\mars_project_vectors.gdb`; the two X2 classes release-only (§57.1); all in the GeoPackage |
-| type area, ±60° classification maps and models, `.npy` caches, the GUI SVM maps, the GeoPackage | the data release (`data-2026-10-16`, §57.4) |
+| both type areas, ±60° classification maps (SVM and U-Net) and models, the deep-learning models, `.npy` caches, the GUI SVM maps, the GeoPackage | the data release (`data-2026-10-21`, §57.4, §66.10) |
 | the seven ±60° derivatives, both deep-learning exports, the GUI ±60° segmentation | release `derivatives-2026-10-06` (§35.3) |
 | the four source mosaics | **not copied**; linked by URL, sizes checked |
 
@@ -3489,3 +3489,55 @@ twice on a copy beside the `.aprx`, the copy then moved off the drive):
 - **Built on the real `.aprx`**: `polish_layouts.py` changed nothing on 01–16 and gave 17 Arial and 11 pt legend
   headings; the polished export is pixel-identical to the rehearsal's that was read, copied into
   `Global60\layouts\`. `arcpy.mp`: **32 maps, 17 layouts**, 0 broken data sources. 30 feature classes.
+
+### 66.10 The interim gains two deep-learning slides; release `data-2026-10-21` — 2026-10-21 **[V]**
+
+At the author's request ("do both": a deep-learning slide in the interim, and the GeoPackage republished as a new
+release). On the desktop; nothing measured, no raster or gdb class written.
+
+**The interim** (live files backed up to `NEXT STUFF\.backup_20261021\`):
+
+- `interim.py`: two figure entries after the T1 slide, "Deep learning, 1: a detector that draws boxes" (layout 16;
+  X5's held-out recall and precision against the one-class baseline, §66.2; X5b not improved, §66.5) and "Deep
+  learning, 2: a U-Net maps terrain provinces" (layout 17; 98.9 %, κ 0.980 against the SVM's 73.8 %, κ 0.583; lava
+  tube user's 77.1 % against 2.4 %; 'Crater' on 82.6 % of the ring round named craters, so provinces, not features;
+  the SVM map stays the published one, §66.8–66.9). The status date is 21 October; the progress row says 17 layouts;
+  the log gains "19–21 Oct" (the 2 and 3 Oct rows merged, so the slide keeps 13 rows); the deep-learning next step
+  now names the validation-block split (§66.5); the schedule lists the U-Net. `verify_interim.py`: all **277**
+  numbers in this record.
+- `make_interim_figs.py --only <layouts>` exports just the named sheets (the others' exports kept, so 08's crop
+  still predates its recentring, §64); `findings` (16, 17) joins the hidden prose. Its legend crop now adds the
+  white margin instead of cropping it: on 16 and 17 frame A ends 0.03 in from the legend, and the 12 px margin
+  showed a strip of the map.
+- `build_interim_live.py`: a figure with `map_left=True` puts the map (frames A over B, aspect 1.20) at full height
+  on the left and the takeaways, then the legend, on the right. The first build ran the map across the full width:
+  half the picture was the white space where the sheet's table had been, the legend was a thumbnail and slide 22's
+  last takeaway ran into the source line. 05 and 11 also have tall maps; they keep their layout (opt-in flag).
+- **Rebuilt: 30 slides, the report 21 pages, 21 figures**; rendered through PowerPoint and Word and compared page
+  by page with the previous build. Changed: the title (date), slides 3–4 (no content change: PowerPoint moved table
+  text by a pixel), 5 (17 layouts), 6 (the log), the two new slides 22–23, 29 (next steps), 30 (schedule); every
+  other slide only in its footer. Report: pages 1–3, the two new figures (15, 16), figure numbers after them, the
+  last page. All changed pages read; the log's new row first wrapped to the slide's edge and was shortened.
+- The deck now shows 13 of the 17 layouts (not 03, 14, 15; 13 as its table, figure `t8_enrichment.png`).
+
+**Release `data-2026-10-21`** (`github_export_gdb.py --rasters-only`, then `github_release_bundle.py --upload
+data-2026-10-21`, log `logs\release_data-2026-10-21_DESKTOP-PJS73RO.log`; 18:38–19:03, the upload ~18 min):
+
+- **12 assets, 7.71 GB**: `typearea-part1..3`, `athabasca.zip`, `global60-classification-part1/2`, **`dl-models.zip`**
+  (new: `Mars Project\DLModels\` whole, 218 files, 864 MB: the X5, X5b and X5c models with `.pth`, `.emd`, `.dlpk`,
+  loss graphs, sample results and X5's held-out detections), `npy-caches.zip`, the GeoPackage (28 classes, with
+  `DL_UNet_Heldout_Scores_20261020` and `DL_Detections_heldout_20261019`; staged 17:13 after §66.9), the two
+  `Classified_*.tif` (exactly the 10-19 sizes), `SHA256SUMS.txt`. The classification group now takes
+  `global60_landforms_unet*` too: both U-Net maps are in part 2; part 1 still holds the published `_mode11` map.
+- **The zips are 8–10 % smaller than 10-19's** with the same file counts (`typearea-part1` 920 MB against 1,020 MB,
+  `athabasca.zip` 819 against 918): the compression differs on this machine's Python, the content does not. The
+  old releases' central directories, read by HTTP range requests, give every entry's name, size and CRC: the
+  type-area, Athabasca, caches and classification part 1 entries are identical but for three re-exported type-area
+  layout PNGs (01–03); part 2 adds the ten U-Net files and the updated `Global60\README.md`.
+- `restore.py` unzips `dl-models*` into `Mars Project\` (dry run: the newest data release, 82.1 GB with the
+  derivatives). `tools/check_remote.py`: **83 release assets, 4 source mosaics, all pass**. The README quick start
+  rerun on the new release: part 1 downloaded, its `_mode11` map has the drive copy's SHA-256.
+- **Pointed at it:** `github_catalog_rasters.py` (`DATA`; the two U-Net maps described; `docs/rasters.md`
+  regenerated, 0 rows on the old tag), `github_export_gdb.py` (`RELEASE`; `--catalog-only` rewrote
+  `exports/README.md`, the two release-only rows in a new order), the README's quick start and backup section,
+  `docs/backup.md` (the `dl-models.zip` row), `CITATION.cff`. `data-2026-10-19` and the older releases are kept.

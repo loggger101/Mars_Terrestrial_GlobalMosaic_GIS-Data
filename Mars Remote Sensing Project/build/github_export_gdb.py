@@ -75,7 +75,7 @@ ABOUT = {
 # Too big for git (their .gdbtable files reach 246 and 113 MB; GitHub refuses files over 100 MB):
 # exported to the release GeoPackage only, and listed in exports\README.md as such (KB §57).
 RELEASE_ONLY = {"Landform_CraterCandidates_auto_60", "Landform_ChannelCandidates_auto_60"}
-RELEASE = "data-2026-10-19"            # the release whose GeoPackage holds them (KB §57.4, §63.2)
+RELEASE = "data-2026-10-21"            # the release whose GeoPackage holds them (KB §57.4, §63.2, §66.10)
 MAX_FILE = 95 * 1000 * 1000
 SYSTEM_FIELDS = {"OBJECTID", "FID", "Shape", "SHAPE", "Shape_Length", "Shape_Area"}
 

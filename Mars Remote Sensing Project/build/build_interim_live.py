@@ -70,6 +70,18 @@ def split_legend(s, f, path):
     if not (os.path.exists(m) and os.path.exists(lg)):
         return False
     px_w, px_h = png_size(m)
+    if f.get("map_left"):                    # a tall map (16, 17: frame A over frame B): map left at full
+        w, h = add_pic(s, m, MARGIN, BODY_Y, h=FIG_H)   # height; takeaways, then the legend, on the right
+        x = MARGIN + w + 22 * PT
+        tw = RIGHT - x
+        bullets(s, f["points"], size=14, top=BODY_Y, height=176 * PT, space=6, left=x, width=tw)
+        y = BODY_Y + 184 * PT
+        lw_px, lh_px = png_size(lg)
+        lh = BODY_Y + FIG_H - 22 * PT - y
+        lw = min(int(lh * lw_px / lh_px), tw)
+        add_pic(s, lg, x, y, w=lw, h=int(lw * lh_px / lw_px))
+        source(s, f["source"], x, BODY_Y + FIG_H - 18 * PT, tw)
+        return True
     w = CONTENT_W
     h = int(w * px_h / px_w)
     if h > WIDE_MAX_H:

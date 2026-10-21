@@ -45,7 +45,7 @@ the labels and nomenclature are in geographic `Mars_2000_(Sphere)`.
 | `DL_Detections_heldout_20261019` | Polygon | 1,838 | Mars_Equidistant_Cylindrical_CM180 |  | `Class`, `Classvalue`, `Confidence`, `Model`, `MappedBy` |
 | `DL_UNet_Heldout_Scores_20261020` | Polygon | 183 | Mars_2000_(Sphere) |  | `Classname`, `Classvalue`, `Block`, `UNet_Own`, `UNet_Major`, `SVM_Own`, `SVM_Major`, `MappedBy` |
 
-**In the release GeoPackage only** (too big for git: GitHub refuses files over 100 MB): `mars_project_vectors.gpkg.zip` in [`data-2026-10-19`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-19):
+**In the release GeoPackage only** (too big for git: GitHub refuses files over 100 MB): `mars_project_vectors.gpkg.zip` in [`data-2026-10-21`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-21):
 
-- `Landform_CraterCandidates_auto_60`: 465,354 rows. Closed depressions ≥ 1 km over ±60°, the X2 fine pass (KB §53.4; the tiles over 180° rerun, §54).
 - `Landform_ChannelCandidates_auto_60`: 969,822 rows. Channel segments over ±60°, the X2 fine pass (KB §53.4, §54).
+- `Landform_CraterCandidates_auto_60`: 465,354 rows. Closed depressions ≥ 1 km over ±60°, the X2 fine pass (KB §53.4; the tiles over 180° rerun, §54).

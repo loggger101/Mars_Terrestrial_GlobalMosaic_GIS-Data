@@ -7,15 +7,16 @@ described in [rasters.md](rasters.md), each vector layer in [the layer catalog](
 
 ## What is in the releases
 
-[`data-2026-10-19`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-19), about 7.3 GB (it replaces [`data-2026-10-16`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-16) and [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06), kept for their history; it is the first to hold the Athabasca type area):
+[`data-2026-10-21`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-21), about 7.7 GB (it replaces [`data-2026-10-19`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-19), [`data-2026-10-16`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-16) and [`data-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-06), kept for their history; it is the first to hold the deep-learning models and the U-Net maps):
 
 | Asset | What |
 |---|---|
 | `typearea-part*.zip` | the whole Ius Chasma type area: stack, terrain, thermal index, segmentations, classifications, models |
 | `athabasca.zip` | the whole Athabasca Valles type area: stack, terrain, thermal index, channel rasters ([rasters.md](rasters.md#athabasca-valles-type-area-mars-projectathabasca)); layouts 09 and 15 draw from it |
-| `global60-classification-part*.zip` | the ±60° SVM maps: 200 m raw and 3–11 majority (the published map is the 200 m 11 × 11 one), 400 m raw and 3–9 (superseded), the four T1 band-set maps; the models; the two 0.5° density grids; smoke tests |
+| `global60-classification-part*.zip` | the ±60° SVM maps: 200 m raw and 3–11 majority (the published map is the 200 m 11 × 11 one), 400 m raw and 3–9 (superseded), the four T1 band-set maps; the models; the two 0.5° density grids; smoke tests; and the two U-Net terrain-province maps (one pass, and the two-pass `_seamfix` one beside the published map, layout 17) |
+| `dl-models.zip` | `Mars Project/DLModels/`: the three trained deep-learning models (RetinaNet X5 and X5b, U-Net X5c; `.pth`, `.emd`, `.dlpk`), their loss graphs and sample results, and X5's held-out detections |
 | `Classified_*.tif` | the two SVM maps made in the Pro GUI on 29 and 30 September (superseded, kept); pixel value = class code 1–4, NoData 255, since 2026-10-07 |
-| `mars_project_vectors.gpkg.zip` | the vector layers as a GeoPackage: those in `exports/`, plus the two ±60° candidate classes too big for git (465,354 closed depressions, 969,822 channel segments) |
+| `mars_project_vectors.gpkg.zip` | the vector layers as a GeoPackage, 28 classes: those in `exports/`, plus the two ±60° candidate classes too big for git (465,354 closed depressions, 969,822 channel segments) |
 | `npy-caches.zip` | decimated arrays of the globals that the figures are drawn from |
 | `SHA256SUMS.txt` | checksums |
 

@@ -10,7 +10,7 @@ Run it from a clone of the repo. It lays the drive out as the knowledge base exp
 
     <dest>\Mars Remote Sensing Project\     the repo folder, plus npy-caches.zip
     <dest>\Mars Project\                    the repo folder, plus TypeArea\, Athabasca\, Global60\ rasters
-                                            (split files rejoined), LabeledObjects\
+                                            (split files rejoined), LabeledObjects\, DLModels\
     <dest>\Mars Project\restored_from_gdb\  the GUI SVM maps and the ±60° segmentation, which
                                             lived inside Mars Project.gdb, and the GeoPackage of
                                             the vector layers (also in <repo>\exports\)
@@ -129,7 +129,8 @@ def whole_hashes(sums_file):
 def destination(name, dest):
     """Where an asset's contents go, by its name."""
     mp, rsp = dest / "Mars Project", dest / "Mars Remote Sensing Project"
-    if name.startswith(("typearea", "athabasca", "global60-classification", "global60-sidecars", "labeledobjects")):
+    if name.startswith(("typearea", "athabasca", "global60-classification", "global60-sidecars", "labeledobjects",
+                        "dl-models")):
         return "unzip", mp
     if name.startswith("npy-caches"):
         return "unzip", rsp

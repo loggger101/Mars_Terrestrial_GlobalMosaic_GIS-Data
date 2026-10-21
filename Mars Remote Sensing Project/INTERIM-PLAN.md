@@ -32,7 +32,8 @@ python verify_interim.py
   `make_fig_tests567.py`.
 - **`build\build_interim_live.py`** lays it out in `le_theme.py`: title, goals, spectral bands, the correlation
   table, tasks and percent complete, the processing log, a "Preliminary Results" divider, one slide per figure,
-  issues, next steps with schedule. **28 slides; the report 19 pages, 19 figures** (2026-10-20, KB §66.4).
+  issues, next steps with schedule. **30 slides; the report 21 pages, 21 figures** (2026-10-21, KB §66.10: the two
+  deep-learning slides, layouts 16 and 17, each map left with takeaways and legend beside it, `map_left=True`).
 - **After every rebuild:** back up the live files; render the deck with `render_pdf.ps1 -Deck <pptx> -Pdf <pdf>`
   from PowerShell and the report through Word COM (KB §51.5); rasterise with PyMuPDF and **read every changed slide
   and page**; then `verify_interim.py`, and check each new number by hand against its own section.
@@ -53,8 +54,8 @@ Everything is in `<drive>\Mars Remote Sensing Project\NEXT STUFF\`:
 
 | file | built by |
 |---|---|
-| `Mars Global Mosaic - Interim Presentation.pptx` (28 slides) | `build_interim_live.py` + `interim.py` |
-| `Mars Mosaic - Interim Report.docx` (19 pages) | `build_interim_report_live.py` + `interim.py` |
+| `Mars Global Mosaic - Interim Presentation.pptx` (30 slides) | `build_interim_live.py` + `interim.py` |
+| `Mars Mosaic - Interim Report.docx` (21 pages) | `build_interim_report_live.py` + `interim.py` |
 | `2 Interim Presentation Template.pptx` | the course |
 
 Earlier versions are kept on the drive in `NEXT STUFF\.backup_*` (not mirrored to GitHub).
@@ -83,7 +84,7 @@ Percent Complete · Preliminary Results (if available) · Project Issues and Hur
 | 10 | Visible + IR composite | done: type areas; the 7-band ±60° stack | §18, §31.2 |
 | 11 | Landform digitising | classes ready and **empty**; candidates reviewable; validation sheet ready; 512 training polygons drawn | §29.2, §46, §49 |
 | 12 | Crater inventory | 465,354 closed depressions ≥ 1 km at ±60°, 15.3 % catalogued at ≥ 1 km, 62.2 % at ≥ 5 km; the Robbins catalogue (385,049) | §41, §53.4, §54.4 |
-| 13 | Map layouts | 17 layouts, from none, with graticules (the deck still shows 14, §63, §66.4, §66.9) | §44, §49, §53.6, §63, §66.4, §66.9 |
+| 13 | Map layouts | 17 layouts, from none, with graticules (the deck shows 13 of them: not 03, 14, 15, and 13 as its table, §63, §66.10) | §44, §49, §53.6, §63, §66.4, §66.9, §66.10 |
 | 14 | Report and presentations | Presentation 1 and the prospectus delivered; the interim deck and report are living builds | §1, §45, §57.3 |
 
 ## 4. The results the interim shows, each with its layout or figure
