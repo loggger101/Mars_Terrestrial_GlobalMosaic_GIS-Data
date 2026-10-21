@@ -3400,3 +3400,56 @@ it. The held-out score measures agreement with hand-drawn areas, which the U-Net
 the province map; a seam remedy first (classify twice on tile grids offset by 128 px and keep, per pixel, the pass
 whose pixel lies farther from its tile edge: ~12 h; or larger padding, ~23 h and seams remaining); a layout. The
 243 tiles (`C:\MarsScratch\x5c\global\tiles\`) are scratch, to the Recycle Bin on the author's word.
+
+### 66.8 The U-Net map's seams removed by a second, offset pass — 2026-10-20
+
+**The author's yes, 2026-10-20:** a second pass with the tile grid offset by 128 px, each pixel kept from the pass
+that puts it farther from a tile edge, then rescored. **Written before the results.**
+
+- **Pass B** (`make_dl_pixels.py --classify-global --pass B`): every window starts 128 px later than pass A's
+  (at the map's left and top edges, 128 px into the map, which keeps the phase where an earlier start would be
+  clipped), into `C:\MarsScratch\x5c\global\tiles_b\`. Only B is new: pass A is §66.7's 243 tiles.
+- **`--mosaic --two-pass`** → **`Global60\global60_landforms_unet_200m_seamfix.tif`**: per pixel, the distance to the
+  nearest edge of the tool's 256 px tiles, the smaller of the row and column distances, in each pass (A's edges
+  between pixels 255 and 256 of every 256, B's between 127 and 128); the pass with the larger distance wins; A where
+  B gives no class. The share taken from B and the share where A and B differ go to
+  `logs\dl_unet_global_mosaic_seamfix.json`.
+- **Tested on one tile first** (rows 16,384–20,479, columns 57,344–61,439; pass B 143 s): B's seams at phase **127**
+  as designed (A's at 255); the 256 px seam ratio, columns / rows, A **6.97 / 8.32**, B 6.66 / 9.41, two passes
+  **1.30 / 1.38**; 49.6 % of the pixels from B; A and B differ on 3.2 %.
+- Then scored by `verify_global60_classification.py --cell 200 --raster` and `--seams` beside §66.7's map and both
+  SVM maps (`logs\run_x5c_seamfix.cmd` → `logs\dl_x5c_seamfix_DESKTOP-PJS73RO.log`; launched 20:57).
+
+**Predictions:** the 256 px seam ratio under 1.5 in both directions and the 4,096 px ratio of the verify script under
+1.5; held out within 0.5 points of §66.7's 98.8 %; the crater test and the elevation bins within 1 point of
+§66.7's; A and B differing on 2–5 % of pixels, as on the test tile.
+
+**The run:** pass B 20:57 → 03:17, **6 h 20 min** for the 242 remaining tiles; the two-pass mosaic 03:17 → 03:22;
+scored and seam-checked by 03:31. **`Global60\global60_landforms_unet_200m_seamfix.tif`**: **49.4 %** of the
+classified pixels from pass B, A and B **differing on 2.7 %**; Crater 52.2 %, Normal Ground 42.2 %, lava tube 4.74 %,
+hills 0.84 % (`logs\dl_unet_global_mosaic_seamfix.json`).
+
+| | one pass (§66.7) | **two passes** | SVM 11 × 11 (published) |
+|---|---|---|---|
+| held out | 98.8 %, κ 0.979 | **98.9 %, κ 0.980** | 73.8 %, κ 0.583 |
+| held-out user's: Crater, hills, lava tube, Normal Ground | 99.1, 94.5, 75.5, 99.9 % | 99.1, 95.1, **77.1**, 99.9 % | 93.3, 50.7, 2.4, 80.3 % |
+| polygons won: Crater, hills, lava tube, Normal Ground | 119, 16, 20, 16 | 120/124, 16/16, 20/21, 17/22 | 107, 14, 8, 20 |
+| training polygons | 99.3 %, κ 0.986 | 99.3 %, κ 0.987 | 86 %, κ 0.74 |
+| IAU craters, n 817: inside / ring | 91.2 / 82.4 % | 91.3 / 82.6 % | 56.8 / 46.2 % |
+| elevation bins alone reproduce | 67.9 % | 68.0 % | 55.4 % |
+| verify seam ratio, 4,096 px (100 m / 200 m) | 5.53 / 5.75 | **1.14 / 1.18** | 1.00 / 1.01 |
+| `--seams` 256 px, columns / rows | 8.58 / 9.20 | **1.22 / 1.20** | 1.01 / 1.03 |
+| class changes per pixel pair | 0.0114 | 0.0114 | 0.0229 |
+
+(`logs\global60_classification_check_global60_landforms_unet_200m_seamfix.json`, `logs\dl_seams.json`.) The
+residual 256 px ratio, 1.2, still peaks at phase 255: where pass B gives no class, pass A's pixel stays. The
+`--seams` 4,096 px row ratio, 2.06 at phase 2,795, sits one row from the SVM maps' own peak (1.43 at 2,794 and 2,795
+is not a tile edge of either map: a feature of the stack, not of the classifier). Drawn at full resolution, the
+2,048 px window of §66.7 has lost its straight class boundaries.
+
+**Every prediction held:** seams 1.22 / 1.20 and 1.14 / 1.18, both under 1.5; held out +0.1 point; crater test and
+elevation within 0.2 point; A and B differ on 2.7 %. **Reading:** the second pass removes the tile seams and changes
+nothing else that the record measures: the map remains a terrain-province map (§66.7), now without the defect that
+made it unfit to publish. **Open for the author:** whether it replaces the SVM map as the published one or stands
+beside it; a layout, and its place in the gdb and the `.aprx`; the scratch tiles (`C:\MarsScratch\x5c\global\tiles\`,
+`tiles_b\`) to the Recycle Bin on the author's word.

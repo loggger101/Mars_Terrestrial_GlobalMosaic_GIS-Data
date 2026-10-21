@@ -49,6 +49,7 @@ EXPECTED = [
     ("global60_landforms_svm_200m_mode9.tif", "G200", "landforms, 200 m 9 x 9"),
     ("global60_landforms_svm_200m_mode11.tif", "G200", "landforms, PUBLISHED (KB 57)"),
     ("global60_landforms_unet_200m.tif", "G200", "landforms, U-Net X5c (KB 66.7)"),
+    ("global60_landforms_unet_200m_seamfix.tif", "G200", "landforms, U-Net X5c, two passes (KB 66.8)"),
     ("global60_landforms_svm_400m.tif", "G400", "landforms, 400 m raw (superseded, KB 57.2)"),
     ("global60_landforms_svm_400m_mode3.tif", "G400", "superseded"),
     ("global60_landforms_svm_400m_mode5.tif", "G400", "superseded (published to 2026-10-16)"),

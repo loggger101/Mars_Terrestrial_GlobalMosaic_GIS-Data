@@ -1,4 +1,31 @@
 {
+ "global60_landforms_unet_200m_seamfix.tif": {
+  "columns_128": {
+   "ratio": 1.19,
+   "at_phase": 127
+  },
+  "rows_128": {
+   "ratio": 1.176,
+   "at_phase": 3
+  },
+  "columns_256": {
+   "ratio": 1.221,
+   "at_phase": 255
+  },
+  "rows_256": {
+   "ratio": 1.201,
+   "at_phase": 255
+  },
+  "columns_4096": {
+   "ratio": 1.326,
+   "at_phase": 3839
+  },
+  "rows_4096": {
+   "ratio": 2.056,
+   "at_phase": 2795
+  },
+  "change_rate": 0.0114
+ },
  "global60_landforms_unet_200m.tif": {
   "columns_128": {
    "ratio": 4.936,

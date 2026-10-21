@@ -1,0 +1,20 @@
+{
+ "raster": "C:\\MarsScratch\\x5c\\global\\global60_landforms_unet_200m_seamfix.tif",
+ "tiles": 243,
+ "pixels_by_value": [
+  100914302,
+  1928689530,
+  30957571,
+  175001613,
+  1559009094
+ ],
+ "class_share": {
+  "Crater": 0.5222,
+  "steep/windy hills": 0.0084,
+  "lava tube": 0.0474,
+  "Normal Ground": 0.4221
+ },
+ "made": "2026-10-21 03:22",
+ "share_from_pass_b": 0.4935,
+ "share_a_b_disagree": 0.0273
+}

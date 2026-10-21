@@ -11,6 +11,10 @@ beside the box detector, which reverses the "boxes only" of q26 (§50) for this 
     python make_dl_pixels.py --classify-global --emd <model .emd> [--tiles N]
                                                all of ±60° in 4,096 px tiles, each read with a 256 px margin
     python make_dl_pixels.py --mosaic          the tiles' cores into Global60\global60_landforms_unet_200m.tif
+    python make_dl_pixels.py --classify-global --pass B --emd <model .emd>
+                                               the second pass, every window 128 px later (KB §66.8)
+    python make_dl_pixels.py --mosaic --two-pass   each pixel from the pass that puts it farther from a
+                                               tile edge -> Global60\global60_landforms_unet_200m_seamfix.tif
     python make_dl_pixels.py --seams <raster> [<raster> ...]
                                                class changes by column and row phase, for periodic tile seams
 
@@ -298,6 +302,7 @@ def score_svm():
 CORE, MARGIN = 4096, 256
 GLOBAL = os.path.join(WORK, "global")
 UNET_MAP = "global60_landforms_unet_200m.tif"
+UNET_SEAMFIX = "global60_landforms_unet_200m_seamfix.tif"   # two passes, KB §66.8
 
 
 def tiles():
@@ -307,25 +312,36 @@ def tiles():
 
 
 def classify_global():
+    """--pass A (default): windows from 256 px before each core, so the tool's own 256 px tiles meet at multiples
+    of 256. --pass B: every window 128 px later (128 px later still at the map's left and top edges, where an
+    earlier start would be clipped and shift the phase), so B's tile edges fall at A's tile centres."""
     ready()
     emd = arg("--emd", "")
     assert emd.endswith(".emd") and os.path.exists(emd), "--emd <trained model .emd>"
-    outdir = os.path.join(GLOBAL, "tiles")
+    B = arg("--pass", "A").upper() == "B"
+    outdir = os.path.join(GLOBAL, "tiles_b" if B else "tiles")
     os.makedirs(outdir, exist_ok=True)
     arcpy.CheckOutExtension("ImageAnalyst")
     arcpy.env.processorType = "GPU"
     arcpy.env.overwriteOutput = True
     arcpy.env.snapRaster = STACK
     arcpy.env.cellSize = STACK
-    T = tiles()[:arg("--tiles", 10 ** 6)]
+    T = tiles()
+    if "--only" in sys.argv:                                     # one tile, "row,col", for tests
+        T = [t for t in T if "%d,%d" % t[:2] == arg("--only", "")]
+    T = T[:arg("--tiles", 10 ** 6)]
     t0 = time.time(); done = 0
     for i, (r, c, nr, nc) in enumerate(T):
         part = os.path.join(outdir, "t_r%05d_c%06d.tif" % (r, c))
         if os.path.exists(part):                                 # rerunnable: finished tiles are kept
             continue
-        x0 = G.G200.ox + (c - MARGIN) * 200.0; x1 = G.G200.ox + (c + nc + MARGIN) * 200.0
-        y1 = G.G200.oy - (r - MARGIN) * 200.0; y0 = G.G200.oy - (r + nr + MARGIN) * 200.0
-        arcpy.env.extent = arcpy.Extent(x0, y0, x1, y1)
+        if B:
+            cs = c - 128 if c >= 128 else 128; rs = r - 128 if r >= 128 else 128
+            ce, re_ = c + nc + MARGIN + 128, r + nr + MARGIN + 128
+        else:
+            cs, rs, ce, re_ = c - MARGIN, r - MARGIN, c + nc + MARGIN, r + nr + MARGIN
+        arcpy.env.extent = arcpy.Extent(G.G200.ox + cs * 200.0, G.G200.oy - re_ * 200.0,
+                                        G.G200.ox + ce * 200.0, G.G200.oy - rs * 200.0)
         t = time.time()
         res = arcpy.ia.ClassifyPixelsUsingDeepLearning(STACK, emd, "padding 64;batch_size 8;predict_background False",
                                                        "PROCESS_AS_MOSAICKED_IMAGE")
@@ -334,19 +350,46 @@ def classify_global():
         left = sum(1 for (a, b, _, _) in T[i + 1:]
                    if not os.path.exists(os.path.join(outdir, "t_r%05d_c%06d.tif" % (a, b))))
         el = time.time() - t0
-        print("tile %3d/%d row %5d col %6d: %4.0f s; %d to go, ~%.1f h" % (
-            i + 1, len(T), r, c, time.time() - t, left, el / done * left / 3600), flush=True)
+        print("pass %s tile %3d/%d row %5d col %6d: %4.0f s; %d to go, ~%.1f h" % (
+            "B" if B else "A", i + 1, len(T), r, c, time.time() - t, left, el / done * left / 3600), flush=True)
     arcpy.env.extent = None
     print("classified ->", outdir)
 
 
+def core_of(p, r, c, nr, nc):
+    """The class values 1-4 (0 none) of a tile raster over the core (r, c, nr, nc), and where the tile covers it."""
+    lut = lut_of(p)                                              # pixel -> 0..3 by class name; 255 none
+    t = gdal.Open(p)
+    gt = t.GetGeoTransform()
+    c0 = int(round((gt[0] - G.G200.ox) / 200.0)); r0 = int(round((G.G200.oy - gt[3]) / 200.0))
+    v = np.zeros((nr, nc), np.uint8); cov = np.zeros((nr, nc), bool)
+    a0, b0 = max(c, c0), max(r, r0)
+    a1, b1 = min(c + nc, c0 + t.RasterXSize), min(r + nr, r0 + t.RasterYSize)
+    if a1 > a0 and b1 > b0:
+        a = t.GetRasterBand(1).ReadAsArray(a0 - c0, b0 - r0, a1 - a0, b1 - b0)
+        w = lut[a.astype(np.int64).clip(0, 255)]
+        v[b0 - r:b1 - r, a0 - c:a1 - c] = np.where(w == 255, 0, w + 1)
+        cov[b0 - r:b1 - r, a0 - c:a1 - c] = True
+    return v, cov
+
+
+def edge_distance(idx, phase):
+    """Pixels from the nearest edge of the tool's 256 px tiles, for tiles that start at index = phase (mod 256)."""
+    p = (idx - phase) % 256
+    return np.minimum(p, 255 - p)
+
+
 def mosaic():
-    outdir = os.path.join(GLOBAL, "tiles")
-    out = os.path.join(GLOBAL, UNET_MAP)
+    """--two-pass: each pixel from pass A or pass B, whichever puts it farther from its tile's edge (the smaller of
+    its row and column distances); A where B does not cover it or has no class."""
+    two = "--two-pass" in sys.argv
+    name = UNET_SEAMFIX if two else UNET_MAP
+    out = os.path.join(GLOBAL, name)
     T = tiles()
-    missing = [t for t in T if not os.path.exists(os.path.join(outdir, "t_r%05d_c%06d.tif" % t[:2]))]
-    assert not missing, "%d tiles missing, first %s" % (len(missing), missing[0])
-    sr = arcpy.Describe(STACK).spatialReference
+    dirs = [os.path.join(GLOBAL, "tiles")] + ([os.path.join(GLOBAL, "tiles_b")] if two else [])
+    for d in dirs:
+        missing = [t for t in T if not os.path.exists(os.path.join(d, "t_r%05d_c%06d.tif" % t[:2]))]
+        assert not missing, "%s: %d tiles missing, first %s" % (d, len(missing), missing[0])
     drv = gdal.GetDriverByName("GTiff")
     ds = drv.Create(out, G.G200.nx, G.G200.ny, 1, gdal.GDT_Byte,
                     ["TILED=YES", "COMPRESS=LZW", "BIGTIFF=YES", "BLOCKXSIZE=512", "BLOCKYSIZE=512"])
@@ -354,18 +397,19 @@ def mosaic():
     ds.SetProjection(gdal.Open(STACK).GetProjection())
     b = ds.GetRasterBand(1)
     b.SetNoDataValue(0)
-    count = np.zeros(5, np.int64)
+    count = np.zeros(5, np.int64); fromB = 0; differ = 0
     for r, c, nr, nc in T:
-        p = os.path.join(outdir, "t_r%05d_c%06d.tif" % (r, c))
-        lut = lut_of(p)                                          # pixel -> 0..3 by class name; 255 none
-        t = gdal.Open(p)
-        gt = t.GetGeoTransform()
-        c0 = int(round((gt[0] - G.G200.ox) / 200.0)); r0 = int(round((G.G200.oy - gt[3]) / 200.0))
-        a = t.GetRasterBand(1).ReadAsArray(c - c0, r - r0, nc, nr)   # the core only
-        v = lut[a.astype(np.int64).clip(0, 255)]
-        v = np.where(v == 255, 0, v + 1).astype(np.uint8)        # class values 1-4, 0 none
+        v, _ = core_of(os.path.join(dirs[0], "t_r%05d_c%06d.tif" % (r, c)), r, c, nr, nc)
+        if two:
+            w, cov = core_of(os.path.join(dirs[1], "t_r%05d_c%06d.tif" % (r, c)), r, c, nr, nc)
+            cols = np.arange(c, c + nc); rows = np.arange(r, r + nr)
+            dA = np.minimum(edge_distance(rows, 0)[:, None], edge_distance(cols, 0)[None, :])
+            dB = np.minimum(edge_distance(rows, 128)[:, None], edge_distance(cols, 128)[None, :])
+            useB = cov & (w != 0) & ((dB > dA) | (v == 0))
+            fromB += int(useB.sum()); differ += int(((v != w) & cov & (v != 0) & (w != 0)).sum())
+            v = np.where(useB, w, v)
         count += np.bincount(v.ravel(), minlength=5)
-        b.WriteArray(v, c, r)
+        b.WriteArray(v.astype(np.uint8), c, r)
     b.FlushCache()
     ds.BuildOverviews("NEAREST", [2, 4, 8, 16, 32, 64])
     ds = None
@@ -376,14 +420,18 @@ def mosaic():
         for row in cur:
             cur.updateRow([row[0], NAMES[int(row[0]) - 1]])
     share = {NAMES[i]: round(float(count[i + 1] / count[1:].sum()), 4) for i in range(4)}
-    json.dump(dict(raster=out, tiles=len(T), pixels_by_value=count.tolist(), class_share=share,
-                   made=time.strftime("%Y-%m-%d %H:%M")),
-              open(os.path.join(HERE, "logs", "dl_unet_global_mosaic.json"), "w"), indent=1)
-    print("mosaic ->", out, share, "none", int(count[0]))
-    final = os.path.join(G.OUTDIR, UNET_MAP)
+    rec = dict(raster=out, tiles=len(T), pixels_by_value=count.tolist(), class_share=share,
+               made=time.strftime("%Y-%m-%d %H:%M"))
+    if two:
+        rec.update(share_from_pass_b=round(fromB / count[1:].sum(), 4),
+                   share_a_b_disagree=round(differ / count[1:].sum(), 4))
+    json.dump(rec, open(os.path.join(HERE, "logs", "dl_unet_global_mosaic%s.json" % ("_seamfix" if two else "")), "w"),
+              indent=1)
+    print("mosaic ->", out, json.dumps(rec))
+    final = os.path.join(G.OUTDIR, name)
     assert not os.path.exists(final), "REFUSING: %s exists" % final
     for f in os.listdir(GLOBAL):
-        if f.startswith(UNET_MAP):
+        if f.startswith(name):
             shutil.copy2(os.path.join(GLOBAL, f), G.OUTDIR)
     print("copied ->", final)
 
