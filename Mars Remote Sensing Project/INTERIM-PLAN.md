@@ -43,7 +43,8 @@ python verify_interim.py
 **Still to do on the deck** (none blocks a rebuild):
 1. **Percentages** in the progress table: the author's to set (`PROGRESS` in `interim.py`); the slide shows
    13 Sep's next to a dash.
-2. **Legends are small** on the 05 and 07 slides; give them more room or a larger export.
+(The small legends on the 05 and 07 slides were enlarged on 2026-10-22, KB §67.5: 05 takes `map_left=True`,
+07 a lower map cap, `map_h=230`.)
 
 ## 1. What exists
 

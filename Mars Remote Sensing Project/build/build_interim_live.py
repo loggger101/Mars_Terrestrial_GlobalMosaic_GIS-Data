@@ -84,8 +84,9 @@ def split_legend(s, f, path):
         return True
     w = CONTENT_W
     h = int(w * px_h / px_w)
-    if h > WIDE_MAX_H:
-        h = WIDE_MAX_H
+    cap = f.get("map_h", 0) * PT or WIDE_MAX_H   # map_h (pt): a lower cap, when the legend is tall
+    if h > cap:
+        h = cap
         w = int(h * px_w / px_h)
     add_pic(s, m, MARGIN + (CONTENT_W - w) // 2, BODY_Y, w=w, h=h)
     y = BODY_Y + h + 10 * PT

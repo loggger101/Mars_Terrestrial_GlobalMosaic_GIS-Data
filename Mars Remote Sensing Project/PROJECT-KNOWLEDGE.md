@@ -3674,3 +3674,18 @@ A further review of the repository at the author's request.
   they were deleted with `SendToRecycleBin`: being online-only OneDrive files, they did not appear in the local
   Recycle Bin (3 items, none of them), so any copy is in OneDrive's online recycle bin, not checked. After:
   garbage 0, `git multi-pack-index verify` and `git fsck --full` exit 0 (dangling blobs only), HEAD = origin/main.
+
+### 67.5 The interim deck's two small legends enlarged — 2026-10-22 **[V]**
+
+`INTERIM-PLAN.md`'s open deck item: the legends on the 05 and 07 slides were too small to read. Measured in the
+built deck (points of slide per pixel of the 200 dpi crop): 05's at 0.29, beside a map 322 pt wide; 07's at 0.20,
+about 4–5 pt text, smaller than before §67 because 07's rounded legend (§65) is one tall column (399 × 409 px,
+earlier 744 × 346). Two layout flags in `interim.py`, no wording changed:
+
+- 05 (two maps stacked, aspect 1.11) takes `map_left=True`, the layout of 16 and 17 (§66.10): the maps at full
+  height on the left, 408 pt wide, the takeaways and legend on the right; legend 0.62 pt/px.
+- 07 (aspect 2.92) gets `map_h=230`, a new per-figure cap in `build_interim_live.split_legend` on a full-width
+  map's height (290 pt otherwise): the map 230 pt high, the legend 0.33 pt/px.
+- The deck rebuilt (live file backed up to `NEXT STUFF\.backup_20261022c\`), rendered through PowerPoint and
+  compared with the previous build: only slides 13 and 28 changed; both read. The report places whole crops and
+  was not rebuilt. `verify_interim.py`: 277 numbers.

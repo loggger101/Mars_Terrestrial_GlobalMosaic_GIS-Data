@@ -136,7 +136,7 @@ FIGURES = [
                  "So the material signal is in visible albedo; thermal IR adds little at 3 km"],
          source="§41, §42.4, §43.1"),
     dict(title="Craters at ±60°: closed depressions ≥ 20 km",
-         images=[("layout", "07_global60_basins")],
+         images=[("layout", "07_global60_basins")], map_h=230,  # a lower map leaves the tall legend room
          points=["5,144 basins found by fill depth in 48 s",
                  "68% of 117 IAU craters ≥ 100 km recovered, diameter within ±50%",
                  "Diameter error median +2.2%",
@@ -244,7 +244,7 @@ FIGURES = [
                  "H2 is not supported at this stage; the window, not the origin, sets the gradient; retested on reviewed channels"],
          source="§51.1"),
     dict(title="Checking the first two classifications",
-         images=[("layout", "05_svm_checks")],
+         images=[("layout", "05_svm_checks")], map_left=True,         # two maps stacked: map left, legend right
          points=["29 Sep map follows its 4096-px processing tiles, not the terrain",
                  "30 Sep map is mostly elevation: elevation alone reproduces 62% of it",
                  "Both led to the corrected stack: no elevation band, slope in degrees"],

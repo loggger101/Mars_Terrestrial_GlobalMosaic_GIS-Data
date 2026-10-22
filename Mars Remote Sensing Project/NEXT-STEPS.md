@@ -82,6 +82,9 @@ The repo's pages now show 800 px previews (`tools/make_thumbs.py`, §67.1): the 
 a deep-learning results section; its next steps hold only what is open. A writing pass (§67.2) removed named
 AI-prose patterns from the pages and the sheets: em dashes in the 17 sheets' titles, "What it is / is not", colon
 reveals, capitals for emphasis; the builders carry the same text. Numbers untouched; the deck's 05 crop rebuilt.
+Then (§67.3–67.5): the script catalogue regrouped, stale docstrings fixed, the U-Net in the pipeline diagram; every
+number on the pages checked against the record; the drive measured at 429 GB; "#section" links checked in CI; the
+clone's two orphan pack files removed (author's yes); the 05 and 07 slides' legends enlarged.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).
