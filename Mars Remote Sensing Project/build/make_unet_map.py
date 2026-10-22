@@ -207,7 +207,7 @@ def sheet(p, m, uln, tln, won):
     dark, grey = (40, 40, 40), (70, 70, 70)
     sh = u["share_area_weighted"]
     add_text(lyt, [
-        text(0.45, 7.80, "Mars ±60° — terrain provinces from a U-Net, beside the published SVM map "
+        text(0.45, 7.80, "Mars ±60°: terrain provinces from a U-Net, beside the published SVM map "
              "(X5c)", 19, "title", bold=True),
         text(0.45, 7.47, "A pixel classifier on the 7-band 200 m stack, trained on the training split only; "
              "two passes on tile grids 128 px apart remove the tile seams.", 10, "subtitle", colour=grey),
@@ -219,10 +219,10 @@ def sheet(p, m, uln, tln, won):
              10, "label_b", bold=True),
         text(4.60, 4.06, "The two maps under the same scorer (KB §66.7–66.8, §57)", 10,
              "table_title", bold=True),
-        text(4.60, 1.92, "What it is: a map of terrain provinces. It matches the hand-drawn areas almost "
-             "everywhere and\nmakes lava tube usable (user's %.0f %% against %.0f %%). What it is not: a map of single "
-             "features.\n'Crater' covers %.0f %% of the ring round named craters, so it marks cratered terrain, "
-             "not craters;\nelevation alone reproduces %.0f %% of it. The SVM map stays the published one (layout 04)."
+        text(4.60, 1.92, "The U-Net maps terrain provinces. It matches the hand-drawn areas almost "
+             "everywhere and\nmakes lava tube usable (user's %.0f %% against %.0f %%), but it does not map single "
+             "features: 'Crater'\ncovers %.0f %% of the ring round named craters, so it marks cratered terrain "
+             "rather than craters;\nelevation alone reproduces %.0f %% of it. The SVM map stays the published one (layout 04)."
              % (100 * hu["users"]["lava tube"], 100 * hs["users"]["lava tube"], 100 * cu["crater_ring"],
                 100 * u["elevation_only_reproduces"]), 7.9, "findings", colour=dark),
         text(0.45, 0.64, "Held-out polygons lie in 14 whole 15° blocks the model never saw; scored at 400 m, "

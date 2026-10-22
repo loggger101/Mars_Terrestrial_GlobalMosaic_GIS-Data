@@ -79,7 +79,9 @@ author's word all 13 were re-exported and the deck and report rebuilt (30 slides
 changed page read. Stale counts fixed in the README, `docs/figures.md`, the handoff and the interim plan.
 The repo's pages now show 800 px previews (`tools/make_thumbs.py`, §67.1): the README's images fell from
 25.5 MB to 3.2 MB; CI checks alt text, inline size and that each preview matches its source. The README gains
-a deep-learning results section; its next steps hold only what is open.
+a deep-learning results section; its next steps hold only what is open. A writing pass (§67.2) removed named
+AI-prose patterns from the pages and the sheets: em dashes in the 17 sheets' titles, "What it is / is not", colon
+reveals, capitals for emphasis; the builders carry the same text. Numbers untouched; the deck's 05 crop rebuilt.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).

@@ -133,7 +133,7 @@ def main():
     grey, dark = (70, 70, 70), (40, 40, 40)
     head = 11; cap = 8.3
     add_text(lyt, [
-        text(0.45, 7.85, "Mars Global Mosaic \u2014 the inputs at \u00b160\u00b0", 21, "title", bold=True),
+        text(0.45, 7.85, "Mars Global Mosaic: the inputs at \u00b160\u00b0", 21, "title", bold=True),
         text(0.45, 7.52, "Visible colour, thermal infrared by day and by night, and topography, each on the "
              "same 200 m grid of the analysis extent.", 10, "subtitle", colour=grey),
         # top row
@@ -154,7 +154,7 @@ def main():
              cap, "cD",
              colour=dark),
         # the argument, and the caveat that limits it
-        text(0.45, 1.05, "Why all three: at Ius Chasma the three Viking bands correlate 0.93\u20130.99 with each other, "
+        text(0.45, 1.05, "At Ius Chasma the three Viking bands correlate 0.93\u20130.99 with each other, "
              "so visible colour is one dimension; day IR and night IR\nadd two more. Effective dimensionality \u2248 3. "
              "Caveat: both THEMIS mosaics are locally contrast-normalised 8-bit products, so compare brightness\n"
              "within a region, never across the planet (KB \u00a728.10). Across \u00b160\u00b0 the regional material "

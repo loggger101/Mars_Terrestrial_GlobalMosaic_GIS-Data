@@ -120,16 +120,16 @@ CREDIT = ("Logan M Edwards  \u00b7  OCN 4704 Remote Sensing  \u00b7  Mars Global
           "(R = 3 396 190 m)  \u00b7  100 m/pixel  \u00b7  271\u2013286\u00b0E, 13\u20136\u00b0S")
 SHEETS = [
  ("01_visible",       "Viking MDIM 2.1 (visible)",
-  "Ius Chasma type area \u2014 visible mosaic",
+  "Ius Chasma type area: visible mosaic",
   "Viking MDIM 2.1, 232 m resampled to 100 m. Albedo only: the chasma reads as shadow.",
   False),
  ("02_night_ir",      "THEMIS Night IR",
-  "Ius Chasma type area \u2014 night-time thermal infrared",
+  "Ius Chasma type area: night-time thermal infrared",
   "THEMIS Night IR v14, 100 m. Bright = warmer at night than its surroundings, as rock and "
   "coarse debris are.\nLocal contrast, not calibrated thermal inertia (KB §28.10).",
   False),
  ("03_classification","Classification, 10 classes",
-  "Ius Chasma type area \u2014 unsupervised classification",
+  "Ius Chasma type area: unsupervised classification",
   "Iso Cluster, 10 classes, five-band stack (Viking RGB + THEMIS day + night IR).",
   True),
 ]

@@ -288,7 +288,7 @@ def main():
         fw = 10.1; fh = fw / 3.0
         mf = frame(lyt, m, (0.45, 3.55, fw, fh), "frame")
         add_text(lyt, [
-            text(0.45, 7.80, "Mars \u00b160\u00b0 \u2014 landform classification", 21, "title", bold=True),
+            text(0.45, 7.80, "Mars \u00b160\u00b0: landform classification", 21, "title", bold=True),
             text(0.45, 7.22, "Support vector machine on the 512 hand-drawn labels, over a corrected 7-band stack: "
                  "Viking RGB, THEMIS night + day IR, slope (\u00b0), local relief.\nNo raw elevation band."
                  + (" Smoothed by majority filter, %d \u00d7 %d (%g km)." % (CLEAN, CLEAN, CLEAN * CELL / 1000.0)
@@ -328,7 +328,7 @@ def main():
     a, b = OLD["night"], OLD["comp7"]
     add_text(lyt, [
         text(0.45, 7.80, "The first two SVM classifications, checked", 21, "title", bold=True),
-        text(0.45, 7.36, "29 Sep \u2014 SVM over the \u00b160\u00b0 segments + Night IR", 11, "h29", bold=True),
+        text(0.45, 7.36, "29 Sep: SVM over the \u00b160\u00b0 segments + Night IR", 11, "h29", bold=True),
         text(0.45, 7.10, "Uniform blocks on the 4096-px tile grid (white).", 9, "s29", colour=(70, 70, 70)),
         text(7.85, 4.62, "On their own training polygons:\n%.0f%%, \u03ba %.2f\n(one class everywhere: %.0f%%)\n\n"
              "Normal Ground polygons won: %s\nlava tube: %s\n\n'Crater' inside IAU craters %.0f%%,\naround them %.0f%%\n\n"
@@ -339,7 +339,7 @@ def main():
                 a["training_score"]["polygons_majority_own_class"]["lava tube"],
                 100 * a["iau_craters"]["crater_inside"], 100 * a["iau_craters"]["crater_ring"]),
              8.6, "t29", colour=(40, 40, 40)),
-        text(0.45, 3.86, "30 Sep \u2014 SVM over the 7-band CompositeBand", 11, "h30", bold=True),
+        text(0.45, 3.86, "30 Sep: SVM over the 7-band CompositeBand", 11, "h30", bold=True),
         text(0.45, 3.60, "Shown clipped to \u00b160\u00b0; past it the thermal bands were empty.", 9, "s30",
              colour=(70, 70, 70)),
         text(7.85, 1.10, "On their own training polygons:\n%.0f%%, \u03ba %.2f\n\nElevation bins alone\nreproduce %.0f%% of it\n"

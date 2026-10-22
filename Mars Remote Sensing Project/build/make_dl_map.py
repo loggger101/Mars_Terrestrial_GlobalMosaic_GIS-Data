@@ -151,7 +151,7 @@ def sheet(p, m, det, tst):
     dark, grey = (40, 40, 40), (70, 70, 70)
     ap = n["validation_ap"]
     add_text(lyt, [
-        text(0.45, 7.80, "Mars ±60° — a deep-learning detector, scored on held-out ground (X5)", 19, "title",
+        text(0.45, 7.80, "Mars ±60°: a deep-learning detector, scored on held-out ground (X5)", 19, "title",
              bold=True),
         text(0.45, 7.47, "RetinaNet on the 7-band 200 m stack, trained only on chips of the %d training polygons; "
              "%s boxes in %d windows round the %d held-out polygons." % (
@@ -177,10 +177,10 @@ def sheet(p, m, det, tst):
                  100 * (s["precision"]["Normal Ground"] - oc["Normal Ground"]), max(ap.values())),
              7.9, "findings", colour=dark),
         text(0.45, 0.64, "Boxes on area classes are a limit of the method (KB §50): the hand-drawn labels are areas, "
-             "not objects, so a box can only approximate one. The score is per polygon and NOT comparable with\n"
+             "not objects, so a box can only approximate one. The score is per polygon and not comparable with\n"
              "the SVM's per-pixel 73.8 %, κ 0.58 (layout 04). No prediction or verdict rule was written before the "
-             "run: a measurement, not a test of a hypothesis. Windows, not a mask: the held-out buffer as a mask\n"
-             "made the tool fail (KB §66.2). Boxes are drawn in their class colour; the held-out labels are filled "
+             "run, so this is a measurement, not a hypothesis test. The tool ran in one window per\n"
+             "block because a mask of the held-out buffer made it fail (KB §66.2). Boxes are drawn in their class colour; the held-out labels are filled "
              "faintly in theirs.", 7.9, "notes", colour=dark),
         text(0.45, 0.40, CREDIT, 7.5, "credit", colour=(90, 90, 90))]
         + table(4.60, 3.98, rows, TABLE_W16, size=7.6))

@@ -122,7 +122,7 @@ def main():
     grey, dark = (70, 70, 70), (40, 40, 40)
     head, cap = 11, 8.2
     add_text(lyt, [
-        text(0.45, 7.85, "Athabasca Valles type area — the four inputs", 21, "title", bold=True),
+        text(0.45, 7.85, "Athabasca Valles type area: the four inputs", 21, "title", bold=True),
         text(0.45, 7.30, "The flood-lava type area, 150–162°E, 4–14°N, on its 100 m grid: once "
              "read as a water-cut outflow channel, now as flood lava.\nOrange outline on every panel: unit lAv "
              "(Late Amazonian volcanic) of the USGS geologic map SIM 3292, the project's lava-flow reference.",

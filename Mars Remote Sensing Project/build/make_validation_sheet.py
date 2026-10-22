@@ -182,7 +182,7 @@ def build(res):
         mf.camera.setExtent(arcpy.Extent(xmin, ymin, xmax, ymax, spatial_reference=sr))
         frames[key] = (mf, x, fw)
         x += fw + 0.25
-    els = [text(0.45, 7.80, "Validation — the machine candidates against review and reference", 21, "title", bold=True),
+    els = [text(0.45, 7.80, "Validation: the machine candidates against review and reference", 21, "title", bold=True),
            text(0.45, 7.20, "Candidates are judged in review (accept / reject / unsure, KB §46); features the detector "
                 "missed are drawn by hand. Live in Pro: every layer\nis a query on the review fields. The table is "
                 "rerun with make_validation_sheet.py after each review session. Read %s." % res["read"],

@@ -138,9 +138,9 @@ def notes(res):
             "   highland (×%.2f) and impact units (×%.2f); Normal Ground on lowland\n"
             "   (×%.2f) and volcanic plains (×%.2f); steep/windy hills on highland\n"
             "   undivided (×%.2f) and aprons (×%.2f).\n"
-            "• %.0f%% of the volcanic plains come out Normal Ground: a coherent terrain\n"
-            "   map, not a lava-flow map. Lava flows come from the geologic map\n"
-            "   (layout 10, KB §43.3)."
+            "• %.0f%% of the volcanic plains come out Normal Ground. The classes map\n"
+            "   terrain; lava flows come from the geologic map (layout 10,\n"
+            "   KB §43.3)."
             % (E("v", "lava tube"), E("ve", "lava tube"), E("a", "lava tube"), E("h", "Crater"), E("i", "Crater"),
                E("l", "Normal Ground"), E("v", "Normal Ground"), E("hu", "steep/windy hills"),
                E("a", "steep/windy hills"), 100 * S("v", "Normal Ground")))
@@ -167,7 +167,7 @@ def main():
     mf = frame(lyt, m, (0.45, 3.86, fw, fh), "frame")
     tab, ybot, total = table(res, 0.45, 3.66)
     add_text(lyt, [
-        text(0.45, 7.80, "Mars ±60° — the landform classes against the USGS geologic map", 21, "title", bold=True),
+        text(0.45, 7.80, "Mars ±60°: the landform classes against the USGS geologic map", 21, "title", bold=True),
         text(0.45, 7.17, "Test T8. The published four-class map (%d × %d majority, read at %.1f km, area-weighted) "
              "against the unit groups of SIM 3292\n(Tanaka et al. 2014, 1:20 M). Not an accuracy: the classes are "
              "landforms, the units geologic. Each cell: enrichment, and the class's share of the group."

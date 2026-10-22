@@ -3591,3 +3591,40 @@ four source mosaics, all pass.
   to a results section "Deep learning (X5)" with layout 17's preview; the next steps name the 1 November
   contingency (`NEXT-STEPS.md` §6); the folder tree adds `Athabasca/`, `DLModels/`, `docs/figures.md`,
   `docs/thumbs/` and `tools/make_thumbs.py`. `CITATION.cff`'s abstract names the deep-learning models.
+
+### 67.2 A writing pass over the pages and the sheets: named patterns only — 2026-10-22 **[V]**
+
+At the author's request to remove AI-sounding prose ("slop") from the repo and the layouts. Method: the
+`no-ai-slop` checklist (named patterns, minimum edit) with its fact-binding rule (every number, unit and name kept
+byte-identical; a "X, not Y" that states a method limit is kept, e.g. "routed flow paths, not mapped valleys",
+"local contrast, not calibrated thermal inertia", "not a crater count": those are the record's wording rules, §12).
+A word scan of the README, `docs/`, `exports/README.md`, `CITATION.cff`, `Global60\README.md` and every visible
+text element of the 17 layouts (dumped with `arcpy.mp`) found no banned vocabulary, puffery or "-ing" commentary;
+what was there was structural.
+
+- **Layouts** (the builders edited too, so a rebuild reproduces the text; applied to the `.aprx` by element after
+  a backup to `.backups\`, each old string asserted to occur once, saved and re-read; `polish_layouts.py`; all 17
+  exported and compared; every changed sheet read; copied into the layout folders):
+  - 16 titles and 05's two panel headings: the em dash separator became a colon ("Mars ±60°: landform
+    classification"). Map and layer names keep theirs: scripts look them up by name.
+  - 08: the rhetorical opener "Why all three:" cut.
+  - 11 and 16: "do NOT agree", "NOT comparable" in lower case (capitals as emphasis).
+  - 13: "a coherent terrain map, not a lava-flow map" (colon reveal, evaluative adjective) became "The classes map
+    terrain; lava flows come from the geologic map".
+  - 16: two colon reveals ("…before the run: a measurement, not a test of a hypothesis. Windows, not a mask: …")
+    became plain sentences; the tool ran in one window per block because a mask made it fail.
+  - 17: "What it is: … What it is not: …" (negative listing) became "The U-Net maps terrain provinces. … but it does
+    not map single features: …".
+  - Builders edited: `make_typearea_layouts.py`, `make_global60_maps.py`, `make_candidate_maps.py`,
+    `make_mosaic_layout.py`, `make_reference_maps.py`, `make_global60_candidate_sheets.py`, `make_geomap_sheet.py`,
+    `make_validation_sheet.py`, `make_athabasca_layout.py`, `make_dl_map.py`, `make_unet_map.py`.
+- **The deck:** its crops hide titles and notes, so only 05's (its panel headings show) changed: re-exported with
+  `--only 05_svm_checks`, the deck and report rebuilt (live files to `NEXT STUFF\.backup_20261022b\`), slide 28 and
+  report page 20 changed and read; the text of both documents unchanged; `verify_interim.py`: 277 numbers.
+- **Pages:** the README ("Three coordinate frames, not two:" a binary-contrast opener; "not just the craters"; four
+  emphasis bolds mid-sentence), `Global60\README.md` (the verdict "That is the whole point of the folder", six em
+  dashes, five emphasis bolds, "This is a *relative* index"), `docs/backup.md` (a sentence with two colons).
+  Previews rebuilt (`tools/make_thumbs.py`).
+- **Not edited:** this record and the plans (an internal log), the scripts' docstrings (`docs/scripts.md` is
+  generated from them), the interim deck's text (`interim.py`, the author's). Kept as voice: "Yes, a little.",
+  lower case after a colon, "just" where it means "only".

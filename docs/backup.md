@@ -1,7 +1,7 @@
 # Backup, releases and restoring
 
-The project's working copy is an external drive. This repository is its off-drive backup: the tree
-holds everything small, and GitHub releases hold the rasters: the newest data release and the derivatives release. This page lists what is in the
+The project's working copy is an external drive. This repository is its off-drive backup. The tree
+holds everything small; two GitHub releases, the newest data release and the derivatives release, hold the rasters. This page lists what is in the
 releases, how the backup is kept current, and how to rebuild the drive from it. Each raster is
 described in [rasters.md](rasters.md), each vector layer in [the layer catalog](../exports/README.md).
 

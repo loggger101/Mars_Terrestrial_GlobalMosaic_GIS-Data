@@ -1,17 +1,16 @@
-# `Global60` — derived products at the analysis extent
+# `Global60`: derived products at the analysis extent
 
-Everything in this folder is on the **same content area as the source mosaics at the drive
-root**, not on the Ius Chasma type area. That is the whole point of the folder:
-`<drive>\Mars Project\TypeArea\` holds the `ius_*` products for one 15 × 7° box, and
-this holds the `global60_*` products for the full ±60° analysis extent.
+Everything in this folder covers the same area as the source mosaics at the drive root, not
+the Ius Chasma type area: `<drive>\Mars Project\TypeArea\` holds the `ius_*` products for one
+15 × 7° box, and this folder holds the `global60_*` products for the full ±60° analysis extent.
 
 Started 2026-09-19. See `PROJECT-KNOWLEDGE.md` §28 (the grid and the first products), §31–32 and §55–57
 (the classification), §54 (the 180° column patched in the DEM and its derivatives), §56 (T1).
 
 ## The grid
 
-Defined once, in `build\grid60.py`, and **read from the night mosaic** rather
-than hardcoded — so a product built through that module is co-registered with
+Defined once, in `build\grid60.py`, and read from the night mosaic rather
+than hardcoded, so a product built through that module is co-registered with
 the downloaded imagery by construction.
 
 |  | G100 | G200 |
@@ -23,7 +22,7 @@ the downloaded imagery by construction.
 | footprint | ±60.0003° lat, 360° lon | identical |
 | CRS | `Mars_Equidistant_Cylindrical_CM180`, R = 3,396,190 m | identical |
 
-`G200` is an exact 2 × 2 aggregation of `G100` — same origin, same footprint,
+`G200` is an exact 2 × 2 aggregation of `G100`: same origin, same footprint,
 every 200 m cell edge falls on a 100 m cell edge. The two nest, so a 200 m
 product and a 100 m product overlay without a reproject.
 
@@ -37,13 +36,13 @@ Two more lattices are derived from `G200` (defined in `verify_global60.py`, §58
 **The template is `Mars_MO_THEMIS-IR-Night_mosaic_60N60S_100m_v14.tif`**, per
 KB §16.4: it is the binding raster, and the day mosaic sits at an exact integer
 offset from it (+1 px in x, +17,783 px in y). So on this grid the day–night pair
-is **never resampled** — it is a window read, not a warp.
+is never resampled: it is a window read, not a warp.
 
 ## Which grid a product belongs on
 
 - **100 m** for anything derived from the THEMIS mosaics. They are native here.
 - **200 m** for anything derived from the DEM. HRSC/MOLA is natively
-  0.0033741208°, which is **199.999990 m** on this sphere — 200 m to within
+  0.0033741208°, which is 199.999990 m on this sphere: 200 m to within
   10 µm, drifting 0.005 px across the full width. So at G200 the DEM warp is
   *exact*: nearest neighbour reproduces the original elevations, no
   interpolation. Running terrain at 100 m costs 4× and manufactures detail that
@@ -82,12 +81,12 @@ were never built at ±60°: only their smoke-test windows exist. The classificat
 
 **The thermal index is not thermal inertia.** Both THEMIS mosaics are 8-bit DN
 with no radiometric scaling, so calibrated inertia is not derivable from them
-(KB §24.1). This is a *relative* index: high = large diurnal swing, low = damped.
+(KB §24.1). The index is relative: high = large diurnal swing, low = damped.
 
 **At ±60° it is local texture, never a material map.** Both THEMIS mosaics are
 locally contrast-normalised, so the index cannot separate dusty from rocky
 provinces (KB §28.10): compare values only within one area. It is also stretched
-over ±60°, so its numbers are **not comparable** to `ius_thermal_contrast.tif`.
+over ±60°, so its numbers are not comparable to `ius_thermal_contrast.tif`.
 
 ## Checking it
 
@@ -96,7 +95,7 @@ over ±60°, so its numbers are **not comparable** to `ius_thermal_contrast.tif`
 ```
 
 Checks every product's corners to the millimetre, its cell size, its shape, its
-CRS, and — for 200 m and 400 m products — that it nests on the 100 m grid. Non-zero exit
+CRS, and, for 200 m and 400 m products, that it nests on the 100 m grid. Non-zero exit
 if anything fails. Since 2026-10-18 it covers every `global60_*.tif` (27 at that date; not the `smoke60_*` windows)
 and reports the never-built harmonised bands as ruled out; add a new product to its `EXPECTED` list.
 

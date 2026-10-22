@@ -232,7 +232,7 @@ def main():
         rows.append(["%s km" % d, f"{s['candidates']:,}", "%.0f %%" % (100 * s["precision"]),
                      "%.0f %%" % (100 * b["precision"]), "%.0f %%" % (100 * s["recall"])])
     add_text(lyt, [
-        text(0.45, 7.80, "Mars ±60° — closed depressions ≥ 1 km, against the Robbins crater catalogue",
+        text(0.45, 7.80, "Mars ±60°: closed depressions ≥ 1 km, against the Robbins crater catalogue",
              19, "title", bold=True),
         text(0.45, 7.47, "%s closed depressions in the HRSC/MOLA DEM at 200 m (fill depth, 70 tiles, seams checked), "
              "counted per 0.5° cell of true area." % f"{nc:,}", 10, "subtitle", colour=(70, 70, 70)),
@@ -244,7 +244,7 @@ def main():
         text(7.98, 1.62, "Matched: centre within half the Robbins\ndiameter, diameter within 2× (KB §42.3).\n"
              "Chance: each candidate moved 3 of its\nown diameters east (KB §53.4).", 7.6, "table_note",
              colour=(60, 60, 60)),
-        text(0.45, 0.64, "Below ~2 km most candidates are not catalogued craters; from ~5 km up most are. The maps do NOT "
+        text(0.45, 0.64, "Below ~2 km most candidates are not catalogued craters; from ~5 km up most are. The maps do not "
              "agree cell by cell (log density r = %.2f): the detector's density hardly changes from the\nsmooth north "
              "(%.0f per 10⁴ km² at 30–60°N, Robbins %.0f) to the cratered south (%.0f at 0–30°S, "
              "Robbins %.0f). Its north–south stripes and blocks are the DEM's makeup, not geology: small\ncandidates "
@@ -266,7 +266,7 @@ def main():
     mf.camera.setExtent(clip.projectAs(mc.spatialReference).extent)
     total = sum(v[0] for v in orders.values()); km = sum(v[1] for v in orders.values())
     add_text(lyt, [
-        text(0.45, 7.80, "Mars ±60° — the channel network routed on the DEM, Strahler order ≥ 3",
+        text(0.45, 7.80, "Mars ±60°: the channel network routed on the DEM, Strahler order ≥ 3",
              19, "title", bold=True),
         text(0.45, 7.46, "%s channel segments (%.1f million km) from flow accumulation > 50 km² on the HRSC/MOLA "
              "DEM at 200 m; orders 1–2 (%s segments) are not drawn." % (

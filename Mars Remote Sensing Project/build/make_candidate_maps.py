@@ -131,7 +131,7 @@ def digitising(p, key, sr, camera_from=None):
     breached = ("Breached craters are missed (Oudemans, KB \u00a726)." if key == "ius"
                 else "Breached craters are missed (KB \u00a726).")
     add_text(lyt, [
-        text(0.45, 7.85, "%s \u2014 candidates to digitise" % A["name"], 21, "title", bold=True),
+        text(0.45, 7.85, "%s: candidates to digitise" % A["name"], 21, "title", bold=True),
         text(0.45, 7.50, "Machine candidates are prompts: accept one by copying it into the matching digitising class. "
              "The three digitising classes are empty and on top, ready to edit.", 10.5, "subtitle", colour=(70, 70, 70)),
         text(0.45, 0.72, "Cyan: %d of %d channel candidates %s."
@@ -207,7 +207,7 @@ def main():
     mf = lyt.createMapFrame(poly_geom(0.45, 3.55, fw, fh), mb, "frame")
     mf.camera.setExtent(extent_polygon().projectAs(mb.spatialReference).extent)
     add_text(lyt, [
-        text(0.45, 7.80, "Mars \u00b160\u00b0 \u2014 basin and crater candidates \u2265 20 km", 21, "title", bold=True),
+        text(0.45, 7.80, "Mars \u00b160\u00b0: basin and crater candidates \u2265 20 km", 21, "title", bold=True),
         text(0.45, 7.46, "5,144 closed depressions in the HRSC/MOLA DEM at 200 m, found by fill depth in 48 s. "
              "Red rings: IAU named craters over 100 km.", 10, "subtitle", colour=(70, 70, 70)),
         text(0.45, 1.70, "Against all 117 named IAU craters \u2265 100 km inside \u00b158\u00b0: 68% recovered with "

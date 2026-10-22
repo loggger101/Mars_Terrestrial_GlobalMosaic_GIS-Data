@@ -196,7 +196,7 @@ def build_locator(p):
     mf = lyt.createMapFrame(poly_geom(0.45, 3.55, fw, fh), m, "frame")
     mf.camera.setExtent(extent_polygon().projectAs(m.spatialReference).extent)
     add_text(lyt, [
-        text(0.45, 7.80, "Mars Global Mosaic — the analysis extent and the two type areas", 21, "title", bold=True),
+        text(0.45, 7.80, "Mars Global Mosaic: the analysis extent and the two type areas", 21, "title", bold=True),
         text(0.45, 7.46, "Ius Chasma (fluvial and collapse, 271–286°E) and Athabasca Valles (flood lava, 150–162°E) "
              "on the Viking colour mosaic, ±60°.", 10, "subtitle", colour=(70, 70, 70)),
         text(0.45, 1.30, "Orange: volcanic units of the USGS geologic map (Tanaka et al. 2014, groups v, ve, vf), the project's "
