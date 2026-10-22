@@ -34,7 +34,7 @@ plans. When they disagree, the KB wins and the plan is fixed.
 | the record | `Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (§1–§16 reference, §17 on the dated log; §11 open questions; tags `[V]` verified, `[E]` earlier, `[?]` open) |
 | the plan | `Mars Remote Sensing Project\NEXT-STEPS.md` ("Resume here"; standing §1; decisions §2; after-review steps §3; tests §4; desktop jobs §5; the review §6; figures and the final §7; schedule §8; risks §9; ruled out §10) |
 | the interim plan | `Mars Remote Sensing Project\INTERIM-PLAN.md` (the living build and its commands §0; progress facts §3; hypotheses §5; timeline §6; wording traps §7) |
-| scripts | `Mars Remote Sensing Project\build\` (154 `.py` / `.ps1`; catalogue in the repo's `docs/scripts.md`); logs and test results in `build\logs\` |
+| scripts | `Mars Remote Sensing Project\build\` (155 `.py` / `.ps1`; catalogue in the repo's `docs/scripts.md`); logs and test results in `build\logs\` |
 | interim deck and report | `Mars Remote Sensing Project\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx` (30 slides) and `Mars Mosaic - Interim Report.docx` (21 pages), built from `build\interim.py` |
 | ArcGIS project | `Mars Project\Mars Project.aprx` (32 maps, 17 layouts, KB §5); `Mars Project\Mars Project.gdb` (KB §6); `.aprx` backups in `Mars Project\.backups\` (one per write; drive only) |
 | layout PNGs | `Mars Project\Global60\layouts\` (04–17) and `Mars Project\TypeArea\layouts\` (01–03) |
@@ -86,8 +86,10 @@ plans. When they disagree, the KB wins and the plan is fixed.
 - **"Diurnal-contrast index", never "thermal inertia"** (§24, §28.10, §42.4, §43.1).
 - **"Closed depressions ≥ 1 km", never a crater inventory**: for craters use `Ref_Craters_Robbins2020` (§42.3, §53.4).
 - **The published landform map is the 200 m 11 × 11 one** (§57); the 400 m maps are superseded (§57.2).
-- **Keep the four hand-drawn classes** (1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground).
-  Never remove or replace them; a fifth only if a held-out test shows it helps (§43.3).
+- **The class codes are fixed:** 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, and from the
+  revision D17 (§68) 5 volcanic edifice, 6 apron, 7 fluvial channel. Never renumber or delete a class;
+  `Landform_TrainingSamples_terrain` is never written (the revision goes through `_v2_proposals` and the
+  author's accept); the seven-class map is published only by D18's held-out rule (§68.4).
 - **Score on held-out data**: `Landform_TrainingSamples_terrain_60_train` (329) and `_60_test` (183), split by
   whole 15° blocks. Never train on the test set.
 - **Every number from its source**: the rasters, logs and the KB, never a previous document; round from the log's

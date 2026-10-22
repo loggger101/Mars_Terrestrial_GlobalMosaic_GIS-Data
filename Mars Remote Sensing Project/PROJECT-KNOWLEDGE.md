@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-19 (§65).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-22 (§68).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -32,6 +32,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1, §56, §62 |
 | classification: type area | §19, §23, §27 |
 | classification: ±60°, the published map | §31, §32.2, §55.3, §57 |
+| the class scheme and the labels' audit | §29.2, §43.3, §68 |
 | craters and closed depressions | §26, §28.11, §42.3, §53.4, §53.6 |
 | channels | §25, §47.4, §53.4, §53.6, §54.4 |
 | lava flows and the geologic map | §41, §43.2, §43.3, §44, §47.2 |
@@ -462,7 +463,7 @@ There is **no ground truth and no sub-metre imagery.** Validation rests on:
 | 20 | retarget `make_typearea_supervised.py` | done: it writes `_auto` and refuses to delete what it did not write (§29.8) |
 | 21 | `verify_all.py` failing 1 of 38 | fixed; 37 / 37 since two checks were retired (§50.1) |
 | 22 | the drive is `F:` on the desktop | every script finds its drive (§40.2); the `.aprx` opens on either letter; the junctions serve one letter at a time (§2.4) |
-| 23 | which class schema | the labels' order: 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground; `Composite Object Classes.ecs` superseded (§29.2, §50) |
+| 23 | which class schema | the labels' order: 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground; `Composite Object Classes.ecs` superseded (§29.2, §50). Revised 2026-10-22: seven classes, codes 1–4 kept, 5 volcanic edifice, 6 apron, 7 fluvial channel (D17, §68.1) |
 | 25 | fix the 7-band stack before deep learning | yes: train on the corrected stack's training-split export (§31, §50.2) |
 | 26 | boxes or pixel labels for deep learning | boxes (PASCAL VOC), as exported; whole-chip boxes on area classes are a limit to report (§50) |
 | 27 | how much smoothing to publish | the 200 m map with an 11 × 11 (2.2 km) majority filter (§57); the 400 m 5 × 5 map is superseded (§57.2) |
@@ -3689,3 +3690,144 @@ earlier 744 × 346). Two layout flags in `interim.py`, no wording changed:
 - The deck rebuilt (live file backed up to `NEXT STUFF\.backup_20261022c\`), rendered through PowerPoint and
   compared with the previous build: only slides 13 and 28 changed; both read. The report places whole crops and
   was not rebuilt. `verify_interim.py`: 277 numbers.
+
+## 68. The class scheme revised (D17); the 512 labels audited — 2026-10-22 **[V]**
+
+On the laptop, without the drive (only `C:` mounted), at the author's request. Read from a scratch copy of the
+repo's `exports\mars_project_vectors.gdb` with the laptop's ArcGIS Pro Python; nothing on the drive or in the
+gdb was written. **The object IDs below are the export's**; match them on the drive by geometry before acting.
+
+### 68.1 The author's revision, and the decision (D17)
+
+The author's notes: "lava tube" ≠ volcanic edifices ≠ craters; Crater means impact only; steep/windy hills
+could be an apron, and aprons (water and water ice) must be told apart from lava tubes; a fluvial class
+("fluvial tubes": water-cut sinuous channels, inverted channels, eskers and fluvial pit chains, all of them);
+volcanic plains count as Normal Ground. Answers the same day: aprons cover both the mid-latitude lobate debris
+aprons and the Tharsis fan-shaped deposits; the revision lands **before the interim**; **the agent proposes, the
+author accepts**, and the existing 512 are audited so that no mistake or overlap gets through.
+
+This reverses §43.3's "no fifth class" for a scheme the author defines, not for the geologic-map relabel that
+failed there; the held-out rule stays (§68.4). Codes 1–4 keep their numbers (the swap trap, §29.2):
+
+| code | class | what it holds |
+|---|---|---|
+| 1 | Crater | impact craters only, any state of preservation; no calderas, no volcano summits |
+| 2 | steep/windy hills | high relief that is no impact crater, volcano or apron: massifs, chasma walls, knobs, mesas |
+| 3 | lava tube | volcanic conduits and collapses at km scale: pit chains (catenae), sinuous rilles, lava channels; a tube itself, tens to hundreds of metres wide, is below the 200 m grid |
+| 4 | Normal Ground | plains, **volcanic plains included** |
+| 5 | volcanic edifice | montes, tholi, paterae: shields, flanks, calderas, cones |
+| 6 | apron | lobate debris aprons (ice-rich, mid-latitude) and the Tharsis fan-shaped deposits; the Olympus Mons aureole (Lycus, Gigas, Sulci Gordii) is included with its origin open **[?]** |
+| 7 | fluvial channel | water-cut sinuous channels and valleys; `Subtype` records inverted channel, esker or fluvial pit chain, so a subtype can become its own class once it has the polygons |
+
+The record already pointed this way: "lava tube" sits on the geologic map's apron units (×4.12) and volcanic
+edifices (×3.34), not on volcanic plains (×0.87, §43.2); 75 % of volcanic plains already come out Normal Ground
+(§43.3).
+
+### 68.2 The audit of the 512 labels
+
+`label_audit.py` and `label_audit2.py` (agent scratch, read only):
+
+- **No two polygons of different classes share ground.** 136 pairs overlap, all within one class: 9 polygons
+  lie ≥ 95 % inside another (Crater 51 in 50, 53 in 52, 167 in 166, 182 and 183 in 181, 214 in 213; lava tube 336
+  in 334; Normal Ground 350 in both 347 and 348); 127 overlap in part, 117,819 km² shared, most of it three
+  large Normal Ground polygons (468, 469, 471, ~80,000 km² between them). A crater inside a basin is a real second
+  crater; 350 inside 347 and 348 adds nothing but a second count. The polygon scores ("polygons won") count
+  every overlapping polygon separately.
+- **One train/test leak:** label 290 (hills, training, block −6_−1) and 291 (hills, held out, block −5_−1) share
+  51.5 km² across the −75° block edge (−75.5°E, −2°). The split assigns whole polygons to blocks (329 + 183 =
+  512, none cut), so a polygon can cross into the next block. No other held-out polygon touches a training one.
+- **Crater polygons that are volcanoes** (five in all, §68.5: also 464 Pavonis Mons, 19 Tharsis Tholus and 20
+  Ulysses Tholus): label **22** (held out, block −9_−1), 73,939 km², holds Arsia Mons and
+  Arsia Chasmata and no named crater: **31 % of all held-out Crater area** (240,581 km²). Label **465**
+  (training, block −7_0), 52,953 km², holds Ascraeus Mons: 18 % of training Crater area (289,146 km²). The SVM
+  learned part of Crater from a volcano, which fits Crater ×1.20 on the volcanic edifices (§43.2). Hills 507 holds
+  Nectaris Montes, a Valles Marineris massif, rightly hills.
+- **The 44 lava-tube polygons:** 38 in Tharsis, chains of 3–109 km² beside Labeatis Catenae, Labeatis and
+  Uranius Fossae and Tractus Catena, a group east of Olympus Mons by Gordii Fossae, and two large ones in north
+  Tharsis (4,018 and 13,251 km², label 334, around 252.8°E 23.3°N) that look like flow fields or edifice
+  ground **[?]**. **Six sit by fluvial valleys:** three in Xanthe Terra by Hypanis and Tyras Valles (training,
+  block −4_0) and three in NE Arabia by Auqakuh and Huo Hsing Valles (held out, block 4_2).
+- **Attributes:** 511 labels carry Classcode " " and their class colour; label **512** (Crater, 1,061 km²,
+  241.96°E 19.83°N, 97 km from Jovis Tholus) has Classcode "" and colour (168, 0, 0): added by hand after
+  `new training.shp` (§29.2). Its class is unchecked against the crater catalogue **[?]**.
+- **Geometry:** `CheckGeometry` finds nothing; 29 polygons are multipart (lava tube 11, Normal Ground 14,
+  hills 4), chains drawn as parts; 82 are under 25 km² (625 cells of 200 m), 33 Crater polygons under 5 km across.
+- **Balance across blocks:** hills train in 2 blocks (27 of 28 in −6_−1) and are held out in 3; lava tube in 4
+  and 3, its held-out area 2,495 km², 15 of 21 polygons in block −6_1.
+
+### 68.3 Where each new class can be held out
+
+The 14 held-out blocks stay as drawn in §31.3. Named IAU features (all five nomenclature layers; the
+"classical albedo" one holds most volcanoes and mensae) by the block their centre lies in:
+
+| class | held-out blocks | training blocks, or no labels yet (training) |
+|---|---|---|
+| volcanic edifice | Arsia Mons (−9_−1); Biblis Tholus and Patera, Ulysses Tholus (−9_0); Nili Tholus (4_0) | Olympus, Ascraeus, Pavonis Mons, Jovis, Uranius, Ceraunius, Tharsis Tholus; Elysium |
+| apron | Arsia Sulci, the Arsia fan (−9_−1); Gigas Sulci, the aureole (−9_0); Nilosyrtis Mensae (4_2) | Pavonis Sulci, the Ascraeus fan; Sulci Gordii, Lycus Sulci; Deuteronilus and Protonilus Mensae |
+| fluvial channel | 17 valleys: Auqakuh, Huo Hsing (4_2); Ravi, Tigre, Columbia, Daga (−3_−1); Napo, Huallaga, Vichada (5_−2); Allegheny, Elaver, Walla Walla (−4_−1); Dittaino, Sepik (−5_−1); Arnus (4_0); Her Desher (−4_−2) | 30 named valleys, e.g. Nanedi, Hypanis, Shalbatana, Nirgal, Uzboi, Ladon, Mawrth |
+| lava tube | Labeatis Catenae and the existing 15 (−6_1) | Tractus and Ceraunius Catenae; Elysium catenae |
+
+Valles Marineris labes are landslides and its mensae interior layered deposits: neither is an apron.
+
+### 68.4 How the revision is carried out (planned; `NEXT-STEPS.md` §11)
+
+- **Proposals, never edits:** a new class `Landform_TrainingSamples_v2_proposals` holds the 512 as copies
+  (`OldOID`, `OldClass`) and the agent's new polygons, each with `Action` (keep / relabel / clip / delete / new /
+  fix), `ProposedClass`, `Subtype`, `Reason`, `Evidence`, and the author's `Review` (accept / reject / unsure) and
+  `ReviewNote`. `Landform_TrainingSamples_terrain` is never written. An apply script builds `_v2`, `_v2_60_train`
+  and `_v2_60_test` from accepted rows only.
+- **Evidence per polygon, from the drive:** SIM 3292 unit-group shares; the largest Robbins crater inside against
+  the polygon's size (a Crater polygon with none near its size is flagged); relief and slope from the stack; shape
+  (elongation, for classes 3 and 7); the IAU names (§68.2).
+- **The split:** the same 14 held-out blocks; a polygon goes to the block holding its centroid; blocks with no
+  label so far are training; no polygon may share ground with one in the other split (290/291 clipped).
+- **Minimum per new class:** ≥ 10 held-out polygons in ≥ 2 held-out blocks and ≥ 20 training polygons in ≥ 3
+  training blocks. Hills meets it only in part today (2 training blocks).
+- **Verdict rule, written before any run (D18, the author's word 2026-10-22: both maps go in the interim; the
+  seven-class map is expected to supersede for the final if it scores well):** both the four-class map and the v2
+  map are scored on the v2 held-out polygons by the §55.3 scorer. The v2 map replaces the published one only if (a)
+  its overall accuracy and κ are at least the four-class map's, (b) each new class's user's accuracy exceeds its
+  share of held-out area, and (c) Crater, hills and Normal Ground producer's accuracy each fall by under 5 pt.
+  Otherwise the four-class map stays published and v2 is reported as a test. 73.8 %, κ 0.58 stays the record of
+  the four-class labels.
+
+### 68.5 The proposals script, run and tested on the laptop — 2026-10-22 **[V]**
+
+The author approved the downloads. On the laptop, into scratch: the repo's gdb export, with `Ref_SIM3292_GeologicUnits`
+and `Ref_Craters_Robbins2020` rebuilt by `make_reference_layers.py`'s own functions from fresh downloads
+(`sim3292_database.zip` 808.9 MB, 1,311 units; the Robbins 2020 zip 39.4 MB, 385,049 craters: both as §41
+records the drive's); the DEM downloaded whole (11,384,463,908 bytes, the drive's size in `tools/check_remote.py`).
+**New source:** Alemanno & Orofino (2017), "Global map of Martian fluvial systems", Zenodo
+10.5281/zenodo.1051038, CC BY-SA 4.0: 3,772 valley polylines, 714,434 km, typed Single Valley / Valley
+Network, with ages; `Giulia Valleys.shp` SHA-256 bf853acd…6e306715 (the script checks it). Levy et al. (2014)'s
+debris-glacier outlines are behind a bot check on Wiley's site and were not fetched.
+
+- **The apron units of SIM 3292:** `ANa` is the mid-latitude debris-apron terrain (Deuteronilus and Protonilus
+  Mensae, the Hellas east rim, Tempe); `lAa` the Tharsis fan-shaped deposits (Arsia, Pavonis, Ascraeus);
+  `Aa` the Olympus aureole **and the Valles Marineris landslides** (Ius, Coprates, Ophir Labes, Candor Chaos),
+  which the script keeps out of class 6. No apron unit lies in a held-out block except the Tharsis ones: held-out
+  aprons are the Arsia fan and Gigas Sulci; lobate debris aprons are training only unless drawn in block 4_2.
+- **`propose_label_changes.py`** (third run, 701 s; 1,086 rows, the map "Labels v2: proposals" built in a copy
+  of the `.aprx`): the split's centroid rule reproduces all 183 / 329 assignments. On the 512:
+  - **relabel 12:** five Crater polygons are volcanoes, to 5: **22 Arsia Mons** (held out), **20 Ulysses
+    Tholus** (held out), **464 Pavonis Mons**, **465 Ascraeus Mons**, **19 Tharsis Tholus**: each a circle round
+    the volcano, under 8 % inside catalogued craters; five lava-tube polygons to 7 (304–306 Xanthe, 436–437 NE
+    Arabia, 26–82 km of mapped valley each); 334 and 335 (13,251 and 4,018 km², all on volcanic plains, no
+    catena) to 4, each with the lava-tube chain inside it (336, 337) cut out and kept.
+  - **check 23:** 15 Crater polygons under a quarter inside catalogued crater rims (mostly small craters drawn
+    with a wide margin; two under 1 km, below the catalogue's floor; 21, 16,013 km², no named feature near);
+    seven lava-tube chains 318–324 on `eHh` near Uranius Fossae (tectonic pit chains?); 435 on `mNh` (fluvial?).
+  - **clip 1** (290 by 291), **delete 1** (350), **fix 1** (512: a real crater, 75 % inside a 32 km one).
+  - **new 574:** 276 valley strips (2.4 km wide, ≤ 6 per held-out and 2 per training block), 172 apron and 126
+    edifice pieces (3° pieces of SIM 3292 units, inset 5 km).
+  - If every proposal were accepted: no overlap between classes or across the split; classes 5–7 meet §68.4's
+    minimum (edifice 12 held out in 3 blocks, apron 22 in 3, fluvial 46 in 10); **hills (2 training blocks) and
+    lava tube (18 training polygons) do not**: both need polygons drawn in more training blocks.
+- **Read by eye** (16 sampled proposals over hillshade): the relabels and valley strips sit where their reasons
+  say; the unit pieces are coarse (a Protonilus `ANa` piece holds mesas and plains, an Alba Mons edifice piece
+  is nearly flat): their reason asks the author to trim them to the landform before accepting.
+- **Tests** (scratch copies): a proposals class holding one review is not replaced; a full accept applies
+  (`apply_label_review.py`: 1,085 labels, 827 training + 258 held out); planted defects refused: the clip of 290
+  rejected (51.5 km² across the split) and 334 accepted with its uncut outline (138.5 km² over lava tube 336).
+- The first run found the two rule errors the third fixes: a broad relabel overlapping a chain that keeps its
+  class, and a nested polygon deleted although its container changes class.

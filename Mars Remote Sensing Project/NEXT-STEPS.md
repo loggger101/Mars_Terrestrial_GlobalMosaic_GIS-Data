@@ -85,9 +85,24 @@ reveals, capitals for emphasis; the builders carry the same text. Numbers untouc
 Then (§67.3–67.5): the script catalogue regrouped, stale docstrings fixed, the U-Net in the pipeline diagram; every
 number on the pages checked against the record; the drive measured at 429 GB; "#section" links checked in CI; the
 clone's two orphan pack files removed (author's yes); the 05 and 07 slides' legends enlarged.
+**2026-10-22, laptop, without the drive (§68), the author's decision D17:** the class scheme is revised
+**before the interim**: codes 1–4 kept and narrowed (Crater means impact only; volcanic plains are Normal Ground),
+5 volcanic edifice, 6 apron, 7 fluvial channel; the agent proposes, the author accepts (§11). The 512 labels,
+audited from the repo's gdb export: no overlap between classes, one train/test leak (labels 290/291, 51.5 km²),
+five volcanoes labelled Crater (Arsia Mons, held out, 31 % of the held-out Crater area; Ulysses Tholus, held
+out; Ascraeus and Pavonis Mons and Tharsis Tholus, training), lava-tube polygons on fluvial valleys. The author
+approved downloads and a seven-class map beside the four-class one in the interim (D18). The same day, without
+the drive, `propose_label_changes.py` and `apply_label_review.py` were written and tested on downloaded copies
+of the references (KB §68.5): ready for the desktop run (item 2a, §11.2). **This file, the KB, `HANDOFF-DESKTOP.md`,
+`build\github_sync.py` (two names added to `GROUPS`) and two new scripts (`build\propose_label_changes.py`,
+`build\apply_label_review.py`) were written in the clone and pushed: copy all six to the drive before the next
+`github_sync.py`, which copies drive → clone and would overwrite or remove them. The drive's copies of the four
+existing files should still equal commit `449cc9a` (check with `git hash-object` against
+`git rev-parse 449cc9a:<path>`); if one differs, merge by hand.**
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
-is the critical path, and only the author can do it (§6).
+is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
+delay it.
 
 **Next, in this order:**
 
@@ -95,11 +110,14 @@ is the critical path, and only the author can do it (§6).
 |---|---|---|---|---|
 | 1 | **Review the Ius candidates**, then Athabasca | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
+| 2a | **Class revision, proposals**: the 512 with evidence and an `Action` each, plus new polygons for classes 5–7, in `Landform_TrainingSamples_v2_proposals` and a map in the `.aprx` | agent, drive | §11.2 | every label has an `Action`; each new class meets §11.3's minimum in proposals |
+| 2b | **Review the label proposals** (accept / reject / unsure; edit outlines; draw what is missing) | author, in Pro | §11.4 | every non-`keep` row reviewed, by **26 Oct** |
+| 2c | v2 labels and split; SVM and U-Net on v2; both maps scored on v2; D18's verdict; layouts and interim | agent, desktop | §11.5 | results in the KB beside the four-class scores, by **31 Oct** |
 | 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). ±60° U-Net map made (§66.7), seams removed (§66.8), in the project beside the published SVM map with layout 17 (§66.9), in the interim and the release `data-2026-10-21` (§66.10). For the author: any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
 | 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
 | 5 | The interim: due date and the percent-complete column from the author; rebuild after each result | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 
-**Waiting on the author:** items 1, 3 and 5; whether to delete the two recreated `_60_smoke` classes
+**Waiting on the author:** items 1, 2b, 3 and 5; whether to delete the two recreated `_60_smoke` classes
 (KB §57.1); whether to publish a derivatives release carrying the §54 patch (33 GB; the catalogue says how
 to patch a restore instead, §57.4); emptying the Recycle Bins (~21 GB of finished scratch, §57.5).
 
@@ -140,6 +158,12 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D14 | the two `_60_smoke` classes, recreated by X2's smoke run (§57.1) | delete (they were deleted once, D9); they are in the release GeoPackage |
 | D15 | a derivatives release with the §54 patch (33 GB upload) | not needed: the catalogue gives the two commands that patch a restore (§57.4) |
 | D16 | the interim's percent-complete column and its due date | the author's numbers; `interim.py` prints dashes until then |
+D17, the class revision, was answered 2026-10-22: seven classes, before the interim, the agent proposes and the
+author accepts (KB §68.1; §11 here). D18 the same day: **the interim shows both maps**, four-class and
+seven-class, each scored on its own held-out polygons and both on v2's; the seven-class map is expected to
+supersede the four-class one for the final, by KB §68.4's rule (v2's accuracy and κ at least the four-class
+map's on the v2 held-out polygons, each new class above its base rate, the old three within 5 pt); failing it,
+v2 is a reported test. The author makes time for both reviews: no cap.
 
 ---
 
@@ -247,7 +271,7 @@ point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE
 
 | window | focus |
 |---|---|
-| **16 Oct – 1 Nov** | Review and digitising (§6); after each session §3. X5 on the desktop (the install is done, KB §66). **1 Nov: digitising checkpoint.** |
+| **16 Oct – 1 Nov** | Review and digitising (§6); after each session §3. X5 on the desktop (the install is done, KB §66). The class revision beside it (§11.6): proposals 22–23 Oct, the author's label review to 26 Oct, v2 runs 26–31 Oct. **1 Nov: digitising checkpoint.** |
 | **2 Nov** | **Interim data cut.** What is measured goes in; the rest goes to the final. |
 | **2–12 Nov** | The interim per `INTERIM-PLAN.md` §6: rebuild, read every page, `verify_interim.py`, review. Data work pauses except overnight runs. |
 | **~13 Nov** | **Interim due.** |
@@ -284,3 +308,100 @@ point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE
 - **Rerunning the 400 m map's 180° column:** superseded by the 200 m map (§57.2).
 - **The agent digitising for the author:** the judgement is the point of task 11. Machine output enters the
   digitising classes only through an accept in review (§25, D10).
+
+---
+
+## 11. The class revision (D17), before the interim
+
+The author's scheme, the audit and the plan are KB §68; this section is the work.
+
+### 11.1 The classes
+
+| code | class | changes from today |
+|---|---|---|
+| 1 | Crater | impact only: volcano summits and calderas leave it (labels 22 Arsia, 465 Ascraeus) |
+| 2 | steep/windy hills | aprons leave it |
+| 3 | lava tube | narrowed to volcanic pit chains, sinuous rilles and lava channels; fluvial ones leave it (six labels), flow fields go to Normal Ground or edifice |
+| 4 | Normal Ground | volcanic plains are drawn as Normal Ground |
+| 5 | volcanic edifice | new |
+| 6 | apron | new: lobate debris aprons and the Tharsis fan-shaped deposits; the Olympus aureole with its origin open |
+| 7 | fluvial channel | new, the author's "fluvial tubes"; `Subtype`: valley / inverted channel / esker / fluvial pit chain |
+
+### 11.2 The proposals (agent, needs the drive)
+
+`propose_label_changes.py` (written and tested on the laptop 2026-10-22, KB §68.5; ArcGIS Python, Pro
+closed) writes `Landform_TrainingSamples_v2_proposals` and, with `--map`, the map "Labels v2: proposals" (one
+layer per `Action`). **Before the first run on the desktop:** download the valley map to
+`<drive>\Mars Project\Reference\Alemanno2017_valleys\` (Zenodo 10.5281/zenodo.1051038, CC BY-SA 4.0: the
+`Giulia Valleys` `.shp`, `.shx`, `.dbf`, `.prj`; the script checks the `.shp`'s SHA-256) and add it to
+`Reference\README.md`; then `--dry-run`, read the tally, then the real run with `--map`. At the session's end,
+`github_sync.py` lists the two new scripts: give them a group in its `GROUPS` ("Digitising by review" fits) and
+bring the README's script count to 155 (`tools/check_repo.py` fails until then). The geologic map, the crater
+database and the DEM are already on the drive. The outlines of Levy et al. 2014's lobate-apron catalogue sit
+behind a bot check on Wiley's site: only the author can download them (the article's "GIS data set").
+
+1. **Every one of the 512**, with evidence: SIM 3292 unit-group shares, the largest Robbins crater inside against
+   the polygon's size, relief and slope from the stack, elongation, the IAU names inside and within 100 km.
+2. **Rules, each giving an `Action` and a `Reason`:** Crater with no Robbins crater near its size, or mostly on
+   `ve` units → relabel 5 or check; lava tube by a named vallis off volcanic units → 7; lava tube mostly on volcanic
+   plains without a catena → 4; lava tube or hills mostly on apron units → 6; nested same-class duplicates (350)
+   → delete; 290/291 → clip at the block edge; label 512 → fix attributes, check its class; everything else keep.
+3. **New polygons for 5–7**, inside the held-out blocks first (KB §68.3), then training: edifices and the Tharsis
+   fans from the SIM 3292 units and the IAU names; valley floors for 7 from the DEM inside each named vallis's
+   extent; lobate debris aprons around the Nilosyrtis, Deuteronilus and Protonilus mensae from the DEM. Any
+   outside catalogue (e.g. a published lobate-apron map) only with the author's yes to download it.
+4. Read back: counts per `Action` and class and split; every proposed polygon drawn on a chip and checked by eye.
+
+**What the laptop run proposes** (KB §68.5; the desktop run will differ only if the drive's data do): 12
+relabels (five Crater polygons that are volcanoes, five lava-tube polygons on valleys, two lava-tube flow fields
+to Normal Ground), 23 checks, 1 clip, 1 delete, 1 fix, 574 new (276 valley strips, 172 apron and 126 edifice
+pieces); ~8–12 min.
+
+### 11.3 The minimum
+
+Per new class, accepted: ≥ 10 held-out polygons in ≥ 2 held-out blocks, ≥ 20 training in ≥ 3 training blocks.
+A class short of it stays out of v2 and is reported as such; its polygons stay in the proposals. **Hills and
+lava tube fall short of the training half today** (hills in 2 training blocks; lava tube 18 training polygons
+after the relabels): the author draws a few more of each in other training blocks (lava tube: Tractus,
+Ceraunius and the Elysium catenae; hills: massifs outside Valles Marineris).
+
+### 11.4 The author's review
+
+The map "Labels v2: proposals", like §6: set `Review` on every row whose `Action` is not `keep`; edit an outline
+before accepting it; set `Subtype` on class 7; draw missing polygons straight into the proposals class with
+`Action` new, `ProposedClass` set and `Review` accept. **Only `accept` counts:** an accepted row enters with its
+outline and `ProposedClass`; any other row of the 512 enters as it was, and any other new row is left out. To
+change the class of a `keep` row, set its `ProposedClass` and accept it. The clip of label 290 must be
+accepted (or the two outlines otherwise separated): `apply_label_review.py` refuses labels that share ground
+across the split.
+
+### 11.5 After the review (agent, desktop)
+
+1. `apply_label_review.py --dry-run`, then without it → `Landform_TrainingSamples_v2`, `_v2_60_train`,
+   `_v2_60_test` (same 14 held-out blocks; centroid rule; no ground shared across classes or the split,
+   checked; a new class short of §11.3 left out of the split unless `--keep-short`). The originals untouched.
+2. SVM on v2: train (~25 min), classify at 200 m (~6.5 h, overnight), 11 × 11 filter; score v2 and the published
+   map on the v2 held-out polygons; D18's verdict. T8 on v2.
+3. U-Net on v2: export the v2 training split, train (~1.2 h), two passes over ±60° (~12 h); scored the same way.
+   Dropped first if the dates slip.
+4. Layouts: a new sheet for the seven-class SVM map beside 04 (the four-class map, kept), 13 on both, 17 for
+   the U-Net on v2; legends name seven classes. The X5 detector and layout 16 stay four-class, as history.
+   `polish_layouts.py`, export, read.
+5. The interim rebuilt **with both maps** (D18): the four-class map and its scores, the seven-class map and its
+   scores, and both scored on the v2 held-out polygons; the class wording in `interim.py` and
+   `INTERIM-PLAN.md` §7 updated; `verify_interim.py`.
+
+### 11.6 Dates, and what gives first
+
+| by | what |
+|---|---|
+| 23 Oct | proposals built on the drive and read (the script is tested, KB §68.5) |
+| 26 Oct | the author's label review done |
+| 27 Oct | v2 SVM map scored; D18 verdict |
+| 30 Oct | v2 U-Net scored |
+| 31 Oct | layouts and the interim rebuilt |
+| 1–2 Nov | digitising checkpoint; data cut (unchanged) |
+
+If the label review is not done by 27 Oct: drop the U-Net rerun, then the SVM rerun; the interim then shows the
+four-class maps and describes the seven-class scheme as in progress, with §68's audit as its evidence. The
+author makes time for both reviews (no cap, D18).
