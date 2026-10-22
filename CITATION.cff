@@ -7,7 +7,7 @@ authors:
     given-names: Logan M
     affiliation: "Florida Institute of Technology"
 abstract: >-
-  An ArcGIS Pro project that co-registers Viking MDIM 2.1 color, THEMIS day and night
+  An ArcGIS Pro project that co-registers Viking MDIM 2.1 colour, THEMIS day and night
   thermal infrared and the HRSC/MOLA blended elevation model of Mars on one ±60° grid,
   classifies landforms with a support vector machine trained on hand-drawn labels and
   scored on held-out blocks, compares it with a deep-learning detector and a U-Net

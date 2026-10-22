@@ -3,7 +3,7 @@
 The project's working copy is an external drive. This repository is its off-drive backup. The tree
 holds everything small; two GitHub releases, the newest data release and the derivatives release, hold the rasters. This page lists what is in the
 releases, how the backup is kept current, and how to rebuild the drive from it. Each raster is
-described in [rasters.md](rasters.md), each vector layer in [the layer catalog](../exports/README.md).
+described in [rasters.md](rasters.md), each vector layer in [the layer catalogue](../exports/README.md).
 
 ## What is in the releases
 
@@ -48,7 +48,7 @@ copies whatever changed into the clone, regenerates `docs/scripts.md`, commits a
 "C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" github_export_gdb.py --rasters
 ```
 
-re-exports the geodatabase's vector layers into `exports/` and rewrites the layer catalog (and stages the GeoPackage and the GUI SVM maps for the release). Run it after digitising: a re-export rewrites every geodatabase file even when nothing changed, so it isn't worth running otherwise. `--catalog-only` rewrites just the catalog; `--rasters-only` exports just the two SVM maps.
+re-exports the geodatabase's vector layers into `exports/` and rewrites the layer catalogue (and stages the GeoPackage and the GUI SVM maps for the release). Run it after digitising: a re-export rewrites every geodatabase file even when nothing changed, so it isn't worth running otherwise. `--catalog-only` rewrites just the catalogue; `--rasters-only` exports just the two SVM maps.
 
 ```bash
 python github_release_bundle.py --upload data-YYYY-MM-DD

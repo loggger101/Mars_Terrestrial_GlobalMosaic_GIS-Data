@@ -145,9 +145,10 @@ dies:
 
 | | Size | If the drive dies |
 |---|---|---|
-| `Mars Remote Sensing Project\`: this file, `build\`, the decks and reports | **112 MB** | irreplaceable, now in git |
-| The source GeoTIFFs at the drive root | ~58 GB | re-downloadable (README links them) |
-| `Mars Project.gdb` and `Global60\` derivatives | ~300 GB | re-computable, hours of desktop time; most of `Global60\` is in a release |
+| `Mars Remote Sensing Project\`: this file, `build\`, the decks and reports | **2.5 GB** (1.98 GB of it `build\`'s `.npy` caches, which are in a release; the rest in git) | irreplaceable, in git |
+| The source GeoTIFFs at the drive root | 62.1 GB (57.8 GiB) | re-downloadable (README links them) |
+| `Mars Project\`: `Mars Project.gdb` 225 GB, `Global60\` 124 GB, `LabeledObjects\` 7.7 GB, the rest 7.6 GB | 364 GB | re-computable, hours of desktop time; most of `Global60\` is in a release |
+| Measured 2026-10-22 (§67.4), decimal GB | **429 GB** | |
 
 Care rules that stand: **prefer additive writes**; **never delete from the drive without asking**, and
 then to the Recycle Bin, never a hard delete (emptying it is the author's call); **close Pro before
@@ -157,7 +158,8 @@ writing the `.aprx`**; destructive changes and overwriting a hand-edited deliver
 
 ## 3. The data actually held
 
-**Four** global GeoTIFFs at the drive root, **~58 GB** together; THEMIS Night IR was added on 2026-09-18
+**Four** global GeoTIFFs at the drive root, **~58 GB** together (this table's "GB" are GiB, 2³⁰ bytes, as
+Windows reports them: 62.1 decimal GB, the unit the README uses); THEMIS Night IR was added on 2026-09-18
 (§15). A recursive search finds no other source imagery. **[V]** Derived rasters live in
 `Mars Project\TypeArea\`, `Athabasca\` and `Global60\`, and are not counted here.
 
@@ -3650,3 +3652,22 @@ A further review of the repository at the author's request.
   hand-drawn labels beside the SVM; rendered with headless Edge and read.
 - **Checked, no change needed:** `restore.py --dry-run` into scratch lists the newest data release and the
   derivatives, 82.1 GB (`docs/backup.md` says about 80 GB); the repository's description and topics; the licence.
+
+### 67.4 The pages' numbers against this record; anchors; the drive's size; spelling — 2026-10-22 **[V]**
+
+- **Every number on the public pages** (README, `docs/figures.md`, `docs/backup.md`, `Global60\README.md`,
+  `CITATION.cff`) run through `verify_interim.py`'s own matcher against this record: all held except three. The
+  X5b loss "428" rounds this record's 428.1 (§66.5); the DEM's "11.4 GB" is decimal where §3 gives 10.60 GiB, the
+  same file (§3 now says its "GB" are GiB); the drive's "about 390 GB" was nowhere in the record and is stale.
+- **The drive, measured** (`Get-ChildItem -Recurse`, decimal GB): `Mars Project\` 364.1 (`Mars Project.gdb`
+  225.0, `Global60\` 123.6, `LabeledObjects\` 7.7, `TypeArea\` 3.4, `Reference\` 2.4, `Athabasca\` 1.2,
+  `DLModels\` 0.9), the source GeoTIFFs 62.1, `Mars Remote Sensing Project\` 2.5 (`.npy` caches 1.98): **428.7 GB,
+  399.3 GiB**. §2's table said 112 MB, ~58 GB and ~300 GB and is updated; the README says about 430 GB.
+- **"#section" links:** all 12 on the pages resolve to a heading. `tools/check_repo.py` now checks them against
+  GitHub's heading slugs (proved on three planted defects, on the same page and in this record).
+- **Spelling:** the pages write British English ("colour" 5 times, "catalogue" 14, "metres", "centred"); the
+  README's opening, `CITATION.cff` and `docs/pipeline.svg` said "color", and "layer catalog" appeared five times.
+  Made consistent; the `--catalog-only` option keeps its name.
+- **The clone's `.git`** holds two pack files with no index, `pack-c444774…` (50 MB) and `pack-d8f33e5…`
+  (126 MB), dated 2026-10-16 and stored by OneDrive as placeholders; git skips them with a warning. Left in place:
+  removing them is the author's call.

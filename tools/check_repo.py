@@ -4,7 +4,8 @@
     python tools/check_repo.py
 
 1. Every relative link and image in the project-page Markdown (README.md, docs/, exports/)
-   points at a file or folder that exists.
+   points at a file or folder that exists, and a "#section" link at a heading of its page
+   (GitHub's slug: lower case, punctuation dropped, spaces to hyphens).
 2. Every Python file parses (syntax only: most need arcpy or GDAL to run).
 3. No file is over GitHub's 100 MB limit.
 4. CITATION.cff names the same title and repository URL as the README.
@@ -43,6 +44,19 @@ def targets(page):
         yield target, (page.parent / urllib.parse.unquote(target.split("#")[0])).resolve()
 
 
+def anchors(md):
+    """The "#section" names GitHub gives a page's headings."""
+    text = re.sub(r"```.*?```", "", md.read_text(encoding="utf-8"), flags=re.S)
+    seen, out = {}, set()
+    for h in re.findall(r"^#{1,6}\s+(.+?)\s*#*\s*$", text, re.M):
+        h = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", h)
+        s = re.sub(r"[^\w\- ]", "", h.lower()).replace(" ", "-")
+        n = seen.get(s, 0)
+        seen[s] = n + 1
+        out.add(s if n == 0 else f"{s}-{n}")
+    return out
+
+
 def links():
     n = 0
     for page in PAGES:
@@ -50,6 +64,14 @@ def links():
             n += 1
             if not path.exists():
                 fails.append(f"broken link in {page.relative_to(ROOT)}: {target}")
+        text = re.sub(r"```.*?```", "", page.read_text(encoding="utf-8"), flags=re.S)
+        for target in LINK.findall(text) + HTML.findall(text):   # "#section" links, on this page or another
+            if "#" not in target or re.match(r"[a-z]+:", target):
+                continue
+            path, frag = target.split("#", 1)
+            md = page if not path else (page.parent / urllib.parse.unquote(path)).resolve()
+            if md.suffix == ".md" and md.exists() and urllib.parse.unquote(frag).lower() not in anchors(md):
+                fails.append(f"no heading for #{frag} in {page.relative_to(ROOT)}: {target}")
     return n
 
 

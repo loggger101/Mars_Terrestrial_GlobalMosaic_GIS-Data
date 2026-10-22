@@ -28,7 +28,7 @@
 
   <!-- sources -->
   <rect class="b src" x="20" y="34" width="200" height="56" rx="6"/>
-  <text x="32" y="57" class="t">Viking MDIM 2.1 color</text><text x="32" y="76" class="s">232 m · meridian 0°</text>
+  <text x="32" y="57" class="t">Viking MDIM 2.1 colour</text><text x="32" y="76" class="s">232 m · meridian 0°</text>
   <rect class="b src" x="20" y="104" width="200" height="56" rx="6"/>
   <text x="32" y="127" class="t">THEMIS day IR</text><text x="32" y="146" class="s">100 m · meridian 180°</text>
   <rect class="b src" x="20" y="174" width="200" height="56" rx="6"/>
