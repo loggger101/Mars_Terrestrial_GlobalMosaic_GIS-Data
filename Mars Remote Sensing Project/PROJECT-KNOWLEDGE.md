@@ -3669,5 +3669,8 @@ A further review of the repository at the author's request.
   README's opening, `CITATION.cff` and `docs/pipeline.svg` said "color", and "layer catalog" appeared five times.
   Made consistent; the `--catalog-only` option keeps its name.
 - **The clone's `.git`** holds two pack files with no index, `pack-c444774…` (50 MB) and `pack-d8f33e5…`
-  (126 MB), dated 2026-10-16 and stored by OneDrive as placeholders; git skips them with a warning. Left in place:
-  removing them is the author's call.
+  (126 MB), dated 2026-10-16 and stored by OneDrive as placeholders; git skips them with a warning. Neither was in
+  the multi-pack index; `git count-objects -v` counted them as garbage (2 files, 172,591 KiB). At the author's yes
+  they were deleted with `SendToRecycleBin`: being online-only OneDrive files, they did not appear in the local
+  Recycle Bin (3 items, none of them), so any copy is in OneDrive's online recycle bin, not checked. After:
+  garbage 0, `git multi-pack-index verify` and `git fsck --full` exit 0 (dangling blobs only), HEAD = origin/main.
