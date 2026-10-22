@@ -13,7 +13,7 @@ This repository is the project page and an off-drive backup of the project. The 
 
 **Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 153, by purpose) · [backup and restore](docs/backup.md)
 
-[![Mars ±60° landform classification](Mars%20Project/Global60/layouts/04_global60_landforms.png)](Mars%20Project/Global60/layouts/04_global60_landforms.png)
+[![Mars ±60° landform classification](docs/thumbs/04_global60_landforms.jpg)](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 *The published landform map: four classes over ±60°, scored on hand-drawn polygons the classifier never saw (layout 04).*
 
 ## How it works
@@ -22,7 +22,7 @@ This repository is the project page and an off-drive backup of the project. The 
 
 The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 
-## Where it stands (2026-10-20)
+## Where it stands (2026-10-22)
 
 The interim report and presentation are due **mid-November 2026** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source and rebuilt as results come in ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); how to work on the project is [`HANDOFF-DESKTOP.md`](Mars%20Remote%20Sensing%20Project/HANDOFF-DESKTOP.md).
 
@@ -43,8 +43,8 @@ The interim report and presentation are due **mid-November 2026** and the final 
 
 The full list, with who does what, is the "Resume here" section of [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); open questions are numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
 
-1. **Review the machine candidates and digitise the three landform layers** (the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. Each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, starting with the 188 steep, rock-floored channel candidates and the 1,685 closed depressions at Ius Chasma; `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins at Athabasca) is drawn by hand. Layout 14 turns each session into the detector's precision and recall.
-2. **Deep learning** on the desktop GPU: a RetinaNet model trained on the training split's 7-band chips and scored per held-out polygon (KB §66.1–66.2): Crater recall 41.9 %, precision 87.6 % against a 71.1 % one-class baseline; it never predicts the two rare classes. Its detections are in the geodatabase, on a map in the project and on layout 16; a retrain (X5b: backbone unfrozen, no early stopping, rare-class chips) names the hills but loses the plains (KB §66.5). A U-Net pixel classifier on the same split (X5c, KB §66.6) scores **98.75 %, κ 0.977** on the held-out polygons against the published SVM map's 73.8 %, κ 0.583 under the same scorer, and lava tube's user's accuracy rises from 2.4 % to 70.7 %; it maps terrain provinces rather than single features. Run over all of ±60° (KB §66.7) it keeps 98.8 %, κ 0.979, and a second pass on a tile grid offset by 128 px removes the seams the tool's 256 px tiles left (KB §66.8); the SVM map stays the published one, and the U-Net map stands beside it as the province map, with layout 17 and per-polygon records in the geodatabase (KB §66.9).
+1. **Review the machine candidates and digitise the three landform layers** (the critical path). `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines` and `Landform_CraterRims` exist and are empty. Each candidate's `Review` field (accept / reject / unsure) is set in the attribute table, starting with the 188 steep, rock-floored channel candidates and the 1,685 closed depressions at Ius Chasma; `build/accept_reviewed.py` copies only the accepted ones across; what the candidates miss (breached craters, lava margins at Athabasca) is drawn by hand. Layout 14 turns each session into the detector's precision and recall. If the three layers are still empty on **1 November**, the interim presents every machine product as candidates with its measured recall, not as a landform map.
+2. **Deep learning**: trained and scored ([below](#deep-learning-x5)). Any further tuning first needs validation blocks of its own, apart from the held-out test blocks (KB §66.5).
 3. **The retests that wait for the review**: volcanic against fluvial channels by origin (H2, stage 2), and flow margins in IR against Viking on lava margins digitised at Athabasca (H1).
 4. **The interim and the final report and presentation**, from the layouts and the results below.
 
@@ -69,6 +69,14 @@ Yes, a little. With ArcGIS Pro's SVM over the whole ±60°, leaving the thermal 
 | [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/t1_pro.png" alt="T1: accuracy the thermal bands add, with 95% intervals">](Mars%20Remote%20Sensing%20Project/build/interim_img/t1_pro.png) | [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/thermal_ablation.png" alt="T1: held-out accuracy for seven band sets">](Mars%20Remote%20Sensing%20Project/build/interim_img/thermal_ablation.png) |
 | Dot: accuracy with all bands minus accuracy without the group; line: paired-bootstrap 95% interval over the 183 held-out polygons. Right of 0, the group helps. | Cyan: band sets that include slope and relief. The dashed line is one class everywhere. |
 
+### Deep learning (X5)
+
+Two deep-learning models, trained on the desktop GPU on the same training blocks as the SVM and scored on the same held-out polygons. A **RetinaNet detector** on 7-band chips finds Crater polygons with 41.9% recall and 87.6% precision, against 71.1% for naming every polygon Crater, and never names the two rare classes (layout 16); retrained with its backbone unfrozen it names the hills but loses the plains (Normal Ground recall 4.5%). A **U-Net pixel classifier** over all of ±60° scores **98.9%, κ 0.980** held out, against the published map's 73.8%, κ 0.583 under the same scorer, and raises lava tube's user's accuracy from 2% to 77%. It paints terrain provinces rather than single landforms: its 'Crater' class covers 83% of the ring around named craters, not just the craters. A second pass on a grid offset by 128 px removes the seams of the tool's 256 px tiles. The SVM map stays the published one; the U-Net map sits beside it as the province map (KB §66).
+
+[<img src="docs/thumbs/17_x5c_unet_provinces.jpg" width="640" alt="Layout 17: the U-Net terrain-province map over ±60°, one held-out block, and its scores beside the SVM map's">](Mars%20Project/Global60/layouts/17_x5c_unet_provinces.png)
+
+*Layout 17: the two-pass U-Net map over ±60° (A), one held-out block with its 31 hand-drawn polygons (B), and the U-Net and SVM maps under the same scorer.*
+
 ### Against calibrated thermal inertia (T3)
 
 Across ±60°, TES thermal inertia tracks Viking red (r −0.36), while the THEMIS mosaics keep only a weak signal inside regions (|r| ≈ 0.1); in the two type areas the diurnal-contrast index does not track it. Where a calibrated product can check, visible albedo carries the material signal.
@@ -79,7 +87,7 @@ Across ±60°, TES thermal inertia tracks Viking red (r −0.36), while the THEM
 
 Inside a type area the day–night pair does carry a signal that topography doesn't: at Ius Chasma the diurnal-contrast index correlates with slope at only −0.25, and the two steepest object classes sit at opposite signs. Whether that is material is untestable below the ~3 km TES resolves.
 
-[<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/ius_thermal_contrast.png" width="640" alt="Ius Chasma diurnal-contrast index, its mean per class, and the class means against slope">](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_thermal_contrast.png)
+[<img src="docs/thumbs/ius_thermal_contrast.jpg" width="640" alt="Ius Chasma diurnal-contrast index, its mean per class, and the class means against slope">](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_thermal_contrast.png)
 
 *A: the index over Ius Chasma (day and night IR each stretched on its own, then differenced; relative, not inertia). B: its mean per object-based class. C: the same means against slope (KB §24).*
 
@@ -113,7 +121,7 @@ T2 counts craters per unit. The catalogue ranks the flood lava lowest at Athabas
 
 Across ±60°, 465,354 closed depressions ≥ 1 km; against the Robbins catalogue 15.3% of them are catalogued craters, 62.2% of those ≥ 5 km and 83.1% of those ≥ 20 km, each far above a chance baseline; recall levels off near half, since breached and degraded craters are invisible to a closed-depression detector. Below ~5 km the density follows the DEM's makeup more than the craters (layout 11). Large craters are measured well: Perrotin within 7.1% in diameter.
 
-[<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/ius_crater_candidates.png" width="640" alt="Ius Chasma closed depressions, their size-frequency, and the Oudemans miss and Perrotin hit">](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_crater_candidates.png)
+[<img src="docs/thumbs/ius_crater_candidates.jpg" width="640" alt="Ius Chasma closed depressions, their size-frequency, and the Oudemans miss and Perrotin hit">](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_crater_candidates.png)
 
 *Ius Chasma: the 1,685 closed depressions ≥ 1 km (A) and their size-frequency (B); C and D, the detector on two named craters: Oudemans is breached into the canyon (its lowest rim point 33 m below its floor), so it is not a closed depression and is missed; Perrotin is found within 7.1% (KB §26).*
 
@@ -121,7 +129,7 @@ Across ±60°, 465,354 closed depressions ≥ 1 km; against the Robbins catalogu
 
 `Fill` flooded Ius Chasma 2,077 m deep (21.7% of the type area raised by more than 1 m), and 56% of the stream cells in the first network were an artefact of it; of the 2,610 candidates left, 188 steep, rock-floored ones are worth digitising (layout 06). Across ±60°, 969,822 routed segments (layout 12); 89.8% lie on ground under 2°, so plateau channels are DEM noise. No channel reference exists at ±60° to score them.
 
-[<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/ius_channel_candidates.png" width="640" alt="Ius Chasma channel candidates by diurnal-contrast index, and the depth Fill added">](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_channel_candidates.png)
+[<img src="docs/thumbs/ius_channel_candidates.jpg" width="640" alt="Ius Chasma channel candidates by diurnal-contrast index, and the depth Fill added">](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_channel_candidates.png)
 
 *Ius Chasma. A: the 2,610 channel candidates, coloured by the diurnal-contrast index. B: where `Fill` raised the DEM, which is what the channel network had been routed across before the mask (KB §25.1).*
 
@@ -154,33 +162,33 @@ The 17 map sheets in the ArcGIS Pro project, grouped by what they show. Click on
 
 | | |
 |---|---|
-| [![10](Mars%20Project/Global60/layouts/10_global60_locator.png)](Mars%20Project/Global60/layouts/10_global60_locator.png) **10** · Where everything is: the analysis extent, the two type areas and the geologic map's volcanic units | [![08](Mars%20Project/Global60/layouts/08_global60_mosaic.png)](Mars%20Project/Global60/layouts/08_global60_mosaic.png) **08** · The four inputs at ±60°: visible, day IR, night IR, topography |
+| [![Layout 10: Where everything is: the analysis extent, the two type areas and the geologic map's volcanic units](docs/thumbs/10_global60_locator.jpg)](Mars%20Project/Global60/layouts/10_global60_locator.png) **10** · Where everything is: the analysis extent, the two type areas and the geologic map's volcanic units | [![Layout 08: The four inputs at ±60°: visible, day IR, night IR, topography](docs/thumbs/08_global60_mosaic.jpg)](Mars%20Project/Global60/layouts/08_global60_mosaic.png) **08** · The four inputs at ±60°: visible, day IR, night IR, topography |
 
 **The two type areas**
 
 | | | |
 |---|---|---|
-| [![01](Mars%20Project/TypeArea/layouts/01_visible.png)](Mars%20Project/TypeArea/layouts/01_visible.png) **01** · Ius Chasma, visible (Viking colour) | [![02](Mars%20Project/TypeArea/layouts/02_night_ir.png)](Mars%20Project/TypeArea/layouts/02_night_ir.png) **02** · Ius Chasma, night-time thermal infrared | [![15](Mars%20Project/Global60/layouts/15_athabasca_type_area.png)](Mars%20Project/Global60/layouts/15_athabasca_type_area.png) **15** · Athabasca Valles in its four inputs, with the flood-lava unit `lAv` outlined |
+| [![Layout 01: Ius Chasma, visible (Viking colour)](docs/thumbs/01_visible.jpg)](Mars%20Project/TypeArea/layouts/01_visible.png) **01** · Ius Chasma, visible (Viking colour) | [![Layout 02: Ius Chasma, night-time thermal infrared](docs/thumbs/02_night_ir.jpg)](Mars%20Project/TypeArea/layouts/02_night_ir.png) **02** · Ius Chasma, night-time thermal infrared | [![Layout 15: Athabasca Valles in its four inputs, with the flood-lava unit lAv outlined](docs/thumbs/15_athabasca_type_area.jpg)](Mars%20Project/Global60/layouts/15_athabasca_type_area.png) **15** · Athabasca Valles in its four inputs, with the flood-lava unit `lAv` outlined |
 
 **Classification**
 
 | | |
 |---|---|
-| [![04](Mars%20Project/Global60/layouts/04_global60_landforms.png)](Mars%20Project/Global60/layouts/04_global60_landforms.png) **04** · The published ±60° landform map, scored | [![13](Mars%20Project/Global60/layouts/13_geomap_check.png)](Mars%20Project/Global60/layouts/13_geomap_check.png) **13** · The classes against the USGS geologic map (T8) |
-| [![03](Mars%20Project/TypeArea/layouts/03_classification.png)](Mars%20Project/TypeArea/layouts/03_classification.png) **03** · Ius Chasma, unsupervised (Iso Cluster, 10 classes) | [![05](Mars%20Project/Global60/layouts/05_svm_checks.png)](Mars%20Project/Global60/layouts/05_svm_checks.png) **05** · The first two SVM maps, checked and superseded |
-| [![16](Mars%20Project/Global60/layouts/16_x5_detections.png)](Mars%20Project/Global60/layouts/16_x5_detections.png) **16** · A deep-learning detector (X5), scored per held-out polygon | [![17](Mars%20Project/Global60/layouts/17_x5c_unet_provinces.png)](Mars%20Project/Global60/layouts/17_x5c_unet_provinces.png) **17** · Terrain provinces from a U-Net (X5c), beside the published SVM map |
+| [![Layout 04: The published ±60° landform map, scored](docs/thumbs/04_global60_landforms.jpg)](Mars%20Project/Global60/layouts/04_global60_landforms.png) **04** · The published ±60° landform map, scored | [![Layout 13: The classes against the USGS geologic map (T8)](docs/thumbs/13_geomap_check.jpg)](Mars%20Project/Global60/layouts/13_geomap_check.png) **13** · The classes against the USGS geologic map (T8) |
+| [![Layout 03: Ius Chasma, unsupervised (Iso Cluster, 10 classes)](docs/thumbs/03_classification.jpg)](Mars%20Project/TypeArea/layouts/03_classification.png) **03** · Ius Chasma, unsupervised (Iso Cluster, 10 classes) | [![Layout 05: The first two SVM maps, checked and superseded](docs/thumbs/05_svm_checks.jpg)](Mars%20Project/Global60/layouts/05_svm_checks.png) **05** · The first two SVM maps, checked and superseded |
+| [![Layout 16: A deep-learning detector (X5), scored per held-out polygon](docs/thumbs/16_x5_detections.jpg)](Mars%20Project/Global60/layouts/16_x5_detections.png) **16** · A deep-learning detector (X5), scored per held-out polygon | [![Layout 17: Terrain provinces from a U-Net (X5c), beside the published SVM map](docs/thumbs/17_x5c_unet_provinces.jpg)](Mars%20Project/Global60/layouts/17_x5c_unet_provinces.png) **17** · Terrain provinces from a U-Net (X5c), beside the published SVM map |
 
 **Craters and channels**
 
 | | | |
 |---|---|---|
-| [![11](Mars%20Project/Global60/layouts/11_global60_depressions.png)](Mars%20Project/Global60/layouts/11_global60_depressions.png) **11** · Closed depressions ≥ 1 km against the Robbins catalogue | [![07](Mars%20Project/Global60/layouts/07_global60_basins.png)](Mars%20Project/Global60/layouts/07_global60_basins.png) **07** · Basin and crater candidates ≥ 20 km | [![12](Mars%20Project/Global60/layouts/12_global60_channels.png)](Mars%20Project/Global60/layouts/12_global60_channels.png) **12** · The channel network routed on the DEM, order ≥ 3 |
+| [![Layout 11: Closed depressions ≥ 1 km against the Robbins catalogue](docs/thumbs/11_global60_depressions.jpg)](Mars%20Project/Global60/layouts/11_global60_depressions.png) **11** · Closed depressions ≥ 1 km against the Robbins catalogue | [![Layout 07: Basin and crater candidates ≥ 20 km](docs/thumbs/07_global60_basins.jpg)](Mars%20Project/Global60/layouts/07_global60_basins.png) **07** · Basin and crater candidates ≥ 20 km | [![Layout 12: The channel network routed on the DEM, order ≥ 3](docs/thumbs/12_global60_channels.jpg)](Mars%20Project/Global60/layouts/12_global60_channels.png) **12** · The channel network routed on the DEM, order ≥ 3 |
 
 **Digitising and validation**
 
 | | | |
 |---|---|---|
-| [![06](Mars%20Project/Global60/layouts/06_ius_digitising.png)](Mars%20Project/Global60/layouts/06_ius_digitising.png) **06** · Ius Chasma, candidates to digitise | [![09](Mars%20Project/Global60/layouts/09_athabasca_digitising.png)](Mars%20Project/Global60/layouts/09_athabasca_digitising.png) **09** · Athabasca Valles, candidates to digitise | [![14](Mars%20Project/Global60/layouts/14_validation.png)](Mars%20Project/Global60/layouts/14_validation.png) **14** · Validation: the candidates against review and the Robbins catalogue |
+| [![Layout 06: Ius Chasma, candidates to digitise](docs/thumbs/06_ius_digitising.jpg)](Mars%20Project/Global60/layouts/06_ius_digitising.png) **06** · Ius Chasma, candidates to digitise | [![Layout 09: Athabasca Valles, candidates to digitise](docs/thumbs/09_athabasca_digitising.jpg)](Mars%20Project/Global60/layouts/09_athabasca_digitising.png) **09** · Athabasca Valles, candidates to digitise | [![Layout 14: Validation: the candidates against review and the Robbins catalogue](docs/thumbs/14_validation.jpg)](Mars%20Project/Global60/layouts/14_validation.png) **14** · Validation: the candidates against review and the Robbins catalogue |
 
 ## Source data
 
@@ -250,7 +258,10 @@ Mars Remote Sensing Project/
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
 Mars Project/
   Mars Project.aprx        the ArcGIS Pro project: 32 maps, all Mars, and 17 layouts
-  Global60/, TypeArea/     metadata sidecars, models (.ecd), raster attribute tables, layouts
+  Global60/, TypeArea/,    metadata sidecars, models (.ecd), raster attribute tables, layouts;
+  Athabasca/               Global60/checks/ holds the DEM step chips
+  DLModels/                the three deep-learning models' metadata and training plots (the
+                           weight files, 137-165 MB, are in the release's dl-models.zip)
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs
 exports/
@@ -261,11 +272,15 @@ docs/
   rasters.md               every backed-up raster: grid, type, NoData, what it is, which release
   backup.md                the release assets, keeping the backup current, restoring the drive
   scripts.md               every build script by purpose, with the Python it needs
+  figures.md               every image in the tree: what it shows, its script, its KB section
   pipeline.svg             the diagram above
+  thumbs/                  the 800 px previews these pages show; the full files are one click away
 drive-root/                the source rasters' sidecars and the night mosaic's PDS label and MD5
 restore.py                 rebuilds the drive from this repository and its releases
 tools/check_repo.py        the checks CI runs on every push: page links, Python syntax, file sizes,
-                           and that the counts this page states match the tree
+                           that the counts this page states match the tree, the figure index,
+                           alt text, and previews current with their sources
+tools/make_thumbs.py       rebuilds docs/thumbs/ after a layout or figure changes (needs Pillow)
 tools/check_remote.py      run by hand: release assets against their checksums, linked releases,
                            the source mosaics' addresses and sizes
 CITATION.cff               how to cite the project ("Cite this repository" on GitHub)

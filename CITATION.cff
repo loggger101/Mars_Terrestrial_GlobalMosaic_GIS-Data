@@ -10,8 +10,9 @@ abstract: >-
   An ArcGIS Pro project that co-registers Viking MDIM 2.1 color, THEMIS day and night
   thermal infrared and the HRSC/MOLA blended elevation model of Mars on one ±60° grid,
   classifies landforms with a support vector machine trained on hand-drawn labels and
-  scored on held-out blocks, and seeds channel, crater and basin candidates for
-  digitising. Coursework for OCN 4704 Remote Sensing, Fall 2026.
+  scored on held-out blocks, compares it with a deep-learning detector and a U-Net
+  pixel classifier scored the same way, and seeds channel, crater and basin candidates
+  for digitising. Coursework for OCN 4704 Remote Sensing, Fall 2026.
 repository-code: "https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data"
 license:
   - CC-BY-4.0

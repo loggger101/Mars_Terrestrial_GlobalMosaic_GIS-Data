@@ -3570,3 +3570,24 @@ On the desktop, at the author's request to audit that the layouts and images are
   layout names Tharsis, read with `arcpy.mp`) and its line that deep learning has no slide (two since §66.10).
 - **The review:** `accept_reviewed.py`, dry run: 0 of 9,287 candidates reviewed (2,610 and 1,685 at Ius, 3,283 and
   1,709 at Athabasca); nothing for `NEXT-STEPS.md` §3.
+
+### 67.1 The repo's pages: previews, alt text, a deep-learning section — 2026-10-22 **[V]**
+
+At the author's request to refine the repository itself. `tools/check_remote.py` first: 83 release assets and the
+four source mosaics, all pass.
+
+- **Page weight.** The README showed 34 images, 25.5 MB, the layouts as full 150 dpi PNGs; `docs/figures.md` 46,
+  36.1 MB. New `tools/make_thumbs.py` (repo only, Pillow) writes an 800 px JPEG for every image `docs/figures.md`
+  links that is over 300 KB, 31 previews, 2.7 MB in all, into `docs/thumbs/`, and records each source's SHA-256 in
+  `docs/thumbs/SOURCES.txt`; the three models' `show_results.png` take their model folder's name. The pages show
+  the preview and link the full file: **3.2 MB and 4.1 MB**. Previews read: legible as previews, colours kept.
+- **Alt text.** The README's 17 layout images had the sheet number as alt text; 46 images in `docs/figures.md` had
+  none. Each now carries its row's own caption ("Layout 07: Basin and crater candidates ≥ 20 km").
+- **`tools/check_repo.py`** (CI) gains two checks: every image a page shows inline has alt text of 8 or more
+  characters and is at most 300 KB; every preview's source still has its recorded SHA-256, and every preview is in
+  the manifest. Each proved on a planted defect in a scratch copy (alt text "07", a full layout shown inline, a
+  byte appended to layout 04, a stray preview): all four failed as they should.
+- **README:** "Where it stands" dated 2026-10-22; the deep-learning paragraph moved from the next steps (done work)
+  to a results section "Deep learning (X5)" with layout 17's preview; the next steps name the 1 November
+  contingency (`NEXT-STEPS.md` §6); the folder tree adds `Athabasca/`, `DLModels/`, `docs/figures.md`,
+  `docs/thumbs/` and `tools/make_thumbs.py`. `CITATION.cff`'s abstract names the deep-learning models.

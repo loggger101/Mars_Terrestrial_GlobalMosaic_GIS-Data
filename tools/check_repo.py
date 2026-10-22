@@ -12,10 +12,14 @@
    and layouts. Numbers typed into a page go stale silently; this catches it.
 6. Every image and PDF in the tree is linked from docs/figures.md, so the figure index stays
    complete. The interim deck's layout crops (build/interim_img/NN_*) are described there as a group.
+7. Every image a page shows inline has alt text and is at most 300 KB: bigger figures are shown as
+   their docs/thumbs/ preview and linked in full. Each preview's source still has the SHA-256 that
+   docs/thumbs/SOURCES.txt recorded, so a changed layout with a stale preview fails
+   (rebuild with tools/make_thumbs.py).
 
 Exit code 1 and a list of failures if anything is wrong. Stdlib only.
 """
-import ast, re, sys, urllib.parse
+import ast, hashlib, re, sys, urllib.parse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,6 +27,10 @@ PAGES = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md")), ROOT / "expo
 LINK = re.compile(r"!?\[[^\]]*\]\(<?([^)>\s]+)>?(?:\s+\"[^\"]*\")?\)")
 HTML = re.compile(r"""\b(?:src|href)=["']([^"']+)["']""")
 IMAGES = {".png", ".jpg", ".jpeg", ".gif", ".svg", ".pdf"}
+SHOWN_MD = re.compile(r"!\[([^\]]*)\]\(<?([^)>\s]+)>?(?:\s+\"[^\"]*\")?\)")
+SHOWN_HTML = re.compile(r"<img\b[^>]*>")
+INLINE_MAX = 300 * 1000                       # bytes; tools/make_thumbs.py uses the same limit
+THUMBS = ROOT / "docs" / "thumbs"
 fails = []
 
 
@@ -56,6 +64,49 @@ def figures():
         if p.resolve() not in linked:
             fails.append(f"not in docs/figures.md: {p.relative_to(ROOT)}")
     return len(files)
+
+
+def shown():
+    """Images displayed inline: alt text, and small enough that the page stays light."""
+    n = 0
+    for page in PAGES:
+        text = re.sub(r"```.*?```", "", page.read_text(encoding="utf-8"), flags=re.S)
+        found = [(alt, src) for alt, src in SHOWN_MD.findall(text)]
+        for tag in SHOWN_HTML.findall(text):
+            src = re.search(r"""\bsrc=["']([^"']+)["']""", tag)
+            alt = re.search(r"""\balt=["']([^"']*)["']""", tag)
+            found.append((alt.group(1) if alt else "", src.group(1) if src else ""))
+        for alt, src in found:
+            if re.match(r"[a-z]+:", src):
+                continue                             # the CI badge and other remote images
+            n += 1
+            where = f"{page.relative_to(ROOT)}: {src}"
+            if len(alt.strip()) < 8 or alt.strip().isdigit():
+                fails.append(f"image without descriptive alt text in {where}")
+            path = (page.parent / urllib.parse.unquote(src)).resolve()
+            if path.is_file() and path.suffix.lower() != ".svg" and path.stat().st_size > INLINE_MAX:
+                fails.append(f"image over {INLINE_MAX // 1000} KB shown inline in {where}: show its docs/thumbs preview")
+    return n
+
+
+def thumbs():
+    """Each preview's source unchanged since tools/make_thumbs.py drew it."""
+    manifest = THUMBS / "SOURCES.txt"
+    listed = set()
+    for line in manifest.read_text(encoding="utf-8").splitlines():
+        digest, name, src = line.split("  ", 2)
+        listed.add(name)
+        source = ROOT / src
+        if not (THUMBS / name).is_file():
+            fails.append(f"preview missing: docs/thumbs/{name}")
+        if not source.is_file():
+            fails.append(f"preview's source gone: {src} (rerun tools/make_thumbs.py)")
+        elif hashlib.sha256(source.read_bytes()).hexdigest() != digest:
+            fails.append(f"stale preview docs/thumbs/{name}: {src} changed (rerun tools/make_thumbs.py)")
+    for p in THUMBS.glob("*.jpg"):
+        if p.name not in listed:
+            fails.append(f"preview not in docs/thumbs/SOURCES.txt: {p.name}")
+    return len(listed)
 
 
 def python():
@@ -119,6 +170,8 @@ if __name__ == "__main__":
     print(f"files sized:     {sizes()}")
     print(f"counts checked:  {counts()}")
     print(f"figures indexed: {figures()}")
+    print(f"images shown:    {shown()}")
+    print(f"previews:        {thumbs()}")
     citation()
     for f in fails:
         print("FAIL", f)

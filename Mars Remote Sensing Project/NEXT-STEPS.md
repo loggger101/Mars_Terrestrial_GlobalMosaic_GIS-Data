@@ -77,6 +77,9 @@ pixel-identical to their PNGs on the drive and in the repo, and the drive and th
 crops of 01, 02 and 04–11 predated §63–§65 (08 not recentred, 07's old size classes, 09's smaller map): at the
 author's word all 13 were re-exported and the deck and report rebuilt (30 slides, 21 pages, text unchanged), every
 changed page read. Stale counts fixed in the README, `docs/figures.md`, the handoff and the interim plan.
+The repo's pages now show 800 px previews (`tools/make_thumbs.py`, §67.1): the README's images fell from
+25.5 MB to 3.2 MB; CI checks alt text, inline size and that each preview matches its source. The README gains
+a deep-learning results section; its next steps hold only what is open.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).
