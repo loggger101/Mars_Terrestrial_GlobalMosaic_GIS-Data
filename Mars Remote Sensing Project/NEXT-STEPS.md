@@ -16,7 +16,7 @@ checklist, is `HANDOFF-DESKTOP.md`.
 
 ---
 
-## Resume here — 2026-10-16
+## Resume here — 2026-10-22
 
 **Where it stands.** Every scripted job up to the review is done and recorded (KB §53–§57): the ±60°
 fine pass (465,354 closed depressions ≥ 1 km, 969,822 channel segments, layouts 11–12); the 180° DEM
@@ -72,6 +72,11 @@ map joins the project beside it as the province map: map "X5c — U-Net terrain 
 17; 30 slides, report 21 pages, every changed page read). Release **`data-2026-10-21`**, 12 assets, 7.71 GB: the
 GeoPackage with all 28 classes, both U-Net maps and, new, `dl-models.zip` (the three trained models);
 `check_remote.py` passes, the quick start reproduces, the catalogues point at it.
+**2026-10-22, desktop (§67), the author's request:** the layouts and images audited. All 17 sheets re-export
+pixel-identical to their PNGs on the drive and in the repo, and the drive and the clone are in sync. The interim's
+crops of 01, 02 and 04–11 predated §63–§65 (08 not recentred, 07's old size classes, 09's smaller map): at the
+author's word all 13 were re-exported and the deck and report rebuilt (30 slides, 21 pages, text unchanged), every
+changed page read. Stale counts fixed in the README, `docs/figures.md`, the handoff and the interim plan.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6).

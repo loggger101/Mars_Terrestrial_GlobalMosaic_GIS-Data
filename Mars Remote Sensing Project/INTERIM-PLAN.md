@@ -43,10 +43,7 @@ python verify_interim.py
 **Still to do on the deck** (none blocks a rebuild):
 1. **Percentages** in the progress table: the author's to set (`PROGRESS` in `interim.py`); the slide shows
    13 Sep's next to a dash.
-2. **Layout 08's caption A** names Tharsis among the dusty provinces of the 47.7 DN figure, which covers Arabia
-   Terra and Amazonis against Syrtis Major and Acidalia (KB §28.10, §62); fix in `make_mosaic_layout.py` at the next
-   layout rebuild.
-3. **Legends are small** on the 05 and 07 slides; give them more room or a larger export.
+2. **Legends are small** on the 05 and 07 slides; give them more room or a larger export.
 
 ## 1. What exists
 
@@ -104,8 +101,9 @@ this list (KB §12.1).
    caught the 29/30 Sep maps (layout 05). (§30–§32, §57)
 7. **What the tests showed**: T1 thermal +1.3 to +2.0 pt with two classifiers, the classes are terrain classes;
    T8 against the geologic map; T2–T7. (§40.1, §42–§43, §47, §51, §56)
-8. **What is not done**: the review and digitising, lava flows mapped from the mosaic. Deep learning is scored
-   (layout 16, KB §66.2) but has no slide: the deck names it under next steps only. (`NEXT-STEPS.md`)
+8. **Deep learning**: the detector scored per held-out polygon (layout 16) and the U-Net's terrain provinces beside
+   the published map (layout 17), one slide each. (§66.2, §66.9, §66.10)
+9. **What is not done**: the review and digitising, lava flows mapped from the mosaic. (`NEXT-STEPS.md`)
 
 ## 5. Hypotheses and questions — where each stands
 

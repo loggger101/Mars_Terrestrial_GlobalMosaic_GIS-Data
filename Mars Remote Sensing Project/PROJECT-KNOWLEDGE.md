@@ -27,7 +27,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 |---|---|
 | sources, the three frames, the ±60° grid | §3, §4, §15, §16, §28.1–§28.2 |
 | the ArcGIS project and the gdb | §5, §6 |
-| the map layouts: builders, polish, defects found by reading | §5, §22, §33, §61, §63, §64, §65 |
+| the map layouts: builders, polish, defects found by reading | §5, §22, §33, §61, §63, §64, §65, §67 |
 | how scripted work is done, and its traps | §2, §9, §12, §13 |
 | what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1, §56, §62 |
 | classification: type area | §19, §23, §27 |
@@ -40,7 +40,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
 | GitHub backup and releases | §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca), §66.10 (`data-2026-10-21`, the first with the deep-learning models) |
-| the interim builds | §39.3, §45, §48, §51.5, §57.3 |
+| the interim builds | §39.3, §45, §48, §51.5, §57.3, §66.10, §67 |
 
 ---
 
@@ -3541,3 +3541,32 @@ data-2026-10-21`, log `logs\release_data-2026-10-21_DESKTOP-PJS73RO.log`; 18:38�
   regenerated, 0 rows on the old tag), `github_export_gdb.py` (`RELEASE`; `--catalog-only` rewrote
   `exports/README.md`, the two release-only rows in a new order), the README's quick start and backup section,
   `docs/backup.md` (the `dl-models.zip` row), `CITATION.cff`. `data-2026-10-19` and the older releases are kept.
+
+## 67. The layouts and images audited; the interim's layout crops re-exported — 2026-10-22 **[V]**
+
+On the desktop, at the author's request to audit that the layouts and images are all in place.
+
+- **The 17 sheets match their PNGs.** `arcpy.mp` on `Mars Project.aprx`: 32 maps, 17 layouts, each 11 × 8.5 in.
+  Every layout exported at 150 dpi to scratch is pixel-identical to its PNG in `TypeArea\layouts\` (01–03) and
+  `Global60\layouts\` (04–17), and those are byte-identical to the repo's. `github_sync.py --dry-run`: 0 to copy,
+  961 unchanged; the six model weights over 95 MB are the release's `dl-models.zip` (§66.10). `tools/check_repo.py`:
+  347 links, 81 images indexed, all pass. Layouts 16 and 17 are drawn in GCS_Mars_2000 centred on 0°E like the other
+  ±60° sheets; 01–03, 06, 09, 14 and 15 on the CM 180° equidistant cylindrical grid.
+- **The interim's crops were stale.** `make_interim_figs.py` run with its output in scratch, compared with
+  `build\interim_img\`: 12, 16 and 17 identical; 01, 02 and 04–11 not. 08's crop predated its recentring (§64), 07's
+  legend still gave the size classes before §65's rounding (20–41 … 1027–2697 km), 09's map was the smaller frame
+  before §64; the others differed in 0.3–7.5 % of their pixels. The author's decision the same day: refresh them
+  (reversing "leave the deck as it is", §63).
+- **Re-exported and rebuilt:** `make_interim_figs.py` (all 13 layouts), the deck (30 slides) and the report
+  (21 pages, 21 figures); the live files backed up first to `NEXT STUFF\.backup_20261022\`. `verify_interim.py`: all
+  277 numbers in this record. Rendered through PowerPoint and Word and compared page by page with the previous build:
+  the text is unchanged but for the report's date line; the pictures changed on slides 9 (08, now centred on 0°E),
+  10 (01–02), 13 (07's legend), 16 (06) and 17 (09, the larger map of §64), and on report
+  pages 4, 6, 10 and 11; every other slide by under 2 % of its pixels, with the same text. Every changed slide and page
+  read. The crops now show the sheets as they are.
+- **Stale statements corrected:** the README's "16 map sheets" (17); `docs/figures.md`'s "15 sheets", its list of the
+  ±60° sheets (16 and 17 added) and its note that 08's crop predates the recentring; `HANDOFF-DESKTOP.md`'s layout
+  range (04–17); `INTERIM-PLAN.md`'s open item on 08's caption naming Tharsis (fixed in §63; no text element of any
+  layout names Tharsis, read with `arcpy.mp`) and its line that deep learning has no slide (two since §66.10).
+- **The review:** `accept_reviewed.py`, dry run: 0 of 9,287 candidates reviewed (2,610 and 1,685 at Ius, 3,283 and
+  1,709 at Athabasca); nothing for `NEXT-STEPS.md` §3.

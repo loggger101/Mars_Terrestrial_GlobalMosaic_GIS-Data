@@ -5,14 +5,14 @@ Click a thumbnail for the full-size file. "KB §N" is a section of
 [`PROJECT-KNOWLEDGE.md`](../Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md); scripts are in
 [`build/`](../Mars%20Remote%20Sensing%20Project/build) and described in [scripts.md](scripts.md).
 
-- [Map layouts](#map-layouts): the 15 sheets in the ArcGIS Pro project, exported at 150 dpi
+- [Map layouts](#map-layouts): the 17 sheets in the ArcGIS Pro project, exported at 150 dpi
 - [Result charts](#result-charts): the tests, drawn from their logs
 - [Type-area figures](#type-area-figures): the Ius Chasma results behind the method choices
 - [Check images](#check-images): the DEM steps found by the stack's line sweep
 - [Interim crops](#interim-crops): the layouts as the interim deck uses them
 - [Other](#other)
 
-The ±60° sheets (04, 05, 07, 08, 10–13) are drawn in geographic Mars 2000 coordinates with 0°E at the centre; the
+The ±60° sheets (04, 05, 07, 08, 10–13, 16, 17) are drawn in geographic Mars 2000 coordinates with 0°E at the centre; the
 type-area sheets (01–03, 06, 09, 14, 15) are equidistant cylindrical on the Mars sphere, central meridian 180°, the
 mosaics' own grid, and their footers say so. The analysis extent is ±60° latitude, the coverage of the THEMIS night mosaic.
 
@@ -139,7 +139,7 @@ training split, **not the held-out score** (KB §66.5–66.6).
 shows, exported at 200 dpi with the sheet's own prose hidden by
 [`make_interim_figs.py`](../Mars%20Remote%20Sensing%20Project/build/make_interim_figs.py). A sheet with a legend yields
 three files: the whole sheet, `__map` (the map alone, full width on the slide) and `__legend`. They are the same maps as
-the layouts above, except 08's crop, which predates the sheet's recentring on 0°E (KB §64).
+the layouts above, all 13 re-exported from the current sheets on 2026-10-22 (KB §67).
 
 ## Other
 
