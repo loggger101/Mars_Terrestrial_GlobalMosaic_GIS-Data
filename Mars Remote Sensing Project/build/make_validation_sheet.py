@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Layout 14: validation of the machine candidates, by review and by reference (NEXT-STEPS 3.7, KB §46).
+r"""Layout 14: validation of the machine candidates, by review and by reference (NEXT-STEPS §3, KB §46).
 
 Built before the review starts and rerun after each review session, so the sheet fills in as the
 digitising proceeds. Per type area and class:

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-r"""Presentation fixes to the seven layouts, found by exporting and reading every sheet (KB §33).
+r"""Presentation fixes to every layout, found by exporting and reading every sheet (KB §33, §61, §63-§65).
 
-Run it after any of the three layout builders (make_typearea_layouts.py, make_global60_maps.py,
-make_candidate_maps.py). Idempotent: every step checks before it changes anything.
+Run it after any layout builder (HANDOFF-DESKTOP.md §3 lists them in the order they run). It began with
+the first seven sheets; the fixes below name the sheets they touch. Idempotent: every step checks before
+it changes anything.
 
   all sheets  every font -> Arial. The builders asked for Aptos (text) and the legend style
               brings Tahoma; NEITHER is installed on the laptop, so Pro substituted a different

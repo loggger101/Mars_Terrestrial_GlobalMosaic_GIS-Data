@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Housekeeping deletions approved 2026-10-09 (NEXT-STEPS D9, KB §11 q4, §50). ArcGIS Python. Pro must be closed.
+r"""Housekeeping deletions approved 2026-10-09 (decision D9, KB §11 q4, §50). ArcGIS Python. Pro must be closed.
 
     python housekeeping_d9.py --dry-run      list what would go, check every precondition, write nothing
     python housekeeping_d9.py                do it

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Review fields for digitising by review (NEXT-STEPS D10, item 3.6; KB §46).
+r"""Review fields for digitising by review (decision D10, KB §50; KB §46).
 
 Digitising starts by judging the machine candidates instead of redrawing them. Each candidate
 class gets two fields, filled in the attribute table in Pro:

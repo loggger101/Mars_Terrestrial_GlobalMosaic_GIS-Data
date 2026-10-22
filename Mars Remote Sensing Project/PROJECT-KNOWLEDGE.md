@@ -3628,3 +3628,25 @@ what was there was structural.
 - **Not edited:** this record and the plans (an internal log), the scripts' docstrings (`docs/scripts.md` is
   generated from them), the interim deck's text (`interim.py`, the author's). Kept as voice: "Yes, a little.",
   lower case after a colon, "just" where it means "only".
+
+### 67.3 The script catalogue regrouped; stale docstrings; the pipeline diagram — 2026-10-22 **[V]**
+
+A further review of the repository at the author's request.
+
+- **`docs/scripts.md`'s groups.** Its last group, "Reading the geodatabase and rasters", was `github_sync.py`'s
+  catch-all and held 59 of the 153 scripts: seven layout builders, eleven tests, the deep-learning scripts, the
+  review, the interim's own builders and the drive plumbing. `GROUPS` gains "Tests T1–T8 and the class checks" (13),
+  "Deep learning (X5)" (5), "Digitising by review" (3) and "Drive, paths and one-off fixes" (10); the layout
+  builders join "ArcGIS project: maps and layouts" (17) and the interim's scripts "Deliverables and their checks"
+  (30); the remainder (13: reference layers, file readers, column checks) is "Reference data, readers and
+  diagnostics". 153 listed, as before.
+- **Stale first lines** (the catalogue shows each docstring's first paragraph): `polish_layouts.py` said "the seven
+  layouts" and "the three layout builders" (it runs over all 17 after any builder); `make_validation_sheet.py`,
+  `add_review_fields.py`, `accept_reviewed.py`, `housekeeping_d9.py` and `make_lava_relabel_test.py` cited
+  `NEXT-STEPS.md` items (3.6, 3.7, D6, D9, D10) that moved to this record's §50 when the plan was condensed;
+  `verify_interim.py` cited item 6 of `INTERIM-PLAN.md`'s first section, which no longer has numbered items. `HANDOFF-DESKTOP.md`'s builder order adds
+  `make_dl_map.py` and `make_unet_map.py`.
+- **`docs/pipeline.svg`** gains a result box, "U-Net provinces (X5c), 98.9%, κ 0.98, held out", fed by the
+  hand-drawn labels beside the SVM; rendered with headless Edge and read.
+- **Checked, no change needed:** `restore.py --dry-run` into scratch lists the newest data release and the
+  derivatives, 82.1 GB (`docs/backup.md` says about 80 GB); the repository's description and topics; the licence.

@@ -97,6 +97,14 @@ def walk(src, recurse, keep):
 
 GROUPS = [  # (heading, predicate on the script name); first match wins
     ("Record and backup", lambda n: n.startswith(("audit_record", "github_"))),
+    ("Tests T1–T8 and the class checks", lambda n: n.startswith(("make_thermal_ablation", "make_t1_", "score_t1_",
+                                                                  "make_tes_global", "make_tes_local", "make_t4_",
+                                                                  "make_flow_margin", "make_composite_stability",
+                                                                  "make_order_sweep", "make_geomap_check",
+                                                                  "make_lava_relabel", "make_crater_density",
+                                                                  "test_q24"))),
+    ("Deep learning (X5)", lambda n: n.startswith(("make_dl_", "make_unet_map", "make_global60_dl_export"))),
+    ("Digitising by review", lambda n: n.startswith(("accept_reviewed", "add_review_fields", "make_landform_fcs"))),
     ("Ius Chasma type area", lambda n: n.startswith(("make_typearea_", "verify_typearea", "make_channel_",
                                                      "make_crater_", "make_landform_", "verify_crater_",
                                                      "verify_segmentation")) and "layouts" not in n),
@@ -106,12 +114,20 @@ GROUPS = [  # (heading, predicate on the script name); first match wins
     ("ArcGIS project: maps and layouts", lambda n: n in {"layoutkit.py", "polish_layouts.py", "make_global60_maps.py",
                                                          "make_candidate_maps.py", "make_typearea_layouts.py",
                                                          "repoint_junction_layers.py", "audit_aprx.py",
-                                                         "audit_layers.py", "fix_night_stretch.py"}),
+                                                         "audit_layers.py", "fix_night_stretch.py",
+                                                         "make_athabasca_layout.py", "make_geomap_sheet.py",
+                                                         "make_mosaic_layout.py", "make_reference_maps.py",
+                                                         "make_validation_sheet.py", "fix_label_names.py",
+                                                         "rebuild_groups.py", "remove_non_mars.py"}),
     ("Figures", lambda n: n.startswith(("make_fig", "make_glob", "make_locator", "make_panels", "make_spectrum",
                                         "make_zoom", "make_extra", "marsfig", "optimise_", "img_contrast"))),
     ("Deliverables and their checks", lambda n: n.startswith(("build_", "content", "deck_", "le_theme", "pdf_pages",
-                                                              "audit_", "verify_all", "verify2", "render"))),
-    ("Reading the geodatabase and rasters", lambda n: True),
+                                                              "audit_", "verify_all", "verify2", "render", "interim",
+                                                              "make_interim_figs", "docx_kit", "verify_interim"))),
+    ("Drive, paths and one-off fixes", lambda n: n.startswith(("paths", "areas", "desktop_check", "retarget_junction",
+                                                               "osgeo_shim", "fix_", "landform_codes",
+                                                               "housekeeping_"))),
+    ("Reference data, readers and diagnostics", lambda n: True),
 ]
 
 

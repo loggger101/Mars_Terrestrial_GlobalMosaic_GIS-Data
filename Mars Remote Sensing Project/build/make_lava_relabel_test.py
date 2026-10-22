@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""D6, fast test: does relabelling "lava tube" from the geologic map help? (KB §43, NEXT-STEPS D6)
+r"""D6, fast test: does relabelling "lava tube" from the geologic map help? (KB §43; decision D6, KB §50)
 
 The hand-drawn "lava tube" class is right 2 % of the time (§31.3) and sits on volcano flanks and
 aprons, not on volcanic plains (T8). Approved 2026-10-08: relabel it from SIM 3292's volcanic units.

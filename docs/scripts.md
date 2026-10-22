@@ -13,14 +13,48 @@ All 153 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`github_release_large.py`](../Mars%20Remote%20Sensing%20Project/build/github_release_large.py) | ArcGIS | Backs up the large, slow-to-recompute products as a second GitHub release (KB §35.3). |
 | [`github_sync.py`](../Mars%20Remote%20Sensing%20Project/build/github_sync.py) | either | Mirrors the project's small, irreplaceable files into the GitHub repo clone (KB §35). |
 
+## Tests T1–T8 and the class checks
+
+| Script | Python | What it does |
+|---|---|---|
+| [`make_composite_stability.py`](../Mars%20Remote%20Sensing%20Project/build/make_composite_stability.py) | ArcGIS | Test T6 (H3): does the composite give more stable Iso Cluster classes than any single input? (NEXT-STEPS §4; KB §47) |
+| [`make_crater_density.py`](../Mars%20Remote%20Sensing%20Project/build/make_crater_density.py) | ArcGIS | Test T2: crater density per geologic unit in each type area (KB §42, NEXT-STEPS §4). |
+| [`make_flow_margin_test.py`](../Mars%20Remote%20Sensing%20Project/build/make_flow_margin_test.py) | ArcGIS | Test T5 (H1): do the THEMIS IR mosaics show lava-flow contacts that Viking misses? (NEXT-STEPS §4; KB §47) |
+| [`make_geomap_check.py`](../Mars%20Remote%20Sensing%20Project/build/make_geomap_check.py) | ArcGIS | Test T8: the ±60° landform classification against the USGS geologic map (KB §43, NEXT-STEPS §4). |
+| [`make_lava_relabel_test.py`](../Mars%20Remote%20Sensing%20Project/build/make_lava_relabel_test.py) | ArcGIS | D6, fast test: does relabelling "lava tube" from the geologic map help? (KB §43; decision D6, KB §50) |
+| [`make_order_sweep.py`](../Mars%20Remote%20Sensing%20Project/build/make_order_sweep.py) | ArcGIS | Test T7 (Q5): how many tributary orders does the 100 m stack resolve at Ius Chasma? (NEXT-STEPS §4; KB §47) |
+| [`make_t1_pro_confirm.py`](../Mars%20Remote%20Sensing%20Project/build/make_t1_pro_confirm.py) | ArcGIS | T1 confirmed with Pro's SVM: the ±60° classification at 200 m WITHOUT the thermal bands (NEXT-STEPS §4, T1). |
+| [`make_t4_channel_h2.py`](../Mars%20Remote%20Sensing%20Project/build/make_t4_channel_h2.py) | ArcGIS | Test T4 (H2): do fluvial and volcanic channels separate on gradient and thermal response? (NEXT-STEPS §4; KB §51) |
+| [`make_tes_global_check.py`](../Mars%20Remote%20Sensing%20Project/build/make_tes_global_check.py) | ArcGIS | Test T3, planet-wide half: which ±60° layer tracks calibrated thermal inertia? (KB §43, NEXT-STEPS §4) |
+| [`make_tes_local_check.py`](../Mars%20Remote%20Sensing%20Project/build/make_tes_local_check.py) | ArcGIS | Test T3, local half: inside each type area, does the diurnal-contrast index track calibrated thermal inertia? (KB §42, NEXT-STEPS §4) |
+| [`make_thermal_ablation.py`](../Mars%20Remote%20Sensing%20Project/build/make_thermal_ablation.py) | ArcGIS | Test T1: do the THEMIS bands improve the ±60° landform classification? (KB §40, NEXT-STEPS §4) |
+| [`score_t1_bootstrap.py`](../Mars%20Remote%20Sensing%20Project/build/score_t1_bootstrap.py) | ArcGIS | Paired bootstrap of two ±60° landform maps on the held-out polygons (T1 in Pro, KB §55.5). |
+| [`test_q24_tiles.py`](../Mars%20Remote%20Sensing%20Project/build/test_q24_tiles.py) | ArcGIS | KB §11 q24: do the 29 Sep map's 4096-px blocks come from ClassifyRaster's processing tiles? |
+
+## Deep learning (X5)
+
+| Script | Python | What it does |
+|---|---|---|
+| [`make_dl_map.py`](../Mars%20Remote%20Sensing%20Project/build/make_dl_map.py) | ArcGIS | X5's held-out detections into the gdb and the .aprx (KB §66.2, §66.3). |
+| [`make_dl_model.py`](../Mars%20Remote%20Sensing%20Project/build/make_dl_model.py) | ArcGIS | X5: train an object-detection model on the training-split chips and score it on the held-out polygons (q25 / q26 answered 2026-10-09: yes, boxes; KB §50, §51). ArcGIS Python, on the desktop. |
+| [`make_dl_pixels.py`](../Mars%20Remote%20Sensing%20Project/build/make_dl_pixels.py) | ArcGIS | X5c: a pixel classifier (U-Net) on the training-split labels, scored per pixel on the held-out polygons the way the SVM was (§31.3, §57). ArcGIS Python, on the desktop. The author's decision, 2026-10-20 (KB §66.6): train it beside the box detector, which reverses the "boxes only" of q26 (§50) for this one model. |
+| [`make_global60_dl_export.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_dl_export.py) | ArcGIS | Re-export the hand-labelled deep-learning training data from the corrected ±60° stack (KB §29.6, §31). |
+| [`make_unet_map.py`](../Mars%20Remote%20Sensing%20Project/build/make_unet_map.py) | ArcGIS | X5c's ±60° U-Net map into the project beside the published SVM map, as the terrain-province map (the author's decision, 2026-10-21, KB §66.9). The SVM map stays the published one. |
+
+## Digitising by review
+
+| Script | Python | What it does |
+|---|---|---|
+| [`accept_reviewed.py`](../Mars%20Remote%20Sensing%20Project/build/accept_reviewed.py) | ArcGIS | Copy reviewed candidates marked "accept" into the digitising classes (decision D10, KB §50; KB §46). |
+| [`add_review_fields.py`](../Mars%20Remote%20Sensing%20Project/build/add_review_fields.py) | ArcGIS | Review fields for digitising by review (decision D10, KB §50; KB §46). |
+| [`make_landform_fcs.py`](../Mars%20Remote%20Sensing%20Project/build/make_landform_fcs.py) | ArcGIS | Task 11 scaffolding: the three landform feature classes. |
+
 ## Ius Chasma type area
 
 | Script | Python | What it does |
 |---|---|---|
 | [`make_channel_candidates.py`](../Mars%20Remote%20Sensing%20Project/build/make_channel_candidates.py) | ArcGIS | Candidate channel centrelines for a type area (Ius Chasma; --area ath for Athabasca, KB §42). |
 | [`make_crater_candidates.py`](../Mars%20Remote%20Sensing%20Project/build/make_crater_candidates.py) | ArcGIS | Candidate impact craters for a type area (Ius Chasma; --area ath for Athabasca, KB §42) - task 12 from zero. |
-| [`make_crater_density.py`](../Mars%20Remote%20Sensing%20Project/build/make_crater_density.py) | ArcGIS | Test T2: crater density per geologic unit in each type area (KB §42, NEXT-STEPS §4). |
-| [`make_landform_fcs.py`](../Mars%20Remote%20Sensing%20Project/build/make_landform_fcs.py) | ArcGIS | Task 11 scaffolding: the three landform feature classes. |
 | [`make_typearea_classes.py`](../Mars%20Remote%20Sensing%20Project/build/make_typearea_classes.py) | ArcGIS | Task 7: Iso Cluster + ML Classify on the Ius Chasma 5-band stack. |
 | [`make_typearea_objects.py`](../Mars%20Remote%20Sensing%20Project/build/make_typearea_objects.py) | ArcGIS | True object-based classification, and a segmentation-parameter sweep. |
 | [`make_typearea_segments.py`](../Mars%20Remote%20Sensing%20Project/build/make_typearea_segments.py) | ArcGIS | Object-based pass over the Ius Chasma stack: segment, then classify segments. |
@@ -40,7 +74,6 @@ All 153 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`make_extent.py`](../Mars%20Remote%20Sensing%20Project/build/make_extent.py) | either | The mapping extent: 360 degrees of longitude, 60 N to 60 S. |
 | [`make_global60_candidate_sheets.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_candidate_sheets.py) | ArcGIS | Layouts 11 and 12: the ±60° fine pass as two sheets (KB §53.6, §55.4). |
 | [`make_global60_classification.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_classification.py) | ArcGIS | The ±60° landform classification, redone on the corrected stack (KB §31). |
-| [`make_global60_dl_export.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_dl_export.py) | ArcGIS | Re-export the hand-labelled deep-learning training data from the corrected ±60° stack (KB §29.6, §31). |
 | [`make_global60_landforms_clean.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_landforms_clean.py) | ArcGIS | Majority (mode) filter on the ±60° landform classification (KB §32). |
 | [`make_global60_svm_stack.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_svm_stack.py) | ArcGIS | A corrected classification stack at the analysis extent (KB §30, §31). |
 | [`make_global_landforms.py`](../Mars%20Remote%20Sensing%20Project/build/make_global_landforms.py) | ArcGIS | Crater and channel candidates over the WHOLE +/-60 extent - tasks 11 + 12. |
@@ -59,12 +92,20 @@ All 153 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 |---|---|---|
 | [`audit_aprx.py`](../Mars%20Remote%20Sensing%20Project/build/audit_aprx.py) | either | Re-extract the live .aprx and list every map, layer and data connection. |
 | [`audit_layers.py`](../Mars%20Remote%20Sensing%20Project/build/audit_layers.py) | either | Full data connections, group-layer membership, layouts and renderer settings. |
+| [`fix_label_names.py`](../Mars%20Remote%20Sensing%20Project/build/fix_label_names.py) | ArcGIS | Renames layers and layout text that were worded in the third person (KB §39.3, §39.4). |
 | [`fix_night_stretch.py`](../Mars%20Remote%20Sensing%20Project/build/fix_night_stretch.py) | either | Match the THEMIS Night IR display stretch to the Day IR. |
 | [`layoutkit.py`](../Mars%20Remote%20Sensing%20Project/build/layoutkit.py) | ArcGIS | CIM helpers for layouts, extracted verbatim from make_typearea_layouts.py by ast. |
+| [`make_athabasca_layout.py`](../Mars%20Remote%20Sensing%20Project/build/make_athabasca_layout.py) | ArcGIS | Layout 15: the Athabasca Valles type area in its four inputs (KB §63). |
 | [`make_candidate_maps.py`](../Mars%20Remote%20Sensing%20Project/build/make_candidate_maps.py) | ArcGIS | Puts the machine candidates and the empty digitising classes INTO the project (KB §32). |
+| [`make_geomap_sheet.py`](../Mars%20Remote%20Sensing%20Project/build/make_geomap_sheet.py) | ArcGIS | Layout 13: the ±60° landform classes against the USGS geologic map, as a sheet (test T8, KB §43.2). |
 | [`make_global60_maps.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_maps.py) | ArcGIS | Puts the ±60° work INTO the ArcGIS project, where it shows when the project opens in Pro (KB §31). |
+| [`make_mosaic_layout.py`](../Mars%20Remote%20Sensing%20Project/build/make_mosaic_layout.py) | ArcGIS | The mosaic itself at ±60°, as a layout: visible, day IR, night IR and topography (KB §38). |
+| [`make_reference_maps.py`](../Mars%20Remote%20Sensing%20Project/build/make_reference_maps.py) | ArcGIS | Graticules on the sheets, and layout 10: the ±60° locator with both type areas (KB §44). |
 | [`make_typearea_layouts.py`](../Mars%20Remote%20Sensing%20Project/build/make_typearea_layouts.py) | either | Task 13: real map layouts for the Ius Chasma type area. |
-| [`polish_layouts.py`](../Mars%20Remote%20Sensing%20Project/build/polish_layouts.py) | ArcGIS | Presentation fixes to the seven layouts, found by exporting and reading every sheet (KB §33). |
+| [`make_validation_sheet.py`](../Mars%20Remote%20Sensing%20Project/build/make_validation_sheet.py) | ArcGIS | Layout 14: validation of the machine candidates, by review and by reference (NEXT-STEPS §3, KB §46). |
+| [`polish_layouts.py`](../Mars%20Remote%20Sensing%20Project/build/polish_layouts.py) | ArcGIS | Presentation fixes to every layout, found by exporting and reading every sheet (KB §33, §61, §63-§65). |
+| [`rebuild_groups.py`](../Mars%20Remote%20Sensing%20Project/build/rebuild_groups.py) | ArcGIS | Recreates two group layers so their internal CIM files carry the neutral names (KB §39.4). |
+| [`remove_non_mars.py`](../Mars%20Remote%20Sensing%20Project/build/remove_non_mars.py) | ArcGIS | Take everything that isn't Mars out of the project (KB §37). ArcGIS Python. Pro must be closed. |
 | [`repoint_junction_layers.py`](../Mars%20Remote%20Sensing%20Project/build/repoint_junction_layers.py) | ArcGIS | Points every layer that reads through a junction at the real folder instead (KB §34). |
 
 ## Figures
@@ -124,68 +165,47 @@ All 153 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`content.py`](../Mars%20Remote%20Sensing%20Project/build/content.py) | either | Shared content for the Mars global mosaic project deliverables. |
 | [`deck_helpers.py`](../Mars%20Remote%20Sensing%20Project/build/deck_helpers.py) | system | Slide-building helpers that match the supplied template's typography. |
 | [`deck_short.py`](../Mars%20Remote%20Sensing%20Project/build/deck_short.py) | either | Short forms of the content blocks, for the spoken deck only. |
+| [`docx_kit.py`](../Mars%20Remote%20Sensing%20Project/build/docx_kit.py) | either | Word helpers for the interim report: paragraphs, headings, bullets, shaded tables (KB §45). |
+| [`interim.py`](../Mars%20Remote%20Sensing%20Project/build/interim.py) | either | The interim's content, as of STATUS_DATE: the living deck's single source (KB §39.3). |
 | [`le_theme.py`](../Mars%20Remote%20Sensing%20Project/build/le_theme.py) | system | Logan M Edwards' deck design, measured from 'ocean first pres LE.pdf'. |
+| [`make_interim_figs.py`](../Mars%20Remote%20Sensing%20Project/build/make_interim_figs.py) | ArcGIS | Exports the project's layouts to build\interim_img\ for the living interim deck (KB §39.3). |
 | [`pdf_pages.py`](../Mars%20Remote%20Sensing%20Project/build/pdf_pages.py) | either | Rasterise a PDF to page PNGs, and flag obvious layout faults. |
 | [`verify2.py`](../Mars%20Remote%20Sensing%20Project/build/verify2.py) | either | Second pass: check what verify_all.py did NOT. |
 | [`verify_all.py`](../Mars%20Remote%20Sensing%20Project/build/verify_all.py) | either | Final sweep: assert every disk-checkable claim in the deliverables. |
+| [`verify_interim.py`](../Mars%20Remote%20Sensing%20Project/build/verify_interim.py) | either | Every number on the interim deck and report must be in the record (KB §45, INTERIM-PLAN §0). |
 | [`render.ps1`](../Mars%20Remote%20Sensing%20Project/build/render.ps1) | PowerShell + Office | Renders every slide of a .pptx deck to PNG in OutDir, through PowerPoint COM; killed after 180 s. |
 | [`render_doc.ps1`](../Mars%20Remote%20Sensing%20Project/build/render_doc.ps1) | PowerShell + Office | Exports a Word document to PDF through Word COM; killed after 180 s. |
 | [`render_pdf.ps1`](../Mars%20Remote%20Sensing%20Project/build/render_pdf.ps1) | PowerShell + Office | Exports a .pptx deck to PDF through PowerPoint COM; killed after 240 s. |
 
-## Reading the geodatabase and rasters
+## Drive, paths and one-off fixes
 
 | Script | Python | What it does |
 |---|---|---|
-| [`accept_reviewed.py`](../Mars%20Remote%20Sensing%20Project/build/accept_reviewed.py) | ArcGIS | Copy reviewed candidates marked "accept" into the digitising classes (NEXT-STEPS D10; KB §46). |
-| [`add_review_fields.py`](../Mars%20Remote%20Sensing%20Project/build/add_review_fields.py) | ArcGIS | Review fields for digitising by review (NEXT-STEPS D10, item 3.6; KB §46). |
 | [`areas.py`](../Mars%20Remote%20Sensing%20Project/build/areas.py) | either | The type areas: one place that says where each window is and what its products are called (KB §42). |
+| [`desktop_check.py`](../Mars%20Remote%20Sensing%20Project/build/desktop_check.py) | ArcGIS | Desktop-day preflight: X0, X1 and X5's preconditions in one run (NEXT-STEPS §5; KB §2.3, §11 q10, §51). |
+| [`fix_classified_finish.py`](../Mars%20Remote%20Sensing%20Project/build/fix_classified_finish.py) | ArcGIS | Finish one fix_classified_values.py gdb recode whose last step, the copy onto Z:, failed (KB §36.4). ArcGIS Python. Pro must be closed. |
+| [`fix_classified_values.py`](../Mars%20Remote%20Sensing%20Project/build/fix_classified_values.py) | ArcGIS | Recode the remaining 0-based classified rasters so pixel value = class code (KB §36.4). ArcGIS Python. |
+| [`fix_landform_values.py`](../Mars%20Remote%20Sensing%20Project/build/fix_landform_values.py) | ArcGIS | Recode the five ±60° landform maps so pixel value = class code (KB §36). ArcGIS Python. |
+| [`housekeeping_d9.py`](../Mars%20Remote%20Sensing%20Project/build/housekeeping_d9.py) | ArcGIS | Housekeeping deletions approved 2026-10-09 (decision D9, KB §11 q4, §50). ArcGIS Python. Pro must be closed. |
+| [`landform_codes.py`](../Mars%20Remote%20Sensing%20Project/build/landform_codes.py) | ArcGIS | Recode a classified raster so each pixel holds its class code (KB §36). ArcGIS Python. |
+| [`osgeo_shim.py`](../Mars%20Remote%20Sensing%20Project/build/osgeo_shim.py) | either | Central meridian of each global raster, read without needing GDAL here. |
+| [`paths.py`](../Mars%20Remote%20Sensing%20Project/build/paths.py) | either | Where the project drive is, found from this file's own location (KB §11 q22, §40). |
+| [`retarget_junction.py`](../Mars%20Remote%20Sensing%20Project/build/retarget_junction.py) | either | Retarget an existing directory junction IN PLACE (FSCTL_SET_REPARSE_POINT), without removing it. |
+
+## Reference data, readers and diagnostics
+
+| Script | Python | What it does |
+|---|---|---|
 | [`check_landform_columns.py`](../Mars%20Remote%20Sensing%20Project/build/check_landform_columns.py) | ArcGIS | Stripes and seams in a classified ±60° landform map. Read-only; ArcGIS Python (GDAL only). |
 | [`check_meridian_columns.py`](../Mars%20Remote%20Sensing%20Project/build/check_meridian_columns.py) | ArcGIS | Do the G200 columns around 180 deg (53346, x -200..0) look like their neighbours? Read-only. |
 | [`check_x2_meridian.py`](../Mars%20Remote%20Sensing%20Project/build/check_x2_meridian.py) | ArcGIS | Do the X2 fine-pass candidates show an artefact along x = 0 (180°)? Read-only; ArcGIS Python. |
-| [`desktop_check.py`](../Mars%20Remote%20Sensing%20Project/build/desktop_check.py) | ArcGIS | Desktop-day preflight: X0, X1 and X5's preconditions in one run (NEXT-STEPS §5; KB §2.3, §11 q10, §51). |
 | [`diag_crs.py`](../Mars%20Remote%20Sensing%20Project/build/diag_crs.py) | ArcGIS | Why does the THEMIS window land somewhere else? Compare the three grids. |
-| [`docx_kit.py`](../Mars%20Remote%20Sensing%20Project/build/docx_kit.py) | either | Word helpers for the interim report: paragraphs, headings, bullets, shaded tables (KB §45). |
-| [`fix_classified_finish.py`](../Mars%20Remote%20Sensing%20Project/build/fix_classified_finish.py) | ArcGIS | Finish one fix_classified_values.py gdb recode whose last step, the copy onto Z:, failed (KB §36.4). ArcGIS Python. Pro must be closed. |
-| [`fix_classified_values.py`](../Mars%20Remote%20Sensing%20Project/build/fix_classified_values.py) | ArcGIS | Recode the remaining 0-based classified rasters so pixel value = class code (KB §36.4). ArcGIS Python. |
-| [`fix_label_names.py`](../Mars%20Remote%20Sensing%20Project/build/fix_label_names.py) | ArcGIS | Renames layers and layout text that were worded in the third person (KB §39.3, §39.4). |
-| [`fix_landform_values.py`](../Mars%20Remote%20Sensing%20Project/build/fix_landform_values.py) | ArcGIS | Recode the five ±60° landform maps so pixel value = class code (KB §36). ArcGIS Python. |
 | [`gdbcount.py`](../Mars%20Remote%20Sensing%20Project/build/gdbcount.py) | either | Map FileGDB table ids to names and read each table's row count. |
 | [`gdbitems.py`](../Mars%20Remote%20Sensing%20Project/build/gdbitems.py) | either | List only the LIVE rows of GDB_Items (the geodatabase catalogue of datasets). |
 | [`gdbmap2.py`](../Mars%20Remote%20Sensing%20Project/build/gdbmap2.py) | either | Authoritative table map: walk GDB_SystemCatalog through its .gdbtablx row index. |
-| [`housekeeping_d9.py`](../Mars%20Remote%20Sensing%20Project/build/housekeeping_d9.py) | ArcGIS | Housekeeping deletions approved 2026-10-09 (NEXT-STEPS D9, KB §11 q4, §50). ArcGIS Python. Pro must be closed. |
-| [`interim.py`](../Mars%20Remote%20Sensing%20Project/build/interim.py) | either | The interim's content, as of STATUS_DATE: the living deck's single source (KB §39.3). |
-| [`landform_codes.py`](../Mars%20Remote%20Sensing%20Project/build/landform_codes.py) | ArcGIS | Recode a classified raster so each pixel holds its class code (KB §36). ArcGIS Python. |
 | [`lineage.py`](../Mars%20Remote%20Sensing%20Project/build/lineage.py) | either | Recover the geoprocessing lineage recorded in the file geodatabase item table. |
-| [`make_athabasca_layout.py`](../Mars%20Remote%20Sensing%20Project/build/make_athabasca_layout.py) | ArcGIS | Layout 15: the Athabasca Valles type area in its four inputs (KB §63). |
-| [`make_composite_stability.py`](../Mars%20Remote%20Sensing%20Project/build/make_composite_stability.py) | ArcGIS | Test T6 (H3): does the composite give more stable Iso Cluster classes than any single input? (NEXT-STEPS §4; KB §47) |
-| [`make_dl_map.py`](../Mars%20Remote%20Sensing%20Project/build/make_dl_map.py) | ArcGIS | X5's held-out detections into the gdb and the .aprx (KB §66.2, §66.3). |
-| [`make_dl_model.py`](../Mars%20Remote%20Sensing%20Project/build/make_dl_model.py) | ArcGIS | X5: train an object-detection model on the training-split chips and score it on the held-out polygons (q25 / q26 answered 2026-10-09: yes, boxes; KB §50, §51). ArcGIS Python, on the desktop. |
-| [`make_dl_pixels.py`](../Mars%20Remote%20Sensing%20Project/build/make_dl_pixels.py) | ArcGIS | X5c: a pixel classifier (U-Net) on the training-split labels, scored per pixel on the held-out polygons the way the SVM was (§31.3, §57). ArcGIS Python, on the desktop. The author's decision, 2026-10-20 (KB §66.6): train it beside the box detector, which reverses the "boxes only" of q26 (§50) for this one model. |
-| [`make_flow_margin_test.py`](../Mars%20Remote%20Sensing%20Project/build/make_flow_margin_test.py) | ArcGIS | Test T5 (H1): do the THEMIS IR mosaics show lava-flow contacts that Viking misses? (NEXT-STEPS §4; KB §47) |
-| [`make_geomap_check.py`](../Mars%20Remote%20Sensing%20Project/build/make_geomap_check.py) | ArcGIS | Test T8: the ±60° landform classification against the USGS geologic map (KB §43, NEXT-STEPS §4). |
-| [`make_geomap_sheet.py`](../Mars%20Remote%20Sensing%20Project/build/make_geomap_sheet.py) | ArcGIS | Layout 13: the ±60° landform classes against the USGS geologic map, as a sheet (test T8, KB §43.2). |
-| [`make_interim_figs.py`](../Mars%20Remote%20Sensing%20Project/build/make_interim_figs.py) | ArcGIS | Exports the project's layouts to build\interim_img\ for the living interim deck (KB §39.3). |
-| [`make_lava_relabel_test.py`](../Mars%20Remote%20Sensing%20Project/build/make_lava_relabel_test.py) | ArcGIS | D6, fast test: does relabelling "lava tube" from the geologic map help? (KB §43, NEXT-STEPS D6) |
-| [`make_mosaic_layout.py`](../Mars%20Remote%20Sensing%20Project/build/make_mosaic_layout.py) | ArcGIS | The mosaic itself at ±60°, as a layout: visible, day IR, night IR and topography (KB §38). |
-| [`make_order_sweep.py`](../Mars%20Remote%20Sensing%20Project/build/make_order_sweep.py) | ArcGIS | Test T7 (Q5): how many tributary orders does the 100 m stack resolve at Ius Chasma? (NEXT-STEPS §4; KB §47) |
 | [`make_reference_layers.py`](../Mars%20Remote%20Sensing%20Project/build/make_reference_layers.py) | ArcGIS | The downloaded references as feature classes in the project gdb (KB §41). |
-| [`make_reference_maps.py`](../Mars%20Remote%20Sensing%20Project/build/make_reference_maps.py) | ArcGIS | Graticules on the sheets, and layout 10: the ±60° locator with both type areas (KB §44). |
-| [`make_t1_pro_confirm.py`](../Mars%20Remote%20Sensing%20Project/build/make_t1_pro_confirm.py) | ArcGIS | T1 confirmed with Pro's SVM: the ±60° classification at 200 m WITHOUT the thermal bands (NEXT-STEPS §4, T1). |
-| [`make_t4_channel_h2.py`](../Mars%20Remote%20Sensing%20Project/build/make_t4_channel_h2.py) | ArcGIS | Test T4 (H2): do fluvial and volcanic channels separate on gradient and thermal response? (NEXT-STEPS §4; KB §51) |
-| [`make_tes_global_check.py`](../Mars%20Remote%20Sensing%20Project/build/make_tes_global_check.py) | ArcGIS | Test T3, planet-wide half: which ±60° layer tracks calibrated thermal inertia? (KB §43, NEXT-STEPS §4) |
-| [`make_tes_local_check.py`](../Mars%20Remote%20Sensing%20Project/build/make_tes_local_check.py) | ArcGIS | Test T3, local half: inside each type area, does the diurnal-contrast index track calibrated thermal inertia? (KB §42, NEXT-STEPS §4) |
 | [`make_tes_reference.py`](../Mars%20Remote%20Sensing%20Project/build/make_tes_reference.py) | ArcGIS | TES thermal inertia (Putzig & Mellon 2007) as GeoTIFFs, with the orientation PROVED (KB §41). |
-| [`make_thermal_ablation.py`](../Mars%20Remote%20Sensing%20Project/build/make_thermal_ablation.py) | ArcGIS | Test T1: do the THEMIS bands improve the ±60° landform classification? (KB §40, NEXT-STEPS §4) |
-| [`make_unet_map.py`](../Mars%20Remote%20Sensing%20Project/build/make_unet_map.py) | ArcGIS | X5c's ±60° U-Net map into the project beside the published SVM map, as the terrain-province map (the author's decision, 2026-10-21, KB §66.9). The SVM map stays the published one. |
-| [`make_validation_sheet.py`](../Mars%20Remote%20Sensing%20Project/build/make_validation_sheet.py) | ArcGIS | Layout 14: validation of the machine candidates, by review and by reference (NEXT-STEPS 3.7, KB §46). |
-| [`osgeo_shim.py`](../Mars%20Remote%20Sensing%20Project/build/osgeo_shim.py) | either | Central meridian of each global raster, read without needing GDAL here. |
-| [`paths.py`](../Mars%20Remote%20Sensing%20Project/build/paths.py) | either | Where the project drive is, found from this file's own location (KB §11 q22, §40). |
 | [`rasterinfo.py`](../Mars%20Remote%20Sensing%20Project/build/rasterinfo.py) | either | Pull raster properties/statistics for the derived gdb rasters from the item XML. |
-| [`rebuild_groups.py`](../Mars%20Remote%20Sensing%20Project/build/rebuild_groups.py) | ArcGIS | Recreates two group layers so their internal CIM files carry the neutral names (KB §39.4). |
-| [`remove_non_mars.py`](../Mars%20Remote%20Sensing%20Project/build/remove_non_mars.py) | ArcGIS | Take everything that isn't Mars out of the project (KB §37). ArcGIS Python. Pro must be closed. |
-| [`retarget_junction.py`](../Mars%20Remote%20Sensing%20Project/build/retarget_junction.py) | either | Retarget an existing directory junction IN PLACE (FSCTL_SET_REPARSE_POINT), without removing it. |
-| [`score_t1_bootstrap.py`](../Mars%20Remote%20Sensing%20Project/build/score_t1_bootstrap.py) | ArcGIS | Paired bootstrap of two ±60° landform maps on the held-out polygons (T1 in Pro, KB §55.5). |
-| [`test_q24_tiles.py`](../Mars%20Remote%20Sensing%20Project/build/test_q24_tiles.py) | ArcGIS | KB §11 q24: do the 29 Sep map's 4096-px blocks come from ClassifyRaster's processing tiles? |
 | [`tiffdeep.py`](../Mars%20Remote%20Sensing%20Project/build/tiffdeep.py) | either | Count TIFF IFDs (internal pyramids) and read the GeoTIFF CRS citation. |
 | [`tiffdims.py`](../Mars%20Remote%20Sensing%20Project/build/tiffdims.py) | either | Read width/height/bands straight out of the (Big)TIFF header. |
-| [`verify_interim.py`](../Mars%20Remote%20Sensing%20Project/build/verify_interim.py) | either | Every number on the interim deck and report must be in the record (KB §45, INTERIM-PLAN §0 item 6). |

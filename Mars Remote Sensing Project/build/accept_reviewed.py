@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Copy reviewed candidates marked "accept" into the digitising classes (NEXT-STEPS D10; KB §46).
+r"""Copy reviewed candidates marked "accept" into the digitising classes (decision D10, KB §50; KB §46).
 
     python accept_reviewed.py                          # dry run: the review tally, what would be copied
     python accept_reviewed.py --apply --by "<name>"    # copy; MappedBy = <name>, the reviewer

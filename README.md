@@ -18,7 +18,7 @@ This repository is the project page and an off-drive backup of the project. The 
 
 ## How it works
 
-![Pipeline: four sources in three frames, one ±60° grid, the products, the classifier and the candidates](docs/pipeline.svg)
+![Pipeline: four sources in three frames, one ±60° grid, the products, the SVM and U-Net classifiers and the candidates](docs/pipeline.svg)
 
 The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 

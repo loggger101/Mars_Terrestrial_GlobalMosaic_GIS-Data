@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Every number on the interim deck and report must be in the record (KB §45, INTERIM-PLAN §0 item 6).
+r"""Every number on the interim deck and report must be in the record (KB §45, INTERIM-PLAN §0).
 
 interim.py holds all the interim's text. This pulls every number out of its strings (73.5%, 1,685,
 −0.36, 2 h 52 m, 15.2 bn ...) and checks each appears in PROJECT-KNOWLEDGE.md, normalised for the
