@@ -110,6 +110,11 @@ pages, 16 figures, compiled with MiKTeX, installed per-user at the author's choi
 **2026-10-23, desktop (KB §69.1):** the clone's §68 work copied to the drive as the note above asks (nine scripts
 replaced, four added, the record and this plan merged by hand); the final paper and deck now carry §68's audit
 as a limit and the seven-class revision as a next step; everything pushed. The drive and the clone agree again.
+**2026-10-23, desktop (KB §69.2): item 2a done.** The valley map downloaded and checked; `propose_label_changes.py`
+run on the drive gives the laptop's result exactly (1,086 rows: 12 relabel, 23 check, 1 clip, 1 delete, 1 fix,
+574 new); `Landform_TrainingSamples_v2_proposals` and the map "Labels v2: proposals" are in the project, sampled
+and read. **Next is the author's review (2b, §11.4)**; flagged for it: new fluvial strip 778 on the Arsia flank,
+Crater 47; hills and lava tube need more training polygons (§11.3).
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
@@ -121,7 +126,7 @@ delay it.
 |---|---|---|---|---|
 | 1 | **Review the Ius candidates**, then Athabasca | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
-| 2a | **Class revision, proposals**: the 512 with evidence and an `Action` each, plus new polygons for classes 5–7, in `Landform_TrainingSamples_v2_proposals` and a map in the `.aprx` | agent, drive | §11.2 | every label has an `Action`; each new class meets §11.3's minimum in proposals |
+| 2a | ~~**Class revision, proposals**~~ **done 2026-10-23 (KB §69.2):** the 512 with evidence and an `Action` each, plus new polygons for classes 5–7, in `Landform_TrainingSamples_v2_proposals` and a map in the `.aprx` | agent, drive | §11.2 | every label has an `Action`; each new class meets §11.3's minimum in proposals |
 | 2b | **Review the label proposals** (accept / reject / unsure; edit outlines; draw what is missing) | author, in Pro | §11.4 | every non-`keep` row reviewed, by **26 Oct** |
 | 2c | v2 labels and split; SVM and U-Net on v2; both maps scored on v2; D18's verdict; layouts and interim | agent, desktop | §11.5 | results in the KB beside the four-class scores, by **31 Oct** |
 | 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). ±60° U-Net map made (§66.7), seams removed (§66.8), in the project beside the published SVM map with layout 17 (§66.9), in the interim and the release `data-2026-10-21` (§66.10). For the author: any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
@@ -438,7 +443,7 @@ across the split.
 
 | by | what |
 |---|---|
-| 23 Oct | proposals built on the drive and read (the script is tested, KB §68.5) |
+| 23 Oct | proposals built on the drive and read (the script is tested, KB §68.5): **done** (KB §69.2) |
 | 26 Oct | the author's label review done |
 | 27 Oct | v2 SVM map scored; D18 verdict |
 | 30 Oct | v2 U-Net scored |

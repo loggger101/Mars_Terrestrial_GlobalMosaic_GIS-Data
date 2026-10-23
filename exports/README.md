@@ -1,6 +1,6 @@
 # Vector layers from `Mars Project.gdb`
 
-Exported by [`github_export_gdb.py`](../Mars%20Remote%20Sensing%20Project/build/github_export_gdb.py) on 2026-10-21.
+Exported by [`github_export_gdb.py`](../Mars%20Remote%20Sensing%20Project/build/github_export_gdb.py) on 2026-10-23.
 Every feature class in the project geodatabase except the third-party reference layers (`Ref_*`:
 the USGS geologic map and the Robbins crater database, available from their publishers). Row counts
 were checked against the source.
@@ -44,8 +44,9 @@ the labels and nomenclature are in geographic `Mars_2000_(Sphere)`.
 | `Type_Areas` | Polygon | 2 | GCS_Mars_2000 | The Ius Chasma and Athabasca Valles windows as polygons (KB §44). | `Label`, `MappedBy` |
 | `DL_Detections_heldout_20261019` | Polygon | 1,838 | Mars_Equidistant_Cylindrical_CM180 |  | `Class`, `Classvalue`, `Confidence`, `Model`, `MappedBy` |
 | `DL_UNet_Heldout_Scores_20261020` | Polygon | 183 | Mars_2000_(Sphere) |  | `Classname`, `Classvalue`, `Block`, `UNet_Own`, `UNet_Major`, `SVM_Own`, `SVM_Major`, `MappedBy` |
+| `Landform_TrainingSamples_v2_proposals` | Polygon | 1,086 | Mars_2000_(Sphere) | The seven-class revision (D17), proposed, not decided: the 512 with an `Action` and its evidence each, plus 574 new polygons for classes 5-7. Only rows the author sets `Review` accept on enter the v2 labels, through `apply_label_review.py` (KB §68.5, §69.2). | `OldOID`, `OldClass`, `OldName`, `Action`, `ProposedClass`, `ProposedName`, `Subtype`, `Reason`, `Evidence`, `Split`, `Block`, `KM2`, `ShareVolc`, `ShareVE`, `ShareApron`, `CraterCover`, `MaxCraterKm`, `ReliefM`, `SlopeMed`, `ValleyKm`, `Review`, `ReviewNote`, `MappedBy` |
 
 **In the release GeoPackage only** (too big for git: GitHub refuses files over 100 MB): `mars_project_vectors.gpkg.zip` in [`data-2026-10-21`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-21):
 
-- `Landform_ChannelCandidates_auto_60`: 969,822 rows. Channel segments over ±60°, the X2 fine pass (KB §53.4, §54).
 - `Landform_CraterCandidates_auto_60`: 465,354 rows. Closed depressions ≥ 1 km over ±60°, the X2 fine pass (KB §53.4; the tiles over 180° rerun, §54).
+- `Landform_ChannelCandidates_auto_60`: 969,822 rows. Channel segments over ±60°, the X2 fine pass (KB §53.4, §54).

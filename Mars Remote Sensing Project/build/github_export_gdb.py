@@ -45,6 +45,9 @@ ABOUT = {
     "Landform_TrainingSamples_terrain_60_train": "The hand-drawn polygons clipped to ±60° and split by whole 15° blocks, seed 60: "
         "the 329 used for training (KB §31.3).",
     "Landform_TrainingSamples_terrain_60_test": "The 183 held out: never trained on, used only for scoring (KB §31.3).",
+    "Landform_TrainingSamples_v2_proposals": "The seven-class revision (D17), proposed, not decided: the 512 with an "
+        "`Action` and its evidence each, plus 574 new polygons for classes 5-7. Only rows the author sets `Review` "
+        "accept on enter the v2 labels, through `apply_label_review.py` (KB §68.5, §69.2).",
     "TrainingSamples_202609290009589587982": "The first hand-drawn training set, saved from Pro on 29 Sep (455 polygons, KB §29.2).",
     "Landform_ChannelCenterlines": "Digitising target, task 11. Empty until digitised by hand.",
     "Landform_CraterRims": "Digitising target, task 11. Empty until digitised by hand.",

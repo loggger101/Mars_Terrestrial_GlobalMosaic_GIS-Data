@@ -1,0 +1,32 @@
+ok	   126	MARS_nomenclature_albedo_March2019
+ok	   337	MARS_nomenclature_misc_March2019
+ok	   141	MARS_nomenclature_craters_gt100km_March2019
+ok	   972	MARS_nomenclature_craters_lt100km_March2019
+ok	   303	MARS_nomenclature_classicalbedo_March2019
+ok	     0	Landform_LavaFlowMargins
+ok	     0	Landform_ChannelCenterlines
+ok	     0	Landform_CraterRims
+ok	  2610	Landform_ChannelCandidates_auto
+ok	  1685	Landform_CraterCandidates_auto
+ok	  5144	Landform_BasinCandidates_auto_60
+ok	   455	TrainingSamples_202609290009589587982
+ok	   512	Landform_TrainingSamples_terrain
+ok	     1	Analysis_Extent_60
+ok	   329	Landform_TrainingSamples_terrain_60_train
+ok	   183	Landform_TrainingSamples_terrain_60_test
+ok	  3283	Landform_ChannelCandidates_auto_ath
+ok	  1709	Landform_CraterCandidates_auto_ath
+ok	  8098	Landform_CraterCandidates_auto_60_smoke
+ok	  5305	Landform_ChannelCandidates_auto_60_smoke
+ok	465354	Landform_CraterCandidates_auto_60
+ok	969822	Landform_ChannelCandidates_auto_60
+ok	   954	Check_Tiles_4096px_60
+ok	    17	Graticule_30deg
+ok	    25	Graticule_2deg
+ok	     2	Type_Areas
+ok	  1838	DL_Detections_heldout_20261019
+ok	   183	DL_UNet_Heldout_Scores_20261020
+ok	  1086	Landform_TrainingSamples_v2_proposals
+27 feature classes -> C:\Users\Owner\OneDrive\Documents\GitHub\Mars_Terrestrial_GlobalMosaic_GIS-Data\exports\mars_project_vectors.gdb
+29 feature classes -> C:\Users\Owner\AppData\Local\Temp\mars_github_dist\mars_project_vectors.gpkg
+catalog -> C:\Users\Owner\OneDrive\Documents\GitHub\Mars_Terrestrial_GlobalMosaic_GIS-Data\exports\README.md

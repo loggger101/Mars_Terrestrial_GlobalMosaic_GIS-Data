@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-23 (§69.1).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-23 (§69.2).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -32,7 +32,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1, §56, §62 |
 | classification: type area | §19, §23, §27 |
 | classification: ±60°, the published map | §31, §32.2, §55.3, §57 |
-| the class scheme and the labels' audit | §29.2, §43.3, §68 |
+| the class scheme and the labels' audit | §29.2, §43.3, §68, §69.2 |
 | the final builds: the AASTeX paper and the deck | §69 |
 | craters and closed depressions | §26, §28.11, §42.3, §53.4, §53.6 |
 | channels | §25, §47.4, §53.4, §53.6, §54.4 |
@@ -232,10 +232,10 @@ stack script's 100 m grid snapped to the day mosaic (§18.1).
 
 ## 5. Project structure
 
-`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-21 (§63, §66.9) **[V]**: **32 maps, all in
+`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-23 (§63, §66.9, §69.2) **[V]**: **33 maps, all in
 Mars coordinate systems, and 17 layouts** (17 since §66.9); 0 broken data sources, none reading through a junction (145
 non-group layers on 2026-10-18, §58.1; layout 15 added four maps and 13 layers; X5's map one map and 6 layers,
-§66.3; X5c's one map and 9 layers, §66.9); 7 hosted services (Esri OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
+§66.3; X5c's one map and 9 layers, §66.9; "Labels v2: proposals" one map and 9 layers on a basemap, §69.2); 7 hosted services (Esri OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
 `defaultGeodatabase` = `<drive>\Mars Project\Mars Project.gdb`; `homeFolder` = `<drive>\Mars Project`. The
 `.aprx` stores relative paths, so it opens from either drive letter.
 
@@ -3967,3 +3967,33 @@ the desktop and renumbered when the two met.
   174 numbers. The changed pages and slides were read.
 - **Repo:** `github_sync.py` groups the final builders under "Deliverables and their checks" and leaves out
   LaTeX's working files (`.aux`, `.log`, `.out`, `.blg`; the `.bbl` stays so the `.tex` compiles without BibTeX).
+
+### 69.2 The label proposals built on the drive (D17, `NEXT-STEPS.md` item 2a) — 2026-10-23, desktop **[V]**
+
+At the author's request ("yes run the proposals"), after a recheck that the drive, the clone and `origin/main`
+agree (`github_sync.py --dry-run`: 0 to copy; `e11642d`, CI passed; every build script parses).
+
+- **The valley map** downloaded from Zenodo record 1051038 into `Mars Project\Reference\Alemanno2017_valleys\`
+  (`.shp`, `.shx`, `.dbf`, `.prj`; Zenodo's MD5s matched, the `.shp`'s SHA-256 is the script's `VALLEY_SHA`), and
+  added to `Reference\README.md` with each file's SHA-256. `Reference\` is not mirrored to GitHub (§41).
+- **`propose_label_changes.py --dry-run`** (1,166 s), then **`--map`** (924 s), Pro closed, logs
+  `logs\propose_dryrun_DESKTOP-PJS73RO.log` and `propose_run_…log`, `logs\label_proposals.json` (the dry run's
+  kept as `label_proposals_dryrun_DESKTOP-PJS73RO.json`; tally and minimum identical). **The drive gives the
+  laptop's result (§68.5) exactly:** the centroid rule reproduces 183 / 329 with 0 mismatches; 1,086 rows: keep
+  474, relabel 12 (5 to edifice, 5 to fluvial, 2 to Normal Ground), check 23 (15 Crater, 7 lava tube, 1 fluvial),
+  clip 1, delete 1, fix 1, new 574 (126 edifice, 172 apron, 276 fluvial); no overlap between classes or across the
+  split. If all were accepted: edifice 12 held out in 3 blocks, apron 22 in 3, fluvial 46 in 10, all meet §11.3;
+  **hills (28 training polygons in 2 blocks) and lava tube (18 training) stay short.**
+- **Written:** `Landform_TrainingSamples_v2_proposals` (1,086 rows; the gdb now holds 31 feature classes) and the
+  map "Labels v2: proposals" (one layer per `Action`, "Kept" hidden; 33 maps). `.aprx` backed up first to
+  `Mars Project\.backups\Mars Project 20261023-153029.aprx`. `Landform_TrainingSamples_terrain` untouched.
+- **Read by eye** (33 rows over DEM hillshade: every relabel, clip, delete and fix, 6 checks, 4 new per class,
+  agent scratch): the five volcano circles sit on Tharsis Tholus, Ulysses Tholus, Arsia, Pavonis and Ascraeus
+  Mons; the five lava-tube relabels on valleys; 334 and 335 with chains 336 and 337 cut out; 350 inside 347/348;
+  512 a real crater; the checks are small craters drawn with a wide margin. The unit pieces are coarse, as their
+  reasons say (edifice pieces 969 and 1031 nearly flat plains; apron pieces hold mesas and plains). Two to flag
+  for the review: **new fluvial strip 778** (held out, ~121.6°W 9–10°S, "Late Amazonian single valley") lies on
+  the Arsia Mons flank and may be a lava channel **[?]**; **Crater 47** (1 km²) surrounds a feature of about one
+  DEM cell and no catalogued crater.
+- **Next:** the author's review (item 2b, by 26 Oct, `NEXT-STEPS.md` §11.4), including more hills and lava-tube
+  polygons in other training blocks.

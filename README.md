@@ -259,7 +259,7 @@ Mars Remote Sensing Project/
   NEXT STUFF/              interim report and presentation; Final/: the AASTeX paper and the final deck (drafts)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 32 maps, all Mars, and 17 layouts
+  Mars Project.aprx        the ArcGIS Pro project: 33 maps, all Mars, and 17 layouts
   Global60/, TypeArea/,    metadata sidecars, models (.ecd), raster attribute tables, layouts;
   Athabasca/               Global60/checks/ holds the DEM step chips
   DLModels/                the three deep-learning models' metadata and training plots (the

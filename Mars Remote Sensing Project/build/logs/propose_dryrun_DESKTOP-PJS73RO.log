@@ -1,0 +1,41 @@
+labels 512; held-out blocks 14: -11_1 -11_2 -3_-1 -4_-1 -4_-2 -5_-1 -6_1 -9_-1 -9_0 0_0 1_0 4_0 4_2 5_-2
+split reproduced by the centroid rule: 183 test, 329 train, 0 outside ±60°, 0 mismatches []
+units 1311, craters 385049, named 495, valleys 3772 (34 s)
+   100 labels (135 s)
+   200 labels (187 s)
+   300 labels (226 s)
+   400 labels (285 s)
+   500 labels (387 s)
+new polygons: 574 (623 s)
+
+proposals by action and class:
+   delete   4 Normal Ground         1
+   relabel  4 Normal Ground         2
+   relabel  5 volcanic edifice      5
+   relabel  7 fluvial channel       5
+   clip     2 steep/windy hills     1
+   check    1 Crater               15
+   check    3 lava tube             7
+   check    7 fluvial channel       1
+   fix      1 Crater                1
+   keep     1 Crater              281
+   keep     2 steep/windy hills    43
+   keep     3 lava tube            29
+   keep     4 Normal Ground       121
+   new      5 volcanic edifice    126
+   new      6 apron               172
+   new      7 fluvial channel     276
+
+if every proposal were accepted (minimum: 10 held out in 2 blocks, 20 training in 3):
+   1 Crater             train  175 in 15 blocks, held out  122 in  8 blocks  ok
+   2 steep/windy hills  train   28 in  2 blocks, held out   16 in  3 blocks  SHORT
+   3 lava tube          train   18 in  3 blocks, held out   18 in  2 blocks  SHORT
+   4 Normal Ground      train  101 in 13 blocks, held out   22 in  4 blocks  ok
+   5 volcanic edifice   train  119 in 23 blocks, held out   12 in  3 blocks  ok
+   6 apron              train  150 in 21 blocks, held out   22 in  3 blocks  ok
+   7 fluvial channel    train  236 in 121 blocks, held out   46 in 10 blocks  ok
+
+overlaps between classes: 0 []
+overlaps across the split: 0 []
+log F:\Mars Remote Sensing Project\build\logs\label_proposals.json
+dry run: nothing written (1166 s)
