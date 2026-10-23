@@ -2,13 +2,16 @@
 """Scoring a landform classification against independent evidence (KB §30, §31).
 
 Moved verbatim out of verify_svm_classifications.py so every classification is scored by the
-same code, the code that passed the planted-map tests of §30.4.
+same code, the code that passed the planted-map tests of §30.4. Since §68.6 training_score finds each
+polygon's pixels with inside(), which returns exactly what testing every pixel returned, in a fraction of the time
+on long many-vertex outlines.
 
   g = dict(dpx, dpy, lat_top, lon_left) describes the array: degrees per pixel, the latitude of
   its top edge, the east longitude of its left edge. Class value 0 is Crater.
 """
 import numpy as np
 from matplotlib.path import Path
+from matplotlib.transforms import Bbox
 
 KPD = 3396.19 * np.pi / 180.0                       # km per degree, Mars sphere
 
@@ -18,12 +21,45 @@ def kappa(ct):
     return po, (po - pe) / (1 - pe)
 
 
-def training_score(a, m, g, polys):
-    """Area-weighted confusion of the labelled polygons (rows) against the map's classes (cols)."""
+def inside_every_pixel(path, r0, r1, c0, c1):
+    """Which pixel centres of rows r0..r1-1, columns c0..c1-1 lie inside path: every centre tested."""
+    rr, cc = np.mgrid[r0:r1, c0:c1]
+    return path.contains_points(np.c_[cc.ravel() + .5, rr.ravel() + .5]).reshape(rr.shape)
+
+
+def inside(path, r0, r1, c0, c1, leaf=8):
+    """The same answer as inside_every_pixel, block by block (KB §68.6). A block whose box no edge of the path
+    touches is wholly inside or wholly outside, so its first centre decides it; a block an edge touches is split
+    in four, down to leaf x leaf, which is tested centre by centre. The box is widened by a quarter pixel, so an
+    edge running along a block's outer centres counts as touching it. contains_points closes an open outline with
+    an edge from its last vertex to its first, which intersects_bbox does not see, so the edge test runs on a
+    copy closed explicitly. A long, many-vertex outline (a valley strip in the v2 labels) costs its boundary, not
+    its bounding box."""
+    v = path.vertices
+    edges = path if np.array_equal(v[0], v[-1]) else Path(np.r_[v, v[:1]])
+    out = np.zeros((r1 - r0, c1 - c0), bool)
+    todo = [(r0, r1, c0, c1)]
+    while todo:
+        a, b, c, d = todo.pop()
+        if b - a <= leaf and d - c <= leaf or min(b - a, d - c) < 2:
+            out[a - r0:b - r0, c - c0:d - c0] = inside_every_pixel(path, a, b, c, d)
+            continue
+        box = Bbox([[c + .25, a + .25], [d - .25, b - .25]])
+        if not edges.intersects_bbox(box, filled=False):
+            out[a - r0:b - r0, c - c0:d - c0] = path.contains_points([[c + .5, a + .5]])[0]
+            continue
+        h, w = (a + b) // 2, (c + d) // 2
+        todo += [(a, h, c, w), (a, h, w, d), (h, b, c, w), (h, b, w, d)]
+    return out
+
+
+def training_score(a, m, g, polys, n=4):
+    """Area-weighted confusion of the labelled polygons (rows) against the map's classes (cols).
+    n classes, codes 1..n (7 for the v2 labels, labelsets.py); a map's index must be < n."""
     H, W = a.shape
-    cmx = np.zeros((4, 4)); own = []
+    cmx = np.zeros((n, n)); own = []
     for v, rings in polys:
-        hit = np.zeros(4)
+        hit = np.zeros(n)
         for ring in rings:
             xy = np.array(ring)
             lo_ = xy[0, 0] % 360 + ((xy[:, 0] % 360 - xy[0, 0] % 360 + 180) % 360 - 180)
@@ -33,8 +69,7 @@ def training_score(a, m, g, polys):
             if r1 <= r0:
                 continue
             rr, cc = np.mgrid[r0:r1, c0:c1]
-            ins = Path(np.c_[col, row]).contains_points(
-                np.c_[cc.ravel() + .5, rr.ravel() + .5]).reshape(rr.shape)
+            ins = inside(Path(np.c_[col, row]), r0, r1, c0, c1)
             sel = ins & m[rr, cc % W]
             if sel.any():
                 np.add.at(hit, a[rr[sel], (cc % W)[sel]],

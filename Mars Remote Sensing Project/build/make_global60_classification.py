@@ -22,6 +22,11 @@ did not write (the §29.8 guard).
   python make_global60_classification.py --cell 200            all steps (desktop)
   python make_global60_classification.py --classify-only ...   reuse the split and the .ecd
   python make_global60_classification.py --smoke               steps 1-3, one 4096 px window
+
+--labels v2 (labelsets.py; decision D17, KB §68, NEXT-STEPS §11.5): steps 1 and 2 are skipped, since the split
+is apply_label_review.py's (Landform_TrainingSamples_v2_60_train / _test, the same held-out blocks), and the
+model, the tiles and the map carry "_v2": global60_landforms_svm_v2.ecd, global60_landforms_svm_v2_<cell>m.tif.
+Seven classes, codes 1-7. The four-class outputs are never touched.
 """
 import os, sys, time, ctypes
 import os, sys
@@ -33,16 +38,17 @@ import arcpy
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import grid60 as G
+import labelsets as L
 
 GDB = on_drive(r"Mars Project\Mars Project.gdb")
 HAND_LABELS = os.path.join(GDB, "Landform_TrainingSamples_terrain")
 EXTENT = os.path.join(GDB, "Analysis_Extent_60")
-TRAIN = os.path.join(GDB, "Landform_TrainingSamples_terrain_60_train")
-TEST = os.path.join(GDB, "Landform_TrainingSamples_terrain_60_test")
+TRAIN = os.path.join(GDB, L.TRAIN)
+TEST = os.path.join(GDB, L.TEST)
 STACK = os.path.join(G.OUTDIR, "global60_svm_stack_200m.tif")
-ECD = os.path.join(G.OUTDIR, "global60_landforms_svm.ecd")
+ECD = os.path.join(G.OUTDIR, "global60_landforms_svm%s.ecd" % L.TAG)
 CELL = int(sys.argv[sys.argv.index("--cell") + 1]) if "--cell" in sys.argv else 400
-OUT = os.path.join(G.OUTDIR, "global60_landforms_svm_%dm.tif" % CELL)
+OUT = os.path.join(G.OUTDIR, "global60_landforms_svm%s_%dm.tif" % (L.TAG, CELL))
 MARKER = "make_global60_classification.py"
 BLOCK_DEG, TEST_SHARE, SEED = 15.0, 0.3, 60
 MARS = arcpy.SpatialReference(104905)                # GCS_Mars_2000_Sphere, the hand-drawn labels' CRS
@@ -120,6 +126,21 @@ def make_split():
     print("  test polygons per class (Crater, hills, lava tube, Normal):", cls_t, "of", cls_a)
 
 
+def check_v2_split():
+    """The v2 split is apply_label_review.py's, never made here: both halves exist, were written by it, and
+    hold only codes 1-7."""
+    for fc in (TRAIN, TEST):
+        if not arcpy.Exists(fc):
+            sys.exit("%s is missing: run apply_label_review.py first (NEXT-STEPS §11.5)" % fc)
+        with arcpy.da.SearchCursor(fc, ["MappedBy", "Classvalue"]) as cur:
+            rows = list(cur)
+        bad = [r for r in rows if r[0] != "apply_label_review.py" or r[1] not in range(1, len(L.NAMES) + 1)]
+        if not rows or bad:
+            sys.exit("%s: %d rows, %d not apply_label_review.py's or outside codes 1-%d"
+                     % (fc, len(rows), len(bad), len(L.NAMES)))
+        print("  %s: %d polygons" % (os.path.basename(fc), len(rows)))
+
+
 def train():
     if os.path.exists(ECD):
         os.remove(ECD)
@@ -146,8 +167,7 @@ def classify(out, extent=None, cell=200):
 
 SCRATCH = os.path.join(os.environ["LOCALAPPDATA"], "Temp", "mars_scratch")   # internal SSD (§2.2)
 TILE = 16384                                     # G200 px per tile side: 21 tiles over ±60°
-COLOURS = {"Crater": (255, 0, 0), "steep/windy hills": (28, 119, 85),
-           "lava tube": (158, 25, 147), "Normal Ground": (81, 51, 13)}   # the RAT colours
+COLOURS = L.COLOURS                              # the RAT colours, codes 1-7
 
 
 def classify_tiled(out, cell, limit=None):
@@ -160,7 +180,7 @@ def classify_tiled(out, cell, limit=None):
     """
     from osgeo import gdal
     gdal.UseExceptions()
-    tdir = os.path.join(SCRATCH, "cls_%dm_tiles" % cell)
+    tdir = os.path.join(SCRATCH, "cls%s_%dm_tiles" % (L.TAG, cell))   # done tiles are skipped: one folder per label set
     os.makedirs(tdir, exist_ok=True)
     tiles = list(G.G200.tiles(TILE))[:limit]
     t0 = time.time()
@@ -184,8 +204,8 @@ def classify_tiled(out, cell, limit=None):
                                                     time.strftime("%H:%M:%S", time.gmtime(el))), flush=True)
 
     print("  mosaic %d tiles -> %s" % (len(files), out))
-    # ClassifyRaster writes pixel values 0..3; the mosaic is built as before, then recoded so
-    # the delivered map's pixels ARE the class codes 1..4 (KB §36).
+    # ClassifyRaster writes pixel values 0..n-1; the mosaic is built as before, then recoded so
+    # the delivered map's pixels ARE the class codes 1..n (KB §36).
     final, out = out, out.replace(".tif", "_0based_tmp.tif")
     vrt = os.path.join(tdir, "mosaic.vrt")
     gdal.BuildVRT(vrt, files, srcNodata=255, VRTNodata=255)
@@ -232,8 +252,11 @@ def main():
     smoke = "--smoke" in sys.argv
     keep_awake(True)
     if "--classify-only" not in sys.argv:
-        print("1. analysis extent"); make_extent()
-        print("2. train / test split of the hand-drawn labels"); make_split()
+        if L.V2:
+            check_v2_split()
+        else:
+            print("1. analysis extent"); make_extent()
+            print("2. train / test split of the hand-drawn labels"); make_split()
         print("3. train SVM"); train()
     if smoke:
         # one 4096 x 4096 G200 window at the equator, 169-183°E (Elysium / Cerberus), timed
@@ -245,7 +268,7 @@ def main():
     else:
         print("4. classify ±60° at %d m" % CELL)
         lim = int(sys.argv[sys.argv.index("--tiles") + 1]) if "--tiles" in sys.argv else None
-        classify_tiled(OUT if lim is None else os.path.join(SCRATCH, "tiletest_%dm.tif" % CELL), CELL, lim)
+        classify_tiled(OUT if lim is None else os.path.join(SCRATCH, "tiletest%s_%dm.tif" % (L.TAG, CELL)), CELL, lim)
     keep_awake(False)
 
 
