@@ -104,6 +104,12 @@ since commit `449cc9a` was written in the clone only:** list them with
 `github_sync.py`, which copies drive → clone and would overwrite or remove them. A drive file that existed before
 should still equal `449cc9a` (check with `git hash-object` against `git rev-parse 449cc9a:<path>`); if one
 differs, merge by hand.
+**2026-10-22, desktop (§69), the author's request:** the final started early, as builds: an AASTeX 7 paper (14
+pages, 16 figures, compiled with MiKTeX, installed per-user at the author's choice) and a 32-slide final deck, both in
+`NEXT STUFF\Final\`, both on the machine products as candidates (the review not started); every page and slide read.
+**2026-10-23, desktop (KB §69.1):** the clone's §68 work copied to the drive as the note above asks (nine scripts
+replaced, four added, the record and this plan merged by hand); the final paper and deck now carry §68's audit
+as a limit and the seven-class revision as a next step; everything pushed. The drive and the clone agree again.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
@@ -264,8 +270,11 @@ training polygons, the held-out scores and the tests.
 **Final report outline** (to fill after the freeze, not before): 1 question and hook (Athabasca) · 2 data and
 the ±60° decision · 3 co-registration and the frames trap · 4 the thermal pair: what it can and cannot do ·
 5 craters · 6 channels · 7 lava flows · 8 classification and accuracy · 9 limits · 10 what next. Each section
-closes on a measured number and a sheet. **No final builder exists yet:** write one on the interim's pattern
-(one source module, charts from logs, layouts exported by script), early enough to rehearse.
+closes on a measured number and a sheet. **The final builders exist since 2026-10-22 (KB §69):** the AASTeX paper
+`NEXT STUFF\Final\paper\mars_global_mosaic.tex` (`build_final_paper.py` copies its figures and compiles it with
+MiKTeX) and the deck from `final.py` (`build_final_deck.py`), figures from `make_final_figs.py` (ArcGIS Python) and
+`make_fig_final.py`. After the review and the freeze: bring the numbers in `final.py` and the `.tex` to the record,
+re-export, rebuild both, read every page and slide, run `verify_interim.py final.py`.
 
 **Before each deadline:** a new GitHub data release (`github_release_bundle.py --upload data-YYYY-MM-DD`), then
 point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE` at it, then run

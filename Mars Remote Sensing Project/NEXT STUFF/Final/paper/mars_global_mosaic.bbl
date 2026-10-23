@@ -1,0 +1,272 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\href{#1}{#1}}
+\providecommand{\dodoi}[1]{doi:~\href{http://doi.org/#1}{\nolinkurl{#1}}}
+\providecommand{\doeprint}[1]{\href{http://ascl.net/#1}{\nolinkurl{http://ascl.net/#1}}}
+\providecommand{\doarXiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{https://arxiv.org/abs/#1}}}
+
+% type= article
+\bibitem[{B.~A. {Archinal} {et~al.}(2018){Archinal}, {Acton}, {A'Hearn},
+  {et~al.}}]{Archinal2018}
+{Archinal}, B.~A., {Acton}, C.~H., {A'Hearn}, M.~F., {et~al.} 2018,
+  \bibinfo{title}{Report of the IAU Working Group on Cartographic Coordinates
+  and Rotational Elements: 2015,} Celestial Mechanics and Dynamical Astronomy,
+  130, 22, \dodoi{10.1007/s10569-017-9805-5}
+
+% type= inproceedings
+\bibitem[{B.~A. {Archinal} {et~al.}(2003){Archinal}, {Kirk}, {Duxbury}, {Lee},
+  {Sucharski}, \& {Cook}}]{Archinal2003}
+{Archinal}, B.~A., {Kirk}, R.~L., {Duxbury}, T.~C., {et~al.} 2003,
+  \bibinfo{title}{Mars Digital Image Model (MDIM) 2.1 Control Network,} in
+  Lunar and Planetary Science Conference XXXIV, abstract 1485
+
+% type= article
+\bibitem[{D.~M. {Burr} {et~al.}(2002){Burr}, {Grier}, {McEwen}, \&
+  {Keszthelyi}}]{Burr2002}
+{Burr}, D.~M., {Grier}, J.~A., {McEwen}, A.~S., \& {Keszthelyi}, L.~P. 2002,
+  \bibinfo{title}{Repeated aqueous flooding from the Cerberus Fossae: Evidence
+  for very recently extant, deep groundwater on Mars,} Icarus, 159, 53,
+  \dodoi{10.1006/icar.2002.6921}
+
+% type= article
+\bibitem[{P.~R. {Christensen} {et~al.}(2004){Christensen}, {Jakosky},
+  {Kieffer}, {Malin}, {McSween}, {Nealson}, {Mehall}, {Silverman}, {Ferry},
+  {Caplinger}, \& {Ravine}}]{Christensen2004}
+{Christensen}, P.~R., {Jakosky}, B.~M., {Kieffer}, H.~H., {et~al.} 2004,
+  \bibinfo{title}{The Thermal Emission Imaging System (THEMIS) for the Mars
+  2001 Odyssey Mission,} Space Science Reviews, 110, 85,
+  \dodoi{10.1023/B:SPAC.0000021008.16305.94}
+
+% type= article
+\bibitem[{J. {Cohen}(1960){Cohen}}]{Cohen1960}
+{Cohen}, J. 1960, \bibinfo{title}{A coefficient of agreement for nominal
+  scales,} Educational and Psychological Measurement, 20, 37,
+  \dodoi{10.1177/001316446002000104}
+
+% type= article
+\bibitem[{R.~G. {Congalton}(1991){Congalton}}]{Congalton1991}
+{Congalton}, R.~G. 1991, \bibinfo{title}{A review of assessing the accuracy of
+  classifications of remotely sensed data,} Remote Sensing of Environment, 37,
+  35, \dodoi{10.1016/0034-4257(91)90048-B}
+
+% type= article
+\bibitem[{C. {Cortes} \& V. {Vapnik}(1995){Cortes} \& {Vapnik}}]{Cortes1995}
+{Cortes}, C., \& {Vapnik}, V. 1995, \bibinfo{title}{Support-vector networks,}
+  Machine Learning, 20, 273, \dodoi{10.1007/BF00994018}
+
+% type= article
+\bibitem[{C.~S. {Edwards} {et~al.}(2011){Edwards}, {Nowicki}, {Christensen},
+  {Hill}, {Gorelick}, \& {Murray}}]{Edwards2011}
+{Edwards}, C.~S., {Nowicki}, K.~J., {Christensen}, P.~R., {et~al.} 2011,
+  \bibinfo{title}{Mosaicking of global planetary image datasets: 1. Techniques
+  and data processing for Thermal Emission Imaging System (THEMIS)
+  multi-spectral data,} Journal of Geophysical Research (Planets), 116, E10008,
+  \dodoi{10.1029/2010JE003755}
+
+% type= misc
+\bibitem[{L.~M. {Edwards}(2026){Edwards}}]{Edwards2026data}
+{Edwards}, L.~M. 2026, Mars Global Mosaic: Mapping Lava Flows, Fluvial
+  Channels, and Impact Craters in Visible and Infrared (maps, data, models and
+  scripts), release data-2026-10-21 GitHub.
+\newblock
+  \url{https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data}
+
+% type= book
+\bibitem[{B. {Efron} \& R.~J. {Tibshirani}(1993){Efron} \&
+  {Tibshirani}}]{Efron1993}
+{Efron}, B., \& {Tibshirani}, R.~J. 1993, An Introduction to the Bootstrap (New
+  York: Chapman \& Hall)
+
+% type= misc
+\bibitem[{ {Esri}(2026){Esri}}]{ArcGISPro}
+{Esri}. 2026, ArcGIS Pro, with the Spatial Analyst and Image Analyst extensions
+  and the Deep Learning Libraries, v3.7 Redlands, CA: Environmental Systems
+  Research Institute
+
+% type= article
+\bibitem[{R.~L. {Fergason} {et~al.}(2006){Fergason}, {Christensen}, \&
+  {Kieffer}}]{Fergason2006}
+{Fergason}, R.~L., {Christensen}, P.~R., \& {Kieffer}, H.~H. 2006,
+  \bibinfo{title}{High-resolution thermal inertia derived from the Thermal
+  Emission Imaging System (THEMIS): Thermal model and applications,} Journal of
+  Geophysical Research (Planets), 111, E12004, \dodoi{10.1029/2006JE002735}
+
+% type= misc
+\bibitem[{R.~L. {Fergason} {et~al.}(2018){Fergason}, {Hare}, \&
+  {Laura}}]{Fergason2018}
+{Fergason}, R.~L., {Hare}, T.~M., \& {Laura}, J. 2018, HRSC and MOLA Blended
+  Digital Elevation Model at 200m, v2 Astrogeology PDS Annex, U.S. Geological
+  Survey
+
+% type= misc
+\bibitem[{ {GDAL/OGR contributors}(2024){GDAL/OGR contributors}}]{GDAL}
+{GDAL/OGR contributors}. 2024, GDAL/OGR Geospatial Data Abstraction software
+  Library, Open Source Geospatial Foundation, \dodoi{10.5281/zenodo.5884351}
+
+% type= article
+\bibitem[{C.~R. {Harris} {et~al.}(2020){Harris}, {Millman}, {van der Walt},
+  {et~al.}}]{Harris2020}
+{Harris}, C.~R., {Millman}, K.~J., {van der Walt}, S.~J., {et~al.} 2020,
+  \bibinfo{title}{Array programming with NumPy,} Nature, 585, 357,
+  \dodoi{10.1038/s41586-020-2649-2}
+
+% type= article
+\bibitem[{W.~K. {Hartmann}(2005){Hartmann}}]{Hartmann2005}
+{Hartmann}, W.~K. 2005, \bibinfo{title}{Martian cratering 8: Isochron
+  refinement and the chronology of Mars,} Icarus, 174, 294,
+  \dodoi{10.1016/j.icarus.2004.11.023}
+
+% type= inproceedings
+\bibitem[{K. {He} {et~al.}(2016){He}, {Zhang}, {Ren}, \& {Sun}}]{He2016}
+{He}, K., {Zhang}, X., {Ren}, S., \& {Sun}, J. 2016, \bibinfo{title}{Deep
+  residual learning for image recognition,} in Proceedings of the IEEE
+  Conference on Computer Vision and Pattern Recognition (CVPR), 770--778
+
+% type= article
+\bibitem[{L. {Hubert} \& P. {Arabie}(1985){Hubert} \& {Arabie}}]{Hubert1985}
+{Hubert}, L., \& {Arabie}, P. 1985, \bibinfo{title}{Comparing partitions,}
+  Journal of Classification, 2, 193, \dodoi{10.1007/BF01908075}
+
+% type= article
+\bibitem[{J.~D. {Hunter}(2007){Hunter}}]{Hunter2007}
+{Hunter}, J.~D. 2007, \bibinfo{title}{Matplotlib: A 2D graphics environment,}
+  Computing in Science \& Engineering, 9, 90, \dodoi{10.1109/MCSE.2007.55}
+
+% type= article
+\bibitem[{B.~M. {Hynek} {et~al.}(2010){Hynek}, {Beach}, \& {Hoke}}]{Hynek2010}
+{Hynek}, B.~M., {Beach}, M., \& {Hoke}, M.~R.~T. 2010, \bibinfo{title}{Updated
+  global map of Martian valley networks and implications for climate and
+  hydrologic processes,} Journal of Geophysical Research (Planets), 115,
+  E09008, \dodoi{10.1029/2009JE003548}
+
+% type= misc
+\bibitem[{ {IAU Working Group for Planetary System Nomenclature}(2019){IAU
+  Working Group for Planetary System Nomenclature}}]{Gazetteer}
+{IAU Working Group for Planetary System Nomenclature}. 2019, Gazetteer of
+  Planetary Nomenclature, U.S. Geological Survey Astrogeology Science Center.
+\newblock \url{https://planetarynames.wr.usgs.gov}
+
+% type= article
+\bibitem[{W.~L. {Jaeger} {et~al.}(2007){Jaeger}, {Keszthelyi}, {McEwen},
+  {Dundas}, \& {Russell}}]{Jaeger2007}
+{Jaeger}, W.~L., {Keszthelyi}, L.~P., {McEwen}, A.~S., {Dundas}, C.~M., \&
+  {Russell}, P.~S. 2007, \bibinfo{title}{Athabasca Valles, Mars: A lava-draped
+  channel system,} Science, 317, 1709, \dodoi{10.1126/science.1143315}
+
+% type= article
+\bibitem[{W.~L. {Jaeger} {et~al.}(2010){Jaeger}, {Keszthelyi}, {Skinner},
+  {et~al.}}]{Jaeger2010}
+{Jaeger}, W.~L., {Keszthelyi}, L.~P., {Skinner}, Jr., J.~A., {et~al.} 2010,
+  \bibinfo{title}{Emplacement of the youngest flood lava on Mars: A short,
+  turbulent story,} Icarus, 205, 230, \dodoi{10.1016/j.icarus.2009.09.011}
+
+% type= article
+\bibitem[{R. {Jaumann} {et~al.}(2007){Jaumann}, {Neukum}, {Behnke},
+  {et~al.}}]{Jaumann2007}
+{Jaumann}, R., {Neukum}, G., {Behnke}, T., {et~al.} 2007, \bibinfo{title}{The
+  high-resolution stereo camera (HRSC) experiment on Mars Express: Instrument
+  aspects and experiment conduct from interplanetary cruise through the nominal
+  mission,} Planetary and Space Science, 55, 928,
+  \dodoi{10.1016/j.pss.2006.12.003}
+
+% type= article
+\bibitem[{S.~K. {Jenson} \& J.~O. {Domingue}(1988){Jenson} \&
+  {Domingue}}]{Jenson1988}
+{Jenson}, S.~K., \& {Domingue}, J.~O. 1988, \bibinfo{title}{Extracting
+  topographic structure from digital elevation data for geographic information
+  system analysis,} Photogrammetric Engineering and Remote Sensing, 54, 1593
+
+% type= article
+\bibitem[{C. {Lee}(2019){Lee}}]{Lee2019}
+{Lee}, C. 2019, \bibinfo{title}{Automated crater detection on Mars using deep
+  learning,} Planetary and Space Science, 170, 16,
+  \dodoi{10.1016/j.pss.2019.03.008}
+
+% type= inproceedings
+\bibitem[{T.-Y. {Lin} {et~al.}(2017){Lin}, {Goyal}, {Girshick}, {He}, \&
+  {Doll{\'a}r}}]{Lin2017}
+{Lin}, T.-Y., {Goyal}, P., {Girshick}, R., {He}, K., \& {Doll{\'a}r}, P. 2017,
+  \bibinfo{title}{Focal loss for dense object detection,} in Proceedings of the
+  IEEE International Conference on Computer Vision (ICCV), 2980--2988
+
+% type= article
+\bibitem[{M.~T. {Mellon} {et~al.}(2000){Mellon}, {Jakosky}, {Kieffer}, \&
+  {Christensen}}]{Mellon2000}
+{Mellon}, M.~T., {Jakosky}, B.~M., {Kieffer}, H.~H., \& {Christensen}, P.~R.
+  2000, \bibinfo{title}{High-resolution thermal inertia mapping from the Mars
+  Global Surveyor Thermal Emission Spectrometer,} Icarus, 148, 437,
+  \dodoi{10.1006/icar.2000.6503}
+
+% type= inproceedings
+\bibitem[{A. {Paszke} {et~al.}(2019){Paszke}, {Gross}, {Massa},
+  {et~al.}}]{Paszke2019}
+{Paszke}, A., {Gross}, S., {Massa}, F., {et~al.} 2019, \bibinfo{title}{PyTorch:
+  An imperative style, high-performance deep learning library,} in Advances in
+  Neural Information Processing Systems 32, 8024--8035
+
+% type= article
+\bibitem[{J.~B. {Plescia}(2003){Plescia}}]{Plescia2003}
+{Plescia}, J.~B. 2003, \bibinfo{title}{Cerberus Fossae, Elysium, Mars: a source
+  for lava and water,} Icarus, 164, 79, \dodoi{10.1016/S0019-1035(03)00139-8}
+
+% type= article
+\bibitem[{N.~E. {Putzig} \& M.~T. {Mellon}(2007){Putzig} \&
+  {Mellon}}]{Putzig2007}
+{Putzig}, N.~E., \& {Mellon}, M.~T. 2007, \bibinfo{title}{Apparent thermal
+  inertia and the surface heterogeneity of Mars,} Icarus, 191, 68,
+  \dodoi{10.1016/j.icarus.2007.05.013}
+
+% type= article
+\bibitem[{S.~J. {Robbins} \& B.~M. {Hynek}(2012){Robbins} \&
+  {Hynek}}]{Robbins2012}
+{Robbins}, S.~J., \& {Hynek}, B.~M. 2012, \bibinfo{title}{A new global database
+  of Mars impact craters $\geq$1 km: 1. Database creation, properties, and
+  parameters,} Journal of Geophysical Research (Planets), 117, E05004,
+  \dodoi{10.1029/2011JE003966}
+
+% type= article
+\bibitem[{D.~R. {Roberts} {et~al.}(2017){Roberts}, {Bahn}, {Ciuti},
+  {et~al.}}]{Roberts2017}
+{Roberts}, D.~R., {Bahn}, V., {Ciuti}, S., {et~al.} 2017,
+  \bibinfo{title}{Cross-validation strategies for data with temporal, spatial,
+  hierarchical, or phylogenetic structure,} Ecography, 40, 913,
+  \dodoi{10.1111/ecog.02881}
+
+% type= inproceedings
+\bibitem[{O. {Ronneberger} {et~al.}(2015){Ronneberger}, {Fischer}, \&
+  {Brox}}]{Ronneberger2015}
+{Ronneberger}, O., {Fischer}, P., \& {Brox}, T. 2015, \bibinfo{title}{U-Net:
+  Convolutional networks for biomedical image segmentation,} in Lecture Notes
+  in Computer Science, Vol. 9351, Medical Image Computing and Computer-Assisted
+  Intervention (MICCAI), 234--241, \dodoi{10.1007/978-3-319-24574-4_28}
+
+% type= article
+\bibitem[{S.~W. {Ruff} \& P.~R. {Christensen}(2002){Ruff} \&
+  {Christensen}}]{Ruff2002}
+{Ruff}, S.~W., \& {Christensen}, P.~R. 2002, \bibinfo{title}{Bright and dark
+  regions on Mars: Particle size and mineralogical characteristics based on
+  Thermal Emission Spectrometer data,} Journal of Geophysical Research
+  (Planets), 107, 5127, \dodoi{10.1029/2001JE001580}
+
+% type= article
+\bibitem[{D.~E. {Smith} {et~al.}(2001){Smith}, {Zuber}, {Frey},
+  {et~al.}}]{Smith2001}
+{Smith}, D.~E., {Zuber}, M.~T., {Frey}, H.~V., {et~al.} 2001,
+  \bibinfo{title}{Mars Orbiter Laser Altimeter: Experiment summary after the
+  first year of global mapping of Mars,} Journal of Geophysical Research, 106,
+  23689, \dodoi{10.1029/2000JE001364}
+
+% type= article
+\bibitem[{A.~N. {Strahler}(1957){Strahler}}]{Strahler1957}
+{Strahler}, A.~N. 1957, \bibinfo{title}{Quantitative analysis of watershed
+  geomorphology,} Transactions, American Geophysical Union, 38, 913,
+  \dodoi{10.1029/TR038i006p00913}
+
+% type= misc
+\bibitem[{K.~L. {Tanaka} {et~al.}(2014){Tanaka}, {Skinner}, {Dohm}, {Irwin},
+  {Kolb}, {Fortezzo}, {Platz}, {Michael}, \& {Hare}}]{Tanaka2014}
+{Tanaka}, K.~L., {Skinner}, Jr., J.~A., {Dohm}, J.~M., {et~al.} 2014, Geologic
+  Map of Mars, Scientific Investigations Map 3292, scale 1:20,000,000, U.S.
+  Geological Survey, \dodoi{10.3133/sim3292}
+
+\end{thebibliography}

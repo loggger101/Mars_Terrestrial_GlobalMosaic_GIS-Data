@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-23 (§68.6).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-23 (§69.1).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -33,6 +33,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | classification: type area | §19, §23, §27 |
 | classification: ±60°, the published map | §31, §32.2, §55.3, §57 |
 | the class scheme and the labels' audit | §29.2, §43.3, §68 |
+| the final builds: the AASTeX paper and the deck | §69 |
 | craters and closed depressions | §26, §28.11, §42.3, §53.4, §53.6 |
 | channels | §25, §47.4, §53.4, §53.6, §54.4 |
 | lava flows and the geologic map | §41, §43.2, §43.3, §44, §47.2 |
@@ -498,7 +499,7 @@ older one**. A false claim wearing a `[V]` is worse than none.
 | `verify*`, `check_*`, `test_*` | checks claims against the project files |
 | bare noun | a module: `paths.py`, `grid60.py`, `areas.py`, `interim.py`, `le_theme.py`, `layoutkit.py` |
 
-**Counted 2026-10-19 (§64):** 151 build scripts on the drive (148 `.py`, 3 `.ps1`); 150 in the public repo, which leaves out
+**Counted 2026-10-23 (§69.1):** 163 build scripts on the drive (160 `.py`, 3 `.ps1`); 162 in the public repo, which leaves out
 `neutral_voice.py`. The repo's `docs/scripts.md` catalogues them; `tools/check_repo.py` fails if the README's count drifts.
 
 **Every figure has a script that regenerates it.** Type-area products are `ius_*` in `Mars Project\TypeArea\`
@@ -3893,3 +3894,76 @@ now one command (the list is there).
 - **What the four-class maps call the new ground:** the U-Net paints 98.7 % of the edifice area and 89.5 % of the
   apron area Crater; the SVM splits them among Crater, lava tube and Normal Ground. The four-class "Crater" is a
   province that takes in the Tharsis volcanoes, as §68.2's five volcano labels led it to.
+
+## 69. The final started: an AASTeX paper and the final deck, both builds — 2026-10-22 **[V]**
+
+On the desktop, at the author's request: "start working on the proposed final stuff", a paper in LaTeX with
+AASTeX formatting, and the presentation (no further instructions for it; no rubric exists, §50). Built on the
+interim's pattern (`NEXT-STEPS.md` §7: one source, figures exported by script) and on the final report outline of
+§7. **Nothing new was measured**; every number is quoted from this record or the log it cites. The review is still
+at 0 of 9,287, so both documents present the machine products as candidates with their measured scores (§6 of the
+plan, the contingency).
+
+- **LaTeX:** MiKTeX 25.12 installed per-user with `winget` (the author chose it over Overleaf), automatic package
+  installs on; AASTeX **7.0.1** (`aastex701.cls`, `aasjournalv7.bst`). AASTeX 7 refuses to compile without an
+  `\email` for each author: the paper carries the author's school address (§69.1); AASTeX 7 does not print it.
+- **The paper:** `NEXT STUFF\Final\paper\mars_global_mosaic.tex` (two-column, 14 pages, 16 figures, 5 tables,
+  40 references in `references.bib`), each number with its § in a `%%` comment. Sections: introduction (the
+  Athabasca hook, H1–H4), data, methods (the grid, the stack, the index, fill depth and routing, the SVM and its
+  block split, deep learning, bootstrap), results, discussion (the hypotheses table, limits), conclusions.
+  `build\build_final_paper.py` copies the figures into `figures\` (cropping two deck charts' title strip and KB
+  footnote) and runs pdflatex, bibtex, pdflatex ×2: no undefined reference, no overfull box; one wide table floats
+  to the page after the references begin. Every page rendered and read; faults found by reading and fixed:
+  `deluxetable` turned every table sideways in two-column mode (now `table` + `tabular`), Table 1 ran 57 pt wide,
+  the H1 chart unreadable at column width, the AAS style printing ",," and dropping `note` on `@misc` entries
+  (now `version`, `publisher`, `url`), "Jr." names inverted.
+- **Numbers checked:** `verify_interim.py`'s matcher run over the paper's prose (comments, citations and labels
+  removed) against this record plus the three logs it quotes: 302 numbers, all found or rounding from one, the
+  only misses being comma-split pixel sizes, 4.25 bn (4,246,732,800, §3), 199.99999 m (§28.2) and a ZIP code.
+- **Two charts not drawn before** (`build\make_fig_final.py`, from the logs): `final_img\depressions_vs_robbins.png`,
+  precision and recall by minimum diameter beside the 3-diameter chance baseline from
+  `logs\global60_candidates_check.json` (run 3: recall 20.4 / 35.8 / 45.8 / 47.8 / 48.1 / 45.8 / 38.3 % at ≥ 1 to
+  ≥ 100 km; the §53.4 table's recalls are run 2's); `final_img\svm_vs_unet.png`, producer's and user's accuracy per
+  class for the published SVM map and the two-pass U-Net map (§57, §66.8).
+- **Layouts:** `build\make_final_figs.py` runs `make_interim_figs.py`'s export (prose hidden in memory, `.aprx` never
+  saved) over `final.py`'s figures into `build\final_img\`: 04, 07, 08, 10, 12, 15, 16, 17 (layout 15 shown in a
+  deck for the first time). Layout 13 is left out: its T8 table cells are not named like the other sheets' and
+  would stay; the T8 chart is used instead.
+- **The deck:** `build\final.py` (content, every number with its §) and `build\build_final_deck.py` (the interim's
+  slide placement, copied so `build_interim_live.py` is untouched; special slides for the question, the bands and
+  the correlation table; `side_h` for a wide figure drawn left) → `NEXT STUFF\Final\Mars Global Mosaic - Final
+  Presentation.pptx`, **32 slides**: the question, the mosaic, the thermal pair, landforms, classification (deep
+  learning included), the hypotheses, limits, conclusions, what next. Rendered through PowerPoint and every slide
+  read; `verify_interim.py final.py`: all 172 numbers in this record; `neutral_voice.py --check` clean on the new
+  files. Its labelled lists use ": ", not " — " (§67.2).
+- **Build scripts:** five new (`final.py`, `make_final_figs.py`, `make_fig_final.py`, `build_final_paper.py`,
+  `build_final_deck.py`): 159 on the drive then (156 `.py`, 3 `.ps1`); in the repo from §69.1.
+- **Open for the author:** whether the final should be refreshed after the review and the data freeze (22
+  November), as the plan intends.
+
+### 69.1 The laptop's §68 brought to the drive; the final made to agree with it — 2026-10-23, desktop **[V]**
+
+At the author's request: the repo had moved on without the drive (PRs #1 and #2, `cc848db`, `05c697e`: §68, D17
+and the v2 scripts), and the desktop's §69 work was not yet committed. This section was first written as "§68" on
+the desktop and renumbered when the two met.
+
+- **Repo → drive**, as `NEXT-STEPS.md`'s 2026-10-23 note asks: every file under `Mars Remote Sensing Project\` the
+  clone changed since `449cc9a` was checked by `git hash-object`. Nine drive copies (`HANDOFF-DESKTOP.md`,
+  `github_sync.py`, `make_dl_model.py`, `make_dl_pixels.py`, `make_geomap_check.py`,
+  `make_global60_classification.py`, `make_global60_landforms_clean.py`, `svmcheck.py`,
+  `verify_global60_classification.py`) still equalled `449cc9a` and were replaced by the repo's; the four new
+  scripts (`apply_label_review.py`, `labelsets.py`, `propose_label_changes.py`, `score_d18_verdict.py`) copied.
+  Each copy's hash matches `HEAD`. The record and the plan had changed on both sides: merged by hand (the repo's
+  text, this section and the plan's two §69 passages re-applied). The drive's earlier copies are in
+  `.backup_20261023\` and `build\.py_backup_20261023\`. Nothing under `Mars Project\` or the drive root differed.
+- **The final made to agree with §68** (the author: "facts now, v2 later"): the paper's split sentence said no
+  held-out polygon shares a block with a training one; it now gives the centroid rule and the 290/291 overlap
+  (51.5 km²). Its limits gain a paragraph on the audit (five Crater polygons on volcanoes, Arsia Mons 31 % of
+  held-out Crater area; six lava-tube polygons by valleys; the seven-class scheme and D18's rule, not yet run); the
+  deck gains the same limit and a "Seven classes (D17)" next step. The classification results stay four-class until
+  the v2 scores exist. The paper's `\email` is the author's school address (the author's choice). Rebuilt: the
+  paper 14 pages, no overfull box or undefined reference, 304 numbers checked (the only ones not matched literally:
+  comma-split pixel sizes, a ZIP code, and 72.0 % = §57's 0.720); the deck 32 slides, `verify_interim.py final.py`
+  174 numbers. The changed pages and slides were read.
+- **Repo:** `github_sync.py` groups the final builders under "Deliverables and their checks" and leaves out
+  LaTeX's working files (`.aux`, `.log`, `.out`, `.blg`; the `.bbl` stays so the `.tex` compiles without BibTeX).

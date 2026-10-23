@@ -12,7 +12,8 @@
 5. The counts the project page states match the tree: build scripts (README and docs/scripts.md)
    and layouts. Numbers typed into a page go stale silently; this catches it.
 6. Every image and PDF in the tree is linked from docs/figures.md, so the figure index stays
-   complete. The interim deck's layout crops (build/interim_img/NN_*) are described there as a group.
+   complete. The interim and final decks' layout crops (build/interim_img/NN_*, build/final_img/NN_*) are
+   described there as a group each; the final paper's figures/ folder holds copies of figures listed there.
 7. Every image a page shows inline has alt text and is at most 300 KB: bigger figures are shown as
    their docs/thumbs/ preview and linked in full. Each preview's source still has the SHA-256 that
    docs/thumbs/SOURCES.txt recorded, so a changed layout with a stale preview fails
@@ -78,11 +79,13 @@ def links():
 def figures():
     page = ROOT / "docs" / "figures.md"
     linked = {path for _, path in targets(page)}
-    crop = re.compile(r"\d\d_")                   # the interim deck's layout crops, one group
+    crop = re.compile(r"\d\d_")                   # the interim and final decks' layout crops, one group each
     files = [p for p in ROOT.rglob("*") if p.suffix.lower() in IMAGES and ".git" not in p.parts]
     for p in files:
-        if p.parent.name == "interim_img" and crop.match(p.name):
+        if p.parent.name in ("interim_img", "final_img") and crop.match(p.name):
             continue
+        if p.parent.name == "figures" and p.parent.parent.name == "paper":
+            continue                              # the final paper's copies of figures listed elsewhere
         if p.resolve() not in linked:
             fails.append(f"not in docs/figures.md: {p.relative_to(ROOT)}")
     return len(files)

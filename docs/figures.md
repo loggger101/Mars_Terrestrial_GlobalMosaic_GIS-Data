@@ -81,6 +81,8 @@ from the KB's own §28.10 tables), never retyped. They are the interim deck's fi
 | <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/t5_margins.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/t5_margins.png" width="300" alt="T5 (H1): does IR show lava-flow margins?"></a> | **T5 (H1): does IR show lava-flow margins?** The share of 905 profiles across the geologic map's `lAv` contacts that each band separates; every interval reaches chance. KB §47.2. | `make_fig_tests567.py` · `t5_flow_margins.json` |
 | <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/t6_stability.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/t6_stability.png" width="300" alt="T6 (H3): is the composite more stable than one input?"></a> | **T6 (H3): is the composite more stable than one input?** Agreement of west- and east-trained maps (ARI) and spatial coherence; the composites are the least reproducible. KB §47.3. | `make_fig_tests567.py` · `t6_composite_stability.json` |
 | <a href="../Mars%20Remote%20Sensing%20Project/build/interim_img/t7_orders.png"><img src="../Mars%20Remote%20Sensing%20Project/build/interim_img/t7_orders.png" width="300" alt="T7 (Q5): how many stream orders does the DEM resolve?"></a> | **T7 (Q5): how many stream orders does the DEM resolve?** The highest order falls with the channel threshold, and no threshold puts half the first-order cells on real slopes: the count is a setting. KB §47.4. | `make_fig_tests567.py` · `t7_order_sweep.json` |
+| <a href="../Mars%20Remote%20Sensing%20Project/build/final_img/depressions_vs_robbins.png"><img src="../Mars%20Remote%20Sensing%20Project/build/final_img/depressions_vs_robbins.png" width="300" alt="Closed depressions against the Robbins crater database"></a> | **Closed depressions against the Robbins crater database**, by minimum diameter: precision rises from 15.3 % at ≥ 1 km to 62.2 % at ≥ 5 km, recall levels off near one half, beside the chance baseline. A final-deck chart. KB §53.4, §69. | `make_fig_final.py` · `global60_candidates_check.json` |
+| <a href="../Mars%20Remote%20Sensing%20Project/build/final_img/svm_vs_unet.png"><img src="../Mars%20Remote%20Sensing%20Project/build/final_img/svm_vs_unet.png" width="300" alt="The published SVM map against the U-Net, class by class"></a> | **The published SVM map against the U-Net, class by class:** producer's and user's accuracy on the 183 held-out polygons under one scorer; lava tube's user's accuracy 2.4 % against 77.1 %. A final-deck chart. KB §57, §66.8, §69. | `make_fig_final.py` · `global60_classification_check_*.json` |
 
 ## Type-area figures
 
@@ -142,9 +144,16 @@ shows, exported at 200 dpi with the sheet's own prose hidden by
 three files: the whole sheet, `__map` (the map alone, full width on the slide) and `__legend`. They are the same maps as
 the layouts above, all 13 re-exported from the current sheets on 2026-10-22 (KB §67).
 
+[`build/final_img/`](../Mars%20Remote%20Sensing%20Project/build/final_img) holds the same kind of crops for the
+final deck (layouts 04, 07, 08, 10, 12, 15, 16, 17), exported by
+[`make_final_figs.py`](../Mars%20Remote%20Sensing%20Project/build/make_final_figs.py), beside the two charts above. The
+final paper's [`figures/`](../Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final/paper/figures) folder holds copies of
+figures on this page, put there by `build_final_paper.py` so the `.tex` compiles on its own (KB §69).
+
 ## Other
 
 | | What it shows | Made by |
 |---|---|---|
 | [`pipeline.svg`](pipeline.svg) | The pipeline diagram on the front page. | by hand |
+| [`NEXT STUFF/Final/paper/mars_global_mosaic.pdf`](../Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final/paper/mars_global_mosaic.pdf) | The final paper, a draft in AASTeX 7 (14 pages); the machine products presented as candidates while the review is open. KB §69. | `build_final_paper.py` |
 | [`OLD/ocean first pres LE.pdf`](../Mars%20Remote%20Sensing%20Project/OLD/ocean%20first%20pres%20LE.pdf) | Presentation 1 as delivered (history, not corrected). KB §14.5. | — |

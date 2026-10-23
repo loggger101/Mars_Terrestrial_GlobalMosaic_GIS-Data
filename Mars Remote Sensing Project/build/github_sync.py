@@ -52,14 +52,19 @@ SKIP_DIRS |= {".backups", "aprx_live", "le_img"}
 SKIP_FILES = {"neutral_voice.py",
               "ocean first pres LE.pptx"}     # Presentation 1, delivered; its PDF stays in OLD\
 RASTER = {".tif", ".tiff", ".ovr", ".img", ".jp2"}
-# pres1_img\ holds Presentation 1's figures; only those the interim still shows are mirrored
-PRES1_USED = set(re.findall(r"pres1_img\\([\w.-]+)",(DRIVE / "Mars Remote Sensing Project" / "build" /
-                                                         "interim.py").read_text(encoding="utf-8")))
+# pres1_img\ holds Presentation 1's figures; only those the interim or the final deck still shows are mirrored
+PRES1_USED = {n for m in ("interim.py", "final.py")
+              for n in re.findall(r"pres1_img\\([\w.-]+)", (DRIVE / "Mars Remote Sensing Project" / "build" /
+                                                            m).read_text(encoding="utf-8"))}
+# LaTeX's working files beside the final paper; the .bbl stays so the .tex compiles without BibTeX (KB §69.1)
+LATEX_WORK = {".aux", ".log", ".out", ".blg", ".synctex", ".fls", ".fdb_latexmk"}
 
 
 def keep_rsp(p):   # Mars Remote Sensing Project
     # neutral_voice.py lists the personal phrasings it removes, so it stays off the public page (KB §39.4)
     if p.parent.name == "pres1_img" and p.name not in PRES1_USED:
+        return False
+    if p.parent.name == "paper" and p.suffix.lower() in LATEX_WORK:
         return False
     return p.suffix.lower() not in {".npy", ".pyc"} and p.name not in SKIP_FILES
 
@@ -125,7 +130,8 @@ GROUPS = [  # (heading, predicate on the script name); first match wins
                                         "make_zoom", "make_extra", "marsfig", "optimise_", "img_contrast"))),
     ("Deliverables and their checks", lambda n: n.startswith(("build_", "content", "deck_", "le_theme", "pdf_pages",
                                                               "audit_", "verify_all", "verify2", "render", "interim",
-                                                              "make_interim_figs", "docx_kit", "verify_interim"))),
+                                                              "make_interim_figs", "docx_kit", "verify_interim",
+                                                              "final", "make_final_figs"))),
     ("Drive, paths and one-off fixes", lambda n: n.startswith(("paths", "areas", "desktop_check", "retarget_junction",
                                                                "osgeo_shim", "fix_", "landform_codes",
                                                                "housekeeping_"))),
