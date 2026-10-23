@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 r"""Scores global60_landforms_svm_<cell>m.tif the way §30 scored the two Pro-GUI maps (KB §31).
 
-  1. HELD-OUT accuracy on Landform_TrainingSamples_terrain_60_test: whole 15° blocks the SVM
+  1. HELD-OUT accuracy on Landform_TrainingSamples_terrain_60_test (or _v2_60_test): whole 15° blocks the SVM
      never saw. This is the accuracy figure; the training-set score is printed beside it only
      to show the gap.
   2. IAU named craters >= 5 km: 'Crater' inside 0.7 R against a 1.5-2.5 R ring
@@ -9,6 +9,11 @@ r"""Scores global60_landforms_svm_<cell>m.tif the way §30 scored the two Pro-GU
   4. how much of it 500 m elevation bins alone reproduce (the §30.3 defect)
 
 Reads the 400 m pyramid level. Read-only. Writes build\logs\global60_classification_check.json.
+
+--labels v2 scores on the seven-class labels (labelsets.py, KB §68): steps 1 and 2 read
+Landform_TrainingSamples_v2_60_test / _train, the default map is the v2 SVM map, and a map whose name has
+no "v2" is written up as ..._on_v2_labels. A four-class map scored this way never predicts 5-7: that is
+D18's comparison (KB §68.4), which score_d18_verdict.py makes from the two outputs.
 """
 import os, sys, json, time
 import os, sys
@@ -22,17 +27,21 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import grid60 as G
 from svmcheck import kappa, training_score, crater_score, KPD
+import labelsets as L
 
 gdal.UseExceptions()
 GDB = on_drive(r"Mars Project\Mars Project.gdb")
 from make_global60_classification import OUT as CLS, CELL   # --cell 400 (default) or 200
 # --raster scores another version of the map, e.g. a mode-filtered one; it is named in the outputs
-TAG = "%dm" % CELL
+TAG = "%s%dm" % ("v2_" if L.V2 else "", CELL)
 if "--raster" in sys.argv:
     CLS = sys.argv[sys.argv.index("--raster") + 1]
     TAG = os.path.splitext(os.path.basename(CLS))[0].replace("global60_landforms_svm_", "")
+if L.V2 and "v2" not in TAG.split("_"):
+    TAG += "_on_v2_labels"                                    # a four-class map scored on the v2 labels
 OUT = os.path.join(HERE, "logs", "global60_classification_check_%s.json" % TAG)
-NAMES = ["Crater", "steep/windy hills", "lava tube", "Normal Ground"]
+NAMES = L.NAMES
+K = len(NAMES)
 MARS = arcpy.SpatialReference(104905)
 
 
@@ -45,7 +54,7 @@ def polys(fc):
 
 
 def lut_from_rat():
-    """Pixel value -> 0..3 in NAMES order, read from the raster's own attribute table."""
+    """Pixel value -> 0..K-1 in NAMES order, read from the raster's own attribute table."""
     lut = np.full(256, 255, np.uint8)
     with arcpy.da.SearchCursor(CLS, ["Value", "Class_name"]) as c:
         for v, n in c:
@@ -73,21 +82,23 @@ def main():
 
     lat = g["lat_top"] - (np.arange(H) + .5) * g["dpy"]
     w = np.repeat(np.cos(np.radians(lat))[:, None], W, 1)
-    sh = np.bincount(a[m], weights=w[m], minlength=4); sh /= sh.sum()
+    sh = np.bincount(a[m], weights=w[m], minlength=K); sh /= sh.sum()
     res["share_area_weighted"] = dict(zip(NAMES, sh.round(3).tolist()))
     print("area shares", res["share_area_weighted"])
 
-    for key, fc in [("held_out", "Landform_TrainingSamples_terrain_60_test"),
-                    ("training_set", "Landform_TrainingSamples_terrain_60_train")]:
+    res["labels"] = dict(held_out=L.TEST, training_set=L.TRAIN, classes=NAMES)
+    for key, fc in [("held_out", L.TEST), ("training_set", L.TRAIN)]:
         P = polys(fc)
-        cmx, own = training_score(a, m, g, P)
+        cmx, own = training_score(a, m, g, P, K)
         oa, k = kappa(cmx)
         maj = ["%d/%d" % (sum(1 for c, f in own if c == i and f > .5), sum(1 for c, f in own if c == i))
-               for i in range(4)]
-        prod = (np.diag(cmx) / cmx.sum(1)).round(3).tolist()
+               for i in range(K)]
+        prod = (np.diag(cmx) / np.maximum(cmx.sum(1), 1e-12)).round(3).tolist()
         user = (np.diag(cmx) / np.maximum(cmx.sum(0), 1e-12)).round(3).tolist()
         res[key] = dict(polygons=len(P), accuracy=round(oa, 3), kappa=round(k, 3),
                         one_class_everywhere=round(cmx.sum(1).max() / cmx.sum(), 3),
+                        label_area_share=dict(zip(NAMES, (cmx.sum(1) / cmx.sum()).round(4).tolist())),
+                        confusion_unrounded=(cmx / cmx.sum()).tolist(),          # for score_d18_verdict.py
                         producers=dict(zip(NAMES, prod)), users=dict(zip(NAMES, user)),
                         polygons_majority_own_class=dict(zip(NAMES, maj)),
                         confusion_area_weighted=(cmx / cmx.sum()).round(4).tolist())
@@ -100,7 +111,7 @@ def main():
     for fc in ["MARS_nomenclature_craters_lt100km_March2019", "MARS_nomenclature_craters_gt100km_March2019"]:
         with arcpy.da.SearchCursor(os.path.join(GDB, fc), ["name", "diameter", "center_lat", "center_lon"]) as c:
             craters += list(c)
-    allp = polys("Landform_TrainingSamples_terrain_60_train") + polys("Landform_TrainingSamples_terrain_60_test")
+    allp = polys(L.TRAIN) + polys(L.TEST)
     tbox = np.array([[min(p[0] for r in rs for p in r), max(p[0] for r in rs for p in r),
                       min(p[1] for r in rs for p in r), max(p[1] for r in rs for p in r)] for _, rs in allp])
     fin, frg = crater_score(a, m, g, craters, tbox)
@@ -131,7 +142,7 @@ def main():
     cl = a[r][:, c]; ok = m[r][:, c]
     ww = np.repeat(np.cos(np.radians(dl[rows]))[:, None], Wd, 1)[ok]
     bins = np.digitize(dem[rows][ok], np.arange(-9000, 22001, 500))
-    tab = np.zeros((bins.max() + 1, 4)); np.add.at(tab, (bins, cl[ok]), ww)
+    tab = np.zeros((bins.max() + 1, K)); np.add.at(tab, (bins, cl[ok]), ww)
     res["elevation_only_reproduces"] = round(tab.max(1).sum() / tab.sum(), 3)
     res["largest_class_alone"] = round(tab.sum(0).max() / tab.sum(), 3)
     print("elevation alone reproduces %.1f%% (largest class alone %.1f%%; the 30 Sep map: 62.1%%)"

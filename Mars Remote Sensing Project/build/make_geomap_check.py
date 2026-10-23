@@ -14,6 +14,10 @@ The published map (since KB §57 the 200 m 11 x 11 majority map; until then the 
 whose result is kept as logs\geomap_check_400m_mode5.json) is read at its 1.6 km overview; unit groups
 are rasterised on a 0.02° lon/lat grid and sampled at each pixel's centre. Read-only; writes
 build\logs\geomap_check.json, naming the map it read ("map").
+
+--labels v2 (labelsets.py, KB §68): the seven-class map global60_landforms_svm_v2_200m_mode11.tif, its seven
+classes, and logs\geomap_check_v2.json. The prediction above is for the four-class map; the v2 run reports
+the same table with no new prediction.
 """
 import os, sys, json
 import numpy as np
@@ -23,11 +27,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from paths import GDB
 import grid60 as G
+import labelsets as L
 
 gdal.UseExceptions(); ogr.UseExceptions()
-CLS = os.path.join(G.OUTDIR, "global60_landforms_svm_200m_mode11.tif")   # the published map, KB §57
-NAMES = {1: "Crater", 2: "steep/windy hills", 3: "lava tube", 4: "Normal Ground"}
-OUT = os.path.join(HERE, "logs", "geomap_check.json")
+CLS = os.path.join(G.OUTDIR, "global60_landforms_svm%s_200m_mode11.tif" % L.TAG)   # the published map, KB §57
+NAMES = {i + 1: n for i, n in enumerate(L.NAMES)}
+OUT = os.path.join(HERE, "logs", "geomap_check%s.json" % L.TAG)
 STEP = 0.02
 GROUPS_OF_INTEREST = ["v", "ve", "vf", "i", "h", "hu", "l", "p", "t", "a"]
 

@@ -93,12 +93,17 @@ five volcanoes labelled Crater (Arsia Mons, held out, 31 % of the held-out Crate
 out; Ascraeus and Pavonis Mons and Tharsis Tholus, training), lava-tube polygons on fluvial valleys. The author
 approved downloads and a seven-class map beside the four-class one in the interim (D18). The same day, without
 the drive, `propose_label_changes.py` and `apply_label_review.py` were written and tested on downloaded copies
-of the references (KB §68.5): ready for the desktop run (item 2a, §11.2). **This file, the KB, `HANDOFF-DESKTOP.md`,
-`build\github_sync.py` (two names added to `GROUPS`) and two new scripts (`build\propose_label_changes.py`,
-`build\apply_label_review.py`) were written in the clone and pushed: copy all six to the drive before the next
-`github_sync.py`, which copies drive → clone and would overwrite or remove them. The drive's copies of the four
-existing files should still equal commit `449cc9a` (check with `git hash-object` against
-`git rev-parse 449cc9a:<path>`); if one differs, merge by hand.**
+of the references (KB §68.5): ready for the desktop run (item 2a, §11.2).
+**2026-10-23, laptop, without the drive (KB §68.6):** the v2 runs after the review scripted (`--labels v2`,
+`labelsets.py`; `score_d18_verdict.py`; §11.5 lists the commands), the scorer made fast on long outlines with the
+same results, and everything rehearsed on the released maps: unchanged without `--labels`; the four-class maps
+score 33.6 % (SVM) and 41.6 % (U-Net) on stand-in v2 held-out labels, 58 % of whose area is classes 5–7. A
+question for the author (§2, D19). **Every file under `Mars Remote Sensing Project\` that the clone changed
+since commit `449cc9a` was written in the clone only:** list them with
+`git diff --name-only 449cc9a HEAD -- "Mars Remote Sensing Project"` and copy each to the drive before the next
+`github_sync.py`, which copies drive → clone and would overwrite or remove them. A drive file that existed before
+should still equal `449cc9a` (check with `git hash-object` against `git rev-parse 449cc9a:<path>`); if one
+differs, merge by hand.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
@@ -158,6 +163,7 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D14 | the two `_60_smoke` classes, recreated by X2's smoke run (§57.1) | delete (they were deleted once, D9); they are in the release GeoPackage |
 | D15 | a derivatives release with the §54 patch (33 GB upload) | not needed: the catalogue gives the two commands that patch a restore (§57.4) |
 | D16 | the interim's percent-complete column and its due date | the author's numbers; `interim.py` prints dashes until then |
+| D19 | D18's rule (a) compares overall held-out accuracy and κ, which a four-class map cannot score on classes 5–7; in the rehearsal they held 58 % of the held-out area (KB §68.6), so (a) is nearly automatic | judge (a) on the ground both maps can name (held-out v2 classes 1–4), which `score_d18_verdict.py` already reports (the rehearsal's bar there: SVM 79.9 %, κ 0.668); decide before the v2 scores exist |
 D17, the class revision, was answered 2026-10-22: seven classes, before the interim, the agent proposes and the
 author accepts (KB §68.1; §11 here). D18 the same day: **the interim shows both maps**, four-class and
 seven-class, each scored on its own held-out polygons and both on v2's; the seven-class map is expected to
@@ -377,13 +383,41 @@ across the split.
 
 ### 11.5 After the review (agent, desktop)
 
+0. If `import arcpy` says "The Product License has not been initialized" (it did for some hours on 2026-10-23,
+   then cleared by itself, KB §68.6), open Pro and sign in. Optional, the author's call: `verify_global60_classification.polys()`
+   reads curved label 512 as 2 points and so leaves it out of every training-set score (KB §68.6); densifying
+   curves there adds it, changing recorded training-set figures only. Held-out polygons have no curves.
 1. `apply_label_review.py --dry-run`, then without it → `Landform_TrainingSamples_v2`, `_v2_60_train`,
    `_v2_60_test` (same 14 held-out blocks; centroid rule; no ground shared across classes or the split,
    checked; a new class short of §11.3 left out of the split unless `--keep-short`). The originals untouched.
 2. SVM on v2: train (~25 min), classify at 200 m (~6.5 h, overnight), 11 × 11 filter; score v2 and the published
-   map on the v2 held-out polygons; D18's verdict. T8 on v2.
+   map on the v2 held-out polygons; D18's verdict. T8 on v2. Every script takes `--labels v2` (`labelsets.py`,
+   KB §68.6): it reads `_v2_60_train` / `_v2_60_test`, writes names with `_v2`, and never replaces a four-class
+   file. In `build\`, ArcGIS Python, with `<G60>` = `F:\Mars Project\Global60`:
+   ```
+   python make_global60_classification.py --cell 200 --labels v2
+   python make_global60_landforms_clean.py --cell 200 --size 11 --labels v2
+   python verify_global60_classification.py --cell 200 --labels v2 --raster <G60>\global60_landforms_svm_v2_200m_mode11.tif
+   python verify_global60_classification.py --cell 200 --labels v2 --raster <G60>\global60_landforms_svm_200m_mode11.tif
+   python score_d18_verdict.py
+   python make_geomap_check.py --labels v2
+   ```
+   The first refuses to start unless both v2 halves exist and every row is `apply_label_review.py`'s with a
+   code 1–7; it skips the four-class split. The fourth scores the published map on the v2 polygons; the fifth
+   prints (a)–(c) and the verdict into `logs\d18_verdict.json`.
 3. U-Net on v2: export the v2 training split, train (~1.2 h), two passes over ±60° (~12 h); scored the same way.
    Dropped first if the dates slip.
+   ```
+   python make_dl_pixels.py --export --labels v2
+   python make_dl_pixels.py --train --labels v2
+   python make_dl_pixels.py --classify-global --labels v2 --emd <the new model's .emd>
+   python make_dl_pixels.py --classify-global --labels v2 --pass B --emd <the same .emd>
+   python make_dl_pixels.py --mosaic --two-pass --labels v2
+   python verify_global60_classification.py --cell 200 --labels v2 --raster <G60>\global60_landforms_unet_v2_200m_seamfix.tif
+   python verify_global60_classification.py --cell 200 --labels v2 --raster <G60>\global60_landforms_unet_200m_seamfix.tif
+   ```
+   Work goes to `C:\MarsScratch\x5c_v2`; `--train` refuses an export made from the four-class labels.
+   `make_unet_map.py` (the per-polygon table and layout 17's layers) is still four-class: step 4's work.
 4. Layouts: a new sheet for the seven-class SVM map beside 04 (the four-class map, kept), 13 on both, 17 for
    the U-Net on v2; legends name seven classes. The X5 detector and layout 16 stay four-class, as history.
    `polish_layouts.py`, export, read.

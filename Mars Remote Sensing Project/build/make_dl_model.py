@@ -57,10 +57,11 @@ sys.path.insert(0, HERE)
 from paths import on_drive, GDB
 import arcpy
 import grid60 as G
+import labelsets as L
 
 STACK = os.path.join(G.OUTDIR, "global60_svm_stack_200m.tif")
 TRAIN = on_drive(r"Mars Project\LabeledObjects\global60_svm_stack_200m_train")
-TEST = os.path.join(GDB, "Landform_TrainingSamples_terrain_60_test")
+TEST = os.path.join(GDB, L.TEST)                     # labelsets.py: --labels v2 for make_dl_pixels.py's v2 run
 MODELS = on_drive(r"Mars Project\DLModels")
 CHECK = os.path.join(HERE, "logs", "desktop_check_%s.json" % socket.gethostname())
 OUT = os.path.join(HERE, "logs", "dl_heldout_score.json")      # X5's; later models get their own (--out)

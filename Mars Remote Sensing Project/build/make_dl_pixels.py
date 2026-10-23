@@ -36,6 +36,12 @@ Verdict rule, written before the run (KB §66.6), at 400 m: X5c beats the publis
 accuracy AND kappa both exceed that map's under this same scorer; within 2 points of accuracy either way is a
 match; below that, the SVM stays the better map. Producer's and user's accuracy per class are reported, the
 rare classes' above all.
+
+--labels v2 (labelsets.py; decision D17, KB §68, NEXT-STEPS §11.5 step 3): the same steps on the seven-class
+labels. Exports from Landform_TrainingSamples_v2_60_train, works in C:\MarsScratch\x5c_v2, names the model
+global60_unet_x5c_v2_<date> and the maps global60_landforms_unet_v2_200m[_seamfix].tif; --score-svm scores the v2
+SVM maps. Seven classes, codes 1-7. Nothing of the four-class run is read or replaced, and --train refuses an
+export made from the other label set.
 """
 import os, sys, json, time, socket, shutil
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -48,13 +54,15 @@ from osgeo import gdal
 import grid60 as G
 from svmcheck import kappa, training_score, crater_score, KPD
 from make_dl_model import STACK, TEST, MODELS, MARK, ready, arg, training_split, heldout_blocks
+import labelsets as L
 
 gdal.UseExceptions()
-LABELS = os.path.join(GDB, "Landform_TrainingSamples_terrain_60_train")
-WORK = r"C:\MarsScratch\x5c"                                     # internal disk first (KB §36.4)
-NAMES = ["Crater", "steep/windy hills", "lava tube", "Normal Ground"]   # class values 1-4
-SVM = {"svm_200m_mode11": os.path.join(G.OUTDIR, "global60_landforms_svm_200m_mode11.tif"),
-       "svm_200m": os.path.join(G.OUTDIR, "global60_landforms_svm_200m.tif")}
+LABELS = os.path.join(GDB, L.TRAIN)
+WORK = r"C:\MarsScratch\x5c" + L.TAG                             # internal disk first (KB §36.4)
+NAMES = L.NAMES                                                  # class values 1-4, or 1-7 with --labels v2
+K = len(NAMES)
+SVM = {"svm%s_200m_mode11" % L.TAG: os.path.join(G.OUTDIR, "global60_landforms_svm%s_200m_mode11.tif" % L.TAG),
+       "svm%s_200m" % L.TAG: os.path.join(G.OUTDIR, "global60_landforms_svm%s_200m.tif" % L.TAG)}
 DEG = 180.0 / (np.pi * G.R_MARS)                                 # degrees per metre on this sphere
 
 
@@ -79,8 +87,9 @@ def export():
 def train():
     ready()
     data = arg("--data", os.path.join(WORK, "export_tiles"))
-    training_split(data)
-    name = "global60_unet_x5c_%s" % time.strftime("%Y%m%d")
+    marker = training_split(data)
+    assert "\\%s\n" % L.TRAIN in marker, "REFUSING: %s was not exported from %s" % (data, L.TRAIN)   # any drive letter
+    name = "global60_unet_x5c%s_%s" % (L.TAG, time.strftime("%Y%m%d"))
     out = os.path.join(WORK, "models", name)
     final = os.path.join(MODELS, name)
     assert not os.path.exists(out) and not os.path.exists(final), "REFUSING: %s already exists" % name
@@ -156,13 +165,13 @@ def heldout_by_block():
 
 
 def score_windows(read, label):
-    """read(k, extent) -> (class array 0-3 / 255 none, geotransform). Sums each window's confusion on its own
+    """read(k, extent) -> (class array 0..K-1 / 255 none, geotransform). Sums each window's confusion on its own
     polygons, at 200 m and on the 400 m lattice."""
     polys = heldout_by_block()
     w = windows()
     res = {"label": label}
     for step in (2, 1):
-        cmx = np.zeros((4, 4)); own = []; npx = [0, 0]
+        cmx = np.zeros((K, K)); own = []; npx = [0, 0]
         for k, e in w.items():
             a, gt = read(k, e)
             col0 = int(round((gt[0] - G.G200.ox) / 200.0)); row0 = int(round((G.G200.oy - gt[3]) / 200.0))
@@ -172,15 +181,15 @@ def score_windows(read, label):
             npx[0] += m.sum(); npx[1] += m.size
             g = dict(dpx=200.0 * step * DEG, dpy=200.0 * step * DEG, lat_top=y_top * DEG,
                      lon_left=G.G200.lon_of(x_left) % 360)
-            c, o = training_score(np.where(m, a, 0).astype(np.uint8), m, g, polys.get(k, []))
+            c, o = training_score(np.where(m, a, 0).astype(np.uint8), m, g, polys.get(k, []), K)
             cmx += c; own += o
         oa, kp = kappa(cmx)
         maj = {NAMES[i]: "%d/%d" % (sum(1 for c, f in own if c == i and f > .5), sum(1 for c, f in own if c == i))
-               for i in range(4)}
+               for i in range(K)}
         res["%dm" % (200 * step)] = dict(
             accuracy=round(oa, 4), kappa=round(kp, 4), polygons=len(own),
             one_class_everywhere=round(cmx.sum(1).max() / cmx.sum(), 4),
-            producers=dict(zip(NAMES, (np.diag(cmx) / cmx.sum(1)).round(3).tolist())),
+            producers=dict(zip(NAMES, (np.diag(cmx) / np.maximum(cmx.sum(1), 1e-12)).round(3).tolist())),
             users=dict(zip(NAMES, (np.diag(cmx) / np.maximum(cmx.sum(0), 1e-12)).round(3).tolist())),
             polygons_majority_own_class=maj, classified_share_of_window_pixels=round(npx[0] / npx[1], 4),
             confusion_area_weighted=(cmx / cmx.sum()).round(4).tolist())
@@ -230,15 +239,15 @@ def crater_test(read):
 
 
 def lut_of(path):
-    """pixel value -> 0..3 in NAMES order (255 none), from the raster's attribute table by class name."""
+    """pixel value -> 0..K-1 in NAMES order (255 none), from the raster's attribute table by class name."""
     lut = np.full(256, 255, np.uint8)
     try:
         flds = [f.name for f in arcpy.ListFields(path)]
     except Exception:
         flds = []
     name = next((f for f in ("Class_name", "ClassName", "Class", "CLASSNAME") if f in flds), None)
-    if name is None:                               # no attribute table: the export's class values 1-4
-        lut[1:5] = np.arange(4)
+    if name is None:                               # no attribute table: the export's class values 1..K
+        lut[1:K + 1] = np.arange(K)
         return lut
     with arcpy.da.SearchCursor(path, ["Value", name]) as c:
         for v, n in c:
@@ -294,15 +303,15 @@ def score_svm():
             a[mask.ReadAsArray(c0, r0, nx, ny) == 0] = 255
             return a, (gt0[0] + c0 * 200.0, 200.0, 0, gt0[3] - r0 * 200.0, 0, -200.0)
         allres[tag] = score_windows(read, tag)
-    out = os.path.join(HERE, "logs", "dl_pixels_score_svm_baseline.json")
+    out = os.path.join(HERE, "logs", "dl_pixels_score_svm%s_baseline.json" % L.TAG)
     json.dump(dict(allres, scored=time.strftime("%Y-%m-%d %H:%M")), open(out, "w"), indent=1)
     print("->", out)
 
 
 CORE, MARGIN = 4096, 256
 GLOBAL = os.path.join(WORK, "global")
-UNET_MAP = "global60_landforms_unet_200m.tif"
-UNET_SEAMFIX = "global60_landforms_unet_200m_seamfix.tif"   # two passes, KB §66.8
+UNET_MAP = "global60_landforms_unet%s_200m.tif" % L.TAG
+UNET_SEAMFIX = "global60_landforms_unet%s_200m_seamfix.tif" % L.TAG   # two passes, KB §66.8
 
 
 def tiles():
@@ -357,8 +366,8 @@ def classify_global():
 
 
 def core_of(p, r, c, nr, nc):
-    """The class values 1-4 (0 none) of a tile raster over the core (r, c, nr, nc), and where the tile covers it."""
-    lut = lut_of(p)                                              # pixel -> 0..3 by class name; 255 none
+    """The class values 1..K (0 none) of a tile raster over the core (r, c, nr, nc), and where the tile covers it."""
+    lut = lut_of(p)                                              # pixel -> 0..K-1 by class name; 255 none
     t = gdal.Open(p)
     gt = t.GetGeoTransform()
     c0 = int(round((gt[0] - G.G200.ox) / 200.0)); r0 = int(round((G.G200.oy - gt[3]) / 200.0))
@@ -397,7 +406,7 @@ def mosaic():
     ds.SetProjection(gdal.Open(STACK).GetProjection())
     b = ds.GetRasterBand(1)
     b.SetNoDataValue(0)
-    count = np.zeros(5, np.int64); fromB = 0; differ = 0
+    count = np.zeros(K + 1, np.int64); fromB = 0; differ = 0
     for r, c, nr, nc in T:
         v, _ = core_of(os.path.join(dirs[0], "t_r%05d_c%06d.tif" % (r, c)), r, c, nr, nc)
         if two:
@@ -408,7 +417,7 @@ def mosaic():
             useB = cov & (w != 0) & ((dB > dA) | (v == 0))
             fromB += int(useB.sum()); differ += int(((v != w) & cov & (v != 0) & (w != 0)).sum())
             v = np.where(useB, w, v)
-        count += np.bincount(v.ravel(), minlength=5)
+        count += np.bincount(v.ravel(), minlength=K + 1)
         b.WriteArray(v.astype(np.uint8), c, r)
     b.FlushCache()
     ds.BuildOverviews("NEAREST", [2, 4, 8, 16, 32, 64])
@@ -418,19 +427,18 @@ def mosaic():
     arcpy.management.AddField(out, "Class_name", "TEXT", field_length=32)
     for f in ("Classvalue", "Red", "Green", "Blue"):           # as the SVM maps carry them (KB §66.9)
         arcpy.management.AddField(out, f, "LONG")
-    colours = {"Crater": (255, 0, 0), "steep/windy hills": (28, 119, 85), "lava tube": (158, 25, 147),
-               "Normal Ground": (81, 51, 13)}
+    colours = L.COLOURS
     with arcpy.da.UpdateCursor(out, ["Value", "Class_name", "Classvalue", "Red", "Green", "Blue"]) as cur:
         for row in cur:
             n = NAMES[int(row[0]) - 1]
             cur.updateRow([row[0], n, row[0]] + list(colours[n]))
-    share = {NAMES[i]: round(float(count[i + 1] / count[1:].sum()), 4) for i in range(4)}
+    share = {NAMES[i]: round(float(count[i + 1] / count[1:].sum()), 4) for i in range(K)}
     rec = dict(raster=out, tiles=len(T), pixels_by_value=count.tolist(), class_share=share,
                made=time.strftime("%Y-%m-%d %H:%M"))
     if two:
         rec.update(share_from_pass_b=round(fromB / count[1:].sum(), 4),
                    share_a_b_disagree=round(differ / count[1:].sum(), 4))
-    json.dump(rec, open(os.path.join(HERE, "logs", "dl_unet_global_mosaic%s.json" % ("_seamfix" if two else "")), "w"),
+    json.dump(rec, open(os.path.join(HERE, "logs", "dl_unet%s_global_mosaic%s.json" % (L.TAG, "_seamfix" if two else "")), "w"),
               indent=1)
     print("mosaic ->", out, json.dumps(rec))
     final = os.path.join(G.OUTDIR, name)

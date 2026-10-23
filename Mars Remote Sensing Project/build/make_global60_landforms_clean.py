@@ -7,6 +7,9 @@ n x n window. Nodata (255) never votes and stays nodata. Ties keep the original 
   python make_global60_landforms_clean.py --size 3      -> global60_landforms_svm_400m_mode3.tif
   python make_global60_landforms_clean.py --size 5      -> ..._mode5.tif
 
+With --labels v2 the source is the seven-class map (labelsets.py): global60_landforms_svm_v2_200m_mode11.tif
+from --cell 200 --size 11 --labels v2. Class values are read from the map's own table either way.
+
 Whether it helps is decided by verify_global60_classification.py --raster <output> on the held-out
 polygons, not by how it looks. Streams 1024-row strips with an n//2 halo; longitude wraps.
 """

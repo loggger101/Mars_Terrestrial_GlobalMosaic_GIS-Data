@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-22 (§68).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-23 (§68.6).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -3831,3 +3831,65 @@ debris-glacier outlines are behind a bot check on Wiley's site and were not fetc
   rejected (51.5 km² across the split) and 334 accepted with its uncut outline (138.5 km² over lava tube 336).
 - The first run found the two rule errors the third fixes: a broad relabel overlapping a chain that keeps its
   class, and a nested polygon deleted although its container changes class.
+
+### 68.6 The v2 runs scripted, and rehearsed on the published maps — 2026-10-22/23, laptop **[V]**
+
+At the author's request ("general work without the drive"): every run of `NEXT-STEPS.md` §11.5 steps 2–3 is
+now one command (the list is there).
+
+- **`labelsets.py`** holds the two label sets. Default: the four classes and the `terrain_60` split, every name
+  as before. `--labels v2`: the seven classes (codes 1–7, colours as `apply_label_review.py`'s), the `v2_60`
+  split, `_v2` in every output name. Taken by `make_global60_classification.py` (skips the four-class split;
+  refuses to train unless both v2 halves exist, every row is `apply_label_review.py`'s and every code is 1–7;
+  its own tile folder, so finished four-class tiles are never reused), `make_global60_landforms_clean.py`,
+  `verify_global60_classification.py` (a map without "v2" in its name is written up `…_on_v2_labels`; new keys
+  `labels`, `label_area_share`, `confusion_unrounded`), `make_geomap_check.py` (T8), `make_dl_pixels.py` /
+  `make_dl_model.py` (work in `C:\MarsScratch\x5c_v2`; `--train` refuses an export from the other label set).
+  `svmcheck.training_score` takes the number of classes. Layout code (`make_global60_maps.py`,
+  `make_unet_map.py`, the sheets) stays four-class: step 4's work, on the desktop.
+- **`score_d18_verdict.py`** applies §68.4's rule (a)–(c) to two scorer outputs and refuses a pair not scored
+  on the same v2 polygons. Twelve planted cases pass; the first nine, on their first run, caught a float error: a producer's
+  fall from 0.600 to 0.550 computed as 4.99… points and passed (c). Fixed by rounding the fall to the scorer's
+  precision.
+- **A scratch drive from the release** (`data-2026-10-21`'s classification zips, checksums matched): the 11 × 11
+  SVM map and the two-pass U-Net map; the zips hold no overviews, so they were rebuilt NEAREST as the
+  originals were; a header-only stand-in for the THEMIS night mosaic (grid60 reads only its grid: 213,388 ×
+  71,130 at 100 m, as §3 records); the full-accept test gdb of §68.5 as stand-in v2 labels (258 held out, 827
+  training). **Without `--labels`, the edited scorer reproduces both recorded outputs in every value**
+  (73.8 %, κ 0.583; 98.9 %, κ 0.980; the crater test, seams, elevation). Output names in both modes printed and
+  checked; the v2 split guard refuses a foreign row, a code 8 and a missing class.
+- **The scorer's cost.** The v2 valley strips are long and many-vertexed (one spans 23.7° with 148,360
+  vertices); the scorer tested every pixel of a polygon's box against every vertex, so the v2 training set cost
+  ~127 × the four-class one (3.75 × 10¹² against 3.0 × 10¹⁰ vertex-pixel tests), hours per map. `svmcheck.inside`
+  now skips any block no edge touches (one centre decides it), splitting the rest down to 8 × 8 px tested
+  centre by centre: meant to give the same pixels, so the same sums. **The first version did not**: matplotlib
+  closes an open outline with an unseen last-to-first edge, which the edge test missed; the exactness test
+  (fast against every pixel) found 4 of 3,000 random polygons and four-class training polygon 162 (389 px)
+  wrong, although both maps' held-out results had come out identical. Fixed by testing edges on an explicitly
+  closed copy; then 0 of 3,000 random polygons and 0 of 2,685 real parts (both label sets, both splits) differ,
+  and a planted defect (edge test off) is caught (296 of 400). One part, the 148,360-vertex strip, was too costly
+  to test pixel by pixel; it is covered end to end: `verify_global60_classification.py --labels v2` on the 11 ×
+  11 map gives every value identical, training set included, through the old path (**29,610 s**) and the fixed
+  one (**1,305 s**). On the existing labels a whole scoring falls from ~440 s to ~95 s. The
+  scorer rebuilt on GDAL alone reproduces both maps' recorded held-out results, confusion included, through the
+  fixed path. (For some hours on 2026-10-23 new arcpy processes failed with "The Product License has not been
+  initialized", then started again with nothing changed here; a process already running kept working.)
+- **Curved outlines:** one hand-drawn label is stored with true curves (512, a training Crater), and 21 v2
+  training pieces (the inset unit pieces); no held-out polygon in either set, so no held-out score depends on
+  them. Checked with arcpy once the licence came back: label 512 is one circular arc, and `polys()`'s point
+  iteration returns its 2 end points, enclosing nothing, so **every recorded training-set score has left
+  label 512 out** (in effect 328 training polygons, not 329). Pro's SVM tool reads the true curve, so the
+  classifiers did train on it, and no held-out score is touched. The 20 curved v2 pieces iterate to within 1 % of
+  their area. Densifying curves in `polys()` would add 512 to the training-set figures (a side diagnostic, §31.3)
+  and change recorded numbers, so it is left for the author (`NEXT-STEPS.md` §11.5 step 0).
+- **The rehearsal (stand-in labels, not the author's review):** the four-class maps on the v2 held-out polygons,
+  same scorer: **SVM 33.6 %, κ 0.227; U-Net 41.6 %, κ 0.280.** Classes 5–7 hold **58 %** of the held-out area
+  (edifice 18.3 %, apron 32.8 %, fluvial 6.9 %), mostly the 3° unit pieces, and a four-class map loses all of it
+  by construction. **So rule (a) is nearly automatic on such labels**; (c) still guards Crater, hills and Normal
+  Ground. `score_d18_verdict.py` reports beside the rule, not in it, accuracy and κ on the ground both maps can
+  name (v2 classes 1–4): there the four-class maps score **SVM 79.9 %, κ 0.668; U-Net 98.9 %, κ 0.980**, the
+  bar a seven-class map would have to meet. Whether (a) should use that instead is the author's decision
+  (`NEXT-STEPS.md` D19). The pieces' share falls as the author trims them to the landforms (§68.5).
+- **What the four-class maps call the new ground:** the U-Net paints 98.7 % of the edifice area and 89.5 % of the
+  apron area Crater; the SVM splits them among Crater, lava tube and Normal Ground. The four-class "Crater" is a
+  province that takes in the Tharsis volcanoes, as §68.2's five volcano labels led it to.
