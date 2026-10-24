@@ -7,6 +7,8 @@ minus sign, thousands separators and a space before %. Structural numbers (secti
 years, small integers 0-20) are ignored. Exits 1 and lists any number the record does not hold.
 
     python verify_interim.py            (either Python)
+    python verify_interim.py final.py   the final's text (KB §69), the same way
+    python verify_interim.py "..\NEXT STUFF\Final\paper\mars_global_mosaic.tex"   the paper's prose (KB §69.3)
 """
 import os, re, sys, ast
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -33,7 +35,26 @@ def rounds_from(n, kb_vals):
                for v in kb_vals)
 
 
+def tex_strings(path):
+    """The paper's prose, one paragraph at a time: the body without comments (the KB § notes), citations, labels,
+    lengths or the address block, with LaTeX's spacing and percent signs made plain."""
+    t = open(path, encoding="utf-8").read()
+    t = t.split(r"\begin{document}", 1)[-1].split(r"\end{document}", 1)[0]
+    t = re.sub(r"(?<!\\)%.*", "", t)
+    t = re.sub(r"\\(?:cite[pt]?|citealt|label|ref|eqref|autoref|email|affiliation|includegraphics|input|url)"
+               r"(?:\[[^\]]*\])*\{[^}]*\}", " ", t)
+    t = re.sub(r"\\begin\{(?:tabular|table|figure)\*?\}(?:\[[^\]]*\])?(?:\{[^}]*\})?", " ", t)
+    t = re.sub(r"[\d.]+\s*(?:\\(?:text|line|column)width|pt|em|ex|mm|cm|in)\b", " ", t)
+    t = t.replace(r"\%", "%").replace("{,}", ",").replace(r"\times", "×").replace(r"\,", " ").replace("~", " ").replace("$", " ")
+    for para in re.split(r"\n\s*\n", t):
+        if para.strip():
+            yield re.sub(r"\s+", " ", para)
+
+
 def strings(path):
+    if path.endswith(".tex"):
+        yield from tex_strings(path)
+        return
     tree = ast.parse(open(path, encoding="utf-8").read())
     doc = ast.get_docstring(tree) or ""
     for n in ast.walk(tree):
@@ -75,7 +96,7 @@ def main():
         for n, s in sorted(missing.items()):
             print("  %-10s in: %s" % (n, s))
         sys.exit(1)
-    print("all %d numbers in interim.py appear in PROJECT-KNOWLEDGE.md" % checked)
+    print("all %d numbers in %s appear in PROJECT-KNOWLEDGE.md" % (checked, os.path.basename(SRC)))
 
 
 if __name__ == "__main__":

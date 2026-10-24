@@ -4016,5 +4016,12 @@ the clone equals `origin/main` (`cdac6d7`, CI passed), no other branch or open P
   describe September: the nomenclature triplicates deleted in §50, no pyramids before X4).
   `audit_headroom.py` takes a deck as its argument, as before.
 - **Passed:** `verify_all.py` 37 / 37; `audit_record.py` (ArcGIS Python) after the §6 fix; `tools/check_repo.py`
-  in the clone; `audit_text.py`, no schedule issues.
+  in the clone; `audit_text.py`, no schedule issues; `tools/check_remote.py`, 83 release assets and 4 source
+  mosaics; `audit_headroom.py` on the interim and the final deck, no slide under 40 pt of slack.
+- **The paper's numbers now have a scripted check.** §69's count of 302 was a one-off run of the matcher;
+  `verify_interim.py` now reads a `.tex` too (the body without comments, citations, labels, lengths or the address
+  block; `\%`, `~`, `\,`, `{,}` and `\times` made plain). On `mars_global_mosaic.tex`: **all 508 numbers in this
+  record** (counted per paragraph, so repeats count again); two planted changes (465,357 for 465,354 and 73.4 %
+  for 73.8 %) both fail it. Its report now names the file it checked (it said "interim.py" for `final.py` too):
+  interim 277, final 174, both in the record. `HANDOFF-DESKTOP.md` §4 and `NEXT-STEPS.md` name the paper run.
 - **Next:** unchanged, the author's review (2b, by 26 Oct), then the v2 runs (§11.5).

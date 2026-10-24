@@ -118,7 +118,8 @@ Crater 47; hills and lava tube need more training polygons (§11.3).
 **2026-10-24, desktop (KB §69.3):** no change on the drive since 10-23 (the review not started). An audit pass:
 the KB's gdb inventory (§6) gains the proposals class (31 feature classes, which `audit_record.py` under the ArcGIS
 Python had flagged); four audits that looked for Presentation 1 and the prospectus at the root now read `OLD\`.
-`verify_all.py` 37 / 37, `check_repo.py` passes.
+`verify_all.py` 37 / 37, `check_repo.py` passes. `verify_interim.py` now checks the paper's `.tex` as well: all 508
+numbers in the record.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
@@ -283,7 +284,8 @@ closes on a measured number and a sheet. **The final builders exist since 2026-1
 `NEXT STUFF\Final\paper\mars_global_mosaic.tex` (`build_final_paper.py` copies its figures and compiles it with
 MiKTeX) and the deck from `final.py` (`build_final_deck.py`), figures from `make_final_figs.py` (ArcGIS Python) and
 `make_fig_final.py`. After the review and the freeze: bring the numbers in `final.py` and the `.tex` to the record,
-re-export, rebuild both, read every page and slide, run `verify_interim.py final.py`.
+re-export, rebuild both, read every page and slide, run `verify_interim.py final.py` and `verify_interim.py` on
+the `.tex` (KB §69.3).
 
 **Before each deadline:** a new GitHub data release (`github_release_bundle.py --upload data-YYYY-MM-DD`), then
 point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE` at it, then run

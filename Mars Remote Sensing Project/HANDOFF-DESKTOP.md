@@ -106,8 +106,9 @@ plans. When they disagree, the KB wins and the plan is fixed.
 
 1. Record what was done and measured in the KB (a new dated section, tagged; edit any §1–§16 fact it changes);
    remove done items from `NEXT-STEPS.md` and rewrite its "Resume here".
-2. `audit_record.py`, `neutral_voice.py --check <edited files>`, `verify_all.py`, and `verify_interim.py` if
-   `interim.py` or the KB moved.
+2. `audit_record.py` (under the ArcGIS Python, so it also counts the gdb), `neutral_voice.py --check <edited files>`,
+   `verify_all.py`, and `verify_interim.py` if `interim.py` or the KB moved (with `final.py` and the paper's `.tex`
+   as its argument for the final, KB §69.3).
 3. `github_sync.py` (no `--commit`), then in the clone `python tools/check_repo.py`; update the README's counts
    it flags and its "Where it stands", next steps and results, **current state only**. When a layout or figure
    changed, first `py -3 tools/make_thumbs.py` in the clone: the pages show its 800 px previews, and
