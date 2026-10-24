@@ -8,13 +8,14 @@ Reads two outputs of verify_global60_classification.py --labels v2, both scored 
   --v2    the seven-class map (default logs\global60_classification_check_v2_200m_mode11.json)
 
 The rule, written before any run (the author's word, 2026-10-22): the v2 map replaces the published one only if
-  (a) its held-out accuracy and kappa are each at least the four-class map's;
+  (a) its held-out accuracy and kappa are each at least the four-class map's, on the held-out polygons whose
+      v2 class is 1-4, the ground both maps can name (D19, the author's answer 2026-10-24: overall, (a) is nearly
+      automatic when classes 5-7 hold much of the held-out area, 58 % in the 2026-10-23 rehearsal, KB §68.6);
   (b) each new class (5 volcanic edifice, 6 apron, 7 fluvial channel) in the v2 labels has a user's accuracy
       above its share of the held-out area (better than painting that class at random);
   (c) Crater, steep/windy hills and Normal Ground lose under 5 points of producer's accuracy each.
-Otherwise the four-class map stays published and v2 is reported as a test. Beside the rule it reports accuracy and
-kappa on the ground both maps can name (held-out v2 classes 1-4), since (a) is nearly automatic when classes 5-7
-hold much of the held-out area (58 % in the 2026-10-23 rehearsal, KB §68.6). A new class left out of the v2 split
+Otherwise the four-class map stays published and v2 is reported as a test. Overall accuracy and kappa on all
+seven classes are reported beside the rule, not part of it. A new class left out of the v2 split
 (short of NEXT-STEPS §11.3) is named as such and is not tested by (b). Pure Python; reads JSON only.
 Writes logs\d18_verdict.json (--out to move it). Exit 0 whatever the verdict; 2 if the inputs do not match.
 """
@@ -51,8 +52,11 @@ def verdict(four, v2):
     if set(four["rat"].values()) - set(FOUR):
         raise ValueError("--four is not a four-class map: %s" % four["rat"])
     f, s = four["held_out"], v2["held_out"]
-    a = dict(accuracy=(s["accuracy"], f["accuracy"]), kappa=(s["kappa"], f["kappa"]))
-    a_ok = s["accuracy"] >= f["accuracy"] and s["kappa"] >= f["kappa"]
+    ks, kf = kept_ground(s), kept_ground(f)
+    if ks is None or kf is None:
+        raise ValueError("an output lacks confusion_unrounded: rescore it with the current verify_global60_classification.py")
+    a = dict(accuracy=(ks[0], kf[0]), kappa=(ks[1], kf[1]), on="held-out v2 classes 1-4 (D19)")
+    a_ok = ks[0] >= kf[0] and ks[1] >= kf[1]
     b, left_out = {}, []
     for c in NEW:
         share = s["label_area_share"][c]
@@ -70,8 +74,8 @@ def verdict(four, v2):
     rec = dict(made=time.strftime("%Y-%m-%d %H:%M"), held_out_polygons=s["polygons"], labels=v2["labels"],
                a_accuracy_and_kappa=dict(a, ok=a_ok), b_new_classes=b, b_ok=b_ok, left_out_of_v2=left_out,
                c_kept_classes=cc, c_ok=c_ok, replaces=a_ok and b_ok and c_ok,
-               kept_ground=dict(v2=kept_ground(s), four=kept_ground(f)),
-               note="(v2, four-class) pairs; rule KB §68.4 / D18. kept_ground is reported, not part of the rule")
+               overall=dict(accuracy=(s["accuracy"], f["accuracy"]), kappa=(s["kappa"], f["kappa"])),
+               note="(v2, four-class) pairs; rule KB §68.4 / D18, (a) per D19. overall is reported, not part of the rule")
     return rec, rec["replaces"]
 
 
@@ -101,17 +105,17 @@ def main():
         sys.exit(2)
     a = rec["a_accuracy_and_kappa"]
     print("held out, %d v2 polygons" % rec["held_out_polygons"])
-    print("(a) accuracy %.3f vs %.3f, kappa %.3f vs %.3f: %s" % (a["accuracy"] + a["kappa"] + ("ok" if a["ok"] else "FAILS",)))
+    print("(a) on v2 classes 1-4: accuracy %.3f vs %.3f, kappa %.3f vs %.3f: %s"
+          % (a["accuracy"] + a["kappa"] + ("ok" if a["ok"] else "FAILS",)))
     for c, x in rec["b_new_classes"].items():
         print("(b) %-17s user's %.3f vs area share %.3f: %s" % (c, x["users"], x["area_share"], "ok" if x["ok"] else "FAILS"))
     for c in rec["left_out_of_v2"]:
         print("(b) %-17s not in the v2 split (short of NEXT-STEPS §11.3); not tested" % c)
     for c, x in rec["c_kept_classes"].items():
         print("(c) %-17s producer's %.3f vs %.3f, fall %+.3f: %s" % (c, x["v2"], x["four"], x["fall"], "ok" if x["ok"] else "FAILS"))
-    kg = rec["kept_ground"]
-    if kg["v2"] and kg["four"]:
-        print("(not in the rule) on ground both maps can name, v2 classes 1-4: accuracy %.3f vs %.3f, kappa %.3f vs %.3f"
-              % (kg["v2"][0], kg["four"][0], kg["v2"][1], kg["four"][1]))
+    o = rec["overall"]
+    print("(not in the rule) overall, all seven classes: accuracy %.3f vs %.3f, kappa %.3f vs %.3f"
+          % (o["accuracy"] + o["kappa"]))
     print("VERDICT: %s" % ("the seven-class map replaces the published one" if ok
                            else "the four-class map stays published; v2 is reported as a test"))
     os.makedirs(os.path.dirname(out), exist_ok=True)

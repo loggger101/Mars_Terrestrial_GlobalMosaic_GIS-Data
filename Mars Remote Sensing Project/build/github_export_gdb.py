@@ -48,6 +48,10 @@ ABOUT = {
     "Landform_TrainingSamples_v2_proposals": "The seven-class revision (D17), proposed, not decided: the 512 with an "
         "`Action` and its evidence each, plus 574 new polygons for classes 5-7. Only rows the author sets `Review` "
         "accept on enter the v2 labels, through `apply_label_review.py` (KB §68.5, §69.2).",
+    "Landform_TrainingSamples_v2p": "A rehearsal, not the author's labels: every v2 proposal taken as proposed "
+        "(`apply_label_review.py --rehearsal`), to test the v2 runs before the review (KB §69.4). Never a result.",
+    "Landform_TrainingSamples_v2p_60_train": "The rehearsal labels clipped to ±60°, training half (827; KB §69.4).",
+    "Landform_TrainingSamples_v2p_60_test": "The rehearsal labels clipped to ±60°, held-out half (258; KB §69.4).",
     "TrainingSamples_202609290009589587982": "The first hand-drawn training set, saved from Pro on 29 Sep (455 polygons, KB §29.2).",
     "Landform_ChannelCenterlines": "Digitising target, task 11. Empty until digitised by hand.",
     "Landform_CraterRims": "Digitising target, task 11. Empty until digitised by hand.",

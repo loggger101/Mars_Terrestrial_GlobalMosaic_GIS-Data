@@ -272,9 +272,10 @@ the builders' own PNGs are written before `polish_layouts.py` runs, so copy the 
 ## 6. Geodatabase inventory
 
 `Mars Project.gdb`, read with `arcpy` on 2026-10-18 (§58.2); X5's detections added 2026-10-19 (§66.3), the label
-proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3). All of §6 is **[V]**.
+proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal labels the same day (§69.4). All of
+§6 is **[V]**.
 
-### Feature classes — 31 present
+### Feature classes — 34 present
 
 | Dataset | Geometry | Rows | Made by |
 |---|---|---|---|
@@ -295,6 +296,7 @@ proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3). All of §6 is **[
 | `Landform_TrainingSamples_terrain` | Polygon | 512 | **the hand-drawn labels** (§29.2); never overwrite |
 | `Landform_TrainingSamples_terrain_60_train`, `_60_test` | Polygon | 329, 183 | the labels clipped to ±60° and split by 15° blocks (§31.3) |
 | `Landform_TrainingSamples_v2_proposals` | Polygon | 1,086 | the seven-class proposals (§69.2): the 512 copied with an `Action` (474 keep, 12 relabel, 23 check, 1 clip, 1 delete, 1 fix) and 574 new; for the author's review (2b), never a training set until applied |
+| `Landform_TrainingSamples_v2p`, `_v2p_60_train`, `_v2p_60_test` | Polygon | 1,085, 827, 258 | the rehearsal labels (§69.4): every proposal taken as proposed, **not the author's review**; for `--labels v2p` only |
 | `DL_Detections_heldout_20261019` | Polygon | 1,838 | X5's RetinaNet boxes around the held-out labels (§66.2); stack SR, XY domain widened 400 km (§66.3) |
 | `DL_UNet_Heldout_Scores_20261020` | Polygon | 183 | the held-out labels with each one's own-class share and majority class under the U-Net (two passes) and the published SVM map, at 400 m (§66.9) |
 | `TrainingSamples_202609290009589587982` | Polygon | 455 | manual (GUI), 29 Sep (§29.2) |
@@ -3788,7 +3790,9 @@ Valles Marineris labes are landslides and its mensae interior layered deposits: 
 - **Verdict rule, written before any run (D18, the author's word 2026-10-22: both maps go in the interim; the
   seven-class map is expected to supersede for the final if it scores well):** both the four-class map and the v2
   map are scored on the v2 held-out polygons by the §55.3 scorer. The v2 map replaces the published one only if (a)
-  its overall accuracy and κ are at least the four-class map's, (b) each new class's user's accuracy exceeds its
+  its overall accuracy and κ are at least the four-class map's (**amended by D19, the author's answer 2026-10-24,
+  before any v2 score existed: on the held-out polygons whose v2 class is 1–4**, the ground both maps can name,
+  §68.6, §69.4), (b) each new class's user's accuracy exceeds its
   share of held-out area, and (c) Crater, hills and Normal Ground producer's accuracy each fall by under 5 pt.
   Otherwise the four-class map stays published and v2 is reported as a test. 73.8 %, κ 0.58 stays the record of
   the four-class labels.
@@ -4025,3 +4029,33 @@ the clone equals `origin/main` (`cdac6d7`, CI passed), no other branch or open P
   for 73.8 %) both fail it. Its report now names the file it checked (it said "interim.py" for `final.py` too):
   interim 277, final 174, both in the record. `HANDOFF-DESKTOP.md` §4 and `NEXT-STEPS.md` name the paper run.
 - **Next:** unchanged, the author's review (2b, by 26 Oct), then the v2 runs (§11.5).
+
+### 69.4 The v2 runs rehearsed on the proposals as proposed (`--labels v2p`) — 2026-10-24, desktop **[E]**
+
+The author's request, 2026-10-24, before leaving the machine to the agent: start the long runs that can go
+unattended. The review (2b) has not started (0 of 1,086 rows have a `Review`), so the real v2 runs (§11.5) cannot.
+The author chose a **rehearsal**: every proposal taken as proposed, run through the whole of §11.5 steps 2–3, so
+that the real run after the review meets no new failure and its timings are known. **A rehearsal, never a
+result:** these labels are the agent's proposals, not the author's judgement (§68.4, "the agent proposes, the
+author accepts"); nothing here is published, put in the interim, or used for D18.
+
+- **D19 answered by the author, the same day, before any v2 score existed:** rule (a) is judged on held-out v2
+  classes 1–4, the ground both maps can name (§68.4 amended). `score_d18_verdict.py` now does that and reports
+  overall accuracy and κ beside the rule; it refuses an output without `confusion_unrounded`. Planted case: a
+  seven-class map that wins overall (71.7 % against 55.4 %) only through classes 5–7, and loses on 1–4 (67.7 %
+  against 82.3 %), now fails (a) and does not replace the published map.
+- **A third label set, `--labels v2p`** (`labelsets.py`): seven classes, `Landform_TrainingSamples_v2p_60_train` /
+  `_test`, `_v2p` in every output name, so neither a four-class nor a v2 file is touched.
+  `apply_label_review.py --rehearsal` writes `Landform_TrainingSamples_v2p[_60_train/_test]` taking every
+  non-keep row as accepted (its log `logs\label_review_rehearsal.json`); `verify_global60_classification.py`
+  names a v2p score `…v2p…` and a four-class map's `…_on_v2p_labels`. The v2 names are unchanged (all three sets
+  printed and checked).
+- **The rehearsal labels:** 1,085 labels (the delete drops one), 827 training and 258 held out, as the laptop's
+  full-accept test of §68.5; no overlap between classes or across the split. Training / held out (blocks):
+  Crater 175 (15) / 122 (8), hills 28 (2) / 16 (3), lava tube 18 (3) / 18 (2), Normal Ground 101 (13) / 22 (4),
+  edifice 119 (23) / 12 (3), apron 150 (21) / 22 (3), fluvial 236 (121) / 46 (10). Classes 5–7 meet §11.3; hills
+  and lava tube fall short of it in training, as §11.3 says (the script leaves out only a short new class).
+- **The runs:** `build\run_rehearsal_v2p.ps1` runs §11.5's commands with `--labels v2p` one after another,
+  the SVM chain (train, classify at 200 m, 11 × 11, both maps scored on the v2p polygons, the verdict, T8) and
+  then the U-Net chain (export, train, two passes, mosaic, both maps scored); each step's log in
+  `build\logs\rehearsal_v2p\`, one line per step in `queue.log`. Started 15:08.

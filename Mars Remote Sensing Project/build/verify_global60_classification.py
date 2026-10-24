@@ -33,12 +33,13 @@ gdal.UseExceptions()
 GDB = on_drive(r"Mars Project\Mars Project.gdb")
 from make_global60_classification import OUT as CLS, CELL   # --cell 400 (default) or 200
 # --raster scores another version of the map, e.g. a mode-filtered one; it is named in the outputs
-TAG = "%s%dm" % ("v2_" if L.V2 else "", CELL)
+SET = L.TAG.lstrip("_")                                       # "", "v2", or "v2p" (the rehearsal, KB §69.4)
+TAG = "%s%dm" % (SET + "_" if SET else "", CELL)
 if "--raster" in sys.argv:
     CLS = sys.argv[sys.argv.index("--raster") + 1]
     TAG = os.path.splitext(os.path.basename(CLS))[0].replace("global60_landforms_svm_", "")
-if L.V2 and "v2" not in TAG.split("_"):
-    TAG += "_on_v2_labels"                                    # a four-class map scored on the v2 labels
+if L.V2 and SET not in TAG.split("_"):
+    TAG += "_on_%s_labels" % SET                              # a four-class map scored on the v2 labels
 OUT = os.path.join(HERE, "logs", "global60_classification_check_%s.json" % TAG)
 NAMES = L.NAMES
 K = len(NAMES)

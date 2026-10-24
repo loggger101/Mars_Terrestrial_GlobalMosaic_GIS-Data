@@ -120,6 +120,9 @@ the KB's gdb inventory (§6) gains the proposals class (31 feature classes, whic
 Python had flagged); four audits that looked for Presentation 1 and the prospectus at the root now read `OLD\`.
 `verify_all.py` 37 / 37, `check_repo.py` passes. `verify_interim.py` now checks the paper's `.tex` as well: all 508
 numbers in the record.
+**2026-10-24, desktop (KB §69.4), the author's request:** while the review waits, the v2 runs are **rehearsed** on
+the proposals taken as proposed (`--labels v2p`, never a result): `apply_label_review.py --rehearsal`, then
+`build\run_rehearsal_v2p.ps1` (SVM, then U-Net, ~21 h unattended). D19 answered: rule (a) on v2 classes 1–4.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
@@ -179,7 +182,8 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D14 | the two `_60_smoke` classes, recreated by X2's smoke run (§57.1) | delete (they were deleted once, D9); they are in the release GeoPackage |
 | D15 | a derivatives release with the §54 patch (33 GB upload) | not needed: the catalogue gives the two commands that patch a restore (§57.4) |
 | D16 | the interim's percent-complete column and its due date | the author's numbers; `interim.py` prints dashes until then |
-| D19 | D18's rule (a) compares overall held-out accuracy and κ, which a four-class map cannot score on classes 5–7; in the rehearsal they held 58 % of the held-out area (KB §68.6), so (a) is nearly automatic | judge (a) on the ground both maps can name (held-out v2 classes 1–4), which `score_d18_verdict.py` already reports (the rehearsal's bar there: SVM 79.9 %, κ 0.668); decide before the v2 scores exist |
+D19 was answered 2026-10-24, before any v2 score existed: D18's rule (a) is judged on the held-out polygons whose
+v2 class is 1–4, the ground both maps can name (KB §68.4 amended, §69.4); `score_d18_verdict.py` does so.
 D17, the class revision, was answered 2026-10-22: seven classes, before the interim, the agent proposes and the
 author accepts (KB §68.1; §11 here). D18 the same day: **the interim shows both maps**, four-class and
 seven-class, each scored on its own held-out polygons and both on v2's; the seven-class map is expected to

@@ -20,6 +20,10 @@ split classes (--keep-short keeps it). Classes this script did not write are nev
 
   python apply_label_review.py --dry-run     the tally and the checks, nothing written
   python apply_label_review.py
+  python apply_label_review.py --rehearsal   every non-keep row taken as accepted, unreviewed, into
+                                             Landform_TrainingSamples_v2p[_60_train/_test] and
+                                             logs\label_review_rehearsal.json: a rehearsal of the v2 runs before
+                                             the review (--labels v2p, KB §69.4); the v2 classes untouched
 Options --gdb (labels and proposals) and --out-gdb (default the same) point it at a test copy.
 Writes logs\label_review_applied.json (--log to move it).
 """
@@ -36,14 +40,17 @@ def opt(name, default):
 
 GDB = opt("--gdb", DRIVE_GDB)
 OUT_GDB = opt("--out-gdb", GDB)
-LOG = opt("--log", os.path.join(HERE, "logs", "label_review_applied.json"))
+REHEARSAL = "--rehearsal" in sys.argv
+LOG = opt("--log", os.path.join(HERE, "logs", "label_review_%s.json" % ("rehearsal" if REHEARSAL else "applied")))
 DRY = "--dry-run" in sys.argv
 MARKER = "apply_label_review.py"
 LABELS = "Landform_TrainingSamples_terrain"
 TEST4 = "Landform_TrainingSamples_terrain_60_test"
 PROPOSALS = "Landform_TrainingSamples_v2_proposals"
 EXTENT = "Analysis_Extent_60"
-V2, TRAIN, TEST = "Landform_TrainingSamples_v2", "Landform_TrainingSamples_v2_60_train", "Landform_TrainingSamples_v2_60_test"
+SET = "v2p" if REHEARSAL else "v2"
+V2, TRAIN, TEST = ("Landform_TrainingSamples_%s" % SET, "Landform_TrainingSamples_%s_60_train" % SET,
+                   "Landform_TrainingSamples_%s_60_test" % SET)
 BLOCK = 15.0
 MIN_TEST, MIN_TEST_BLOCKS, MIN_TRAIN, MIN_TRAIN_BLOCKS = 10, 2, 20, 3
 
@@ -76,6 +83,8 @@ def final_labels():
     with arcpy.da.SearchCursor(os.path.join(GDB, PROPOSALS), flds) as c:
         for pid, old, act, pc, sub, rev, g in c:
             rev = (rev or "").strip()
+            if REHEARSAL and act != "keep":
+                rev = "accept"                            # as proposed, not as reviewed
             ok = rev == "accept"
             tally[(act, rev or "(none)")] += 1
             if old is not None:
@@ -166,6 +175,8 @@ def main():
     with arcpy.da.SearchCursor(os.path.join(GDB, EXTENT), ["SHAPE@"]) as c:
         ext = next(c)[0].projectAs(sr)
     rows, tally = final_labels()
+    if REHEARSAL:
+        print("REHEARSAL: every non-keep row taken as accepted, not as the author reviewed it -> %s (KB §69.4)" % V2)
     print("review tally (action, review):")
     for (a, r), n in sorted(tally.items()):
         print("   %-8s %-7s %4d" % (a, r, n))
@@ -194,7 +205,8 @@ def main():
                pending=pending, held_out_blocks=held, class_overlaps=clash, split_overlaps=cross,
                classes={CLASSES[c][0]: dict(train=d["train"], test=d["test"], train_blocks=sorted(d["tb"]),
                                             test_blocks=sorted(d["xb"])) for c, d in per.items()},
-               short=[CLASSES[c][0] for c in short], keep_short="--keep-short" in sys.argv)
+               short=[CLASSES[c][0] for c in short], keep_short="--keep-short" in sys.argv,
+               rehearsal=REHEARSAL, written=[V2, TRAIN, TEST])
     os.makedirs(os.path.dirname(LOG), exist_ok=True)
     json.dump(log, open(LOG, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     if clash or cross:
