@@ -16,7 +16,7 @@ checklist, is `HANDOFF-DESKTOP.md`.
 
 ---
 
-## Resume here — 2026-10-22
+## Resume here — 2026-10-24
 
 **Where it stands.** Every scripted job up to the review is done and recorded (KB §53–§57): the ±60°
 fine pass (465,354 closed depressions ≥ 1 km, 969,822 channel segments, layouts 11–12); the 180° DEM
@@ -115,6 +115,10 @@ run on the drive gives the laptop's result exactly (1,086 rows: 12 relabel, 23 c
 574 new); `Landform_TrainingSamples_v2_proposals` and the map "Labels v2: proposals" are in the project, sampled
 and read. **Next is the author's review (2b, §11.4)**; flagged for it: new fluvial strip 778 on the Arsia flank,
 Crater 47; hills and lava tube need more training polygons (§11.3).
+**2026-10-24, desktop (KB §69.3):** no change on the drive since 10-23 (the review not started). An audit pass:
+the KB's gdb inventory (§6) gains the proposals class (31 feature classes, which `audit_record.py` under the ArcGIS
+Python had flagged); four audits that looked for Presentation 1 and the prospectus at the root now read `OLD\`.
+`verify_all.py` 37 / 37, `check_repo.py` passes.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not

@@ -18,8 +18,8 @@ import zipfile
 
 DELIV = on_drive(r"Mars Remote Sensing Project")
 FILES = {
-    "P1": "ocean first pres LE.pptx",
-    "PROS": "Mars Mosaic - Project Prospectus.docx",
+    "P1": r"OLD\ocean first pres LE.pptx",           # delivered, moved to OLD\
+    "PROS": r"OLD\Mars Mosaic - Project Prospectus.docx",
     "IDECK": r"NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx",
     "IREP": r"NEXT STUFF\Mars Mosaic - Interim Report.docx",
 }

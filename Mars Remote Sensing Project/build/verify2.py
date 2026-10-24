@@ -24,8 +24,8 @@ import zipfile
 DELIV = on_drive(r"Mars Remote Sensing Project")
 GDB = on_drive(r"Mars Project\Mars Project.gdb")
 FILES = {
-    "Presentation 1": "ocean first pres LE.pptx",
-    "Prospectus": "Mars Mosaic - Project Prospectus.docx",
+    "Presentation 1": r"OLD\ocean first pres LE.pptx",           # delivered, moved to OLD\
+    "Prospectus": r"OLD\Mars Mosaic - Project Prospectus.docx",
     "Interim deck": r"NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx",
     "Interim report": r"NEXT STUFF\Mars Mosaic - Interim Report.docx",
 }

@@ -18,7 +18,7 @@ from pptx.util import Emu
 EMU_PT = 12700
 DECK = sys.argv[1] if len(sys.argv) > 1 else (
     on_drive(r"Mars Remote Sensing Project"
-    r"\ocean first pres LE.pptx"))
+    r"\OLD\ocean first pres LE.pptx"))
 
 prs = Presentation(DECK)
 W = prs.slide_width / EMU_PT

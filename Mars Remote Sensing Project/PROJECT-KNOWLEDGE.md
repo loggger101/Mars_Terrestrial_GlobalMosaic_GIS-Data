@@ -271,10 +271,10 @@ the builders' own PNGs are written before `polish_layouts.py` runs, so copy the 
 
 ## 6. Geodatabase inventory
 
-`Mars Project.gdb`, read with `arcpy` on 2026-10-18 (§58.2); X5's detections added 2026-10-19 (§66.3). All of §6
-is **[V]**.
+`Mars Project.gdb`, read with `arcpy` on 2026-10-18 (§58.2); X5's detections added 2026-10-19 (§66.3), the label
+proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3). All of §6 is **[V]**.
 
-### Feature classes — 30 present
+### Feature classes — 31 present
 
 | Dataset | Geometry | Rows | Made by |
 |---|---|---|---|
@@ -294,6 +294,7 @@ is **[V]**.
 | `Landform_CraterCandidates_auto_60_smoke`, `Landform_ChannelCandidates_auto_60_smoke` | Point, Polyline | 8,098, 5,305 | X2's smoke run (§53.3); deleting them is open decision D14 |
 | `Landform_TrainingSamples_terrain` | Polygon | 512 | **the hand-drawn labels** (§29.2); never overwrite |
 | `Landform_TrainingSamples_terrain_60_train`, `_60_test` | Polygon | 329, 183 | the labels clipped to ±60° and split by 15° blocks (§31.3) |
+| `Landform_TrainingSamples_v2_proposals` | Polygon | 1,086 | the seven-class proposals (§69.2): the 512 copied with an `Action` (474 keep, 12 relabel, 23 check, 1 clip, 1 delete, 1 fix) and 574 new; for the author's review (2b), never a training set until applied |
 | `DL_Detections_heldout_20261019` | Polygon | 1,838 | X5's RetinaNet boxes around the held-out labels (§66.2); stack SR, XY domain widened 400 km (§66.3) |
 | `DL_UNet_Heldout_Scores_20261020` | Polygon | 183 | the held-out labels with each one's own-class share and majority class under the U-Net (two passes) and the published SVM map, at 400 m (§66.9) |
 | `TrainingSamples_202609290009589587982` | Polygon | 455 | manual (GUI), 29 Sep (§29.2) |
@@ -3997,3 +3998,23 @@ agree (`github_sync.py --dry-run`: 0 to copy; `e11642d`, CI passed; every build 
   DEM cell and no catalogued crater.
 - **Next:** the author's review (item 2b, by 26 Oct, `NEXT-STEPS.md` §11.4), including more hills and lava-tube
   polygons in other training blocks.
+
+### 69.3 Check-in and audit pass — 2026-10-24, desktop **[V]**
+
+At the author's request to keep the repo and the drive current. **Nothing changed on the drive since §69.2's push**
+(no file under `Mars Project\` or this folder newer than 10-23 15:36 but a log), so the review (2b) has not started;
+the clone equals `origin/main` (`cdac6d7`, CI passed), no other branch or open PR; `github_sync.py --dry-run`:
+0 to copy, 1,019 unchanged (the six > 95 MB model files are skipped as always; they are in `dl-models.zip`, §66.10).
+
+- **`audit_record.py` under the ArcGIS Python failed one check:** §6 said 30 feature classes, the gdb holds 31.
+  §69.2 had written the 31st (`Landform_TrainingSamples_v2_proposals`) without adding it to §6's table; added
+  (Polygon, 1,086 rows, `Action` counts read with `arcpy`: 474 keep, 574 new, 23 check, 12 relabel, 1 clip,
+  1 delete, 1 fix, as §69.2). The `py -3` run cannot see this (no `arcpy`): run it under the ArcGIS Python after any gdb change.
+- **Four audits pointed at the root for the delivered Presentation 1 and the prospectus,** which live in `OLD\`, and
+  crashed: `audit_consistency.py`, `audit_structure.py`, `audit_images.py` and `verify2.py` now read `OLD\`. The
+  first three run clean; `verify2.py` gives 57 checks, 26 failed, stale by design as §17.4 says (its gdb checks
+  describe September: the nomenclature triplicates deleted in §50, no pyramids before X4).
+  `audit_headroom.py` takes a deck as its argument, as before.
+- **Passed:** `verify_all.py` 37 / 37; `audit_record.py` (ArcGIS Python) after the §6 fix; `tools/check_repo.py`
+  in the clone; `audit_text.py`, no schedule issues.
+- **Next:** unchanged, the author's review (2b, by 26 Oct), then the v2 runs (§11.5).

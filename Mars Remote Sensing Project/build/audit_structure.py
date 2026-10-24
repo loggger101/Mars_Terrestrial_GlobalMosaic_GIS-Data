@@ -23,7 +23,7 @@ import zipfile
 from pptx import Presentation
 
 DECK = (on_drive(r"Mars Remote Sensing Project"
-        r"\ocean first pres LE.pptx"))
+        r"\OLD\ocean first pres LE.pptx"))
 
 TEMPLATE = [
     ("Introduction", None),
