@@ -1,0 +1,11 @@
+held out, 258 v2 polygons
+(a) on v2 classes 1-4: accuracy 0.620 vs 0.799, kappa 0.465 vs 0.668: FAILS
+(b) volcanic edifice  user's 0.280 vs area share 0.183: ok
+(b) apron             user's 0.180 vs area share 0.328: FAILS
+(b) fluvial channel   user's 0.379 vs area share 0.069: ok
+(c) Crater            producer's 0.301 vs 0.657, fall +0.356: FAILS
+(c) steep/windy hills producer's 0.582 vs 0.627, fall +0.045: ok
+(c) Normal Ground     producer's 0.984 vs 0.992, fall +0.008: ok
+(not in the rule) overall, all seven classes: accuracy 0.413 vs 0.336, kappa 0.297 vs 0.227
+VERDICT: the four-class map stays published; v2 is reported as a test
+-> logs\d18_verdict_v2p.json

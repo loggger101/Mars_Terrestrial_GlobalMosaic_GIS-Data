@@ -4064,3 +4064,25 @@ author accepts"); nothing here is published, put in the interim, or used for D18
   tile 2 **5,139 s** against 1,656 s and 1,735 s for the same tiles in the four-class 200 m run, a steady
   **2.97 ×**, so ±60° at 200 m projects to **~20 h** (the four-class run: 6.8 h). The workers keep 10.3 of 12
   cores busy. So the real v2 SVM needs **~22 h from the review's end to its map**, not ~7 h.
+- **The SVM chain ran end to end** (`queue.log`): train and classify 21 h 47 min in all (the 21 tiles 3.2 × the
+  four-class run's on average; the last row's short tiles ~22 min each); 11 × 11 filter 10.1 min; each scoring
+  29.0 min; the verdict and T8 under a minute. Every step exit 0. **One failure of the queue, not of a step:** after
+  the mosaic, writing `queue.log` failed because another process (the agent's watcher) held it open, and
+  `$ErrorActionPreference = "Stop"` ended the queue; the map was complete. The queue now writes its log through a
+  retrying `Log`, and was restarted `-From 02`.
+- **The scores, on the 258 rehearsal held-out polygons** (an agent's labels, so a test of the pipeline, not of the
+  scheme): the seven-class SVM map **41.3 %, κ 0.297** (one class everywhere 32.8 %); the published four-class map
+  **33.6 %, κ 0.227**, the laptop's figures of §68.6 exactly. Producer's, seven-class: Crater 0.301, hills 0.582,
+  lava tube 0.270, Normal Ground 0.984, edifice 0.508, apron 0.054, fluvial 0.604. On its own 827 training
+  polygons the seven-class map scores only **51.7 %, κ 0.386** (the four-class map 16.4 %, κ 0.106): a weak fit.
+- **D18's verdict on these labels: the four-class map stays.** (a), on v2 classes 1–4 (D19): **62.0 % against
+  79.9 %, κ 0.465 against 0.668, fails**; overall it would have passed (41.3 % against 33.6 %), so D19 decides
+  this case. (b): edifice user's 0.280 against its share 0.183, ok; **apron 0.180 against 0.328, fails**; fluvial
+  0.379 against 0.069, ok. (c): **Crater producer's falls 35.6 points, fails**; hills −4.5, Normal Ground −0.8, ok.
+- **What the rehearsal map does with the new classes:** fluvial channel takes **32.9 % of ±60°** (45.6 % of the
+  highland units `h`), against 6.9 % of the held-out label area: the 236 machine-drawn valley strips, the
+  largest training class, pull the classifier towards it **[E]**; Crater falls to 9.2 % of the map (33.9 % in the
+  four-class map). Against SIM 3292 (T8, `logs\geomap_check_v2p.json`), edifice is 4.2 × its share on `ve` units and 2.6 ×
+  on `a`, apron 4.9 × on `a`: the new classes find their units. **For the review:** trimming the valley strips to
+  the valley floors (§68.5's "the pieces' share falls as the author trims them") is where the seven-class map
+  stands to gain most; the Crater fall is the other half of (c).

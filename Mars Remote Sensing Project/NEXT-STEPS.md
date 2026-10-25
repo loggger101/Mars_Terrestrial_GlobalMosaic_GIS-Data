@@ -123,6 +123,10 @@ numbers in the record.
 **2026-10-24, desktop (KB §69.4), the author's request:** while the review waits, the v2 runs are **rehearsed** on
 the proposals taken as proposed (`--labels v2p`, never a result): `apply_label_review.py --rehearsal`, then
 `build\run_rehearsal_v2p.ps1` (SVM, then U-Net, ~21 h unattended). D19 answered: rule (a) on v2 classes 1–4.
+**2026-10-25 (KB §69.4): the SVM rehearsal ran end to end** (21 h 47 min to the map, 7-class ~3 × the 4-class
+time); on the proposals as proposed the seven-class map scores 41.3 %, κ 0.297 and D18 keeps the four-class
+map ((a) on classes 1–4, apron in (b), Crater in (c) fail); fluvial channel paints 32.9 % of ±60°. **For the
+review:** trimming the valley strips to their floors is where the seven-class map stands to gain most.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not

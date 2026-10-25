@@ -1,1 +1,13 @@
 2026-10-24 15:08:48  start 01_svm_train_classify: make_global60_classification.py --cell 200 --labels v2p
+2026-10-25 14:42:55  end   01_svm_train_classify: exit not recorded, its output complete (mosaic done 21:46:41; the queue then failed to write this line, a reader held the log; restarted -From 02)
+2026-10-25 14:44:06  start 02_svm_mode11: make_global60_landforms_clean.py --cell 200 --size 11 --labels v2p
+2026-10-25 14:54:10  end   02_svm_mode11: exit 0, 10.1 min
+2026-10-25 14:54:10  start 03_score_svm_v2p: verify_global60_classification.py --cell 200 --labels v2p --raster "F:\Mars Project\Global60\global60_landforms_svm_v2p_200m_mode11.tif"
+2026-10-25 15:23:10  end   03_score_svm_v2p: exit 0, 29.0 min
+2026-10-25 15:23:11  start 04_score_svm_four_on_v2p: verify_global60_classification.py --cell 200 --labels v2p --raster "F:\Mars Project\Global60\global60_landforms_svm_200m_mode11.tif"
+2026-10-25 15:52:09  end   04_score_svm_four_on_v2p: exit 0, 29.0 min
+2026-10-25 15:52:09  start 05_d18_verdict_v2p: score_d18_verdict.py --four logs\global60_classification_check_200m_mode11_on_v2p_labels.json --v2 logs\global60_classification_check_v2p_200m_mode11.json --out logs\d18_verdict_v2p.json
+2026-10-25 15:52:11  end   05_d18_verdict_v2p: exit 0, 0.0 min
+2026-10-25 15:52:11  start 06_geomap_v2p: make_geomap_check.py --labels v2p
+2026-10-25 15:52:46  end   06_geomap_v2p: exit 0, 0.6 min
+2026-10-25 15:52:46  start 07_unet_export: make_dl_pixels.py --export --labels v2p

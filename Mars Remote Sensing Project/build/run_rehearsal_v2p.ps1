@@ -11,6 +11,12 @@ $logs = Join-Path $here "logs\rehearsal_v2p"
 New-Item -ItemType Directory -Force $logs | Out-Null
 $queue = Join-Path $logs "queue.log"
 
+function Log([string]$line) {   # a reader holding queue.log open must not end the queue (it did, 2026-10-25)
+    for ($i = 0; $i -lt 30; $i++) {
+        try { [IO.File]::AppendAllText($queue, $line + "`r`n"); return } catch { Start-Sleep -Seconds 2 }
+    }
+}
+
 function Emd {
     $m = Get-ChildItem "C:\MarsScratch\x5c_v2p\models" -Recurse -Filter "global60_unet_x5c_v2p_*.emd" -ErrorAction SilentlyContinue |
         Sort-Object LastWriteTime | Select-Object -Last 1
@@ -47,17 +53,17 @@ foreach ($chain in $chains) {
         try {
             $a = & $step[1]
             $quoted = $a | ForEach-Object { if ($_ -match '\s') { '"' + $_ + '"' } else { $_ } }
-            "{0:yyyy-MM-dd HH:mm:ss}  start {1}: {2}" -f $t0, $name, ($quoted -join " ") | Add-Content $queue
+            Log ("{0:yyyy-MM-dd HH:mm:ss}  start {1}: {2}" -f $t0, $name, ($quoted -join " "))
             $p = Start-Process -FilePath $py -ArgumentList (@("-u") + $quoted) -WorkingDirectory $here -NoNewWindow -Wait -PassThru `
                 -RedirectStandardOutput (Join-Path $logs "$name.log") -RedirectStandardError (Join-Path $logs "$name.err.log")
             $code = $p.ExitCode
         } catch {
-            "  $name could not start: $_" | Add-Content $queue
+            Log "  $name could not start: $_"
             $code = -1
         }
         $min = ((Get-Date) - $t0).TotalMinutes
-        "{0:yyyy-MM-dd HH:mm:ss}  end   {1}: exit {2}, {3:N1} min" -f (Get-Date), $name, $code, $min | Add-Content $queue
-        if ($code -ne 0) { "  chain stopped at $name" | Add-Content $queue; break }
+        Log ("{0:yyyy-MM-dd HH:mm:ss}  end   {1}: exit {2}, {3:N1} min" -f (Get-Date), $name, $code, $min)
+        if ($code -ne 0) { Log "  chain stopped at $name"; break }
     }
 }
-"{0:yyyy-MM-dd HH:mm:ss}  queue done" -f (Get-Date) | Add-Content $queue
+Log ("{0:yyyy-MM-dd HH:mm:ss}  queue done" -f (Get-Date))
