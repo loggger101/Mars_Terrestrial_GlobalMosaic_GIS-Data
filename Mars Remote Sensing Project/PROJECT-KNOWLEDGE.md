@@ -4059,3 +4059,8 @@ author accepts"); nothing here is published, put in the interim, or used for D18
   the SVM chain (train, classify at 200 m, 11 × 11, both maps scored on the v2p polygons, the verdict, T8) and
   then the U-Net chain (export, train, two passes, mosaic, both maps scored); each step's log in
   `build\logs\rehearsal_v2p\`, one line per step in `queue.log`. Started 15:08.
+- **Seven classes cost ~3 × the four-class SVM time** (measured; §11.5 had assumed the four-class times): training
+  **6,441 s** (1.8 h, against 2,861 s for a T1 retrain on this stack, §55.5); classifying, tile 1 **4,926 s** and
+  tile 2 **5,139 s** against 1,656 s and 1,735 s for the same tiles in the four-class 200 m run, a steady
+  **2.97 ×**, so ±60° at 200 m projects to **~20 h** (the four-class run: 6.8 h). The workers keep 10.3 of 12
+  cores busy. So the real v2 SVM needs **~22 h from the review's end to its map**, not ~7 h.

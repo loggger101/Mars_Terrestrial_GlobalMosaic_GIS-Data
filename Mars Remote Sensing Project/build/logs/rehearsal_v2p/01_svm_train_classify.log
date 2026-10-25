@@ -1,3 +1,9 @@
   Landform_TrainingSamples_v2p_60_train: 827 polygons
   Landform_TrainingSamples_v2p_60_test: 258 polygons
 3. train SVM
+  trained in 6441 s -> F:\Mars Project\Global60\global60_landforms_svm_v2p.ecd
+4. classify ±60° at 200 m
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2p_200m_tiles\t_r00_c00.tif  in 4926 s
+   tile  1/21  r0 c0  01:22:05 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2p_200m_tiles\t_r00_c01.tif  in 5139 s
+   tile  2/21  r0 c1  02:47:45 elapsed

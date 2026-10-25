@@ -414,7 +414,8 @@ across the split.
 1. `apply_label_review.py --dry-run`, then without it → `Landform_TrainingSamples_v2`, `_v2_60_train`,
    `_v2_60_test` (same 14 held-out blocks; centroid rule; no ground shared across classes or the split,
    checked; a new class short of §11.3 left out of the split unless `--keep-short`). The originals untouched.
-2. SVM on v2: train (~25 min), classify at 200 m (~6.5 h, overnight), 11 × 11 filter; score v2 and the published
+2. SVM on v2: train (~1.8 h with seven classes), classify at 200 m (**~20 h** with seven classes, ~3 × the
+   four-class run: measured in the rehearsal, KB §69.4), 11 × 11 filter; score v2 and the published
    map on the v2 held-out polygons; D18's verdict. T8 on v2. Every script takes `--labels v2` (`labelsets.py`,
    KB §68.6): it reads `_v2_60_train` / `_v2_60_test`, writes names with `_v2`, and never replaces a four-class
    file. In `build\`, ArcGIS Python, with `<G60>` = `F:\Mars Project\Global60`:
@@ -460,6 +461,8 @@ across the split.
 | 31 Oct | layouts and the interim rebuilt |
 | 1–2 Nov | digitising checkpoint; data cut (unchanged) |
 
+**The rehearsal's timings (KB §69.4) make 27 Oct tight:** the v2 SVM map needs ~22 h after the review ends, then
+~1–2 h of scoring; a review finished by the morning of 26 Oct gives the scored map on 27 Oct, a later one 28 Oct.
 If the label review is not done by 27 Oct: drop the U-Net rerun, then the SVM rerun; the interim then shows the
 four-class maps and describes the seven-class scheme as in progress, with §68's audit as its evidence. The
 author makes time for both reviews (no cap, D18).
