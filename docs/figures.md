@@ -136,6 +136,17 @@ training split, **not the held-out score** (KB §66.5–66.6).
 | <a href="../Mars%20Project/DLModels/global60_unet_x5c_20261020/ModelCharacteristics/loss_graph.png"><img src="../Mars%20Project/DLModels/global60_unet_x5c_20261020/ModelCharacteristics/loss_graph.png" width="300" alt="X5c loss"></a> | **X5c loss**, the U-Net, 30 epochs; validation loss 0.466 to 0.029, epoch 29 kept. | `make_dl_pixels.py --train` |
 | <a href="../Mars%20Project/DLModels/global60_unet_x5c_20261020/ModelCharacteristics/show_results.png"><img src="thumbs/global60_unet_x5c_20261020_show_results.jpg" width="300" alt="X5c labels against predictions"></a> | **X5c labels against predictions** on five validation chips: the labelled crater right, and the whole chip around it called Crater too (the provinces of KB §66.6). | `make_dl_pixels.py --train` |
 
+### The seven-class rehearsal U-Net (2026-10-25)
+
+Trained on the rehearsal labels, every proposal taken as proposed and **not the author's review**, in
+[`global60_unet_x5c_v2p_20261025/`](../Mars%20Project/DLModels/global60_unet_x5c_v2p_20261025): a test of the
+v2 pipeline, never a result (KB §69.4). Validation chips from the training split, not the held-out score.
+
+| | What it shows | Made by |
+|---|---|---|
+| <a href="../Mars%20Project/DLModels/global60_unet_x5c_v2p_20261025/ModelCharacteristics/loss_graph.png"><img src="../Mars%20Project/DLModels/global60_unet_x5c_v2p_20261025/ModelCharacteristics/loss_graph.png" width="300" alt="Rehearsal U-Net loss"></a> | **Rehearsal U-Net loss**, seven classes, 30 epochs over 21,711 chips (7.8 h); validation loss from 0.81 to 0.25. | `make_dl_pixels.py --train --labels v2p` |
+| <a href="../Mars%20Project/DLModels/global60_unet_x5c_v2p_20261025/ModelCharacteristics/show_results.png"><img src="thumbs/global60_unet_x5c_v2p_20261025_show_results.jpg" width="300" alt="Rehearsal U-Net labels against predictions"></a> | **Rehearsal U-Net labels against predictions** on five validation chips: around a valley strip the whole chip is called fluvial channel, with volcanic edifice at its edge; a second chip is called apron throughout and its channel strip is missed; the last three are called Normal Ground. | `make_dl_pixels.py --train --labels v2p` |
+
 ## Interim crops
 
 [`build/interim_img/`](../Mars%20Remote%20Sensing%20Project/build/interim_img) also holds each layout the interim deck

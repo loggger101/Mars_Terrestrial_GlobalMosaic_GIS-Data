@@ -127,6 +127,9 @@ the proposals taken as proposed (`--labels v2p`, never a result): `apply_label_r
 time); on the proposals as proposed the seven-class map scores 41.3 %, κ 0.297 and D18 keeps the four-class
 map ((a) on classes 1–4, apron in (b), Crater in (c) fail); fluvial channel paints 32.9 % of ±60°. **For the
 review:** trimming the valley strips to their floors is where the seven-class map stands to gain most.
+**2026-10-26 (KB §69.4): the rehearsal is done**, all 13 steps. The seven-class U-Net scores 88.8 %, κ 0.856 on
+the rehearsal polygons (four-class U-Net 41.6 %); by D18's rule as a report it too keeps the four-class map ((a)
+on classes 1–4, 90.4 against 98.9 %; Crater and hills in (c)). Times for the real run: SVM ~22 h, U-Net ~21 h.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
@@ -434,7 +437,9 @@ across the split.
    The first refuses to start unless both v2 halves exist and every row is `apply_label_review.py`'s with a
    code 1–7; it skips the four-class split. The fourth scores the published map on the v2 polygons; the fifth
    prints (a)–(c) and the verdict into `logs\d18_verdict.json`.
-3. U-Net on v2: export the v2 training split, train (~1.2 h), two passes over ±60° (~12 h); scored the same way.
+3. U-Net on v2: export the v2 training split, train (**~7.8 h** in the rehearsal: 21,711 chips, 6.4 × the
+   four-class time), two passes over ±60° (**~12.6 h**, run in chunks of ≤ 60 tiles: one process leaks ~0.28 GB a
+   tile, KB §69.4); scored the same way. `run_rehearsal_v2p.ps1` is the queue to copy for v2.
    Dropped first if the dates slip.
    ```
    python make_dl_pixels.py --export --labels v2

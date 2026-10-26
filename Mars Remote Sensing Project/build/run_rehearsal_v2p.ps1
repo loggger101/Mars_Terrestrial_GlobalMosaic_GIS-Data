@@ -36,8 +36,14 @@ $chains = @(
     @(
         @("07_unet_export", { @("make_dl_pixels.py", "--export", "--labels", "v2p") }),
         @("08_unet_train", { @("make_dl_pixels.py", "--train", "--labels", "v2p") }),
-        @("09_unet_pass_a", { @("make_dl_pixels.py", "--classify-global", "--labels", "v2p", "--emd", (Emd)) }),
-        @("10_unet_pass_b", { @("make_dl_pixels.py", "--classify-global", "--labels", "v2p", "--pass", "B", "--emd", (Emd)) }),
+        # each pass in chunks of <= 60 new tiles, one process each: a pass's process grows ~0.28 GB a tile
+        # (40 GB by tile 144 of pass A, 2026-10-26); --tiles N runs the first N, finished tiles skipped
+        @("09a_unet_pass_a_to180", { @("make_dl_pixels.py", "--classify-global", "--labels", "v2p", "--tiles", "180", "--emd", (Emd)) }),
+        @("09b_unet_pass_a_to243", { @("make_dl_pixels.py", "--classify-global", "--labels", "v2p", "--tiles", "243", "--emd", (Emd)) }),
+        @("10a_unet_pass_b_to60", { @("make_dl_pixels.py", "--classify-global", "--labels", "v2p", "--pass", "B", "--tiles", "60", "--emd", (Emd)) }),
+        @("10b_unet_pass_b_to120", { @("make_dl_pixels.py", "--classify-global", "--labels", "v2p", "--pass", "B", "--tiles", "120", "--emd", (Emd)) }),
+        @("10c_unet_pass_b_to180", { @("make_dl_pixels.py", "--classify-global", "--labels", "v2p", "--pass", "B", "--tiles", "180", "--emd", (Emd)) }),
+        @("10d_unet_pass_b_to243", { @("make_dl_pixels.py", "--classify-global", "--labels", "v2p", "--pass", "B", "--tiles", "243", "--emd", (Emd)) }),
         @("11_unet_mosaic", { @("make_dl_pixels.py", "--mosaic", "--two-pass", "--labels", "v2p") }),
         @("12_score_unet_v2p", { @("verify_global60_classification.py", "--cell", "200", "--labels", "v2p", "--raster", "$g60\global60_landforms_unet_v2p_200m_seamfix.tif") }),
         @("13_score_unet_four_on_v2p", { @("verify_global60_classification.py", "--cell", "200", "--labels", "v2p", "--raster", "$g60\global60_landforms_unet_200m_seamfix.tif") })

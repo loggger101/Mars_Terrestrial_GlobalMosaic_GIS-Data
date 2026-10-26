@@ -11,3 +11,30 @@
 2026-10-25 15:52:11  start 06_geomap_v2p: make_geomap_check.py --labels v2p
 2026-10-25 15:52:46  end   06_geomap_v2p: exit 0, 0.6 min
 2026-10-25 15:52:46  start 07_unet_export: make_dl_pixels.py --export --labels v2p
+2026-10-25 16:15:28  end   07_unet_export: exit 0, 22.7 min
+2026-10-25 16:15:28  start 08_unet_train: make_dl_pixels.py --train --labels v2p
+2026-10-26 00:03:22  end   08_unet_train: exit 0, 467.9 min
+2026-10-26 00:03:22  start 09_unet_pass_a: make_dl_pixels.py --classify-global --labels v2p --emd C:\MarsScratch\x5c_v2p\models\global60_unet_x5c_v2p_20261025\global60_unet_x5c_v2p_20261025.emd
+2026-10-26 04:20:15  end   09_unet_pass_a: exit 1, 256.9 min
+  chain stopped at 09_unet_pass_a
+2026-10-26 04:20:15  queue done
+  (09 was stopped by the agent at 04:20 after tile 148: its process held 40 GB and grew ~13 GB/h, the page file filling C:; the passes now run in chunks of <= 60 tiles, finished tiles kept)
+2026-10-26 04:20:31  start 09a_unet_pass_a_to180: make_dl_pixels.py --classify-global --labels v2p --tiles 180 --emd C:\MarsScratch\x5c_v2p\models\global60_unet_x5c_v2p_20261025\global60_unet_x5c_v2p_20261025.emd
+2026-10-26 05:10:16  end   09a_unet_pass_a_to180: exit 0, 49.7 min
+2026-10-26 05:10:16  start 09b_unet_pass_a_to243: make_dl_pixels.py --classify-global --labels v2p --tiles 243 --emd C:\MarsScratch\x5c_v2p\models\global60_unet_x5c_v2p_20261025\global60_unet_x5c_v2p_20261025.emd
+2026-10-26 06:42:05  end   09b_unet_pass_a_to243: exit 0, 91.8 min
+2026-10-26 06:42:05  start 10a_unet_pass_b_to60: make_dl_pixels.py --classify-global --labels v2p --pass B --tiles 60 --emd C:\MarsScratch\x5c_v2p\models\global60_unet_x5c_v2p_20261025\global60_unet_x5c_v2p_20261025.emd
+2026-10-26 08:15:06  end   10a_unet_pass_b_to60: exit 0, 93.0 min
+2026-10-26 08:15:06  start 10b_unet_pass_b_to120: make_dl_pixels.py --classify-global --labels v2p --pass B --tiles 120 --emd C:\MarsScratch\x5c_v2p\models\global60_unet_x5c_v2p_20261025\global60_unet_x5c_v2p_20261025.emd
+2026-10-26 09:45:04  end   10b_unet_pass_b_to120: exit 0, 90.0 min
+2026-10-26 09:45:04  start 10c_unet_pass_b_to180: make_dl_pixels.py --classify-global --labels v2p --pass B --tiles 180 --emd C:\MarsScratch\x5c_v2p\models\global60_unet_x5c_v2p_20261025\global60_unet_x5c_v2p_20261025.emd
+2026-10-26 11:13:48  end   10c_unet_pass_b_to180: exit 0, 88.7 min
+2026-10-26 11:13:48  start 10d_unet_pass_b_to243: make_dl_pixels.py --classify-global --labels v2p --pass B --tiles 243 --emd C:\MarsScratch\x5c_v2p\models\global60_unet_x5c_v2p_20261025\global60_unet_x5c_v2p_20261025.emd
+2026-10-26 12:43:45  end   10d_unet_pass_b_to243: exit 0, 89.9 min
+2026-10-26 12:43:45  start 11_unet_mosaic: make_dl_pixels.py --mosaic --two-pass --labels v2p
+2026-10-26 12:48:35  end   11_unet_mosaic: exit 0, 4.8 min
+2026-10-26 12:48:35  start 12_score_unet_v2p: verify_global60_classification.py --cell 200 --labels v2p --raster "F:\Mars Project\Global60\global60_landforms_unet_v2p_200m_seamfix.tif"
+2026-10-26 13:19:56  end   12_score_unet_v2p: exit 0, 31.4 min
+2026-10-26 13:19:56  start 13_score_unet_four_on_v2p: verify_global60_classification.py --cell 200 --labels v2p --raster "F:\Mars Project\Global60\global60_landforms_unet_200m_seamfix.tif"
+2026-10-26 13:50:40  end   13_score_unet_four_on_v2p: exit 0, 30.7 min
+2026-10-26 13:50:40  queue done

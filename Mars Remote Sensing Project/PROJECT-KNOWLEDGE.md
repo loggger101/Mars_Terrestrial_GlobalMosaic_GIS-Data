@@ -4030,7 +4030,7 @@ the clone equals `origin/main` (`cdac6d7`, CI passed), no other branch or open P
   interim 277, final 174, both in the record. `HANDOFF-DESKTOP.md` §4 and `NEXT-STEPS.md` name the paper run.
 - **Next:** unchanged, the author's review (2b, by 26 Oct), then the v2 runs (§11.5).
 
-### 69.4 The v2 runs rehearsed on the proposals as proposed (`--labels v2p`) — 2026-10-24, desktop **[E]**
+### 69.4 The v2 runs rehearsed on the proposals as proposed (`--labels v2p`) — 2026-10-24/26, desktop **[V]**
 
 The author's request, 2026-10-24, before leaving the machine to the agent: start the long runs that can go
 unattended. The review (2b) has not started (0 of 1,086 rows have a `Review`), so the real v2 runs (§11.5) cannot.
@@ -4066,7 +4066,8 @@ author accepts"); nothing here is published, put in the interim, or used for D18
   cores busy. So the real v2 SVM needs **~22 h from the review's end to its map**, not ~7 h.
 - **The SVM chain ran end to end** (`queue.log`): train and classify 21 h 47 min in all (the 21 tiles 3.2 × the
   four-class run's on average; the last row's short tiles ~22 min each); 11 × 11 filter 10.1 min; each scoring
-  29.0 min; the verdict and T8 under a minute. Every step exit 0. **One failure of the queue, not of a step:** after
+  29.0 min; the verdict and T8 under a minute. Steps 2–6 exit 0; step 1's code went unrecorded (below), its output
+  complete through "mosaic done". **One failure of the queue, not of a step:** after
   the mosaic, writing `queue.log` failed because another process (the agent's watcher) held it open, and
   `$ErrorActionPreference = "Stop"` ended the queue; the map was complete. The queue now writes its log through a
   retrying `Log`, and was restarted `-From 02`.
@@ -4086,3 +4087,34 @@ author accepts"); nothing here is published, put in the interim, or used for D18
   on `a`, apron 4.9 × on `a`: the new classes find their units. **For the review:** trimming the valley strips to
   the valley floors (§68.5's "the pieces' share falls as the author trims them") is where the seven-class map
   stands to gain most; the Crater fall is the other half of (c).
+- **The U-Net chain ran end to end** (queue done 2026-10-26 13:50; 13 steps, every one but 1 and the stopped
+  09 exit 0). Times: export **22.7 min** (21,711 chips, 47,072 features, against ~3,600 chips from the four-class
+  labels); training **28,050 s = 7.8 h** (30 epochs at ~14 min, some to ~22 min while other desktop programs
+  shared the GPU; the four-class model 4,376 s, §66.6), so **6.4 ×**; pass A **6.6 h** and pass B **6.0 h**
+  (243 tiles each, ~90 s a tile); the two-pass mosaic 4.8 min (passes disagree on 5.4 % of pixels); each scoring
+  ~31 min. **So the real v2 U-Net needs ~21 h after its export**, not ~13 h, if the reviewed labels give as many
+  chips.
+- **A leak in the pass's process:** `ClassifyPixelsUsingDeepLearning` in one process grew ~0.28 GB a tile (40 GB
+  of private memory by pass A's tile 144, ~13 GB an hour); Windows grew `pagefile.sys` to 17.3 GB and C: fell from
+  63 to 42 GB free. The agent stopped the process just after tile 148 was saved (no partial tile), and the queue
+  now runs each pass in chunks of at most 60 new tiles (`--tiles 180`, `243` for A; `60`, `120`, `180`, `243` for
+  B), one process each, finished tiles kept: the largest reading was 14.8 GB (pass A's last chunk, 48 tiles in),
+  and C: stayed ~50 GB free. The
+  four-class passes (§66.7–66.8) ran 243 tiles in one process each; whether they leaked as much was not measured.
+- **The U-Net scores, the same 258 rehearsal held-out polygons:** seven-class **88.8 %, κ 0.856**; producer's
+  Crater 0.836, hills 0.887, lava tube 0.226, Normal Ground 0.988, edifice 0.949, apron 0.862, fluvial 0.750. The
+  published four-class U-Net **41.6 %, κ 0.280** (§68.6's figures exactly). On the 827 training polygons:
+  seven-class 85.4 %, κ 0.809; four-class 18.2 %, κ 0.129. The map: edifice 27.8 % of ±60°, Normal Ground 25.3 %,
+  fluvial 19.5 %, Crater 13.6 %, apron 12.9 %. Pro's own validation figures for the model (pixels of the 10 %
+  validation chips) give high recall and low precision for every class (Crater 0.86 / 0.08, edifice 0.93 / 0.27,
+  apron 0.99 / 0.48, fluvial 0.61 / 0.13).
+- **D18's rule applied to the U-Net pair, as a report** (`logs\d18_verdict_unet_v2p.json`; D18 itself is about the
+  SVM map): (a) on v2 classes 1–4 **90.4 % against 98.9 %, κ 0.844 against 0.980, fails**; (b) all three new
+  classes pass (user's 0.766 / 0.913 / 0.752 against shares 0.183 / 0.328 / 0.069); (c) **Crater −15.5 and hills
+  −10.7 points fail**, Normal Ground +0.3 ok. Overall it would have won by 47 points (88.8 % against 41.6 %):
+  D19 decides this case too.
+- **What the rehearsal says for the real run:** the pipeline works end to end on seven classes with every guard
+  in place; the times are ~22 h for the SVM map and ~21 h for the U-Net map after the review, run one after the
+  other ~2 days. The U-Net learns the new classes well where the SVM does not (edifice user's 0.766 against
+  0.280, apron 0.913 against 0.180), at a cost to Crater and hills on the old ground. These are an agent's labels,
+  so none of this is the scheme's result.

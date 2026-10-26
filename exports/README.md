@@ -1,6 +1,6 @@
 # Vector layers from `Mars Project.gdb`
 
-Exported by [`github_export_gdb.py`](../Mars%20Remote%20Sensing%20Project/build/github_export_gdb.py) on 2026-10-23.
+Exported by [`github_export_gdb.py`](../Mars%20Remote%20Sensing%20Project/build/github_export_gdb.py) on 2026-10-26.
 Every feature class in the project geodatabase except the third-party reference layers (`Ref_*`:
 the USGS geologic map and the Robbins crater database, available from their publishers). Row counts
 were checked against the source.
@@ -45,6 +45,9 @@ the labels and nomenclature are in geographic `Mars_2000_(Sphere)`.
 | `DL_Detections_heldout_20261019` | Polygon | 1,838 | Mars_Equidistant_Cylindrical_CM180 |  | `Class`, `Classvalue`, `Confidence`, `Model`, `MappedBy` |
 | `DL_UNet_Heldout_Scores_20261020` | Polygon | 183 | Mars_2000_(Sphere) |  | `Classname`, `Classvalue`, `Block`, `UNet_Own`, `UNet_Major`, `SVM_Own`, `SVM_Major`, `MappedBy` |
 | `Landform_TrainingSamples_v2_proposals` | Polygon | 1,086 | Mars_2000_(Sphere) | The seven-class revision (D17), proposed, not decided: the 512 with an `Action` and its evidence each, plus 574 new polygons for classes 5-7. Only rows the author sets `Review` accept on enter the v2 labels, through `apply_label_review.py` (KB §68.5, §69.2). | `OldOID`, `OldClass`, `OldName`, `Action`, `ProposedClass`, `ProposedName`, `Subtype`, `Reason`, `Evidence`, `Split`, `Block`, `KM2`, `ShareVolc`, `ShareVE`, `ShareApron`, `CraterCover`, `MaxCraterKm`, `ReliefM`, `SlopeMed`, `ValleyKm`, `Review`, `ReviewNote`, `MappedBy` |
+| `Landform_TrainingSamples_v2p` | Polygon | 1,085 | Mars_2000_(Sphere) | A rehearsal, not the author's labels: every v2 proposal taken as proposed (`apply_label_review.py --rehearsal`), to test the v2 runs before the review (KB §69.4). Never a result. | `Classcode`, `Classname`, `Classvalue`, `RED`, `GREEN`, `BLUE`, `Subtype`, `ProposalOID`, `OldOID`, `MappedBy` |
+| `Landform_TrainingSamples_v2p_60_train` | Polygon | 827 | Mars_2000_(Sphere) | The rehearsal labels clipped to ±60°, training half (827; KB §69.4). | `Classcode`, `Classname`, `Classvalue`, `RED`, `GREEN`, `BLUE`, `Subtype`, `ProposalOID`, `OldOID`, `MappedBy`, `Split`, `Block` |
+| `Landform_TrainingSamples_v2p_60_test` | Polygon | 258 | Mars_2000_(Sphere) | The rehearsal labels clipped to ±60°, held-out half (258; KB §69.4). | `Classcode`, `Classname`, `Classvalue`, `RED`, `GREEN`, `BLUE`, `Subtype`, `ProposalOID`, `OldOID`, `MappedBy`, `Split`, `Block` |
 
 **In the release GeoPackage only** (too big for git: GitHub refuses files over 100 MB): `mars_project_vectors.gpkg.zip` in [`data-2026-10-21`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-21):
 

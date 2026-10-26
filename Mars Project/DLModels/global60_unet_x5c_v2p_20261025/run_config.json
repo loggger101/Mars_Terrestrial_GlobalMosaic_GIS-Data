@@ -1,0 +1,20 @@
+{
+ "in_folder": [
+  "C:\\MarsScratch\\x5c_v2p\\export_tiles"
+ ],
+ "out_folder": "C:\\MarsScratch\\x5c_v2p\\models\\global60_unet_x5c_v2p_20261025",
+ "max_epochs": 30,
+ "model_type": "UNET",
+ "batch_size": 8,
+ "arguments": "class_balancing True;ignore_classes [0]",
+ "backbone_model": "RESNET34",
+ "validation_percentage": 10,
+ "stop_training": "CONTINUE_TRAINING",
+ "freeze": "UNFREEZE_MODEL",
+ "chip_size": 256,
+ "monitor": "VALID_LOSS",
+ "host": "DESKTOP-PJS73RO",
+ "seconds": 28050,
+ "finished": "2026-10-26 00:03",
+ "script": "make_dl_pixels.py"
+}
