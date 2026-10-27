@@ -146,11 +146,15 @@ still waits for ≥ 10 fluvial and ≥ 10 volcanic channels: set `Origin` on the
 `Landform_ChannelCenterlines` (a rerun skips copied rows). Layout 14 rebuilt and read.
 **10-27 (KB §69.8): the label review (2b) is all but done.** The author reviewed 162 of the 164 rows that are
 not new apron or fluvial strips (512 and edifice 870 left); the 172 apron and 276 fluvial rows were left to the
-agent and reviewed by a written rule (`buildeview_v2_by_rule.py`: fluvial strips accepted only on a floor ≥ 20 m
+agent and reviewed by a written rule (`build
+eview_v2_by_rule.py`: fluvial strips accepted only on a floor ≥ 20 m
 below their flanks and off volcanic plains, 192 / 276; aprons only if not flat and not in craters, 155 / 172).
 `apply_label_review.py --dry-run`: no overlaps; **every class meets §11.3 but hills (training in 2 blocks)**.
-Open before 2c: hills (draw a few in a third training block, or `--keep-short`), and the six rejected Crater
-checks (21, 38, 42, 47, 48, 54), which enter as Crater as things stand.
+The author's answers: the six rejected Crater checks (21, 38, 42, 47, 48, 54) are dropped; hills stays in with
+`--keep-short`. **Applied:** `Landform_TrainingSamples_v2` 971 labels (734 training, 237 held out). **2c is
+running:** `build\run_v2.ps1` started 10-27 01:32, SVM then U-Net, ~2 days; **keep Pro closed** until
+`build\logs\run_v2\queue.log` says "queue done". Then the agent reads the scores and D18's verdict, and makes
+the layouts (§11.5 step 4).
 
 **The digitising classes hold 94 channels and 26 crater rims (0 lava margins); 549 of 9,287 candidates are
 reviewed, none at Athabasca.** The review is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
@@ -163,13 +167,13 @@ delay it.
 | 1 | **Review the Ius candidates** (the 188 steep channels done; 1,324 depressions open), then Athabasca; draw breached craters and the Athabasca lava margins | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
 | 2a | ~~**Class revision, proposals**~~ **done 2026-10-23 (KB §69.2):** the 512 with evidence and an `Action` each, plus new polygons for classes 5–7, in `Landform_TrainingSamples_v2_proposals` and a map in the `.aprx` | agent, drive | §11.2 | every label has an `Action`; each new class meets §11.3's minimum in proposals |
-| 2b | **Review the label proposals**: done but for hills (short of §11.3) and the six rejected Crater checks (KB §69.8); apron and fluvial rows by the agent's rule at the author's word | author, in Pro | §11.4 | every non-`keep` row reviewed, every class at §11.3's minimum: by **~18 Nov** so the v2 runs land before the freeze |
-| 2c | v2 labels and split; SVM and U-Net on v2; both maps scored on v2; D18's verdict; layouts and the final | agent, desktop | §11.5 | results in the KB beside the four-class scores, by the **22 Nov** freeze |
+| 2b | ~~**Review the label proposals**~~ **done 2026-10-27 (KB §69.8):** the author's rows, the apron and fluvial rows by the agent's rule at the author's word; applied with hills kept short (`--keep-short`) | author, in Pro | §11.4 | every non-`keep` row reviewed |
+| 2c | v2 labels and split (done 10-27); SVM and U-Net on v2 (**running since 10-27 01:32**, `run_v2.ps1`); both maps scored on v2; D18's verdict; layouts and the final | agent, desktop | §11.5 | results in the KB beside the four-class scores, by the **22 Nov** freeze |
 | 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). ±60° U-Net map made (§66.7), seams removed (§66.8), in the project beside the published SVM map with layout 17 (§66.9), in the interim and the release `data-2026-10-21` (§66.10). For the author: any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
 | 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
 | 5 | The interim: content cut on 26 Oct (D20) and rebuilt, percentages set (D16); the due date from the author, then deliver | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 
-**Waiting on the author:** items 1, 2b, 3 and 5; whether to delete the two recreated `_60_smoke` classes
+**Waiting on the author:** items 1, 3 and 5 (and Pro kept closed while `run_v2.ps1` runs); whether to delete the two recreated `_60_smoke` classes
 (KB §57.1); whether to publish a derivatives release carrying the §54 patch (33 GB; the catalogue says how
 to patch a restore instead, §57.4); emptying the Recycle Bins (~21 GB of finished scratch, §57.5).
 

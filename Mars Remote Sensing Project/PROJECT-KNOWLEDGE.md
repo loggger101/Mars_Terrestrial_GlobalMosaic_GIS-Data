@@ -272,10 +272,10 @@ the builders' own PNGs are written before `polish_layouts.py` runs, so copy the 
 ## 6. Geodatabase inventory
 
 `Mars Project.gdb`, read with `arcpy` on 2026-10-18 (§58.2); X5's detections added 2026-10-19 (§66.3), the label
-proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal labels the same day (§69.4). All of
+proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal labels the same day (§69.4), the v2 labels 2026-10-27 (§69.8). All of
 §6 is **[V]**.
 
-### Feature classes — 34 present
+### Feature classes — 37 present
 
 | Dataset | Geometry | Rows | Made by |
 |---|---|---|---|
@@ -297,6 +297,7 @@ proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal lab
 | `Landform_TrainingSamples_terrain_60_train`, `_60_test` | Polygon | 329, 183 | the labels clipped to ±60° and split by 15° blocks (§31.3) |
 | `Landform_TrainingSamples_v2_proposals` | Polygon | 1,086 | the seven-class proposals (§69.2): the 512 copied with an `Action` (474 keep, 12 relabel, 23 check, 1 clip, 1 delete, 1 fix) and 574 new; for the author's review (2b), never a training set until applied |
 | `Landform_TrainingSamples_v2p`, `_v2p_60_train`, `_v2p_60_test` | Polygon | 1,085, 827, 258 | the rehearsal labels (§69.4): every proposal taken as proposed, **not the author's review**; for `--labels v2p` only |
+| `Landform_TrainingSamples_v2`, `_v2_60_train`, `_v2_60_test` | Polygon | 971, 734, 237 | the seven-class labels from the review (§69.8; apron and fluvial rows by the agent's rule at the author's word); for `--labels v2` |
 | `DL_Detections_heldout_20261019` | Polygon | 1,838 | X5's RetinaNet boxes around the held-out labels (§66.2); stack SR, XY domain widened 400 km (§66.3) |
 | `DL_UNet_Heldout_Scores_20261020` | Polygon | 183 | the held-out labels with each one's own-class share and majority class under the U-Net (two passes) and the published SVM map, at 400 m (§66.9) |
 | `TrainingSamples_202609290009589587982` | Polygon | 455 | manual (GUI), 29 Sep (§29.2) |
@@ -502,7 +503,7 @@ older one**. A false claim wearing a `[V]` is worse than none.
 | `verify*`, `check_*`, `test_*` | checks claims against the project files |
 | bare noun | a module: `paths.py`, `grid60.py`, `areas.py`, `interim.py`, `le_theme.py`, `layoutkit.py` |
 
-**Counted 2026-10-27 (§69.8):** 165 build scripts on the drive (161 `.py`, 4 `.ps1`); 164 in the public repo, which leaves out
+**Counted 2026-10-27 (§69.8):** 166 build scripts on the drive (161 `.py`, 5 `.ps1`); 165 in the public repo, which leaves out
 `neutral_voice.py`. The repo's `docs/scripts.md` catalogues them; `tools/check_repo.py` fails if the README's count drifts.
 
 **Every figure has a script that regenerates it.** Type-area products are `ius_*` in `Mars Project\TypeArea\`
@@ -4231,6 +4232,36 @@ left them; the change is in `Landform_TrainingSamples_v2_proposals`.
   class, training / held out: Crater 175 in 15 blocks / 122 in 8; **hills 28 in 2 / 16 in 3, short** (§11.3:
   training needs 3 blocks); lava tube 20 in 3 / 18 in 2; Normal Ground 99 / 22; edifice 112 in 23 / 12 in 3;
   apron 139 in 21 / 16 in 3; fluvial 166 in 96 / 32 in 8. Every class but hills meets the minimum.
-- **Waiting on the author before the v2 runs (2c, ~2 days with Pro closed):** hills, left as it is, drops out of
-  the v2 split (a six-class map that D18's rule (c) cannot score for hills). The way out is a few hills polygons
-  drawn in a third training block (§11.3: massifs outside Valles Marineris), or `--keep-short`.
+- **The author's answers, the same night:** the six rejected Crater checks are **not craters, drop them**
+  (set to an accepted `delete`, `ReviewNote` "author 10-27: not a crater, drop"); hills **stays in, with
+  `--keep-short`** (training in 2 blocks against §11.3's 3: a limit the final must state).
+- **Applied** (`apply_label_review.py --keep-short`, 81 s; `logs\label_review_applied.json`):
+  `Landform_TrainingSamples_v2` 971 labels, `_v2_60_train` 734, `_v2_60_test` 237; no overlaps. Crater now 170
+  training in 14 blocks / 121 held out in 8; the other classes as above.
+- **The v2 runs started 2026-10-27 01:32** (2c, NEXT-STEPS §11.5 steps 2–3): `build\run_v2.ps1`, the rehearsal's
+  queue with `--labels v2` (SVM, then U-Net; logs in `build\logs\run_v2\`), detached; ~2 days by the rehearsal's
+  times, Pro closed throughout. 58 GB free on `C:` at the start (the rehearsal had ~50).
+
+### 69.9 The interim cleared of anything that reads as machine-made — 2026-10-27, desktop **[V]**
+
+At the author's request ("remove anything that would look machine-made"). The content is the 26 Oct cut's (D20);
+no number changed (`verify_interim.py`).
+
+- **Taken off the page:** the report's closing "Generated … by build_interim_report_live.py from interim.py"; the
+  "PROJECT-KNOWLEDGE.md §…" source line under every slide and figure; the "KB" column of the processing log; the
+  § references inside the band, issue and next-step text and on the correlation note; the decision code "(D17)";
+  "WARNING 000869", "Gradient_*", "(desktop)", "Desktop:", "on the desktop" and "(layout 14)" (now "the
+  validation sheet"); the locator slide's "Where:" title. The § stay in `interim.py` as comments and in each
+  figure's `source` field, which is no longer printed.
+- **Inside the pictures:** the thermal-provinces figure's footnote ended "PROJECT-KNOWLEDGE.md §28.10"
+  (`make_fig_global60.py`, redrawn; the final paper's copy crops that strip); layout 16's legend read
+  "X5 detections, RetinaNet (1,838 boxes; KB §66.2)": `make_interim_figs.py` now renames such layers in memory
+  for the export ("RetinaNet detections (1,838 boxes)"), so the .aprx and the sheet are unchanged. No other
+  interim legend item carries an internal label (checked with arcpy).
+- **File properties:** python-docx wrote author "python-docx" and comment "generated by python-docx";
+  python-pptx wrote last-modified-by "Steve Canny" (its own author) and "generated using python-pptx". Both
+  builders now set author and last-modified-by to the author, the title to the project title, and clear the
+  comment. Picture alt text was the image file name (`10_global60_locator__map.png`); it is now the figure title.
+- **Rebuilt and read:** deck 30 slides, report 21 pages (23 before: no source lines); every page and the changed
+  slides read; a text search of both PDFs finds no "PROJECT-KNOWLEDGE", "KB", "§", ".py", "D1x/D2x", "X5",
+  "desktop" or "Generated".
