@@ -146,8 +146,7 @@ still waits for ≥ 10 fluvial and ≥ 10 volcanic channels: set `Origin` on the
 `Landform_ChannelCenterlines` (a rerun skips copied rows). Layout 14 rebuilt and read.
 **10-27 (KB §69.8): the label review (2b) is all but done.** The author reviewed 162 of the 164 rows that are
 not new apron or fluvial strips (512 and edifice 870 left); the 172 apron and 276 fluvial rows were left to the
-agent and reviewed by a written rule (`build
-eview_v2_by_rule.py`: fluvial strips accepted only on a floor ≥ 20 m
+agent and reviewed by a written rule (`build\review_v2_by_rule.py`: fluvial strips accepted only on a floor ≥ 20 m
 below their flanks and off volcanic plains, 192 / 276; aprons only if not flat and not in craters, 155 / 172).
 `apply_label_review.py --dry-run`: no overlaps; **every class meets §11.3 but hills (training in 2 blocks)**.
 The author's answers: the six rejected Crater checks (21, 38, 42, 47, 48, 54) are dropped; hills stays in with
