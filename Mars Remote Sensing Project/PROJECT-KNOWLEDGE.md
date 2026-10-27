@@ -502,7 +502,7 @@ older one**. A false claim wearing a `[V]` is worse than none.
 | `verify*`, `check_*`, `test_*` | checks claims against the project files |
 | bare noun | a module: `paths.py`, `grid60.py`, `areas.py`, `interim.py`, `le_theme.py`, `layoutkit.py` |
 
-**Counted 2026-10-23 (§69.1):** 163 build scripts on the drive (160 `.py`, 3 `.ps1`); 162 in the public repo, which leaves out
+**Counted 2026-10-27 (§69.8):** 165 build scripts on the drive (161 `.py`, 4 `.ps1`); 164 in the public repo, which leaves out
 `neutral_voice.py`. The repo's `docs/scripts.md` catalogues them; `tools/check_repo.py` fails if the README's count drifts.
 
 **Every figure has a script that regenerates it.** Type-area products are `ius_*` in `Mars Project\TypeArea\`
@@ -4197,3 +4197,40 @@ earlier the same day (D20), so this is for the final.
 - **T4 (H2)**, `make_t4_channel_h2.py`: stage 1 reproduces §51.1 (median gradient diff −8.85 [−15.69, −5.76] m/km,
   AUC 0.81 / 0.50 / 0.81); **stage 2 still waits**, `{indeterminate: 94}` against ≥ 10 fluvial and ≥ 10 volcanic.
 - The label proposals (2b): 0 of 1,086 rows reviewed. Lava margins: 0 drawn.
+
+### 69.8 The label review (2b): the author's rows, and the apron and fluvial rows by a written rule — 2026-10-27, desktop **[V]**
+
+Read after the author saved and closed Pro (no locks). The candidate classes and digitising classes are as §69.7
+left them; the change is in `Landform_TrainingSamples_v2_proposals`.
+
+- **The author's review, in Pro: 162 of the 164 non-`keep` rows that are not new apron or fluvial strips.**
+  Checks 23 (17 accept, 6 reject): of the 15 Crater checks 9 accepted (2, 3, 4, 6, 16, 17, 18, 46, 434) and 6
+  rejected (21, 38, 42, 47, 48, 54); the 7 lava-tube chains near Uranius Fossae (318–324) accepted as lava tube;
+  435 accepted as fluvial. **A rejected check of the 512 enters as it was** (§11.4), so the six rejected Crater
+  checks still enter as Crater unless the author meant them dropped (asked 10-27). Relabels 12 (10 accept: the five
+  volcanoes to 5 and the five lava tubes to 7; **334 and 335 rejected**, so they stay lava tube); the clip of 290
+  and the delete of 350 accepted;
+  new edifice pieces 125 of 126 (119 accept, 6 reject). **Not reviewed:** 512 (`fix`, so it enters as it was) and
+  edifice piece 870 (left out). No outline was edited (every geometry within 1 % of the proposed `KM2`), so the
+  accepted edifice pieces are the untrimmed 3° pieces.
+- **The new apron (172) and fluvial (276) rows were left to the agent**, at the author's word ("the classification
+  of aprons and fluvial channels i will leave to you to accept them as i will not be able to do it myself").
+  `build\review_v2_by_rule.py` sets their `Review` by a rule fixed before it ran; `ReviewNote` begins "agent rule
+  §69.8"; `logs\label_review_by_rule.json` holds every row's measures. **These are screens, not anyone's eye; the
+  final must say so:**
+  - fluvial: accept if the strip's median DEM height is ≥ 20 m below that of a 4.8 km geodesic flank ring
+    around it, and `ShareVolc` < 0.5 (on volcanic plains a channel's origin, water or lava, is H2's open
+    question). Floor depth deciles −11, 12, 25, 37, 48, 62, 83, 113, 172 m. **192 accept, 84 reject** (61 no
+    floor, 15 volcanic, 8 both). Strip 778 on the Arsia flank, flagged in §69.2, sits 178 m above its flanks:
+    rejected.
+  - apron: accept if `SlopeMed` ≥ 1° and `CraterCover` < 0.5. **155 accept, 17 reject** (11 flat, 6 in craters).
+    Accepted pieces keep their coarse outlines (§68.5: mesas and plains inside), untrimmed.
+  - The proposals class was copied first to `.backups\proposals_20261027-002809.gdb` (an earlier copy, `-002234`,
+    is from a first run that stopped at the first row: `ReviewNote` holds 60 characters).
+- **`apply_label_review.py --dry-run`** (nothing written): 0 overlaps between classes or across the split. Per
+  class, training / held out: Crater 175 in 15 blocks / 122 in 8; **hills 28 in 2 / 16 in 3, short** (§11.3:
+  training needs 3 blocks); lava tube 20 in 3 / 18 in 2; Normal Ground 99 / 22; edifice 112 in 23 / 12 in 3;
+  apron 139 in 21 / 16 in 3; fluvial 166 in 96 / 32 in 8. Every class but hills meets the minimum.
+- **Waiting on the author before the v2 runs (2c, ~2 days with Pro closed):** hills, left as it is, drops out of
+  the v2 split (a six-class map that D18's rule (c) cannot score for hills). The way out is a few hills polygons
+  drawn in a third training block (§11.3: massifs outside Valles Marineris), or `--keep-short`.

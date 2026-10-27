@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 430 GB with all derived rasters, measured 2026-10-22). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 163, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 164, by purpose) · [backup and restore](docs/backup.md)
 
 [![Mars ±60° landform classification](docs/thumbs/04_global60_landforms.jpg)](Mars%20Project/Global60/layouts/04_global60_landforms.png)
 *The published landform map: four classes over ±60°, scored on hand-drawn polygons the classifier never saw (layout 04).*
@@ -36,7 +36,7 @@ The interim report and presentation are due **mid-November 2026** and the final 
 | Supervised classification | done at ±60° on the 512 hand-drawn labels, scored on held-out 15° blocks; **published as the 200 m map with an 11 × 11 (2.2 km) majority filter, 73.8%, κ 0.58** |
 | Channel and crater candidates | done at ±60°: 465,354 closed depressions ≥ 1 km and 969,822 channel segments, checked against the Robbins catalogue; in both type areas; 5,144 basins ≥ 20 km |
 | Deep learning | done on the held-out blocks: a RetinaNet detector (layout 16) and its retrain, scored per held-out polygon; a U-Net pixel classifier over ±60°, **98.9%, κ 0.980 held out** against the SVM map's 73.8% under the same scorer: a terrain-province map, its tile seams removed by a second, offset pass, shown beside the published SVM map (layout 17) |
-| Class scheme, four classes to seven | **in progress, for the final**: Crater narrowed to impact craters, volcanic plains counted as Normal Ground, three new classes (volcanic edifice, apron, fluvial channel). The 512 labels audited: five volcanoes had been labelled Crater. The proposals are built (1,086 rows: 12 relabels, 23 to check, 574 new polygons, the rest kept) in `Landform_TrainingSamples_v2_proposals` and the map "Labels v2: proposals", **waiting for the author's review** (0 of 1,086 reviewed). The seven-class SVM and U-Net runs are rehearsed end to end on the proposals taken as proposed (`--labels v2p`: a test of the pipeline, never a result); after the review the real runs take ~22 h (SVM) and ~21 h (U-Net) (KB §68, §69.2, §69.4) |
+| Class scheme, four classes to seven | **in progress, for the final**: Crater narrowed to impact craters, volcanic plains counted as Normal Ground, three new classes (volcanic edifice, apron, fluvial channel). The 512 labels audited: five volcanoes had been labelled Crater. The proposals are built (1,086 rows: 12 relabels, 23 to check, 574 new polygons, the rest kept) in `Landform_TrainingSamples_v2_proposals` and the map "Labels v2: proposals", **reviewed** (KB §69.8): the author's own rows done, the apron and fluvial strips screened by a written rule at the author's request (fluvial strips kept only on a valley floor, 192 of 276; aprons only where not flat, 155 of 172); hills still needs polygons in a third training block before the runs. The seven-class SVM and U-Net runs are rehearsed end to end on the proposals taken as proposed (`--labels v2p`: a test of the pipeline, never a result); after the review the real runs take ~22 h (SVM) and ~21 h (U-Net) (KB §68, §69.2, §69.4) |
 | Landform digitising | **started, the critical path**: at Ius, the 188 steep channel candidates and 361 closed depressions reviewed (precision 54% and 7%); 94 channels and 26 crater rims accepted into the landform layers; Athabasca and the lava margins not started (KB §69.7) |
 | Map layouts | seventeen, below |
 
@@ -254,7 +254,7 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   163 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   164 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
   NEXT STUFF/              interim report and presentation; Final/: the AASTeX paper and the final deck (drafts)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
