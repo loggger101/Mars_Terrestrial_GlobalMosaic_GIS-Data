@@ -16,7 +16,7 @@ checklist, is `HANDOFF-DESKTOP.md`.
 
 ---
 
-## Resume here — 2026-10-24
+## Resume here — 2026-10-26
 
 **Where it stands.** Every scripted job up to the review is done and recorded (KB §53–§57): the ±60°
 fine pass (465,354 closed depressions ≥ 1 km, 969,822 channel segments, layouts 11–12); the 180° DEM
@@ -130,6 +130,8 @@ review:** trimming the valley strips to their floors is where the seven-class ma
 **2026-10-26 (KB §69.4): the rehearsal is done**, all 13 steps. The seven-class U-Net scores 88.8 %, κ 0.856 on
 the rehearsal polygons (four-class U-Net 41.6 %); by D18's rule as a report it too keeps the four-class map ((a)
 on classes 1–4, 90.4 against 98.9 %; Crater and hills in (c)). Times for the real run: SVM ~22 h, U-Net ~21 h.
+The label review (2b) has not started: 0 of 1,086 rows have a `Review` (read 2026-10-26 evening); §11.6 says
+what gives first if it is not done by 27 Oct.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not

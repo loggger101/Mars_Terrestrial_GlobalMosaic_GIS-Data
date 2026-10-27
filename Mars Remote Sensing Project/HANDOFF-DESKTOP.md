@@ -1,7 +1,7 @@
 # Working on the Mars Global Mosaic: the operating guide
 
 How to pick the project up on either machine: the first ten minutes, where everything is, the working rules, and the
-end of a session. Current to 2026-10-22.
+end of a session. Current to 2026-10-26.
 
 **Read this file first, then `NEXT-STEPS.md` "Resume here" (the state, the dates and every open task), then
 `PROJECT-KNOWLEDGE.md` as needed.** The record (`PROJECT-KNOWLEDGE.md`, "KB" below; § numbers point into it, and its
@@ -72,6 +72,13 @@ plans. When they disagree, the KB wins and the plan is fixed.
 - **Long jobs:** run detached with Python's output redirected by `cmd /c ... > log 2>&1`. Never stop a
   PowerShell queue that runs `& $py ... *> log`: it pipes the job's output, and killing it breaks the job.
   Two Pro runs at once are safe when each has its own inputs, model, scratch folder and logs (§56.1).
+- **Queues** (`build\run_rehearsal_v2p.ps1` is the one to copy, `-From <step>` to resume) write their own log with a
+  retrying `[IO.File]::AppendAllText`: `Add-Content` under `$ErrorActionPreference = "Stop"` ended a queue when a
+  watcher held the file. A watcher counts "queue done" lines; the log keeps earlier runs' lines. A PowerShell
+  `-replace` whose replacement holds `$_` inserts the whole input: use `.Replace()` (§69.4).
+- **`ClassifyPixelsUsingDeepLearning` leaks ~0.28 GB a tile in one process** (40 GB by tile 144; the pagefile ate C:):
+  run a ±60° pass in `--tiles` chunks of at most 60, one process each; stop a pass only just after a tile line
+  prints, so no tile is left partial (§69.4).
 - **Big writes go to internal disk first**, then one copy to the drive; the USB drive dropped off mid-write
   twice (§36.4). Reads cap near 112 MB/s (§2.2). **Never propose copying the project to internal disk.**
 - **`tasklist` can hang** for minutes inside a builder's "Pro is closed" check (0 % CPU, a child
@@ -89,7 +96,9 @@ plans. When they disagree, the KB wins and the plan is fixed.
 - **The class codes are fixed:** 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, and from the
   revision D17 (§68) 5 volcanic edifice, 6 apron, 7 fluvial channel. Never renumber or delete a class;
   `Landform_TrainingSamples_terrain` is never written (the revision goes through `_v2_proposals` and the
-  author's accept); the seven-class map is published only by D18's held-out rule (§68.4).
+  author's accept); the seven-class map is published only by D18's held-out rule, its (a) judged on v2 classes
+  1–4 (D19, §68.4, §69.4). **`--labels v2p` is a rehearsal** (every proposal taken as proposed), never a result:
+  not published, not in the interim, not used for D18; `labelsets.py` keeps its outputs apart by name.
 - **Score on held-out data**: `Landform_TrainingSamples_terrain_60_train` (329) and `_60_test` (183), split by
   whole 15° blocks. Never train on the test set.
 - **Every number from its source**: the rasters, logs and the KB, never a previous document; round from the log's
