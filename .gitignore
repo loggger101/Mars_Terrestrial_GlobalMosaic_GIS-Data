@@ -4,3 +4,5 @@ __pycache__/
 *-DESKTOP-PJS73RO.*
 # ArcGIS/GDAL lock files
 *.lock
+# navy copies of the interim figures, rebuilt by make_interim_dark.py (KB 69.13)
+Mars Remote Sensing Project/build/interim_img/dark/

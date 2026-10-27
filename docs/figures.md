@@ -65,7 +65,9 @@ exports every sheet; the PNGs here are the polished exports.
 Drawn from the tests' JSON logs in [`build/logs/`](../Mars%20Remote%20Sensing%20Project/build/logs) (the province chart
 from the KB's own §28.10 tables), never retyped. They are the interim deck's figures, in
 [`build/interim_img/`](../Mars%20Remote%20Sensing%20Project/build/interim_img) (the province chart in
-[`build/pres1_img/`](../Mars%20Remote%20Sensing%20Project/build/pres1_img)).
+[`build/pres1_img/`](../Mars%20Remote%20Sensing%20Project/build/pres1_img)). The deck itself shows navy-ground
+copies of these charts and of its layout crops, made by `build/make_interim_dark.py` into `build/interim_img/dark/`
+(not tracked: rerun the script to rebuild them; the report and the paper use the white originals).
 
 | | What it shows | Made by · log |
 |---|---|---|

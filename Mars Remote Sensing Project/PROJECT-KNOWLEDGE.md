@@ -4323,3 +4323,47 @@ skill) were followed; the report is not touched.
   progress bars (above), the "#" column wrapping 10–14, half-empty cards, map labels showing through the title
   slide's text. `tools/check_repo.py` passes with the new script catalogued (166).
 - **Clone only**, like §69.10: copy to the drive before the next `github_sync.py`.
+
+### 69.12 The interim deck repainted navy, one family of blues throughout — 2026-10-27, laptop **[V]**
+
+The author's request ("the main color should be navy or other dark blue; try to keep a mostly consistent design
+throughout"), the same day as §69.11, words, numbers and layout unchanged. `mars_theme.py`'s palette is now one
+hue family: **navy #0E2841** (`le_theme.py`'s own, so the interim matches the author's Presentation 1 navy) for
+the title and divider slides, their veil over the mosaic, every table head and the numbered dots; **blue
+#1D5C9E** (7:1 on white) for kickers, bullets, issue labels and the correlation shading; **sky #8CC4EC** (7.9:1 on
+navy) for the headline numbers and kickers on dark slides; the card and row tint `le_theme.py`'s #EEF3F8. Rust,
+basalt and dust are gone. The progress bars became **two shades of one hue**: navy for what was done by 13
+September, light blue for what was added since, grey for what is left (the navy tick of the first repaint was lost
+against the blue bar). The charts keep their own blue and orange (§69.11). Checked: 31 slides, `verify_interim.py`
+294, the pptx skill's `validate.py` passes, every slide rendered through PowerPoint and read on contact sheets.
+Clone only, like §69.10.
+
+### 69.13 The interim deck dark throughout: navy slides, navy-ground charts and maps — 2026-10-27, laptop **[V]**
+
+The author's request ("I would like the main themes to be darker colors, I don't want to be blinded by white
+backgrounds"), the same day as §69.12; words, numbers and slide layouts unchanged.
+
+- **Every slide on navy** (`mars_theme.py`): the ground `NAVY` #0E2841; text light (`INK` #EAF0F7, `MUTED`
+  #A9BACD), titles white, kickers, bullets, issue labels and the numbered dots sky #8CC4EC; cards and alternate
+  rows a lighter navy (`TINT` #163A61), table heads a deeper one (`DEEP` #081A2E), table rules navy (PowerPoint's
+  default table style draws them white). The correlation shading runs from the card navy to blue #4A90D9, the
+  independent pairs in bold sky; the progress bars light blue for 13 September, blue for what was added since,
+  dark for what is left; the timeline's 10 Nov in sky.
+- **The figures, navy-ground, for the deck only: `build\make_interim_dark.py`** -> `interim_img\dark\` (42 files,
+  37 MB, git-ignored and rebuilt by the script; the builder takes a dark copy where one exists). The report, the
+  final paper and the README keep the white originals; `git status` showed none of them changed.
+  - **Charts:** each of the seven chart scripts runs unchanged with `Figure.savefig` wrapped: the finished figure is
+    recoloured for navy and written to `dark\`. Neutral greys swap ends (paper -> navy, ink -> light), grey text is
+    lifted to stay readable, strong colours keep their value, light tints keep their hue and their distance from
+    the ground (so T8's weak bins stay quiet and its strong bins brightest), white text on a strong fill stays white.
+    Found in the reading: tick labels are made at draw time (the figure is now drawn first and the new colour passed
+    to `tick_params`), and the charts' blue-grey #5A6570 sat just over the grey threshold (0.08 -> 0.12).
+  - **Layouts:** the white page touching the edge of each export becomes navy; the small marks on it (panel titles,
+    scale bars, north arrows) are lightened; the map frames and imagery are untouched. In legends every white pixel
+    is page, text and outlines are lightened, filled swatches keep their colour so they still match the map. Found in
+    the reading: solid glyphs ("l", "I", "a") had passed as swatches and stayed black; a swatch must now be at least
+    18 x 8 px and 75 % filled.
+- **Checked:** 31 slides; `verify_interim.py` 294; the pptx skill's `validate.py` passes; every slide rendered
+  through PowerPoint and read on contact sheets, the chart and legend slides again after each fix.
+  `tools/check_repo.py` passes: the new script catalogued (167), and the check skips the git-ignored
+  `interim_img/dark/` as it skips the layout crops. Clone only, like §69.10.

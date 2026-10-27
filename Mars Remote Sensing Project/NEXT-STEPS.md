@@ -22,7 +22,8 @@ checklist, is `HANDOFF-DESKTOP.md`.
 interim refined for the 10 November presentation, the 26 Oct cut kept (the author's choice): the T4 and T8 charts
 redrawn at 200 dpi, the U-Net slide's legend moved clear of its takeaways, the title slide's subtitle no longer
 repeats the title, the schedule gives 10 Nov; both documents rebuilt (30 slides, 21 pages, 285 numbers). Then
-the deck redesigned at the author's request (KB §69.11): `mars_theme.py`, 31 slides, words and numbers unchanged
+the deck redesigned at the author's request (KB §69.11), repainted navy (§69.12), then dark throughout with navy-ground figures (§69.13,
+`make_interim_dark.py`; its `interim_img\dark\` is git-ignored: rerun it on the drive): `mars_theme.py`, 31 slides, words and numbers unchanged
 (294 numbers with the four on the results divider); `le_theme.py` and the report untouched. These
 files were written in the clone only: `git diff --name-only e6ec284 HEAD -- "Mars Remote Sensing Project"`. For
 each, check the drive copy still equals `e6ec284`'s (`git hash-object` against `git rev-parse e6ec284:<path>`; the

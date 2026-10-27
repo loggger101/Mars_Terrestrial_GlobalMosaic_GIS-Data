@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
-"""The interim deck's design for the 10 November talk (KB §69.11): basalt and rust over the project's own mosaic.
+"""The interim deck's design for the 10 November talk (KB §69.11-§69.13): navy throughout, over the project's mosaic.
 
 le_theme.py, the author's Presentation 1 design, stays as it is for the decks that still use it (Presentation 1,
-the final deck). This one:
+the final deck). This one, on 2026-10-27: basalt and rust first (§69.11), then navy and blues on white (§69.12),
+then every slide dark (§69.13; the author: "I don't want to be blinded by white backgrounds"):
 
   960 x 540 pt  |  Cambria headings, Calibri body (both ship with every Office since 2007; Aptos does not)
-  white content slides: a rust kicker above a 28 pt title, no rule under it, a quiet footer with the number
-  basalt (#17181C) title, divider and closing slides over Ius Chasma from the project's own 100 m mosaic
-  rust (#B4472A) marks what is ours to read: kickers, bullets, numbered dots, the bars of progress
-  dust (#E8A46A) carries figures on dark ground
+  every slide on navy (#0E2841, le_theme.py's); the title and divider slides over Ius Chasma from the project's
+    own 100 m mosaic; light text (INK #EAF0F7), a sky kicker above a white 28 pt title, a quiet footer
+  sky (#8CC4EC): kickers, bullets, labels, numbered dots, headline numbers; blue (#4A90D9): bars and shading
+  cards and alternate rows a lighter navy (TINT #163A61), table heads a deeper one (DEEP #081A2E)
+  the charts and layouts come navy-ground from make_interim_dark.py (interim_img\\dark\\), the originals white
 """
 
 import io
@@ -29,14 +31,15 @@ A = "http://schemas.openxmlformats.org/drawingml/2006/main"
 HEAD = "Cambria"
 BODY = "Calibri"
 
-BASALT = RGBColor(0x17, 0x18, 0x1C)
-INK = RGBColor(0x1E, 0x1F, 0x23)
-MUTED = RGBColor(0x62, 0x65, 0x6C)
-HAIR = RGBColor(0xDC, 0xDC, 0xE0)
-TINT = RGBColor(0xF3, 0xF3, 0xF5)
-RUST = RGBColor(0xB4, 0x47, 0x2A)
-DUST = RGBColor(0xE8, 0xA4, 0x6A)
-PALE = RGBColor(0xC9, 0xCB, 0xD1)
+NAVY = RGBColor(0x0E, 0x28, 0x41)
+INK = RGBColor(0xEA, 0xF0, 0xF7)            # text: light, on navy
+MUTED = RGBColor(0xA9, 0xBA, 0xCD)
+HAIR = RGBColor(0x2E, 0x50, 0x76)           # tracks and rules
+TINT = RGBColor(0x16, 0x3A, 0x61)           # cards, alternate rows
+DEEP = RGBColor(0x08, 0x1A, 0x2E)           # table heads
+BLUE = RGBColor(0x4A, 0x90, 0xD9)
+SKY = RGBColor(0x8C, 0xC4, 0xEC)
+PALE = RGBColor(0xC5, 0xD3, 0xE3)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 
 MARGIN = 56 * PT
@@ -66,7 +69,7 @@ def hexof(rgb):
     return "%02X%02X%02X" % (rgb[0], rgb[1], rgb[2])
 
 
-def bullet(p, level=0, color=RUST):
+def bullet(p, level=0, color=SKY):
     pPr = p._p.get_or_add_pPr()
     pPr.set("marL", str(200000 + 260000 * level))
     pPr.set("indent", "-200000")
@@ -114,7 +117,7 @@ def line(slide, x, y, w, h, text, size, align=PP_ALIGN.LEFT, **kw):
 def blank(prs, dark=False):
     s = prs.slides.add_slide(prs.slide_layouts[6])
     s.background.fill.solid()
-    s.background.fill.fore_color.rgb = BASALT if dark else WHITE
+    s.background.fill.fore_color.rgb = NAVY      # every slide dark (§69.13); `dark` kept for the callers
     return s
 
 
@@ -136,7 +139,7 @@ def card(slide, x, y, w, h, fill=TINT):
     return shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, x, y, w, h, fill, round_=0.05)
 
 
-def dot(slide, x, y, d, label, fill=RUST, color=WHITE, size=13):
+def dot(slide, x, y, d, label, fill=SKY, color=NAVY, size=13):
     """A numbered disc: the deck's one repeated mark."""
     sh = shape(slide, MSO_SHAPE.OVAL, x, y, d, d, fill)
     tf = sh.text_frame
@@ -150,7 +153,7 @@ def dot(slide, x, y, d, label, fill=RUST, color=WHITE, size=13):
 
 def kicker(slide, text, x=MARGIN, y=KICKER_Y, dark=False, w=CONTENT_W):
     return line(slide, x, y, w, 14 * PT, text.upper(), 10.5, bold=True,
-                color=DUST if dark else RUST, spacing=1.6)
+                color=SKY, spacing=1.6)
 
 
 def new(prs, title, kicker_text=None):
@@ -158,7 +161,7 @@ def new(prs, title, kicker_text=None):
     s = blank(prs)
     if kicker_text:
         kicker(s, kicker_text)
-    line(s, MARGIN, TITLE_Y, CONTENT_W, 44 * PT, title, TITLE_SIZE, font=HEAD)
+    line(s, MARGIN, TITLE_Y, CONTENT_W, 44 * PT, title, TITLE_SIZE, font=HEAD, color=WHITE)
     return s
 
 
@@ -180,13 +183,13 @@ def hero_image(slide, path, box, descr):
 
 
 def veil(slide, stops, angle=0):
-    """A basalt gradient over the picture: stops are (position 0-100, alpha 0-100)."""
-    sh = shape(slide, MSO_SHAPE.RECTANGLE, 0, 0, W, H, BASALT)
+    """A navy gradient over the picture: stops are (position 0-100, alpha 0-100)."""
+    sh = shape(slide, MSO_SHAPE.RECTANGLE, 0, 0, W, H, NAVY)
     spPr = sh._element.spPr
     for el in spPr.findall("{%s}solidFill" % A):
         spPr.remove(el)
     gs = "".join('<a:gs pos="%d"><a:srgbClr val="%s"><a:alpha val="%d"/></a:srgbClr></a:gs>'
-                 % (p * 1000, hexof(BASALT), a * 1000) for p, a in stops)
+                 % (p * 1000, hexof(NAVY), a * 1000) for p, a in stops)
     grad = etree.fromstring('<a:gradFill xmlns:a="%s" rotWithShape="1"><a:gsLst>%s</a:gsLst>'
                             '<a:lin ang="%d" scaled="0"/></a:gradFill>' % (A, gs, angle * 60000))
     spPr.find("{%s}prstGeom" % A).addnext(grad)
@@ -206,10 +209,21 @@ def bullets(s, items, size=16, top=BODY_Y, height=None, space=10, left=MARGIN, w
         lvl, text = it if isinstance(it, tuple) else (0, it)
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.space_after = Pt(space)
-        bullet(p, lvl, DUST if dark else RUST)
+        bullet(p, lvl, SKY)
         style(p.add_run(), size if lvl == 0 else size - 2,
-              color=WHITE if dark else (INK if lvl == 0 else MUTED)).text = text
+              color=INK if lvl == 0 else MUTED).text = text
     return tf
+
+
+def borders(cell, color, width=1.5):
+    """Cell rules in `color` (pt): PowerPoint's default table style draws them white, which glares on navy."""
+    tcPr = cell._tc.get_or_add_tcPr()
+    for tag in ("lnB", "lnT", "lnR", "lnL"):                 # inserted first-to-last: lnL, lnR, lnT, lnB
+        for old in tcPr.findall("{%s}%s" % (A, tag)):
+            tcPr.remove(old)
+        ln = etree.Element("{%s}%s" % (A, tag), w=str(int(width * PT)))
+        _sub(_sub(ln, "solidFill"), "srgbClr", val=hexof(color))
+        tcPr.insert(0, ln)
 
 
 def table(s, headers, rows, top=BODY_Y, widths=None, size=11, row_h=26 * PT, left=MARGIN,
@@ -228,7 +242,8 @@ def table(s, headers, rows, top=BODY_Y, widths=None, size=11, row_h=26 * PT, lef
         for j in range(len(headers)):
             c = t.cell(i, j)
             c.fill.solid()
-            c.fill.fore_color.rgb = BASALT if i == 0 else (TINT if i % 2 == 0 else WHITE)
+            c.fill.fore_color.rgb = DEEP if i == 0 else (TINT if i % 2 == 0 else NAVY)
+            borders(c, NAVY)
             c.margin_left = c.margin_right = Emu(7 * PT)
             c.margin_top = c.margin_bottom = Emu(2 * PT)
             c.vertical_anchor = MSO_ANCHOR.MIDDLE

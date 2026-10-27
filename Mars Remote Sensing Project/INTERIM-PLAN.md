@@ -16,6 +16,7 @@ deck and the report are builds, never hand-edited:
 
 ```
 <ArcGIS Pro Python> make_interim_figs.py          (desktop: D:\ArcGISPro\bin\Python\envs\arcgispro-py3\python.exe)
+python make_interim_dark.py                       (the deck's navy copies of the charts and layouts)
 python build_interim_live.py "..\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx"
 python build_interim_report_live.py "..\NEXT STUFF\Mars Mosaic - Interim Report.docx"
 python verify_interim.py
@@ -30,8 +31,8 @@ python verify_interim.py
   map runs full width and the legend sits beside the takeaways. Charts come from their own scripts, drawn from
   the logs: `make_fig_ablation.py`, `make_fig_t1_pro.py`, `make_fig_t8.py`, `make_fig_t4.py`, `make_fig_tes.py`,
   `make_fig_tests567.py`.
-- **`build\build_interim_live.py`** lays it out in `mars_theme.py` (since 2026-10-27, KB §69.11: basalt and rust
-  over the Ius mosaic, Cambria and Calibri; `le_theme.py`, the Presentation 1 design, before): title, goals,
+- **`build\build_interim_live.py`** lays it out in `mars_theme.py` (since 2026-10-27, KB §69.11–§69.13: every slide navy,
+  the charts and maps in navy-ground copies from `make_interim_dark.py`, over the Ius mosaic, Cambria and Calibri; `le_theme.py`, the Presentation 1 design, before): title, goals,
   spectral bands, the correlation matrix, tasks with progress bars, the processing log, a results divider with
   four headline numbers, one slide per figure, issues on two slides, next steps over a timeline. **31 slides; the report 21 pages, 21 figures** (2026-10-27, KB §69.9: nothing that reads as machine-made; 2026-10-26, KB §69.6: the text
   edited for plain wording, the failed first maps moved before the published one, the hypotheses in order H1, H2,

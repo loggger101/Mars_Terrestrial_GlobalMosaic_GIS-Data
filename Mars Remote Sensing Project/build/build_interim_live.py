@@ -17,9 +17,9 @@ import os
 import sys
 
 import interim as I
-from mars_theme import (deck, new, blank, line, kicker, bullets, table, note, card, dot, shape, textbox, TINT,
+from mars_theme import (deck, new, blank, line, kicker, bullets, table, note, card, dot, shape, textbox, TINT, DEEP,
                         style, no_bullet, hero_image, veil, credit, footer, png_size, PT, W, H, MARGIN,
-                        CONTENT_W, BODY_Y, BOTTOM, HEAD, BASALT, INK, MUTED, HAIR, RUST, DUST, PALE, WHITE)
+                        CONTENT_W, BODY_Y, BOTTOM, HEAD, NAVY, INK, MUTED, HAIR, BLUE, SKY, PALE, WHITE)
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
@@ -42,11 +42,17 @@ CREDIT_VIS = "Ius Chasma, 271–286°E: Viking MDIM 2.1 colour on this project's
 CREDIT_NIGHT = "Ius Chasma, 271–286°E: THEMIS night IR on this project's 100 m grid"
 
 
+def dark(p):
+    """The navy-ground copy from make_interim_dark.py, if there is one (KB §69.13)."""
+    d = os.path.join(IMG, "dark", os.path.basename(p))
+    return d if os.path.exists(d) else p
+
+
 def image_path(kind, ref):
     p = os.path.join(IMG, ref + ".png") if kind == "layout" else os.path.join(HERE, ref)
     if not os.path.exists(p):
         sys.exit("missing image %s: run make_interim_figs.py first" % p)
-    return p
+    return dark(p)
 
 
 def add_pic(s, path, x, y, w=None, h=None):
@@ -67,10 +73,11 @@ def below(s, f, y):
 def split_legend(s, f, path):
     """If make_interim_figs.py wrote <layout>__map.png and __legend.png, use them: the map
     across the full width, the takeaways under it on the left, the legend on the right."""
-    base = path[:-4]
+    base = os.path.join(IMG, os.path.basename(path)[:-4])
     m, lg = base + "__map.png", base + "__legend.png"
     if not (os.path.exists(m) and os.path.exists(lg)):
         return False
+    m, lg = dark(m), dark(lg)
     px_w, px_h = png_size(m)
     if f.get("map_left"):                    # a tall map (16, 17: frame A over frame B): map left at full
         w, h = add_pic(s, m, MARGIN, BODY_Y, h=FIG_H)   # height; takeaways, then the legend, on the right
@@ -141,7 +148,7 @@ def mix(a, b, t):
 
 
 prs = deck()
-dark = []                                    # slide numbers that carry no footer
+no_footer = []                               # slide numbers that carry no footer
 
 # ------------------------------------------------------------ title, investigators
 s = blank(prs, dark=True)
@@ -154,7 +161,7 @@ line(s, MARGIN, 246 * PT, 500 * PT, 56 * PT, subtitle, 20, color=PALE)
 line(s, MARGIN, 322 * PT, 500 * PT, 22 * PT, I.AUTHOR, 16, bold=True, color=WHITE)
 line(s, MARGIN, 344 * PT, 500 * PT, 18 * PT, "Status as of " + I.STATUS_DATE, 12, color=PALE)
 credit(s, CREDIT_VIS)
-dark.append(len(prs.slides._sldIdLst))
+no_footer.append(len(prs.slides._sldIdLst))
 
 # ------------------------------------------------------------ goals
 s = new(prs, "Project Goals", "The question")
@@ -186,11 +193,11 @@ for i, r in enumerate(c["r"], 1):            # each cell shaded by |r|, one hue:
             cell.fill.fore_color.rgb, run.font.color.rgb = HAIR, MUTED
         else:
             k = abs(v) ** 1.2
-            cell.fill.fore_color.rgb = mix(WHITE, RUST, k)
-            run.font.color.rgb = WHITE if k > 0.55 else INK
+            cell.fill.fore_color.rgb = mix(TINT, BLUE, k)
+            run.font.color.rgb = WHITE if k > 0.55 else (SKY if abs(v) < 0.2 else INK)
             run.font.bold = abs(v) < 0.2
 note(s, c["takeaway"], 372 * PT, size=14)
-note(s, "Each cell is shaded by the strength of the correlation: the darker, the more the two bands repeat "
+note(s, "Each cell is shaded by the strength of the correlation: the brighter, the more the two bands repeat "
         "each other.", 412 * PT, size=11)
 
 # ------------------------------------------------------------ tasks and percent complete
@@ -207,7 +214,7 @@ s = new(prs, "Project Tasks and Percent Complete", "Where it stands")
 ROW_H = 24 * PT
 cols = [32 * PT, 180 * PT, 424 * PT, 152 * PT, 60 * PT]       # 848 pt
 xs = [MARGIN + sum(cols[:k]) for k in range(len(cols))]
-shape(s, MSO_SHAPE.RECTANGLE, MARGIN, BODY_Y, CONTENT_W, ROW_H, BASALT)
+shape(s, MSO_SHAPE.RECTANGLE, MARGIN, BODY_Y, CONTENT_W, ROW_H, DEEP)
 for k, head in enumerate(["#", "Task", "Where it stands", "13 Sep  \u2192  now", "Now"]):
     cell(s, xs[k] + 7 * PT, BODY_Y, cols[k] - 14 * PT, ROW_H, head, bold=True, color=WHITE)
 bw = cols[3] - 16 * PT
@@ -220,10 +227,12 @@ for i, ((task, now, pct), sep) in enumerate(zip(I.PROGRESS, I.PROGRESS_SEPT), 1)
     mid = y + ROW_H // 2
     bx = xs[3] + 8 * PT
     shape(s, MSO_SHAPE.RECTANGLE, bx, mid - 4 * PT, bw, 8 * PT, HAIR)
-    if pct:
-        shape(s, MSO_SHAPE.RECTANGLE, bx, mid - 4 * PT, int(bw * pct / 100.0), 8 * PT, RUST)
-    shape(s, MSO_SHAPE.RECTANGLE, bx + int(bw * sep / 100.0) - PT, mid - 7 * PT, 2 * PT, 14 * PT, BASALT)
-note(s, "Bar: percent complete toward the final now. Dark tick: the same task on 13 September.",
+    if pct:                                  # two shades of one hue: done by 13 Sep, then added since
+        shape(s, MSO_SHAPE.RECTANGLE, bx, mid - 4 * PT, int(bw * pct / 100.0), 8 * PT, BLUE)
+    if sep:
+        shape(s, MSO_SHAPE.RECTANGLE, bx, mid - 4 * PT, int(bw * sep / 100.0), 8 * PT, SKY)
+note(s, "Bar: percent complete toward the final. Light blue: done by 13 September; blue: added since; "
+        "dark: still to do.",
      BODY_Y + 15 * ROW_H + 10 * PT, size=11)
 
 s = new(prs, "Processing Completed Since the Last Report", "Where it stands")
@@ -241,10 +250,10 @@ line(s, MARGIN, 192 * PT, 620 * PT, 20 * PT,
 tw = int((CONTENT_W - 3 * 24 * PT) / 4)
 for i, (num, what) in enumerate(I.HEADLINES):
     x = MARGIN + i * (tw + 24 * PT)
-    line(s, x, 300 * PT, tw, 52 * PT, num, 40, font=HEAD, color=DUST)
+    line(s, x, 300 * PT, tw, 52 * PT, num, 40, font=HEAD, color=SKY)
     line(s, x, 356 * PT, tw - 8 * PT, 60 * PT, what, 13, color=PALE)
 credit(s, CREDIT_NIGHT)
-dark.append(len(prs.slides._sldIdLst))
+no_footer.append(len(prs.slides._sldIdLst))
 
 for f in I.FIGURES:
     figure_slide(prs, f)
@@ -260,7 +269,7 @@ def issue_cards(s, items, cols, top, h, size):
         tf = textbox(s, x + 16 * PT, y + 12 * PT, cw - 32 * PT, h - 20 * PT)
         p = tf.paragraphs[0]
         no_bullet(p)
-        style(p.add_run(), size + 1, bold=True, color=RUST).text = label
+        style(p.add_run(), size + 1, bold=True, color=SKY).text = label
         p = tf.add_paragraph()
         no_bullet(p)
         p.space_before = Emu(3 * PT)
@@ -289,13 +298,13 @@ for i, (when, what) in enumerate(I.SCHEDULE):
     cx = int(MARGIN + (i + 0.5) * step)
     here = "interim presentation" in what.lower()   # the talk itself
     d = (16 if here else 11) * PT
-    shape(s, MSO_SHAPE.OVAL, cx - d // 2, ty - d // 2, d, d, RUST if here else BASALT)
+    shape(s, MSO_SHAPE.OVAL, cx - d // 2, ty - d // 2, d, d, SKY if here else MUTED)
     line(s, int(cx - step / 2 + 6 * PT), ty - 30 * PT, int(step - 12 * PT), 16 * PT, when, 12, bold=True,
-         align=PP_ALIGN.CENTER, color=RUST if here else INK)
+         align=PP_ALIGN.CENTER, color=SKY if here else INK)
     line(s, int(cx - step / 2 + 6 * PT), ty + 18 * PT, int(step - 12 * PT), 110 * PT, what, 11,
          align=PP_ALIGN.CENTER, color=MUTED)
 
-footer(prs, I.DECK_TITLE + "  \u00b7  Interim presentation", set(dark))
+footer(prs, I.DECK_TITLE + "  \u00b7  Interim presentation", set(no_footer))
 
 cp = prs.core_properties                      # python-pptx's defaults name its own author (KB §69.9)
 cp.author = cp.last_modified_by = I.AUTHOR

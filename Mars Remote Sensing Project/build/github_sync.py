@@ -130,7 +130,7 @@ GROUPS = [  # (heading, predicate on the script name); first match wins
                                         "make_zoom", "make_extra", "marsfig", "optimise_", "img_contrast"))),
     ("Deliverables and their checks", lambda n: n.startswith(("build_", "content", "deck_", "le_theme", "mars_theme", "pdf_pages",
                                                               "audit_", "verify_all", "verify2", "render", "interim",
-                                                              "make_interim_figs", "docx_kit", "verify_interim",
+                                                              "make_interim_figs", "make_interim_dark", "docx_kit", "verify_interim",
                                                               "final", "make_final_figs"))),
     ("Drive, paths and one-off fixes", lambda n: n.startswith(("paths", "areas", "desktop_check", "retarget_junction",
                                                                "osgeo_shim", "fix_", "landform_codes",
