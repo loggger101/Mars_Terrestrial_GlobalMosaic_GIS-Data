@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-27 (§69.19).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-27 (§69.20).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -41,7 +41,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | the GUI work of 24 Sep–1 Oct and its checks | §29, §30, §53.2 |
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
-| GitHub backup and releases | what would make the repository better, §69.19 (`NEXT-STEPS.md` §13); §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca), §66.10 (`data-2026-10-21`, the first with the deep-learning models) |
+| GitHub backup and releases | what would make the repository better, §69.19, and the sync's guard, §69.20 (`NEXT-STEPS.md` §13); §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca), §66.10 (`data-2026-10-21`, the first with the deep-learning models) |
 | the interim builds | §39.3, §45, §48, §51.5, §57.3, §66.10, §67 |
 
 ---
@@ -4572,3 +4572,45 @@ A second brainstorm while `run_v2.ps1` runs, on the repository and the project r
   newest `data-2026-10-21`.
 - **For the author:** D26 (commit the built documents at milestones only; no history rewrite) and D27 (closing the
   project after 8 Dec). D25 widened: the README's T1 section and the interim talk give the overall-accuracy gain alone.
+
+### 69.20 The number checks in CI; a guard on the sync; the vector-layer guide brought true — 2026-10-27, laptop **[V]**
+
+`NEXT-STEPS.md` §13.1 P1–P3, at the author's word. JPEG images were ruled out by the author the same day (§69.19).
+
+- **P1, `tools/check_repo.py`** (CI's check) gained check 8: `verify_interim.py` on `interim.py`, `final.py` and the
+  paper's `.tex`, and `score_metrics.py` rerun on the committed logs into a temporary file, compared with
+  `logs/score_metrics.json` as JSON. Each subprocess runs under CI's own Python with UTF-8 output. **Proved:** a copy
+  of `final.py` with "987.65 %" planted fails, naming the number; a stored score file with one value moved by 0.01
+  fails; the real tree passes. `check.yml`'s comment says so.
+- **P2, `github_sync.py`'s guard.** Before copying, for each drive file that would overwrite a tracked clone file,
+  it compares the drive's blob id (SHA-1 of the bytes; the repo stores files as is, `* -text`) with that path's
+  history. A drive file equal to an older committed version while the clone holds a later one means the drive is
+  behind: the sync copies and removes nothing, lists those files, the files changed on both sides since the newest
+  version the drive matches, and the files added in the clone since then (which a sync would delete), and exits 3.
+  `--force` overrides. **`--to-drive <commit>`** copies each file changed `<commit>..HEAD` onto the drive where the
+  drive still holds `<commit>`'s version (or nothing, for an added file); it lists, and leaves, files changed on
+  both sides, files not committed in the clone, files that cannot be read (a deck open in PowerPoint) and files
+  deleted in the clone (for deleting by hand); exit 1 if any are left. **`--drive <path>`** runs the clone's copy
+  against the drive, needed once because the drive's copy predates the guard; the clone's copy run without it
+  stops (the clone has a `Mars Project` folder too and would otherwise mirror itself).
+- **P2 tested** on a scratch drive and a scratch git clone (19 cases, all pass): the near-miss refused with and
+  without `--dry-run` and `--commit`, naming the stale file, the base, the both-sides file and the new file it would
+  delete, the clone untouched; `--to-drive` dry run writes nothing; the copy, its rerun ("already on the drive 2"),
+  an uncommitted clone file left alone; after the hand merge the sync runs; `--force`; an ordinary drive edit and a
+  drive deletion mirrored without refusal. **The committed (unguarded) script fails the same test** at the first
+  refusal case. Then against this clone's real history, with a scratch drive holding the mirrored trees as of
+  `e6ec284`: the guard refused, finding 14 stale files and **naming `e6ec284`** as the newest version the drive
+  matches, and 6 clone files a sync would have deleted (`score_metrics.py`, `v2_drafts.tex`, `mars_theme.py`,
+  `make_interim_dark.py`, `interim_block_scale.py`, `logs/score_metrics.json`); `--to-drive e6ec284 --dry-run` would
+  copy 20 of the 21 changed files, the 21st (`github_sync.py` itself) not yet committed. A first run met the interim
+  deck open in PowerPoint and stopped on the locked file; such files are now listed instead. ~12 s on this history.
+  The guard cannot see a clone that only added files while every other file matches HEAD (said in its docstring).
+- **P3, `exports/README.md`.** `github_export_gdb.py`'s `ABOUT` now describes the three `Landform_TrainingSamples_v2*`
+  layers, the two `DL_*` layers, and the channel and rim layers as accepted in review (no count: the export writes
+  it); the class-code note adds 5 volcanic edifice, 6 apron, 7 fluvial channel (`labelsets.py`). The page in the
+  clone was given the same text (read from the script with `ast`; the export needs arcpy); the next export writes
+  the same. `check_repo.py` check 9: every layer row has a description and none with rows says "empty"; **proved**
+  on the committed page (7 failures: the two "Empty" layers and the five undescribed) and passes on the new one
+  (33 rows).
+- **Documents:** `docs/backup.md`, `HANDOFF-DESKTOP.md` §4 and the README's line for `check_repo.py` describe the
+  guard and the new checks; "Resume here" now gives the `--to-drive` command for the desktop's clone → drive copy.

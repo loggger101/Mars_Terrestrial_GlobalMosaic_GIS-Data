@@ -282,7 +282,9 @@ drive-root/                the source rasters' sidecars and the night mosaic's P
 restore.py                 rebuilds the drive from this repository and its releases
 tools/check_repo.py        the checks CI runs on every push: page links, Python syntax, file sizes,
                            that the counts this page states match the tree, the figure index,
-                           alt text, and previews current with their sources
+                           alt text, previews current with their sources, every number in the
+                           interim, final deck and paper in the record, the stored scores
+                           reproduced, and every vector layer described
 tools/make_thumbs.py       rebuilds docs/thumbs/ after a layout or figure changes (needs Pillow)
 tools/check_remote.py      run by hand: release assets against their checksums, linked releases,
                            the source mosaics' addresses and sizes

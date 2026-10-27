@@ -25,9 +25,14 @@ repeats the title, the schedule gives 10 Nov; both documents rebuilt (30 slides,
 the deck redesigned at the author's request (KB §69.11), repainted navy (§69.12), then dark throughout with navy-ground figures (§69.13,
 `make_interim_dark.py`; its `interim_img\dark\` is git-ignored: rerun it on the drive): `mars_theme.py`, 31 slides, words and numbers unchanged
 (294 numbers with the four on the results divider), then refined (§69.14: tighter maps, one legend scale, verdicts on the hypothesis slides, the backgrounds' graticule painted out; 295 numbers), then given a "For scale" slide (§69.15: each band's 15° block against the nearest US state, Texas or California; new `build/interim_block_scale.py`; 32 slides, 325 numbers), and its graphics refined (§69.16: a ±60° grid strip on each block card, wide legends restacked to be read, a hidden dark swatch on a grey chip, Athabasca's legend beside its map); `le_theme.py` and the report untouched. These
-files were written in the clone only: `git diff --name-only e6ec284 HEAD -- "Mars Remote Sensing Project"`. For
-each, check the drive copy still equals `e6ec284`'s (`git hash-object` against `git rev-parse e6ec284:<path>`; the
-desktop's v2 run writes only `build\logs\run_v2\` and `Global60\`), then copy clone → drive.
+files were written in the clone only: `git diff --name-only e6ec284 HEAD -- "Mars Remote Sensing Project"` (the
+desktop's v2 run writes only `build\logs\run_v2\` and `Global60\`).
+**On the desktop, first** (KB §69.20): the drive's `github_sync.py` predates the guard, so run the clone's
+copy against the drive: `python "<clone>\Mars Remote Sensing Project\build\github_sync.py" --drive F:\
+--to-drive e6ec284 --dry-run`, read it, then again without `--dry-run`. It copies each file the clone changed
+since `e6ec284` whose drive copy is still `e6ec284`'s, and lists any the drive changed too (merge those by
+hand) and any the clone has not committed. Close the deck in PowerPoint first (a locked file is listed, not
+copied). Only then `github_sync.py` as usual; if it ever refuses (exit 3), it names the commit to pass.
 **Later 10-27, laptop (KB §69.17):** a brainstorm of what would strengthen the final paper, now **§12** of this
 plan: the paper's lines the freeze must change (§12.1), thirteen analyses that need no author time (A1–A13; first,
 after the v2 scoring: the channels scored against the valley map, T1 on v2, spatial baselines for the held-out score,
@@ -44,6 +49,12 @@ now **§13**: the number checks into CI (P1), a guard so `github_sync.py` cannot
 vector-layer guide brought true (P3), the built documents committed at milestones only (P4: they are nearly all of the
 860 MB history), the paper compiled in CI (P6), a real restore (P7), and closing the project
 after 8 Dec (P12). Two new decisions, D26 and D27; D25 widened to the README and an interim backup slide.
+**Later 10-27, laptop (KB §69.20):** P1–P3 done. `tools/check_repo.py` (CI) now runs the number checks on the
+interim, the final deck and the paper, reruns `score_metrics.py` against its stored file, and checks every layer
+in `exports/README.md` is described. `github_sync.py` refuses to copy over or delete clone-only work, and
+`--to-drive <commit>` does the clone → drive copy (the paragraph on the desktop above); tested on a scratch
+drive and clone, and against this clone's history with a drive as of `e6ec284` (20 files to copy). The vector-
+layer guide describes the v2 labels and the reviewed layers. Nothing new on the drive: copy with the rest.
 
 **Where it stands.** Every scripted job up to the review is done and recorded (KB §53–§57): the ±60°
 fine pass (465,354 closed depressions ≥ 1 km, 969,822 channel segments, layouts 11–12); the 180° DEM
@@ -647,9 +658,6 @@ review (§6) or the v2 scoring (§11.5); most of it is laptop work that fills th
 
 | # | what | adds | where | pri |
 |---|---|---|---|---|
-| P1 | **The number checks in CI**: `check.yml` also runs `verify_interim.py` on `interim.py`, `final.py` and the paper's `.tex`, and reruns `score_metrics.py --out` into a temporary file and compares it with `logs/score_metrics.json`. All four are stdlib and ran on the laptop without the drive (KB §69.19). Prove each fails on a planted defect (a number not in the KB; an edited log) | a push that changes the KB or a document can no longer break their agreement silently; today it is caught only when someone remembers to run them | laptop, minutes | A |
-| P2 | **`github_sync.py` refuses to revert clone-only edits**: before it copies a drive file over the clone, it checks whether the drive's bytes equal an older committed version of that path (`git hash-object` against the path's blobs in `git log`) while the clone's differ; if so the drive is stale, and it stops and lists the files. A `--to-drive <base>` mode then does what the memory and "Resume here" describe by hand: for each file changed `base..HEAD`, check the drive still holds `base`'s blob, copy clone → drive, and list those that differ for a hand merge. Test on the laptop with a scratch folder standing in for the drive | the same near-miss has happened twice (§68 → §69.1; `e6ec284` → now); the guard turns a silent revert into a refusal | laptop to write and test; first real use on the desktop | A |
-| P3 | **`exports/README.md` brought true**: `github_export_gdb.py`'s descriptions still call `Landform_ChannelCenterlines` (94 rows) and `Landform_CraterRims` (26) "Empty until digitised"; five layers have none (the three `Landform_TrainingSamples_v2*`, the labels the final rests on, and the two `DL_*` layers); the class-code note gives only the four classes. Fix the dictionary (the counts are written by the export, so say "accepted from review" without a number); add a `check_repo.py` check that every row has a description and that no row with rows > 0 says "Empty" | the page a data user reads first describes the final's labels | laptop to edit; the README regenerates at the next desktop export | A |
 | P4 | **The built documents committed at milestones only** (D26): the interim deck has been committed 22 times (498 MB of history) and the report 15 times (331 MB): nearly all of the 860 MB `.git` (KB §69.19). GitHub reports 720 MB and asks for under 1 GB. `github_sync.py` would skip the `.pptx`, `.docx` and paper `.pdf` unless given `--deliverables`, used once per deadline; between deadlines they are rebuilt from source on the drive and are not needed in the tree | stops ~25 MB per rebuild; the final's rebuilds alone would pass 1 GB at the interim's rate | laptop, minutes | A |
 | P6 | **The paper compiled in CI**: a job that builds the `.tex` with TeX Live (a TeX Live container image is the likely source of `aastex701.cls` **[?]**, unchecked) and fails on an undefined reference or citation; the PDF kept as the run's artifact. The laptop then sees a compile without the desktop | catches what the laptop cannot (this session's edits are uncompiled); one more check before the freeze | laptop to write, CI to run | B |
 | P7 | **A real restore**: `restore.py` has only ever been dry-run (KB §67.4). Restore one small release group into scratch on the desktop and compare every file with the drive by hash | the drive is the only full copy (§9); a backup is proven only by a restore | desktop, ~1 h | B |
@@ -666,7 +674,8 @@ question without changing the cut. The README follows whatever the paper says.
 
 ### 13.2 Order of work
 
-1. **Laptop, now:** P1, P2, P3, P4 (code only; P4's behaviour waits on D26), then P9 and P10.
+1. **Laptop, now:** P4 (code only; its behaviour waits on D26), then P9 and P10 (P1–P3 done 10-27, KB §69.20).
 2. **Either machine:** P6.
-3. **Desktop, when it is free of `run_v2.ps1`:** P2's first real use (the clone → drive copy), P3's export, P7, P8.
+3. **Desktop, when it is free of `run_v2.ps1`:** P2's first real use, the clone → drive copy ("Resume here");
+   the next `github_export_gdb.py` writes `exports/README.md` from the same descriptions (P3); P7, P8.
 4. **After 8 Dec:** P12.

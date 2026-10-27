@@ -19,13 +19,22 @@
    their docs/thumbs/ preview and linked in full. Each preview's source still has the SHA-256 that
    docs/thumbs/SOURCES.txt recorded, so a changed layout with a stale preview fails
    (rebuild with tools/make_thumbs.py).
+8. Every number in the interim's text (interim.py), the final deck's (final.py) and the paper's .tex is in
+   PROJECT-KNOWLEDGE.md (build/verify_interim.py on each), and build/score_metrics.py, rerun on the committed
+   logs, gives what build/logs/score_metrics.json holds (NEXT-STEPS §13.1 P1, KB §69.19).
+9. Every layer in exports/README.md has a description, and none with rows calls itself empty (§13.1 P3): the
+   text comes from github_export_gdb.py's ABOUT, the counts from the export, and the two drift apart.
 
 Exit code 1 and a list of failures if anything is wrong. Stdlib only.
 """
-import ast, hashlib, re, sys, urllib.parse
+import ast, hashlib, json, os, re, subprocess, sys, tempfile, urllib.parse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+BUILD = ROOT / "Mars Remote Sensing Project" / "build"
+# The documents whose every number must be in the record (verify_interim.py takes each as its argument).
+DOCUMENTS = [BUILD / "interim.py", BUILD / "final.py",
+             ROOT / "Mars Remote Sensing Project" / "NEXT STUFF" / "Final" / "paper" / "mars_global_mosaic.tex"]
 PAGES = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md")), ROOT / "exports" / "README.md"]
 LINK = re.compile(r"!?\[[^\]]*\]\(<?([^)>\s]+)>?(?:\s+\"[^\"]*\")?\)")
 HTML = re.compile(r"""\b(?:src|href)=["']([^"']+)["']""")
@@ -192,6 +201,46 @@ def counts():
     return len(stated)
 
 
+def run(*args):
+    """One of the build's stdlib scripts, as CI's Python runs it; (exit code, its output)."""
+    env = dict(os.environ, PYTHONIOENCODING="utf-8")
+    p = subprocess.run([sys.executable, *map(str, args)], cwd=BUILD, env=env, capture_output=True,
+                       text=True, encoding="utf-8", stdin=subprocess.DEVNULL, timeout=300)
+    return p.returncode, (p.stdout + p.stderr).strip()
+
+
+def numbers(documents=DOCUMENTS, scores=BUILD / "logs" / "score_metrics.json"):
+    for doc in documents:
+        code, out = run(BUILD / "verify_interim.py", doc)
+        if code:
+            fails.append(f"numbers not in the record: {doc.relative_to(ROOT)}\n    " + out.replace("\n", "\n    "))
+    with tempfile.TemporaryDirectory() as tmp:
+        fresh = Path(tmp) / "score_metrics.json"
+        code, out = run(BUILD / "score_metrics.py", "--out", fresh)
+        if code or not fresh.exists():
+            fails.append(f"score_metrics.py failed on the committed logs (exit {code}): {out[-300:]}")
+        elif json.loads(fresh.read_text(encoding="utf-8")) != json.loads(scores.read_text(encoding="utf-8")):
+            fails.append(f"build/logs/{scores.name} is not what score_metrics.py gives on the committed logs: rerun it")
+    return len(documents) + 1
+
+
+def layers(page=ROOT / "exports" / "README.md"):
+    rows = 0
+    for line in page.read_text(encoding="utf-8").splitlines():
+        m = re.match(r"\| `([^`]+)` \| [^|]+ \| ([\d,]+) \| [^|]+ \|(.*?)\|", line)
+        if not m:
+            continue
+        rows += 1
+        name, n, about = m.group(1), int(m.group(2).replace(",", "")), m.group(3).strip()
+        if not about:
+            fails.append(f"exports/README.md: {name} has no description (github_export_gdb.py's ABOUT)")
+        elif n and re.search(r"\bempty\b", about, re.I):
+            fails.append(f"exports/README.md: {name} has {n:,} rows but its description says it is empty")
+    if not rows:
+        fails.append("exports/README.md: no layer rows found")
+    return rows
+
+
 if __name__ == "__main__":
     print(f"links checked:   {links()}")
     print(f"python files:    {python()}")
@@ -200,6 +249,8 @@ if __name__ == "__main__":
     print(f"figures indexed: {figures()}")
     print(f"images shown:    {shown()}")
     print(f"previews:        {thumbs()}")
+    print(f"number checks:   {numbers()}")
+    print(f"layers described: {layers()}")
     citation()
     for f in fails:
         print("FAIL", f)

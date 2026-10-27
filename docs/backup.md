@@ -44,6 +44,14 @@ python github_sync.py --commit
 
 copies whatever changed into the clone, regenerates `docs/scripts.md`, commits and pushes. Files over 95 MB are reported and skipped.
 
+It copies one way, drive to clone, so work done in the clone without the drive would be reverted by it. It refuses instead (exit 3, nothing copied or removed) when a drive file is an older committed version of what the clone holds, and names the commit the drive matches; then
+
+```bash
+python github_sync.py --to-drive <commit> --dry-run
+```
+
+and again without `--dry-run` copies the clone's changes since that commit onto the drive, leaving and listing any file the drive changed too. `--drive <path>` runs the clone's copy of the script against the drive; `--force` overrides the refusal.
+
 ```bash
 "C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe" github_export_gdb.py --rasters
 ```

@@ -52,9 +52,18 @@ ABOUT = {
         "(`apply_label_review.py --rehearsal`), to test the v2 runs before the review (KB §69.4). Never a result.",
     "Landform_TrainingSamples_v2p_60_train": "The rehearsal labels clipped to ±60°, training half (827; KB §69.4).",
     "Landform_TrainingSamples_v2p_60_test": "The rehearsal labels clipped to ±60°, held-out half (258; KB §69.4).",
+    "Landform_TrainingSamples_v2": "**The seven-class labels**, from the author's review of the proposals (D17): "
+        "classes 1-4 as before, 5-7 new. The author's own rows by eye; the apron and fluvial strips by a written rule, "
+        "at the author's word (KB §69.8). The labels the final's seven-class maps are trained and scored on.",
+    "Landform_TrainingSamples_v2_60_train": "The seven-class labels clipped to ±60°, training half: the same whole 15° "
+        "blocks as the four-class split (KB §69.8).",
+    "Landform_TrainingSamples_v2_60_test": "The seven-class labels clipped to ±60°, held out in the same 14 blocks: "
+        "never trained on, used only for scoring (KB §69.8).",
     "TrainingSamples_202609290009589587982": "The first hand-drawn training set, saved from Pro on 29 Sep (455 polygons, KB §29.2).",
-    "Landform_ChannelCenterlines": "Digitising target, task 11. Empty until digitised by hand.",
-    "Landform_CraterRims": "Digitising target, task 11. Empty until digitised by hand.",
+    "Landform_ChannelCenterlines": "Digitising target, task 11: channel centrelines accepted in review from the "
+        "machine candidates (`accept_reviewed.py`), and any drawn by hand (KB §69.7).",
+    "Landform_CraterRims": "Digitising target, task 11: crater rims accepted in review from the machine candidates "
+        "(`accept_reviewed.py`), and any drawn by hand (KB §69.7).",
     "Landform_LavaFlowMargins": "Digitising target, task 11. Empty until digitised by hand.",
     "Landform_ChannelCandidates_auto": "Machine channel centrelines over Ius Chasma, from flow routing with filled ground masked out "
         "(KB §25). `SlopeDeg >= 5 AND ThermIdx < -0.15` selects the 188 steep, rock-floored ones worth digitising.",
@@ -78,6 +87,10 @@ ABOUT = {
     "Graticule_30deg": "Latitude / longitude lines every 30° over ±60°, labelled (KB §44).",
     "Graticule_2deg": "Lines every 2° over the two type-area windows (KB §44).",
     "Type_Areas": "The Ius Chasma and Athabasca Valles windows as polygons (KB §44).",
+    "DL_Detections_heldout_20261019": "X5's RetinaNet detections over the held-out blocks: boxes with class and "
+        "confidence (KB §66.2, §66.3).",
+    "DL_UNet_Heldout_Scores_20261020": "The 183 held-out labels, each with its own-class share and majority class "
+        "under the U-Net and under the published SVM map, at 400 m (KB §66.9).",
 }
 # Too big for git (their .gdbtable files reach 246 and 113 MB; GitHub refuses files over 100 MB):
 # exported to the release GeoPackage only, and listed in exports\README.md as such (KB §57).
@@ -157,9 +170,10 @@ were checked against the source.
 [`PROJECT-KNOWLEDGE.md`](../Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
 The same layers are in the release as a GeoPackage (`mars_project_vectors.gpkg.zip`).
 
-**Class codes in the training layers:** 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground.
-Every labelled file and model uses these, and they are the project's schema (decided 2026-10-09, KB §11
-q23). The class schema file `Composite Object Classes.ecs` swaps 2 and 3 and is superseded: don't draw
+**Class codes in the training layers:** 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground; the
+seven-class labels (`*_v2*`) add 5 volcanic edifice, 6 apron, 7 fluvial channel. Every labelled file and model
+uses these, and they are the project's schema (decided 2026-10-09, KB §11 q23; the seven classes 2026-10-22,
+KB §68.1); a code is never renumbered. The class schema file `Composite Object Classes.ecs` swaps 2 and 3 and is superseded: don't draw
 new samples under it (KB §29.2).
 
 The Landform classes are in `Mars_Equidistant_Cylindrical_CM180` (metres, central meridian 180°);

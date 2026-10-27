@@ -4,6 +4,10 @@ r"""Mirrors the project's small, irreplaceable files into the GitHub repo clone 
     python github_sync.py               copy what changed, report, touch nothing else
     python github_sync.py --dry-run     report only
     python github_sync.py --commit      also git add / commit / push the repo
+    python github_sync.py --to-drive <commit> [--dry-run]
+                                        the other way: files the clone changed since <commit>, onto the drive
+    python github_sync.py --force       copy and remove even where the guard below refuses
+    --drive <path>                      the drive's root, for running the clone's copy of this script
 
 Repo: loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data, cloned by default at
 ~\OneDrive\Documents\GitHub\Mars_Terrestrial_GlobalMosaic_GIS-Data (--repo to override).
@@ -26,17 +30,37 @@ What does not, and where it goes instead:
   Global60 derivatives, gdb rasters, DL chips: re-computable, and 300+ GB
 
 Files that vanish from the drive are removed from the mirror too; git history keeps them.
+
+The guard (NEXT-STEPS §13.1 P2, KB §69.19). Work done in the clone without the drive (the laptop) is newer than
+the drive, and a plain sync would copy the drive's older files over it and delete the clone's new ones; it nearly
+happened twice (KB §69.1, §69.19). So before copying anything the sync looks for a drive file whose bytes are an
+older committed version of its path while the clone holds a later one. If there is any, the drive is behind the
+clone: the sync copies and removes nothing, lists those files, the files the clone changed that the drive changed
+too (merge them by hand), and the clone's files that are newer than the drive's state and would be deleted, and
+names the commit the drive matches. Then:
+  --to-drive <commit>  for every file the clone changed from <commit> to HEAD: copied onto the drive if the drive
+                       still holds <commit>'s version (or nothing, for a file added since); left and listed if the
+                       drive changed it too, or if the clone's copy is not committed; files deleted in the clone
+                       are listed for deleting by hand, never deleted. Then sync as usual.
+The guard cannot see a clone that only added files while the drive matches HEAD everywhere else; it needs one
+changed file to know the drive is behind.
 Stdlib only: runs on either Python.
 """
-import filecmp, os, re, sys, shutil, subprocess, time
+import filecmp, hashlib, os, re, sys, shutil, subprocess, time
 from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-DRIVE = Path(__file__).resolve().parents[2]
+# --drive: run the clone's copy of this script against the drive, e.g. when the drive's copy predates the guard
+DRIVE = Path(sys.argv[sys.argv.index("--drive") + 1] if "--drive" in sys.argv else Path(__file__).resolve().parents[2])
 assert (DRIVE / "Mars Project").is_dir(), f"not the project drive: {DRIVE}"
 REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
             Path.home() / "OneDrive" / "Documents" / "GitHub" / "Mars_Terrestrial_GlobalMosaic_GIS-Data")
+# The clone has a "Mars Project" folder too: its own copy of this script, run without --drive, would take the
+# clone for the drive and mirror it into itself
+assert DRIVE.resolve() != REPO.resolve(), f"the drive and the clone are one folder ({DRIVE}): pass --drive <drive>"
 DRY = "--dry-run" in sys.argv
+FORCE = "--force" in sys.argv
+TO_DRIVE = sys.argv[sys.argv.index("--to-drive") + 1] if "--to-drive" in sys.argv else None
 MAX = 95 * 1000 * 1000
 
 SKIP_DIRS = {"__pycache__", ".git", "Mars Project.gdb", "Index", "images", "labels",
@@ -208,9 +232,144 @@ def same(a, b):
     return int(sa.st_mtime) == int(sb.st_mtime) or filecmp.cmp(a, b, shallow=False)
 
 
+def blob(path):
+    """A file's git blob id. The repo stores every file byte for byte (.gitattributes `* -text`), so this is the
+    id git gives it, without a subprocess per file. None if it cannot be read (a deck open in PowerPoint is locked)."""
+    try:
+        data = path.read_bytes()
+    except OSError:
+        return None
+    return hashlib.sha1(b"blob %d\0" % len(data) + data).hexdigest()
+
+
+def git_out(*args):
+    p = subprocess.run(["git", "--literal-pathspecs", "-C", str(REPO), *args], capture_output=True, text=True,
+                       encoding="utf-8", errors="replace", stdin=subprocess.DEVNULL)
+    return p.returncode, p.stdout
+
+
+def history(rel):
+    """[(commit, blob)] for one path, newest first; a deletion's blob is all zeros."""
+    out, commit = [], None
+    for line in git_out("log", "--raw", "--no-abbrev", "--no-renames", "--format=@%H", "--", rel)[1].splitlines():
+        if line.startswith("@"):
+            commit = line[1:]
+        elif line.startswith(":") and commit:
+            out.append((commit, line.split()[3]))
+    return out
+
+
+def blob_at(commit, rel):
+    code, out = git_out("rev-parse", "--verify", "--quiet", f"{commit}:{rel}")
+    return out.strip() if code == 0 else None
+
+
+def guard(copies, removals):
+    """Whether the drive is behind the clone (the module docstring); returns the report's lines, empty if not."""
+    tracked = set(git_out("ls-files")[1].splitlines())
+    order = {c: i for i, c in enumerate(git_out("log", "--format=%H")[1].split())}   # 0 is HEAD
+    stale = []   # (repo path, the commit whose version the drive holds)
+    for p, out in copies:
+        rel = out.relative_to(REPO).as_posix()
+        if rel not in tracked:
+            continue
+        h = history(rel)
+        older = {b: c for c, b in h[1:]}
+        b = blob(p)
+        if b and h and b != h[0][1] and b in older:
+            stale.append((rel, older[b]))
+    if not stale:
+        return []
+    base = min((c for _, c in stale), key=lambda c: order.get(c, 1 << 30))   # the newest of the drive's versions
+    stale_rels = {r for r, _ in stale}
+    both, newer = [], []
+    for p, out in copies:
+        rel = out.relative_to(REPO).as_posix()
+        if rel in tracked and rel not in stale_rels and blob_at(base, rel) != blob_at("HEAD", rel):
+            both.append(rel)
+    for out in removals:
+        rel = out.relative_to(REPO).as_posix()
+        if rel in tracked and blob_at(base, rel) is None:
+            newer.append(rel)
+    lines = [f"REFUSED: the drive is behind the clone. It holds older committed versions of {len(stale)} file(s); "
+             f"the newest it matches is {base[:7]}. Nothing was copied or removed.",
+             f"  First: python github_sync.py --to-drive {base[:7]} --dry-run, then without --dry-run; then sync.",
+             "  (--force copies and removes anyway, reverting the clone.)",
+             f"  The drive holds an older version ({len(stale)}):"]
+    lines += [f"    {r}  (as of {c[:7]})" for r, c in stale]
+    if both:
+        lines += [f"  Changed in the clone since {base[:7]} and different on the drive: merge by hand ({len(both)}):"]
+        lines += [f"    {r}" for r in both]
+    if newer:
+        lines += [f"  Added in the clone since {base[:7]}, not on the drive; a sync would delete them ({len(newer)}):"]
+        lines += [f"    {r}" for r in newer]
+    return lines
+
+
+def drive_path(rel):
+    """The drive file a repo path mirrors, or None if the path is not a mirrored one."""
+    top, _, rest = rel.partition("/")
+    for src, dst, recurse, _ in TREES:
+        if top == dst and rest and (recurse or "/" not in rest):
+            return src / rest
+    return None
+
+
+def to_drive(base):
+    """Copies the clone's changes since <base> onto the drive (the module docstring)."""
+    code, out = git_out("diff", "--name-status", "--no-renames", "-z", base, "HEAD", "--",
+                        *[dst for _, dst, _, _ in TREES])
+    if code:
+        sys.exit(f"git diff {base} HEAD failed: is {base} a commit of {REPO}?")
+    f = out.split("\0")
+    changes = [(f[i], f[i + 1]) for i in range(0, len(f) - 1, 2)]
+    done, there, conflict, uncommitted, deleted, unmapped, locked = [], [], [], [], [], [], []
+    for status, rel in changes:
+        d = drive_path(rel)
+        if d is None:
+            unmapped.append(rel)
+            continue
+        old, new = blob_at(base, rel), blob_at("HEAD", rel)
+        if status == "D":
+            if d.exists() and blob(d) == old:
+                deleted.append(rel)
+            continue
+        c = REPO / rel
+        if (c.exists() and blob(c) is None) or (d.exists() and blob(d) is None):
+            locked.append(rel)
+        elif not c.exists() or blob(c) != new:
+            uncommitted.append(rel)
+        elif d.exists() and blob(d) == new:
+            there.append(rel)
+        elif (not d.exists() and old is None) or (d.exists() and blob(d) == old):
+            done.append(rel)
+            if not DRY:
+                d.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(c, d)
+        else:
+            conflict.append(rel)
+    print(f"clone {REPO}  ->  drive {DRIVE}, the changes {base[:7]}..HEAD")
+    print(f"{'would copy' if DRY else 'copied'} {len(done)}, already on the drive {len(there)}, "
+          f"changed on both sides {len(conflict)}, not committed in the clone {len(uncommitted)}, "
+          f"deleted in the clone {len(deleted)}, could not be read {len(locked)}")
+    for title, rows in (("copied" if not DRY else "would copy", done),
+                        ("CHANGED ON BOTH SIDES, merge by hand", conflict),
+                        ("NOT COMMITTED in the clone, left alone", uncommitted),
+                        ("COULD NOT BE READ (open in another program?): close it and rerun", locked),
+                        ("deleted in the clone; delete on the drive by hand", deleted),
+                        ("not a mirrored path, skipped", unmapped)):
+        if rows:
+            print(f"  {title}:")
+            for r in rows:
+                print("    " + r)
+    return 1 if conflict or uncommitted or locked else 0
+
+
 def main():
     assert REPO.is_dir() and (REPO / ".git").exists(), f"clone the repo first: {REPO}"
-    copied, unchanged, too_big, removed = [], 0, [], []
+    if TO_DRIVE:
+        sys.exit(to_drive(TO_DRIVE))
+    copies, unchanged, too_big, removals = [], 0, [], []
     for src, dst, recurse, keep in TREES:
         wanted = set()
         for p in walk(src, recurse, keep):
@@ -223,17 +382,23 @@ def main():
             if same(p, out):
                 unchanged += 1
                 continue
-            copied.append(out.relative_to(REPO))
-            if not DRY:
-                out.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(p, out)
+            copies.append((p, out))
         top = REPO / dst
         if top.is_dir():
-            for p in list(top.rglob("*")):
-                if p.is_file() and p not in wanted:
-                    removed.append(p.relative_to(REPO))
-                    if not DRY:
-                        p.unlink()
+            removals += [p for p in top.rglob("*") if p.is_file() and p not in wanted]
+
+    refused = [] if FORCE else guard(copies, removals)
+    if refused:
+        print("\n".join(refused))
+        sys.exit(3)
+    if not DRY:
+        for p, out in copies:
+            out.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(p, out)
+        for p in removals:
+            p.unlink()
+    copied = [out.relative_to(REPO) for _, out in copies]
+    removed = [p.relative_to(REPO) for p in removals]
 
     tag = "would copy" if DRY else "copied"
     print(f"drive {DRIVE}  ->  repo {REPO}")

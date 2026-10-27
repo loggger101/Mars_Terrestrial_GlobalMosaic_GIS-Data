@@ -3,7 +3,8 @@ name: check
 # Broken page links and "#section" anchors, Python syntax errors, oversized files, a stale CITATION.cff, page counts
 # that no longer match the tree, unindexed figures, images without alt text or too heavy to show
 # inline, and previews older than their sources (tools/check_repo.py). The scripts themselves need arcpy and the project drive, so CI
-# checks that they parse, not that they run.
+# checks that they parse, not that they run; the exceptions are the stdlib number checks, which do run: every number in the
+# interim, the final deck and the paper is in the record, and score_metrics.py on the committed logs gives the stored scores.
 
 on:
   push:
