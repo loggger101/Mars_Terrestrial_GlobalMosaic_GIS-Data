@@ -4265,3 +4265,28 @@ no number changed (`verify_interim.py`).
 - **Rebuilt and read:** deck 30 slides, report 21 pages (23 before: no source lines); every page and the changed
   slides read; a text search of both PDFs finds no "PROJECT-KNOWLEDGE", "KB", "§", ".py", "D1x/D2x", "X5",
   "desktop" or "Generated".
+
+### 69.10 The interim refined for the 10 November presentation, the cut kept — 2026-10-27, laptop **[V]**
+
+The author's request ("refine the interim presentation before my presentation on the 10th; update any figures you
+come across"), on the laptop without the drive. **D16's date, from the author: the presentation is 10 November**;
+the report's date was not given. Asked whether to move the status past the 26 Oct cut (the first review session,
+§69.7, and the applied v2 labels, §69.8, make "the review has not started" and "landform classes empty" out of date
+by the talk), the author chose to **keep the 26 Oct cut** (D20 stands), and to keep the seven-class maps for the
+final. So nothing measured or stated changed: `verify_interim.py` 285 numbers, the same count as the committed
+`interim.py`.
+
+- **Every slide read** (rendered through PowerPoint on the laptop). Changed: **T4 and T8 charts** (`make_fig_t4.py`,
+  `make_fig_t8.py`) were saved at 100 dpi (1,100 px wide) where the other charts use 200; rerun unchanged first, T4
+  is pixel-identical and T8 one pixel row taller (matplotlib version), then at 200 dpi (2,200 px). `final.py`, the
+  paper and the README use the same files. **The U-Net slide**: its four takeaways ran into the legend; `map_left`
+  slides take a `points_h` (pt) and the U-Net slide 204, the legend placed below it. **The title slide** printed
+  "Mars Global Mosaic" and then "Mars Global Mosaic: Mapping …"; the subtitle drops the repeated title
+  (`build_interim_live.py`; `content.py` untouched). **The schedule** gives "10 Nov, Interim presentation" for
+  "mid-Nov, Interim presentation and report".
+- **Seen and left, they need Pro and the drive:** the legend titles of layouts 04 and 17 keep their em dashes
+  ("Landforms — SVM …", "Landforms — U-Net …"; `make_interim_figs.py`'s in-memory renames could take them); the
+  ±60° mosaic slide's day and night IR panels read as flat grey at slide size.
+- **Rebuilt and read:** deck 30 slides (slides 1, 20, 24, 26 and 30 read after the build), report 21 pages (pages
+  13, 19 and 21 read). Backups of both in the session's scratch folder; git holds the previous build (`862dbf8`).
+  Written in the clone only: copy to the drive before the next `github_sync.py` (`NEXT-STEPS.md`, "Resume here").

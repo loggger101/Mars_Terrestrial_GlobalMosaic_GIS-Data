@@ -9,7 +9,7 @@ checklist, is `HANDOFF-DESKTOP.md`.
 | deadline | date |
 |---|---|
 | interim data cut | **26 October** (D20; was 2 November): the interim covers what is measured by then |
-| interim report + presentation | **mid-November** (exact day not known; plan against ~13 November) |
+| interim presentation | **10 November** (D16, the author, 2026-10-27); the report's date not given, plan against the same day |
 | label review, v2 runs, digitising: for the final | **27 October – 22 November** (the v2 runs need ~2 days after the label review) |
 | data freeze | **22 November** |
 | final | **Tuesday 8 December 2026** |
@@ -17,6 +17,14 @@ checklist, is `HANDOFF-DESKTOP.md`.
 ---
 
 ## Resume here — 2026-10-26
+
+**2026-10-27, laptop, without the drive (KB §69.10): copy to the drive before the next `github_sync.py`.** The
+interim refined for the 10 November presentation, the 26 Oct cut kept (the author's choice): the T4 and T8 charts
+redrawn at 200 dpi, the U-Net slide's legend moved clear of its takeaways, the title slide's subtitle no longer
+repeats the title, the schedule gives 10 Nov; both documents rebuilt (30 slides, 21 pages, 285 numbers). These
+files were written in the clone only: `git diff --name-only e6ec284 HEAD -- "Mars Remote Sensing Project"`. For
+each, check the drive copy still equals `e6ec284`'s (`git hash-object` against `git rev-parse e6ec284:<path>`; the
+desktop's v2 run writes only `build\logs\run_v2\` and `Global60\`), then copy clone → drive.
 
 **Where it stands.** Every scripted job up to the review is done and recorded (KB §53–§57): the ±60°
 fine pass (465,354 closed depressions ≥ 1 km, 969,822 channel segments, layouts 11–12); the 180° DEM
@@ -170,7 +178,7 @@ delay it.
 | 2c | v2 labels and split (done 10-27); SVM and U-Net on v2 (**running since 10-27 01:32**, `run_v2.ps1`); both maps scored on v2; D18's verdict; layouts and the final | agent, desktop | §11.5 | results in the KB beside the four-class scores, by the **22 Nov** freeze |
 | 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). ±60° U-Net map made (§66.7), seams removed (§66.8), in the project beside the published SVM map with layout 17 (§66.9), in the interim and the release `data-2026-10-21` (§66.10). For the author: any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
 | 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
-| 5 | The interim: content cut on 26 Oct (D20) and rebuilt, percentages set (D16); the due date from the author, then deliver | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
+| 5 | The interim: content cut on 26 Oct (D20) and rebuilt, percentages set (D16); refined for the **10 Nov** presentation (KB §69.10); the report's date from the author, then deliver | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 
 **Waiting on the author:** items 1, 3 and 5 (and Pro kept closed while `run_v2.ps1` runs); whether to delete the two recreated `_60_smoke` classes
 (KB §57.1); whether to publish a derivatives release carrying the §54 patch (33 GB; the catalogue says how
@@ -212,7 +220,7 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 |---|---|---|
 | D14 | the two `_60_smoke` classes, recreated by X2's smoke run (§57.1) | delete (they were deleted once, D9); they are in the release GeoPackage |
 | D15 | a derivatives release with the §54 patch (33 GB upload) | not needed: the catalogue gives the two commands that patch a restore (§57.4) |
-| D16 | the interim's due date (the percentages were set 2026-10-26 by the agent at the author's request, KB §69.5) | plan against ~13 November |
+| D16 | the interim's due date: **the presentation is 10 November** (the author, 2026-10-27, KB §69.10); the report's date is still open (the percentages were set 2026-10-26, KB §69.5) | plan the report against 10 November too |
 D19 was answered 2026-10-24, before any v2 score existed: D18's rule (a) is judged on the held-out polygons whose
 v2 class is 1–4, the ground both maps can name (KB §68.4 amended, §69.4); `score_d18_verdict.py` does so.
 D20 was answered 2026-10-26: **the interim's data cut is 26 October** (KB §69.5); the class revision, the
@@ -338,7 +346,7 @@ point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE
 | **16–26 Oct** | Done: X5 on the desktop (KB §66); the class revision's proposals (22–23 Oct) and its rehearsal (KB §69.4). |
 | **26 Oct** | **Interim data cut** (D20, KB §69.5). What is measured is in the interim; the rest goes to the final. |
 | **27 Oct – 22 Nov** | For the final: review and digitising (§6), after each session §3; the label review (§11.4), then the v2 runs (~2 days, §11.5); H1 and H2 retests, layout 14 from the review. **Data freeze 22 Nov.** GitHub release refreshed. |
-| **by ~13 Nov** | The interim per `INTERIM-PLAN.md` §6: the author's percentages and due date, rebuild, read every page, `verify_interim.py`. **Interim due ~13 Nov.** |
+| **by 10 Nov** | The interim per `INTERIM-PLAN.md` §6: any last change, rebuild, read every page, `verify_interim.py`. **Interim presentation 10 Nov** (the report's date not given). |
 | **23 Nov – 4 Dec** | The final report and deck, built by script from the layouts. Thanksgiving 26 Nov: nothing planned. |
 | **5–8 Dec** | Buffer and rehearsal. Nothing new. |
 

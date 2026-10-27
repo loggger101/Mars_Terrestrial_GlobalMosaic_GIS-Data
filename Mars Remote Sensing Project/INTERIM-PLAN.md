@@ -1,7 +1,7 @@
 # Interim report + presentation — plan
 
-**Due mid-November 2026**; the exact day is **not known**, so plan against ~13 November and don't wait for
-the date. The interim is the first deadline, about three weeks before the final on 8 December
+**The presentation is 10 November 2026** (D16, the author, 2026-10-27); the report's date is not given, so plan
+it against the same day. The interim is the first deadline, about three weeks before the final on 8 December
 (`NEXT-STEPS.md` §8). **Its data cut is 26 October (D20):** the content is set; what remains is the author's. § numbers point into `PROJECT-KNOWLEDGE.md` ("KB"), the authority on every number.
 
 > The standing directive holds: data and layouts first, document prose only on request (KB §1). This file
@@ -124,9 +124,9 @@ this list (KB §12.1).
 | Q5 | How many tributary orders are recoverable at 100 m? | **answered** (T7, §47.4): none the DEM supports | — |
 | Q6 | Does DN gradient reveal unit boundaries beyond the source image? | **unexamined** | low priority; say so |
 
-## 6. Timeline to mid-November
+## 6. Timeline to 10 November
 
-Assumes **~13 November**. **The data cut is 26 October (D20, KB §69.5):** the interim covers what was measured by
+The presentation is **10 November**. **The data cut is 26 October (D20, KB §69.5):** the interim covers what was measured by
 then, and `interim.py` was brought to it and both documents rebuilt and read the same day. Results after the cut
 go to the final, not here; slack goes to the final's data work.
 
@@ -134,9 +134,9 @@ go to the final, not here; slack goes to the final's data work.
 |---|---|
 | **26 Oct** | **interim data cut**; `interim.py` brought to it; 30 slides, 21 pages, `verify_interim.py` green (KB §69.5) |
 | 26 Oct | the percentages (`PROGRESS`) set toward the final (KB §69.5); rebuilt, slide 5 and report page 2 read |
-| when the date is known | any last change; rebuild both documents; render and read every changed slide and page; `verify_interim.py` |
-| before the due date | review and rehearsal |
-| mid-Nov | deliver |
+| 27 Oct | refined for the talk, the cut kept (the author's choice): T4 and T8 charts at 200 dpi, the U-Net slide's legend clear of its text, the title slide's subtitle, the schedule's 10 Nov; both rebuilt and the changed slides and pages read (KB §69.10) |
+| before 10 Nov | any last change; rebuild both documents; render and read every changed slide and page; `verify_interim.py`; rehearsal |
+| **10 Nov** | the presentation; the report as the course asks |
 
 ## 7. Wording traps, all hit before (KB §14.5, §12)
 

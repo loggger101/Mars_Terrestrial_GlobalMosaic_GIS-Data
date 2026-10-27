@@ -66,8 +66,9 @@ def split_legend(s, f, path):
         w, h = add_pic(s, m, MARGIN, BODY_Y, h=FIG_H)   # height; takeaways, then the legend, on the right
         x = MARGIN + w + 22 * PT
         tw = RIGHT - x
-        bullets(s, f["points"], size=14, top=BODY_Y, height=176 * PT, space=6, left=x, width=tw)
-        y = BODY_Y + 184 * PT
+        ph = f.get("points_h", 176) * PT     # points_h (pt): more room when the takeaways run long
+        bullets(s, f["points"], size=14, top=BODY_Y, height=ph, space=6, left=x, width=tw)
+        y = BODY_Y + ph + 8 * PT
         lw_px, lh_px = png_size(lg)
         lh = BODY_Y + FIG_H - 22 * PT - y
         lw = min(int(lh * lw_px / lh_px), tw)
@@ -128,7 +129,8 @@ def figure_slide(prs, f):
 prs = deck()
 
 # ------------------------------------------------------------ title, investigators, goals
-title_slide(prs, I.DECK_TITLE, (I.TITLE, I.COURSE + " \u00b7 " + I.AUTHOR,
+subtitle = I.TITLE[len(I.DECK_TITLE) + 2:] if I.TITLE.startswith(I.DECK_TITLE + ": ") else I.TITLE   # not twice
+title_slide(prs, I.DECK_TITLE, (subtitle, I.COURSE + " \u00b7 " + I.AUTHOR,
                                 "Interim Presentation \u00b7 status as of " + I.STATUS_DATE))
 
 s = new(prs, "Project Goals")

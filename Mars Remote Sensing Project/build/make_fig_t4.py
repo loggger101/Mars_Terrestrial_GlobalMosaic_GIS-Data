@@ -31,7 +31,7 @@ def tidy(ax):
 def save(fig, name):
     fig.tight_layout()
     os.makedirs(OUTD, exist_ok=True)
-    fig.savefig(os.path.join(OUTD, name), facecolor="white")
+    fig.savefig(os.path.join(OUTD, name), dpi=200, facecolor="white")   # 200 dpi as the other charts (was 100)
     plt.close(fig)
     print("wrote", os.path.join(OUTD, name))
 

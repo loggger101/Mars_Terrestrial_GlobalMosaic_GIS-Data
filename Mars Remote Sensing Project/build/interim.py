@@ -223,7 +223,7 @@ FIGURES = [
                  "Normal Ground, so it is no better"],
          source="§66.1, §66.2, §66.5"),
     dict(title="Deep learning, 2: a U-Net maps terrain provinces",
-         images=[("layout", "17_x5c_unet_provinces")], map_left=True,
+         images=[("layout", "17_x5c_unet_provinces")], map_left=True, points_h=204,  # 4 long points: the legend lower
          points=["A U-Net pixel classifier on the same stack and labels, over all of ±60°; a second pass, offset "
                  "128 px, removes its tile seams",
                  "Held out: 98.9%, κ 0.980, against the published SVM map's 73.8%, κ 0.583, under the same scorer",
@@ -305,7 +305,7 @@ SCHEDULE = [   # (when, what)
     ("8–26 Oct", "Pyramids, ±60° crater and channel pass, 200 m map, T1 in Pro, the deep-learning detector and U-Net; seven classes proposed"),
     ("26 Oct", "Interim data cut; later results go to the final report"),
     ("27 Oct – 22 Nov", "Review and digitising; the seven-class labels and maps; H1 and H2 on digitised features; data freeze"),
-    ("mid-Nov", "Interim presentation and report"),
+    ("10 Nov", "Interim presentation"),   # the date from the author, 2026-10-27 (D16)
     ("23 Nov – 4 Dec", "Final report and presentation"),
     ("8 Dec", "Final due"),
 ]

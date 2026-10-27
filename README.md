@@ -24,7 +24,7 @@ The four sources sit in three coordinate frames. Everything is put on one grid r
 
 ## Where it stands (2026-10-26)
 
-The interim report and presentation are due **mid-November 2026** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source; their data cut is **26 October** (decision D20): they cover what is measured by then, and later work goes to the final ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)); so are drafts of the final paper (AASTeX) and deck ([`NEXT STUFF/Final/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); how to work on the project is [`HANDOFF-DESKTOP.md`](Mars%20Remote%20Sensing%20Project/HANDOFF-DESKTOP.md).
+The interim presentation is on **10 November 2026** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source; their data cut is **26 October** (decision D20): they cover what is measured by then, and later work goes to the final ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)); so are drafts of the final paper (AASTeX) and deck ([`NEXT STUFF/Final/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); how to work on the project is [`HANDOFF-DESKTOP.md`](Mars%20Remote%20Sensing%20Project/HANDOFF-DESKTOP.md).
 
 | Task | State |
 |---|---|
@@ -48,7 +48,7 @@ The full list, with who does what, is the "Resume here" section of [`NEXT-STEPS.
 2. **The seven-class labels**: `propose_label_changes.py` has proposed a class for each of the 512 labels and new polygons for the three new classes (KB §69.2); reviewed and applied on 2026-10-27 (KB §69.8: the author's own rows, the apron and fluvial rows by a written rule at the author's request); the SVM and U-Net are now running on the v2 labels ([`run_v2.ps1`](Mars%20Remote%20Sensing%20Project/build/run_v2.ps1), ~2 days), and D18's rule decides whether the seven-class map replaces the published one, judged on classes 1–4 (D19, KB §69.4). The final shows the four-class and seven-class maps side by side; the interim describes the scheme as proposed ([`NEXT-STEPS.md` §11](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md#11-the-class-revision-d17-for-the-final)).
 3. **Deep learning**: trained and scored ([below](#deep-learning-x5)). Any further tuning first needs validation blocks of its own, apart from the held-out test blocks (KB §66.5).
 4. **The retests that wait for the review**, for the final: volcanic against fluvial channels by origin (H2, stage 2), and flow margins in IR against Viking on lava margins digitised at Athabasca (H1).
-5. **The interim**: its content is set at the 26 October cut and both documents are rebuilt to it, the percent-complete column included; the due date and the delivery remain. **The final report and presentation** follow, from the layouts and the results below (data freeze 22 November).
+5. **The interim**: its content is set at the 26 October cut and both documents are rebuilt to it, the percent-complete column included; the presentation is on 10 November. **The final report and presentation** follow, from the layouts and the results below (data freeze 22 November).
 
 ## Results so far
 

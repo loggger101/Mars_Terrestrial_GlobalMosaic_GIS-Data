@@ -56,5 +56,5 @@ for k, (_, _, fill, ink, lab) in enumerate(BINS):
 ax.set_xlim(-0.05, kx + 2.0); ax.set_ylim(-0.1, n + 0.8)
 ax.axis("off")
 fig.tight_layout()
-fig.savefig(OUT, dpi=100, facecolor="white")
+fig.savefig(OUT, dpi=200, facecolor="white")   # 200 dpi as the other charts (was 100)
 print("wrote", OUT)
