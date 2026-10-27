@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-27 (§69.17).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-27 (§69.19).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -41,7 +41,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | the GUI work of 24 Sep–1 Oct and its checks | §29, §30, §53.2 |
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
-| GitHub backup and releases | §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca), §66.10 (`data-2026-10-21`, the first with the deep-learning models) |
+| GitHub backup and releases | what would make the repository better, §69.19 (`NEXT-STEPS.md` §13); §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca), §66.10 (`data-2026-10-21`, the first with the deep-learning models) |
 | the interim builds | §39.3, §45, §48, §51.5, §57.3, §66.10, §67 |
 
 ---
@@ -4541,3 +4541,34 @@ drive, no Pro; everything from the clone's logs.
   not kept in `build\`.
 - **For the author (D25):** the abstract and conclusions give the thermal gain as "a resolved 1.4 to 2.0 points";
   by balanced accuracy there is none. Results now say so; whether the abstract does is the author's call.
+
+### 69.19 The repository and the project, beyond the paper, brainstormed — 2026-10-27, laptop **[V]**
+
+A second brainstorm while `run_v2.ps1` runs, on the repository and the project rather than the paper; the plan is
+`NEXT-STEPS.md` §13 (P1–P12, D26, D27). Read at `d3f79a5`. What was measured:
+
+- **History:** `.git` is 860 MB (604 MiB packed) after 106 commits; GitHub reports 736,818 KB for the repository.
+  Of the blobs over 5 MB in history, the interim deck has 22 versions (498.0 MB) and the interim report 15 (330.5 MB):
+  829 MB of blobs in an 860 MB `.git`: nearly all of it. The rest over 5 MB: the exported gdb's tables, the final deck and the paper's PDF once each, Presentation 1.
+- **Image weight:** the interim deck's 34 PNGs total 28.9 MB; saved as JPEG q90 they would be 11.2 MB (13 over
+  1 MB, each 2,024 or fewer pixels wide, so already at display size). The paper's 16 figures: 16.3 MB as PNG, 5.7 MB
+  as JPEG q90; the PDF is 15.4 MB. Measured by a scratch script; nothing was converted, and JPEG suits the map
+  imagery only, not charts or small text. **The author, the same day: no JPEG**; the figures stay PNG (P5 dropped,
+  `NEXT-STEPS.md` §10).
+- **Checks that need no drive:** `verify_interim.py` passed on `interim.py` (325 numbers) and `final.py` (178)
+  on the laptop, and `score_metrics.py --out` reproduced `logs/score_metrics.json` exactly (line endings aside). All
+  are stdlib; CI (`check.yml`) runs only `tools/check_repo.py`, which checks links, syntax, sizes, counts and figures,
+  not numbers.
+- **`github_sync.py`** copies a drive file over the clone whenever mtime and bytes differ, with no look at the
+  clone's history: the clone-only edits since `e6ec284` are protected only by the memory and "Resume here". The
+  same near-miss happened once before (§68 → §69.1).
+- **`exports/README.md`** (exported 2026-10-27): `Landform_ChannelCenterlines` (94 rows) and `Landform_CraterRims`
+  (26) are still described "Empty until digitised by hand" (static text in `github_export_gdb.py`); five layers have
+  no description: `Landform_TrainingSamples_v2` (971), `_v2_60_train` (734), `_v2_60_test` (237),
+  `DL_Detections_heldout_20261019`, `DL_UNet_Heldout_Scores_20261020`; the class-code note gives the four classes only.
+- **Restore:** `restore.py` has been run only as a dry run (§66, §67.4).
+- **Environment:** the tool versions are in §2.4 only; there is no `requirements.txt`; five build scripts name a seed.
+- **Public:** the repository is public, so Zenodo's GitHub link (D23) can archive a release. Five releases, the
+  newest `data-2026-10-21`.
+- **For the author:** D26 (commit the built documents at milestones only; no history rewrite) and D27 (closing the
+  project after 8 Dec). D25 widened: the README's T1 section and the interim talk give the overall-accuracy gain alone.

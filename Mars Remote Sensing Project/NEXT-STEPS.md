@@ -39,6 +39,11 @@ F1 and quantity / allocation disagreement from the logs. The published map's err
 Table 3 widened, its limits brought current, two references checked by DOI, the v2 text drafted for both outcomes
 (`v2_drafts.tex`); `final.py`'s review limit fixed. **Not compiled** (no AASTeX on the laptop): rebuild the PDF on
 the desktop and read it. Copy to the drive with the rest (the list is under the first paragraph above).
+**Later 10-27, laptop (KB §69.19):** a second brainstorm, on the repository and the project rather than the paper,
+now **§13**: the number checks into CI (P1), a guard so `github_sync.py` cannot revert clone-only edits (P2), the
+vector-layer guide brought true (P3), the built documents committed at milestones only (P4: they are nearly all of the
+860 MB history), the paper compiled in CI (P6), a real restore (P7), and closing the project
+after 8 Dec (P12). Two new decisions, D26 and D27; D25 widened to the README and an interim backup slide.
 
 **Where it stands.** Every scripted job up to the review is done and recorded (KB §53–§57): the ±60°
 fine pass (465,354 closed depressions ≥ 1 km, 969,822 channel segments, layouts 11–12); the 180° DEM
@@ -194,8 +199,8 @@ delay it.
 | 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
 | 5 | The interim: content cut on 26 Oct (D20) and rebuilt, percentages set (D16); refined for the **10 Nov** presentation (KB §69.10); the report's date from the author, then deliver | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 
-**Waiting on the author:** items 1, 3 and 5 (and Pro kept closed while `run_v2.ps1` runs); D21–D25 (§2, from
-§12); the interim talk's slot length (§12.5); whether to delete the two recreated `_60_smoke` classes
+**Waiting on the author:** items 1, 3 and 5 (and Pro kept closed while `run_v2.ps1` runs); D21–D27 (§2, from
+§12 and §13); the interim talk's slot length (§12.5); whether to delete the two recreated `_60_smoke` classes
 (KB §57.1); whether to publish a derivatives release carrying the §54 patch (33 GB; the catalogue says how
 to patch a restore instead, §57.4); emptying the Recycle Bins (~21 GB of finished scratch, §57.5).
 
@@ -240,7 +245,9 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D22 | the two blind checks: the rule-screened v2 rows (§12.3 R1, ~45 min) and a probability-sample accuracy check (R2, ~2–3 h) | R1 yes, after the candidate review; R2 if time is free |
 | D23 | a DOI for the data release through Zenodo, and a data statement (§12.4 W7); publishing | yes, with the pre-final release (§7) |
 | D24 | the final deck in the interim's dark `mars_theme` (§12.5) | yes: one look for both talks |
-| D25 | the abstract's and conclusions' thermal gain: qualify it with the balanced-accuracy result (§12.4 W9) | yes: one clause, "in overall accuracy; none by balanced accuracy" |
+| D25 | the abstract's and conclusions' thermal gain: qualify it with the balanced-accuracy result (§12.4 W9); also the README and an interim backup slide (§13.1) | yes: one clause, "in overall accuracy; none by balanced accuracy" |
+| D26 | the built deck, report and paper PDF committed only once per deadline (§13.1 P4); rewriting history to drop the 35 earlier copies needs a force push and a re-clone on both machines | yes to committing at milestones; no rewrite |
+| D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | yes |
 D19 was answered 2026-10-24, before any v2 score existed: D18's rule (a) is judged on the held-out polygons whose
 v2 class is 1–4, the ground both maps can name (KB §68.4 amended, §69.4); `score_d18_verdict.py` does so.
 D20 was answered 2026-10-26: **the interim's data cut is 26 October** (KB §69.5); the class revision, the
@@ -400,6 +407,8 @@ point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE
 - **Crater ages from the closed-depression counts:** the detector misses breached craters (§26.3); relative
   density between windows (T2) is the most it supports.
 - **Rerunning the 400 m map's 180° column:** superseded by the 200 m map (§57.2).
+- **The decks' and paper's images as JPEG** (was §13.1 P5): ruled out by the author, 2026-10-27; the figures stay
+  PNG (KB §69.19).
 - **The agent digitising for the author:** the judgement is the point of task 11. Machine output enters the
   digitising classes only through an accept in review (§25, D10).
 
@@ -625,3 +634,39 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 3. **The author:** the candidate review (§6) first; then R1; R2 if any time is free.
 4. **By 22 Nov:** the freeze; §12.1's lines and every result above that ran, into the KB, then `final.py` and the
    `.tex`; rebuild and read; `verify_interim.py` on both.
+
+---
+
+## 13. The repository and the project, beyond the paper (brainstormed 2026-10-27, laptop)
+
+Read against the repository as it stands at `d3f79a5`; what was measured is KB §69.19. Same priorities as §12 (A,
+before the freeze if at all possible; B, if time allows; C, only if cheap). None of it goes ahead of the author's
+review (§6) or the v2 scoring (§11.5); most of it is laptop work that fills the wait for `run_v2.ps1`.
+
+### 13.1 The work
+
+| # | what | adds | where | pri |
+|---|---|---|---|---|
+| P1 | **The number checks in CI**: `check.yml` also runs `verify_interim.py` on `interim.py`, `final.py` and the paper's `.tex`, and reruns `score_metrics.py --out` into a temporary file and compares it with `logs/score_metrics.json`. All four are stdlib and ran on the laptop without the drive (KB §69.19). Prove each fails on a planted defect (a number not in the KB; an edited log) | a push that changes the KB or a document can no longer break their agreement silently; today it is caught only when someone remembers to run them | laptop, minutes | A |
+| P2 | **`github_sync.py` refuses to revert clone-only edits**: before it copies a drive file over the clone, it checks whether the drive's bytes equal an older committed version of that path (`git hash-object` against the path's blobs in `git log`) while the clone's differ; if so the drive is stale, and it stops and lists the files. A `--to-drive <base>` mode then does what the memory and "Resume here" describe by hand: for each file changed `base..HEAD`, check the drive still holds `base`'s blob, copy clone → drive, and list those that differ for a hand merge. Test on the laptop with a scratch folder standing in for the drive | the same near-miss has happened twice (§68 → §69.1; `e6ec284` → now); the guard turns a silent revert into a refusal | laptop to write and test; first real use on the desktop | A |
+| P3 | **`exports/README.md` brought true**: `github_export_gdb.py`'s descriptions still call `Landform_ChannelCenterlines` (94 rows) and `Landform_CraterRims` (26) "Empty until digitised"; five layers have none (the three `Landform_TrainingSamples_v2*`, the labels the final rests on, and the two `DL_*` layers); the class-code note gives only the four classes. Fix the dictionary (the counts are written by the export, so say "accepted from review" without a number); add a `check_repo.py` check that every row has a description and that no row with rows > 0 says "Empty" | the page a data user reads first describes the final's labels | laptop to edit; the README regenerates at the next desktop export | A |
+| P4 | **The built documents committed at milestones only** (D26): the interim deck has been committed 22 times (498 MB of history) and the report 15 times (331 MB): nearly all of the 860 MB `.git` (KB §69.19). GitHub reports 720 MB and asks for under 1 GB. `github_sync.py` would skip the `.pptx`, `.docx` and paper `.pdf` unless given `--deliverables`, used once per deadline; between deadlines they are rebuilt from source on the drive and are not needed in the tree | stops ~25 MB per rebuild; the final's rebuilds alone would pass 1 GB at the interim's rate | laptop, minutes | A |
+| P6 | **The paper compiled in CI**: a job that builds the `.tex` with TeX Live (a TeX Live container image is the likely source of `aastex701.cls` **[?]**, unchecked) and fails on an undefined reference or citation; the PDF kept as the run's artifact. The laptop then sees a compile without the desktop | catches what the laptop cannot (this session's edits are uncompiled); one more check before the freeze | laptop to write, CI to run | B |
+| P7 | **A real restore**: `restore.py` has only ever been dry-run (KB §67.4). Restore one small release group into scratch on the desktop and compare every file with the drive by hash | the drive is the only full copy (§9); a backup is proven only by a restore | desktop, ~1 h | B |
+| P8 | **The environment on the project page**: the versions are in KB §2.4 only (Pro 3.7, its Python 3.13.13, Deep Learning Libraries 3.7.1901, `arcgis.learn` 2.4.3). A short `docs/environment.md`: both Pythons, the system Python's packages (`python-pptx`, `python-docx`, matplotlib, Pillow) as a `requirements.txt`, MiKTeX and the AASTeX class version, the GPU and driver; written by a script on the desktop so it is read, not typed | a reader can tell what reproduces their run; the paper's data statement (W7) can point at it | desktop, minutes | B |
+| P9 | **Tests of the scoring arithmetic**: hand-worked confusion matrices through `score_metrics.metrics()` (accuracy, κ, balanced accuracy, F1, Q and A, a class absent from the labels), run in CI with P1 | the paper's new Table 3 columns rest on 60 lines no test has exercised beyond the agreement check | laptop | B |
+| P10 | **"Resume here" condensed**: it has grown to ~180 lines of dated paragraphs since 10-18; cut it to where things stand, what waits on whom and the clone → drive list, with the history left to the KB (as §58–§61 did once) | the most-read part of the plan readable in a minute | laptop | B |
+| P11 | **Which runs repeat exactly**: a table in the KB of each published number's run and whether a rerun reproduces it (a fixed seed, Pro's SVM, the U-Net's training); five build scripts name a seed | the paper's methods can say what is deterministic, and the freeze knows which reruns can move a number | laptop to read the scripts; the desktop for any rerun | C |
+| P12 | **Closing the project, after 8 Dec** (D27): a tag `final-2026-12-08` and a final release (the deck, the paper's PDF, the maps); `CITATION.cff` given `version`, the DOI (D23), a `preferred-citation` for the paper and its date; the README's "Where it stands" turned into what was found; this plan closed with a header saying so; the memory and "Resume here" retired; D14's smoke classes settled | the repository reads as finished work, not a project paused mid-term | laptop, ~1 h, 9–12 Dec | after |
+
+**The thermal wording beyond the paper** (D25, widened): the README's T1 section ("Yes, a little") and the interim
+talk give the overall-accuracy gain alone. The interim's content is cut at 26 October (D20), but this result is a
+reanalysis of logs that existed at the cut; one backup slide for "does thermal really help?" would answer the
+question without changing the cut. The README follows whatever the paper says.
+
+### 13.2 Order of work
+
+1. **Laptop, now:** P1, P2, P3, P4 (code only; P4's behaviour waits on D26), then P9 and P10.
+2. **Either machine:** P6.
+3. **Desktop, when it is free of `run_v2.ps1`:** P2's first real use (the clone → drive copy), P3's export, P7, P8.
+4. **After 8 Dec:** P12.
