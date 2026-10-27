@@ -191,7 +191,7 @@ def main():
              "Both THEMIS mosaics are 8-bit DN stretched region by region: each province repeats the mosaic-wide "
              "mean and spread, so the index is local contrast, not thermal inertia.\nViking is not stretched that "
              "way and keeps the albedo difference. Dusty − rocky in B: the provinces' group means. "
-             "Night IR has no whole-mosaic figure in the record.  PROJECT-KNOWLEDGE.md §28.10",
+             "No whole-mosaic mean is recorded for night IR.",   # KB §28.10; no KB reference on the figure (§69.9)
              color=MUTED, fontsize=8.6, va="bottom", linespacing=1.4)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     fig.savefig(OUT, facecolor="white")

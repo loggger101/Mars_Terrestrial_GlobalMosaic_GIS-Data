@@ -33,6 +33,21 @@ DROP = {"title", "subtitle", "credit", "notes", "checks", "acc_head", "acc_body"
         "legend_title", "table_title", "table_note",          # 11: its Robbins table is fine print on a slide
         "findings"}                                           # 16, 17 (make_dl_map.py, make_unet_map.py)
 TABLE_CELL = re.compile(r"t\d+_\d+(_bg)?$")                  # 11's, 16's, 17's table cells, t<row>_<col> (make_global60_candidate_sheets.py)
+# A legend prints its layers' names, and a slide must not show the project's own references:
+# "X5 detections, RetinaNet (1,838 boxes; KB §66.2)" exports as "RetinaNet detections (1,838 boxes)".
+# In memory only, like DROP (KB §69.9).
+PLAIN_NAMES = [(re.compile(r";\s*KB §[^)]*\)"), ")"), (re.compile(r"\s*\(KB §[^)]*\)"), ""),
+               (re.compile(r"^X5\w* detections, RetinaNet"), "RetinaNet detections")]
+
+
+def plain_names(lyt):
+    for mf in lyt.listElements("MAPFRAME_ELEMENT"):
+        for l in mf.map.listLayers():
+            name = l.name
+            for pat, rep in PLAIN_NAMES:
+                name = pat.sub(rep, name)
+            if name != l.name:
+                l.name = name
 
 
 def trim(path):
@@ -64,6 +79,7 @@ def main():
         hidden = [e for e in lyt.listElements() if e.name in DROP or TABLE_CELL.match(e.name)]
         for e in hidden:
             e.visible = False
+        plain_names(lyt)
         out = os.path.join(OUT, n + ".png")
         lyt.exportToPNG(out, resolution=DPI)
         size = trim(out)

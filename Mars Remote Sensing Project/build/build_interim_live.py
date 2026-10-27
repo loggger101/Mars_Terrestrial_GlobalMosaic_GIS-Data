@@ -19,7 +19,7 @@ import sys
 import interim as I
 from le_theme import (deck, new, title_slide, section, bullets, labeled, table, note,
                       textbox, style, no_bullet, png_size, PT, MARGIN, CONTENT_W, BODY_Y,
-                      CYAN, GREY, NAVY)
+                      CYAN, NAVY)
 from pptx.util import Emu
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -49,17 +49,9 @@ def add_pic(s, path, x, y, w=None, h=None):
     return w, h
 
 
-def source(s, text, x, y, w):
-    tf = textbox(s, x, y, w, 18 * PT)
-    p = tf.paragraphs[0]
-    no_bullet(p)
-    style(p.add_run(), 10, italic=True, color=GREY).text = "PROJECT-KNOWLEDGE.md " + text
-
-
 def below(s, f, y):
-    """Takeaways under a picture, the source line pinned to the foot of the slide."""
-    bullets(s, f["points"], size=14, top=y, height=510 * PT - y, space=4)
-    source(s, f["source"], MARGIN, 516 * PT, CONTENT_W)
+    """Takeaways under a picture. The KB § in f["source"] is not printed (KB §69.9)."""
+    bullets(s, f["points"], size=14, top=y, height=530 * PT - y, space=4)
 
 
 def split_legend(s, f, path):
@@ -80,7 +72,6 @@ def split_legend(s, f, path):
         lh = BODY_Y + FIG_H - 22 * PT - y
         lw = min(int(lh * lw_px / lh_px), tw)
         add_pic(s, lg, x, y, w=lw, h=int(lw * lh_px / lw_px))
-        source(s, f["source"], x, BODY_Y + FIG_H - 18 * PT, tw)
         return True
     w = CONTENT_W
     h = int(w * px_h / px_w)
@@ -90,13 +81,12 @@ def split_legend(s, f, path):
         w = int(h * px_w / px_h)
     add_pic(s, m, MARGIN + (CONTENT_W - w) // 2, BODY_Y, w=w, h=h)
     y = BODY_Y + h + 10 * PT
-    room = 508 * PT - y                      # height left above the source line
+    room = 528 * PT - y                      # height left to the foot of the slide
     lw_px, lh_px = png_size(lg)
     lw = min(int(room * lw_px / lh_px), 300 * PT)
     lh = int(lw * lh_px / lw_px)
     add_pic(s, lg, RIGHT - lw, y, w=lw, h=lh)
     bullets(s, f["points"], size=14, top=y, height=room, space=4, width=CONTENT_W - lw - 16 * PT)
-    source(s, f["source"], MARGIN, 516 * PT, CONTENT_W)
     return True
 
 
@@ -112,7 +102,6 @@ def figure_slide(prs, f):
             tw = RIGHT - x
             bullets(s, f["points"], size=15 if tw > 300 * PT else 14, top=BODY_Y + 8 * PT,
                     height=320 * PT, space=12, left=x, width=tw)
-            source(s, f["source"], x, BODY_Y + FIG_H - 18 * PT, tw)
         elif split_legend(s, f, paths[0]):   # map full width; takeaways and legend beneath
             pass
         else:                                # a wide map: full width, takeaways beneath
@@ -130,6 +119,9 @@ def figure_slide(prs, f):
         for i, p in enumerate(paths):
             _, h = add_pic(s, p, MARGIN + i * (w + gap), BODY_Y, w=w)
         below(s, f, BODY_Y + h + 10 * PT)
+    for sh in s.shapes:                      # alt text: the slide's title, not the image's file name (KB §69.9)
+        if sh.shape_type == 13:
+            sh._element.nvPicPr.cNvPr.set("descr", f["title"])
     return s
 
 
@@ -161,7 +153,7 @@ for i, r in enumerate(c["r"], 1):            # the independent pairs in cyan, so
     for j, v in enumerate(r, 1):
         if abs(v) < 0.2:
             t.cell(i, j).text_frame.paragraphs[0].runs[0].font.color.rgb = CYAN
-note(s, c["takeaway"] + "   PROJECT-KNOWLEDGE.md \u00a718.3", 360 * PT, size=13)
+note(s, c["takeaway"], 360 * PT, size=13)
 
 # ------------------------------------------------------------ tasks and percent complete
 s = new(prs, "Project Tasks and Percent Complete")
@@ -171,8 +163,8 @@ table(s, ["#", "Task", "Where it stands", "13 Sep", "Now"], rows,
       widths=[0.4, 3.0, 6.0, 0.8, 0.8], size=10, row_h=24 * PT)
 
 s = new(prs, "Processing Completed Since the Last Report")
-table(s, ["When", "What", "Outcome", "KB"], [list(r) for r in I.LOG],
-      widths=[1.0, 4.4, 4.0, 0.9], size=11, row_h=28 * PT)
+table(s, ["When", "What", "Outcome"], [list(r[:3]) for r in I.LOG],   # the KB column is not printed (§69.9)
+      widths=[1.0, 4.8, 4.5], size=11, row_h=28 * PT)
 
 # ------------------------------------------------------------ preliminary results
 section(prs, "Preliminary Results", "What the data show so far",
@@ -189,5 +181,9 @@ bullets(s, I.NEXT_STEPS, size=16, top=BODY_Y, height=200 * PT, space=10)
 table(s, ["When", "What"], [list(r) for r in I.SCHEDULE], top=340 * PT, widths=[1.6, 9.0],
       size=11, row_h=24 * PT)
 
+cp = prs.core_properties                      # python-pptx's defaults name its own author (KB §69.9)
+cp.author = cp.last_modified_by = I.AUTHOR
+cp.title, cp.subject, cp.comments, cp.keywords = I.TITLE, "Interim presentation", "", ""
+cp.revision = 1
 prs.save(OUT)
 print("wrote", OUT, "-", len(prs.slides._sldIdLst), "slides")
