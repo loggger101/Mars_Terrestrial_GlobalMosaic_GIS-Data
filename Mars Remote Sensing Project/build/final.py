@@ -182,9 +182,9 @@ LIMITS = [   # (head, text)
      "reference (§26.3, §53.4)."),
     ("Channels and orders are DEM-limited",
      "Fill floods closed basins; 89.8% of ±60° channels lie under 2°; the stream order is a setting (§25.1, §47.4, §54.4)."),
-    ("The review has not started",
-     "The three digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed, so H1 and H2 wait for "
-     "digitised margins and channels (NEXT-STEPS.md §6)."),
+    ("The review has only begun",
+     "549 of 9,287 candidates reviewed, all at Ius Chasma (precision 54% on steep channels, 7% on depressions); "
+     "the digitising classes hold 94 channels, 26 crater rims and no lava margins, so H1 and H2 wait (§69.7)."),
     ("A held-out test spent once",
      "Any further tuning of the deep-learning models needs validation blocks of its own (§66.5)."),
 ]

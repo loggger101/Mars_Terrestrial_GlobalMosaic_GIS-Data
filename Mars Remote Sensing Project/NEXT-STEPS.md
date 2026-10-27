@@ -33,6 +33,12 @@ plan: the paper's lines the freeze must change (§12.1), thirteen analyses that 
 after the v2 scoring: the channels scored against the valley map, T1 on v2, spatial baselines for the held-out score,
 block-bootstrap intervals), two small blind checks for the author (R1, R2), the text and figures (W1–W8), the two
 talks, and an order of work (§12.6). Four new decisions for the author, D21–D24 (§2).
+**Later 10-27, laptop (KB §69.18):** §12.6 step 1 mostly done. New `build\score_metrics.py`: balanced accuracy,
+F1 and quantity / allocation disagreement from the logs. The published map's error is mostly quantity (20.5 of
+26.2 points), and **by balanced accuracy the thermal gain vanishes** (D25). The paper: abstract at 250 words,
+Table 3 widened, its limits brought current, two references checked by DOI, the v2 text drafted for both outcomes
+(`v2_drafts.tex`); `final.py`'s review limit fixed. **Not compiled** (no AASTeX on the laptop): rebuild the PDF on
+the desktop and read it. Copy to the drive with the rest (the list is under the first paragraph above).
 
 **Where it stands.** Every scripted job up to the review is done and recorded (KB §53–§57): the ±60°
 fine pass (465,354 closed depressions ≥ 1 km, 969,822 channel segments, layouts 11–12); the 180° DEM
@@ -188,7 +194,7 @@ delay it.
 | 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
 | 5 | The interim: content cut on 26 Oct (D20) and rebuilt, percentages set (D16); refined for the **10 Nov** presentation (KB §69.10); the report's date from the author, then deliver | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 
-**Waiting on the author:** items 1, 3 and 5 (and Pro kept closed while `run_v2.ps1` runs); D21–D24 (§2, from
+**Waiting on the author:** items 1, 3 and 5 (and Pro kept closed while `run_v2.ps1` runs); D21–D25 (§2, from
 §12); the interim talk's slot length (§12.5); whether to delete the two recreated `_60_smoke` classes
 (KB §57.1); whether to publish a derivatives release carrying the §54 patch (33 GB; the catalogue says how
 to patch a restore instead, §57.4); emptying the Recycle Bins (~21 GB of finished scratch, §57.5).
@@ -234,6 +240,7 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D22 | the two blind checks: the rule-screened v2 rows (§12.3 R1, ~45 min) and a probability-sample accuracy check (R2, ~2–3 h) | R1 yes, after the candidate review; R2 if time is free |
 | D23 | a DOI for the data release through Zenodo, and a data statement (§12.4 W7); publishing | yes, with the pre-final release (§7) |
 | D24 | the final deck in the interim's dark `mars_theme` (§12.5) | yes: one look for both talks |
+| D25 | the abstract's and conclusions' thermal gain: qualify it with the balanced-accuracy result (§12.4 W9) | yes: one clause, "in overall accuracy; none by balanced accuracy" |
 D19 was answered 2026-10-24, before any v2 score existed: D18's rule (a) is judged on the held-out polygons whose
 v2 class is 1–4, the ground both maps can name (KB §68.4 amended, §69.4); `score_d18_verdict.py` does so.
 D20 was answered 2026-10-26: **the interim's data cut is 26 October** (KB §69.5); the class revision, the
@@ -537,15 +544,14 @@ author's review (§6).
 
 ### 12.1 Lines in the paper and `final.py` that the freeze must change
 
+The abstract, the limits on the labels and the candidates, the channel reference and the two citations were brought
+current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT STUFF\Final\paper\v2_drafts.tex`:
+
 | where | today | true since |
 |---|---|---|
-| abstract | 306 words | AAS journals allow 250: trim (W1) |
-| Limits, the labels | "Its labels await review" | 2026-10-27: 971 v2 labels applied (KB §69.8) |
-| Limits, the candidates; `final.py` line 185 | "has not started" | 2026-10-26: 549 of 9,287 reviewed, 94 channels and 26 rims accepted (KB §69.7) |
-| Channels | "The project holds no channel reference at this extent" | 2026-10-23: the Alemanno valley map is on the drive (KB §69.2); score against it (A1) |
-| `references.bib` | no entry for the valley map | it seeded class 7 (KB §68.5): cite it, DOI checked |
 | Methods, labels | four classes, 512 polygons | v2: seven classes, 734 training / 237 held out; **347 apron and fluvial rows accepted by a written rule, not by eye**, and hills short of §11.3 (`--keep-short`): both stated (KB §69.8) |
 | Limits, held-out use | "used once for each model" | the v2 maps are a second use of the 14 blocks; say so |
+| the PDF and the final deck | built 2026-10-22/23 | rebuild on the desktop (`build_final_paper.py`, MiKTeX; `build_final_deck.py`) and read every page: Table 3 is wider now |
 
 ### 12.2 Analyses that need no author time
 
@@ -554,7 +560,6 @@ author's review (§6).
 | A1 | **The routed channels scored against the valley map**: share of order ≥ 3 length within 2 / 5 / 10 km of a mapped valley, and of valley length within the same of a routed channel, beside a shifted-network chance baseline (as for craters); by latitude band and SIM 3292 unit group | the network gets a precision and recall, the test the paper names as missing | desktop, ArcGIS Python | A |
 | A2 | **T1 on the v2 labels** (§4, T1b): §40.1's Gaussian ablation on the v2 split; does thermal help edifice, apron or fluvial channel, as it helped Crater and hills? | the central claim retested on the classes most likely to carry material | desktop, numpy | A |
 | A3 | **Spatial baselines for the held-out score**: (a) each pixel given the class of the nearest training polygon; (b) a classifier on elevation and latitude only (the crustal dichotomy); (c) the SVM map under a ~51 km mode filter, the U-Net's context | turns "the U-Net's 98.9 % measures agreement at province scale" into a measured statement | desktop | A |
-| A4 | **More than accuracy and κ**: balanced accuracy, per-class F1 and macro-F1, quantity and allocation disagreement (Pontius and Millones 2011), from the area-weighted confusion matrices already in `build\logs\global60_classification_check_*.json` | κ is widely criticised; Normal Ground (54.7 % of the map) carries the overall score | **laptop, now** | A |
 | A5 | **Block bootstrap**: intervals that resample the 14 held-out blocks, not the 183 polygons (polygons in one block are not independent); beside the polygon intervals, for the maps and for T1. Needs per-polygon scores: `DL_UNet_Heldout_Scores_20261020` holds them for the four-class maps; the scorer does not write them yet | honest intervals for a spatial test | desktop | A |
 | A6 | **Agreement map**: where the SVM and U-Net maps agree, per class, as a share of ±60° and as a figure; four-class now, v2 after | shows where the two methods disagree, not only how each scores | desktop, minutes | B |
 | A7 | **H2 with references for origin** (§4, T4 stage 1b): routed segments on Alemanno valleys as fluvial against segments on SIM 3292 volcanic units off them as volcanic; gradient and thermal z-score as in stage 1 | H2 tested by origin rather than by window, without waiting for 10 + 10 reviewed channels; still a stand-in, and stage 2 stays the authority if the review reaches it | desktop | B |
@@ -562,7 +567,7 @@ author's review (§6).
 | A9 | **Day IR at the contacts checked against topography**: T5 rerun with day IR residualised on hillshade and slope (day temperature follows slope facing the sun) | if the +8.7 pt lean vanishes, H1's hint is illumination; if it holds, it is stronger | desktop, minutes | B |
 | A10 | **Crater size-frequency distribution**: cumulative counts, log-log, closed depressions against Robbins, at ±60° and per type area; the completeness diameter where the curves part | the standard planetary figure for a crater catalogue | desktop | B |
 | A11 | **The breached-crater explanation tested**: recall by Robbins' morphology or degradation fields, if the 2020 release carries them **[?]** (columns not read), else by rim-height deficit on the DEM | the paper asserts why recall stops near one half; this measures it | desktop | B |
-| A12 | **Class areas**: each class's share of ±60° (in the logs as `share_area_weighted`) as a table column; v2 too | what the map says about Mars, not only how it scores | laptop, now | C |
+| A4b | `score_metrics.py` on the v2 logs (the list is at the top of `v2_drafts.tex`), for Table 3's v2 rows | balanced accuracy, F1, Q and A beside v2's accuracy and κ | either Python, minutes | A |
 | A13 | **The review rule's sensitivity**: how many fluvial and apron rows change at floor depths of 10 and 30 m and median slopes of 0.5° and 1.5° | bounds how much the v2 labels depend on two thresholds | desktop, minutes | C |
 
 ### 12.3 Small asks of the author (each after the candidate review, never ahead of it)
@@ -576,15 +581,14 @@ author's review (§6).
 
 ### 12.4 The paper's text and figures
 
-- **W1, the abstract** to ≤ 250 words: the measured findings first; the U-Net's number qualified in its own sentence.
 - **W2, the title** (D21): it promises "Mapping Lava Flows" though the lava flows come from the geologic map; a
   title that names the stack and what it can and cannot map would match the results.
 - **W3, prior work**: the introduction cites the data but no earlier automated mapping, and the discussion compares
   with none. Candidates, **from memory and unchecked: each needs its DOI read before it enters `references.bib`**:
   automated crater detection (the DeLatte et al. 2019 review; Silburt et al. 2019); automated landform and valley
-  mapping on Mars (Bue and Stepinski 2006; Luo and Stepinski 2009; Alemanno et al. 2018, the valley map); deep
-  learning on Mars landforms (Wilhelm et al. 2020, DoMars16k); accuracy assessment (Olofsson et al. 2014; Pontius
-  and Millones 2011).
+  mapping on Mars (Bue and Stepinski 2006; Luo and Stepinski 2009); deep learning on Mars landforms (Wilhelm et al.
+  2020, DoMars16k); accuracy assessment (Olofsson et al. 2014). Alemanno et al. 2018 and Pontius and Millones 2011
+  are in, checked by DOI (KB §69.18).
 - **W4, figures** (page budget: 14 pages now): the pipeline (`docs/pipeline.svg`) in Methods; **the block split**,
   39 blocks with the 14 held out and the polygons by class, so a reader can judge the spatial test; a type-area
   zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the
@@ -597,10 +601,12 @@ author's review (§6).
   exists, CTX for margins, validation blocks for the deep-learning models, R2 if not done.
 - **W7, data availability** (D23): a DOI for the data release through Zenodo's GitHub link, cited as
   `Edwards2026data`, and a data statement as AAS asks. Publishing: the author's yes.
-- **W8, both outcomes drafted now**: the v2 paragraphs, table rows and figure slots in `final.py` and the `.tex`,
-  written against the rehearsal logs (`d18_verdict_v2p.json`, `global60_classification_check_*_v2p*.json`) for D18
-  passing and for it failing, so the freeze changes numbers only. The seven-class colours chosen once
-  (colour-blind safe) for layouts, deck and paper. Laptop, now.
+- **W8, the deck's half**: the paper's v2 text is drafted for both outcomes (`v2_drafts.tex`, KB §69.18) and the
+  colours are `labelsets.COLOURS`, checked; `final.py`'s v2 slide (the seven-class map, its scores beside the
+  four-class map's, D18's verdict) is still to draft, the same way. Laptop.
+- **W9, the thermal claim** (D25): by balanced accuracy the thermal gain vanishes (−0.3 and +0.1 points, KB
+  §69.18); the paper says so in Results, but the abstract and conclusions still give "a resolved 1.4 to 2.0
+  points" alone. Whether they should carry the qualifier is the author's call.
 
 ### 12.5 The two talks
 
@@ -612,8 +618,9 @@ author's review (§6).
 
 ### 12.6 Order of work
 
-1. **Laptop, now:** A4, A12, W1, W8; W3's candidates checked; the §12.1 lines marked in `final.py` and the `.tex`.
-2. **Desktop, after "queue done":** the v2 scoring and D18 (§11.5) first; then A1, A2, A3, A5, A4 on v2, A6, then
+1. **Laptop, now:** W8's deck half; W3's candidates checked (A4, A12, W1 and the paper's half of W8 done 10-27,
+   KB §69.18).
+2. **Desktop, after "queue done":** the v2 scoring and D18 (§11.5) first; then A4b, A1, A2, A3, A5, A6, then
    A7–A11 as time allows; A13 if cheap.
 3. **The author:** the candidate review (§6) first; then R1; R2 if any time is free.
 4. **By 22 Nov:** the freeze; §12.1's lines and every result above that ran, into the KB, then `final.py` and the

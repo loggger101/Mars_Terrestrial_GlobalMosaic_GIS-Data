@@ -22,24 +22,21 @@
 \email{ledwards2024@my.fit.edu}
 
 \begin{abstract}
-Viking MDIM~2.1 visible colour, THEMIS daytime and nighttime thermal-infrared mosaics and the HRSC/MOLA blended
-elevation model were co-registered on a single 100~m and 200~m grid that spans \pmsixty\ latitude, 86.6\% of the
-surface of Mars, and the stack was used to map impact craters, fluvial channels and lava flows. Over the Ius Chasma
-type area the three visible bands are one dimension ($r=0.93$--$0.99$) while day and night infrared are nearly
-independent of them and of each other ($|r|\le0.12$ for night). Across \pmsixty, however, the held THEMIS mosaics
-are 8-bit products contrast-stretched region by region: dusty and rocky provinces differ by 47.67~DN in Viking red
-and by $-0.19$ and $+0.02$~DN in day and night infrared, and against calibrated TES thermal inertia the THEMIS pair
-keeps only a weak local signal ($|r|\approx0.1$) while Viking albedo tracks inertia planet-wide ($r=-0.36$). Fill
-depth on the elevation model yields 465,354 closed depressions $\ge1$~km; against the Robbins crater database
-62.2\% of those $\ge5$~km are catalogued craters, but only 15.3\% at $\ge1$~km, and recall levels off near one half
-because breached craters are invisible to the method. A routed network of 969,822 channel segments has 89.8\% of
-its length on slopes under $2^{\circ}$, and its stream order is set by the accumulation threshold rather than by the
+Viking MDIM~2.1 visible colour, THEMIS day and night thermal-infrared mosaics and the HRSC/MOLA blended elevation
+model were co-registered on one 100~m and 200~m grid spanning \pmsixty\ latitude, 86.6\% of Mars, to map impact
+craters, fluvial channels and lava flows. At Ius Chasma the visible bands are one dimension ($r=0.93$--$0.99$)
+and night infrared is nearly independent of every band ($|r|\le0.12$). Across \pmsixty, however,
+the THEMIS mosaics are 8-bit products stretched region by region: dusty and rocky provinces differ by 47.67~DN in
+Viking red but by $-0.19$ and $+0.02$~DN in day and night infrared, and against calibrated TES thermal inertia the
+THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking albedo tracks inertia planet-wide
+($r=-0.36$). Fill depth yields 465,354 closed depressions $\ge1$~km; 62.2\% of those $\ge5$~km are catalogued
+craters, only 15.3\% at $\ge1$~km, and breached craters are invisible to the method. Of 969,822 routed channel
+segments 89.8\% lie on slopes under $2^{\circ}$, and stream order follows the accumulation threshold, not the
 terrain. A support vector machine trained on 512 hand-drawn landform polygons and scored on whole $15^{\circ}$
-blocks it never saw reaches 73.8\%, \kap\,0.58 against 58.6\% for a one-class map; the thermal bands add a resolved
-1.4 to 2.0 points. A U-Net trained on the same labels reaches 98.9\%, \kap\,0.98 as a map of terrain provinces. No
-band separates the lava contacts of the 1:20\,M geologic map at Athabasca Valles much better than chance, so lava
-flows are taken from that map. Three of four hypotheses are not supported, and the fourth was answered by another
-method.
+blocks it never saw reaches 73.8\%, \kap\,0.58 (one class everywhere: 58.6\%); the thermal bands add a resolved 1.4
+to 2.0 points. A U-Net reaches 98.9\% on the same blocks as a terrain-province map. No band separates the lava
+contacts of the 1:20\,M geologic map at Athabasca Valles much better than chance, so lava flows are taken from
+that map. Three of four hypotheses are not supported; the fourth was answered by another method.
 \end{abstract}
 
 \keywords{Mars --- Planetary surfaces --- Remote sensing --- Infrared imaging --- Impact craters --- Lava flows ---
@@ -211,7 +208,10 @@ training polygons (1,000 samples per class) and applied to all of \pmsixty\ at 2
 %% KB §29.2, §31.3, §54.3, §68.2, §68.5
 
 Accuracy is the area-weighted (by $\cos$ latitude) share of held-out polygon area given its own class, with Cohen's
-\kap\ \citep{Cohen1960} and per-class producer's and user's accuracy \citep{Congalton1991}. Three baselines accompany
+\kap\ \citep{Cohen1960} and per-class producer's and user's accuracy \citep{Congalton1991}. Because one class dominates
+the held-out area, each map is also given its balanced accuracy (the mean producer's accuracy), the mean of the
+per-class F1 scores, and its disagreement split into quantity (the wrong amount of a class) and allocation (the right
+amount in the wrong place) after \citet{Pontius2011}. Three baselines accompany
 every score: one class everywhere (58.6\% on the held-out set), the share of the map that elevation alone reproduces
 (each 500~m bin given its majority class), and the share of named craters $\ge5$~km labelled Crater inside $0.7R$
 against a ring at $1.5$--$2.5R$. A majority filter removes speckle; its window was set from the resolving rule (about
@@ -366,8 +366,8 @@ At \pmsixty\ the fill mask discards 60.5\% of stream cells and leaves 969,822 se
 orders 1--5: 564,882, 360,236, 41,442, 3,165 and 97; Figure~\ref{fig:channels}). Of 40,410 sampled midpoints, 89.8\%
 lie on ground under $2^{\circ}$, and 96.7\% of those of order 3 and higher: the long high-order paths gather on smooth
 ground where the DEM holds few pits, and their length per cell correlates negatively with the density of 1--2~km
-depressions ($r=-0.35$). The project holds no channel reference at this extent, so the network is not scored; a
-valley-network map such as that of \citet{Hynek2010} would be the natural reference for a later test. %% KB §54.4, §55.4, §53.6
+depressions ($r=-0.35$). The network is not scored here; the global valley maps of \citet{Hynek2010} and
+\citet{Alemanno2018} are the natural references, and the second is held for that test. %% KB §54.4, §55.4, §53.6, §68.5; NEXT-STEPS §12.2 A1
 
 \begin{figure*}[t]
 \centering
@@ -431,6 +431,13 @@ no longer an elevation map (elevation bins reproduce 55.4\%, within a point of i
 no tile seams (ratio 1.00), and labels 56.8\% of the ground inside named craters as Crater against 46.2\% in the ring
 around them. %% KB §55.3, §57; logs\global60_classification_check_200m_mode11.json
 
+The overall score flatters the map. Crater is 58.6\% of the held-out area, and its balanced accuracy is 66.7\% with a
+mean F1 of 55.7\%, lava tube's F1 being 4.5\%. Of the 26.2 points of disagreement, 20.5 are quantity and 5.7
+allocation: most of the error is in how much of each class the map paints, not where, giving 38.1\% of the held-out
+ground to Crater against the labels' 58.6\% and painting the rest of the Crater polygons lava tube (10.9 points),
+Normal Ground (8.1) and hills (4.1). Over all of \pmsixty\ it is 54.7\% Normal Ground, 33.9\% Crater, 9.4\% lava tube
+and 1.9\% hills. %% KB §69.18; logs\score_metrics.json
+
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/04_global60_landforms.png}
@@ -451,21 +458,24 @@ by feature size. \label{fig:accuracy}}
 \centering
 \caption{Held-out scores of the landform maps (183 polygons) \label{tab:svm}}
 \small
-\begin{tabular}{lcc}
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccccc}
 \hline\hline
-Map & Accuracy & $\kappa$ \\
+Map & Acc. & $\kappa$ & Bal. & F1 & Q & A \\
 \hline
-One class everywhere & 58.6\% & -- \\
-SVM, 400 m, raw & 70.5\% & 0.540 \\
-SVM, 200 m, raw & 69.9\% & 0.532 \\
-SVM, 200 m, $5\times5$ & 72.0\% & 0.560 \\
-SVM, 200 m, $11\times11$ (published) & 73.8\% & 0.583 \\
-U-Net, two passes & 98.9\% & 0.980 \\
+One class everywhere & 58.6 & -- & -- & -- & -- & -- \\
+SVM 400 m, raw & 70.5 & 0.540 & 63.5 & 53.4 & 23.6 & 5.9 \\
+SVM 200 m, raw & 69.9 & 0.532 & 63.1 & 52.8 & 24.2 & 5.9 \\
+SVM 200 m, $5\times5$ & 72.0 & 0.560 & 65.1 & 54.4 & 22.2 & 5.8 \\
+SVM 200 m, $11\times11$$^{a}$ & 73.8 & 0.583 & 66.7 & 55.7 & 20.5 & 5.7 \\
+U-Net, two passes & 98.9 & 0.980 & 94.8 & 93.9 & 0.5 & 0.6 \\
 \hline
 \end{tabular}
-\par\vspace{3pt}\noindent\parbox{\columnwidth}{\footnotesize Note: Area-weighted by $\cos$ latitude, scored at 400~m.}
+\par\vspace{3pt}\noindent\parbox{\columnwidth}{\footnotesize Note: In percent but $\kappa$. Acc., overall accuracy;
+Bal., balanced accuracy; F1, mean per-class F1; Q and A, quantity and allocation disagreement ($\mathrm{Q}+\mathrm{A}=
+100-\mathrm{Acc.}$). Area-weighted by $\cos$ latitude, scored at 400~m. $^{a}$The published map.}
 \end{table}
-%% KB §55.3, §57, §66.8
+%% KB §55.3, §57, §66.8, §69.18
 
 Whether the thermal bands help (test T1) was measured twice, with the prediction of little or no gain written first.
 A Gaussian maximum-likelihood ablation on 2.69 million held-out pixels (Figure~\ref{fig:ablation}) finds that the
@@ -474,8 +484,10 @@ thermal bands add $+1.3$ points (interval $+0.6$ to $+2.2$), that slope and reli
 Retraining ArcGIS Pro's support vector machine over all of \pmsixty\ without each band group confirms it
 (Table~\ref{tab:t1}): the thermal gain is the one difference resolved at both cells. It is not uniform: thermal helps
 Crater (producer's $+1.9$ points, nine more polygons won) and hills ($+5.5$ points) and hurts lava tube ($-8.5$
-points). Terrain alone ties the score but makes a poor crater map (34 of 124 crater polygons won, against 103). The
-hand-drawn classes are landform classes, a terrain property, and cannot price a material signal. %% KB §40.1, §56, §56.1
+points). Weighted by class rather than by area, the gain disappears: balanced accuracy is 63.1\% with the thermal
+bands and 63.4\% without at 200~m, 63.5\% and 63.4\% at 400~m, because Crater and hills hold most of the held-out
+area. Terrain alone ties the score but makes a poor crater map (34 of 124 crater polygons won, against 103). The
+hand-drawn classes are landform classes, a terrain property, and cannot price a material signal. %% KB §40.1, §56, §56.1, §69.18
 
 \begin{figure}[t]
 \centering
@@ -516,7 +528,8 @@ The U-Net is a different matter. In the held-out windows it scored 98.75\%, \kap
 maps). The second, offset pass lowered the ratio to 1.2 and changed nothing else measured: 98.9\%, \kap\,0.980 held out,
 with lava tube at 77.1\% user's accuracy against 2.4\% (Figure~\ref{fig:dl}, right, and Figure~\ref{fig:unet}). The map
 is a map of terrain provinces, not of features: the southern highlands are Crater, the northern lowlands Normal Ground,
-lava tube lies on Tharsis and Elysium and hills along Valles Marineris. It labels 91.3\% of the ground inside named
+lava tube lies on Tharsis and Elysium and hills along Valles Marineris; it makes 55.1\% of \pmsixty\ Crater and
+39.3\% Normal Ground, where the support vector machine map makes 33.9\% and 54.7\%. It labels 91.3\% of the ground inside named
 craters as Crater, but also 82.6\% of the ring around them, and elevation bins reproduce 68.0\% of it. The held-out
 labels mark areas that are mostly one class at 50~km, and a model that sees 51~km of context reproduces those areas; the
 score measures agreement with the hand-drawn areas at province scale. The support vector machine map therefore remains
@@ -585,8 +598,13 @@ An audit of the 512 labels found no two classes sharing ground, but five Crater 
 Pavonis and Ascraeus Mons, Tharsis and Ulysses Tholus) and six lava-tube polygons beside fluvial valleys. Arsia Mons
 alone is 31\% of the held-out Crater area, so part of the Crater score, and of the U-Net's Crater province, measures
 volcanic shields. A seven-class scheme follows from the audit: Crater narrowed to impact craters, with volcanic edifice,
-apron and fluvial channel as new classes. Its labels await review; both maps will then be scored on the same held-out
-polygons, and the seven-class map replaces the published one only by a rule written before the run. %% KB §68.1--§68.4
+apron and fluvial channel as new classes. Its 971 labels (734 training, 237 held out in the same 14 blocks) were
+applied on 27 October. Every relabel, check and new edifice outline was reviewed by eye; the 172 apron and 276
+fluvial-strip proposals were screened by a rule written before it ran (a strip kept only on a floor at least 20~m below
+its flanks and off volcanic plains, an apron only where neither flat nor in a crater), not inspected one by one; and
+hills fall short of the training minimum, in two training blocks against three. Both maps are scored on the same
+held-out polygons, and the seven-class map replaces the published one only by a rule written before the run.
+%% KB §68.1--§68.4, §69.8
 
 The detectors are elevation-model products. Closed depressions miss breached craters by construction, and below about
 5~km their density follows the sharpness of the HRSC/MOLA blend. Channels inherit the same dependence, and the fill
@@ -594,9 +612,11 @@ mask that removes synthetic lakes also breaks networks where the DEM is pitted.
 
 The held-out test has been used once for each model. Any further tuning, of the deep-learning models above all, would
 turn the 14 held-out blocks into a validation set; a next round needs validation blocks of its own. Finally, the manual
-review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709 depressions) has not started, so the
-digitised landform classes are empty and the machine products are presented as candidates with measured recall and
-precision. %% KB §66.5, §6, NEXT-STEPS §6
+review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709 depressions) has reached 549, all
+at Ius Chasma, with a precision (accepts over accepts and rejects) of 54\% on the 188 steep, rock-floored channels and
+7\% on 361 closed depressions. The
+digitised classes hold 94 channels, 26 crater rims and no lava margins, so the machine products are presented as
+candidates with measured recall and precision. %% KB §66.5, §6, §69.7, NEXT-STEPS §6
 
 %% ====================================================================================================
 \section{Conclusions} \label{sec:conclusions}

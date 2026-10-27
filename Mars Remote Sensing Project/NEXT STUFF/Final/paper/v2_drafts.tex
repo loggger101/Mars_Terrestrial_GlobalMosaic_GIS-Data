@@ -1,0 +1,110 @@
+%% The seven-class (v2) text for mars_global_mosaic.tex, drafted before any v2 number exists (NEXT-STEPS §12.4 W8,
+%% KB §69.18). NOT \input by the paper: at the freeze, copy the branch that D18's verdict picks into the place named
+%% above each block, replace every \VV{log}{key} with the number from that log (build\logs\, written by run_v2.ps1;
+%% percentages to one decimal, kappa to three), put each number into the KB first, then run verify_interim.py on the
+%% .tex. Drafted against the rehearsal's logs (*_v2p*), whose numbers are never results and appear nowhere below.
+%%
+%% The logs, by the queue's step names (run_v2.ps1):
+%%   SV2   03_score_svm_v2           global60_classification_check_v2_200m_mode11.json
+%%   SF2   04_score_svm_four_on_v2   global60_classification_check_200m_mode11_on_v2_labels.json
+%%   D18   05_d18_verdict_v2         d18_verdict.json      (replaces: true/false picks the branch)
+%%   GEO   06_geomap_v2              geomap_check_v2.json
+%%   UV2   12_score_unet_v2          global60_classification_check_global60_landforms_unet_v2_200m_seamfix.json
+%%   UF2   13_score_unet_four_on_v2  global60_classification_check_global60_landforms_unet_200m_seamfix_on_v2_labels.json
+%%   DU    not in the queue: score_d18_verdict.py --four <UF2> --v2 <UV2> --out logs\d18_verdict_unet_v2.json
+%%         (the rehearsal's d18_verdict_unet_v2p.json was made the same way)
+%%   MET   score_metrics.py logs\<SV2> logs\<SF2> logs\<UV2> logs\<UF2> --out logs\score_metrics_v2.json
+%% Keys are as the scorers write them: held_out.accuracy, held_out.producers.<class>, d18 a_accuracy_and_kappa.
+%% accuracy = [v2, four], c_kept_classes.<class>.fall, and so on.
+%%
+%% Class colours, the same in layouts, deck and paper: labelsets.COLOURS (the labels' own; checked 2026-10-27 under
+%% simulated protan, deutan and tritan vision, closest pair Delta E 21.1, KB §69.18). Do not pick new ones.
+\newcommand{\VV}[2]{\textbf{[#1: #2]}}   % only for a trial compile of this file's text
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 1. Methods, "Supervised classification and its score": a paragraph after the four-class one. Either branch.
+%% ---------------------------------------------------------------------------------------------------------
+An audit of the 512 labels then revised the scheme to seven classes: Crater narrowed to impact craters, volcanic
+plains drawn as Normal Ground, and three new classes, volcanic edifice, apron and fluvial channel. Proposals for each
+label and new polygons for the new classes were built from the geologic map, the Robbins database, the IAU names, the
+elevation model and the valley map of \citet{Alemanno2018}. Every relabel, check and edifice outline was reviewed by
+eye; the apron and fluvial-strip proposals were screened by a rule written before it ran. The result, 971 labels, keeps
+the same 14 held-out blocks (734 training and 237 held-out polygons), and a support vector machine and a U-Net were
+retrained on it exactly as before. The seven-class map was to replace the published one only if, on the same v2
+held-out polygons, (a) its accuracy and \kap\ on the ground both maps can name (v2 classes 1--4) were at least the
+published map's, (b) each new class had a user's accuracy above its share of the held-out area, and (c) Crater, hills
+and Normal Ground each lost under 5 points of producer's accuracy. %% KB §68.1--§68.4, §69.2, §69.8
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 2a. Results, a new subsection "Seven classes" after "The landform classification". BRANCH: D18 replaces = true.
+%% ---------------------------------------------------------------------------------------------------------
+On the 237 v2 held-out polygons the seven-class support vector machine map scores \VV{SV2}{held\_out.accuracy},
+\kap\,\VV{SV2}{held\_out.kappa}, against \VV{SF2}{held\_out.accuracy}, \kap\,\VV{SF2}{held\_out.kappa} for the published
+map, which cannot name the new classes. On the ground both can name it scores \VV{D18}{a.accuracy[0]} against
+\VV{D18}{a.accuracy[1]}; volcanic edifice, apron and fluvial channel reach user's accuracies of
+\VV{D18}{b.volcanic edifice.users}, \VV{D18}{b.apron.users} and \VV{D18}{b.fluvial channel.users} against area shares
+of \VV{D18}{b.*.area\_share}; and no kept class loses 5 points (largest fall \VV{D18}{c.max fall}, \VV{D18}{c.class}).
+By the rule written before the run the seven-class map replaces the four-class one as the published landform map
+(Figure~\ref{fig:landforms7}). Its balanced accuracy is \VV{MET}{SV2 balanced\_accuracy} and its disagreement
+\VV{MET}{SV2 quantity} quantity and \VV{MET}{SV2 allocation} allocation. Against the geologic map, volcanic edifice is
+\VV{GEO}{enrichment edifice on volcanic edifice units} times as common on the volcanic edifice units as across \pmsixty.
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 2b. The same place. BRANCH: D18 replaces = false. Name every failed part, as the verdict prints it.
+%% ---------------------------------------------------------------------------------------------------------
+On the 237 v2 held-out polygons the seven-class support vector machine map scores \VV{SV2}{held\_out.accuracy},
+\kap\,\VV{SV2}{held\_out.kappa}, against \VV{SF2}{held\_out.accuracy}, \kap\,\VV{SF2}{held\_out.kappa} for the published
+map. By the rule written before the run it does not replace it: \VV{D18}{the failed parts, each with its numbers, e.g.
+"(a) on classes 1--4 it scores x against y"; "(b) apron's user's accuracy x is below its area share y"; "(c) Crater
+loses x points"}. The four-class map stays the published landform map, and the seven-class map is reported as a test
+(Figure~\ref{fig:landforms7}). What it shows is \VV{SV2}{one sentence on where the new classes land: producer's of
+edifice, apron and fluvial channel}.
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 3. Results, "Deep learning": after the U-Net paragraph. Either branch; DU decides the wording of its last sentence.
+%% ---------------------------------------------------------------------------------------------------------
+Retrained on the seven classes, the U-Net scores \VV{UV2}{held\_out.accuracy}, \kap\,\VV{UV2}{held\_out.kappa} on the
+v2 held-out polygons, against \VV{UF2}{held\_out.accuracy} for the four-class U-Net, with new-class user's accuracies of
+\VV{UV2}{users edifice / apron / fluvial channel}. %% DU replaces = true:
+By the same rule it replaces the four-class U-Net as the province map.
+%% DU replaces = false:
+%% By the same rule it does not replace the four-class U-Net: \VV{DU}{the failed parts}.
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 4. Table 3 (tab:svm): rows below the U-Net. The four-class rows keep their 183-polygon scores; say in the note
+%%    that these rows are on the 237 v2 polygons and are not comparable with the rows above.
+%% ---------------------------------------------------------------------------------------------------------
+%% \hline
+%% \multicolumn{7}{l}{\textit{On the 237 v2 held-out polygons}} \\
+%% SVM four-class (published) & \VV{SF2}{acc} & \VV{SF2}{kappa} & \VV{MET}{bal} & \VV{MET}{F1} & \VV{MET}{Q} & \VV{MET}{A} \\
+%% SVM seven-class & \VV{SV2}{acc} & \VV{SV2}{kappa} & \VV{MET}{bal} & \VV{MET}{F1} & \VV{MET}{Q} & \VV{MET}{A} \\
+%% U-Net four-class & \VV{UF2}{acc} & ... \\
+%% U-Net seven-class & \VV{UV2}{acc} & ... \\
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 5. Figure: the seven-class map, from the new layout beside 04 (NEXT-STEPS §11.5 step 4), and the per-class chart
+%%    svm_vs_unet.png redrawn on v2 (make_fig_final.py). Label: fig:landforms7.
+%% ---------------------------------------------------------------------------------------------------------
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 6. Discussion, "Limits": replace the sentence "Both maps are scored on the same held-out polygons, and the
+%%    seven-class map replaces the published one only by a rule written before the run." with one branch, and
+%%    replace the held-out paragraph's first sentence.
+%% ---------------------------------------------------------------------------------------------------------
+%% replaces = true:
+The seven-class map passed the rule set before it ran and is the published map; its apron and fluvial labels rest on
+a written screen, not on inspection, and its hills class is short of the training minimum.
+%% replaces = false:
+%% The seven-class map failed the rule set before it ran (\VV{D18}{the failed part}), so the four-class map, with its
+%% volcano-shaped Crater labels, remains the published one.
+%% held-out use:
+The held-out blocks have now been used twice, once by the four-class models and once by the seven-class ones; any
+further tuning needs validation blocks of its own.
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 7. Abstract and Conclusions: one clause each, in the 250-word budget (the abstract is at 250 now: cut as much).
+%% ---------------------------------------------------------------------------------------------------------
+%% replaces = true:  "Revised to seven classes after an audit of the labels, the map scores \VV{SV2}{acc} on 237
+%%                    held-out polygons and replaces the four-class map by a rule set in advance."
+%% replaces = false: "A seven-class revision after an audit of the labels scores \VV{SV2}{acc} on 237 held-out
+%%                    polygons and fails the rule set in advance to replace the four-class map."

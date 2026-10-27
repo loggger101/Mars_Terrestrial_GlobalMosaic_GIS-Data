@@ -116,7 +116,7 @@ GROUPS = [  # (heading, predicate on the script name); first match wins
                                                      "make_crater_", "make_landform_", "verify_crater_",
                                                      "verify_segmentation")) and "layouts" not in n),
     ("±60° analysis extent", lambda n: n.startswith(("grid60", "make_extent", "make_global_", "make_global60_",
-                                                     "verify_global60", "svmcheck", "verify_svm_"))
+                                                     "verify_global60", "svmcheck", "verify_svm_", "score_metrics"))
                                        and n != "make_global60_maps.py"),
     ("ArcGIS project: maps and layouts", lambda n: n in {"layoutkit.py", "polish_layouts.py", "make_global60_maps.py",
                                                          "make_candidate_maps.py", "make_typearea_layouts.py",

@@ -4478,3 +4478,66 @@ Nothing measured, no file but the two plans changed. Facts found while reading, 
 - The clone's copy of `build\logs\run_v2\queue.log` (untracked) shows the SVM training started 10-27 01:32; it is a
   copy, not the desktop's live log, and says nothing of the run's progress since.
 - The literature candidates in §12.4 W3 are **[?]**: named from memory, none looked up.
+
+### 69.18 Scores beyond accuracy and κ; class areas; the paper's abstract and limits brought current — 2026-10-27, laptop **[V]**
+
+The author's request: commit the brainstorm (34f7c1d), then the laptop items of `NEXT-STEPS.md` §12.6 step 1. No
+drive, no Pro; everything from the clone's logs.
+
+- **New `build\score_metrics.py`** (pure Python, JSON only; either Python): from each scorer output's held-out
+  area-weighted confusion matrix (rows the labels, columns the map; `confusion_unrounded` where present, else the
+  4-place `confusion_area_weighted`, as for every log here) it gives balanced accuracy (mean producer's), F1 per
+  class and their mean, and quantity and allocation disagreement (Pontius and Millones 2011: 1 − accuracy = Q + A,
+  Q = ½ Σ |label share − map share|), plus the map's `share_area_weighted`. It recomputes accuracy and κ and stops
+  (exit 2) if they differ from the scorer's by more than 0.001: **proved on a planted log** (accuracy set to 0.75
+  in a copy of the published map's: refused, exit 2). All ten logs below pass (the 5 × 5 map recomputes to 72.06 %
+  against the log's 0.720, from the rounded matrix). Writes `logs\score_metrics.json`. Descriptions of recorded
+  results, no prediction tested.
+
+| map (held out, 183 polygons) | acc. % | κ | balanced % | mean F1 % | Q % | A % | F1 % Crater / hills / lava tube / Normal Ground | ±60° share % Crater / hills / lava tube / Normal Ground |
+|---|---|---|---|---|---|---|---|---|
+| SVM 400 m raw | 70.47 | 0.540 | 63.46 | 53.38 | 23.59 | 5.94 | 69.22 / 53.26 / 3.43 / 87.61 | 33.0 / 2.3 / 10.7 / 54.0 |
+| SVM 200 m raw | 69.89 | 0.532 | 63.12 | 52.75 | 24.21 | 5.90 | 68.40 / 52.00 / 3.31 / 87.28 | 32.4 / 2.7 / 10.7 / 54.2 |
+| SVM 200 m 5 × 5 | 72.06 | 0.560 | 65.10 | 54.41 | 22.17 | 5.77 | 71.26 / 54.32 / 3.83 / 88.22 | 33.3 / 2.2 / 10.1 / 54.5 |
+| **SVM 200 m 11 × 11, published** | 73.83 | 0.583 | **66.71** | **55.72** | **20.48** | **5.69** | 73.52 / 56.12 / 4.46 / 88.78 | **33.9 / 1.9 / 9.4 / 54.7** |
+| U-Net, one pass | 98.84 | 0.978 | 94.31 | 93.22 | 0.47 | 0.69 | 99.12 / 96.81 / 77.78 / 99.16 | 55.0 / 1.0 / 4.8 / 39.2 |
+| **U-Net, two passes** | 98.93 | 0.980 | **94.79** | **93.89** | 0.47 | 0.60 | 99.19 / 97.16 / 80.00 / 99.19 | **55.1 / 1.0 / 4.7 / 39.3** |
+| SVM 200 m, no thermal (T1) | 68.53 | 0.517 | 63.43 | 52.19 | 25.17 | 6.30 | 66.72 / 50.89 / 3.47 / 87.68 | 31.7 / 2.1 / 12.3 / 53.8 |
+| SVM 400 m, no thermal (T1) | 68.48 | 0.516 | 63.39 | 52.15 | 25.18 | 6.34 | 66.66 / 50.85 / 3.47 / 87.62 | 31.7 / 2.1 / 12.3 / 53.8 |
+| SVM 400 m, no visible (T1) | 74.73 | 0.600 | 67.40 | 58.16 | 22.73 | 2.54 | 73.98 / 69.41 / 2.87 / 86.36 | 35.0 / 1.9 / 6.9 / 56.2 |
+| SVM 400 m, terrain only (T1) | 70.77 | 0.551 | 66.88 | 56.57 | 26.79 | 2.44 | 68.46 / 69.95 / 2.64 / 85.25 | 31.9 / 1.7 / 8.9 / 57.5 |
+
+- **The published map's error is mostly quantity**: of its 26.2 points of held-out disagreement, 20.5 are quantity
+  and 5.7 allocation. Crater is 58.6 % of the held-out area but 38.1 % of it on the map: of the Crater polygons'
+  ground, 10.9 points are painted lava tube, 8.1 Normal Ground and 4.1 hills (35.6 points Crater). Part of that may
+  be Arsia Mons, 31 % of the held-out Crater area (§68.2) **[?]**: no per-polygon split was read; v2, where Arsia is
+  edifice, will show it.
+- **T1 by balanced accuracy: the thermal gain is not there.** All bands against no thermal: 63.12 against 63.43
+  (−0.31) at 200 m, 63.46 against 63.39 (+0.07) at 400 m; mean F1 +0.56 and +1.23. The +1.36 and +1.97 points of
+  overall accuracy (§56) come from Crater and hills, which hold most of the held-out area; lava tube's loss offsets
+  them per class. No interval: the bootstrap needs per-polygon scores (§69.17).
+- **The two no-thermal maps are separate rasters** that score alike (seam ratios 0.997 / 0.996 at 200 m against
+  0.991 / 0.988 at 400 m; matrices differing in the fourth place), not one map scored twice.
+- **The U-Net map** makes 55.1 % of ±60° Crater and 39.3 % Normal Ground, where the SVM map makes 33.9 % and 54.7 %.
+- **The paper** (`NEXT STUFF\Final\paper\mars_global_mosaic.tex`; `NEXT-STEPS.md` §12.1, §12.4):
+  - the abstract cut from 306 to 250 words (W1);
+  - Methods name the new scores; Table 3 gains balanced accuracy, mean F1, Q and A; Results gain the quantity
+    paragraph, the class areas and the T1 caveat;
+  - the channel section cites Hynek et al. 2010 and Alemanno, Orofino and Mancarella 2018 (Earth and Space Science
+    5, 560–577, doi 10.1029/2018EA000362, the article behind the Zenodo record, checked on Zenodo and Crossref);
+    `references.bib` gains it and Pontius and Millones 2011 (IJRS 32, 4407–4429, doi 10.1080/01431161.2011.552923,
+    checked on Crossref);
+  - Limits brought to §69.7 and §69.8: the 971 v2 labels, the rule screen, hills short, and the review's 549 rows
+    with their precisions (54 % and 7 %). `final.py`'s limit "The review has not started" likewise.
+  - **Not compiled:** the laptop's TinyTeX has no `aastex701.cls`; `build_final_paper.py` (MiKTeX) on the desktop
+    rebuilds the PDF, which is then read page by page (Table 3 is wider now).
+- **The v2 drafts (W8)**: `NEXT STUFF\Final\paper\v2_drafts.tex`, the seven-class paragraphs and table rows for D18
+  passing and for it failing, with every number a placeholder naming its log key; written against the rehearsal's
+  logs, whose numbers are never results. `final.py`'s v2 slide is not drafted yet (`NEXT-STEPS.md` §12.4 W8).
+- **The seven class colours stay `labelsets.COLOURS`** (the labels' own, shared with `apply_label_review.py`):
+  simulated protan, deutan and tritan vision (Machado et al. 2009 matrices, severity 1, CIE L\*a\*b\* ΔE76) leave
+  every pair at least ΔE 21.1 apart (closest: hills and fluvial channel, tritan). The check was proved on a planted
+  red / green pair (204, 68, 0) and (102, 136, 0), which falls to ΔE 5.9 under deutan. The check is a scratch script,
+  not kept in `build\`.
+- **For the author (D25):** the abstract and conclusions give the thermal gain as "a resolved 1.4 to 2.0 points";
+  by balanced accuracy there is none. Results now say so; whether the abstract does is the author's call.
