@@ -13,12 +13,16 @@ investigators, goals; relevant spectral bands; tasks and percent complete; preli
 hurdles. Until 2026-10-27 it was drawn in le_theme.py, the Presentation 1 design (git holds that version);
 the author then asked for the talk on 10 November to be redesigned, the words and numbers unchanged.
 """
+import io
 import os
 import sys
 
+import numpy as np
+from PIL import Image
+
 import interim as I
 from mars_theme import (deck, new, blank, line, kicker, bullets, table, note, card, dot, shape, textbox, TINT, DEEP,
-                        style, no_bullet, hero_image, veil, credit, footer, png_size, PT, W, H, MARGIN,
+                        style, no_bullet, hero_image, graticule, veil, credit, footer, pill, PT, W, H, MARGIN,
                         CONTENT_W, BODY_Y, BOTTOM, HEAD, NAVY, INK, MUTED, HAIR, BLUE, SKY, PALE, WHITE)
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
@@ -32,6 +36,9 @@ RIGHT = MARGIN + CONTENT_W                   # right edge of the content area
 FIG_H = 380 * PT                             # tallest a figure may be under the title
 SIDE_MAX_W = 520 * PT                        # wider than this at FIG_H, and the takeaways go below
 WIDE_MAX_H = 290 * PT                        # a full-width map leaves room for four takeaways
+LEGEND = PT // 2                             # a legend's size: 0.5 pt per exported pixel on every slide,
+                                             # its text about 1.4 x its size in the layout (KB §69.14)
+GAP_PX = 24                                  # blank bands inside a layout export close to this (pixels)
 MINUS = "−"
 
 # The backgrounds of the dark slides: Ius Chasma from layouts 01 and 02, the map frame only (pixels)
@@ -40,12 +47,61 @@ NIGHT = os.path.join(IMG, "02_night_ir.png")
 CANYON = (300, 20, 1953, 950)                # the canyon and its tributaries
 CREDIT_VIS = "Ius Chasma, 271–286°E: Viking MDIM 2.1 colour on this project's 100 m grid"
 CREDIT_NIGHT = "Ius Chasma, 271–286°E: THEMIS night IR on this project's 100 m grid"
+GRID = graticule(VISIBLE)                    # painted out of both backgrounds; the maps keep theirs
 
 
 def dark(p):
     """The navy-ground copy from make_interim_dark.py, if there is one (KB §69.13)."""
     d = os.path.join(IMG, "dark", os.path.basename(p))
     return d if os.path.exists(d) else p
+
+
+def _keep(used, gap):
+    """Indices to keep along one axis: every used one; of each blank run inside, `gap`; of the blank
+    margins, none."""
+    idx = np.flatnonzero(used)
+    if not len(idx):
+        return np.arange(len(used))
+    keep = []
+    for i, j in zip(idx[:-1], idx[1:]):
+        keep.append(i)
+        if j - i - 1 > gap:                  # a blank run longer than gap: its two ends only
+            keep.extend(range(i + 1, i + 1 + gap // 2))
+            keep.extend(range(j - (gap - gap // 2), j))
+        else:
+            keep.extend(range(i + 1, j))
+    keep.append(idx[-1])
+    return np.array(keep)
+
+
+_TIGHT = {}
+
+
+def tight(path):
+    """A layout export with its blank page margins cut and its blank bands closed to GAP_PX (KB §69.14):
+    Pro places the frames on a page, and the page's empty rows (between the ±60° mosaic's two rows of
+    panels, above and below the scale bars) took slide room from the maps. In memory, for the deck only.
+    Returns PNG bytes and the size."""
+    if path not in _TIGHT:
+        a = np.asarray(Image.open(path).convert("RGB")).astype(np.int16)
+        ink = np.abs(a - a[0, 0]).max(axis=2) > 24
+        a = a[_keep(ink.any(axis=1), GAP_PX)][:, _keep(ink.any(axis=0), GAP_PX)]
+        buf = io.BytesIO()
+        Image.fromarray(a.astype(np.uint8)).save(buf, "PNG")
+        _TIGHT[path] = (buf.getvalue(), (a.shape[1], a.shape[0]))
+    return _TIGHT[path]
+
+
+def is_layout(path):
+    """A navy-ground layout export: interim_img\\dark\\<two digits>_<name>[__map|__legend].png."""
+    return os.path.basename(os.path.dirname(path)) == "dark" and os.path.basename(path)[:2].isdigit()
+
+
+def png_size(path):
+    if is_layout(path):
+        return tight(path)[1]
+    with Image.open(path) as im:
+        return im.size
 
 
 def image_path(kind, ref):
@@ -56,12 +112,14 @@ def image_path(kind, ref):
 
 
 def add_pic(s, path, x, y, w=None, h=None):
+    """A picture at its own aspect; a layout export goes in tightened (tight())."""
     px_w, px_h = png_size(path)
     if w is None:
         w = int(h * px_w / px_h)
     if h is None:
         h = int(w * px_h / px_w)
-    s.shapes.add_picture(path, Emu(x), Emu(y), Emu(w), Emu(h))
+    src = io.BytesIO(tight(path)[0]) if is_layout(path) else path
+    s.shapes.add_picture(src, Emu(x), Emu(y), Emu(w), Emu(h))
     return w, h
 
 
@@ -88,7 +146,7 @@ def split_legend(s, f, path):
         y = BODY_Y + ph + 8 * PT
         lw_px, lh_px = png_size(lg)
         lh = BODY_Y + FIG_H - y
-        lw = min(int(lh * lw_px / lh_px), tw)
+        lw = min(int(lh * lw_px / lh_px), tw, lw_px * LEGEND)
         add_pic(s, lg, x, y, w=lw, h=int(lw * lh_px / lw_px))
         return True
     w = CONTENT_W
@@ -101,7 +159,7 @@ def split_legend(s, f, path):
     y = BODY_Y + h + 12 * PT
     room = BOTTOM - y                        # height left above the footer
     lw_px, lh_px = png_size(lg)
-    lw = min(int(room * lw_px / lh_px), 300 * PT)
+    lw = min(int(room * lw_px / lh_px), 300 * PT, lw_px * LEGEND)
     lh = int(lw * lh_px / lw_px)
     add_pic(s, lg, RIGHT - lw, y, w=lw, h=lh)
     bullets(s, f["points"], size=14, top=y, height=room, space=4, width=CONTENT_W - lw - 18 * PT)
@@ -110,6 +168,8 @@ def split_legend(s, f, path):
 
 def figure_slide(prs, f):
     s = new(prs, f["title"], f.get("group"))
+    if f.get("verdict"):                     # the hypothesis slides: the answer on the kicker's line
+        pill(s, f["verdict"])
     paths = [image_path(k, r) for k, r in f["images"]]
     if len(paths) == 1:
         px_w, px_h = png_size(paths[0])
@@ -125,8 +185,9 @@ def figure_slide(prs, f):
         else:                                # a wide figure: full width, takeaways beneath
             w = CONTENT_W
             h = int(w / aspect)
-            if h > WIDE_MAX_H:
-                h = WIDE_MAX_H
+            cap = f.get("map_h", 0) * PT or WIDE_MAX_H   # map_h (pt): taller, when the takeaways are few
+            if h > cap:
+                h = cap
                 w = int(h * aspect)
             add_pic(s, paths[0], MARGIN + (CONTENT_W - w) // 2, BODY_Y, w=w, h=h)
             below(s, f, BODY_Y + h + 12 * PT)
@@ -152,7 +213,7 @@ no_footer = []                               # slide numbers that carry no foote
 
 # ------------------------------------------------------------ title, investigators
 s = blank(prs, dark=True)
-hero_image(s, VISIBLE, CANYON, CREDIT_VIS)
+hero_image(s, VISIBLE, CANYON, CREDIT_VIS, GRID)
 veil(s, [(0, 97), (45, 93), (100, 38)])
 kicker(s, "Interim presentation  ·  " + I.COURSE, y=152 * PT, dark=True)
 line(s, MARGIN, 170 * PT, 700 * PT, 70 * PT, I.DECK_TITLE, 54, font=HEAD, color=WHITE)
@@ -168,16 +229,18 @@ s = new(prs, "Project Goals", "The question")
 line(s, MARGIN, BODY_Y, CONTENT_W, 90 * PT, I.MISSION, 19, font=HEAD, italic=True, color=INK)
 gap = 16 * PT
 cw = int((CONTENT_W - 3 * gap) / 4)
-for i, g in enumerate(I.GOALS):
+for i, g in enumerate(I.GOALS):              # the cards closer under the mission, taller, larger text
     x = MARGIN + i * (cw + gap)
-    card(s, x, 232 * PT, cw, 200 * PT)
-    dot(s, x + 16 * PT, 250 * PT, 30 * PT, i + 1)
-    line(s, x + 16 * PT, 296 * PT, cw - 32 * PT, 180 * PT, g, 15, color=INK)
+    card(s, x, 216 * PT, cw, 236 * PT)
+    dot(s, x + 18 * PT, 236 * PT, 32 * PT, i + 1, size=14)
+    line(s, x + 18 * PT, 286 * PT, cw - 36 * PT, 160 * PT, g, 16, color=INK)
 
 # ------------------------------------------------------------ relevant spectral bands
 s = new(prs, "Relevant Spectral Bands", "The data")
 table(s, ["Band or product", "Wavelength", "Cell", "What it contributes"],
-      [list(r) for r in I.BANDS], widths=[2.3, 1.9, 0.7, 6.2], size=12, row_h=50 * PT, bold_first=True)
+      [[c.replace("r −", "r −").replace("| ≤ ", "| ≤ ") for c in r]
+       for r in I.BANDS],                                             # "r −0.49" and "|r| ≤ 0.12" unbroken
+      widths=[2.4, 2.25, 0.75, 5.6], size=14, row_h=60 * PT, bold_first=True)
 
 s = new(prs, "Why Fuse Them: Three Independent Dimensions", "The data")
 c = I.CORRELATION
@@ -241,7 +304,7 @@ table(s, ["When", "What", "Outcome"], [list(r[:3]) for r in I.LOG],   # the KB c
 
 # ------------------------------------------------------------ preliminary results
 s = blank(prs, dark=True)
-hero_image(s, NIGHT, CANYON, CREDIT_NIGHT)
+hero_image(s, NIGHT, CANYON, CREDIT_NIGHT, GRID)
 veil(s, [(0, 94), (60, 86), (100, 60)])
 kicker(s, "Preliminary results", y=112 * PT, dark=True)
 line(s, MARGIN, 130 * PT, CONTENT_W, 56 * PT, "What the data show so far", 44, font=HEAD, color=WHITE)
@@ -280,7 +343,17 @@ n_limits = 6                                 # the measured limits lead (D12); t
 s = new(prs, "Project Issues and Hurdles", "What the measurements limit")
 issue_cards(s, I.ISSUES[:n_limits], 2, BODY_Y, int((BOTTOM - BODY_Y - 28 * PT) / 3), 13)
 s = new(prs, "Project Issues and Hurdles", "What slows the work")
-issue_cards(s, I.ISSUES[n_limits:], 3, (BODY_Y + BOTTOM) // 2 - 85 * PT, 170 * PT, 18)   # centred, larger
+gap = 14 * PT                                # three items: one full-width band each, label left (KB §69.14)
+rh = int((BOTTOM - 12 * PT - BODY_Y - 2 * gap) / 3)
+for k, (label, body) in enumerate(I.ISSUES[n_limits:]):
+    y = BODY_Y + k * (rh + gap)
+    card(s, MARGIN, y, CONTENT_W, rh)
+    tf = textbox(s, MARGIN + 28 * PT, y, 250 * PT, rh, anchor=MSO_ANCHOR.MIDDLE)
+    no_bullet(tf.paragraphs[0])
+    style(tf.paragraphs[0].add_run(), 20, bold=True, color=SKY).text = label
+    tf = textbox(s, MARGIN + 300 * PT, y, CONTENT_W - 324 * PT, rh, anchor=MSO_ANCHOR.MIDDLE)
+    no_bullet(tf.paragraphs[0])
+    style(tf.paragraphs[0].add_run(), 17, color=INK).text = body
 
 # ------------------------------------------------------------ next steps and schedule
 s = new(prs, "Next Steps", "For the final")

@@ -118,6 +118,8 @@ HEADLINES = [   # (number, what it measures)
 # ------------------------------------------------------------------ figures (preliminary results)
 # images: ("layout", <layout name in the .aprx>) or ("file", <path under build\>)
 # group: the kicker printed above the slide's title (2026-10-27, KB §69.11).
+# verdict: a hypothesis slide's answer, on the kicker's line; each is a bullet on its slide or the issue card
+# "Four hypotheses tested, none supported", shortened (2026-10-27, KB §69.14).
 # Order (2026-10-26): data, thermal signal, craters and channels, type areas, classification (the two failed
 # maps first, then the published one), deep learning, then the hypotheses in order H1, H2, H3, Q5.
 FIGURES = [
@@ -128,7 +130,7 @@ FIGURES = [
                  "Orange: the USGS geologic map's volcanic units, used as the lava-flow reference"],
          source="§16, §41, §42, §43"),
     dict(group="The data", title="The mosaic at ±60°",
-         images=[("layout", "08_global60_mosaic")],
+         images=[("layout", "08_global60_mosaic")], map_h=328,  # two takeaways: the four panels taller
          points=["All four datasets on one 200 m grid",
                  "Composite Bands failed four times on the global rasters; projecting first and bounding the "
                  "extent fixed it"],
@@ -163,7 +165,7 @@ FIGURES = [
                  "Breached craters are missed by design: they do not close"],
          source="§28.11"),
     dict(group="Craters", title="Closed depressions ≥ 1 km across ±60°",
-         images=[("layout", "11_global60_depressions")],
+         images=[("layout", "11_global60_depressions")], map_left=True, points_h=214,  # two maps stacked
          points=["465,354 closed depressions ≥ 1 km, from an 11-hour run",
                  "Against Robbins: 15.3% are catalogued craters at ≥ 1 km, 62.2% at ≥ 5 km, 83.1% at ≥ 20 km",
                  "Their density barely follows the catalogued craters (r −0.11); below ~5 km it follows the DEM's sharpness",
@@ -242,28 +244,28 @@ FIGURES = [
                  "craters. The SVM map stays the published one"],
          source="§66.6–66.9"),
     dict(group="Hypotheses", title="Do the infrared mosaics show lava-flow edges Viking misses? (H1)",
-         images=[("file", r"interim_img\t5_margins.png")],
+         images=[("file", r"interim_img\t5_margins.png")], verdict="Not settled: the map is too coarse",
          points=["905 profiles across 10 of the geologic map's lava contacts at Athabasca: does each band tell the units apart?",
                  "Every band does only slightly better than chance (10%): Viking red 12.3%, day IR 21.0%",
                  "Day IR leans toward H1, but the intervals overlap (difference +8.7 points, −1.7 to +18.1)",
                  "Contacts on a 1:20 M map are kilometres wide; H1 is retested on margins digitised at 100 m"],
          source="§47.2"),
     dict(group="Hypotheses", title="Do volcanic channels differ from fluvial ones? (H2)",
-         images=[("file", r"interim_img\t4_channels.png")],
+         images=[("file", r"interim_img\t4_channels.png")], verdict="Not supported at stage 1",
          points=["Channel candidates, Ius Chasma (fluvial) against Athabasca Valles (volcanic): 2,588 and 3,272",
                  "H2 expected the volcanic channels to be steeper; they are shallower (median 1.4 against 10.2 m per km)",
                  "Thermal response tells the two apart no better than chance (AUC 0.50)",
                  "Not supported at stage 1: the window sets the gradient, not the origin. Reviewed channels retest it"],
          source="§51.1"),
     dict(group="Hypotheses", title="Is the composite more stable than a single band? (H3)",
-         images=[("file", r"interim_img\t6_stability.png")],
+         images=[("file", r"interim_img\t6_stability.png")], verdict="Not supported",
          points=["Iso Cluster trained on the west and the east half of Ius, compared over the whole window",
                  "The composites are the least reproducible inputs: 0.40 and 0.38, against 0.61–0.89 for single bands",
                  "They give the smoothest maps, only just ahead of Viking (0.85 against 0.84)",
                  "H3 is not supported"],
          source="§47.3"),
     dict(group="Hypotheses", title="How many tributary orders does 100 m resolve? (Q5)",
-         images=[("file", r"interim_img\t7_orders.png")],
+         images=[("file", r"interim_img\t7_orders.png")], verdict="The DEM cannot answer it",
          points=["Channel thresholds from 1 to 500 km² of catchment at Ius Chasma",
                  "The highest stream order follows the threshold: 5 at 1 km², 3 at 50 km², 2 at 500 km²",
                  "Only 30.8–36.7% of first-order streams lie on slopes ≥ 2°, at every threshold",

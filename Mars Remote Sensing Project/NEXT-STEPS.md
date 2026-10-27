@@ -24,7 +24,7 @@ redrawn at 200 dpi, the U-Net slide's legend moved clear of its takeaways, the t
 repeats the title, the schedule gives 10 Nov; both documents rebuilt (30 slides, 21 pages, 285 numbers). Then
 the deck redesigned at the author's request (KB §69.11), repainted navy (§69.12), then dark throughout with navy-ground figures (§69.13,
 `make_interim_dark.py`; its `interim_img\dark\` is git-ignored: rerun it on the drive): `mars_theme.py`, 31 slides, words and numbers unchanged
-(294 numbers with the four on the results divider); `le_theme.py` and the report untouched. These
+(294 numbers with the four on the results divider), then refined (§69.14: tighter maps, one legend scale, verdicts on the hypothesis slides, the backgrounds' graticule painted out; 295 numbers); `le_theme.py` and the report untouched. These
 files were written in the clone only: `git diff --name-only e6ec284 HEAD -- "Mars Remote Sensing Project"`. For
 each, check the drive copy still equals `e6ec284`'s (`git hash-object` against `git rev-parse e6ec284:<path>`; the
 desktop's v2 run writes only `build\logs\run_v2\` and `Global60\`), then copy clone → drive.

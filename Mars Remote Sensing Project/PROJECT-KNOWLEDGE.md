@@ -4367,3 +4367,41 @@ backgrounds"), the same day as §69.12; words, numbers and slide layouts unchang
   through PowerPoint and read on contact sheets, the chart and legend slides again after each fix.
   `tools/check_repo.py` passes: the new script catalogued (167), and the check skips the git-ignored
   `interim_img/dark/` as it skips the layout crops. Clone only, like §69.10.
+
+### 69.14 The interim deck refined: tighter maps, one legend scale, verdicts, clean backgrounds — 2026-10-27, laptop **[V]**
+
+The author's request ("looking at the interim presentation again, continue to improve and refine it wherever you
+can"), the same day as §69.13, the 26 Oct cut kept. Every slide of the §69.13 build was rendered through PowerPoint
+and read; what was found, and done:
+
+- **The title and divider backgrounds without their graticule** (`mars_theme.graticule`, `degraticule`): the crops
+  of layouts 01 and 02 showed the layout's grid lines and labels ("282°E", "8°S") through the veil, beside the title.
+  The labels are found in the colour layout as clusters of their exact halo grey (40, 40, 40), the lines as rows and
+  columns brighter than their neighbours the whole way across; the night IR layout shares the frame, so the same
+  places serve it. Each line is painted over with the band beside it, then each label with the patch beside it, so
+  the ground keeps its grain (a Gaussian fill, tried first, left smooth stripes). Backgrounds only; the maps keep
+  their graticules.
+- **Layout exports tightened** (`build_interim_live.tight`, in memory, for the deck only): the page margins cut and
+  any blank band inside closed to 24 px. The ±60° mosaic (layout 08) lost the 163 px gap between its two rows of
+  panels and, with `map_h=328` (two takeaways), its panels are about twice the size; the SVM checks, the Ius pair
+  and the deep-learning maps gain a little.
+- **One legend scale**: 0.5 pt per exported pixel on every slide, smaller only where the room is (`LEGEND`). Before,
+  each legend was fitted to its space, so the SVM checks' four-class legend filled a third of the slide while the
+  depressions legend was too small to read.
+- **Closed depressions ≥ 1 km** (layout 11, two maps stacked) now `map_left`, the takeaways beside it: the maps a
+  third larger.
+- **A verdict on each hypothesis slide**, an outlined capsule on the kicker's line (`pill`, `verdict=` in `FIGURES`):
+  H1 "Not settled: the map is too coarse", H2 "Not supported at stage 1", H3 "Not supported", Q5 "The DEM cannot
+  answer it". Each shortens a takeaway on its slide or the issue card "Four hypotheses tested, none supported";
+  nothing new is claimed.
+- **Goals**: the cards closer under the mission and taller, text 15 -> 16 pt. **Bands table**: 12 -> 14 pt, rows
+  50 -> 60 pt, the wavelength column wide enough for "thermal IR, 6.8–14.9 µm". **"What slows the work"**: the three
+  issues as full-width bands, label left at 20 pt and text right at 17 pt, filling the slide where three cards had
+  floated mid-slide. A sky edge stripe on each band was tried and removed (the pptx skill's guidance: no edge stripes).
+- **No breaks inside an expression**: no-break spaces after ≥, ≤ and ≈ in every bullet (`mars_theme.bullets`), and in
+  the bands table "r −0.49" and "|r| ≤ 0.12".
+- **Seen and left:** Athabasca (layout 09) is square with its scale bar beside it, so map-left gains nothing; the Ius
+  candidates' north arrow sits below the scale bar and keeps that map at the 290 pt cap; both need Pro.
+- **Checked:** 31 slides; `verify_interim.py` 295 (the "1" of "stage 1"); the pptx skill's `validate.py` passes; its
+  text dump holds no "§", "KB", ".py" or "Generated"; every slide rendered through PowerPoint and read, the changed
+  ones after each fix. The report is untouched. Clone only, like §69.10.

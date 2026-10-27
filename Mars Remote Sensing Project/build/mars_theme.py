@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""The interim deck's design for the 10 November talk (KB §69.11-§69.13): navy throughout, over the project's mosaic.
+"""The interim deck's design for the 10 November talk (KB §69.11-§69.14): navy throughout, over the project's mosaic.
 
 le_theme.py, the author's Presentation 1 design, stays as it is for the decks that still use it (Presentation 1,
 the final deck). This one, on 2026-10-27: basalt and rust first (§69.11), then navy and blues on white (§69.12),
@@ -11,13 +11,17 @@ then every slide dark (§69.13; the author: "I don't want to be blinded by white
   sky (#8CC4EC): kickers, bullets, labels, numbered dots, headline numbers; blue (#4A90D9): bars and shading
   cards and alternate rows a lighter navy (TINT #163A61), table heads a deeper one (DEEP #081A2E)
   the charts and layouts come navy-ground from make_interim_dark.py (interim_img\\dark\\), the originals white
+  then refined (§69.14): the backgrounds' graticule painted out (graticule, degraticule); a hypothesis slide's
+    verdict in an outlined capsule on the kicker's line (pill)
 """
 
 import io
 import os
 
+import numpy as np
 from lxml import etree
-from PIL import Image
+from PIL import Image, ImageFont
+from scipy import ndimage
 from pptx import Presentation
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
@@ -156,6 +160,37 @@ def kicker(slide, text, x=MARGIN, y=KICKER_Y, dark=False, w=CONTENT_W):
                 color=SKY, spacing=1.6)
 
 
+def text_width(text, size, bold=True, spacing=0.0):
+    """Width in EMU of one line of Calibri, measured with the font file (an estimate without it)."""
+    try:
+        f = ImageFont.truetype(os.path.join(os.environ.get("WINDIR", r"C:\Windows"), "Fonts",
+                                            "calibrib.ttf" if bold else "calibri.ttf"), 100)
+        w = f.getlength(text) * size / 100.0
+    except OSError:
+        w = 0.55 * size * len(text)
+    return int((w + spacing * len(text)) * PT)
+
+
+def pill(slide, text, right=MARGIN + CONTENT_W, y=KICKER_Y - 4 * PT, color=SKY):
+    """A verdict on the kicker's line, right-aligned: capitals in an outlined capsule (KB §69.14)."""
+    text = text.upper()
+    pad, h = 10 * PT, 21 * PT
+    w = text_width(text, 10, spacing=1.2) + 2 * pad
+    sh = shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, right - w, y, w, h, None, round_=0.5)
+    sh.line.fill.solid()
+    sh.line.fill.fore_color.rgb = color
+    sh.line.width = Emu(int(1.25 * PT))
+    tf = sh.text_frame
+    tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
+    tf.word_wrap = False
+    tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    no_bullet(p)
+    style(p.add_run(), 10, bold=True, color=color, spacing=1.2).text = text
+    return sh
+
+
 def new(prs, title, kicker_text=None):
     """A white content slide: kicker, title, nothing under it."""
     s = blank(prs)
@@ -166,10 +201,61 @@ def new(prs, title, kicker_text=None):
 
 
 # ------------------------------------------------------------------ the dark slides over the mosaic
-def hero_image(slide, path, box, descr):
+def graticule(path):
+    """Where a colour layout's graticule is (KB §69.14): its labels, white text haloed in exact grey
+    (40, 40, 40), and its lines, rows and columns brighter than their neighbours the whole way across.
+    A label is a cluster of that grey (the imagery's shadows are tinted, never exactly grey). The night
+    IR layout shares the frame, so what is found in the colour one serves it too.
+    Returns (rows, columns, label boxes): runs of line pixels and padded (top, bottom, left, right)."""
+    a = np.asarray(Image.open(path).convert("RGB")).astype(np.int16)
+    halo = np.all(np.abs(a - 40) <= 1, axis=2)
+    lab, _ = ndimage.label(ndimage.binary_dilation(halo, iterations=2))
+    boxes = [(sl[0].start - 3, sl[0].stop + 3, sl[1].start - 3, sl[1].stop + 3)
+             for sl in ndimage.find_objects(lab) if halo[sl].sum() > 300 and halo[sl].mean() > 0.25]
+    v = a.sum(axis=2)
+    lines = []
+    for m in (v, v.T):                                            # rows (parallels), then columns (meridians)
+        excess = np.median(m[1:-1] - (m[:-2] + m[2:]) / 2.0, axis=1)
+        hit = sorted(set((1 + np.flatnonzero(excess > 25)).tolist()))
+        runs = []
+        for i in hit:
+            if runs and i <= runs[-1][1] + 2:
+                runs[-1][1] = i
+            else:
+                runs.append([i, i])
+        lines.append([(s - 2, e + 3) for s, e in runs])           # the antialiased edge too
+    return lines[0], lines[1], boxes
+
+
+def degraticule(im, g):
+    """The graticule `g` (graticule()) painted out with the ground beside it: each line with the band of
+    the same width beside it, then each label with the patch of its size to its left (or right), taken
+    after the lines so no line is copied in. The ground keeps its grain, which a blur would not; this
+    is a background, not a map."""
+    a = np.asarray(im.convert("RGB")).copy()
+    rows, cols, boxes = g
+    for s, e in rows:
+        w = e - s
+        src = s - w if s - w >= 0 else e
+        a[s:e, :] = a[src:src + w, :]
+    for s, e in cols:
+        w = e - s
+        src = s - w if s - w >= 0 else e
+        a[:, s:e] = a[:, src:src + w]
+    for t, b, l, r in boxes:
+        w = r - l
+        src = l - w - 2 if l - w - 2 >= 0 else r + 2
+        a[t:b, l:r] = a[t:b, src:src + w]
+    return Image.fromarray(a)
+
+
+def hero_image(slide, path, box, descr, grid=None):
     """A full-bleed crop of one of the project's own layouts: `box` (left, top, right, bottom) in
-    pixels, widened or narrowed here to the slide's 16:9 about its centre. Never stretched."""
+    pixels, widened or narrowed here to the slide's 16:9 about its centre. Never stretched. With
+    `grid` (graticule()), the graticule is painted out first."""
     im = Image.open(path).convert("RGB")
+    if grid is not None:
+        im = degraticule(im, grid)
     l, t, r, b = box
     want = (b - t) * W / float(H)
     cx = (l + r) / 2.0
@@ -210,6 +296,8 @@ def bullets(s, items, size=16, top=BODY_Y, height=None, space=10, left=MARGIN, w
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.space_after = Pt(space)
         bullet(p, lvl, SKY)
+        for op in ("≥ ", "≤ ", "≈ "):   # "≥ 1 km" never broken after the sign (KB §69.14)
+            text = text.replace(op, op[0] + " ")
         style(p.add_run(), size if lvl == 0 else size - 2,
               color=INK if lvl == 0 else MUTED).text = text
     return tf
