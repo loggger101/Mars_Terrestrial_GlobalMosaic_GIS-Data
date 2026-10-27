@@ -4290,3 +4290,36 @@ final. So nothing measured or stated changed: `verify_interim.py` 285 numbers, t
 - **Rebuilt and read:** deck 30 slides (slides 1, 20, 24, 26 and 30 read after the build), report 21 pages (pages
   13, 19 and 21 read). Backups of both in the session's scratch folder; git holds the previous build (`862dbf8`).
   Written in the clone only: copy to the drive before the next `github_sync.py` (`NEXT-STEPS.md`, "Resume here").
+
+### 69.11 The interim deck redesigned for the talk: basalt and rust over the project's own mosaic — 2026-10-27, laptop **[V]**
+
+The author's request ("utilise the skills available to you to improve and artistically update the presentation"),
+the 26 Oct cut kept (§69.10): every word and number on the slides is `interim.py`'s, unchanged; only the design
+and the layout of the slides changed. The deck design guidance (the pptx skill) and the chart method (the dataviz
+skill) were followed; the report is not touched.
+
+- **A new theme, `build\mars_theme.py`; `le_theme.py` untouched** (the author's Presentation 1 design, still used
+  by the Presentation 1 builders and `build_final_deck.py`). Cambria headings and Calibri body, both shipped with
+  every Office since 2007 (Aptos is missing from older installs, so the room's PC could substitute it). White
+  content slides with a rust (#B4472A) kicker naming the slide's group above a 28 pt title (the widest title,
+  measured with the font file, takes 790 of 848 pt), **no rule under the title** (the cyan accent bar is gone), a
+  footer with the slide number. Dark slides in basalt (#17181C) over **Ius Chasma from layouts 01 and 02**, cropped
+  in memory to 16:9 under a basalt gradient, each with its credit.
+- **The slides** (`build_interim_live.py`, 30 → 31): a full-bleed title slide (Viking colour); the goals as four
+  numbered cards under the mission in italics; the bands table restyled; the correlation table **shaded by |r|** in
+  one hue, the independent pairs pale and bold; **the progress table drawn as rows with bars**, percent complete now
+  in rust with a tick at 13 September (drawn from shapes: PowerPoint sized the table's rows itself and the bars
+  drifted off them); the processing log restyled (26 pt rows, clear of the footer); the results divider over the
+  night IR of the same canyon with **four headline numbers** (`HEADLINES` in `interim.py`, each already on its own
+  slide: 86.6 %, 73.8 %, +1.36, 465,354); every figure slide with its group as a kicker (`group=` in each `FIGURES`
+  entry); the issues as cards on **two slides**, the six measured limits, then the three hurdles of the work; next
+  steps as four numbered cards over **the schedule as a timeline**, 10 Nov marked. A closing "Questions" slide over the mosaic was built and read, then removed at the author's word: the deck ends on the next steps.
+- **The charts are unchanged.** Their blue and orange pass the dataviz palette validator (CVD ΔE 24.7, normal-vision
+  33.6, contrast ≥ 3:1), they carry direct labels and recessive grids, and they are shared with the report, the
+  final paper and the README; restyling them was not needed and would reach beyond the deck.
+- **Checked:** `verify_interim.py` 294 numbers, all in the record (285 + the headline numbers); the pptx skill's
+  `validate.py` passes; its text dump of all 31 slides holds no "§", "KB", ".py", decision code or "Generated";
+  rendered through PowerPoint and every slide read, the figure slides on contact sheets. Fixed in the reading: the
+  progress bars (above), the "#" column wrapping 10–14, half-empty cards, map labels showing through the title
+  slide's text. `tools/check_repo.py` passes with the new script catalogued (166).
+- **Clone only**, like §69.10: copy to the drive before the next `github_sync.py`.

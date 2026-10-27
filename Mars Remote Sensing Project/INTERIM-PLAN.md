@@ -30,9 +30,10 @@ python verify_interim.py
   map runs full width and the legend sits beside the takeaways. Charts come from their own scripts, drawn from
   the logs: `make_fig_ablation.py`, `make_fig_t1_pro.py`, `make_fig_t8.py`, `make_fig_t4.py`, `make_fig_tes.py`,
   `make_fig_tests567.py`.
-- **`build\build_interim_live.py`** lays it out in `le_theme.py`: title, goals, spectral bands, the correlation
-  table, tasks and percent complete, the processing log, a "Preliminary Results" divider, one slide per figure,
-  issues, next steps with schedule. **30 slides; the report 21 pages, 21 figures** (2026-10-27, KB §69.9: nothing that reads as machine-made; 2026-10-26, KB §69.6: the text
+- **`build\build_interim_live.py`** lays it out in `mars_theme.py` (since 2026-10-27, KB §69.11: basalt and rust
+  over the Ius mosaic, Cambria and Calibri; `le_theme.py`, the Presentation 1 design, before): title, goals,
+  spectral bands, the correlation matrix, tasks with progress bars, the processing log, a results divider with
+  four headline numbers, one slide per figure, issues on two slides, next steps over a timeline. **31 slides; the report 21 pages, 21 figures** (2026-10-27, KB §69.9: nothing that reads as machine-made; 2026-10-26, KB §69.6: the text
   edited for plain wording, the failed first maps moved before the published one, the hypotheses in order H1, H2,
   H3, Q5). Earlier, 2026-10-21 (KB §66.10): the two
   deep-learning slides, layouts 16 and 17, each map left with takeaways and legend beside it, `map_left=True`).
