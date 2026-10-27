@@ -134,7 +134,7 @@ for ax, key in zip(axes, ("ath", "ius")):
 axes[1].set_xlabel("craters ≥ 1 km per 10⁶ km² of the unit", color=MUTED)
 axes[0].set_xlabel("craters ≥ 1 km per 10⁶ km² of the unit", color=MUTED)
 axes[0].set_xlim(0, 8600)
-axes[1].legend(handles=[Patch(color=BLUE, label="Robbins & Hynek (2020) catalogue"),
+axes[1].legend(handles=[Patch(color=BLUE, label="Robbins & Hynek 2012 catalogue (2020 release)"),
                         Patch(color=ORANGE, label="closed-depression detector")],
                frameon=False, loc="lower right", fontsize=10)
 save(fig, "t2_density.png")

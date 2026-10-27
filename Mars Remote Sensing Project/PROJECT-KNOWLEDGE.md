@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-27 (§69.20).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-27 (§69.22).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -2129,8 +2129,11 @@ blocks; volcanic samples from SIM 3292 `v` / `ve` / `vf` outside every hand poly
 - **`build\verify_interim.py`:** every number in `interim.py`'s strings must appear in this file (section references,
   dates, years and integers 0–20 ignored; a slide may round a more precise value here). **Run it before delivering.**
   It proves a number exists here, not that it sits beside its claim (§48).
-- **THEMIS infrared**, as the bands slide quotes: the instrument's ten IR bands span **6.8–14.9 µm**; the held mosaics
-  are single-band 8-bit products from it (§3, §24). **[E]**
+- **THEMIS infrared**: the instrument's ten IR bands span **6.8–14.9 µm**; the held mosaics are single-band 8-bit
+  products from it (§3, §24), made from **band 9, 12.57 µm**: USGS's THEMIS IR mosaics, built with ASU's procedure
+  (Edwards et al. 2011), state band 9 "centered at a wavelength of 12.57 µm" (astrogeology.usgs.gov, the Casius
+  controlled mosaic's page, read 2026-10-27); the v12 / v14 global mosaics' own pages were not found, so for them
+  this is by the shared procedure. The bands slide quotes 12.57 µm since §69.21. **[E]**
 - **`verify_all.py`'s Mercury lineage check** read evidence that survived only in gdb free space; retired with the
   `_removed_not_Mars` folder (§50.1), not made to pass.
 
@@ -4614,3 +4617,75 @@ A second brainstorm while `run_v2.ps1` runs, on the repository and the project r
   (33 rows).
 - **Documents:** `docs/backup.md`, `HANDOFF-DESKTOP.md` §4 and the README's line for `check_repo.py` describe the
   guard and the new checks; "Resume here" now gives the `--to-drive` command for the desktop's clone → drive copy.
+
+### 69.21 The interim reviewed for truth: five corrections, the status brought to 27 October, the thermal gain qualified — 2026-10-27, laptop **[V]**
+
+The author asked for the interim presentation to be reviewed so that it is up to date and says only what is true.
+`interim.py` is the one source of the deck and the report.
+
+- **The built deck matched its source**: every `interim.py` string over 25 characters is on a slide; the report's
+  shared text was unchanged since its 13:01 build. The deck's own builder text (titles, legends, the title slide's
+  captions) was read too.
+- **Every claim read against its section**, not only its numbers (`verify_interim.py` checks that a number exists, §48).
+  Held: the bands and correlations (§18.3, §28.10), the progress rows, the log (layout counts: ten on 8 Oct, twelve by
+  9 Oct, §44, §49; 73.5 % on 2–3 Oct was the 400 m 5 × 5 map, §32.2), the province and TES slides (§28.10, §43.1),
+  craters (68 % of 117 within ±50 %, §28.11; 15.3 / 62.2 / 83.1 % at ≥ 1 / 5 / 20 km, §54.4), channels (60.5 %, 89.8 %),
+  Athabasca (§42), the classification slides (§30.3, §31.3, §55.3, §57), T8 (×3.30, ×4.29, ×0.84, 76 %), T1 in numpy
+  and in Pro (§40.1, §56, §56.1), both deep-learning slides (§66.2, §66.5, §66.8: 82.6 % is the U-Net's ring share,
+  77.1 % the two-pass user's accuracy), H2, H3, Q5 (§47.3, §47.4, §51.1), the issues.
+- **Corrected, untrue or loose as of the cut:** (1) the THEMIS rows gave "thermal IR, 6.8–14.9 µm", the instrument's
+  range; the mosaics are band 9, **12.57 µm** (§24's note, amended above); (2) "17 map layouts with graticules":
+  layout 05 has none (its white grid is the tile grid); now "17 map layouts"; (3) "Fill raised the canyon floor 2,077 m":
+  2,077 m is the **maximum** raise (§25.1); now "by up to"; (4) "Arsia Mons alone is 31 %": it is one label holding
+  Arsia Mons and Arsia Chasmata (§68.2); now "One label, on Arsia Mons"; (5) H1's verdict "Not settled: the map is too
+  coarse" against the rule's "not supported" (§47.2) and the issue card's "none supported"; now "Not supported at the
+  map's 1:20 M scale".
+- **The status brought to 27 October, the results cut kept (the author's choice):** the date line reads "27 October
+  2026 (results to 26 October)"; the review "has only begun" (549 of 9,287, all at Ius; precision 54 % and 7 %, §69.7);
+  digitising "Review begun at Ius: 94 channels and 26 crater rims accepted", **10 → 20 %**; classification "971
+  seven-class labels applied, maps running", **75 → 80 %** (the labels are done; the maps and their scoring remain,
+  §69.8); the log's last row 22–27 Oct; the five volcano labels "the seven-class labels make them volcanic edifices"
+  (§69.8: all five relabelled); next steps and schedule no longer ask for the label review. No new result enters:
+  the v2 maps are not scored.
+- **The thermal gain qualified (D25, for the interim, the author's choice):** the headline, both T1 slides and the issue
+  say "overall accuracy"; the Pro slide and the issue add that by balanced accuracy the gain goes (−0.31 at 200 m,
+  +0.07 at 400 m, §69.18), because thermal helps craters and hills and hurts lava tube; the Pro slide's title says
+  "checked", not "confirmed". The README and the final paper's abstract are unchanged (D25 still open for them).
+- **Also from the read:** Ius's "the review starts with them" (the 188 steep channels) became "reviewed first, 94
+  accepted" (§69.7).
+- **Rebuilt on the laptop and read:** deck **32 slides**, report **21 pages, 21 figures**; `verify_interim.py`
+  **334 numbers**, all in the record. Rendered through PowerPoint and Word to PDF and every changed slide (1, 3, 5–7,
+  16, 22, 23, 26, 30–32) and page (1–3, 9, 14, 15, 18, 20, 21) read: nothing overflows. Backups of the 17:40 deck,
+  the 13:01 report and `interim.py` in the session's scratch only; the drive's `.backup_*` folders not touched.
+  Clone-only: copy to the drive with the rest (`github_sync.py --to-drive`, §69.20).
+
+### 69.22 The interim's graphics checked: every chart against its log, every map against its record — 2026-10-27, laptop **[V]**
+
+At the author's request after §69.21: the deck rendered to PDF (120 dpi) and every slide's graphic read.
+
+- **Files current:** every navy copy in `interim_img\dark\` (13:35–13:36) is newer than its source; each chart's
+  last commit is its script's (`make_fig_ablation`, `_t1_pro`, `_t8`, `_t4`, `_tes`, `_tests567`), so no chart is
+  stale against its script.
+- **Charts against the record, value by value:** the correlation matrix (§18.3); the province chart, both panels
+  (§28.10: the seven index means and sds, the four provinces' DN, the whole-mosaic bands); TES (§43.1, nightside:
+  −0.36 / −0.10, +0.05 / +0.11, −0.03 / −0.08, +0.01 / −0.01, +0.06 / +0.00, and the within-block bars); T1 in numpy
+  (§40.1, seven bars) and in Pro (§56, §56.1, four intervals); T8 (§57.1's rerun: ×1.34, ×1.39, ×1.66, ×1.38,
+  ×3.30, ×4.29, ×0.84, ×1.28); H1 (§47.2, six bands); H2 (§51.1, medians and the six AUCs); H3 (§47.3, ten values);
+  Q5 (§47.4, nine thresholds). All match.
+- **The block-scale slide recomputed** on the Mars 2000 sphere (R 3,396.19 km): blocks 781,543 / 728,280 /
+  625,397 / 479,876 km², E–W sides 889.1 / 858.8 / 770.0 / 628.7 / 444.6 km, ratios 1.12 / 1.05 / 0.90 / 1.13,
+  square miles and the drawn widths (889 km = 237 px at 120 dpi; California's square 174 px for 651 km) agree; the
+  grid strips light the right rows of 8.
+- **Maps:** legends and counts agree with the record (layout 06's 188 and 1,685; 09's 409 and 1,709; 12's orders
+  97 / 3,165 / 41,442; 16's table; 17's shares, Crater 55 %, Normal Ground 39 %, lava tube 4.7 %, hills 1.0 %, §66.9).
+- **Wrong, fixed at its source, not yet in the picture:** layout 11's lower panel is titled "Robbins & Hynek (2020)";
+  the database is the 2020 release and the citation is Robbins & Hynek 2012 (§41). `make_global60_candidate_sheets.py`
+  now writes "Robbins & Hynek 2012, 2020 release", and `make_fig_checks.py`'s T2 legend the same; the layout PNG,
+  its deck and report crops, `docs/thumbs` and `t2_density.png` keep the old title until they are re-exported on the
+  desktop (`NEXT-STEPS.md` "Resume here").
+- **Missing, fixed on the slide:** the deck's crop of layout 11 drops the legend's unit ("Per 10⁴ km²"); the slide's
+  third point now says "Their density per 10⁴ km²".
+- **Left as they are (the layouts' own notes, cropped off in the deck):** on 16 and 17 the held-out labels are
+  outlined in class colour over a white halo, so they read white on the slide while the legend shows the colour; and
+  the grey streaks on 04 and 17 are THEMIS gaps. Neither misstates a result; the full layouts carry the notes.
+- **Rebuilt:** 32 slides, 21 pages, `verify_interim.py` 335 numbers; slide 14 and report page 7 read.

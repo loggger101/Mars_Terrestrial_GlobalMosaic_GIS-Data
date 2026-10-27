@@ -55,6 +55,16 @@ in `exports/README.md` is described. `github_sync.py` refuses to copy over or de
 `--to-drive <commit>` does the clone → drive copy (the paragraph on the desktop above); tested on a scratch
 drive and clone, and against this clone's history with a drive as of `e6ec284` (20 files to copy). The vector-
 layer guide describes the v2 labels and the reviewed layers. Nothing new on the drive: copy with the rest.
+**Later 10-27, laptop (KB §69.21):** the interim reviewed for truth at the author's request: five corrections (THEMIS
+is band 9, 12.57 µm; layout 05 has no graticule; 2,077 m is the maximum fill raise; one Arsia label, not Arsia
+alone; H1 "not supported" as the rule says), the status brought to 27 October with the 26 October results cut kept
+(the review begun, the v2 labels applied), and the thermal gain qualified by balanced accuracy (D25 for the
+interim, the author's yes). Rebuilt: 32 slides, 21 pages, 334 numbers; read. Clone-only: copy with the rest.
+Then every graphic checked against its log or record (KB §69.22): all agree but one. **On the desktop:** layout 11's
+lower panel says "Robbins & Hynek (2020)" (the citation is 2012, the 2020 release); the script is fixed, so
+rerun `make_global60_candidate_sheets.py` and `polish_layouts.py`, re-export layout 11, `make_interim_figs.py`,
+`make_interim_dark.py`, rebuild both interim documents, `tools/make_thumbs.py`; and `make_fig_checks.py` for
+`t2_density.png`.
 
 **Where it stands.** Every scripted job up to the review is done and recorded (KB §53–§57): the ±60°
 fine pass (465,354 closed depressions ≥ 1 km, 969,822 channel segments, layouts 11–12); the 180° DEM
@@ -256,7 +266,7 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D22 | the two blind checks: the rule-screened v2 rows (§12.3 R1, ~45 min) and a probability-sample accuracy check (R2, ~2–3 h) | R1 yes, after the candidate review; R2 if time is free |
 | D23 | a DOI for the data release through Zenodo, and a data statement (§12.4 W7); publishing | yes, with the pre-final release (§7) |
 | D24 | the final deck in the interim's dark `mars_theme` (§12.5) | yes: one look for both talks |
-| D25 | the abstract's and conclusions' thermal gain: qualify it with the balanced-accuracy result (§12.4 W9); also the README and an interim backup slide (§13.1) | yes: one clause, "in overall accuracy; none by balanced accuracy" |
+| D25 | the abstract's and conclusions' thermal gain: qualify it with the balanced-accuracy result (§12.4 W9); also the README (the interim: done, the author's yes, KB §69.21) | yes: one clause, "in overall accuracy; none by balanced accuracy" |
 | D26 | the built deck, report and paper PDF committed only once per deadline (§13.1 P4); rewriting history to drop the 35 earlier copies needs a force push and a re-clone on both machines | yes to committing at milestones; no rewrite |
 | D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | yes |
 D19 was answered 2026-10-24, before any v2 score existed: D18's rule (a) is judged on the held-out polygons whose

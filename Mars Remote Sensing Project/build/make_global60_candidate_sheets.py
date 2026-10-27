@@ -237,7 +237,7 @@ def main():
         text(0.45, 7.47, "%s closed depressions in the HRSC/MOLA DEM at 200 m (fill depth, 70 tiles, seams checked), "
              "counted per 0.5° cell of true area." % f"{nc:,}", 10, "subtitle", colour=(70, 70, 70)),
         text(0.45, 4.62 + fh + 0.06, "The detector: closed depressions ≥ 1 km", 10, "label_a", bold=True),
-        text(0.45, 1.80 + fh + 0.06, "Robbins & Hynek (2020): %s catalogued craters ≥ 1 km" % f"{nr:,}",
+        text(0.45, 1.80 + fh + 0.06, "Robbins & Hynek 2012, 2020 release: %s catalogued craters ≥ 1 km" % f"{nr:,}",
              10, "label_b", bold=True),
         text(7.98, 7.12, "Per 10⁴ km²", 10, "legend_title", bold=True),
         text(7.98, 4.50, "Candidates matching a Robbins crater", 9, "table_title", bold=True),
