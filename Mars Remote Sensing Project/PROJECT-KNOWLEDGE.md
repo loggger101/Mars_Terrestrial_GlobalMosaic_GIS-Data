@@ -4405,3 +4405,54 @@ and read; what was found, and done:
 - **Checked:** 31 slides; `verify_interim.py` 295 (the "1" of "stage 1"); the pptx skill's `validate.py` passes; its
   text dump holds no "§", "KB", ".py" or "Generated"; every slide rendered through PowerPoint and read, the changed
   ones after each fix. The report is untouched. Clone only, like §69.10.
+
+### 69.15 The size of a 15° block: a slide comparing each band's block with the nearest US state — 2026-10-27, laptop **[V]**
+
+The author's request ("a section which compares the size of a 15 degree square cell to the state its most close to
+area with"). The cells are the held-out split's whole 15° × 15° blocks (§31.3), edges on multiples of 15°, so over
+±60° there are 24 × 8 = **192 blocks** in four bands of latitude, mirrored about the equator.
+`build\interim_block_scale.py` computes them on the project's sphere (R = 3,396,190 m, §18):
+A = R² · Δλ · (sin φ2 − sin φ1). State areas: US Census Bureau, 2010 census, total area (land and water).
+Nearest by ratio.
+
+| Band (N and S) | Block area | sq mi | E-W side, low → high edge | Nearest state | Ratio |
+|---|---|---|---|---|---|
+| 0–15° | 781,536 km² (782,000) | 301,753 (302,000) | 889.1 → 858.8 km | Texas, 695,662 km² | 1.12 |
+| 15–30° | 728,275 km² (728,000) | 281,189 (281,000) | 858.8 → 770.0 km | Texas | 1.05 |
+| 30–45° | 625,384 km² (625,000) | 241,462 (241,000) | 770.0 → 628.7 km | Texas | 0.90 |
+| 45–60° | 479,874 km² (480,000) | 185,280 (185,000) | 628.7 → 444.6 km | California, 423,967 km² | 1.13 |
+
+Every block is 889.1 km (889 km) north to south; the E-W side runs from 889 km at the equator to 445 km at 60°.
+The ±60° band is 125,523,330 km², a mean block of 653,767 km². Texas is 268,596 sq mi and California 163,695.
+Alaska (1,723,337 km²) is 2.2× the largest block, and no block is as small as Montana (380,831 km²).
+
+The deck (`interim.py` `BLOCK_SLIDE`, `BLOCK_SCALE`; `build_interim_live.block_scale_slide`): one slide, kicker
+"For scale", "How big is a 15° block? About the size of Texas", just before "Landforms at ±60°, scored on labels
+the model never saw", where the blocks are first used. One card per band: the block drawn to scale as its
+trapezoid (equator side down, 0.18 pt per km), the state's area as a dashed square of the same area behind it,
+the area in km² and sq mi, the ratio. Kept out of `FIGURES`, which the report and the figure scripts read, so the
+report is untouched.
+
+### 69.16 The graphics refined: the block slide's grid, legends that can be read — 2026-10-27, laptop **[V]**
+
+The author's request ("continue to refine and improve the graphics further"), the same day as §69.15, the 26 Oct
+cut kept. All 32 slides rendered through PowerPoint and read; what was found, and done (`build_interim_live.py`,
+`interim.py`; no Pro, so the layout exports themselves are unchanged):
+
+- **The block slide** (§69.15): above each block, a tile strip of the ±60° grid, 24 × 8 blocks, the band's two rows
+  (north and south) lit and the equator a light rule (`band_grid`), so each card says where its band is. Blocks and
+  squares at 0.16 pt per km (was 0.18) to make the room; the note says what the strip is.
+- **Wide legends restacked** (`restack`, in memory, for the deck only): a legend laid out by Pro as one wide row of
+  item columns (wider than 3 × its height: layouts 06 and 12) is cut at its blank columns, the items regrouped into
+  whichever columns fit the room under the map at the largest scale, and reframed. The channels legend went from
+  about 0.23 to 0.5 pt per exported pixel (the cap), the Ius candidates' from 0.26 to about 0.4.
+- **A swatch the navy ground hid**: "Order 5" in the channels legend is a dark blue line, contrast under 2:1 on navy;
+  any such swatch now sits on a chip of the hillshade's grey (190, 190, 190), so it reads as it does on the map.
+  The text and the other swatches are untouched.
+- **Channels** (layout 12): the map capped at 262 pt (`map_h`) so the restacked legend has the room to be read.
+- **Athabasca Valles** (layout 09): map-left was tried and dropped (the scale bar beside the map pushed the takeaways
+  into a narrow column and the fourth under the legend). Instead `legend_beside`: the map at the left margin, the
+  legend in the room to its right at 0.5 pt per pixel (was about 0.25), the takeaways full width beneath.
+- **Checked:** 32 slides; `verify_interim.py` 325; every slide rendered through PowerPoint, and against the first
+  render only slides 15, 16, 17 and 19 differ; those read after each fix. The pptx skill's `validate.py` was not
+  on this machine; PowerPoint opened and rendered the deck. The report is untouched. Clone only, like §69.10.

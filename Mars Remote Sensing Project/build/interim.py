@@ -172,7 +172,7 @@ FIGURES = [
                  "Good for large craters and as prompts for review; for crater counts, Robbins is the reference"],
          source="§53.4, §53.6, §54.4, §55.4"),
     dict(group="Channels", title="Channels across ±60°",
-         images=[("layout", "12_global60_channels")],
+         images=[("layout", "12_global60_channels")], map_h=262,  # a lower map: the legend room to be read
          points=["969,822 routed channel segments; orders 3–5 drawn",
                  "60.5% of stream cells discarded as fill artefact (Ius alone: 56%)",
                  "89.8% lie on ground under 2°, so the plateau channels are DEM noise",
@@ -186,7 +186,7 @@ FIGURES = [
                  "for review"],
          source="§25, §26, §42.3"),
     dict(group="Type areas", title="Athabasca Valles: the second type area",
-         images=[("layout", "09_athabasca_digitising")],
+         images=[("layout", "09_athabasca_digitising")], legend_beside=True,  # map left, legend in the room beside it
          points=["Flood lava once mapped as a water channel; the USGS map calls it Late Amazonian volcanic (lAv)",
                  "Built the same way as Ius: 3,283 channel candidates, 409 of them rock-floored",
                  "Catalogued craters: 1,122 per million km² on lAv, against 1,760 and 2,183 on the older units",
@@ -272,6 +272,28 @@ FIGURES = [
                  "The order count reflects the threshold chosen, so the DEM cannot answer Q5"],
          source="§47.4"),
 ]
+
+# ------------------------------------------------------------------ the size of a 15° block
+# The held-out split's 15° blocks against the US state nearest each in area (interim_block_scale.py, KB §69.15),
+# requested by the author 2026-10-27. A slide of its own, drawn from shapes rather than a picture, so it stays out of
+# FIGURES (the report and the figure scripts read those); the deck puts it just before the slide named in `before`,
+# where the blocks are first used. One block per band of latitude, the same in the south.
+BLOCK_SLIDE = dict(
+    group="For scale", title="How big is a 15° block? About the size of Texas",
+    before="Landforms at ±60°, scored on labels the model never saw",
+    note="Above each block, its two rows on the ±60° grid of 192 blocks; blocks and squares below drawn to one "
+         "scale, equator side down. Every block is 889 km north to south; east to west it narrows from 889 km at the "
+         "equator to 445 km at 60°. The hand-drawn labels fall in 39 blocks, 14 held out. State areas: 2010 US "
+         "Census, land and water.",
+    source="§31.3, §69.15")
+BLOCK_SCALE = [   # (band, km², sq mi, E-W side at the band's low and high edge in km, state, ratio)   §69.15
+    ("0–15° N and S", "782,000 km²", "302,000 sq mi", 889.1, 858.8, "Texas", "1.12"),
+    ("15–30° N and S", "728,000 km²", "281,000 sq mi", 858.8, 770.0, "Texas", "1.05"),
+    ("30–45° N and S", "625,000 km²", "241,000 sq mi", 770.0, 628.7, "Texas", "0.90"),
+    ("45–60° N and S", "480,000 km²", "185,000 sq mi", 628.7, 444.6, "California", "1.13"),
+]
+BLOCK_NS_KM = 889.1                                       # every block's north-south side
+STATE_AREA = {"Texas": (695662, "695,662 km²"), "California": (423967, "423,967 km²")}   # 2010 census, total
 
 # ------------------------------------------------------------------ issues
 ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
