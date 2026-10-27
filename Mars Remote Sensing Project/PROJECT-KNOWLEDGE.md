@@ -4152,3 +4152,25 @@ author accepts"); nothing here is published, put in the interim, or used for D18
   the final paper and deck drafted (§69). Rebuilt: 30 slides, 21 pages, `verify_interim.py` 283 numbers; slide 5
   and report page 2 read.
 - **Left for the interim, the author's:** the due date and the delivery.
+
+### 69.6 The interim edited for plain wording and reordered — 2026-10-26, desktop **[V]**
+
+At the author's request ("improve and refine the interim; humanize it and remove AI slop"):
+
+- **The wording** (`interim.py` only; every number byte-identical, each sentence holding a number re-read against
+  its own section): colon reveals and stacked "X, not Y" contrasts rewritten as plain sentences; subjects added
+  where a bullet had none ("Day IR carries none" → "Day IR does not follow it"); repeated facts cut (86.6 % was on
+  three slides). The wording traps (§7 of `INTERIM-PLAN.md`) still hold: "±60°", "diurnal-contrast index", no
+  crater inventory.
+- **Two facts corrected in passing:** the issue "250 GB on one USB drive" was the size at §2.2's date; the drive is
+  **428.7 GB** (§67.4). "Terrain alone … 34 of 124 crater polygons" now says *right* (polygons won, §56.1), and the
+  landform slide gives the split as 329 training and 183 held out.
+- **The order:** the two failed first maps (layout 05) now come before the published map, and the hypotheses run
+  H1, H2, H3, Q5 (they ran H1, H3, Q5, H2). The Ius slide says which map is visible and which night IR.
+- **The report's tables:** a header row keeps with its first row, and a table of up to 8 rows never breaks across
+  a page (`docx_kit.table`); the bands table's columns widened so "232 m" and the wavelengths sit on one line.
+  Both breaks were seen in the rendered report (the schedule's header alone on page 22; the correlation table's
+  last row on page 2).
+- **Rebuilt and read:** deck 30 slides, report 23 pages (21 before: the new figure order breaks pages
+  differently), `verify_interim.py` 286 numbers; `neutral_voice.py` clean. Every slide and every page read after
+  the last build of each.

@@ -81,6 +81,7 @@ def table(headers, rows, widths=None, size=10):
         shade(cell, "DCDCDC")
         p = cell.paragraphs[0]
         p.paragraph_format.space_after = Pt(2)
+        p.paragraph_format.keep_with_next = True      # never a header row alone at a page's foot (KB §69.6)
         r = p.add_run(h)
         r.bold, r.font.name, r.font.size = True, SERIF, Pt(size)
     for row in rows:
@@ -98,5 +99,10 @@ def table(headers, rows, widths=None, size=10):
     _repeat_header(t.rows[0])
     for row in t.rows:
         _no_split(row)
+    if len(rows) <= 8:                                 # a short table never breaks across pages (KB §69.6)
+        for row in t.rows[:-1]:
+            for cell in row.cells:
+                for p in cell.paragraphs:
+                    p.paragraph_format.keep_with_next = True
     para(space_after=2)
     return t

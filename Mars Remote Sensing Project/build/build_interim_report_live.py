@@ -94,10 +94,10 @@ K.bullets(I.GOALS)
 # ------------------------------------------------------------ spectral bands
 K.heading("3. Relevant Spectral Bands")
 K.table(["Band or product", "Wavelength", "Cell", "What it contributes"], [list(r) for r in I.BANDS],
-        widths=[2.2, 1.6, 0.6, 4.2], size=10)
+        widths=[1.9, 1.9, 0.8, 4.0], size=10)             # "232 m" and the wavelengths on one line (KB §69.6)
 c = I.CORRELATION
-K.para("Correlation between the five image bands over the Ius Chasma type area (PROJECT-KNOWLEDGE.md §18.3):",
-       space_after=4)
+K.para("Correlation between the five image bands at Ius Chasma (PROJECT-KNOWLEDGE.md §18.3):",
+       space_after=4).paragraph_format.keep_with_next = True
 K.table(["r"] + c["bands"], [[b] + [("%+.3f" % v).replace("-", "−") if v != 1 else "1" for v in r]
                              for b, r in zip(c["bands"], c["r"])], widths=[1.4] + [1.0] * 5, size=10)
 K.para(c["takeaway"])

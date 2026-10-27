@@ -32,7 +32,9 @@ python verify_interim.py
   `make_fig_tests567.py`.
 - **`build\build_interim_live.py`** lays it out in `le_theme.py`: title, goals, spectral bands, the correlation
   table, tasks and percent complete, the processing log, a "Preliminary Results" divider, one slide per figure,
-  issues, next steps with schedule. **30 slides; the report 21 pages, 21 figures** (2026-10-21, KB §66.10: the two
+  issues, next steps with schedule. **30 slides; the report 23 pages, 21 figures** (2026-10-26, KB §69.6: the text
+  edited for plain wording, the failed first maps moved before the published one, the hypotheses in order H1, H2,
+  H3, Q5). Earlier, 2026-10-21 (KB §66.10): the two
   deep-learning slides, layouts 16 and 17, each map left with takeaways and legend beside it, `map_left=True`).
 - **After every rebuild:** back up the live files; render the deck with `render_pdf.ps1 -Deck <pptx> -Pdf <pdf>`
   from PowerShell and the report through Word COM (KB §51.5); rasterise with PyMuPDF and **read every changed slide
@@ -53,7 +55,7 @@ Everything is in `<drive>\Mars Remote Sensing Project\NEXT STUFF\`:
 | file | built by |
 |---|---|
 | `Mars Global Mosaic - Interim Presentation.pptx` (30 slides) | `build_interim_live.py` + `interim.py` |
-| `Mars Mosaic - Interim Report.docx` (21 pages) | `build_interim_report_live.py` + `interim.py` |
+| `Mars Mosaic - Interim Report.docx` (23 pages) | `build_interim_report_live.py` + `interim.py` |
 | `2 Interim Presentation Template.pptx` | the course |
 
 Earlier versions are kept on the drive in `NEXT STUFF\.backup_*` (not mirrored to GitHub).

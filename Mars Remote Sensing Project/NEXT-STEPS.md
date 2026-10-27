@@ -136,6 +136,9 @@ measured now is the interim; the label review, the v2 runs, the candidate review
 retests go to the final (by the 22 Nov freeze). `interim.py` brought to the cut and both documents rebuilt and
 read: 30 slides, 21 pages, `verify_interim.py` 282 numbers. The percent-complete column set by the agent at the
 author's request (D16, toward the final; KB §69.5). Left on the interim: the due date and delivery.
+**Same evening (KB §69.6), the author's request:** the interim's text edited for plain wording (no numbers
+changed), the slides reordered (first maps before the published one; H1, H2, H3, Q5), two stale facts fixed
+(the drive's size, "finds" for 34 of 124 crater polygons right). 30 slides, 23 pages; every slide and page read.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not

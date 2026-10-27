@@ -10,9 +10,9 @@ Rules for editing it:
   * every number is quoted from PROJECT-KNOWLEDGE.md; the § is kept beside it so it can be
     rechecked, and a number changes here only after it changes there (KB §12.1);
   * a new result = one entry in FIGURES (a layout or a figure, 2-4 takeaways, its §);
-  * the percentages in PROGRESS are the author's to set; None prints as a dash.
+  * the percentages in PROGRESS were set on 2026-10-26 (KB §69.5); None prints as a dash.
 Style is the Presentation 1 design (le_theme.py), on request, 2026-10-08.
-Slide text is written in a neutral, impersonal voice.
+Slide text is written in a neutral, impersonal voice, edited for plain wording on 2026-10-26 (KB §69.6).
 """
 from content import DECK_TITLE, COURSE, AUTHOR, TITLE        # unchanged since the prospectus
 
@@ -24,27 +24,27 @@ MISSION = (
     "lava flows, fluvial channels and impact craters.")                                    # §16
 
 GOALS = [
-    "One co-registered stack: Viking visible colour, THEMIS day and night infrared, HRSC/MOLA "
-    "topography, on a single grid over ±60°.",
-    "Map and classify the three landform families from it, in a type area first (Ius Chasma) "
-    "and then across ±60°.",
+    "Put Viking visible colour, THEMIS day and night infrared and HRSC/MOLA topography on one "
+    "grid over ±60°.",
+    "Map the three landform families from that stack, first in a type area (Ius Chasma), "
+    "then across ±60°.",
     "Test whether thermal infrared separates surfaces that visible light cannot.",
     "Score every product against something it never saw: held-out hand labels, the IAU crater "
-    "gazetteer, and the USGS geologic map.",
+    "gazetteer and the USGS geologic map.",
 ]
 
 # ------------------------------------------------------------------ spectral bands
 BANDS = [   # (band or product, wavelength, cell, what it contributes)
     ("Viking MDIM 2.1 R, G, B", "visible, ~0.4–0.7 µm", "232 m",
-     "Albedo: bright dust against dark basalt. Keeps real regional differences (§28.10)."),
+     "Albedo: bright dust, dark basalt; not stretched by region, so regional differences are real (§28.10)."),
     ("THEMIS Day IR (v12)", "thermal IR, 6.8–14.9 µm", "100 m",
-     "Daytime temperature: bright in visible = cool by day (r −0.49 at Ius, §18.3)."),
+     "Daytime temperature. Ground that is bright in visible stays cooler by day (r −0.49 at Ius, §18.3)."),
     ("THEMIS Night IR (v14, ±60°)", "thermal IR, 6.8–14.9 µm", "100 m",
-     "Night temperature: rock holds heat. The most independent band, |r| ≤ 0.12 (§18.3)."),
+     "Night temperature: rock holds heat. The band least like the others, |r| ≤ 0.12 (§18.3)."),
     ("HRSC/MOLA blended DEM", "altimetry + stereo", "200 m",
      "Slope in degrees, local relief, hillshade, flow routing, closed-depression depth (§20)."),
     ("Diurnal contrast index", "day − night, relative", "100 m",
-     "A local material discriminator inside one area; not thermal inertia, not planet-wide (§24, §28.10)."),
+     "Separates materials inside one area; not thermal inertia, not comparable across the planet (§24, §28.10)."),
 ]
 
 CORRELATION = {   # Ius type area, 100.00% co-valid, §18.3
@@ -54,27 +54,27 @@ CORRELATION = {   # Ius type area, 100.00% co-valid, §18.3
           [0.925, 0.993, 1.000, -0.488, -0.068],
           [-0.486, -0.496, -0.488, 1.000, 0.105],
           [-0.121, -0.085, -0.068, 0.105, 1.000]],
-    "takeaway": "Three visible bands are one dimension (r 0.93–0.99); day IR adds a second, "
-                "night IR a third. Effective dimensionality ≈ 3: the measured case for fusing them.",
+    "takeaway": "The three Viking bands behave as one (r 0.93–0.99); day IR adds a second dimension and "
+                "night IR a third. That is the measured case for fusing them.",
 }
 
 # ------------------------------------------------------------------ progress
 # Percentages: toward the final deliverable, not the interim; set by the agent at the author's request,
 # 2026-10-26 (D16, KB §69.5). 100 = nothing left for the final; a reduced scope that is settled counts as done.
 PROGRESS = [   # (task, what is true now, percentage or None)                   KB
-    ("Scope, targets and type area", "Ius Chasma and Athabasca Valles type areas; ±60° extent decided", 100),  # §14.3 §16 §42.1
-    ("Raster acquisition", "Three globals + THEMIS Night IR", 100),                                     # §15
-    ("Statistics, stretches, pyramids", "Done: all products overviewed, the four source globals in 26 min", 100),  # §28 §29 §53
+    ("Scope, targets and type area", "Two type areas, Ius Chasma and Athabasca Valles; the ±60° extent", 100),  # §14.3 §16 §42.1
+    ("Raster acquisition", "Three global mosaics plus the THEMIS night IR mosaic", 100),               # §15
+    ("Statistics, stretches, pyramids", "Done for every product; pyramids on the four source globals took 26 min", 100),  # §28 §29 §53
     ("Grouped mosaic viewer", "Done", 100),
-    ("DEM terrain derivatives", "Rebuilt in degrees, type area and ±60°; WARNING 000869 gone", 100),  # §20 §28.8
+    ("DEM terrain derivatives", "Slope rebuilt in degrees, type area and ±60°; WARNING 000869 gone", 100),  # §20 §28.8
     ("Image-gradient products", "Renamed Gradient_*; not used further", 100),                          # §7
     ("Jezero context", "Hosted services only; the dead HiRISE link removed", 100),                     # §3 §50
     ("Classification", "±60° SVM on hand-drawn labels, 200 m: 73.8%, κ 0.58 held out; seven classes proposed", 75),   # §55.3 §57 §69.2
     ("CRS harmonisation", "Done: one 100 m / 200 m grid over ±60°", 100),                    # §18 §28.1
     ("Visible + IR composite", "Done: type area; 7-band ±60° stack", 100),                   # §18 §31.2
-    ("Landform digitising", "Classes ready and empty; candidates reviewable; validation sheet ready; 512 training polygons drawn", 10),  # §19.4 §29.2 §46 §49
+    ("Landform digitising", "512 training polygons drawn; landform classes set up but empty; candidates ready to review", 10),  # §19.4 §29.2 §46 §49
     ("Crater inventory", "Robbins catalogue in the project (385,049); 465,354 closed depressions ≥ 1 km at ±60°", 60),  # §41 §54.4
-    ("Map layouts", "17 layouts, from none, with graticules", 85),                     # §38 §44 §49 §53.6 §63 §66.4 §66.9
+    ("Map layouts", "17 map layouts with graticules (none in September)", 85),          # §38 §44 §49 §53.6 §63 §66.4 §66.9
     ("Report and presentations", "Prospectus and Presentation 1 delivered; interim built to the 26 Oct cut; final paper and deck drafted", 60),  # §45 §69 §69.5
 ]
 PROGRESS_SEPT = [90, 100, 70, 100, 80, 70, 20, 20, 15, 5, 0, 0, 0, 25]   # the 13 Sep deck, for comparison
@@ -86,7 +86,7 @@ LOG = [   # (date, what, outcome, §)
     ("19 Sep", "±60° grids and diurnal contrast index", "15.2 bn px in 36.3 min", "§28"),
     ("19 Sep", "Channel and crater candidates, Ius; basins at ±60°",      # merged: 14 rows overflow
      "2,610 channels; 1,685 closed depressions; 5,144 basins ≥ 20 km", "§25–28"),
-    ("24–30 Sep", "Global composites in the Pro GUI (desktop)", "First successes: 2 h 52 m, 3 h 10 m", "§29"),
+    ("24–30 Sep", "Global composites in the Pro GUI (desktop)", "Two runs finished: 2 h 52 m and 3 h 10 m", "§29"),
     ("29 Sep", "Hand-drawn training polygons; SVMs", "Four classes; two ±60° maps", "§29"),
     ("2–3 Oct", "First SVM maps checked; corrected stack scored held out",   # merged: 14 rows overflow
      "Tile artefact, mostly elevation; then 73.5%, κ 0.58", "§30–32"),
@@ -99,133 +99,150 @@ LOG = [   # (date, what, outcome, §)
     ("14–16 Oct", "200 m classification; T1 with Pro's SVM; the published map",
      "73.8%, κ 0.58; thermal adds +1.36 and +1.97 points", "§55–57"),
     ("19–21 Oct", "Deep learning: a box detector, then a U-Net over ±60°",
-     "U-Net 98.9%, κ 0.98 held out: terrain provinces", "§66"),
+     "U-Net 98.9%, κ 0.98 held out, as terrain provinces", "§66"),
     ("22–23 Oct", "The 512 labels audited; seven classes proposed (D17)",
      "Five Crater labels are volcanoes; 1,086 proposals to review", "§68–69"),
 ]
 
 # ------------------------------------------------------------------ figures (preliminary results)
 # images: ("layout", <layout name in the .aprx>) or ("file", <path under build\>)
+# Order (2026-10-26): data, thermal signal, craters and channels, type areas, classification (the two failed
+# maps first, then the published one), deep learning, then the hypotheses in order H1, H2, H3, Q5.
 FIGURES = [
     dict(title="Where: the analysis extent and the two type areas",
          images=[("layout", "10_global60_locator")],
-         points=["±60° latitude, 86.6% of the planet: the THEMIS night mosaic's coverage",
-                 "Ius Chasma, canyon and tributaries; Athabasca Valles, flood lava",
-                 "Orange: volcanic units of the USGS geologic map, the lava-flow reference"],
+         points=["The analysis covers ±60° latitude, 86.6% of the planet: the THEMIS night mosaic's coverage",
+                 "Two type areas: Ius Chasma (canyon and tributaries) and Athabasca Valles (flood lava)",
+                 "Orange: the USGS geologic map's volcanic units, used as the lava-flow reference"],
          source="§16, §41, §42, §43"),
     dict(title="The mosaic at ±60°",
          images=[("layout", "08_global60_mosaic")],
-         points=["Four datasets on one 200 m grid for the first time",
-                 "The failed global Composite Bands is solved: project first, then bound the extent",
-                 "Night-IR coverage sets the extent: 86.6% of the planet"],
+         points=["All four datasets on one 200 m grid",
+                 "Composite Bands failed four times on the global rasters; projecting first and bounding the "
+                 "extent fixed it"],
          source="§16, §18, §28.1, §38"),
     dict(title="Ius Chasma type area: visible and night IR",
          images=[("layout", "01_visible"), ("layout", "02_night_ir")],
-         points=["271–286°E, 6–13°S: canyon walls, plateau, Louros Valles",
+         points=["Left, Viking visible colour; right, THEMIS night IR. 271–286°E, 6–13°S: canyon walls, "
+                 "plateau, Louros Valles",
                  "Same 100 m grid, every pixel valid in all five bands",
-                 "Night IR correlates |r| ≤ 0.12 with every other band: information no other layer holds"],
+                 "Night IR barely correlates with any other band (|r| ≤ 0.12), so it adds information the others lack"],
          source="§14.3, §18"),
     dict(title="Can the thermal pair map material across ±60°?",
          images=[("file", r"pres1_img\global60_thermal.png")],
          points=["Viking red separates the dusty provinces from the rocky ones by 47.67 DN",
-                 "THEMIS day and night IR: −0.19 and +0.02 DN; the index over seven provinces: −0.0009",
-                 "Each province repeats the mosaic-wide mean and spread: contrast-stretched region by region",
-                 "Planet-wide, visible albedo carries the material signal"],
+                 "THEMIS day and night IR separate them by −0.19 and +0.02 DN; the index, over seven provinces, by −0.0009",
+                 "Every province repeats the whole mosaic's mean and spread, because both THEMIS mosaics were "
+                 "stretched region by region",
+                 "Across the planet, the material signal is in visible albedo"],
          source="§28.10"),
     dict(title="Checked against calibrated thermal inertia (TES)",
          images=[("file", r"interim_img\tes_check.png")],
-         points=["Viking albedo tracks real thermal inertia across the planet (r −0.36)",
-                 "Night IR and the diurnal-contrast index: a weak signal inside regions only (|r| ≈ 0.1)",
-                 "Day IR carries none; across the planet the THEMIS pair says nothing",
-                 "So the material signal is in visible albedo; thermal IR adds little at 3 km"],
+         points=["Viking albedo follows calibrated thermal inertia across the planet (r −0.36)",
+                 "Night IR and the diurnal-contrast index follow it weakly, and only inside regions (|r| ≈ 0.1)",
+                 "Day IR does not follow it, and across the planet neither THEMIS mosaic does",
+                 "At TES's ~3 km cells the material signal is in visible albedo; thermal IR adds little"],
          source="§41, §42.4, §43.1"),
     dict(title="Craters at ±60°: closed depressions ≥ 20 km",
          images=[("layout", "07_global60_basins")], map_h=230,  # a lower map leaves the tall legend room
          points=["5,144 basins found by fill depth in 48 s",
                  "68% of 117 IAU craters ≥ 100 km recovered, diameter within ±50%",
-                 "Diameter error median +2.2%",
-                 "Misses breached craters by construction: they are not closed"],
+                 "Median diameter error +2.2%",
+                 "Breached craters are missed by design: they do not close"],
          source="§28.11"),
     dict(title="Closed depressions ≥ 1 km across ±60°",
          images=[("layout", "11_global60_depressions")],
          points=["465,354 closed depressions ≥ 1 km, from an 11-hour run on the desktop",
                  "Against Robbins: 15.3% are catalogued craters at ≥ 1 km, 62.2% at ≥ 5 km, 83.1% at ≥ 20 km",
-                 "Below ~5 km their density follows the DEM's sharpness, not the craters (r −0.11)",
-                 "A map of large craters and a list of prompts, not a crater inventory"],
+                 "Their density barely follows the catalogued craters (r −0.11); below ~5 km it follows the DEM's sharpness",
+                 "Good for large craters and as prompts for review; for crater counts, Robbins is the reference"],
          source="§53.4, §53.6, §54.4, §55.4"),
     dict(title="Channels across ±60°",
          images=[("layout", "12_global60_channels")],
          points=["969,822 routed channel segments; orders 3–5 drawn",
                  "60.5% of stream cells discarded as fill artefact (Ius alone: 56%)",
-                 "89.8% lie on ground under 2°: plateau channels are DEM noise",
+                 "89.8% lie on ground under 2°, so the plateau channels are DEM noise",
                  "No channel reference exists at ±60°, so the network is not scored"],
          source="§53.4, §53.6, §54.4, §55.4"),
     dict(title="Ius Chasma: candidates to digitise",
          images=[("layout", "06_ius_digitising")],
          points=["Fill raised the canyon floor 2,077 m; 56% of the first channel network was artefact",
-                 "188 channel candidates are steep and rock-floored: the place to start",
-                 "1,685 closed depressions ≥ 1 km: only 11% match a catalogued (Robbins) crater, "
-                 "so they are prompts, not a crater count"],
+                 "188 channel candidates are steep and rock-floored; the review starts with them",
+                 "Only 11% of the 1,685 closed depressions ≥ 1 km match a Robbins crater, so they are prompts "
+                 "for review"],
          source="§25, §26, §42.3"),
     dict(title="Athabasca Valles: the second type area",
          images=[("layout", "09_athabasca_digitising")],
          points=["Flood lava once mapped as a water channel; the USGS map calls it Late Amazonian volcanic (lAv)",
-                 "Same 100 m stack, terrain and candidates as Ius: 3,283 channels, 409 rock-floored",
+                 "Built the same way as Ius: 3,283 channel candidates, 409 of them rock-floored",
                  "Catalogued craters: 1,122 per million km² on lAv, against 1,760 and 2,183 on the older units",
-                 "Calibrated TES inertia: the diurnal-contrast index does not track it (r ≈ 0); Viking albedo does (−0.55)"],
+                 "The diurnal-contrast index does not track calibrated TES inertia here (r ≈ 0); Viking albedo does (−0.55)"],
          source="§41, §42"),
+    dict(title="Checking the first two classifications",
+         images=[("layout", "05_svm_checks")], map_left=True,         # two maps stacked: map left, legend right
+         points=["The 29 Sep map follows its 4096-px processing tiles instead of the terrain",
+                 "The 30 Sep map is mostly elevation: elevation alone reproduces 62% of it",
+                 "Both problems led to the corrected stack, with no elevation band and slope in degrees"],
+         source="§30"),
     dict(title="Landforms at ±60°, scored on labels the model never saw",
          images=[("layout", "04_global60_landforms")],
-         points=["SVM on 512 hand-drawn polygons, split by whole 15° blocks",
-                 "200 m, smoothed 11 × 11 (2.2 km): 73.8%, κ 0.58 held out (one class everywhere: 58.6%)",
+         points=["512 hand-drawn polygons in whole 15° blocks: 329 train the SVM, 183 are held out",
+                 "Published map, 200 m, 11 × 11 majority (2.2 km): 73.8%, κ 0.58 held out; one class everywhere: 58.6%",
                  "Halving the cell bought no accuracy: 69.9% raw at 200 m, 70.5% at 400 m",
-                 "Normal Ground and cratered terrain are solid; lava tube is not (2% user's)"],
+                 "Normal Ground and cratered terrain hold up; lava tube does not (2% user's accuracy)"],
          source="§31.3, §55.3, §57"),
     dict(title="The landform classes against the USGS geologic map",
          images=[("file", r"interim_img\t8_enrichment.png")],          # layout 13 is the Pro sheet; its table, legible
          points=["Each cell: how much more often a class occurs in a unit group than across ±60° (×1 = no link)",
-                 "\"Lava tube\" is not enriched on volcanic plains (×0.84) but on volcano flanks and aprons (×3.30, ×4.29)",
+                 "\"Lava tube\" gathers on volcano flanks and aprons (×3.30, ×4.29), not on volcanic plains (×0.84)",
                  "76% of the volcanic plains come out Normal Ground",
-                 "A coherent terrain map, not a lava-flow map: lava flows come from the geologic map"],
+                 "The classes follow terrain, so lava flows are taken from the geologic map"],
          source="§43.2, §49, §57.1"),
     dict(title="Does thermal infrared improve the classification?",
          images=[("file", r"interim_img\thermal_ablation.png")],
          points=["Slope and relief alone: 68.6%, κ 0.51 held out; all seven bands: 67.0%, κ 0.50",
-                 "The thermal bands add +1.3 points (95% interval +0.6 to +2.2): real, but small",
+                 "The thermal bands add +1.3 points (95% interval +0.6 to +2.2), small but clear of zero",
                  "Without terrain, visible and thermal score below one class everywhere (58.6%)",
-                 "The labelled classes are landforms, so terrain decides them; the thermal claim needs material labels"],
+                 "The labels are landforms, so terrain decides them; testing thermal IR properly needs material labels"],
          source="§40"),
     dict(title="The thermal gain, confirmed with ArcGIS Pro's own SVM",
          images=[("file", r"interim_img\t1_pro.png")],
-         points=["Retrained with the published model's settings, without each band group, over the whole ±60°",
+         points=["Pro's SVM retrained over all of ±60° with the published settings, leaving out one band group at a time",
                  "Thermal adds +1.36 points at 200 m (+0.46 to +2.47) and +1.97 at 400 m (+1.08 to +3.35)",
-                 "It helps craters and hills and hurts lava tube; dropping visible or both groups leaves the score tied",
-                 "Terrain alone ties the score but makes a poor crater map: 34 of 124 crater polygons"],
+                 "Thermal helps craters and hills and hurts lava tube; leaving out visible, or both groups, leaves the score tied",
+                 "Terrain alone ties the overall score but gets only 34 of 124 crater polygons right"],
          source="§56, §56.1"),
     dict(title="Deep learning, 1: a detector that draws boxes",
          images=[("layout", "16_x5_detections")], map_left=True,      # frame A over B: map left, legend right
          points=["RetinaNet on the 7-band stack, trained on the training blocks only, scored on the 183 held-out polygons",
                  "Crater: 41.9% of polygons found, 87.6% of boxes right, against 71.1% for always naming Crater",
                  "Normal Ground: 22.7% found, 56.9% right; hills and lava tube never named",
-                 "Retrained with the backbone unfrozen for 30 epochs: hills named, but Normal Ground found "
-                 "falls to 4.5%, so not improved"],
+                 "Retrained with the backbone unfrozen for 30 epochs, it names hills but finds only 4.5% of "
+                 "Normal Ground, so it is no better"],
          source="§66.1, §66.2, §66.5"),
     dict(title="Deep learning, 2: a U-Net maps terrain provinces",
          images=[("layout", "17_x5c_unet_provinces")], map_left=True,
-         points=["A pixel classifier on the same stack and labels, over all of ±60°; a second pass offset "
-                 "128 px removes its tile seams",
+         points=["A U-Net pixel classifier on the same stack and labels, over all of ±60°; a second pass, offset "
+                 "128 px, removes its tile seams",
                  "Held out: 98.9%, κ 0.980, against the published SVM map's 73.8%, κ 0.583, under the same scorer",
-                 "Lava tube becomes usable: 77.1% user's accuracy against 2.4%",
-                 "Provinces, not features: 'Crater' covers 82.6% of the ring round named craters; "
-                 "the SVM map stays the published one"],
+                 "Lava tube becomes usable: 77.1% user's accuracy, against 2.4% for the SVM",
+                 "It maps provinces rather than single landforms: its 'Crater' covers 82.6% of the ring around named "
+                 "craters. The SVM map stays the published one"],
          source="§66.6–66.9"),
     dict(title="Do the infrared mosaics show lava-flow edges Viking misses? (H1)",
          images=[("file", r"interim_img\t5_margins.png")],
-         points=["Profiles across the geologic map's lava contacts at Athabasca: does each band tell the units apart?",
-                 "Every band does so only slightly more often than chance (10%): Viking red 12.3%, day IR 21.0%",
+         points=["905 profiles across 10 of the geologic map's lava contacts at Athabasca: does each band tell the units apart?",
+                 "Every band does only slightly better than chance (10%): Viking red 12.3%, day IR 21.0%",
                  "Day IR leans toward H1, but the intervals overlap (difference +8.7 points, −1.7 to +18.1)",
-                 "A 1:20 M map's contacts are kilometres wide: H1 is retested on margins digitised at 100 m"],
+                 "Contacts on a 1:20 M map are kilometres wide; H1 is retested on margins digitised at 100 m"],
          source="§47.2"),
+    dict(title="Do volcanic channels differ from fluvial ones? (H2)",
+         images=[("file", r"interim_img\t4_channels.png")],
+         points=["Channel candidates, Ius Chasma (fluvial) against Athabasca Valles (volcanic): 2,588 and 3,272",
+                 "H2 expected the volcanic channels to be steeper; they are shallower (median 1.4 against 10.2 m per km)",
+                 "Thermal response tells the two apart no better than chance (AUC 0.50)",
+                 "Not supported at stage 1: the window sets the gradient, not the origin. Reviewed channels retest it"],
+         source="§51.1"),
     dict(title="Is the composite more stable than a single band? (H3)",
          images=[("file", r"interim_img\t6_stability.png")],
          points=["Iso Cluster trained on the west and the east half of Ius, compared over the whole window",
@@ -238,49 +255,36 @@ FIGURES = [
          points=["Channel thresholds from 1 to 500 km² of catchment at Ius Chasma",
                  "The highest stream order follows the threshold: 5 at 1 km², 3 at 50 km², 2 at 500 km²",
                  "Only 30.8–36.7% of first-order streams lie on slopes ≥ 2°, at every threshold",
-                 "The order count is a setting, not a property of the terrain: no answer the DEM supports"],
+                 "The order count reflects the threshold chosen, so the DEM cannot answer Q5"],
          source="§47.4"),
-    dict(title="Do volcanic channels differ from fluvial ones? (H2)",
-         images=[("file", r"interim_img\t4_channels.png")],
-         points=["Channel candidates, Ius Chasma (fluvial) against Athabasca Valles (volcanic): 2,588 and 3,272",
-                 "The volcanic channels are shallower, not steeper: median 1.4 against 10.2 m per km",
-                 "Thermal response tells the two apart no better than chance (AUC 0.50)",
-                 "H2 is not supported at this stage; the window, not the origin, sets the gradient; retested on reviewed channels"],
-         source="§51.1"),
-    dict(title="Checking the first two classifications",
-         images=[("layout", "05_svm_checks")], map_left=True,         # two maps stacked: map left, legend right
-         points=["29 Sep map follows its 4096-px processing tiles, not the terrain",
-                 "30 Sep map is mostly elevation: elevation alone reproduces 62% of it",
-                 "Both led to the corrected stack: no elevation band, slope in degrees"],
-         source="§30"),
 ]
 
 # ------------------------------------------------------------------ issues
 ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
     ("The thermal signal is weak where it can be checked",
-     "Against calibrated TES thermal inertia, the THEMIS mosaics keep only a weak local signal (|r| ≈ 0.1 "
-     "within 15° blocks) and none across the planet; Viking albedo tracks it (r −0.31 to −0.36). In the "
-     "classification the thermal bands add 1.3–2.0 points, with two classifiers (§40.1, §42.4, §43.1, §56)."),
+     "The THEMIS mosaics follow calibrated TES thermal inertia only weakly inside 15° blocks (|r| ≈ 0.1) and "
+     "not at all across the planet; Viking albedo follows it (r −0.31 to −0.36). In the classification the "
+     "thermal bands add 1.3–2.0 points, with two classifiers (§40.1, §42.4, §43.1, §56)."),
     ("The landform classes are terrain classes",
-     "Slope and relief alone match all seven bands; against the geologic map the classes sit where terrain "
-     "puts them, and \"lava tube\" marks volcano flanks, not lava plains (§40.1, §43.2)."),
+     "Slope and relief alone score as well as all seven bands. On the geologic map the classes sit where terrain "
+     "puts them, and \"lava tube\" lands on volcano flanks rather than lava plains (§40.1, §43.2)."),
     ("Five \"Crater\" labels are volcanoes",
-     "Arsia Mons alone is 31% of the held-out Crater area; seven classes are proposed (§68.2)."),
+     "Arsia Mons alone is 31% of the held-out Crater area; a seven-class scheme is proposed for the final (§68.2)."),
     ("Lava flows come from the geologic map",
-     "Volcanic plains are not separable from other plains in these bands; a fifth \"volcanic\" class tested "
-     "below chance. The USGS map's volcanic units are the lava-flow reference (§43.3, §44)."),
+     "These bands cannot tell volcanic plains from other plains, and a fifth \"volcanic\" class scored below "
+     "chance. Lava flows are taken from the USGS map's volcanic units (§43.3, §44)."),
     ("Closed depressions are not a crater count",
      "Of the candidates ≥ 1 km, 11–13% in the type areas and 15.3% across ±60° are catalogued craters; "
-     "from 5 km up most are (62.2%). Robbins (385,049 craters) is the crater reference (§42.3, §54.4)."),
+     "from 5 km up most are (62.2%). The Robbins catalogue (385,049 craters) is the crater reference (§42.3, §54.4)."),
     ("Four hypotheses tested, none supported",
-     "No band separates the geologic map's lava contacts much better than chance (the map is too coarse to "
-     "settle H1); the composite's classes are the least reproducible input (H3); no channel threshold keeps "
-     "first-order streams on real slopes (Q5); the volcanic window's channels are shallower, and thermal "
-     "response separates nothing (H2, stage 1) (§47, §51)."),
+     "No band separates the geologic map's lava contacts much better than chance, though the map is too coarse to "
+     "settle H1; the volcanic channels are shallower, and thermal response separates nothing (H2, stage 1); the "
+     "composite's classes are the least reproducible input (H3); no channel threshold keeps first-order streams "
+     "on real slopes (Q5) (§47, §51)."),
     ("The review has not started",
      "0 of 9,287 candidates are reviewed; H1 and H2 wait for digitised features (§46)."),
-    ("250 GB on one USB drive",
-     "Reads cap near 112 MB/s, and the drive has dropped off mid-write; big outputs are built on internal disk first (§2.2, §36.4)."),
+    ("428.7 GB on one USB drive",
+     "Reads cap near 112 MB/s, and the drive has dropped off mid-write, so big outputs are built on internal disk first (§2.2, §36.4, §67.4)."),
     ("Solved since September",
      "Three coordinate frames, the z-factor defect, four failed global composites, the missing night mosaic, "
      "a defective DEM column at 180° (§15–20, §54)."),
@@ -290,9 +294,9 @@ NEXT_STEPS = [   # all for the final: the interim's data cut is 26 Oct (D20)
     "Review the 9,287 machine candidates at Ius Chasma and Athabasca Valles; draw breached craters and lava margins",
     "Score the candidates against the reviewed features (layout 14); retest H1 on digitised margins and H2 on "
     "reviewed channels with their origin set",
-    "Seven classes (D17): the 1,086 proposed labels reviewed, then the SVM and U-Net rerun; both maps scored "
+    "Seven classes (D17): review the 1,086 proposed labels, rerun the SVM and U-Net, and score both maps "
     "on the same held-out polygons",
-    "Deep learning: validation blocks of its own before any further tuning, so the held-out score stays a test (§66.5)",
+    "Deep learning: set aside validation blocks before any further tuning, so the held-out blocks stay a clean test (§66.5)",
 ]
 
 SCHEDULE = [   # (when, what)
