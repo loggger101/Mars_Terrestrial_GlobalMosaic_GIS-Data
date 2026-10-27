@@ -284,7 +284,7 @@ proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal lab
 | `MARS_nomenclature_classicalbedo_March2019` | Point | 303 | IAU gazetteer |
 | `MARS_nomenclature_craters_gt100km_March2019` | Point | **141** | IAU gazetteer |
 | `MARS_nomenclature_albedo_March2019` | Point | 126 | IAU gazetteer |
-| `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines`, `Landform_CraterRims` | Polyline, Polyline, Polygon | **0** | the digitising classes (§19.4, §46) |
+| `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines`, `Landform_CraterRims` | Polyline, Polyline, Polygon | **0, 94, 26** | the digitising classes (§19.4, §46); the 120 copied from the Ius review (§69.7) |
 | `Landform_ChannelCandidates_auto` | Polyline | 2,610 | Ius channel candidates (§25) |
 | `Landform_CraterCandidates_auto` | Polygon | 1,685 | Ius closed depressions ≥ 1 km (§26) |
 | `Landform_ChannelCandidates_auto_ath` | Polyline | 3,283 | Athabasca channel candidates (§42.1) |
@@ -460,7 +460,7 @@ There is **no ground truth and no sub-metre imagery.** Validation rests on:
 | 10 | does `GPU_THEN_CPU` engage on the 2080 Ti | yes (§2.3, §53.3) |
 | 11 | the desktop's internal disk | ~32 GB free on `C:`, enough for scratch with per-tile clean-up (§53.0) |
 | 13 | acquire THEMIS Night IR | done 2026-09-18; no global night mosaic exists, coverage is ±60° (§15) |
-| 16 | digitising: seeded, and how it starts | candidates in separate classes (§25, §26); 512 hand-drawn training labels (§29.2); digitising starts as a review (§46). The three classes hold 0 rows |
+| 16 | digitising: seeded, and how it starts | candidates in separate classes (§25, §26); 512 hand-drawn training labels (§29.2); digitising starts as a review (§46). The classes hold 0 lava margins, 94 channels and 26 crater rims, all accepted Ius candidates (§69.7) |
 | 17 | keep the plateau channel candidates | keep; reject in review: the rejections become layout 14's precision (§50) |
 | 18 | hydrology at ±60° | yes; the fine pass ran (§53.4); the fill mask is not optional (§28.11) |
 | 19 | rebuild the 7-band composite on the night grid with valid slope | done as the corrected stack (§31.2); the GUI `CompositeBand` stays as it is |
@@ -843,7 +843,7 @@ dust-versus-bedrock split falls out without training data. It is per pixel and s
 (polyline, 11), `Landform_CraterRims` (polygon, 11), in **`Mars_Equidistant_Cylindrical_CM180`**. Common
 schema: `UnitName`, `Confidence` (certain / probable / inferred), `Evidence`, `Notes`, `MappedBy`, `MappedOn`;
 channels carry **`Origin` (fluvial / volcanic / indeterminate)**, the Athabasca question as an attribute;
-craters carry `DiameterKm` and `Preservation`. Review fields were added in §46. All three hold 0 rows.
+craters carry `DiameterKm` and `Preservation`. Review fields were added in §46. Since 2026-10-26 they hold 0, 94 and 26 rows, accepted Ius candidates (§69.7).
 
 ---
 
@@ -4174,3 +4174,26 @@ At the author's request ("improve and refine the interim; humanize it and remove
 - **Rebuilt and read:** deck 30 slides, report 23 pages (21 before: the new figure order breaks pages
   differently), `verify_interim.py` 286 numbers; `neutral_voice.py` clean. Every slide and every page read after
   the last build of each.
+
+### 69.7 The first review session: Ius channels and depressions — 2026-10-26, desktop **[V]**
+
+The author's first review session (§46; `NEXT-STEPS.md` item 1), the gdb saved 23:16; the interim's data cut was
+earlier the same day (D20), so this is for the final.
+
+| Ius class | reviewed | accept | reject | unsure | precision, accept ÷ (accept + reject) |
+|---|---|---|---|---|---|
+| channels (`Landform_ChannelCandidates_auto`) | 188 of 2,610 | 94 | 80 | 14 | **54 %** of 174 |
+| closed depressions ≥ 1 km (`Landform_CraterCandidates_auto`) | 361 of 1,685 | 26 | 331 | 4 | **7 %** of 357 |
+
+- **The 188 reviewed channels are exactly the layer "Channels: steep and rock-floored (188)"** (§32.1's query
+  `SlopeDeg >= 5 AND ThermIdx < -0.15`), so 54 % is that layer's precision, not the 2,610's. Athabasca: 0 reviewed.
+- **Copied** with `accept_reviewed.py --apply --by "Logan M Edwards"`: 94 rows into `Landform_ChannelCenterlines`,
+  26 into `Landform_CraterRims`. **The accepts carry the candidates' defaults**, at the author's word ("copy the
+  accepts as they stand, defaults and all"): every channel `Origin` indeterminate, every row `Confidence` inferred,
+  crater `Preservation` empty. A rerun skips copied rows (`SourceID`), so attributes set later on a candidate do
+  not reach its copy; they must be set on the copy itself.
+- **Layout 14** rebuilt (`make_validation_sheet.py`, `polish_layouts.py`, then re-exported; read). Its recall column
+  reads 100 % because nothing is drawn by hand yet: recall means something only once the missed features are drawn.
+- **T4 (H2)**, `make_t4_channel_h2.py`: stage 1 reproduces §51.1 (median gradient diff −8.85 [−15.69, −5.76] m/km,
+  AUC 0.81 / 0.50 / 0.81); **stage 2 still waits**, `{indeterminate: 94}` against ≥ 10 fluvial and ≥ 10 volcanic.
+- The label proposals (2b): 0 of 1,086 rows reviewed. Lava margins: 0 drawn.

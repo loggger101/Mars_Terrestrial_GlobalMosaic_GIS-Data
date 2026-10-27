@@ -98,7 +98,9 @@
   }
  },
  "stage2": {
-  "origin_counts": {},
+  "origin_counts": {
+   "indeterminate": 94
+  },
   "note": "waiting: needs >= 10 fluvial and >= 10 volcanic reviewed channels"
  }
 }

@@ -139,16 +139,21 @@ author's request (D16, toward the final; KB §69.5). Left on the interim: the du
 **Same evening (KB §69.6), the author's request:** the interim's text edited for plain wording (no numbers
 changed), the slides reordered (first maps before the published one; H1, H2, H3, Q5), two stale facts fixed
 (the drive's size, "finds" for 34 of 124 crater polygons right). 30 slides, 23 pages; every slide and page read.
+**Late 10-26 (KB §69.7): the first review session.** At Ius, all 188 steep channels (94 accept, 80 reject, 14
+unsure: precision 54 %) and 361 closed depressions (26 / 331 / 4: 7 %) reviewed; the 120 accepts copied **as they
+stand** at the author's word (Origin indeterminate, Confidence inferred, Preservation empty), so H2's stage 2
+still waits for ≥ 10 fluvial and ≥ 10 volcanic channels: set `Origin` on the copies in
+`Landform_ChannelCenterlines` (a rerun skips copied rows). Layout 14 rebuilt and read.
 
-**The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
-is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
+**The digitising classes hold 94 channels and 26 crater rims (0 lava margins); 549 of 9,287 candidates are
+reviewed, none at Athabasca.** The review is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
 delay it.
 
 **Next, in this order:**
 
 | # | what | who | how | done when |
 |---|---|---|---|---|
-| 1 | **Review the Ius candidates**, then Athabasca | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
+| 1 | **Review the Ius candidates** (the 188 steep channels done; 1,324 depressions open), then Athabasca; draw breached craters and the Athabasca lava margins | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
 | 2a | ~~**Class revision, proposals**~~ **done 2026-10-23 (KB §69.2):** the 512 with evidence and an `Action` each, plus new polygons for classes 5–7, in `Landform_TrainingSamples_v2_proposals` and a map in the `.aprx` | agent, drive | §11.2 | every label has an `Action`; each new class meets §11.3's minimum in proposals |
 | 2b | **Review the label proposals** (accept / reject / unsure; edit outlines; draw what is missing) | author, in Pro | §11.4 | every non-`keep` row reviewed, for the final (D20): by **~18 Nov** so the v2 runs land before the freeze |
