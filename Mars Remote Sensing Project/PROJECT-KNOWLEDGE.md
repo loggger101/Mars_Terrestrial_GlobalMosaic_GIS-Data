@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-23 (§69.2).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-27 (§69.17).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -33,7 +33,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | classification: type area | §19, §23, §27 |
 | classification: ±60°, the published map | §31, §32.2, §55.3, §57 |
 | the class scheme and the labels' audit | §29.2, §43.3, §68, §69.2 |
-| the final builds: the AASTeX paper and the deck | §69 |
+| the final builds: the AASTeX paper and the deck | §69; what would strengthen them, §69.17 (`NEXT-STEPS.md` §12) |
 | craters and closed depressions | §26, §28.11, §42.3, §53.4, §53.6 |
 | channels | §25, §47.4, §53.4, §53.6, §54.4 |
 | lava flows and the geologic map | §41, §43.2, §43.3, §44, §47.2 |
@@ -4456,3 +4456,25 @@ cut kept. All 32 slides rendered through PowerPoint and read; what was found, an
 - **Checked:** 32 slides; `verify_interim.py` 325; every slide rendered through PowerPoint, and against the first
   render only slides 15, 16, 17 and 19 differ; those read after each fix. The pptx skill's `validate.py` was not
   on this machine; PowerPoint opened and rendered the deck. The report is untouched. Clone only, like §69.10.
+
+### 69.17 What would strengthen the final paper, brainstormed — 2026-10-27, laptop **[V]**
+
+The author's request, while `run_v2.ps1` runs on the desktop: think of the topics and goals still open and of what
+would improve the paper, and log them, the next steps above all. The plan is `NEXT-STEPS.md` §12 (A1–A13 analyses,
+R1–R2 blind checks for the author, W1–W8 text and figures, the talks, an order of work) and D21–D24 in its §2.
+Nothing measured, no file but the two plans changed. Facts found while reading, each against the clone:
+
+- **The paper's abstract is 306 words** (counted between `\begin{abstract}` and `\end{abstract}`); AAS journals
+  allow 250 **[E]** (the AAS author guide, not re-read today).
+- **`references.bib` has no entry for the Alemanno valley map**, which seeded class 7 (§68.5); and the paper's
+  channel section still says the project holds no channel reference at ±60°, untrue since the map reached the drive
+  (§69.2).
+- **The paper's Limits predate §69.7–§69.8**: "Its labels await review" and "the manual review ... has not
+  started"; `final.py` line 185 says the same.
+- **The score logs carry area-weighted confusion matrices** (`build\logs\global60_classification_check_*.json`,
+  `held_out.confusion_area_weighted`), so balanced accuracy, F1 and quantity / allocation disagreement can be
+  computed on the laptop without the drive. They carry no per-polygon scores: a block bootstrap needs the scorer
+  extended, or `DL_UNet_Heldout_Scores_20261020` (four-class maps only).
+- The clone's copy of `build\logs\run_v2\queue.log` (untracked) shows the SVM training started 10-27 01:32; it is a
+  copy, not the desktop's live log, and says nothing of the run's progress since.
+- The literature candidates in §12.4 W3 are **[?]**: named from memory, none looked up.
