@@ -16,7 +16,7 @@ Slide text is written in a neutral, impersonal voice.
 """
 from content import DECK_TITLE, COURSE, AUTHOR, TITLE        # unchanged since the prospectus
 
-STATUS_DATE = "21 October 2026"
+STATUS_DATE = "26 October 2026"   # the interim data cut (D20): later work goes to the final
 
 MISSION = (
     "Assemble one co-registered visible and thermal-infrared mosaic of Mars in ArcGIS Pro, over "
@@ -67,7 +67,7 @@ PROGRESS = [   # (task, what is true now, percentage or None)                   
     ("DEM terrain derivatives", "Rebuilt in degrees, type area and ±60°; WARNING 000869 gone", None),  # §20 §28.8
     ("Image-gradient products", "Renamed Gradient_*; not used further", None),                          # §7
     ("Jezero context", "Hosted services only; the dead HiRISE link removed", None),                     # §3 §50
-    ("Classification", "±60° SVM on hand-drawn labels, 200 m: 73.8%, κ 0.58 held out", None),   # §55.3 §57
+    ("Classification", "±60° SVM on hand-drawn labels, 200 m: 73.8%, κ 0.58 held out; seven classes proposed", None),   # §55.3 §57 §69.2
     ("CRS harmonisation", "Done: one 100 m / 200 m grid over ±60°", None),                    # §18 §28.1
     ("Visible + IR composite", "Done: type area; 7-band ±60° stack", None),                   # §18 §31.2
     ("Landform digitising", "Classes ready and empty; candidates reviewable; validation sheet ready; 512 training polygons drawn", None),  # §19.4 §29.2 §46 §49
@@ -82,8 +82,8 @@ LOG = [   # (date, what, outcome, §)
     ("18 Sep", "Night IR acquired; type-area stack; slope on a metric grid",     # 14 rows overflow: 18 Sep in one
      "Four inputs on one 100 m grid, 100% co-valid; slope in degrees", "§15–20"),
     ("19 Sep", "±60° grids and diurnal contrast index", "15.2 bn px in 36.3 min", "§28"),
-    ("19 Sep", "Channel and crater candidates, Ius", "2,610 channels; 1,685 closed depressions in 49 s", "§25–26"),
-    ("19 Sep", "Basins at ±60°", "5,144 ≥ 20 km in 48 s", "§28.11"),
+    ("19 Sep", "Channel and crater candidates, Ius; basins at ±60°",      # merged: 14 rows overflow
+     "2,610 channels; 1,685 closed depressions; 5,144 basins ≥ 20 km", "§25–28"),
     ("24–30 Sep", "Global composites in the Pro GUI (desktop)", "First successes: 2 h 52 m, 3 h 10 m", "§29"),
     ("29 Sep", "Hand-drawn training polygons; SVMs", "Four classes; two ±60° maps", "§29"),
     ("2–3 Oct", "First SVM maps checked; corrected stack scored held out",   # merged: 14 rows overflow
@@ -98,6 +98,8 @@ LOG = [   # (date, what, outcome, §)
      "73.8%, κ 0.58; thermal adds +1.36 and +1.97 points", "§55–57"),
     ("19–21 Oct", "Deep learning: a box detector, then a U-Net over ±60°",
      "U-Net 98.9%, κ 0.98 held out: terrain provinces", "§66"),
+    ("22–23 Oct", "The 512 labels audited; seven classes proposed (D17)",
+     "Five Crater labels are volcanoes; 1,086 proposals to review", "§68–69"),
 ]
 
 # ------------------------------------------------------------------ figures (preliminary results)
@@ -260,6 +262,8 @@ ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
     ("The landform classes are terrain classes",
      "Slope and relief alone match all seven bands; against the geologic map the classes sit where terrain "
      "puts them, and \"lava tube\" marks volcano flanks, not lava plains (§40.1, §43.2)."),
+    ("Five \"Crater\" labels are volcanoes",
+     "Arsia Mons alone is 31% of the held-out Crater area; seven classes are proposed (§68.2)."),
     ("Lava flows come from the geologic map",
      "Volcanic plains are not separable from other plains in these bands; a fifth \"volcanic\" class tested "
      "below chance. The USGS map's volcanic units are the lava-flow reference (§43.3, §44)."),
@@ -271,9 +275,8 @@ ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
      "settle H1); the composite's classes are the least reproducible input (H3); no channel threshold keeps "
      "first-order streams on real slopes (Q5); the volcanic window's channels are shallower, and thermal "
      "response separates nothing (H2, stage 1) (§47, §51)."),
-    ("Digitising has not started",
-     "The three landform classes are ready and empty in both type areas; candidates can now be accepted or "
-     "rejected in the attribute table (§46). It is the critical path, and only judgement can do it."),
+    ("The review has not started",
+     "0 of 9,287 candidates are reviewed; H1 and H2 wait for digitised features (§46)."),
     ("250 GB on one USB drive",
      "Reads cap near 112 MB/s, and the drive has dropped off mid-write; big outputs are built on internal disk first (§2.2, §36.4)."),
     ("Solved since September",
@@ -281,20 +284,20 @@ ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
      "a defective DEM column at 180° (§15–20, §54)."),
 ]
 
-NEXT_STEPS = [
-    "Digitise Ius Chasma and Athabasca Valles: accept or reject the machine candidates, then draw what they miss",
-    "Score the machine candidates against the reviewed features: the validation sheet (layout 14)",
-    "Hypothesis H2 again, on reviewed channels with their origin set",
-    "Deep learning: the U-Net's province map stands beside the published SVM map; any further tuning first "
-    "needs validation blocks of its own, so the held-out score stays a test (§66.5, §66.9)",
-    "Flow margins in visible against infrared at Athabasca, retested on digitised margins: hypothesis H1",
+NEXT_STEPS = [   # all for the final: the interim's data cut is 26 Oct (D20)
+    "Review the 9,287 machine candidates at Ius Chasma and Athabasca Valles; draw breached craters and lava margins",
+    "Score the candidates against the reviewed features (layout 14); retest H1 on digitised margins and H2 on "
+    "reviewed channels with their origin set",
+    "Seven classes (D17): the 1,086 proposed labels reviewed, then the SVM and U-Net rerun; both maps scored "
+    "on the same held-out polygons",
+    "Deep learning: validation blocks of its own before any further tuning, so the held-out score stays a test (§66.5)",
 ]
 
 SCHEDULE = [   # (when, what)
-    ("8–25 Oct", "Digitising by review starts; desktop runs done: pyramids, ±60° crater and channel pass, 200 m map, T1 in Pro, the deep-learning detector and U-Net"),
-    ("26 Oct – 1 Nov", "H1 and H2 on digitised features"),
+    ("8–26 Oct", "Desktop runs done: pyramids, ±60° crater and channel pass, 200 m map, T1 in Pro, the deep-learning detector and U-Net; seven classes proposed"),
+    ("26 Oct", "Interim data cut: what is measured by now is in the interim; the rest goes to the final"),
+    ("27 Oct – 22 Nov", "Review and digitising; the seven-class labels and maps; H1 and H2 on digitised features; data freeze"),
     ("mid-Nov", "Interim presentation and report"),
-    ("14–22 Nov", "Validation against the digitised landforms; data freeze"),
     ("23 Nov – 4 Dec", "Final report and presentation"),
     ("8 Dec", "Final due"),
 ]

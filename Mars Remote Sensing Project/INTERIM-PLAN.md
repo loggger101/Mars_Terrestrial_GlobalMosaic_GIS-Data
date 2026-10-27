@@ -2,7 +2,7 @@
 
 **Due mid-November 2026**; the exact day is **not known**, so plan against ~13 November and don't wait for
 the date. The interim is the first deadline, about three weeks before the final on 8 December
-(`NEXT-STEPS.md` §8). § numbers point into `PROJECT-KNOWLEDGE.md` ("KB"), the authority on every number.
+(`NEXT-STEPS.md` §8). **Its data cut is 26 October (D20):** the content is set; what remains is the author's. § numbers point into `PROJECT-KNOWLEDGE.md` ("KB"), the authority on every number.
 
 > The standing directive holds: data and layouts first, document prose only on request (KB §1). This file
 > plans the interim; the text lives in `build\interim.py`.
@@ -104,7 +104,8 @@ this list (KB §12.1).
    T8 against the geologic map; T2–T7. (§40.1, §42–§43, §47, §51, §56)
 8. **Deep learning**: the detector scored per held-out polygon (layout 16) and the U-Net's terrain provinces beside
    the published map (layout 17), one slide each. (§66.2, §66.9, §66.10)
-9. **What is not done**: the review and digitising, lava flows mapped from the mosaic. (`NEXT-STEPS.md`)
+9. **What is not done**: the review and digitising, lava flows mapped from the mosaic; the label audit (five
+   Crater labels on volcanoes) and the seven-class scheme proposed for the final. (§68.2, §69.2, `NEXT-STEPS.md`)
 
 ## 5. Hypotheses and questions — where each stands
 
@@ -123,15 +124,15 @@ this list (KB §12.1).
 
 ## 6. Timeline to mid-November
 
-Assumes **~13 November**; if the date is later, the slack goes to data work, not to the documents.
+Assumes **~13 November**. **The data cut is 26 October (D20, KB §69.5):** the interim covers what was measured by
+then, and `interim.py` was brought to it and both documents rebuilt and read the same day. Results after the cut
+go to the final, not here; slack goes to the final's data work.
 
 | when | what |
 |---|---|
-| now → 1 Nov | data work per `NEXT-STEPS.md`; **rebuild after every result** (§0) |
-| **by 2 Nov** | **interim data cut**: what is measured goes in; everything after goes to the final |
-| 2–6 Nov | finish `interim.py`; the author sets the percentages |
-| 6–9 Nov | rebuild both documents; render and read every slide and page; `verify_interim.py` green |
-| 9–12 Nov | review and rehearsal |
+| **26 Oct** | **interim data cut**; `interim.py` brought to it; 30 slides, 21 pages, `verify_interim.py` green (KB §69.5) |
+| when the author is ready | the percentages (`PROGRESS`) and the due date; rebuild both documents; render and read every changed slide and page; `verify_interim.py` |
+| before the due date | review and rehearsal |
 | mid-Nov | deliver |
 
 ## 7. Wording traps, all hit before (KB §14.5, §12)

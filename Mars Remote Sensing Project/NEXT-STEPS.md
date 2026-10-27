@@ -8,9 +8,9 @@ checklist, is `HANDOFF-DESKTOP.md`.
 
 | deadline | date |
 |---|---|
-| digitising checkpoint | **1 November** (§6 contingency) |
-| interim data cut | **2 November** |
+| interim data cut | **26 October** (D20; was 2 November): the interim covers what is measured by then |
 | interim report + presentation | **mid-November** (exact day not known; plan against ~13 November) |
+| label review, v2 runs, digitising: for the final | **27 October – 22 November** (the v2 runs need ~2 days after the label review) |
 | data freeze | **22 November** |
 | final | **Tuesday 8 December 2026** |
 
@@ -130,8 +130,11 @@ review:** trimming the valley strips to their floors is where the seven-class ma
 **2026-10-26 (KB §69.4): the rehearsal is done**, all 13 steps. The seven-class U-Net scores 88.8 %, κ 0.856 on
 the rehearsal polygons (four-class U-Net 41.6 %); by D18's rule as a report it too keeps the four-class map ((a)
 on classes 1–4, 90.4 against 98.9 %; Crater and hills in (c)). Times for the real run: SVM ~22 h, U-Net ~21 h.
-The label review (2b) has not started: 0 of 1,086 rows have a `Review` (read 2026-10-26 evening); §11.6 says
-what gives first if it is not done by 27 Oct.
+The label review (2b) has not started: 0 of 1,086 rows have a `Review` (read 2026-10-26 evening).
+**2026-10-26 evening (KB §69.5), D20, the author's decision: the interim's data cut is today.** What is
+measured now is the interim; the label review, the v2 runs, the candidate review and digitising, and the H1 / H2
+retests go to the final (by the 22 Nov freeze). `interim.py` brought to the cut and both documents rebuilt and
+read: 30 slides, 21 pages, `verify_interim.py` 282 numbers. Left on the interim: percentages, due date, delivery.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
@@ -144,11 +147,11 @@ delay it.
 | 1 | **Review the Ius candidates**, then Athabasca | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
 | 2a | ~~**Class revision, proposals**~~ **done 2026-10-23 (KB §69.2):** the 512 with evidence and an `Action` each, plus new polygons for classes 5–7, in `Landform_TrainingSamples_v2_proposals` and a map in the `.aprx` | agent, drive | §11.2 | every label has an `Action`; each new class meets §11.3's minimum in proposals |
-| 2b | **Review the label proposals** (accept / reject / unsure; edit outlines; draw what is missing) | author, in Pro | §11.4 | every non-`keep` row reviewed, by **26 Oct** |
-| 2c | v2 labels and split; SVM and U-Net on v2; both maps scored on v2; D18's verdict; layouts and interim | agent, desktop | §11.5 | results in the KB beside the four-class scores, by **31 Oct** |
+| 2b | **Review the label proposals** (accept / reject / unsure; edit outlines; draw what is missing) | author, in Pro | §11.4 | every non-`keep` row reviewed, for the final (D20): by **~18 Nov** so the v2 runs land before the freeze |
+| 2c | v2 labels and split; SVM and U-Net on v2; both maps scored on v2; D18's verdict; layouts and the final | agent, desktop | §11.5 | results in the KB beside the four-class scores, by the **22 Nov** freeze |
 | 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). ±60° U-Net map made (§66.7), seams removed (§66.8), in the project beside the published SVM map with layout 17 (§66.9), in the interim and the release `data-2026-10-21` (§66.10). For the author: any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
 | 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
-| 5 | The interim: due date and the percent-complete column from the author; rebuild after each result | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
+| 5 | The interim: content cut on 26 Oct (D20) and rebuilt; due date and the percent-complete column from the author, then rebuild, read, deliver | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 
 **Waiting on the author:** items 1, 2b, 3 and 5; whether to delete the two recreated `_60_smoke` classes
 (KB §57.1); whether to publish a derivatives release carrying the §54 patch (33 GB; the catalogue says how
@@ -193,6 +196,9 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D16 | the interim's percent-complete column and its due date | the author's numbers; `interim.py` prints dashes until then |
 D19 was answered 2026-10-24, before any v2 score existed: D18's rule (a) is judged on the held-out polygons whose
 v2 class is 1–4, the ground both maps can name (KB §68.4 amended, §69.4); `score_d18_verdict.py` does so.
+D20 was answered 2026-10-26: **the interim's data cut is 26 October** (KB §69.5); the class revision, the
+review and the retests go to the final, and D17 / D18's "before the interim" and "in the interim" below now read
+"for the final".
 D17, the class revision, was answered 2026-10-22: seven classes, before the interim, the agent proposes and the
 author accepts (KB §68.1; §11 here). D18 the same day: **the interim shows both maps**, four-class and
 seven-class, each scored on its own held-out polygons and both on v2's; the seven-class map is expected to
@@ -265,8 +271,8 @@ pyramids, X6 q24 (§53–§55); T1 in Pro (§56).
 Rejections are data too: they become the detector's precision. Suggested minimum for the validation to mean
 something: ~30 channel segments, ~50 crater rims, every defensible lava margin.
 
-**Contingency, decided now:** if the three `Landform_*` classes are still empty on **1 November**, the interim
-presents every machine product as **candidates with its measured recall**, never as a landform map, and says
+**Contingency, decided now, applied to the interim at its 26 Oct cut (D20):** if the three `Landform_*` classes
+are still empty on **1 November**, the interim presents every machine product as **candidates with its measured recall**, never as a landform map, and says
 so; lava flows rest on T8 and the geologic map alone. The final stands on the machine products, the 512
 training polygons, the held-out scores and the tests.
 
@@ -310,11 +316,10 @@ point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE
 
 | window | focus |
 |---|---|
-| **16 Oct – 1 Nov** | Review and digitising (§6); after each session §3. X5 on the desktop (the install is done, KB §66). The class revision beside it (§11.6): proposals 22–23 Oct, the author's label review to 26 Oct, v2 runs 26–31 Oct. **1 Nov: digitising checkpoint.** |
-| **2 Nov** | **Interim data cut.** What is measured goes in; the rest goes to the final. |
-| **2–12 Nov** | The interim per `INTERIM-PLAN.md` §6: rebuild, read every page, `verify_interim.py`, review. Data work pauses except overnight runs. |
-| **~13 Nov** | **Interim due.** |
-| **14–22 Nov** | H1 and H2 retests, layout 14 from the review. **Data freeze 22 Nov.** GitHub release refreshed. |
+| **16–26 Oct** | Done: X5 on the desktop (KB §66); the class revision's proposals (22–23 Oct) and its rehearsal (KB §69.4). |
+| **26 Oct** | **Interim data cut** (D20, KB §69.5). What is measured is in the interim; the rest goes to the final. |
+| **27 Oct – 22 Nov** | For the final: review and digitising (§6), after each session §3; the label review (§11.4), then the v2 runs (~2 days, §11.5); H1 and H2 retests, layout 14 from the review. **Data freeze 22 Nov.** GitHub release refreshed. |
+| **by ~13 Nov** | The interim per `INTERIM-PLAN.md` §6: the author's percentages and due date, rebuild, read every page, `verify_interim.py`. **Interim due ~13 Nov.** |
 | **23 Nov – 4 Dec** | The final report and deck, built by script from the layouts. Thanksgiving 26 Nov: nothing planned. |
 | **5–8 Dec** | Buffer and rehearsal. Nothing new. |
 
@@ -325,7 +330,7 @@ point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE
 - **The drive is the only full copy** of the project; GitHub holds the tree and the releases, not the gdb's
   rasters. The USB drive has dropped off mid-write twice (§36.4): big writes go to internal disk first, then one
   copy (§7 has the release step).
-- **Two deadlines three weeks apart** compete for the same days: hence the hard cut on 2 Nov and documents
+- **Two deadlines three weeks apart** compete for the same days: hence the hard cut on 26 Oct (D20) and documents
   built by script, not by hand.
 - **The thermal argument is weaker than the prospectus says** (§28.10, §43.1): write both documents around what
   is measured; the wording traps are `INTERIM-PLAN.md` §7.
@@ -350,7 +355,7 @@ point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE
 
 ---
 
-## 11. The class revision (D17), before the interim
+## 11. The class revision (D17), for the final
 
 The author's scheme, the audit and the plan are KB §68; this section is the work.
 
@@ -457,23 +462,21 @@ across the split.
 4. Layouts: a new sheet for the seven-class SVM map beside 04 (the four-class map, kept), 13 on both, 17 for
    the U-Net on v2; legends name seven classes. The X5 detector and layout 16 stay four-class, as history.
    `polish_layouts.py`, export, read.
-5. The interim rebuilt **with both maps** (D18): the four-class map and its scores, the seven-class map and its
-   scores, and both scored on the v2 held-out polygons; the class wording in `interim.py` and
-   `INTERIM-PLAN.md` §7 updated; `verify_interim.py`.
+5. The final rebuilt **with both maps** (D18, moved from the interim by D20): the four-class map and its scores,
+   the seven-class map and its scores, and both scored on the v2 held-out polygons; the class wording in
+   `final.py` and the paper updated; `verify_interim.py final.py` and on the `.tex`.
 
 ### 11.6 Dates, and what gives first
 
 | by | what |
 |---|---|
 | 23 Oct | proposals built on the drive and read (the script is tested, KB §68.5): **done** (KB §69.2) |
-| 26 Oct | the author's label review done |
-| 27 Oct | v2 SVM map scored; D18 verdict |
-| 30 Oct | v2 U-Net scored |
-| 31 Oct | layouts and the interim rebuilt |
-| 1–2 Nov | digitising checkpoint; data cut (unchanged) |
+| 26 Oct | the interim's data cut (D20, KB §69.5): the interim shows the four-class maps and describes the seven-class scheme as proposed, with §68's audit as its evidence |
+| ~18 Nov | the author's label review done |
+| review + ~1 day | v2 SVM map scored; D18 verdict (~22 h after the review, KB §69.4) |
+| review + ~2 days | v2 U-Net scored (~21 h after its export) |
+| 22 Nov | data freeze: layouts and the final rebuilt with both maps |
 
-**The rehearsal's timings (KB §69.4) make 27 Oct tight:** the v2 SVM map needs ~22 h after the review ends, then
-~1–2 h of scoring; a review finished by the morning of 26 Oct gives the scored map on 27 Oct, a later one 28 Oct.
-If the label review is not done by 27 Oct: drop the U-Net rerun, then the SVM rerun; the interim then shows the
-four-class maps and describes the seven-class scheme as in progress, with §68's audit as its evidence. The
-author makes time for both reviews (no cap, D18).
+**What gives first** if the label review runs late: the U-Net rerun, then the SVM rerun; the final then shows the
+four-class maps and reports the seven-class scheme as a proposal. The author makes time for both reviews
+(no cap, D18).

@@ -4118,3 +4118,25 @@ author accepts"); nothing here is published, put in the interim, or used for D18
   other ~2 days. The U-Net learns the new classes well where the SVM does not (edifice user's 0.766 against
   0.280, apron 0.913 against 0.180), at a cost to Crater and hills on the old ground. These are an agent's labels,
   so none of this is the scheme's result.
+
+### 69.5 The interim's data cut moved to 26 October (D20); the interim rebuilt to it — 2026-10-26, desktop **[V]**
+
+- **D20, the author's decision, 2026-10-26 evening:** the interim data cut is **26 October**, not 2 November
+  (§39.1): what is measured by then is what the interim covers, and the interim is wrapped up now rather than
+  pushed. Everything after goes to the final: the label review (2b) and the v2 runs (§11.5 of the plan), the review
+  and digitising of the candidates, layout 14 from the review, and the H1 and H2 retests. **D18's "both maps in the
+  interim" moves to the final**; its verdict rule (§68.4, D19) is unchanged. The interim falls under the 1 November
+  contingency now: the digitising classes hold 0 rows and 0 of 9,287 candidates are reviewed, so it presents the
+  machine products as candidates. The label review had not started (0 of 1,086 rows with a `Review`, read the
+  same evening). The final's dates are unchanged: data freeze 22 November, due 8 December.
+- **The interim brought to the cut** (`interim.py`, nothing else): `STATUS_DATE` 26 October; the processing log
+  gains "22–23 Oct: the 512 labels audited; seven classes proposed (D17)" (§68–§69.2), the two 19 Sep candidate rows
+  merged so the table keeps 13 rows; the issues gain "Five 'Crater' labels are volcanoes" (Arsia Mons 31 % of
+  the held-out Crater area, §68.2), and "Digitising has not started" becomes "The review has not started" (0 of
+  9,287 candidates); the next steps name the work for the final, the seven-class labels among them; the schedule
+  gives the 26 October cut. The rehearsal (§69.4) stays out: never a result. The figures are unchanged.
+- **Rebuilt and read:** deck 30 slides, report 21 pages, 21 figures; `verify_interim.py` 282 numbers, all in the
+  record. The first build ran the issues slide off its foot (nine items); two items cut to one line each fit it.
+  Slides 1, 6, 29 and 30 and report pages 1–3, 20 and 21 were read. Backups in `NEXT STUFF\.backup_20261026\` and
+  `build\.py_backup_20261026\`.
+- **Left for the interim, the author's:** the percent-complete column and the due date (D16), and the delivery.
