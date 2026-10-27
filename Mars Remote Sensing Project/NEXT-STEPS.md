@@ -134,7 +134,8 @@ The label review (2b) has not started: 0 of 1,086 rows have a `Review` (read 202
 **2026-10-26 evening (KB §69.5), D20, the author's decision: the interim's data cut is today.** What is
 measured now is the interim; the label review, the v2 runs, the candidate review and digitising, and the H1 / H2
 retests go to the final (by the 22 Nov freeze). `interim.py` brought to the cut and both documents rebuilt and
-read: 30 slides, 21 pages, `verify_interim.py` 282 numbers. Left on the interim: percentages, due date, delivery.
+read: 30 slides, 21 pages, `verify_interim.py` 282 numbers. The percent-complete column set by the agent at the
+author's request (D16, toward the final; KB §69.5). Left on the interim: the due date and delivery.
 
 **The three `Landform_*` digitising classes hold 0 rows; 0 of 9,287 candidates are reviewed.** The review
 is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
@@ -151,7 +152,7 @@ delay it.
 | 2c | v2 labels and split; SVM and U-Net on v2; both maps scored on v2; D18's verdict; layouts and the final | agent, desktop | §11.5 | results in the KB beside the four-class scores, by the **22 Nov** freeze |
 | 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). ±60° U-Net map made (§66.7), seams removed (§66.8), in the project beside the published SVM map with layout 17 (§66.9), in the interim and the release `data-2026-10-21` (§66.10). For the author: any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
 | 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
-| 5 | The interim: content cut on 26 Oct (D20) and rebuilt; due date and the percent-complete column from the author, then rebuild, read, deliver | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
+| 5 | The interim: content cut on 26 Oct (D20) and rebuilt, percentages set (D16); the due date from the author, then deliver | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 
 **Waiting on the author:** items 1, 2b, 3 and 5; whether to delete the two recreated `_60_smoke` classes
 (KB §57.1); whether to publish a derivatives release carrying the §54 patch (33 GB; the catalogue says how
@@ -193,7 +194,7 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 |---|---|---|
 | D14 | the two `_60_smoke` classes, recreated by X2's smoke run (§57.1) | delete (they were deleted once, D9); they are in the release GeoPackage |
 | D15 | a derivatives release with the §54 patch (33 GB upload) | not needed: the catalogue gives the two commands that patch a restore (§57.4) |
-| D16 | the interim's percent-complete column and its due date | the author's numbers; `interim.py` prints dashes until then |
+| D16 | the interim's due date (the percentages were set 2026-10-26 by the agent at the author's request, KB §69.5) | plan against ~13 November |
 D19 was answered 2026-10-24, before any v2 score existed: D18's rule (a) is judged on the held-out polygons whose
 v2 class is 1–4, the ground both maps can name (KB §68.4 amended, §69.4); `score_d18_verdict.py` does so.
 D20 was answered 2026-10-26: **the interim's data cut is 26 October** (KB §69.5); the class revision, the

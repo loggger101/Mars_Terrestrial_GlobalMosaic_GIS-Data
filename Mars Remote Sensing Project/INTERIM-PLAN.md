@@ -41,8 +41,8 @@ python verify_interim.py
   a chart from its log (as for T8 and T1); titles over ~60 characters wrap onto the accent rule.
 
 **Still to do on the deck** (none blocks a rebuild):
-1. **Percentages** in the progress table: the author's to set (`PROGRESS` in `interim.py`); the slide shows
-   13 Sep's next to a dash.
+1. ~~Percentages~~ **set 2026-10-26** by the agent at the author's request, each row's progress toward the final
+   (`PROGRESS` in `interim.py`; the reasoning in KB §69.5).
 (The small legends on the 05 and 07 slides were enlarged on 2026-10-22, KB §67.5: 05 takes `map_left=True`,
 07 a lower map cap, `map_h=230`.)
 
@@ -131,7 +131,8 @@ go to the final, not here; slack goes to the final's data work.
 | when | what |
 |---|---|
 | **26 Oct** | **interim data cut**; `interim.py` brought to it; 30 slides, 21 pages, `verify_interim.py` green (KB §69.5) |
-| when the author is ready | the percentages (`PROGRESS`) and the due date; rebuild both documents; render and read every changed slide and page; `verify_interim.py` |
+| 26 Oct | the percentages (`PROGRESS`) set toward the final (KB §69.5); rebuilt, slide 5 and report page 2 read |
+| when the date is known | any last change; rebuild both documents; render and read every changed slide and page; `verify_interim.py` |
 | before the due date | review and rehearsal |
 | mid-Nov | deliver |
 

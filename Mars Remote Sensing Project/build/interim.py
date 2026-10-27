@@ -59,21 +59,23 @@ CORRELATION = {   # Ius type area, 100.00% co-valid, §18.3
 }
 
 # ------------------------------------------------------------------ progress
+# Percentages: toward the final deliverable, not the interim; set by the agent at the author's request,
+# 2026-10-26 (D16, KB §69.5). 100 = nothing left for the final; a reduced scope that is settled counts as done.
 PROGRESS = [   # (task, what is true now, percentage or None)                   KB
-    ("Scope, targets and type area", "Ius Chasma and Athabasca Valles type areas; ±60° extent decided", None),  # §14.3 §16 §42.1
-    ("Raster acquisition", "Three globals + THEMIS Night IR", None),                                     # §15
-    ("Statistics, stretches, pyramids", "Done: all products overviewed, the four source globals in 26 min", None),  # §28 §29 §53
-    ("Grouped mosaic viewer", "Done", None),
-    ("DEM terrain derivatives", "Rebuilt in degrees, type area and ±60°; WARNING 000869 gone", None),  # §20 §28.8
-    ("Image-gradient products", "Renamed Gradient_*; not used further", None),                          # §7
-    ("Jezero context", "Hosted services only; the dead HiRISE link removed", None),                     # §3 §50
-    ("Classification", "±60° SVM on hand-drawn labels, 200 m: 73.8%, κ 0.58 held out; seven classes proposed", None),   # §55.3 §57 §69.2
-    ("CRS harmonisation", "Done: one 100 m / 200 m grid over ±60°", None),                    # §18 §28.1
-    ("Visible + IR composite", "Done: type area; 7-band ±60° stack", None),                   # §18 §31.2
-    ("Landform digitising", "Classes ready and empty; candidates reviewable; validation sheet ready; 512 training polygons drawn", None),  # §19.4 §29.2 §46 §49
-    ("Crater inventory", "Robbins catalogue in the project (385,049); 465,354 closed depressions ≥ 1 km at ±60°", None),  # §41 §54.4
-    ("Map layouts", "17 layouts, from none, with graticules", None),                     # §38 §44 §49 §53.6 §63 §66.4 §66.9
-    ("Report and presentations", "Interim deck and report are living builds from one source", None),  # §45
+    ("Scope, targets and type area", "Ius Chasma and Athabasca Valles type areas; ±60° extent decided", 100),  # §14.3 §16 §42.1
+    ("Raster acquisition", "Three globals + THEMIS Night IR", 100),                                     # §15
+    ("Statistics, stretches, pyramids", "Done: all products overviewed, the four source globals in 26 min", 100),  # §28 §29 §53
+    ("Grouped mosaic viewer", "Done", 100),
+    ("DEM terrain derivatives", "Rebuilt in degrees, type area and ±60°; WARNING 000869 gone", 100),  # §20 §28.8
+    ("Image-gradient products", "Renamed Gradient_*; not used further", 100),                          # §7
+    ("Jezero context", "Hosted services only; the dead HiRISE link removed", 100),                     # §3 §50
+    ("Classification", "±60° SVM on hand-drawn labels, 200 m: 73.8%, κ 0.58 held out; seven classes proposed", 75),   # §55.3 §57 §69.2
+    ("CRS harmonisation", "Done: one 100 m / 200 m grid over ±60°", 100),                    # §18 §28.1
+    ("Visible + IR composite", "Done: type area; 7-band ±60° stack", 100),                   # §18 §31.2
+    ("Landform digitising", "Classes ready and empty; candidates reviewable; validation sheet ready; 512 training polygons drawn", 10),  # §19.4 §29.2 §46 §49
+    ("Crater inventory", "Robbins catalogue in the project (385,049); 465,354 closed depressions ≥ 1 km at ±60°", 60),  # §41 §54.4
+    ("Map layouts", "17 layouts, from none, with graticules", 85),                     # §38 §44 §49 §53.6 §63 §66.4 §66.9
+    ("Report and presentations", "Prospectus and Presentation 1 delivered; interim built to the 26 Oct cut; final paper and deck drafted", 60),  # §45 §69 §69.5
 ]
 PROGRESS_SEPT = [90, 100, 70, 100, 80, 70, 20, 20, 15, 5, 0, 0, 0, 25]   # the 13 Sep deck, for comparison
 

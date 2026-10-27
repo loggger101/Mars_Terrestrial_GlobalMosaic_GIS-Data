@@ -4139,4 +4139,16 @@ author accepts"); nothing here is published, put in the interim, or used for D18
   record. The first build ran the issues slide off its foot (nine items); two items cut to one line each fit it.
   Slides 1, 6, 29 and 30 and report pages 1–3, 20 and 21 were read. Backups in `NEXT STUFF\.backup_20261026\` and
   `build\.py_backup_20261026\`.
-- **Left for the interim, the author's:** the percent-complete column and the due date (D16), and the delivery.
+- **The percent-complete column (D16), set by the agent at the author's request the same evening:** each row's
+  progress toward the final deliverable, not the interim; 100 means nothing is left for the final, and a scope that
+  was reduced and settled counts as done. 100 for rows 1–7, 9 and 10 (done, or closed: the gradient products are not
+  used further, §7; Jezero stays hosted services, §50). **Classification 75**: the four-class map published and
+  scored, T1 and the deep-learning models done; the seven-class labels and maps remain (§57, §66, §69.2).
+  **Landform digitising 10**: the classes, review fields, candidates and validation sheet are ready and the 512
+  training polygons drawn, but no landform is digitised (§46). **Crater inventory 60**: the Robbins catalogue
+  and 465,354 closed depressions with their measured precision; no reviewed crater rims (§53.4, §54.4).
+  **Map layouts 85**: 17 sheets; the final adds a seven-class sheet and layout 14 from the review (§11.5).
+  **Report and presentations 60**: the prospectus and Presentation 1 delivered, the interim built to the cut,
+  the final paper and deck drafted (§69). Rebuilt: 30 slides, 21 pages, `verify_interim.py` 283 numbers; slide 5
+  and report page 2 read.
+- **Left for the interim, the author's:** the due date and the delivery.
