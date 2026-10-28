@@ -4689,3 +4689,25 @@ At the author's request after §69.21: the deck rendered to PDF (120 dpi) and ev
   outlined in class colour over a white halo, so they read white on the slide while the legend shows the colour; and
   the grey streaks on 04 and 17 are THEMIS gaps. Neither misstates a result; the full layouts carry the notes.
 - **Rebuilt:** 32 slides, 21 pages, `verify_interim.py` 335 numbers; slide 14 and report page 7 read.
+
+### 69.23 The v2 run stopped by a restart and resumed on its trained model; the laptop's 10-27 work on the drive — 2026-10-28, desktop **[V]**
+
+- **The restart:** the computer was restarted from the Start menu at 20:50 and 21:18 on 10-27 (System log, event
+  1074). Step 01 of `run_v2.ps1` (§69.8) had trained the seven-class SVM (4,001 s, `global60_landforms_svm_v2.ecd`
+  02:39) and classified 12 of the 21 tiles at 200 m (81–89 min each, r01_c04 done 19:47); the 13th was ~20 min from
+  done. Its error log ends "The connection to the local worker service has been lost". No end line was written.
+- **What survives:** each finished tile has a `.done` marker in `%LOCALAPPDATA%\Temp\mars_scratch\cls_v2_200m_tiles`
+  and is skipped on a re-run. But step 01 without `--classify-only` deletes the `.ecd` and trains again, and its done
+  tiles would then come from another model. So `run_v2.ps1` now takes `-ClassifyOnly` (step 01 gets
+  `--classify-only`, reusing the `.ecd` and the tiles), and a re-run step keeps its earlier logs
+  (`<step>.<yyyyMMdd_HHmm>.log`) instead of overwriting them.
+- **Resumed** 10-28 02:29: `powershell -File run_v2.ps1 -From 01 -ClassifyOnly`; the step log went straight to
+  "4. classify", and the `.ecd` keeps its 02:39 time. queue.log records the restart and the resume. At the same pace,
+  step 01 ends ~16:00 on 10-28, the SVM chain (scores, D18's verdict) ~17:00, and the U-Net chain ~21 h later
+  (~14:00 on 10-29). Pro stays closed until "queue done".
+- **The laptop's 10-27 work (§69.10–69.22) on the drive:** the clone's 25 files under `Mars Remote Sensing Project`
+  changed since `e6ec284` were each still `e6ec284`'s on the drive, so all were copied clone → drive (the drive's
+  copies backed up to `Mars Project\.backups\drive_pre_sync_20261028_022718`); the clone's `github_sync.py
+  --to-drive e6ec284 --dry-run` then reports "would copy 0, already on the drive 25, changed on both sides 0". The
+  git-ignored `interim_img\dark\` (42 files) was copied too, so the next sync removes nothing from the clone.
+  `github_sync.py --dry-run` (drive → clone): 3 to copy (the run's logs, the `.ecd`), 1 removed (a `.pyc`).

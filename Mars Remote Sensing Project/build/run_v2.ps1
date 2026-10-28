@@ -1,8 +1,10 @@
 # The v2 runs on the reviewed labels (--labels v2, KB §69.8; NEXT-STEPS §11.5 steps 2-3), the queue of
 # run_rehearsal_v2p.ps1 with v2 for v2p. Two chains, one after the other: the SVM, then the U-Net. A chain
 # stops at its first failure; the other still runs. Each step's output goes to logs\run_v2\<step>.log, and one
-# line per step to queue.log. Pro closed. Run from build\:  powershell -File run_v2.ps1 [-From <step>]
-param([string]$From = "")
+# line per step to queue.log. Pro closed. Run from build\:  powershell -File run_v2.ps1 [-From <step>] [-ClassifyOnly]
+# -ClassifyOnly resumes step 01 on the trained .ecd and its finished tiles (a restart stopped it 2026-10-27, KB §69.23);
+# without it step 01 deletes the .ecd and trains again, and the done tiles would be from another model.
+param([string]$From = "", [switch]$ClassifyOnly)
 $ErrorActionPreference = "Stop"
 $py = "D:\ArcGISPro\bin\Python\envs\arcgispro-py3\python.exe"
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -26,7 +28,7 @@ function Emd {
 
 $chains = @(
     @(
-        @("01_svm_train_classify", { @("make_global60_classification.py", "--cell", "200", "--labels", "v2") }),
+        @("01_svm_train_classify", { @("make_global60_classification.py", "--cell", "200", "--labels", "v2") + @(if ($ClassifyOnly) { "--classify-only" }) }),
         @("02_svm_mode11", { @("make_global60_landforms_clean.py", "--cell", "200", "--size", "11", "--labels", "v2") }),
         @("03_score_svm_v2", { @("verify_global60_classification.py", "--cell", "200", "--labels", "v2", "--raster", "$g60\global60_landforms_svm_v2_200m_mode11.tif") }),
         @("04_score_svm_four_on_v2", { @("verify_global60_classification.py", "--cell", "200", "--labels", "v2", "--raster", "$g60\global60_landforms_svm_200m_mode11.tif") }),
@@ -59,6 +61,10 @@ foreach ($chain in $chains) {
         try {
             $a = & $step[1]
             $quoted = $a | ForEach-Object { if ($_ -match '\s') { '"' + $_ + '"' } else { $_ } }
+            foreach ($ext in ".log", ".err.log") {   # a re-run step keeps the log of its earlier try
+                $f = Join-Path $logs "$name$ext"
+                if (Test-Path $f) { Move-Item $f (Join-Path $logs ("{0}.{1:yyyyMMdd_HHmm}{2}" -f $name, (Get-Item $f).LastWriteTime, $ext)) }
+            }
             Log ("{0:yyyy-MM-dd HH:mm:ss}  start {1}: {2}" -f $t0, $name, ($quoted -join " "))
             $p = Start-Process -FilePath $py -ArgumentList (@("-u") + $quoted) -WorkingDirectory $here -NoNewWindow -Wait -PassThru `
                 -RedirectStandardOutput (Join-Path $logs "$name.log") -RedirectStandardError (Join-Path $logs "$name.err.log")

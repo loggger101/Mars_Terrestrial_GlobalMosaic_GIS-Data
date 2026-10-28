@@ -180,9 +180,9 @@ All 169 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`interim_block_scale.py`](../Mars%20Remote%20Sensing%20Project/build/interim_block_scale.py) | either | How big is a 15° block? Each latitude band's block against the US state nearest it in area (KB §69.15). |
 | [`le_theme.py`](../Mars%20Remote%20Sensing%20Project/build/le_theme.py) | system | Logan M Edwards' deck design, measured from 'ocean first pres LE.pdf'. |
 | [`make_final_figs.py`](../Mars%20Remote%20Sensing%20Project/build/make_final_figs.py) | ArcGIS | Exports the layouts the final paper and deck show to build\final_img\ (NEXT-STEPS.md §7). |
-| [`make_interim_dark.py`](../Mars%20Remote%20Sensing%20Project/build/make_interim_dark.py) | system | Navy-ground copies of the interim deck's charts and layouts, for the deck only (KB §69.13) -> interim_img\dark\. |
+| [`make_interim_dark.py`](../Mars%20Remote%20Sensing%20Project/build/make_interim_dark.py) | either | Navy-ground copies of the interim deck's charts and layouts, for the deck only (KB §69.13) -> interim_img\dark\. |
 | [`make_interim_figs.py`](../Mars%20Remote%20Sensing%20Project/build/make_interim_figs.py) | ArcGIS | Exports the project's layouts to build\interim_img\ for the living interim deck (KB §39.3). |
-| [`mars_theme.py`](../Mars%20Remote%20Sensing%20Project/build/mars_theme.py) | system | The interim deck's design for the 10 November talk (KB §69.11, §69.12): navy over the project's own mosaic. |
+| [`mars_theme.py`](../Mars%20Remote%20Sensing%20Project/build/mars_theme.py) | system | The interim deck's design for the 10 November talk (KB §69.11-§69.14): navy throughout, over the project's mosaic. |
 | [`pdf_pages.py`](../Mars%20Remote%20Sensing%20Project/build/pdf_pages.py) | either | Rasterise a PDF to page PNGs, and flag obvious layout faults. |
 | [`verify2.py`](../Mars%20Remote%20Sensing%20Project/build/verify2.py) | either | Second pass: check what verify_all.py did NOT. |
 | [`verify_all.py`](../Mars%20Remote%20Sensing%20Project/build/verify_all.py) | either | Final sweep: assert every disk-checkable claim in the deliverables. |
