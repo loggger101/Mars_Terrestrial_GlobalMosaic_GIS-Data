@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "F:\Mars Remote Sensing Project\build\make_global60_classification.py", line 276, in <module>
+    main()
+    ~~~~^^
+  File "F:\Mars Remote Sensing Project\build\make_global60_classification.py", line 271, in main
+    classify_tiled(OUT if lim is None else os.path.join(SCRATCH, "tiletest%s_%dm.tif" % (L.TAG, CELL)), CELL, lim)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Mars Remote Sensing Project\build\make_global60_classification.py", line 197, in classify_tiled
+    classify(f, arcpy.Extent(left, top - hm, left + wm, top), cell=cell)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Mars Remote Sensing Project\build\make_global60_classification.py", line 159, in classify
+    r = arcpy.ia.ClassifyRaster(STACK, ECD)
+  File "D:\ArcGISPro\Resources\ArcPy\arcpy\__init__.py", line 2782, in wrapped
+    result = fn(*args, **kwargs)
+  File "D:\ArcGISPro\Resources\ArcPy\arcpy\ia\Functions.py", line 2388, in ClassifyRaster
+    return Wrapper(in_raster, in_classifier_definition, in_additional_raster)
+  File "D:\ArcGISPro\Resources\ArcPy\arcpy\sa\Utils.py", line 44, in swapper
+    result = wrapper(*args, **kwargs)
+  File "D:\ArcGISPro\Resources\ArcPy\arcpy\ia\Functions.py", line 2383, in Wrapper
+    result = arcpy.gp.ClassifyRaster_ia(
+        in_raster, in_classifier_definition, out_raster_dataset, in_additional_raster
+    )
+  File "D:\ArcGISPro\Resources\ArcPy\arcpy\geoprocessing\_base.py", line 541, in <lambda>
+    return lambda *args: val(*gp_fixargs(args, True))
+                         ~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+arcgisscripting.ExecuteError: A raster error has occurred. The messages that follow will provide more detail.
+The connection to the local worker service has been lost.
+Failed to execute (ClassifyRaster).
+

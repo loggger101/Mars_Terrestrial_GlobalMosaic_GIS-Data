@@ -1,0 +1,18 @@
+2026-10-27 01:32:56  start 01_svm_train_classify: make_global60_classification.py --cell 200 --labels v2
+2026-10-27 21:18:22  computer restarted (also 20:50); 01_svm_train_classify stopped after 12 of 21 tiles (r01_c04 done 19:47), no end line. The .ecd (02:39) and the 12 tiles kept
+2026-10-28 02:29:54  resumed: run_v2.ps1 -From 01 -ClassifyOnly
+2026-10-28 02:29:54  start 01_svm_train_classify: make_global60_classification.py --cell 200 --labels v2 --classify-only
+2026-10-28 07:54:11  end   01_svm_train_classify: exit 0, 324.3 min
+2026-10-28 07:54:12  start 02_svm_mode11: make_global60_landforms_clean.py --cell 200 --size 11 --labels v2
+2026-10-28 08:04:16  end   02_svm_mode11: exit 0, 10.1 min
+2026-10-28 08:04:16  start 03_score_svm_v2: verify_global60_classification.py --cell 200 --labels v2 --raster "F:\Mars Project\Global60\global60_landforms_svm_v2_200m_mode11.tif"
+2026-10-28 08:25:04  end   03_score_svm_v2: exit 0, 20.8 min
+2026-10-28 08:25:04  start 04_score_svm_four_on_v2: verify_global60_classification.py --cell 200 --labels v2 --raster "F:\Mars Project\Global60\global60_landforms_svm_200m_mode11.tif"
+2026-10-28 08:45:50  end   04_score_svm_four_on_v2: exit 0, 20.8 min
+2026-10-28 08:45:50  start 05_d18_verdict_v2: score_d18_verdict.py --four logs\global60_classification_check_200m_mode11_on_v2_labels.json --v2 logs\global60_classification_check_v2_200m_mode11.json --out logs\d18_verdict.json
+2026-10-28 08:45:51  end   05_d18_verdict_v2: exit 0, 0.0 min
+2026-10-28 08:45:51  start 06_geomap_v2: make_geomap_check.py --labels v2
+2026-10-28 08:46:27  end   06_geomap_v2: exit 0, 0.6 min
+2026-10-28 08:46:27  start 07_unet_export: make_dl_pixels.py --export --labels v2
+2026-10-28 09:03:48  end   07_unet_export: exit 0, 17.4 min
+2026-10-28 09:03:48  start 08_unet_train: make_dl_pixels.py --train --labels v2

@@ -1,0 +1,29 @@
+  Landform_TrainingSamples_v2_60_train: 734 polygons
+  Landform_TrainingSamples_v2_60_test: 237 polygons
+3. train SVM
+  trained in 4001 s -> F:\Mars Project\Global60\global60_landforms_svm_v2.ecd
+4. classify ±60° at 200 m
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2_200m_tiles\t_r00_c00.tif  in 6360 s
+   tile  1/21  r0 c0  01:46:01 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2_200m_tiles\t_r00_c01.tif  in 5476 s
+   tile  2/21  r0 c1  03:17:18 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2_200m_tiles\t_r00_c02.tif  in 5539 s
+   tile  3/21  r0 c2  04:49:38 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2_200m_tiles\t_r00_c03.tif  in 5244 s
+   tile  4/21  r0 c3  06:17:02 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2_200m_tiles\t_r00_c04.tif  in 5137 s
+   tile  5/21  r0 c4  07:42:39 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2_200m_tiles\t_r00_c05.tif  in 4847 s
+   tile  6/21  r0 c5  09:03:26 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2_200m_tiles\t_r00_c06.tif  in 3040 s
+   tile  7/21  r0 c6  09:54:06 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2_200m_tiles\t_r01_c00.tif  in 5457 s
+   tile  8/21  r1 c0  11:25:02 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2_200m_tiles\t_r01_c01.tif  in 5364 s
+   tile  9/21  r1 c1  12:54:26 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2_200m_tiles\t_r01_c02.tif  in 4982 s
+   tile 10/21  r1 c2  14:17:28 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2_200m_tiles\t_r01_c03.tif  in 5134 s
+   tile 11/21  r1 c3  15:43:02 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v2_200m_tiles\t_r01_c04.tif  in 5092 s
+   tile 12/21  r1 c4  17:07:54 elapsed

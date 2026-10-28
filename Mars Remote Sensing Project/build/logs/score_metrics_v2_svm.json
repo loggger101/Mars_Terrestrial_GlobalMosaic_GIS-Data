@@ -1,0 +1,150 @@
+{
+ "script": "score_metrics.py",
+ "note": "held out; area-weighted (cos latitude); NEXT-STEPS \u00a712.2 A4, A12",
+ "maps": {
+  "global60_classification_check_v2_200m_mode11.json": {
+   "polygons": 237,
+   "accuracy": 0.4252,
+   "kappa": 0.3103,
+   "balanced_accuracy": 0.4187,
+   "macro_f1": 0.388,
+   "quantity_disagreement": 0.2913,
+   "allocation_disagreement": 0.2835,
+   "one_class_everywhere": 0.295,
+   "source": "confusion_unrounded",
+   "per_class": {
+    "Crater": {
+     "producers": 0.4003,
+     "users": 0.6635,
+     "f1": 0.4993,
+     "label_share": 0.2141,
+     "map_share_in_polygons": 0.1292
+    },
+    "steep/windy hills": {
+     "producers": 0.5034,
+     "users": 0.5036,
+     "f1": 0.5035,
+     "label_share": 0.038,
+     "map_share_in_polygons": 0.038
+    },
+    "lava tube": {
+     "producers": 0.063,
+     "users": 0.0009,
+     "f1": 0.0017,
+     "label_share": 0.0015,
+     "map_share_in_polygons": 0.1064
+    },
+    "Normal Ground": {
+     "producers": 0.9851,
+     "users": 0.8143,
+     "f1": 0.8916,
+     "label_share": 0.1926,
+     "map_share_in_polygons": 0.233
+    },
+    "volcanic edifice": {
+     "producers": 0.4184,
+     "users": 0.2613,
+     "f1": 0.3217,
+     "label_share": 0.1938,
+     "map_share_in_polygons": 0.3103
+    },
+    "apron": {
+     "producers": 0.0572,
+     "users": 0.19,
+     "f1": 0.088,
+     "label_share": 0.2953,
+     "map_share_in_polygons": 0.0889
+    },
+    "fluvial channel": {
+     "producers": 0.5036,
+     "users": 0.3461,
+     "f1": 0.4102,
+     "label_share": 0.0647,
+     "map_share_in_polygons": 0.0942
+    }
+   },
+   "map_share": {
+    "Crater": 0.118,
+    "steep/windy hills": 0.012,
+    "lava tube": 0.021,
+    "Normal Ground": 0.333,
+    "volcanic edifice": 0.122,
+    "apron": 0.065,
+    "fluvial channel": 0.33
+   },
+   "log": "global60_classification_check_v2_200m_mode11.json"
+  },
+  "global60_classification_check_200m_mode11_on_v2_labels.json": {
+   "polygons": 237,
+   "accuracy": 0.3566,
+   "kappa": 0.2445,
+   "balanced_accuracy": 0.4202,
+   "macro_f1": 0.2512,
+   "quantity_disagreement": 0.5538,
+   "allocation_disagreement": 0.0895,
+   "one_class_everywhere": 0.295,
+   "source": "confusion_unrounded",
+   "per_class": {
+    "Crater": {
+     "producers": 0.6573,
+     "users": 0.3475,
+     "f1": 0.4546,
+     "label_share": 0.2141,
+     "map_share_in_polygons": 0.405
+    },
+    "steep/windy hills": {
+     "producers": 0.6272,
+     "users": 0.4632,
+     "f1": 0.5328,
+     "label_share": 0.038,
+     "map_share_in_polygons": 0.0515
+    },
+    "lava tube": {
+     "producers": 0.665,
+     "users": 0.0042,
+     "f1": 0.0083,
+     "label_share": 0.0015,
+     "map_share_in_polygons": 0.2349
+    },
+    "Normal Ground": {
+     "producers": 0.9922,
+     "users": 0.6193,
+     "f1": 0.7626,
+     "label_share": 0.1926,
+     "map_share_in_polygons": 0.3085
+    },
+    "volcanic edifice": {
+     "producers": 0.0,
+     "users": null,
+     "f1": 0.0,
+     "label_share": 0.1938,
+     "map_share_in_polygons": 0.0
+    },
+    "apron": {
+     "producers": 0.0,
+     "users": null,
+     "f1": 0.0,
+     "label_share": 0.2953,
+     "map_share_in_polygons": 0.0
+    },
+    "fluvial channel": {
+     "producers": 0.0,
+     "users": null,
+     "f1": 0.0,
+     "label_share": 0.0647,
+     "map_share_in_polygons": 0.0
+    }
+   },
+   "map_share": {
+    "Crater": 0.339,
+    "steep/windy hills": 0.019,
+    "lava tube": 0.094,
+    "Normal Ground": 0.547,
+    "volcanic edifice": 0.0,
+    "apron": 0.0,
+    "fluvial channel": 0.0
+   },
+   "log": "global60_classification_check_200m_mode11_on_v2_labels.json"
+  }
+ }
+}

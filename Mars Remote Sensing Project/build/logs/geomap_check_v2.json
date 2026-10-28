@@ -1,0 +1,411 @@
+{
+ "map": "global60_landforms_svm_v2_200m_mode11.tif",
+ "cell_m": 1599.9700082477318,
+ "p_class": {
+  "Crater": 0.11806469716752625,
+  "steep/windy hills": 0.011565339616511702,
+  "lava tube": 0.020719889505512564,
+  "Normal Ground": 0.3331756650350154,
+  "volcanic edifice": 0.12245958056348723,
+  "apron": 0.06451140122238812,
+  "fluvial channel": 0.32950342688955886
+ },
+ "groups": {
+  "a": {
+   "area_share": 0.013460580836737913,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.05706905459177168,
+     "enrichment": 0.48337103267028536
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.050774611670118944,
+     "enrichment": 4.390239573910015
+    },
+    "lava tube": {
+     "share_in_group": 0.059378351936697694,
+     "enrichment": 2.865765858495528
+    },
+    "Normal Ground": {
+     "share_in_group": 0.07208666685472137,
+     "enrichment": 0.21636234101054577
+    },
+    "volcanic edifice": {
+     "share_in_group": 0.2817917615507141,
+     "enrichment": 2.301100169166623
+    },
+    "apron": {
+     "share_in_group": 0.36698197627108886,
+     "enrichment": 5.688637501548036
+    },
+    "fluvial channel": {
+     "share_in_group": 0.1119175771248872,
+     "enrichment": 0.3396552751556029
+    }
+   }
+  },
+  "h": {
+   "area_share": 0.4114962798363631,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.16530372980632968,
+     "enrichment": 1.4001114115574638
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.009564954327022536,
+     "enrichment": 0.8270361826095242
+    },
+    "lava tube": {
+     "share_in_group": 0.01993994040403312,
+     "enrichment": 0.9623574681094733
+    },
+    "Normal Ground": {
+     "share_in_group": 0.17024112129599808,
+     "enrichment": 0.510965052859147
+    },
+    "volcanic edifice": {
+     "share_in_group": 0.10307910370311993,
+     "enrichment": 0.8417398069535295
+    },
+    "apron": {
+     "share_in_group": 0.082381633730724,
+     "enrichment": 1.277008903383332
+    },
+    "fluvial channel": {
+     "share_in_group": 0.44948951673277265,
+     "enrichment": 1.3641421607533997
+    }
+   }
+  },
+  "hm": {
+   "area_share": 0.028331901668363794,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.2580041917164617,
+     "enrichment": 2.185278054373614
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.0215346127088503,
+     "enrichment": 1.8619957063868302
+    },
+    "lava tube": {
+     "share_in_group": 0.05756732108723951,
+     "enrichment": 2.778360428607673
+    },
+    "Normal Ground": {
+     "share_in_group": 0.07174663062434537,
+     "enrichment": 0.21534174957467286
+    },
+    "volcanic edifice": {
+     "share_in_group": 0.12030256894190057,
+     "enrichment": 0.9823859300214703
+    },
+    "apron": {
+     "share_in_group": 0.10134050193419669,
+     "enrichment": 1.5708928966656417
+    },
+    "fluvial channel": {
+     "share_in_group": 0.36950417298700594,
+     "enrichment": 1.1213970563980031
+    }
+   }
+  },
+  "hu": {
+   "area_share": 0.021036721646160723,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.16365865210281919,
+     "enrichment": 1.3861777146694243
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.1044109015386871,
+     "enrichment": 9.02791487330133
+    },
+    "lava tube": {
+     "share_in_group": 0.029957029105587105,
+     "enrichment": 1.4458102731492357
+    },
+    "Normal Ground": {
+     "share_in_group": 0.15739088484595465,
+     "enrichment": 0.4723961002056183
+    },
+    "volcanic edifice": {
+     "share_in_group": 0.12438277046722986,
+     "enrichment": 1.0157046912531729
+    },
+    "apron": {
+     "share_in_group": 0.10449489377974704,
+     "enrichment": 1.61978955347017
+    },
+    "fluvial channel": {
+     "share_in_group": 0.31570486815997506,
+     "enrichment": 0.958123170797223
+    }
+   }
+  },
+  "i": {
+   "area_share": 0.054562866402789074,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.16442732098678572,
+     "enrichment": 1.3926882881296334
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.0152839356743317,
+     "enrichment": 1.321529343808547
+    },
+    "lava tube": {
+     "share_in_group": 0.026520778437811934,
+     "enrichment": 1.2799671750544825
+    },
+    "Normal Ground": {
+     "share_in_group": 0.1750275197102002,
+     "enrichment": 0.5253310432855458
+    },
+    "volcanic edifice": {
+     "share_in_group": 0.10021640757390182,
+     "enrichment": 0.818363145723386
+    },
+    "apron": {
+     "share_in_group": 0.09361745785377035,
+     "enrichment": 1.451176940507707
+    },
+    "fluvial channel": {
+     "share_in_group": 0.4249065797631983,
+     "enrichment": 1.289536147694197
+    }
+   }
+  },
+  "l": {
+   "area_share": 0.0917511067539883,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.021231203261991568,
+     "enrichment": 0.17982685571001675
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.0003581733002053353,
+     "enrichment": 0.030969544525434895
+    },
+    "lava tube": {
+     "share_in_group": 0.0007620948598137421,
+     "enrichment": 0.03678083609524005
+    },
+    "Normal Ground": {
+     "share_in_group": 0.7342108756518022,
+     "enrichment": 2.203674976005945
+    },
+    "volcanic edifice": {
+     "share_in_group": 0.016259081804835263,
+     "enrichment": 0.13277100680910792
+    },
+    "apron": {
+     "share_in_group": 0.004930502767374791,
+     "enrichment": 0.07642839364747364
+    },
+    "fluvial channel": {
+     "share_in_group": 0.2222480683539769,
+     "enrichment": 0.6744939512524972
+    }
+   }
+  },
+  "p": {
+   "area_share": 0.00042490798675475747,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.0513735499064111,
+     "enrichment": 0.43513049318642066
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.0,
+     "enrichment": 0.0
+    },
+    "lava tube": {
+     "share_in_group": 7.3454759327477e-05,
+     "enrichment": 0.0035451327724471808
+    },
+    "Normal Ground": {
+     "share_in_group": 0.619492015205268,
+     "enrichment": 1.859355529882898
+    },
+    "volcanic edifice": {
+     "share_in_group": 0.008707760171198186,
+     "enrichment": 0.07110721865231104
+    },
+    "apron": {
+     "share_in_group": 0.002293876972010654,
+     "enrichment": 0.035557698771772825
+    },
+    "fluvial channel": {
+     "share_in_group": 0.3180593429857846,
+     "enrichment": 0.9652686953461943
+    }
+   }
+  },
+  "t": {
+   "area_share": 0.0789061415992024,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.14272844453688904,
+     "enrichment": 1.2089002721479607
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.017190909761573038,
+     "enrichment": 1.486416338092638
+    },
+    "lava tube": {
+     "share_in_group": 0.010493259002709856,
+     "enrichment": 0.5064341197339931
+    },
+    "Normal Ground": {
+     "share_in_group": 0.34115996659347325,
+     "enrichment": 1.02396423987814
+    },
+    "volcanic edifice": {
+     "share_in_group": 0.0600531355445919,
+     "enrichment": 0.49039148483330225
+    },
+    "apron": {
+     "share_in_group": 0.06666613632326739,
+     "enrichment": 1.0334008417124798
+    },
+    "fluvial channel": {
+     "share_in_group": 0.3617081482374954,
+     "enrichment": 1.0977371363082387
+    }
+   }
+  },
+  "tu": {
+   "area_share": 0.023885350449735023,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.06733835432582802,
+     "enrichment": 0.5703513068794748
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.016161143147403464,
+     "enrichment": 1.397377308689698
+    },
+    "lava tube": {
+     "share_in_group": 0.008001508116410608,
+     "enrichment": 0.3861752310156766
+    },
+    "Normal Ground": {
+     "share_in_group": 0.28867643807066445,
+     "enrichment": 0.8664391441683646
+    },
+    "volcanic edifice": {
+     "share_in_group": 0.2992960641622132,
+     "enrichment": 2.444039598902986
+    },
+    "apron": {
+     "share_in_group": 0.09449813444186812,
+     "enrichment": 1.4648284280186024
+    },
+    "fluvial channel": {
+     "share_in_group": 0.22602835773561208,
+     "enrichment": 0.6859666373405306
+    }
+   }
+  },
+  "v": {
+   "area_share": 0.22797728040436116,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.04255120571761194,
+     "enrichment": 0.36040583458435926
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.004968583895255433,
+     "enrichment": 0.42960985669299695
+    },
+    "lava tube": {
+     "share_in_group": 0.01491493379831976,
+     "enrichment": 0.7198365509792711
+    },
+    "Normal Ground": {
+     "share_in_group": 0.5785140977354398,
+     "enrichment": 1.7363636016893382
+    },
+    "volcanic edifice": {
+     "share_in_group": 0.16132895408590944,
+     "enrichment": 1.3174057378244164
+    },
+    "apron": {
+     "share_in_group": 0.02078985024292769,
+     "enrichment": 0.3222662947788019
+    },
+    "fluvial channel": {
+     "share_in_group": 0.1769323745245359,
+     "enrichment": 0.5369667204822095
+    }
+   }
+  },
+  "ve": {
+   "area_share": 0.011205032735965102,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.02423133167788068,
+     "enrichment": 0.20523774048645524
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.021182889505225313,
+     "enrichment": 1.8315838710851817
+    },
+    "lava tube": {
+     "share_in_group": 0.09152098320239628,
+     "enrichment": 4.417059423895429
+    },
+    "Normal Ground": {
+     "share_in_group": 0.10684923700612778,
+     "enrichment": 0.32069940340600317
+    },
+    "volcanic edifice": {
+     "share_in_group": 0.5079588030920184,
+     "enrichment": 4.1479711163037605
+    },
+    "apron": {
+     "share_in_group": 0.11216622995770126,
+     "enrichment": 1.7387039784027347
+    },
+    "fluvial channel": {
+     "share_in_group": 0.13609052555865042,
+     "enrichment": 0.4130170263882096
+    }
+   }
+  },
+  "vf": {
+   "area_share": 0.006112328826545102,
+   "classes": {
+    "Crater": {
+     "share_in_group": 0.017690023288075587,
+     "enrichment": 0.1498333008297525
+    },
+    "steep/windy hills": {
+     "share_in_group": 0.005200447355566944,
+     "enrichment": 0.4496579891300663
+    },
+    "lava tube": {
+     "share_in_group": 0.02406640850280546,
+     "enrichment": 1.1615123959228908
+    },
+    "Normal Ground": {
+     "share_in_group": 0.6257080786111379,
+     "enrichment": 1.8780125449599643
+    },
+    "volcanic edifice": {
+     "share_in_group": 0.2707845090329906,
+     "enrichment": 2.211215388677627
+    },
+    "apron": {
+     "share_in_group": 0.02465191758516277,
+     "enrichment": 0.38213272565853895
+    },
+    "fluvial channel": {
+     "share_in_group": 0.03189861562426082,
+     "enrichment": 0.09680814529116392
+    }
+   }
+  }
+ }
+}

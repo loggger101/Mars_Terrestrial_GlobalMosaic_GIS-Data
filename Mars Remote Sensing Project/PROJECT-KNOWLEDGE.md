@@ -4711,3 +4711,41 @@ At the author's request after §69.21: the deck rendered to PDF (120 dpi) and ev
   --to-drive e6ec284 --dry-run` then reports "would copy 0, already on the drive 25, changed on both sides 0". The
   git-ignored `interim_img\dark\` (42 files) was copied too, so the next sync removes nothing from the clone.
   `github_sync.py --dry-run` (drive → clone): 3 to copy (the run's logs, the `.ecd`), 1 removed (a `.pyc`).
+
+### 69.24 The seven-class SVM on the reviewed v2 labels, and D18's verdict: the four-class map stays — 2026-10-28, desktop **[V]**
+
+`run_v2.ps1` steps 01–06 (§69.8, resumed §69.23), the runs of NEXT-STEPS §11.5 step 2 on the reviewed labels
+(`Landform_TrainingSamples_v2`, 734 training, 237 held out; hills kept short, §69.8). Logs in
+`build\logs\run_v2\`; scores in `logs\global60_classification_check_v2_200m_mode11.json` (seven-class) and
+`..._200m_mode11_on_v2_labels.json` (the published four-class map on the same labels); the verdict in
+`logs\d18_verdict.json`; the extra scores (§69.18's `score_metrics.py`) in `logs\score_metrics_v2_svm.json`.
+
+- **The run:** step 01 ended 10-28 07:54 (`global60_landforms_svm_v2_200m.tif`, 21 tiles); the 11 × 11 filter changed
+  18.9 % of pixels (`..._v2_200m_mode11.tif`); scoring, verdict and the geology check by 08:46, no step failed. The
+  nine tiles after the restart took **21–30 min each** (1,260–1,371 s for the last), against 81–89 min for the
+  first twelve and in the rehearsal (§69.4); the cause of the earlier slowness is not known **[E]**.
+- **The scores, on the 237 held-out v2 polygons (area-weighted):** the seven-class map **42.5 %, κ 0.310** (one class
+  everywhere 29.5 %), balanced accuracy 0.419, macro F1 0.388; the published four-class map **35.7 %, κ 0.244**,
+  balanced 0.420, macro F1 0.251. Producer's, seven-class: Crater 0.400, hills 0.503, lava tube 0.063, Normal
+  Ground 0.985, edifice 0.418, apron 0.057, fluvial 0.504 (four-class: Crater 0.657, hills 0.627, lava tube 0.665,
+  Normal Ground 0.992). F1, seven-class: lava tube 0.002, apron 0.088, edifice 0.322, fluvial 0.410. On its own 734
+  training polygons the seven-class map scores **54.7 %, κ 0.426**: as in the rehearsal (51.7 %), a weak fit.
+  Disagreement (Pontius and Millones): seven-class quantity 0.291, allocation 0.283; four-class 0.554 and 0.089.
+- **D18's verdict (§68, D19): the four-class map stays published; the seven-class map is reported as a test.**
+  (a) on v2 classes 1–4: **66.0 % against 79.9 %, κ 0.508 against 0.668, fails**. (b) edifice user's 0.261 against
+  its held-out area share 0.194, ok; **apron 0.190 against 0.295, fails**; fluvial 0.346 against 0.065, ok.
+  (c) **Crater producer's falls 25.7 points, fails; hills falls 12.4, fails**; Normal Ground 0.7, ok. Overall,
+  outside the rule, the seven-class map scores higher (42.5 % against 35.7 %), as in the rehearsal.
+- **Against the rehearsal (§69.4, 258 polygons of the agent's proposals):** overall 42.5 % / κ 0.310 against
+  41.3 % / 0.297; (a) 66.0 % against 62.0 %; the Crater fall 25.7 points against 35.6; but hills now fails (c)
+  (−12.4 against −4.5), on a class with 16 held-out polygons in 3 blocks and training in only 2 blocks (§69.8).
+  The review moved the scores a little and the verdict not at all.
+- **What the map does with the new classes:** fluvial channel still takes **33.0 % of ±60°** (rehearsal 32.9 %)
+  against 6.5 % of the held-out label area, although the rule review kept only strips with a floor ≥ 20 m below
+  their flanks (192 of 276, §69.8); Crater falls to 11.8 % of the map (33.9 % four-class); lava tube to 2.1 %
+  (9.4 %), and its producer's from 0.665 to 0.063. Against SIM 3292 (`logs\geomap_check_v2.json`), edifice covers
+  50.8 % of `ve` units (4.15 × its share) and apron 36.7 % of `a` units (5.69 ×): the new classes find their units, as in
+  the rehearsal. IAU craters: Crater inside 0.366 against ring 0.171 (four-class 0.582 / 0.461). Elevation alone
+  reproduces 43.6 % of the seven-class map (largest class alone 33.3 %).
+- **Next:** the U-Net on v2 (steps 07–13; training since 09:03, ~12 min an epoch, 30 epochs), then layouts (§11.5
+  step 4) and the final's text.
