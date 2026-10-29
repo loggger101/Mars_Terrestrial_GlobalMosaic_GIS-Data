@@ -149,6 +149,17 @@ v2 pipeline, never a result (KB §69.4). Validation chips from the training spli
 | <a href="../Mars%20Project/DLModels/global60_unet_x5c_v2p_20261025/ModelCharacteristics/loss_graph.png"><img src="../Mars%20Project/DLModels/global60_unet_x5c_v2p_20261025/ModelCharacteristics/loss_graph.png" width="300" alt="Rehearsal U-Net loss"></a> | **Rehearsal U-Net loss**, seven classes, 30 epochs over 21,711 chips (7.8 h); validation loss from 0.81 to 0.25. | `make_dl_pixels.py --train --labels v2p` |
 | <a href="../Mars%20Project/DLModels/global60_unet_x5c_v2p_20261025/ModelCharacteristics/show_results.png"><img src="thumbs/global60_unet_x5c_v2p_20261025_show_results.jpg" width="300" alt="Rehearsal U-Net labels against predictions"></a> | **Rehearsal U-Net labels against predictions** on five validation chips: around a valley strip the whole chip is called fluvial channel, with volcanic edifice at its edge; a second chip is called apron throughout and its channel strip is missed; the last three are called Normal Ground. | `make_dl_pixels.py --train --labels v2p` |
 
+### The seven-class U-Net on the reviewed labels (2026-10-28)
+
+Trained on the reviewed v2 labels (KB §69.8) in
+[`global60_unet_x5c_v2_20261028/`](../Mars%20Project/DLModels/global60_unet_x5c_v2_20261028): 69.0 %, κ 0.606 on the 237 held-out polygons, reported as a test
+beside the four-class U-Net (KB §69.25). Validation chips from the training split, not the held-out score.
+
+| | What it shows | Made by |
+|---|---|---|
+| <a href="../Mars%20Project/DLModels/global60_unet_x5c_v2_20261028/ModelCharacteristics/loss_graph.png"><img src="../Mars%20Project/DLModels/global60_unet_x5c_v2_20261028/ModelCharacteristics/loss_graph.png" width="300" alt="v2 U-Net loss"></a> | **v2 U-Net loss**, seven classes, 30 epochs over 17,444 chips (6.2 h); validation loss from 0.90 to 0.30. | `make_dl_pixels.py --train --labels v2` |
+| <a href="../Mars%20Project/DLModels/global60_unet_x5c_v2_20261028/ModelCharacteristics/show_results.png"><img src="thumbs/global60_unet_x5c_v2_20261028_show_results.jpg" width="300" alt="v2 U-Net labels against predictions"></a> | **v2 U-Net labels against predictions** on five validation chips: a branching valley network is called apron and fluvial channel across the whole chip, with Crater on the crater beside it; a chip with two channel strips is called volcanic edifice throughout and the strips are missed; two chips labelled Normal Ground in part are called Normal Ground throughout; a chip with volcanic edifice in one corner is called volcanic edifice throughout, with Crater on its small crater. | `make_dl_pixels.py --train --labels v2` |
+
 ## Interim crops
 
 [`build/interim_img/`](../Mars%20Remote%20Sensing%20Project/build/interim_img) also holds each layout the interim deck

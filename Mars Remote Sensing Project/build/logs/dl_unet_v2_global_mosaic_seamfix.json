@@ -1,0 +1,26 @@
+{
+ "raster": "C:\\MarsScratch\\x5c_v2\\global\\global60_landforms_unet_v2_200m_seamfix.tif",
+ "tiles": 243,
+ "pixels_by_value": [
+  100914302,
+  480544028,
+  17350436,
+  73738037,
+  810231811,
+  1446600629,
+  564853620,
+  300339247
+ ],
+ "class_share": {
+  "Crater": 0.1301,
+  "steep/windy hills": 0.0047,
+  "lava tube": 0.02,
+  "Normal Ground": 0.2194,
+  "volcanic edifice": 0.3916,
+  "apron": 0.1529,
+  "fluvial channel": 0.0813
+ },
+ "made": "2026-10-29 07:40",
+ "share_from_pass_b": 0.4935,
+ "share_a_b_disagree": 0.0472
+}

@@ -4749,3 +4749,47 @@ At the author's request after §69.21: the deck rendered to PDF (120 dpi) and ev
   reproduces 43.6 % of the seven-class map (largest class alone 33.3 %).
 - **Next:** the U-Net on v2 (steps 07–13; training since 09:03, ~12 min an epoch, 30 epochs), then layouts (§11.5
   step 4) and the final's text.
+
+### 69.25 The U-Net on the reviewed v2 labels: 69.0 %, κ 0.606, and D18's rule as a report — 2026-10-29, desktop **[V]**
+
+`run_v2.ps1` steps 07–13 (§69.24's queue, U-Net half). Logs in `build\logs\run_v2\`; the model
+`F:\Mars Project\DLModels\global60_unet_x5c_v2_20261028`; the map
+`Global60\global60_landforms_unet_v2_200m_seamfix.tif`; scores in
+`logs\global60_classification_check_global60_landforms_unet_v2_200m_seamfix.json` (seven-class) and
+`..._unet_200m_seamfix_on_v2_labels.json` (the published four-class U-Net on the same labels); the rule's report in
+`logs\d18_verdict_unet_v2.json`; the extra scores in `logs\score_metrics_v2_unet.json`.
+
+- **The run (every step exit 0, queue done 10-29 08:23):** export **17.3 min**, 17,444 chips and 34,516 features
+  (rehearsal 21,711 and 47,072); training **22,194 s = 6.2 h** (30 epochs at ~12 min; rehearsal 7.8 h); pass A
+  6.0 h (09a 268.6 min, 09b 93.2); pass B 10b–10d 87.6–96.8 min each, and 10a 345.4 min on the clock, of which
+  ~4.2 h suspended at the author's request (the queue's processes frozen with `NtSuspendProcess`, 10-28 evening
+  to 10-29 01:35; nothing lost, the chunk then ran on); the two-pass mosaic 5.0 min (passes disagree on 4.7 % of
+  pixels); each scoring ~21 min.
+- **The scores, on the 237 held-out v2 polygons (area-weighted):** the seven-class U-Net **69.0 %, κ 0.606** (one
+  class everywhere 29.5 %), balanced accuracy 0.569, macro F1 0.566, quantity 0.147, allocation 0.163; the
+  published four-class U-Net **44.1 %, κ 0.301**, balanced 0.567, macro F1 0.371, quantity 0.554, allocation
+  0.005. Producer's, seven-class: Crater 0.578, hills 0.468, lava tube 0.225, Normal Ground 0.697, edifice 0.813,
+  apron 0.774, fluvial 0.430; user's: 0.737, 0.623, 0.017, 0.995, 0.487, 0.798, 0.702. On its 734 training
+  polygons **79.8 %, κ 0.734**. Against the seven-class SVM (§69.24, 42.5 %, κ 0.310) it is 26.5 points higher.
+- **D18's rule applied to the U-Net pair, as a report** (D18 itself is about the SVM map, §69.4): (a) on v2
+  classes 1–4 **61.9 % against 98.9 %, κ 0.465 against 0.980, fails**; (b) all three new classes pass (user's
+  edifice 0.487, apron 0.798, fluvial 0.702 against shares 0.194, 0.295, 0.065); (c) **Crater −41.3, hills −52.6,
+  Normal Ground −28.8 points, all fail**. Overall, outside the rule, 69.0 % against 44.1 %.
+- **Against the rehearsal (§69.4):** 69.0 % / κ 0.606 against 88.8 % / 0.856, and (a) 61.9 % against 90.4 %: on the
+  reviewed labels the U-Net lost ~20 points where the SVM gained ~1 (§69.24). The cause is not established **[E]**;
+  the loss sits in edifice's spread (next point), and the export had a fifth fewer chips.
+- **Where it goes wrong: volcanic edifice takes 40.0 % of ±60°** (rehearsal 27.8 %), against 19.4 % of the
+  held-out label area. Of the held-out area, edifice takes 71 % of lava tube's (lava tube user's 0.017), 30 % of
+  fluvial's, 29 % of Normal Ground's and 16 % of Crater's; hills goes 49 % to Crater. The map's other shares:
+  Normal Ground 20.2 %, apron 14.9 %, Crater 14.0 %, fluvial 8.5 %, lava tube 1.9 %, hills 0.5 %. Pro's own
+  validation figures (pixels of the 10 % validation chips, accuracy 0.842) again give high recall and low
+  precision for every class but fluvial (edifice 0.88 / 0.24, lava tube 0.98 / 0.13, Crater 0.75 / 0.08, apron
+  0.98 / 0.50, Normal Ground 0.98 / 0.47, fluvial 0.40 / 0.16).
+- **The other checks:** IAU craters, Crater inside 0.524 against ring 0.241, inside > ring for 73.4 % of 620
+  (four-class U-Net 0.909 / 0.808, 56.5 %): the seven-class Crater is more crater-shaped. Seam ratio 1.038 at
+  100 m and 1.043 at 200 m (four-class 1.137 / 1.178). Elevation alone reproduces 48.4 % (largest class alone
+  40.0 %; four-class 68.0 %).
+- **What this leaves for the final:** both seven-class maps fail D18's rule on the old ground, so the
+  four-class SVM map stays published (§69.24) and the four-class U-Net stays the deep-learning result; the two
+  seven-class maps are reported as tests, the U-Net's the stronger (69.0 % against 42.5 %, and every new class
+  over its share). **Next:** the layouts (NEXT-STEPS §11.5 step 4) and the final's text.

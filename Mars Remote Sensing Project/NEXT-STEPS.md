@@ -206,10 +206,10 @@ The author's answers: the six rejected Crater checks (21, 38, 42, 47, 48, 54) ar
 running:** `build\run_v2.ps1` started 10-27 01:32, SVM then U-Net, ~2 days (stopped by a restart at 21:18 after 12 of
 21 SVM tiles, resumed 10-28 02:29 with `-ClassifyOnly`, KB §69.23). **The SVM half is done (10-28 08:46, KB
 §69.24): 42.5 %, κ 0.310 against the four-class map's 35.7 %, κ 0.244 on the 237 held-out v2 polygons, but D18's
-rule fails on (a), apron's (b) and Crater's and hills' (c): the four-class map stays published.** The U-Net half
-is running (training since 09:03); **keep Pro closed** until
-`build\logs\run_v2\queue.log` says "queue done". Then the agent reads the scores and D18's verdict, and makes
-the layouts (§11.5 step 4).
+rule fails on (a), apron's (b) and Crater's and hills' (c): the four-class map stays published.** **The U-Net half
+is done (10-29 08:23, KB §69.25): 69.0 %, κ 0.606 against the four-class U-Net's 44.1 %, κ 0.301; every new
+class passes (b), but (a) and all three of (c) fail (volcanic edifice takes 40 % of ±60°), so it is reported as a
+test.** Next: the layouts (§11.5 step 4).
 
 **The digitising classes hold 94 channels and 26 crater rims (0 lava margins); 549 of 9,287 candidates are
 reviewed, none at Athabasca.** The review is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
@@ -223,7 +223,7 @@ delay it.
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
 | 2a | ~~**Class revision, proposals**~~ **done 2026-10-23 (KB §69.2):** the 512 with evidence and an `Action` each, plus new polygons for classes 5–7, in `Landform_TrainingSamples_v2_proposals` and a map in the `.aprx` | agent, drive | §11.2 | every label has an `Action`; each new class meets §11.3's minimum in proposals |
 | 2b | ~~**Review the label proposals**~~ **done 2026-10-27 (KB §69.8):** the author's rows, the apron and fluvial rows by the agent's rule at the author's word; applied with hills kept short (`--keep-short`) | author, in Pro | §11.4 | every non-`keep` row reviewed |
-| 2c | v2 labels and split (done 10-27); SVM on v2 scored and D18's verdict given (done 10-28, KB §69.24: the four-class map stays); U-Net on v2 (**running**, `run_v2.ps1`, queue done ~29 Oct 00:30) and scored; layouts and the final | agent, desktop | §11.5 | results in the KB beside the four-class scores, by the **22 Nov** freeze |
+| 2c | v2 labels and split (done 10-27); SVM on v2 scored and D18's verdict given (done 10-28, KB §69.24: the four-class map stays); U-Net on v2 run and scored (done 10-29, KB §69.25: 69.0 %, κ 0.606; fails D18's (a) and (c), a test); layouts and the final | agent, desktop | §11.5 | results in the KB beside the four-class scores, by the **22 Nov** freeze |
 | 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). ±60° U-Net map made (§66.7), seams removed (§66.8), in the project beside the published SVM map with layout 17 (§66.9), in the interim and the release `data-2026-10-21` (§66.10). For the author: any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
 | 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
 | 5 | The interim: content cut on 26 Oct (D20) and rebuilt, percentages set (D16); refined for the **10 Nov** presentation (KB §69.10); the report's date from the author, then deliver | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |

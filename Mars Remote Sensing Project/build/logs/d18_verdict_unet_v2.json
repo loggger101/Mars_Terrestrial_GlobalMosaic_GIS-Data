@@ -1,0 +1,81 @@
+{
+ "made": "2026-10-29 11:23",
+ "held_out_polygons": 237,
+ "labels": {
+  "held_out": "Landform_TrainingSamples_v2_60_test",
+  "training_set": "Landform_TrainingSamples_v2_60_train",
+  "classes": [
+   "Crater",
+   "steep/windy hills",
+   "lava tube",
+   "Normal Ground",
+   "volcanic edifice",
+   "apron",
+   "fluvial channel"
+  ]
+ },
+ "a_accuracy_and_kappa": {
+  "accuracy": [
+   0.619,
+   0.989
+  ],
+  "kappa": [
+   0.465,
+   0.98
+  ],
+  "on": "held-out v2 classes 1-4 (D19)",
+  "ok": false
+ },
+ "b_new_classes": {
+  "volcanic edifice": {
+   "users": 0.487,
+   "area_share": 0.1938,
+   "ok": true
+  },
+  "apron": {
+   "users": 0.798,
+   "area_share": 0.2953,
+   "ok": true
+  },
+  "fluvial channel": {
+   "users": 0.702,
+   "area_share": 0.0647,
+   "ok": true
+  }
+ },
+ "b_ok": true,
+ "left_out_of_v2": [],
+ "c_kept_classes": {
+  "Crater": {
+   "v2": 0.578,
+   "four": 0.991,
+   "fall": 0.413,
+   "ok": false
+  },
+  "steep/windy hills": {
+   "v2": 0.468,
+   "four": 0.994,
+   "fall": 0.526,
+   "ok": false
+  },
+  "Normal Ground": {
+   "v2": 0.697,
+   "four": 0.985,
+   "fall": 0.288,
+   "ok": false
+  }
+ },
+ "c_ok": false,
+ "replaces": false,
+ "overall": {
+  "accuracy": [
+   0.69,
+   0.441
+  ],
+  "kappa": [
+   0.606,
+   0.301
+  ]
+ },
+ "note": "(v2, four-class) pairs; rule KB §68.4 / D18, (a) per D19. overall is reported, not part of the rule"
+}

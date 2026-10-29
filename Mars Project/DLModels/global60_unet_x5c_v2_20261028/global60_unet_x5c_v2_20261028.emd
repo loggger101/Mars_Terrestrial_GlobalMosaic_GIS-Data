@@ -1,0 +1,202 @@
+{
+    "Framework": "arcgis.learn.models._inferencing",
+    "ModelConfiguration": "_unet",
+    "ModelType": "ImageClassification",
+    "InferenceFunction": "[Functions]System\\DeepLearning\\ArcGISLearn\\ArcGISImageClassifier.py",
+    "ExtractBands": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+    ],
+    "ignore_mapped_class": [
+        0
+    ],
+    "SupportsVariableTileSize": true,
+    "Classes": [
+        {
+            "Value": 1,
+            "Name": "Crater",
+            "Color": [
+                255,
+                0,
+                0
+            ]
+        },
+        {
+            "Value": 2,
+            "Name": "steep/windy hills",
+            "Color": [
+                28,
+                119,
+                85
+            ]
+        },
+        {
+            "Value": 3,
+            "Name": "lava tube",
+            "Color": [
+                158,
+                25,
+                147
+            ]
+        },
+        {
+            "Value": 4,
+            "Name": "Normal Ground",
+            "Color": [
+                81,
+                51,
+                13
+            ]
+        },
+        {
+            "Value": 5,
+            "Name": "volcanic edifice",
+            "Color": [
+                255,
+                170,
+                0
+            ]
+        },
+        {
+            "Value": 6,
+            "Name": "apron",
+            "Color": [
+                115,
+                178,
+                255
+            ]
+        },
+        {
+            "Value": 7,
+            "Name": "fluvial channel",
+            "Color": [
+                0,
+                92,
+                230
+            ]
+        }
+    ],
+    "ModelFormat": "NCHW",
+    "MinCellSize": {
+        "x": 200,
+        "y": 200,
+        "spatialReference": {
+            "wkt": "PROJCS[\"Mars_Equidistant_Cylindrical_CM180\",GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_Sphere_IAU_IAG\",3396190.0,0.0]],PRIMEM[\"Reference_Meridian\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Equidistant_Cylindrical\"],PARAMETER[\"False_Easting\",0.0],PARAMETER[\"False_Northing\",0.0],PARAMETER[\"Central_Meridian\",180.0],PARAMETER[\"Standard_Parallel_1\",0.0],UNIT[\"Meter\",1.0]]"
+        }
+    },
+    "MaxCellSize": {
+        "x": 200,
+        "y": 200,
+        "spatialReference": {
+            "wkt": "PROJCS[\"Mars_Equidistant_Cylindrical_CM180\",GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_Sphere_IAU_IAG\",3396190.0,0.0]],PRIMEM[\"Reference_Meridian\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Equidistant_Cylindrical\"],PARAMETER[\"False_Easting\",0.0],PARAMETER[\"False_Northing\",0.0],PARAMETER[\"Central_Meridian\",180.0],PARAMETER[\"Standard_Parallel_1\",0.0],UNIT[\"Meter\",1.0]]"
+        }
+    },
+    "ArcGISLearnVersion": "2.4.3",
+    "monitored_valid_loss": 0.30473628640174866,
+    "ModelFile": "global60_unet_x5c_v2_20261028.pth",
+    "ImageHeight": 256,
+    "ImageWidth": 256,
+    "ImageSpaceUsed": "MAP_SPACE",
+    "LearningRate": "slice('1.2023e-04', '1.2023e-03', None)",
+    "ModelName": "UnetClassifier",
+    "backend": "pytorch",
+    "ModelParameters": {
+        "backbone": "resnet34",
+        "backend": "pytorch"
+    },
+    "accuracy": "8.4234e-01",
+    "resize_to": 256,
+    "IsMultispectral": true,
+    "IsImageNetNormalization": true,
+    "Bands": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "ImageryType": "MultiSpectral",
+    "NormalizationStats": {
+        "band_min_values": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ],
+        "band_max_values": [
+            255.0,
+            255.0,
+            255.0,
+            255.0,
+            255.0,
+            255.0,
+            255.0
+        ],
+        "band_mean_values": [
+            138.7017822265625,
+            104.8332748413086,
+            93.766357421875,
+            104.95018768310547,
+            125.50740051269531,
+            42.886898040771484,
+            44.933372497558594
+        ],
+        "band_std_values": [
+            50.15904998779297,
+            39.920753479003906,
+            37.47186279296875,
+            47.19761276245117,
+            42.164695739746094,
+            51.952510833740234,
+            52.11765670776367
+        ],
+        "scaled_min_values": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "scaled_max_values": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ],
+        "scaled_mean_values": [
+            0.5421329736709595,
+            0.4087924063205719,
+            0.36522185802459717,
+            0.40925267338752747,
+            0.49018657207489014,
+            0.16490903496742249,
+            0.17296601831912994
+        ],
+        "scaled_std_values": [
+            0.19605281949043274,
+            0.15566909313201904,
+            0.14595365524291992,
+            0.18404683470726013,
+            0.16468007862567902,
+            0.19976820051670074,
+            0.2006211280822754
+        ]
+    },
+    "DoNormalize": true,
+    "per_class_metrics": "{\"Crater\":{\"precision\":0.0779000446,\"recall\":0.7465702295,\"f1\":0.1410793215},\"steep\\/windy hills\":{\"precision\":0.1596376151,\"recall\":0.7894444466,\"f1\":0.2655724585},\"lava tube\":{\"precision\":0.1319223791,\"recall\":0.9785752892,\"f1\":0.2325011343},\"Normal Ground\":{\"precision\":0.465485394,\"recall\":0.9827669859,\"f1\":0.6317457557},\"volcanic edifice\":{\"precision\":0.2382318079,\"recall\":0.8765060306,\"f1\":0.3746380508},\"apron\":{\"precision\":0.5013850331,\"recall\":0.9830120802,\"f1\":0.6640642881},\"fluvial channel\":{\"precision\":0.1640375555,\"recall\":0.3957165778,\"f1\":0.231931746}}"
+}
