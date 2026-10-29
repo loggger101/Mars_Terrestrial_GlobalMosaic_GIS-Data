@@ -14,7 +14,7 @@ from content import DECK_TITLE, COURSE, TITLE                # unchanged since t
 from interim import BANDS, CORRELATION                         # the data slides are the interim's, unchanged
 
 AUTHOR = "Logan M Edwards"                                     # the public name, as the sheets' footers (KB §63)
-STATUS_DATE = "22 October 2026"
+STATUS_DATE = "29 October 2026"
 
 QUESTION = (
     "Athabasca Valles was read as a water-carved outflow channel for decades, then reinterpreted as flood lava. "
@@ -128,7 +128,7 @@ FIGURES = [
                  "A 1:20 M map's contacts are kilometres wide: H1 needs margins digitised at 100 m"],
          source="§47.2"),
     dict(section=("Classification", "Scored on labels the model never saw"),
-         title="The published landform map at ±60°",
+         title="The four-class landform map at ±60°",
          images=[("layout", "04_global60_landforms")],
          points=["SVM on 512 hand-drawn polygons, split by whole 15° blocks: 329 train, 183 held out",
                  "200 m, 11 × 11 majority filter: 73.8%, κ 0.58 held out (one class everywhere: 58.6%)",
@@ -164,8 +164,30 @@ FIGURES = [
          points=["The U-Net agrees with the hand-drawn areas at province scale; the SVM separates craters from "
                  "their surroundings slightly better (57 / 46% against 91 / 83%)",
                  "Elevation alone reproduces 68% of the U-Net map, 55% of the SVM map",
-                 "The SVM map stays the published landform map; the U-Net map stands beside it"],
+                 "Of the four-class maps the SVM is the landform map; the U-Net stands beside it"],
          source="§57, §66.7, §66.8, §66.9"),
+    dict(section=("Seven classes", "The labels revised"),
+         title="Seven classes: the landform map revised",
+         images=[("layout", "04b_global60_landforms_v2")],
+         points=["Crater narrowed to impact craters; volcanic edifice, apron and fluvial channel added; "
+                 "971 reviewed labels (734 train, 237 held out)",
+                 "SVM 42.5%, κ 0.31 held out, against the four-class map's 35.7% on the same polygons",
+                 "Edifice ×4.15 on edifice units, apron ×5.69 on apron units; fluvial channel over-predicted"],
+         source="§69.8, §69.24, §69.26"),
+    dict(title="Seven classes from a U-Net",
+         images=[("layout", "17b_unet_v2_provinces")], map_left=True,
+         points=["Held out 69.0%, κ 0.606, against the seven-class SVM's 42.5% and the four-class U-Net's 44.1%",
+                 "Every new class above its share of the labels: user's edifice 0.487, apron 0.798, fluvial 0.702",
+                 "Volcanic edifice spreads over 40.0% of ±60°; on the four original classes 61.9% against 98.9%"],
+         source="§69.25"),
+    dict(title="Seven classes lead, at a measured cost",
+         images=[("file", r"final_img\svm_vs_unet_v2.png")],
+         points=["A rule set before the run would keep the four-class maps: on classes 1–4 the SVM scores 66.0% "
+                 "against 79.9%, and Crater loses 25.7 points of producer's accuracy",
+                 "The seven-class maps are presented all the same: they separate craters from volcanoes and name "
+                 "what four classes cannot",
+                 "The four-class maps stay beside them"],
+         source="§68.4, §69.24–69.26"),
 ]
 
 LIMITS = [   # (head, text)
@@ -174,9 +196,10 @@ LIMITS = [   # (head, text)
      "against TES only |r| ≈ 0.1 inside 15° blocks. In the classification thermal adds 1.3–2.0 points (§24, §28.10, §43.1, §56)."),
     ("The landform classes are terrain classes",
      "Slope and relief alone match all seven bands; 'lava tube' marks volcano flanks, not lava plains (§40.1, §43.2)."),
-    ("Five 'Crater' labels are volcanoes",
-     "Arsia Mons alone is 31% of the held-out Crater area; one held-out label overlaps a training one by "
-     "51.5 km² (§68.2)."),
+    ("The seven classes cost the old ones",
+     "Five four-class 'Crater' labels were volcanoes (Arsia Mons alone 31% of the held-out Crater area); the "
+     "revision fixes that, but both seven-class maps fall below the four-class ones on the original classes and "
+     "over-predict fluvial channel (SVM) or volcanic edifice (U-Net) (§68.2, §69.24, §69.25)."),
     ("Closed depressions are not a crater count",
      "Below ~5 km most are not catalogued craters, and breached craters are invisible; Robbins is the crater "
      "reference (§26.3, §53.4)."),
@@ -185,8 +208,9 @@ LIMITS = [   # (head, text)
     ("The review has only begun",
      "549 of 9,287 candidates reviewed, all at Ius Chasma (precision 54% on steep channels, 7% on depressions); "
      "the digitising classes hold 94 channels, 26 crater rims and no lava margins, so H1 and H2 wait (§69.7)."),
-    ("A held-out test spent once",
-     "Any further tuning of the deep-learning models needs validation blocks of its own (§66.5)."),
+    ("The held-out blocks used twice",
+     "Once by the four-class models and once by the seven-class ones; any further tuning needs validation "
+     "blocks of its own (§66.5)."),
 ]
 
 CONCLUSIONS = [
@@ -194,15 +218,15 @@ CONCLUSIONS = [
     "Visible albedo, day IR and night IR are three nearly independent dimensions, but the THEMIS mosaics carry "
     "local contrast only, and calibrated inertia follows Viking",
     "Craters ≥ 5 km are mostly recovered as closed depressions (62.2% precision); smaller ones and breached craters are not",
-    "The published landform map scores 73.8%, κ 0.58 on blocks it never saw; thermal adds a resolved 1.4–2.0 points",
-    "A U-Net reaches 98.9% as a terrain-province map; lava flows still come from the geologic map",
+    "The four-class landform map scores 73.8%, κ 0.58 on blocks it never saw; thermal adds a resolved 1.4–2.0 points",
+    "A U-Net reaches 98.9% as a four-class province map and 69.0% with seven classes, which name volcanoes, aprons "
+    "and valleys; lava flows still come from the geologic map",
 ]
 
 NEXT_STEPS = [
     "Review the 9,287 machine candidates at Ius Chasma and Athabasca Valles; draw breached craters and lava margins",
     "Retest H1 on margins digitised at 100 m and H2 on reviewed channels with their origin set",
-    "Seven classes (D17): impact craters only, plus volcanic edifice, apron and fluvial channel; both maps scored "
-    "on the same held-out polygons",
+    "Seven classes: curb the over-prediction of fluvial channel and volcanic edifice, and win back Crater and hills",
     "Material labels, not landform labels, to price the thermal bands; calibrated THEMIS products where they exist",
     "Validation blocks of their own before any further deep-learning tuning",
 ]

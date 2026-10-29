@@ -126,7 +126,7 @@ All 170 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`make_fig_classification.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_classification.py) | ArcGIS | Ius Chasma unsupervised classification, 10 classes, over the day-IR relief. |
 | [`make_fig_craters.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_craters.py) | ArcGIS | Figure: closed depressions >= 1 km over Ius Chasma (crater candidates), their size-frequency distribution the gazetteer cannot give, and the validation - including the failure. |
 | [`make_fig_daynight.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_daynight.py) | ArcGIS | Day / night / difference over the Ius Chasma type area. |
-| [`make_fig_final.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_final.py) | either | Two charts the final paper and deck need that the interim never drew; both read from the logs, never retyped. |
+| [`make_fig_final.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_final.py) | either | Three charts the final paper and deck need that the interim never drew; all read from the logs, never retyped. |
 | [`make_fig_fusion.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_fusion.py) | ArcGIS | Ius Chasma fusion figure - HSV composite so colour carries thermal information while relief still reads. |
 | [`make_fig_global60.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_global60.py) | either | The +/-60 province test: can the day-night pair discriminate material? (KB 28.10) |
 | [`make_fig_segmentation.py`](../Mars%20Remote%20Sensing%20Project/build/make_fig_segmentation.py) | ArcGIS | Segmentation parameter sweep, shown on a zoom across the Ius Chasma wall (KB §23.5). |

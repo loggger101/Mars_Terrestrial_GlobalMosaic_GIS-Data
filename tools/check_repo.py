@@ -89,7 +89,7 @@ def links():
 def figures():
     page = ROOT / "docs" / "figures.md"
     linked = {path for _, path in targets(page)}
-    crop = re.compile(r"\d\d_")                   # the interim and final decks' layout crops, one group each
+    crop = re.compile(r"\d\d[a-z]?_")             # the interim and final decks' layout crops (04b, 17b too), one group each
     files = [p for p in ROOT.rglob("*") if p.suffix.lower() in IMAGES and ".git" not in p.parts]
     for p in files:
         if p.parent.name in ("interim_img", "final_img") and crop.match(p.name):

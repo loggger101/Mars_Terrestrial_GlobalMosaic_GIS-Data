@@ -35,6 +35,9 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"final_img\16_x5_detections.png", "16_x5_detections.png"),
     (r"final_img\17_x5c_unet_provinces.png", "17_x5c_unet_provinces.png"),
     (r"final_img\svm_vs_unet.png", "svm_vs_unet.png"),
+    (r"final_img\04b_global60_landforms_v2.png", "04b_global60_landforms_v2.png"),     # the seven classes (KB §69.26)
+    (r"final_img\17b_unet_v2_provinces.png", "17b_unet_v2_provinces.png"),
+    (r"final_img\svm_vs_unet_v2.png", "svm_vs_unet_v2.png"),
 ]
 # Two deck charts carry slide furniture a paper caption replaces: a title strip naming the gdb class and the KB
 # (ius_channel_candidates), a footnote citing the KB (global60_thermal). Pixels cut from the top and the bottom.

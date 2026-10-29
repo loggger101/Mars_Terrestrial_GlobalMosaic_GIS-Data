@@ -30,13 +30,13 @@ the THEMIS mosaics are 8-bit products stretched region by region: dusty and rock
 Viking red but by $-0.19$ and $+0.02$~DN in day and night infrared, and against calibrated TES thermal inertia the
 THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking albedo tracks inertia planet-wide
 ($r=-0.36$). Fill depth yields 465,354 closed depressions $\ge1$~km; 62.2\% of those $\ge5$~km are catalogued
-craters, only 15.3\% at $\ge1$~km, and breached craters are invisible to the method. Of 969,822 routed channel
-segments 89.8\% lie on slopes under $2^{\circ}$, and stream order follows the accumulation threshold, not the
-terrain. A support vector machine trained on 512 hand-drawn landform polygons and scored on whole $15^{\circ}$
-blocks it never saw reaches 73.8\%, \kap\,0.58 (one class everywhere: 58.6\%); the thermal bands add a resolved 1.4
-to 2.0 points. A U-Net reaches 98.9\% on the same blocks as a terrain-province map. No band separates the lava
+craters, only 15.3\% at $\ge1$~km, and breached craters are missed. Of 969,822 routed channel
+segments 89.8\% lie on slopes under $2^{\circ}$. A support vector machine trained on 512 hand-drawn landform polygons and scored on whole $15^{\circ}$
+blocks it never saw reaches 73.8\%, \kap\,0.58; the thermal bands add a resolved 1.4 to 2.0 points. A U-Net reaches 98.9\% on
+the same blocks as a terrain-province map. Revised to seven classes, a U-Net scores 69.0\% on 237 held-out
+polygons, weaker on the original four but naming volcanoes, aprons and valleys. No band separates the lava
 contacts of the 1:20\,M geologic map at Athabasca Valles much better than chance, so lava flows are taken from
-that map. Three of four hypotheses are not supported; the fourth was answered by another method.
+that map. Three of four hypotheses are not supported.
 \end{abstract}
 
 \keywords{Mars --- Planetary surfaces --- Remote sensing --- Infrared imaging --- Impact craters --- Lava flows ---
@@ -206,6 +206,18 @@ block holding its centre \citep{Roberts2017}; one held-out polygon overlaps a tr
 block edge. A support vector machine \citep{Cortes1995} was trained on the
 training polygons (1,000 samples per class) and applied to all of \pmsixty\ at 200~m in 21 tiles of 16,384 pixels.
 %% KB §29.2, §31.3, §54.3, §68.2, §68.5
+
+An audit of the 512 labels then revised the scheme to seven classes: Crater narrowed to impact craters, volcanic
+plains drawn as Normal Ground, and three new classes, volcanic edifice, apron and fluvial channel. Proposals for each
+label and new polygons for the new classes were built from the geologic map, the Robbins database, the IAU names, the
+elevation model and the valley map of \citet{Alemanno2018}. Every relabel, check and edifice outline was reviewed by
+eye; the apron and fluvial-strip proposals were screened by a rule written before it ran. The result, 971 labels, keeps
+the same 14 held-out blocks (734 training and 237 held-out polygons), and a support vector machine and a U-Net were
+retrained on it exactly as before. A rule was written before the run for the seven-class map to replace the
+four-class one: on the same v2 held-out polygons, (a) its accuracy and \kap\ on the ground both maps can name (v2
+classes 1--4) at least the four-class map's, (b) each new class with a user's accuracy above its share of the
+held-out area, and (c) Crater, hills and Normal Ground each losing under 5 points of producer's accuracy.
+%% KB §68.1--§68.4, §69.2, §69.8
 
 Accuracy is the area-weighted (by $\cos$ latitude) share of held-out polygon area given its own class, with Cohen's
 \kap\ \citep{Cohen1960} and per-class producer's and user's accuracy \citep{Congalton1991}. Because one class dominates
@@ -401,7 +413,7 @@ map's volcanic units. %% KB §43.2, §43.3, §57.1
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.85\textwidth]{figures/t8_enrichment.png}
-\caption{The published landform map against the unit groups of SIM~3292: how much more often each class occurs in a
+\caption{The four-class landform map against the unit groups of SIM~3292: how much more often each class occurs in a
 group than across \pmsixty\ ($\times1$: no association). \label{fig:t8}}
 \end{figure*}
 
@@ -422,7 +434,7 @@ separates, with bootstrap intervals over contacts; 10\% is chance by constructio
 
 \subsection{The landform classification}
 
-The published map (Figure~\ref{fig:landforms}) is the 200~m support vector machine map with an $11\times11$ (2.2~km)
+The four-class map (Figure~\ref{fig:landforms}) is the 200~m support vector machine map with an $11\times11$ (2.2~km)
 majority filter. On the 183 held-out polygons it scores 73.8\%, \kap\,0.583, against 58.6\% for one class everywhere and
 69.9\%, \kap\,0.532 unfiltered (Table~\ref{tab:svm}, Figure~\ref{fig:accuracy}). Normal Ground is found almost
 everywhere it was drawn (producer's 99.2\%) and Crater is reliable where mapped (user's 93.3\%), but lava tube is not a
@@ -441,7 +453,7 @@ and 1.9\% hills. %% KB §69.18; logs\score_metrics.json
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/04_global60_landforms.png}
-\caption{The published \pmsixty\ landform map: support vector machine on the seven-band 200~m stack, $11\times11$
+\caption{The four-class \pmsixty\ landform map: support vector machine on the seven-band 200~m stack, $11\times11$
 majority filter, with the held-out hand-drawn labels outlined in their class colours. Held out: 73.8\%, \kap\,0.58.
 \label{fig:landforms}}
 \end{figure*}
@@ -449,14 +461,14 @@ majority filter, with the held-out hand-drawn labels outlined in their class col
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/accuracy_200m.png}
-\caption{(A) Where each held-out class lands on the published map, as a share of its area. (B) Held-out accuracy
+\caption{(A) Where each held-out class lands on the four-class map, as a share of its area. (B) Held-out accuracy
 against the majority-filter window for the 200~m and 400~m maps; the score rises with every window, so the window was set
 by feature size. \label{fig:accuracy}}
 \end{figure*}
 
 \begin{table}[t]
 \centering
-\caption{Held-out scores of the landform maps (183 polygons) \label{tab:svm}}
+\caption{Held-out scores of the landform maps \label{tab:svm}}
 \small
 \setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{lcccccc}
@@ -470,12 +482,21 @@ SVM 200 m, $5\times5$ & 72.0 & 0.560 & 65.1 & 54.4 & 22.2 & 5.8 \\
 SVM 200 m, $11\times11$$^{a}$ & 73.8 & 0.583 & 66.7 & 55.7 & 20.5 & 5.7 \\
 U-Net, two passes & 98.9 & 0.980 & 94.8 & 93.9 & 0.5 & 0.6 \\
 \hline
+\multicolumn{7}{l}{\textit{On the 237 v2 held-out polygons}} \\
+One class everywhere & 29.5 & -- & -- & -- & -- & -- \\
+SVM four-class$^{a}$ & 35.7 & 0.244 & 42.0 & 25.1 & 55.4 & 8.9 \\
+SVM seven-class$^{b}$ & 42.5 & 0.310 & 41.9 & 38.8 & 29.1 & 28.3 \\
+U-Net four-class & 44.1 & 0.301 & 56.7 & 37.1 & 55.4 & 0.5 \\
+U-Net seven-class & 69.0 & 0.606 & 56.9 & 56.6 & 14.7 & 16.3 \\
+\hline
 \end{tabular}
 \par\vspace{3pt}\noindent\parbox{\columnwidth}{\footnotesize Note: In percent but $\kappa$. Acc., overall accuracy;
 Bal., balanced accuracy; F1, mean per-class F1; Q and A, quantity and allocation disagreement ($\mathrm{Q}+\mathrm{A}=
-100-\mathrm{Acc.}$). Area-weighted by $\cos$ latitude, scored at 400~m. $^{a}$The published map.}
+100-\mathrm{Acc.}$). Area-weighted by $\cos$ latitude, scored at 400~m. The first six rows are on the 183
+four-class held-out polygons, the last five on the 237 seven-class ones; the two sets are not comparable.
+$^{a}$The four-class map of Figure~\ref{fig:landforms}. $^{b}$Figure~\ref{fig:landforms7}.}
 \end{table}
-%% KB §55.3, §57, §66.8, §69.18
+%% KB §55.3, §57, §66.8, §69.18, §69.24, §69.25
 
 Whether the thermal bands help (test T1) was measured twice, with the prediction of little or no gain written first.
 A Gaussian maximum-likelihood ablation on 2.69 million held-out pixels (Figure~\ref{fig:ablation}) finds that the
@@ -514,7 +535,33 @@ Cell & Left out & Gain (pt) & 95\% interval \\
 \end{table}
 %% KB §56.1
 
-\subsection{Deep learning}
+\subsection{Seven classes}
+
+On the 237 v2 held-out polygons the seven-class support vector machine map scores 42.5\%, \kap\,0.310, against
+35.7\%, \kap\,0.244 for the four-class map, which cannot name the new classes, and 29.5\% for one class everywhere
+(Figure~\ref{fig:landforms7}, Table~\ref{tab:svm}). By the rule written before the run it would not replace the
+four-class map: (a) on the ground both can name it scores 66.0\% against 79.9\% (\kap\,0.508 against 0.668); (b)
+apron's user's accuracy, 0.190, is below its share of the held-out area, 0.295, while volcanic edifice (0.261 against
+0.194) and fluvial channel (0.346 against 0.065) pass; and (c) Crater loses 25.7 points of producer's accuracy and
+hills 12.4. The new classes find their units of the geologic map: volcanic edifice covers 50.8\% of the volcanic
+edifice units, 4.15 times its share of \pmsixty, and apron 36.7\% of the apron units, 5.69 times. Fluvial channel,
+however, takes 33.0\% of \pmsixty\ against 6.5\% of the held-out label area, and lava tube's producer's accuracy
+falls from 0.665 to 0.063. %% KB §69.24; logs\d18_verdict.json, logs\geomap_check_v2.json
+
+The seven-class maps are nevertheless the landform maps this paper presents. They separate impact craters from the
+volcanic shields that the four-class Crater class took in, and name volcanic edifices, aprons and fluvial channels,
+which four classes cannot; the cost, measured above and in Section~\ref{sec:dl}, falls on the original classes.
+The four-class maps are kept beside them. %% KB §69.26 (D28)
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/04b_global60_landforms_v2.png}
+\caption{The seven-class \pmsixty\ landform map: the same support vector machine and stack as
+Figure~\ref{fig:landforms}, trained on the reviewed labels, with the 237 held-out polygons outlined in their class
+colours. Held out: 42.5\%, \kap\,0.31. \label{fig:landforms7}}
+\end{figure*}
+
+\subsection{Deep learning} \label{sec:dl}
 
 The RetinaNet detector found 41.9\% of held-out Crater polygons with 87.6\% of its in-polygon boxes correct (always
 naming Crater gives 71.1\%) and 22.7\% of Normal Ground polygons at 56.9\% precision, but never named hills or lava
@@ -532,8 +579,19 @@ lava tube lies on Tharsis and Elysium and hills along Valles Marineris; it makes
 39.3\% Normal Ground, where the support vector machine map makes 33.9\% and 54.7\%. It labels 91.3\% of the ground inside named
 craters as Crater, but also 82.6\% of the ring around them, and elevation bins reproduce 68.0\% of it. The held-out
 labels mark areas that are mostly one class at 50~km, and a model that sees 51~km of context reproduces those areas; the
-score measures agreement with the hand-drawn areas at province scale. The support vector machine map therefore remains
-the published landform map, with the U-Net map beside it as a province map. %% KB §66.6, §66.7, §66.8, §66.9
+score measures agreement with the hand-drawn areas at province scale. Of the four-class maps the support vector machine map is
+the landform map, with the U-Net map beside it as a province map. %% KB §66.6, §66.7, §66.8, §66.9
+
+Retrained on the seven classes (17,444 chips, 6.2~h), the U-Net scores 69.0\%, \kap\,0.606 on the v2 held-out
+polygons, against 44.1\%, \kap\,0.301 for the four-class U-Net and 42.5\% for the seven-class support vector machine
+(Figure~\ref{fig:unet7}). Each new class has a user's accuracy above its share of the held-out area: volcanic
+edifice 0.487, apron 0.798 and fluvial channel 0.702. By the same rule it would not replace the four-class U-Net: on
+classes 1--4 it scores 61.9\% against 98.9\%, and Crater, hills and Normal Ground lose 41.3, 52.6 and 28.8 points of
+producer's accuracy. Its fault is volcanic edifice, which covers 40.0\% of \pmsixty\ against 19.4\% of the held-out
+label area and takes 71\% of the lava-tube area. Its Crater class is more crater-shaped than the four-class one
+(0.524 inside named craters against 0.241 in the ring around them), and elevation alone reproduces 48.4\% of it.
+%% KB §69.25; logs\d18_verdict_unet_v2.json
+
 
 \begin{figure*}[t]
 \centering
@@ -548,8 +606,18 @@ the published landform map, with the U-Net map beside it as a province map. %% K
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/svm_vs_unet.png}
-\caption{The published support vector machine map and the two-pass U-Net map under the same scorer: producer's (A) and
+\caption{The four-class support vector machine map and the two-pass U-Net map under the same scorer: producer's (A) and
 user's (B) accuracy per class on the 183 held-out polygons. \label{fig:unet}}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.49\textwidth]{figures/17b_unet_v2_provinces.png}\hfill
+\includegraphics[width=0.49\textwidth]{figures/svm_vs_unet_v2.png}
+\caption{Left: the seven-class U-Net over \pmsixty, with the held-out block holding the most classes
+($270$--$285^{\circ}$E, $15$--$30^{\circ}$N) enlarged. Right: the seven-class support vector machine and U-Net maps
+under the same scorer, producer's (A) and user's (B) accuracy per class on the 237 v2 held-out polygons.
+\label{fig:unet7}}
 \end{figure*}
 
 %% ====================================================================================================
@@ -602,15 +670,17 @@ apron and fluvial channel as new classes. Its 971 labels (734 training, 237 held
 applied on 27 October. Every relabel, check and new edifice outline was reviewed by eye; the 172 apron and 276
 fluvial-strip proposals were screened by a rule written before it ran (a strip kept only on a floor at least 20~m below
 its flanks and off volcanic plains, an apron only where neither flat nor in a crater), not inspected one by one; and
-hills fall short of the training minimum, in two training blocks against three. Both maps are scored on the same
-held-out polygons, and the seven-class map replaces the published one only by a rule written before the run.
-%% KB §68.1--§68.4, §69.8
+hills fall short of the training minimum, in two training blocks against three. Both seven-class maps failed the
+rule set before they ran, on the four original classes, and are presented for what they name rather than for that
+score: the support vector machine over-predicts fluvial channel and the U-Net volcanic edifice.
+%% KB §68.1--§68.4, §69.8, §69.24--§69.26
 
 The detectors are elevation-model products. Closed depressions miss breached craters by construction, and below about
 5~km their density follows the sharpness of the HRSC/MOLA blend. Channels inherit the same dependence, and the fill
 mask that removes synthetic lakes also breaks networks where the DEM is pitted.
 
-The held-out test has been used once for each model. Any further tuning, of the deep-learning models above all, would
+The held-out blocks have now been used twice, once by the four-class models and once by the seven-class ones. Any
+further tuning, of the deep-learning models above all, would
 turn the 14 held-out blocks into a validation set; a next round needs validation blocks of its own. Finally, the manual
 review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709 depressions) has reached 549, all
 at Ius Chasma, with a precision (accepts over accepts and rejects) of 54\% on the 188 steep, rock-floored channels and
@@ -630,8 +700,11 @@ mosaics carry local contrast only; calibrated thermal inertia follows Viking alb
 against Robbins rises from 15.3\% to 62.2\% at 5~km; breached craters stay invisible.
 \item Routed channels are dominated by the elevation model at \pmsixty\ (89.8\% under $2^{\circ}$), and stream order is a
 parameter, not a measurement.
-\item The published landform map scores 73.8\%, \kap\,0.58 on blocks it never saw; the thermal bands add a resolved 1.4
+\item The four-class landform map scores 73.8\%, \kap\,0.58 on blocks it never saw; the thermal bands add a resolved 1.4
 to 2.0 points. A U-Net reaches 98.9\% as a terrain-province map.
+\item Revised to seven classes, the maps separate impact craters from volcanoes and name volcanic edifices, aprons
+and fluvial channels: the U-Net scores 69.0\%, \kap\,0.606 and the support vector machine 42.5\% on 237 held-out
+polygons, below the four-class maps on the original classes.
 \item Lava flows are not separable in these bands; the geologic map remains the lava-flow reference, and H1 and H2 await
 digitised margins and channels.
 \end{enumerate}

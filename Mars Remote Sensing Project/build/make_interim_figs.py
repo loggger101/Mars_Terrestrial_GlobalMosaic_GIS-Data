@@ -31,7 +31,8 @@ PAD = 12                                   # px of white kept round the trimmed 
 DROP = {"title", "subtitle", "credit", "notes", "checks", "acc_head", "acc_body",
         "cA", "cB", "cC", "cD", "s29", "s30", "t29", "t30",
         "legend_title", "table_title", "table_note",          # 11: its Robbins table is fine print on a slide
-        "findings"}                                           # 16, 17 (make_dl_map.py, make_unet_map.py)
+        "findings",                                           # 16, 17 (make_dl_map.py, make_unet_map.py)
+        "d28"}                                                # 04b (make_v2_sheets.py)
 TABLE_CELL = re.compile(r"t\d+_\d+(_bg)?$")                  # 11's, 16's, 17's table cells, t<row>_<col> (make_global60_candidate_sheets.py)
 # A legend prints its layers' names, and a slide must not show the project's own references:
 # "X5 detections, RetinaNet (1,838 boxes; KB §66.2)" exports as "RetinaNet detections (1,838 boxes)".
@@ -64,7 +65,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     p = arcpy.mp.ArcGISProject(APRX)
     have = {l.name: l for l in p.listLayouts()}
-    wanted = sorted({img for f in I.FIGURES for kind, img in f["images"] if kind == "layout"})
+    wanted = sorted({img for f in I.FIGURES for kind, img in f.get("images", ()) if kind == "layout"})
     missing = [n for n in wanted if n not in have]
     if missing:
         sys.exit("layouts not in the project: %s" % missing)

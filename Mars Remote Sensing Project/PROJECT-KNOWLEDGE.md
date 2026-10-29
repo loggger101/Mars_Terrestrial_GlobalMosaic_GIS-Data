@@ -4823,3 +4823,34 @@ At the author's request after §69.21: the deck rendered to PDF (120 dpi) and ev
   `Global60\layouts\`. The rehearsal copy was moved to `.backups\`. The project now has 36 maps and 20 layouts.
 - **Not changed yet:** the final's text (`final.py`, the paper) still describes D18's rule deciding; §11.5 step 5
   rewrites it with the seven-class maps leading. The README and the figures page now open with layout 04b.
+
+### 69.27 The final's text rewritten with the seven-class maps leading (D28) — 2026-10-29, desktop **[V]**
+
+NEXT-STEPS §11.5 step 5, at the author's request ("Rewrite final text"). The paper
+(`NEXT STUFF\Final\paper\mars_global_mosaic.tex`) and the deck's content (`build\final.py`) now carry the
+seven-class maps; the four-class maps are named "four-class" where they were "published". The paper's v2 text
+follows `v2_drafts.tex`, with a third branch the drafts did not foresee: the rule fails and the seven-class maps lead
+all the same (D28, §69.26).
+
+- **The paper:** abstract (one sentence, 249 words, under the 250 budget: the one-class baseline, the stream-order
+  clause and the H4 tail cut); Methods, the seven-class labels and the rule as written before the run; Results, a new
+  subsection "Seven classes" (the SVM's scores, each failed part of the rule, the geologic-map enrichment, the
+  over-predicted fluvial channel, and a paragraph on why the seven-class maps are presented), the seven-class U-Net
+  after the four-class one, Figure 14 (layout 04b), Figure 17 (layout 17b beside the new chart), Table 3 with five
+  rows on the 237 v2 polygons; Discussion, the limits sentence and the held-out blocks used twice; Conclusions, a
+  sixth item. 16 pages, no undefined reference.
+- **Table 3, the v2 rows, in percent as printed** (from §69.24–69.25 and `logs\score_metrics_v2_svm.json`,
+  `..._unet.json`): one class everywhere 29.5; four-class SVM 35.7, κ 0.244, balanced 42.0, F1 25.1, quantity 55.4,
+  allocation 8.9; seven-class SVM 42.5, κ 0.310, 41.9, 38.8, 29.1, 28.3; four-class U-Net 44.1, κ 0.301, 56.7, 37.1,
+  55.4, 0.5; seven-class U-Net 69.0, κ 0.606, 56.9, 56.6, 14.7, 16.3.
+- **The deck (36 slides):** "The published landform map" became "The four-class landform map"; a section "Seven
+  classes" with three slides (layout 04b; layout 17b; the per-class chart with D18's result and why the seven-class
+  maps are presented); the limits, conclusions and next steps rewritten to match; status date 29 October.
+- **Figures:** `make_fig_final.py` draws `final_img\svm_vs_unet_v2.png` (producer's and user's for the two
+  seven-class maps) and labels the four-class chart "four classes", not "published"; `make_final_figs.py` exported
+  04b and 17b (after `make_interim_figs.py` learned to skip the deck's text slides, which have no images and stopped
+  it with a KeyError, and to hide 04b's D28 note); `build_final_paper.py` copies the three new figures.
+- **Read:** every changed page of the PDF and slides 28–35 rendered and read; two fixes from reading (the seven-class
+  U-Net figure moved after the four-class ones so the figures number in reading order; slide 28's bullets shortened
+  off the source line), and two from the build (Figure 9's caption, a lost footnote mark in Table 3).
+  `verify_interim.py` on `final.py` and the `.tex`: every number in the record.
