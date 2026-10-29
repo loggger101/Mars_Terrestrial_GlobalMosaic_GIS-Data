@@ -211,10 +211,10 @@ The four files use three coordinate frames, so check `Central_Meridian` per file
 
 ArcGIS Pro is not required. The rasters are GeoTIFFs and the vectors come as a file geodatabase and a GeoPackage; QGIS and GDAL read all of them.
 
-**Quick start.** Download the landform maps (1.8 GB; the published one unzips to `Global60/global60_landforms_svm_200m_mode11.tif`) and unzip them:
+**Quick start.** Download the landform maps (1.9 GB; the published one unzips to `Global60/global60_landforms_svm_200m_mode11.tif`) and unzip them:
 
 ```bash
-curl -LO https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/download/data-2026-10-21/global60-classification-part1.zip
+curl -LO https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/download/data-2026-10-29/global60-classification-part1.zip
 unzip global60-classification-part1.zip
 ```
 
@@ -264,9 +264,8 @@ Mars Project/
   Mars Project.aprx        the ArcGIS Pro project: 36 maps, all Mars, and 20 layouts
   Global60/, TypeArea/,    metadata sidecars, models (.ecd), raster attribute tables, layouts;
   Athabasca/               Global60/checks/ holds the DEM step chips
-  DLModels/                the four deep-learning models' metadata and training plots (the
-                           weight files, 137-165 MB, are in the release's dl-models.zip; the
-                           seven-class rehearsal U-Net's stay on the drive)
+  DLModels/                the five deep-learning models' metadata and training plots (the
+                           weight files, 137-165 MB, are in the release's dl-models.zip)
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs
 exports/
@@ -295,7 +294,7 @@ CITATION.cff               how to cite the project ("Cite this repository" on Gi
 
 ## Backup and restore
 
-The rasters are in two releases: [`data-2026-10-21`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-21) (7.7 GB: both type areas, Ius Chasma and Athabasca Valles, the ±60° landform maps with the U-Net maps, the three trained deep-learning models, the GUI SVM maps, caches, the GeoPackage with the ±60° candidates; it replaces `data-2026-10-19`) and [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) (74.4 GB: the ±60° derivatives, split into 1.9 GB pieces, and the deep-learning exports). [`restore.py`](restore.py) rebuilds the drive from a clone and those two releases, checking every file against its SHA-256:
+The rasters are in two releases: [`data-2026-10-29`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-29) (10.8 GB: both type areas, Ius Chasma and Athabasca Valles, the ±60° landform maps with the U-Net maps and the seven-class maps, the five trained deep-learning models, the GUI SVM maps, caches, the GeoPackage with the ±60° candidates and the seven-class labels; it replaces `data-2026-10-21`) and [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) (74.4 GB: the ±60° derivatives, split into 1.9 GB pieces, and the deep-learning exports). [`restore.py`](restore.py) rebuilds the drive from a clone and those two releases, checking every file against its SHA-256:
 
 ```bash
 python restore.py --dest E:\ --dry-run

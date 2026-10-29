@@ -20,9 +20,10 @@ MP = DRIVE / "Mars Project"
 REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
             Path.home() / "OneDrive" / "Documents" / "GitHub" / "Mars_Terrestrial_GlobalMosaic_GIS-Data")
 URL = "https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/"
-DATA, DERIV = "data-2026-10-21", "derivatives-2026-10-06"     # data refreshed 2026-10-21, adds the U-Net maps (KB §57.4, §63.2, §66.10)
+DATA, DERIV = "data-2026-10-29", "derivatives-2026-10-06"     # data refreshed 2026-10-29, adds the seven-class maps (KB §57.4, §63.2, §66.10, §69.28)
 
 LANDFORM_VALUES = "Classes 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class"
+V2_VALUES = LANDFORM_VALUES.replace(", 255", ", 5 volcanic edifice, 6 apron, 7 fluvial channel, 255")
 IUS_SUP_VALUES = ("Classes 1 crater interior, 2 steep wall, 3 moderate wall, 4 chasma floor, 5 plateau flank, "
                   "6 plateau")
 G60 = {
@@ -54,7 +55,18 @@ G60 = {
     "global60_landforms_svm_200m_mode7.tif": "The same, 7 × 7 majority filter.",
     "global60_landforms_svm_200m_mode9.tif": "The same, 9 × 9 majority filter.",
     "global60_landforms_svm_200m_mode11.tif": "The same, **11 × 11 (2.2 km) majority filter: the published version** "
-        "since 2026-10-16 (73.8 %, κ 0.58 held out; KB §55.3, §57).",
+        "since 2026-10-16 (73.8 %, κ 0.58 held out; KB §55.3, §57); since 2026-10-29 the seven-class map leads (D28, "
+        "KB §69.26).",
+    "global60_landforms_svm_v2_200m.tif": "The seven-class SVM at 200 m on the reviewed v2 labels (KB §69.24), "
+        "before the majority filter. " + V2_VALUES + ".",
+    "global60_landforms_svm_v2_200m_mode11.tif": "**The seven-class landform map** (layout 04b): the same, 11 × 11 "
+        "majority filter (it changed 18.9 % of pixels); 42.5 %, κ 0.310 on the 237 held-out v2 polygons, against "
+        "35.7 %, κ 0.244 for the four-class map on the same polygons. Fails D18's rule; leads by D28 (KB §69.24, "
+        "§69.26).",
+    "global60_landforms_svm_v2p_200m.tif": "**A rehearsal, never a result** (KB §69.4): the seven-class SVM on the "
+        "label proposals as proposed (`v2p`), to test the pipeline before the review. " + V2_VALUES + ".",
+    "global60_landforms_svm_v2p_200m_mode11.tif": "Rehearsal (KB §69.4). The same, 11 × 11 majority filter: 41.3 %, "
+        "κ 0.297 on the 258 held-out rehearsal polygons.",
     "global60_landforms_svm_nothermal_200m.tif": "Test T1 in Pro (KB §56): the 200 m classification without the "
         "thermal bands: 68.5 %, κ 0.52 held out. " + LANDFORM_VALUES + ".",
     "global60_landforms_svm_nothermal_400m.tif": "T1 at 400 m without the thermal bands (KB §56.1): 68.5 %, κ 0.52.",
@@ -65,6 +77,14 @@ G60 = {
         "held out. Provinces, not single features.",
     "global60_landforms_unet_200m.tif": "The U-Net terrain-province map in one pass (KB §66.7): 98.8 %, κ 0.979 held "
         "out, with seams on the tool's 256 px tiles. Superseded by `_seamfix` below, kept.",
+    "global60_landforms_unet_v2_200m_seamfix.tif": "**The seven-class U-Net map** (layout 17b, KB §69.25): the U-Net "
+        "on the reviewed v2 labels, two passes as `_seamfix` above; 69.0 %, κ 0.606 on the 237 held-out v2 polygons "
+        "(seven-class SVM 42.5 %). Volcanic edifice takes 40.0 % of ±60° against 19.4 % of the held-out label area. "
+        + V2_VALUES + ".",
+    "global60_landforms_unet_v2p_200m_seamfix.tif": "**A rehearsal, never a result** (KB §69.4): the U-Net on the "
+        "label proposals as proposed: 88.8 %, κ 0.856 on the 258 held-out rehearsal polygons. " + V2_VALUES + ".",
+    "global60_svm_s_ClassifyPixel.tif": "Not a product: a single 4,608 × 4,608 tile of zeros left by a "
+        "`ClassifyPixelsUsingDeepLearning` run on 2026-10-26, during the v2p rehearsal's U-Net passes (KB §69.4).",
     "global60_svm_stack_200m_nothermal.tif": "Bands 1–3, 6, 7 of the classification stack, copied exactly (T1, KB §56).",
     "global60_svm_stack_200m_novisible.tif": "Bands 4–7 of the classification stack, copied exactly (T1, KB §56.1).",
     "global60_svm_stack_200m_terrain.tif": "Bands 6–7 (slope, relief) of the classification stack, copied exactly "
@@ -156,6 +176,8 @@ ATH_RELEASE = DATA
 IN_DATA = ("global60_landforms", "smoke60", "global60_depression_density", "global60_robbins_density")
 # In no release: exact band copies of the stack, rebuilt by make_t1_pro_confirm.py in ~15 min (KB §56)
 UNRELEASED = {n for n in G60 if n.startswith("global60_svm_stack_200m_")}
+# In no release and not a product: a tool's leftover the bundle's globs do not take
+STRAY = {"global60_svm_s_ClassifyPixel.tif"}
 # Patched in place at the 180° column on 2026-10-14 (KB §54): the derivatives release holds the copy from before
 PATCHED = {"global60_dem.tif", "global60_slope_deg.tif", "global60_aspect.tif", "global60_hillshade.tif",
            "global60_svm_stack_200m.tif"}
@@ -207,6 +229,8 @@ def main():
         where = rel(DERIV, p.name + ".part*") if big else rel(DATA, "global60-classification-part*.zip")
         if p.name in UNRELEASED:
             where = "none (re-computable, KB §56)"
+        if p.name in STRAY:
+            where = "none (not a product)"
         desc = G60.get(p.name)
         if desc and p.name in PATCHED:
             desc += PATCH_NOTE

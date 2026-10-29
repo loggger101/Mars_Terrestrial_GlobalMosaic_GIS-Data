@@ -18,10 +18,12 @@ byte for byte, so a restore is an unzip:
   global60-classification[-partN].zip  the ±60° SVM maps (400 m raw + mode 3/5/7/9; since 2026-10-16
                              also 200 m raw + mode 3-11 and the four T1 maps), the models, the two
                              0.5° density grids, smoke tests; since 2026-10-21 the two U-Net maps
-                             (one pass and two passes, §66.7-66.8)
-  dl-models.zip              <drive>\Mars Project\DLModels\, whole: the three trained deep-learning
-                             models (X5, X5b, X5c: .pth, .emd, .dlpk), their loss graphs and the
-                             detections (§66). Added 2026-10-21: hours of GPU to retrain
+                             (one pass and two passes, §66.7-66.8); since 2026-10-29 the seven-class
+                             SVM and U-Net maps, v2 and the v2p rehearsal (§69.4, §69.24-69.25)
+  dl-models.zip              <drive>\Mars Project\DLModels\, whole: every trained deep-learning
+                             model (X5, X5b, X5c, and since 2026-10-29 the two seven-class U-Nets:
+                             .pth, .emd, .dlpk), their loss graphs and the detections (§66, §69).
+                             Added 2026-10-21: hours of GPU to retrain
   npy-caches.zip             decimated arrays of the globals behind the figures (§9); the five
                              ~950 MB *_ov400.npy are left out, they are views of the tifs above
   mars_project_vectors.gpkg.zip, Classified_*.tif   from github_export_gdb.py

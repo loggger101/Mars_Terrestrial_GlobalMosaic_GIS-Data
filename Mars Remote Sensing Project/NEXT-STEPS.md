@@ -210,7 +210,8 @@ rule fails on (a), apron's (b) and Crater's and hills' (c): the four-class map s
 is done (10-29 08:23, KB §69.25): 69.0 %, κ 0.606 against the four-class U-Net's 44.1 %, κ 0.301; every new
 class passes (b), but (a) and all three of (c) fail (volcanic edifice takes 40 % of ±60°), by D18's rule it
 would be a test.** **D28 (the author, 10-29): the seven-class maps lead** all the same (KB §69.26); the layouts
-are built (04b, 13b, 17b), and the paper and deck rewritten with them leading (KB §69.27).
+are built (04b, 13b, 17b), and the paper and deck rewritten with them leading (KB §69.27). Release
+`data-2026-10-29` backs up both seven-class maps, the v2p rehearsal's and the two seven-class U-Nets (KB §69.28).
 
 **The digitising classes hold 94 channels and 26 crater rims (0 lava margins); 549 of 9,287 candidates are
 reviewed, none at Athabasca.** The review is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not

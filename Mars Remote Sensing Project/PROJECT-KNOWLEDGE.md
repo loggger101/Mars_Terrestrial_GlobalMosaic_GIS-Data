@@ -41,7 +41,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | the GUI work of 24 Sep–1 Oct and its checks | §29, §30, §53.2 |
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
-| GitHub backup and releases | what would make the repository better, §69.19, and the sync's guard, §69.20 (`NEXT-STEPS.md` §13); §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca), §66.10 (`data-2026-10-21`, the first with the deep-learning models) |
+| GitHub backup and releases | what would make the repository better, §69.19, and the sync's guard, §69.20 (`NEXT-STEPS.md` §13); §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca), §66.10 (`data-2026-10-21`, the first with the deep-learning models), §69.28 (`data-2026-10-29`, the first with the seven-class maps) |
 | the interim builds | §39.3, §45, §48, §51.5, §57.3, §66.10, §67 |
 
 ---
@@ -1732,7 +1732,7 @@ Source mosaics and IAU nomenclature keep their producers' terms. The public name
 | `Mars Project\`: the `.aprx`, `.atbx`, `.ecd` / `.ecs`, `GpMessages`, sidecars, RATs, models, layout PNGs, `LabeledObjects\` metadata | repo, same folder name |
 | the drive root: the sources' `.aux.xml`, the night mosaic's `.lbl` / `.md5` | repo, `drive-root\` |
 | the gdb's feature classes, the 512 labels included | repo, `exports\mars_project_vectors.gdb`; the two X2 classes release-only (§57.1); all in the GeoPackage |
-| both type areas, ±60° classification maps (SVM and U-Net) and models, the deep-learning models, `.npy` caches, the GUI SVM maps, the GeoPackage | the data release (`data-2026-10-21`, §57.4, §66.10) |
+| both type areas, ±60° classification maps (SVM and U-Net, four and seven classes) and models, the deep-learning models, `.npy` caches, the GUI SVM maps, the GeoPackage | the data release (`data-2026-10-29`, §57.4, §66.10, §69.28) |
 | the seven ±60° derivatives, both deep-learning exports, the GUI ±60° segmentation | release `derivatives-2026-10-06` (§35.3) |
 | the four source mosaics | **not copied**; linked by URL, sizes checked |
 
@@ -4854,3 +4854,32 @@ all the same (D28, §69.26).
   U-Net figure moved after the four-class ones so the figures number in reading order; slide 28's bullets shortened
   off the source line), and two from the build (Figure 9's caption, a lost footnote mark in Table 3).
   `verify_interim.py` on `final.py` and the `.tex`: every number in the record.
+
+### 69.28 Release `data-2026-10-29`: the seven-class maps and models backed up — 2026-10-29, laptop **[V]**
+
+At the author's request to make sure the repository holds the newest data from the drive.
+
+- **What was already current:** the clone level with `origin/main` (a930dc0); `github_sync.py --dry-run`, 0 to copy,
+  1,231 unchanged, the ten model weights over 95 MB skipped as always; `exports\` re-exported 10-27 01:41, after
+  the gdb's last write (01:26). A fresh export into scratch (`github_export_gdb.py --rasters --repo <scratch>`):
+  every row count matched the source, and its layer catalogue differs from the committed one only in the date, so
+  `exports\` was not rewritten.
+- **What was on the drive only:** everything since `data-2026-10-21` in the release groups: the seven-class SVM
+  maps (`global60_landforms_svm_v2_200m[_mode11].tif`, `..._v2p_...`, §69.4, §69.24), the seven-class U-Net maps
+  (`global60_landforms_unet_v2[p]_200m_seamfix.tif`, §69.25), their `.ecd`, a fourth `ClassifyRaster` `.crf`, the
+  two seven-class U-Nets (`DLModels\global60_unet_x5c_v2p_20261025`, `..._v2_20261028`), the GeoPackage after the
+  review (35 classes, was 28), three re-exported type-area layout PNGs. `docs/backup.md` had listed the v2p
+  rehearsal's products as kept on the drive only; that described the state, not a decision, and the bundle's globs
+  take them, so they are in the release, marked as a rehearsal.
+- **The release** (`github_release_bundle.py --upload data-2026-10-29` on the laptop, log
+  `logs\release_data-2026-10-29_FARTBUTT.log`, 14:59–15:24): **13 assets, 10.78 GB**; `global60-classification` is
+  now three parts (part 1 still holds the four-class `_mode11` map the quick start names; the six v2 and v2p maps are
+  in part 2), `dl-models.zip` 1,631 MB with the five models. `tools/check_remote.py`: **95 release assets, 4 source
+  mosaics, all pass**. The README quick start rerun verbatim on the new tag: the map's SHA-256 equals the drive
+  copy's, Crater 32.8 %.
+- **Pointed at it:** `github_catalog_rasters.py` (`DATA`; the six v2 and v2p maps described from their score logs;
+  `global60_svm_s_ClassifyPixel.tif`, a 4,608 × 4,608 tile of zeros left by a 10-26 `ClassifyPixelsUsingDeepLearning`
+  run, described as not a product and in no release; `docs/rasters.md` regenerated, 0 undescribed),
+  `github_export_gdb.py` (`RELEASE`; `--catalog-only`), `github_release_bundle.py`'s docstring, the README (backup
+  section, the quick start's tag and size, 1.9 GB; five models in the tree), `docs/backup.md`, `CITATION.cff`.
+  `data-2026-10-21` and the older releases are kept.

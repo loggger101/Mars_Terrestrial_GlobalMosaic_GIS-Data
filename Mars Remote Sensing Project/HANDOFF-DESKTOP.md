@@ -43,7 +43,7 @@ plans. When they disagree, the KB wins and the plan is fixed.
 | reference data | `Mars Project\Reference\` (USGS SIM 3292, Robbins craters, TES thermal inertia; third-party, never mirrored) |
 | deep-learning exports | `Mars Project\LabeledObjects\global60_svm_stack_200m_train\` (**train on this one only**); `...\global60_svm_stack_200m\` holds the held-out labels too: never train on it |
 | source mosaics | the drive root: Viking MDIM 2.1 colour, THEMIS day IR v12, THEMIS night IR v14 (±60°), HRSC/MOLA blend DEM; pyramids built |
-| public backup and project page | GitHub `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`; clone at `~\OneDrive\Documents\GitHub\Mars_Terrestrial_GlobalMosaic_GIS-Data`; releases `data-2026-10-21` (both type areas, the U-Net maps, the deep-learning models) and `derivatives-2026-10-06` (KB §35, §57.4, §63.2, §66.10) |
+| public backup and project page | GitHub `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`; clone at `~\OneDrive\Documents\GitHub\Mars_Terrestrial_GlobalMosaic_GIS-Data`; releases `data-2026-10-29` (both type areas, the U-Net maps, the seven-class maps, the deep-learning models) and `derivatives-2026-10-06` (KB §35, §57.4, §63.2, §66.10, §69.28) |
 | agent memories (private) | the laptop's, mirrored read-only to `~\OneDrive\Documents\Github Knowledge\memory\loggg\z-drive\`; the desktop has its own for `F:` |
 
 ## 3. Working rules (each one learned the hard way; KB section in brackets)
