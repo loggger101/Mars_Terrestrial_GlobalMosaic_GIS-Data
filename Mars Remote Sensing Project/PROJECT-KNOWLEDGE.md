@@ -29,7 +29,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | the ArcGIS project and the gdb | §5, §6 |
 | the map layouts: builders, polish, defects found by reading | §5, §22, §33, §61, §63, §64, §65, §67 |
 | how scripted work is done, and its traps | §2, §9, §12, §13 |
-| what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1, §56, §62 |
+| what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1 (by block size, §69.29; mapped, §69.30), §56, §62 |
 | classification: type area | §19, §23, §27 |
 | classification: ±60°, the published map | §31, §32.2, §55.3, §57 |
 | the class scheme and the labels' audit | §29.2, §43.3, §68, §69.2 |
@@ -2068,6 +2068,8 @@ TES cells, against log TES inertia; globally and as the median r within 192 bloc
 
 - **Viking tracks calibrated inertia across the planet** (r −0.31 / −0.36), much less within a block: a regional
   signal, the dust provinces.
+- **By block size (§69.29):** within 2–5° blocks night IR reaches r ≈ +0.12, the index ≈ −0.09 to −0.10; below 2° the
+  signal fades as TES's 3 km grid runs out.
 - **Night IR and the index carry a weak, consistent local signal in the physical direction** (quartiles all of one
   sign within blocks), which vanishes globally: what region-by-region stretching predicts. Weak: |r| ≈ 0.1 at 3 km.
 - Day IR carries nothing.
@@ -4883,3 +4885,79 @@ At the author's request to make sure the repository holds the newest data from t
   `github_export_gdb.py` (`RELEASE`; `--catalog-only`), `github_release_bundle.py`'s docstring, the README (backup
   section, the quick start's tag and size, 1.9 GB; five models in the tree), `docs/backup.md`, `CITATION.cff`.
   `data-2026-10-21` and the older releases are kept.
+
+### 69.29 T3 at finer blocks: the THEMIS signal peaks within 2–5° blocks, at r ≈ 0.12 — 2026-10-29, laptop **[V]**
+
+At the author's suggestion that 15° blocks (~782,000 km², §69.15) are too large for a thermal signal that may only
+hold locally. `build\make_tes_block_scale.py`, `logs\tes_block_scale.json`: §43.1's inputs and method unchanged (the
+1.6 km overview averaged into TES's 0.05° cells, measured cells only), blocks of 15, 10, 5, 2, 1 and 0.5°, aligned to
+multiples of the size; a block needs §43.1's share of measured cells and at least 30. **The 15° row repeats §43.1 to
+the second decimal.** Added: the share of blocks with the physical sign; the **pooled within-block r** (block-demeaned
+layer against block-demeaned log inertia over all cells, free of the noise that spreads a small block's r); and a
+**null**, each layer shifted 180° in longitude. Nightside TES (dayside the same shape, peaking at 2–10°, about half the size):
+
+| block | km², block on the equator | TES cells | night IR: median [IQR], pooled, sign | index: median, pooled, sign | Viking red: median, pooled | sd log TI |
+|---|---|---|---|---|---|---|
+| 15° | 781,500 | 90,000 | +0.109 [+0.07, +0.15], +0.089, 100 % | −0.077, −0.067, 99 % | −0.100, −0.125 | 0.22 |
+| 10° | 349,600 | 40,000 | +0.115 [+0.08, +0.16], +0.098, 99 % | −0.089, −0.075, 97 % | −0.070, −0.093 | 0.21 |
+| **5°** | **87,700** | 10,000 | **+0.119** [+0.07, +0.17], +0.110, 97 % | **−0.097**, −0.085, 93 % | −0.050, −0.059 | 0.18 |
+| **2°** | **14,050** | 1,600 | +0.103 [+0.03, +0.20], **+0.116**, 84 % | −0.086, **−0.092**, 82 % | −0.027, −0.030 | 0.15 |
+| 1° | 3,510 | 400 | +0.067 [−0.03, +0.18], +0.090, 68 % | −0.058, −0.075, 67 % | −0.019, −0.016 | 0.14 |
+| 0.5° | 880 | 100 | +0.022 [−0.11, +0.16], +0.032, 54 % | −0.023, −0.030, 55 % | −0.009, −0.006 | 0.12 |
+
+- **Smaller blocks help the THEMIS pair, but only a little:** night IR and the index are strongest within 5° blocks
+  (median) and 2° blocks (pooled), |r| 0.09–0.12 against 0.07–0.11 at 15°. The prediction written in the script
+  (|r| 0.15–0.2 at 5°) **failed**; §43.1's "|r| ≈ 0.1 at 3 km" stands, with ≈ 0.12 as the best block size's figure.
+- **Below 2° the signal falls away** in the pooled r as well as the median, so it is not small-sample noise alone:
+  the blocks narrow the range of log inertia (sd 0.22 → 0.12) and hold few TES cells (100 at 0.5°), whose ~3 km grid
+  is itself smoothed from larger footprints. Whether THEMIS tracks inertia below ~100 km is untestable with TES; it
+  needs a calibrated inertia product at THEMIS resolution, which the project does not hold.
+- **Viking's correlation shrinks steadily with the block** (−0.125 pooled at 15°, −0.006 at 0.5°): regional, the
+  dust provinces, as §43.1 read it. Day IR is near zero at every size (|median| ≤ 0.015).
+- **The null is ~0 at every size** (|pooled| ≤ 0.021, the largest in 15° blocks from latitude trends, gone by 5°): the
+  pattern comes from the data, not from the block size.
+- **Day against night DN within blocks:** global r +0.029; median +0.03 to +0.04 at 2–15°, IQR widening from
+  [−0.06, +0.15] at 15° to [−0.27, +0.25] at 0.5°. The Ius type area's 0.098 (§15.5, at 100 m) lies inside that spread:
+  the two mosaics are nearly uncorrelated on average at every scale, and how much varies from place to place.
+- **Not changed:** the held-out split keeps its 15° blocks (§31.3); smaller blocks there would put test polygons
+  beside training ones of the same terrain (§31.3's reason for blocks), a different question from this one.
+- **Deliverables not edited:** the interim and the final quote §43.1's 15° figures, which remain true; a sentence on
+  the block size is the author's choice. Mapped block by block, with a chart of this table: §69.30.
+
+### 69.30 T3 mapped in 5° blocks: layout 18, and where the THEMIS signal holds — 2026-10-29, laptop **[V]**
+
+At the author's request, §69.29's 5° nightside r drawn as maps, with a chart of r against block size.
+
+- **Rasters** (`make_tes_block_scale.py`, now also writing them): `Global60\global60_tes_r5deg_{nightIR,index,viking}.tif`,
+  one Float32 cell per 5° block on the ±60° frame (72 × 24, Mars_Equidistant_Cylindrical_CM180, NoData −9); all
+  1,728 blocks hold enough measured TES cells. **Registration checked:** Viking's 5° block means from the TES cells,
+  placed on the frame, against the same means read straight off the stack's overview: r **1.0000**; shifted 180°,
+  −0.15. The scale table of §69.29 reproduced unchanged.
+- **The project** (`make_tes_block_layout.py`, then `polish_layouts.py`): maps **"T3a — night IR against TES
+  inertia, 5° blocks (±60°)"** (Viking's r present, off) and **"T3b — thermal-contrast index against TES inertia,
+  5° blocks (±60°)"**, each over the hillshade with the type areas and the 30° graticule; **layout
+  `18_t3_tes_blocks`**: both maps, one key in which blue always means the physical direction (night IR r > 0, the
+  index r < 0), the pooled-r table by block size, the type areas' blocks. Read after export; 38 maps, 21 layouts.
+- **Chart** (`make_fig_tes_scale.py` → `final_img\tes_block_scale.png`): pooled r with the physical direction up,
+  and the share of blocks with the physical sign, against block size; not placed in any deliverable.
+- **Where it holds** (`make_tes_block_where.py`, `logs\tes_block_where.json`; signed r, positive = physical):
+
+| layer | ρ with the block's mean log TI | ρ with its sd | median north / south | 30–60°N, 0–30°N, 0–30°S, 30–60°S |
+|---|---|---|---|---|
+| night IR | **+0.25** | −0.13 | +0.094 / **+0.141** | +0.111, +0.082, +0.136, +0.149 |
+| index | **+0.31** | −0.16 | +0.067 / **+0.134** | +0.071, +0.060, +0.125, +0.141 |
+| Viking red | +0.07 | +0.00 | **+0.071** / +0.029 | +0.103, +0.044, +0.006, +0.050 |
+
+  **The THEMIS pair tracks inertia best on high-inertia, southern ground** (the cratered highlands, the Valles
+  Marineris row) and least on the dusty, low-inertia northern provinces (Tharsis–Amazonis is mostly grey, the
+  few opposite-sign blocks lie there and in the northern plains). The wider inertia range does not explain it:
+  ρ with the block's sd is slightly negative. One reading, not tested: a dust mantle evens out both the night
+  temperature and its relation to TES inertia. **Viking's albedo does the reverse**, its within-block signal in
+  the north.
+- **The type areas' blocks:** **Ius**, the chasma's row (5–10°S, 270–290°E): night IR **+0.31 to +0.48**, index
+  −0.18 to −0.31, among the strongest on the planet; the row to its south +0.08 to +0.17. **Athabasca** (nine
+  blocks, 150–165°E, 0–15°N): night IR +0.06 to +0.16, the index −0.12 to +0.02, Viking down to −0.65 (5–10°N,
+  150–155°E), as §42.4 found at the type-area window: albedo, not the THEMIS pair, carries the material signal
+  there.
+- **Limits:** one block's r rests on ~10,000 strongly autocorrelated cells; read the pattern, not a block. The
+  THEMIS mosaics are stretched region by region, so blocks are compared only by their internal r, never by DN.

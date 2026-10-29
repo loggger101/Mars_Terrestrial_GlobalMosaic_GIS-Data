@@ -1,0 +1,94 @@
+  Viking red             read at 1600 m  13337 x 4446
+  THEMIS night DN        read at 1600 m  13337 x 4446
+  THEMIS day DN          read at 1600 m  13337 x 4446
+  slope                  read at 1600 m  13337 x 4446
+  diurnal-contrast index read at 1600 m  13337 x 4446
+registration: Viking 5° block means, TES cells placed vs frame direct r 1.0000 (shifted 180°: -0.1516)
+dayside   Viking red               15°  median -0.057 [-0.17, +0.01]  pooled -0.080  sign  71%  | null median +0.001 pooled -0.000  | sd(log TI) 0.30    192 blocks
+dayside   Viking red               10°  median -0.031 [-0.12, +0.03]  pooled -0.053  sign  63%  | null median +0.003 pooled +0.000  | sd(log TI) 0.29    432 blocks
+dayside   Viking red                5°  median -0.020 [-0.08, +0.04]  pooled -0.030  sign  59%  | null median +0.002 pooled +0.005  | sd(log TI) 0.26   1728 blocks
+dayside   Viking red                2°  median -0.007 [-0.07, +0.05]  pooled -0.012  sign  53%  | null median +0.000 pooled -0.000  | sd(log TI) 0.24  10798 blocks
+dayside   Viking red                1°  median -0.001 [-0.09, +0.08]  pooled -0.002  sign  50%  | null median +0.001 pooled +0.000  | sd(log TI) 0.22  42924 blocks
+dayside   Viking red              0.5°  median +0.002 [-0.12, +0.12]  pooled +0.003  sign  50%  | null median -0.000 pooled -0.000  | sd(log TI) 0.20  167988 blocks
+dayside   THEMIS night DN          15°  median +0.063 [+0.04, +0.09]  pooled +0.056  sign  98%  | null median +0.000 pooled +0.001  | sd(log TI) 0.30    192 blocks
+dayside   THEMIS night DN          10°  median +0.066 [+0.04, +0.10]  pooled +0.060  sign  95%  | null median +0.000 pooled +0.001  | sd(log TI) 0.29    432 blocks
+dayside   THEMIS night DN           5°  median +0.065 [+0.03, +0.11]  pooled +0.065  sign  90%  | null median -0.000 pooled +0.000  | sd(log TI) 0.26   1728 blocks
+dayside   THEMIS night DN           2°  median +0.054 [-0.00, +0.13]  pooled +0.064  sign  75%  | null median -0.001 pooled +0.000  | sd(log TI) 0.24  10798 blocks
+dayside   THEMIS night DN           1°  median +0.036 [-0.05, +0.13]  pooled +0.047  sign  61%  | null median -0.001 pooled +0.000  | sd(log TI) 0.22  42924 blocks
+dayside   THEMIS night DN         0.5°  median +0.011 [-0.11, +0.13]  pooled +0.014  sign  52%  | null median +0.000 pooled +0.000  | sd(log TI) 0.20  168018 blocks
+dayside   THEMIS day DN            15°  median -0.009 [-0.03, +0.01]  pooled -0.004  sign  39%  | null median +0.001 pooled +0.001  | sd(log TI) 0.30    192 blocks
+dayside   THEMIS day DN            10°  median -0.010 [-0.03, +0.01]  pooled -0.005  sign  36%  | null median +0.000 pooled +0.000  | sd(log TI) 0.29    432 blocks
+dayside   THEMIS day DN             5°  median -0.012 [-0.04, +0.01]  pooled -0.006  sign  38%  | null median +0.000 pooled +0.000  | sd(log TI) 0.26   1728 blocks
+dayside   THEMIS day DN             2°  median -0.012 [-0.06, +0.03]  pooled -0.007  sign  42%  | null median -0.000 pooled +0.000  | sd(log TI) 0.24  10798 blocks
+dayside   THEMIS day DN             1°  median -0.009 [-0.08, +0.06]  pooled -0.006  sign  46%  | null median +0.000 pooled -0.000  | sd(log TI) 0.22  42924 blocks
+dayside   THEMIS day DN           0.5°  median -0.004 [-0.11, +0.10]  pooled -0.000  sign  49%  | null median -0.000 pooled -0.000  | sd(log TI) 0.20  168018 blocks
+dayside   slope                    15°  median -0.051 [-0.11, +0.04]  pooled +0.001  sign    -  | null median -0.016 pooled -0.021  | sd(log TI) 0.30    192 blocks
+dayside   slope                    10°  median -0.045 [-0.11, +0.04]  pooled +0.000  sign    -  | null median -0.010 pooled -0.005  | sd(log TI) 0.29    432 blocks
+dayside   slope                     5°  median -0.036 [-0.10, +0.03]  pooled -0.009  sign    -  | null median -0.000 pooled +0.002  | sd(log TI) 0.26   1728 blocks
+dayside   slope                     2°  median -0.025 [-0.10, +0.04]  pooled -0.015  sign    -  | null median +0.000 pooled +0.000  | sd(log TI) 0.24  10798 blocks
+dayside   slope                     1°  median -0.016 [-0.10, +0.06]  pooled -0.011  sign    -  | null median +0.001 pooled +0.000  | sd(log TI) 0.22  42924 blocks
+dayside   slope                   0.5°  median -0.008 [-0.12, +0.10]  pooled -0.007  sign    -  | null median +0.003 pooled +0.001  | sd(log TI) 0.20  168018 blocks
+dayside   diurnal-contrast index   15°  median -0.049 [-0.08, -0.03]  pooled -0.046  sign  97%  | null median -0.000 pooled -0.000  | sd(log TI) 0.30    192 blocks
+dayside   diurnal-contrast index   10°  median -0.052 [-0.10, -0.03]  pooled -0.050  sign  94%  | null median -0.000 pooled -0.000  | sd(log TI) 0.29    432 blocks
+dayside   diurnal-contrast index    5°  median -0.055 [-0.10, -0.02]  pooled -0.054  sign  89%  | null median +0.001 pooled -0.000  | sd(log TI) 0.26   1728 blocks
+dayside   diurnal-contrast index    2°  median -0.049 [-0.11, +0.00]  pooled -0.054  sign  74%  | null median +0.000 pooled -0.000  | sd(log TI) 0.24  10798 blocks
+dayside   diurnal-contrast index    1°  median -0.033 [-0.12, +0.04]  pooled -0.040  sign  61%  | null median +0.001 pooled -0.000  | sd(log TI) 0.22  42926 blocks
+dayside   diurnal-contrast index  0.5°  median -0.010 [-0.13, +0.10]  pooled -0.010  sign  52%  | null median +0.000 pooled -0.000  | sd(log TI) 0.20  168052 blocks
+nightside Viking red               15°  median -0.100 [-0.23, +0.00]  pooled -0.125  sign  74%  | null median +0.007 pooled +0.019  | sd(log TI) 0.22    192 blocks
+nightside Viking red               10°  median -0.070 [-0.18, +0.02]  pooled -0.093  sign  69%  | null median +0.007 pooled +0.011  | sd(log TI) 0.21    432 blocks
+nightside Viking red                5°  median -0.050 [-0.14, +0.02]  pooled -0.059  sign  66%  | null median +0.004 pooled +0.008  | sd(log TI) 0.18   1728 blocks
+nightside Viking red                2°  median -0.027 [-0.11, +0.05]  pooled -0.030  sign  59%  | null median +0.000 pooled -0.000  | sd(log TI) 0.15  10796 blocks
+nightside Viking red                1°  median -0.019 [-0.12, +0.08]  pooled -0.016  sign  55%  | null median +0.002 pooled -0.000  | sd(log TI) 0.14  42900 blocks
+nightside Viking red              0.5°  median -0.009 [-0.15, +0.13]  pooled -0.006  sign  52%  | null median +0.001 pooled +0.000  | sd(log TI) 0.12  167121 blocks
+nightside THEMIS night DN          15°  median +0.109 [+0.07, +0.15]  pooled +0.089  sign 100%  | null median +0.000 pooled -0.000  | sd(log TI) 0.22    192 blocks
+nightside THEMIS night DN          10°  median +0.115 [+0.08, +0.16]  pooled +0.098  sign  99%  | null median -0.001 pooled +0.000  | sd(log TI) 0.21    432 blocks
+nightside THEMIS night DN           5°  median +0.119 [+0.07, +0.17]  pooled +0.110  sign  97%  | null median -0.001 pooled -0.000  | sd(log TI) 0.18   1728 blocks
+nightside THEMIS night DN           2°  median +0.103 [+0.03, +0.20]  pooled +0.116  sign  84%  | null median +0.001 pooled +0.000  | sd(log TI) 0.15  10796 blocks
+nightside THEMIS night DN           1°  median +0.067 [-0.03, +0.18]  pooled +0.090  sign  68%  | null median +0.000 pooled +0.000  | sd(log TI) 0.14  42900 blocks
+nightside THEMIS night DN         0.5°  median +0.022 [-0.11, +0.16]  pooled +0.032  sign  54%  | null median -0.000 pooled -0.000  | sd(log TI) 0.12  167125 blocks
+nightside THEMIS day DN            15°  median -0.007 [-0.04, +0.02]  pooled +0.001  sign  43%  | null median +0.000 pooled +0.000  | sd(log TI) 0.22    192 blocks
+nightside THEMIS day DN            10°  median -0.009 [-0.04, +0.02]  pooled -0.000  sign  41%  | null median +0.001 pooled +0.001  | sd(log TI) 0.21    432 blocks
+nightside THEMIS day DN             5°  median -0.012 [-0.05, +0.02]  pooled -0.002  sign  40%  | null median +0.000 pooled +0.000  | sd(log TI) 0.18   1728 blocks
+nightside THEMIS day DN             2°  median -0.015 [-0.07, +0.04]  pooled -0.006  sign  42%  | null median -0.001 pooled +0.001  | sd(log TI) 0.15  10796 blocks
+nightside THEMIS day DN             1°  median -0.013 [-0.09, +0.06]  pooled -0.010  sign  45%  | null median +0.000 pooled +0.000  | sd(log TI) 0.14  42900 blocks
+nightside THEMIS day DN           0.5°  median -0.009 [-0.13, +0.11]  pooled -0.010  sign  48%  | null median -0.001 pooled -0.000  | sd(log TI) 0.12  167125 blocks
+nightside slope                    15°  median +0.004 [-0.08, +0.09]  pooled +0.053  sign    -  | null median -0.018 pooled -0.021  | sd(log TI) 0.22    192 blocks
+nightside slope                    10°  median +0.008 [-0.08, +0.10]  pooled +0.058  sign    -  | null median -0.003 pooled -0.003  | sd(log TI) 0.21    432 blocks
+nightside slope                     5°  median +0.010 [-0.08, +0.09]  pooled +0.054  sign    -  | null median +0.001 pooled +0.001  | sd(log TI) 0.18   1728 blocks
+nightside slope                     2°  median +0.000 [-0.08, +0.08]  pooled +0.032  sign    -  | null median -0.001 pooled +0.000  | sd(log TI) 0.15  10796 blocks
+nightside slope                     1°  median -0.005 [-0.10, +0.09]  pooled +0.018  sign    -  | null median +0.000 pooled +0.001  | sd(log TI) 0.14  42900 blocks
+nightside slope                   0.5°  median -0.006 [-0.13, +0.12]  pooled +0.007  sign    -  | null median +0.001 pooled +0.000  | sd(log TI) 0.12  167125 blocks
+nightside diurnal-contrast index   15°  median -0.077 [-0.14, -0.05]  pooled -0.067  sign  99%  | null median -0.001 pooled +0.000  | sd(log TI) 0.22    192 blocks
+nightside diurnal-contrast index   10°  median -0.089 [-0.14, -0.05]  pooled -0.075  sign  97%  | null median -0.000 pooled +0.000  | sd(log TI) 0.21    432 blocks
+nightside diurnal-contrast index    5°  median -0.097 [-0.16, -0.05]  pooled -0.085  sign  93%  | null median +0.001 pooled +0.000  | sd(log TI) 0.18   1728 blocks
+nightside diurnal-contrast index    2°  median -0.086 [-0.17, -0.02]  pooled -0.092  sign  82%  | null median +0.000 pooled +0.000  | sd(log TI) 0.15  10796 blocks
+nightside diurnal-contrast index    1°  median -0.058 [-0.16, +0.03]  pooled -0.075  sign  67%  | null median -0.000 pooled -0.000  | sd(log TI) 0.14  42900 blocks
+nightside diurnal-contrast index  0.5°  median -0.023 [-0.15, +0.10]  pooled -0.030  sign  55%  | null median -0.001 pooled -0.000  | sd(log TI) 0.12  167169 blocks
+day vs night DN   15°  median +0.029 [-0.06, +0.15]  pooled +0.029    192 blocks
+day vs night DN   10°  median +0.040 [-0.10, +0.16]  pooled +0.029    432 blocks
+day vs night DN    5°  median +0.041 [-0.12, +0.17]  pooled +0.029   1728 blocks
+day vs night DN    2°  median +0.031 [-0.15, +0.20]  pooled +0.028  10799 blocks
+day vs night DN    1°  median +0.020 [-0.21, +0.23]  pooled +0.023  43087 blocks
+day vs night DN  0.5°  median -0.002 [-0.27, +0.25]  pooled +0.009  170729 blocks
+day vs night DN global r +0.029
+wrote Z:\Mars Project\Global60\global60_tes_r5deg_nightIR.tif 1728 blocks
+wrote Z:\Mars Project\Global60\global60_tes_r5deg_index.tif 1728 blocks
+wrote Z:\Mars Project\Global60\global60_tes_r5deg_viking.tif 1728 blocks
+  Ius Chasma       270-275°E -10.. -5°  night IR +0.48  index -0.31  Viking -0.36  cells 9672
+  Ius Chasma       270-275°E -15..-10°  night IR +0.13  index -0.08  Viking +0.20  cells 9833
+  Ius Chasma       275-280°E -10.. -5°  night IR +0.34  index -0.18  Viking -0.33  cells 9704
+  Ius Chasma       275-280°E -15..-10°  night IR +0.08  index -0.09  Viking +0.03  cells 9804
+  Ius Chasma       280-285°E -10.. -5°  night IR +0.39  index -0.31  Viking -0.19  cells 9867
+  Ius Chasma       280-285°E -15..-10°  night IR +0.08  index -0.07  Viking -0.22  cells 9836
+  Ius Chasma       285-290°E -10.. -5°  night IR +0.31  index -0.22  Viking -0.10  cells 9793
+  Ius Chasma       285-290°E -15..-10°  night IR +0.17  index -0.14  Viking -0.07  cells 9926
+  Athabasca Valles 150-155°E +10..+15°  night IR +0.13  index -0.12  Viking -0.24  cells 9915
+  Athabasca Valles 150-155°E  +5..+10°  night IR +0.06  index +0.02  Viking -0.65  cells 9859
+  Athabasca Valles 150-155°E  +0.. +5°  night IR +0.16  index -0.10  Viking -0.11  cells 9846
+  Athabasca Valles 155-160°E +10..+15°  night IR +0.11  index -0.04  Viking -0.19  cells 9668
+  Athabasca Valles 155-160°E  +5..+10°  night IR +0.08  index -0.05  Viking -0.48  cells 9708
+  Athabasca Valles 155-160°E  +0.. +5°  night IR +0.07  index -0.05  Viking +0.01  cells 9712
+  Athabasca Valles 160-165°E +10..+15°  night IR +0.09  index -0.03  Viking -0.41  cells 9919
+  Athabasca Valles 160-165°E  +5..+10°  night IR +0.08  index -0.08  Viking -0.14  cells 9809
+  Athabasca Valles 160-165°E  +0.. +5°  night IR +0.16  index -0.05  Viking -0.05  cells 9669
+wrote Z:\Mars Remote Sensing Project\build\logs\tes_block_scale.json

@@ -18,6 +18,13 @@ checklist, is `HANDOFF-DESKTOP.md`.
 
 ## Resume here — 2026-10-26
 
+**2026-10-29, laptop (KB §69.29–§69.30), the author's request:** T3 rerun at 15° to 0.5° blocks: the THEMIS
+signal peaks within 2–5° blocks (night IR r ≈ +0.12), fades below 2°; mapped in 5° blocks as maps T3a / T3b
+and **layout 18**, with `final_img\tes_block_scale.png` (in no deliverable yet: the author's call). The
+signal holds on high-inertia southern ground, Ius among the strongest blocks, Athabasca weak. New scripts
+`make_tes_block_scale.py`, `make_tes_block_layout.py`, `make_tes_block_where.py`, `make_fig_tes_scale.py`;
+synced and pushed the same day (README, figures index and layout 18 preview updated).
+
 **2026-10-27, laptop, without the drive (KB §69.10): copy to the drive before the next `github_sync.py`.** The
 interim refined for the 10 November presentation, the 26 Oct cut kept (the author's choice): the T4 and T8 charts
 redrawn at 200 dpi, the U-Net slide's legend moved clear of its takeaways, the title slide's subtitle no longer

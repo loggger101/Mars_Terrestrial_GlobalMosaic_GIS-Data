@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 430 GB with all derived rasters, measured 2026-10-22). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 170, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 174, by purpose) · [backup and restore](docs/backup.md)
 
 [![Mars ±60° landform classification, seven classes](docs/thumbs/04b_global60_landforms_v2.jpg)](Mars%20Project/Global60/layouts/04b_global60_landforms_v2.png)
 *The landform map in seven classes over ±60°, scored on reviewed polygons the classifier never saw (layout 04b; the four-class map is layout 04).*
@@ -81,7 +81,7 @@ Two deep-learning models, trained on the desktop GPU on the same training blocks
 
 ### Against calibrated thermal inertia (T3)
 
-Across ±60°, TES thermal inertia tracks Viking red (r −0.36), while the THEMIS mosaics keep only a weak signal inside regions (|r| ≈ 0.1); in the two type areas the diurnal-contrast index does not track it. Where a calibrated product can check, visible albedo carries the material signal.
+Across ±60°, TES thermal inertia tracks Viking red (r −0.36), while the THEMIS mosaics keep only a weak signal inside regions (|r| ≈ 0.1); in the two type areas the diurnal-contrast index does not track it. Where a calibrated product can check, visible albedo carries the material signal. By block size the THEMIS signal is strongest inside 2–5° blocks (night IR r ≈ +0.12, against +0.09 in 15° blocks) and fades below 2°, where the ~3 km TES grid runs out ([chart](Mars%20Remote%20Sensing%20Project/build/final_img/tes_block_scale.png)). Mapped in 5° blocks (layout 18) it holds best on high-inertia southern ground, with Ius Chasma among the strongest blocks, and is weak on the dusty northern provinces and at Athabasca.
 
 [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/tes_check.png" width="640" alt="T3: correlation of each layer with TES thermal inertia">](Mars%20Remote%20Sensing%20Project/build/interim_img/tes_check.png)
 
@@ -158,13 +158,14 @@ Made in the Pro GUI: one follows its 4096-pixel processing tiles and scores belo
 
 ## Layouts
 
-The 17 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets, 08 included, are centred on 0°E; the type-area sheets are drawn on the mosaics' own grid, central meridian 180°.
+The 21 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets, 08 included, are centred on 0°E; the type-area sheets are drawn on the mosaics' own grid, central meridian 180°.
 
 **The data at ±60°**
 
 | | |
 |---|---|
 | [![Layout 10: Where everything is: the analysis extent, the two type areas and the geologic map's volcanic units](docs/thumbs/10_global60_locator.jpg)](Mars%20Project/Global60/layouts/10_global60_locator.png) **10** · Where everything is: the analysis extent, the two type areas and the geologic map's volcanic units | [![Layout 08: The four inputs at ±60°: visible, day IR, night IR, topography](docs/thumbs/08_global60_mosaic.jpg)](Mars%20Project/Global60/layouts/08_global60_mosaic.png) **08** · The four inputs at ±60°: visible, day IR, night IR, topography |
+| [![Layout 18: Where the THEMIS mosaics track thermal inertia, in 5° blocks (T3)](docs/thumbs/18_t3_tes_blocks.jpg)](Mars%20Project/Global60/layouts/18_t3_tes_blocks.png) **18** · Where the THEMIS mosaics track thermal inertia, in 5° blocks (T3) | |
 
 **The two type areas**
 
@@ -256,12 +257,12 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   170 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   174 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
   NEXT STUFF/              interim report and presentation; Final/: the AASTeX paper and the final deck (drafts)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 36 maps, all Mars, and 20 layouts
+  Mars Project.aprx        the ArcGIS Pro project: 38 maps, all Mars, and 21 layouts
   Global60/, TypeArea/,    metadata sidecars, models (.ecd), raster attribute tables, layouts;
   Athabasca/               Global60/checks/ holds the DEM step chips
   DLModels/                the five deep-learning models' metadata and training plots (the
