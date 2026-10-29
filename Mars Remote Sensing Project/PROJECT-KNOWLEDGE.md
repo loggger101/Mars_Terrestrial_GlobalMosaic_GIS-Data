@@ -4793,3 +4793,33 @@ At the author's request after §69.21: the deck rendered to PDF (120 dpi) and ev
   four-class SVM map stays published (§69.24) and the four-class U-Net stays the deep-learning result; the two
   seven-class maps are reported as tests, the U-Net's the stronger (69.0 % against 42.5 %, and every new class
   over its share). **Next:** the layouts (NEXT-STEPS §11.5 step 4) and the final's text.
+
+### 69.26 D28: the seven-class maps lead; layouts 04b, 13b and 17b — 2026-10-29, desktop **[V]**
+
+- **D28, the author's decision, 2026-10-29:** asked to start the layouts, the author added that they do not mind
+  that the seven-class maps "failed" D18's rule: for now they are the most up-to-date and detailed maps, and seven
+  classes are much better than four. **So the seven-class maps lead** (the SVM, §69.24; the U-Net, §69.25); the
+  four-class maps and their sheets (04, 13, 17) stay as history. D18's rule and its result are kept on the record
+  and printed on the sheets; they no longer decide which map leads. This overrides D18's "failing it, v2 is a
+  reported test" (§68.4).
+- **The sheets** (NEXT-STEPS §11.5 step 4): a new builder, `build\make_v2_sheets.py`, makes three maps and three
+  layouts beside the four-class ones and touches none of them; every figure on the sheets is read from the logs
+  of §69.24–69.25 at run time.
+  - **04b_global60_landforms_v2**, beside 04: the seven-class SVM map (11 × 11) over ±60° with the held-out v2
+    labels, a per-class table (producer's, user's, share of the map, share of the held-out labels), the overall
+    scores beside the four-class map's on the same polygons, the checks, and D18's result with D28.
+  - **13b_geomap_check_v2**, beside 13: test T8 on the seven-class map, enrichment per SIM 3292 unit group for
+    seven classes (`logs\geomap_check_v2.json`); its notes: edifice ×4.15 on edifice units, apron ×5.69 on
+    apron units, fluvial channel 45 % of the highland (h).
+  - **17b_unet_v2_provinces**, beside 17: the seven-class U-Net over ±60° and over the held-out block with the
+    most classes (270–285°E, 15–30°N, 3 classes, 30 polygons), and a table of the U-Net, the seven-class SVM and
+    the four-class U-Net under the same scorer (accuracy and κ, balanced accuracy and macro F1, polygons won,
+    producer's and user's per class, IAU craters, elevation alone, seam ratio).
+- **How they were made:** rehearsed on a copy of the `.aprx` beside the real one, polished and exported, and every
+  sheet read; two layout faults fixed (04b's legend box ran into the D28 note and its last item out of the box;
+  13b's legend box covered the enrichment key's heading), read again, then built in the real `.aprx` (backup
+  `.backups\Mars Project 20261029-115321.aprx`), `polish_layouts.py` run (backup `...-115345.aprx`; only the
+  three new sheets changed: Arial, legend headings 11 pt, legend x on the margin), the polished PNGs copied to
+  `Global60\layouts\`. The rehearsal copy was moved to `.backups\`. The project now has 36 maps and 20 layouts.
+- **Not changed yet:** the final's text (`final.py`, the paper) still describes D18's rule deciding; §11.5 step 5
+  rewrites it with the seven-class maps leading. The README and the figures page now open with layout 04b.

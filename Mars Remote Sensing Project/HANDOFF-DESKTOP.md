@@ -63,7 +63,7 @@ plans. When they disagree, the KB wins and the plan is fixed.
   (the published map; the default cell is 400), `make_candidate_maps.py`, `make_mosaic_layout.py`,
   `make_reference_maps.py` (graticules back on the maps the first one wipes), `make_geomap_sheet.py --cell 200`,
   `make_validation_sheet.py`, `make_global60_candidate_sheets.py`, `make_athabasca_layout.py` (layout 15; adds
-  its own graticule), `make_dl_map.py` and `make_unet_map.py` (layouts 16, 17), then `polish_layouts.py`
+  its own graticule), `make_dl_map.py` and `make_unet_map.py` (layouts 16, 17), `make_v2_sheets.py` (04b, 13b, 17b), then `polish_layouts.py`
   (§57, §63, §66.4, §66.9). A text-only change can go into the builder and the `.aprx` element directly, without
   a rebuild (§67.2).
 - **After any layout builder, run `polish_layouts.py`** (Arial everywhere), export with `--export <scratch>`,
