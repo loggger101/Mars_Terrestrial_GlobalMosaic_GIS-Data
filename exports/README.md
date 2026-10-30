@@ -1,6 +1,6 @@
 # Vector layers from `Mars Project.gdb`
 
-Exported by [`github_export_gdb.py`](../Mars%20Remote%20Sensing%20Project/build/github_export_gdb.py) on 2026-10-27.
+Exported by [`github_export_gdb.py`](../Mars%20Remote%20Sensing%20Project/build/github_export_gdb.py) on 2026-10-30.
 Every feature class in the project geodatabase except the third-party reference layers (`Ref_*`:
 the USGS geologic map and the Robbins crater database, available from their publishers). Row counts
 were checked against the source.
@@ -26,7 +26,7 @@ the labels and nomenclature are in geographic `Mars_2000_(Sphere)`.
 | `MARS_nomenclature_classicalbedo_March2019` | Point | 303 | Mars_2000_(Sphere) | IAU/USGS Gazetteer, March 2019: classical albedo features. | `name`, `clean_name`, `approvaldt`, `origin`, `diameter`, `center_lon`, `center_lat`, `type`, `code`, `approval`, `min_lon`, `max_lon`, `min_lat`, `max_lat`, `ethnicity`, `continent`, `quad_name`, `quad_code`, `link`, `SymbolID` |
 | `Landform_LavaFlowMargins` | Polyline | 0 | Mars_Equidistant_Cylindrical_CM180 | Digitising target, task 11. Empty until digitised by hand. | `UnitName`, `Confidence`, `Evidence`, `Notes`, `MappedBy`, `MappedOn`, `FlowUnit`, `MarginType` |
 | `Landform_ChannelCenterlines` | Polyline | 94 | Mars_Equidistant_Cylindrical_CM180 | Digitising target, task 11: channel centrelines accepted in review from the machine candidates (`accept_reviewed.py`), and any drawn by hand (KB §69.7). | `UnitName`, `Confidence`, `Evidence`, `Notes`, `MappedBy`, `MappedOn`, `Origin`, `OrderStrahler`, `GradientPct`, `SourceID` |
-| `Landform_CraterRims` | Polygon | 26 | Mars_Equidistant_Cylindrical_CM180 | Digitising target, task 11: crater rims accepted in review from the machine candidates (`accept_reviewed.py`), and any drawn by hand (KB §69.7). | `UnitName`, `Confidence`, `Evidence`, `Notes`, `MappedBy`, `MappedOn`, `DiameterKm`, `Preservation`, `SourceID` |
+| `Landform_CraterRims` | Polygon | 381 | Mars_Equidistant_Cylindrical_CM180 | Digitising target, task 11: crater rims accepted in review from the machine candidates (`accept_reviewed.py`), and any drawn by hand (KB §69.7). | `UnitName`, `Confidence`, `Evidence`, `Notes`, `MappedBy`, `MappedOn`, `DiameterKm`, `Preservation`, `SourceID` |
 | `Landform_ChannelCandidates_auto` | Polyline | 2,610 | Mars_Equidistant_Cylindrical_CM180 | Machine channel centrelines over Ius Chasma, from flow routing with filled ground masked out (KB §25). `SlopeDeg >= 5 AND ThermIdx < -0.15` selects the 188 steep, rock-floored ones worth digitising. | `UnitName`, `Origin`, `Confidence`, `Evidence`, `StrahlerOrd`, `LengthKm`, `ThermIdx`, `ThermSd`, `SlopeDeg`, `FillDepthM`, `Notes`, `MappedBy`, `MappedOn`, `Review`, `ReviewNote` |
 | `Landform_CraterCandidates_auto` | Polygon | 1,685 | Mars_Equidistant_Cylindrical_CM180 | Machine crater candidates over Ius Chasma: closed depressions ≥ 1 km from fill depth (KB §26). Blind to breached craters. | `UnitName`, `Confidence`, `Evidence`, `DiameterKm`, `DepthMaxM`, `DepthMeanM`, `Aspect`, `FillRatio`, `ThermIdx`, `CenterLon`, `CenterLat`, `IAUName`, `Preservation`, `Notes`, `MappedBy`, `MappedOn`, `Review`, `ReviewNote` |
 | `Landform_BasinCandidates_auto_60` | Point | 5,144 | Mars_Equidistant_Cylindrical_CM180 | Closed basins ≥ 20 km over ±60°, the coarse planet-scale pass (KB §28.11, §32.1). | `Confidence`, `Evidence`, `DiameterKm`, `DepthMaxM`, `DepthMeanM`, `Aspect`, `FillRatio`, `CenterLon`, `CenterLat`, `Preservation`, `Notes`, `MappedBy`, `MappedOn`, `ThermIdx` |
@@ -55,5 +55,5 @@ the labels and nomenclature are in geographic `Mars_2000_(Sphere)`.
 
 **In the release GeoPackage only** (too big for git: GitHub refuses files over 100 MB): `mars_project_vectors.gpkg.zip` in [`data-2026-10-29`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-29):
 
-- `Landform_ChannelCandidates_auto_60`: 969,822 rows. Channel segments over ±60°, the X2 fine pass (KB §53.4, §54).
 - `Landform_CraterCandidates_auto_60`: 465,354 rows. Closed depressions ≥ 1 km over ±60°, the X2 fine pass (KB §53.4; the tiles over 180° rerun, §54).
+- `Landform_ChannelCandidates_auto_60`: 969,822 rows. Channel segments over ±60°, the X2 fine pass (KB §53.4, §54).

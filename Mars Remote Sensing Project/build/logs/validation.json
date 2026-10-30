@@ -1,5 +1,5 @@
 {
- "read": "2026-10-26 23:19",
+ "read": "2026-10-30 12:05",
  "areas": {
   "ius": {
    "name": "Ius Chasma",
@@ -19,18 +19,18 @@
      "mapped": 94
     },
     "depressions": {
-     "accept": 26,
-     "reject": 331,
-     "unsure": 4,
-     "open": 1324,
+     "accept": 168,
+     "reject": 1476,
+     "unsure": 41,
+     "open": 0,
      "candidates": 1685,
      "candidate_class": "Landform_CraterCandidates_auto",
-     "copied": 26,
+     "copied": 168,
      "drawn": 0,
-     "precision": 0.07282913165266107,
-     "judged": 357,
+     "precision": 0.10218978102189781,
+     "judged": 1644,
      "recall": 1.0,
-     "mapped": 26,
+     "mapped": 168,
      "robbins_1km": {
       "recall": 0.20748663101604278,
       "precision": 0.11394658753709198,
@@ -60,18 +60,18 @@
      "mapped": 0
     },
     "depressions": {
-     "accept": 0,
-     "reject": 0,
-     "unsure": 0,
-     "open": 1709,
+     "accept": 213,
+     "reject": 1475,
+     "unsure": 21,
+     "open": 0,
      "candidates": 1709,
      "candidate_class": "Landform_CraterCandidates_auto_ath",
-     "copied": 0,
+     "copied": 213,
      "drawn": 0,
-     "precision": null,
-     "judged": 0,
-     "recall": null,
-     "mapped": 0,
+     "precision": 0.12618483412322276,
+     "judged": 1688,
+     "recall": 1.0,
+     "mapped": 213,
      "robbins_1km": {
       "recall": 0.3614864864864865,
       "precision": 0.12521942656524282,

@@ -284,7 +284,7 @@ proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal lab
 | `MARS_nomenclature_classicalbedo_March2019` | Point | 303 | IAU gazetteer |
 | `MARS_nomenclature_craters_gt100km_March2019` | Point | **141** | IAU gazetteer |
 | `MARS_nomenclature_albedo_March2019` | Point | 126 | IAU gazetteer |
-| `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines`, `Landform_CraterRims` | Polyline, Polyline, Polygon | **0, 94, 26** | the digitising classes (§19.4, §46); the 120 copied from the Ius review (§69.7) |
+| `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines`, `Landform_CraterRims` | Polyline, Polyline, Polygon | **0, 94, 381** | the digitising classes (§19.4, §46); the 475 copied from the review (§69.7, §69.31) |
 | `Landform_ChannelCandidates_auto` | Polyline | 2,610 | Ius channel candidates (§25) |
 | `Landform_CraterCandidates_auto` | Polygon | 1,685 | Ius closed depressions ≥ 1 km (§26) |
 | `Landform_ChannelCandidates_auto_ath` | Polyline | 3,283 | Athabasca channel candidates (§42.1) |
@@ -461,7 +461,7 @@ There is **no ground truth and no sub-metre imagery.** Validation rests on:
 | 10 | does `GPU_THEN_CPU` engage on the 2080 Ti | yes (§2.3, §53.3) |
 | 11 | the desktop's internal disk | ~32 GB free on `C:`, enough for scratch with per-tile clean-up (§53.0) |
 | 13 | acquire THEMIS Night IR | done 2026-09-18; no global night mosaic exists, coverage is ±60° (§15) |
-| 16 | digitising: seeded, and how it starts | candidates in separate classes (§25, §26); 512 hand-drawn training labels (§29.2); digitising starts as a review (§46). The classes hold 0 lava margins, 94 channels and 26 crater rims, all accepted Ius candidates (§69.7) |
+| 16 | digitising: seeded, and how it starts | candidates in separate classes (§25, §26); 512 hand-drawn training labels (§29.2); digitising starts as a review (§46). The classes hold 0 lava margins, 94 channels and 381 crater rims, all accepted candidates; 3,582 of 9,287 reviewed (§69.7, §69.31) |
 | 17 | keep the plateau channel candidates | keep; reject in review: the rejections become layout 14's precision (§50) |
 | 18 | hydrology at ±60° | yes; the fine pass ran (§53.4); the fill mask is not optional (§28.11) |
 | 19 | rebuild the 7-band composite on the night grid with valid slope | done as the corrected stack (§31.2); the GUI `CompositeBand` stays as it is |
@@ -4961,3 +4961,33 @@ At the author's request, §69.29's 5° nightside r drawn as maps, with a chart o
   there.
 - **Limits:** one block's r rests on ~10,000 strongly autocorrelated cells; read the pattern, not a block. The
   THEMIS mosaics are stretched region by region, so blocks are compared only by their internal r, never by DN.
+
+### 69.31 The review: every closed depression at both type areas; 355 crater accepts copied — 2026-10-30, laptop **[V]**
+
+The author's review sessions since §69.7 (the gdb last saved 2026-10-30 11:58; Pro closed, no locks when read).
+`accept_reviewed.py`, dry run, then the copy:
+
+| class | reviewed | accept | reject | unsure | precision, accept ÷ (accept + reject) |
+|---|---|---|---|---|---|
+| Ius channels | 188 of 2,610 (unchanged, §69.7) | 94 | 80 | 14 | **54 %** of 174 |
+| Ius closed depressions ≥ 1 km | **1,685 of 1,685** | 168 | 1,476 | 41 | **10 %** of 1,644 |
+| Athabasca channels | 0 of 3,283 | – | – | – | – |
+| Athabasca closed depressions ≥ 1 km | **1,709 of 1,709** | 213 | 1,475 | 21 | **13 %** of 1,688 |
+
+- **3,582 of 9,287 candidates reviewed** (549 at §69.7); every closed depression at both type areas is judged.
+  Ius's depression precision moved from 7 % on the first 357 to 10 % on all 1,644.
+- **Copied** with `accept_reviewed.py --apply --by "Logan M Edwards"`, at the author's word: 355 rows into
+  `Landform_CraterRims` (142 Ius, 213 Athabasca), which now holds **381**; a rerun reports 0 to copy. As in §69.7
+  the accepts carry the candidates' defaults: `Confidence` inferred, `Preservation` empty on all 381. No row is
+  drawn by hand (`SourceID` empty on none); `Landform_LavaFlowMargins` holds 0.
+- **Layout 14** rebuilt (`make_validation_sheet.py`, `polish_layouts.py`, exported at 150 dpi and read; the PNG
+  copied to `Global60\layouts\`). Robbins ≥ 1 km recall / precision on the depression candidates, from
+  `logs\crater_density.json`, is unchanged: Ius 21 % / 11 %, Athabasca 36 % / 13 %. The recall column still reads
+  100 % because nothing is drawn by hand.
+- **T4 (H2)**, `make_t4_channel_h2.py`: stage 1 reproduces §51.1 exactly; **stage 2 still waits**,
+  `{indeterminate: 94}` against ≥ 10 fluvial and ≥ 10 volcanic.
+- **Left for the author:** lava-flow margins at Athabasca (H1, T5); `Origin` on the 94 channel copies in
+  `Landform_ChannelCenterlines` (H2 stage 2); the Athabasca channels, the 409 rock-floored first (§42.1);
+  breached craters drawn by hand; optionally `Preservation` on the 381 rims and the 76 `unsure` rows.
+- **Deliverables not edited:** the final paper and deck still give §69.7's 549 of 9,287; bring them to this
+  section at the freeze (§12.1).

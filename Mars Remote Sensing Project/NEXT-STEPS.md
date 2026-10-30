@@ -18,6 +18,12 @@ checklist, is `HANDOFF-DESKTOP.md`.
 
 ## Resume here — 2026-10-26
 
+**2026-10-30, laptop (KB §69.31): the review.** Every closed depression at both type areas is judged (Ius 168
+accept / 1,476 reject / 41 unsure, precision 10 %; Athabasca 213 / 1,475 / 21, 13 %): 3,582 of 9,287 candidates.
+The 355 new crater accepts copied at the author's word (`Landform_CraterRims` 381); layout 14 rebuilt and read;
+T4 stage 2 still waits (all 94 channels `Origin` indeterminate). Left for the author: Athabasca lava margins,
+`Origin` on the channel copies, the Athabasca channels (409 rock-floored first), breached craters by hand.
+
 **2026-10-29, laptop (KB §69.29–§69.30), the author's request:** T3 rerun at 15° to 0.5° blocks: the THEMIS
 signal peaks within 2–5° blocks (night IR r ≈ +0.12), fades below 2°; mapped in 5° blocks as maps T3a / T3b
 and **layout 18**, with `final_img\tes_block_scale.png` (in no deliverable yet: the author's call). The
@@ -220,15 +226,16 @@ would be a test.** **D28 (the author, 10-29): the seven-class maps lead** all th
 are built (04b, 13b, 17b), and the paper and deck rewritten with them leading (KB §69.27). Release
 `data-2026-10-29` backs up both seven-class maps, the v2p rehearsal's and the two seven-class U-Nets (KB §69.28).
 
-**The digitising classes hold 94 channels and 26 crater rims (0 lava margins); 549 of 9,287 candidates are
-reviewed, none at Athabasca.** The review is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
+**The digitising classes hold 94 channels and 381 crater rims (0 lava margins, nothing drawn by hand); 3,582 of
+9,287 candidates are reviewed: every closed depression at both type areas, the 188 steep Ius channels, no
+Athabasca channel (KB §69.31).** The review is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
 delay it.
 
 **Next, in this order:**
 
 | # | what | who | how | done when |
 |---|---|---|---|---|
-| 1 | **Review the Ius candidates** (the 188 steep channels done; 1,324 depressions open), then Athabasca; draw breached craters and the Athabasca lava margins | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
+| 1 | **Review** (the 188 steep Ius channels and all 3,394 depressions done, KB §69.31): set `Origin` on the 94 channel copies (H2 stage 2 needs ≥ 10 fluvial, ≥ 10 volcanic); review the Athabasca channels, the 409 rock-floored first; draw the Athabasca lava margins (H1) and breached craters | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
 | 2a | ~~**Class revision, proposals**~~ **done 2026-10-23 (KB §69.2):** the 512 with evidence and an `Action` each, plus new polygons for classes 5–7, in `Landform_TrainingSamples_v2_proposals` and a map in the `.aprx` | agent, drive | §11.2 | every label has an `Action`; each new class meets §11.3's minimum in proposals |
 | 2b | ~~**Review the label proposals**~~ **done 2026-10-27 (KB §69.8):** the author's rows, the apron and fluvial rows by the agent's rule at the author's word; applied with hills kept short (`--keep-short`) | author, in Pro | §11.4 | every non-`keep` row reviewed |
