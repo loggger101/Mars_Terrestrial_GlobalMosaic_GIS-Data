@@ -4991,3 +4991,22 @@ The author's review sessions since §69.7 (the gdb last saved 2026-10-30 11:58; 
   breached craters drawn by hand; optionally `Preservation` on the 381 rims and the 76 `unsure` rows.
 - **Deliverables not edited:** the final paper and deck still give §69.7's 549 of 9,287; bring them to this
   section at the freeze (§12.1).
+
+### 69.32 The digitising maps filtered by area: rims outside Athabasca explained — 2026-10-30, laptop **[V]**
+
+The author reported crater rims outside the Athabasca type area in Pro. **The data are sound:** all 213 Athabasca
+rims lie at 150.09–161.97°E, 4.05–13.97°N (window 150–162°E, 4–14°N), all 381 rims equal their source candidates'
+geometry, each Athabasca candidate's centroid equals its `CenterLon` / `CenterLat`, and the candidate classes,
+the digitising classes, the 20 `ath_*` rasters and both digitising maps share `Mars_Equidistant_Cylindrical_CM180`.
+**The cause was display:** both areas share `Landform_CraterRims` and `Landform_ChannelCenterlines`, and the two
+"— digitising" maps drew each class unfiltered, so the Athabasca map also drew the 168 Ius rims and 94 Ius
+channels (~5,000 km east, 271–286°E); zoom to layer landed there. The validation maps (§69.31) already filtered.
+
+- **Fixed:** `make_candidate_maps.py` gains `area_rows()`, a definition query on "Channel centrelines" and "Crater
+  rims" in each digitising map: the area's copied accepts (`SourceID LIKE '<candidate class>:%'`) or a row drawn
+  by hand (no `SourceID`, shown in both maps at its true place). Set in place on the `.aprx` (backed up first),
+  not by a rebuild. Read back through layer cursors: Ius shows 94 channels and 168 rims, Athabasca 0 and 213,
+  none outside its window. "Lava flow margins" has no `SourceID` and stays unfiltered.
+- **Sheets 06 and 09** re-exported to scratch: the filter changes nothing inside their frames. Both differ from the
+  drive's PNGs because of the 381 accepted rims and the author's review settings (the diurnal-contrast index on,
+  the hillshade off, against the builder's defaults); the PNGs and those settings are left as they are.

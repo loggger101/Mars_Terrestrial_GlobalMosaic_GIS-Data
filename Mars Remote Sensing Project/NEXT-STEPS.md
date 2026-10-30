@@ -23,6 +23,8 @@ accept / 1,476 reject / 41 unsure, precision 10 %; Athabasca 213 / 1,475 / 21, 1
 The 355 new crater accepts copied at the author's word (`Landform_CraterRims` 381); layout 14 rebuilt and read;
 T4 stage 2 still waits (all 94 channels `Origin` indeterminate). Left for the author: Athabasca lava margins,
 `Origin` on the channel copies, the Athabasca channels (409 rock-floored first), breached craters by hand.
+Then (KB §69.32): rims seen outside Athabasca were the Ius copies drawn in the unfiltered digitising maps; the data
+are sound, and each digitising map now shows only its own area's copies plus hand-drawn rows.
 
 **2026-10-29, laptop (KB §69.29–§69.30), the author's request:** T3 rerun at 15° to 0.5° blocks: the THEMIS
 signal peaks within 2–5° blocks (night IR r ≈ +0.12), fades below 2°; mapped in 5° blocks as maps T3a / T3b

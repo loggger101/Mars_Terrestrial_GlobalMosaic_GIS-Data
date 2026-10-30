@@ -73,6 +73,13 @@ def surrounds(p, lyt, mf, sbar_xy, arrow_xy):
             el.elementWidth = 3.1
 
 
+def area_rows(cands):
+    """The digitising rows that belong to one area's map: the accepts copied from its candidate class,
+    and every row drawn by hand (no SourceID). Both areas share each class, so without it the Ius map
+    also draws the Athabasca copies and the reverse; zoom to layer then lands in the other area (KB §69.32)."""
+    return "SourceID LIKE '%s:%%' OR SourceID IS NULL OR SourceID = ''" % cands
+
+
 def digitising(p, key, sr, camera_from=None):
     """Map "<area> — digitising" and its layout: the empty digitising classes on top, the area's
     machine candidates under them, its 100 m rasters under those (KB §32.1; Athabasca §42)."""
@@ -92,10 +99,12 @@ def digitising(p, key, sr, camera_from=None):
     prec = json.load(open(os.path.join(HERE, "logs", "crater_density.json")))["areas"][key]["detector_vs_robbins"]["1.0"]["precision"]
     gyou = group(m, "Digitising classes (empty)")
     l = add(m, os.path.join(GDB, "Landform_ChannelCenterlines"), "Channel centrelines", True, gyou)
+    l.definitionQuery = area_rows(A["channels"])
     line_style(l, (0, 92, 230), 2.5)
-    l = add(m, os.path.join(GDB, "Landform_LavaFlowMargins"), "Lava flow margins", True, gyou)
+    l = add(m, os.path.join(GDB, "Landform_LavaFlowMargins"), "Lava flow margins", True, gyou)  # no SourceID
     line_style(l, (230, 76, 0), 2.5)
     l = add(m, os.path.join(GDB, "Landform_CraterRims"), "Crater rims", True, gyou)
+    l.definitionQuery = area_rows(A["craters"])
     outline(l, (255, 255, 0), 2.0)
     gc = group(m, "Machine candidates \u2014 prompts, not results (KB \u00a725\u201326, \u00a742)")
     good = add(m, chan, "Channels: %s (%d)" % (short, n_good), True, gc)
