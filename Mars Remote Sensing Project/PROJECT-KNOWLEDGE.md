@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-31 (§69.34).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-31 (§69.36).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -5162,3 +5162,30 @@ or the script stops.
   beside no baseline but the largest class (0.547). The four-class SVM map's 73.8 % is below what geography alone
   gives on the same polygons; its gain is in the rarer classes, which balanced accuracy shows. A3's (b) and (c)
   (elevation and latitude alone; the SVM under a ~51 km mode filter) need the rasters, on the desktop.
+
+### 69.36 An outside brainstorm audited against the record; five items into the plan — 2026-10-31, laptop **[V]**
+
+An AI-written brainstorm of next steps (`BRAINSTORM-NEXT-STEPS.md`, ~350 suggestions, written from commit `a930dc0`
+of 2026-10-29; outside the drive and the repository) was read against `NEXT-STEPS.md`, this record to §69.35 and the
+build scripts. About a quarter repeats the plan's own items; much is out of date (it has 549 of 9,287 candidates
+reviewed, and A4b, A3 (a), A10, P9, P10 open); much is ruled out in NEXT-STEPS §10 or breaks a standing rule (Mars
+only, ±60°, the contrast index never called inertia); several citations could not be traced and none enters
+`references.bib`; several claims about the scripts are false (Pro's SVM takes `max_samples_per_class` only, the stack
+has no elevation band, `SHA256SUMS.txt`, crash resume and class-balanced loss already exist); one item would train a
+meta-model on the held-out polygons. Kept, in NEXT-STEPS §12–§13: **A14** (T8 on the seven-class U-Net), **A15**
+(named features for the new classes), **W10** (the pipeline figure), **W11** (the values Methods leaves out),
+**P13** (the maps viewable without ArcGIS, after 8 Dec), and additions to A3 (c) (a curve of windows, both maps), A5
+(where the errors sit, by block) and W6.
+
+Measured for them:
+- `MARS_nomenclature_misc_March2019` within ±60°, by the first word of `type` (plurals folded): Mons 21, Patera 8,
+  Tholus 3, Vallis 146, Catena 8. With no `Landform_TrainingSamples_v2_60_train` or `_test` polygon at the
+  feature's centre point: 16, 1, 2, 112 and 8.
+- `global60_landforms_unet_v2_200m_seamfix.tif`, `global60_landforms_svm_v2_200m.tif` and `..._mode11.tif`: each
+  106,694 × 35,565 at 200 m, with overviews at 400, 800, 1,600, 3,200, 6,398 and 12,793 m, so `make_geomap_check.py`
+  can read the U-Net map as it reads the SVM map.
+- `docs/pipeline.svg` names neither the seven classes nor the v2 labels. The paper's Methods states the detector's,
+  the router's and the SVM's thresholds but not the label-review rule's (§69.8) nor the U-Net's batch size, validation
+  share, freezing or inference padding.
+- The raw seven-class SVM map (`global60_landforms_svm_v2_200m.tif`) has no score in `build\logs\`; only its 11 × 11
+  version does (§69.24).
