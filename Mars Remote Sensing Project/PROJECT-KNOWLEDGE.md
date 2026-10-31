@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-31 (§69.36).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-31 (§69.37).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -5189,3 +5189,34 @@ Measured for them:
   share, freezing or inference padding.
 - The raw seven-class SVM map (`global60_landforms_svm_v2_200m.tif`) has no score in `build\logs\`; only its 11 × 11
   version does (§69.24).
+
+### 69.37 T8 on the seven-class U-Net (A14): the extra edifice lies mostly on the highland group — 2026-10-31, laptop **[V]**
+
+`make_geomap_check.py` now takes `--raster <tif>` and writes `logs\geomap_check_<its name>.json`; every run also
+prints and stores each class's area by unit group (`class_area_by_group`) and its share on the volcanic groups
+(`v`, `ve`, `vf`; 24.53 % of the ±60° area with a unit). Predictions and the reading rule were written into the
+docstring before the first run. **The route is checked first:** the seven-class SVM map read through `--raster`
+(`logs\geomap_check_global60_landforms_svm_v2_200m_mode11.json`, log `geomap_check_svm_v2_route_20261031.log`)
+gives `logs\geomap_check_v2.json`'s every enrichment and share exactly (largest difference 0.0); the same
+comparison against the v2p rehearsal's file differs by up to 3.9. Laptop, ArcGIS Python, 1.6 km overview,
+13,337 × 4,446 pixels, 97.3 % with both a class and a unit; ~75 s a run.
+
+Run on `global60_landforms_unet_v2_200m_seamfix.tif` (§69.25) → `logs\geomap_check_global60_landforms_unet_v2_200m_seamfix.json`,
+log `geomap_check_unet_v2_20261031.log`. Shares of the map on this mask: edifice 39.5 %, Normal Ground 20.2 %,
+apron 15.1 %, Crater 14.3 %, fluvial channel 8.4 %, lava tube 1.9 %, hills 0.5 %. With edifice at 39.5 %, no group
+can enrich it above 2.53 ×.
+
+- **P1 held:** edifice 2.23 × on `ve` (88.0 % of the edifice units mapped edifice; the SVM 4.15 ×, at a 12.2 % share).
+- **P2 held:** 70.3 % of the edifice area lies off the volcanic groups (the seven-class SVM: 64.0 %). By group: `h`
+  48.7 %, `v` 26.4 %, `t` 4.9 %, `i` 4.4 %, `l` 2.7 %, `b` 2.6 %, `tu` 2.5 %, `ve` 2.5 %, the rest under 2 % each
+  (the SVM: `h` 34.6 %, `v` 30.0 %). **Of the highland group `h`, 41.1 % of the area, the U-Net maps 46.8 % as
+  edifice**, more than the 23.3 % it maps as Crater and the 13.7 % as fluvial channel; of the volcanic plains `v`,
+  45.8 % (Normal Ground 36.2 %).
+- **By the rule written before the run, the over-prediction is mainly a confusion of texture off volcanic
+  ground, on the highland group**, with the volcanic plains second. This matches the held-out confusion (§69.25:
+  edifice takes 71 % of lava tube's, 30 % of fluvial's, 29 % of Normal Ground's and 16 % of Crater's held-out
+  area). Which highland units or regions carry it, and whether any of `h` is volcanic material in SIM 3292's own
+  descriptions, is not checked **[?]**.
+- The other classes find their units as on the SVM map, more sharply: apron 6.00 × on `a` (90.6 % of it; SVM
+  5.69 ×), hills 15.83 × on `hu`, Normal Ground 4.00 × on `l` (80.8 % of it). Lava tube lies 36.1 % on the
+  volcanic groups (SVM 22.1 %); fluvial channel 66.9 % on `h`.

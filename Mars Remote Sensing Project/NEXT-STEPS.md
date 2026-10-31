@@ -29,7 +29,9 @@ Only the state, what waits on whom and the next step; the history behind each li
   map, which leads it only by balanced accuracy (§69.35, D30). Crater size-frequency curves: §69.35.
 - **Seven classes** (D17, D28): 971 reviewed v2 labels, 734 training and 237 held out (§69.8). On the v2 held-out
   polygons the seven-class SVM scores 42.5 %, κ 0.310 and the seven-class U-Net 69.0 %, κ 0.606; both fail D18's
-  rule, and **they lead all the same** (layouts 04b, 13b, 17b; §69.24–§69.27).
+  rule, and **they lead all the same** (layouts 04b, 13b, 17b; §69.24–§69.27). The U-Net maps edifice on 39.5 % of
+  ±60°, 70 % of it off the volcanic units, most on SIM 3292's highland group, 46.8 % of which it calls edifice
+  (T8, A14, §69.37).
 - **Thermal:** T1, +1.36 pt at 200 m in overall accuracy and none by balanced accuracy (§56, §69.18, D25); T3, the
   THEMIS pair against TES inertia peaks in 2–5° blocks at r ≈ 0.12 (§69.29; layout 18, §69.30).
 - **The review, the critical path** (§69.33): **3,791 of 9,287 candidates**: every closed depression at both type
@@ -51,7 +53,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 | 1 | **Review:** `Origin` on the 199 channel copies (H2 stage 2 needs ≥ 10 fluvial and ≥ 10 volcanic); the other 200 rock-floored Athabasca channels, then the rest; the Athabasca lava margins (H1) and breached craters, by hand | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims` / `Landform_LavaFlowMargins`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
 | 3 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
-| 4 | The paper's analyses that need no author time, in §12.6's order (laptop: A14, W10; desktop: A1, A2, A3 (b) and (c), A5, A6; A4b, A3 (a) and A10 done 10-31, KB §69.34–§69.35) | agent | §12.2, §12.4 | results in the KB, by the **22 Nov** freeze |
+| 4 | The paper's analyses that need no author time, in §12.6's order (laptop: W10; desktop: A1, A2, A3 (b) and (c), A5, A6; A4b, A3 (a), A10 and A14 done 10-31, KB §69.34–§69.37) | agent | §12.2, §12.4 | results in the KB, by the **22 Nov** freeze |
 | 5 | The interim: deliver on **10 Nov**; the report's date from the author | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 | 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex`; rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
 
@@ -413,8 +415,9 @@ was measured (KB §69.17). Each item says what it adds, where it runs and what i
 the 22 Nov freeze if at all possible; B, if time allows; C, only if cheap. Every new test writes its prediction and
 verdict rule into its script before it runs (§4). Drive items wait for "queue done" in
 `build\logs\run_v2\queue.log` and for the v2 scoring (§11.5), which comes first. Nothing here goes ahead of the
-author's review (§6). A14, A15, W10, W11, the additions to A3 (c), A5 and W6, and P13 (§13) come from an outside
-brainstorm audited on 2026-10-31 against the record (KB §69.36); the rest of that brainstorm was dropped.
+author's review (§6). A14 (done 10-31, KB §69.37), A15, W10, W11, the additions to A3 (c), A5 and W6, and P13
+(§13) come from an outside brainstorm audited on 2026-10-31 against the record (KB §69.36); the rest of that
+brainstorm was dropped.
 
 ### 12.1 Lines in the paper and `final.py` that the freeze must change
 
@@ -441,7 +444,6 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 | A9 | **Day IR at the contacts checked against topography**: T5 rerun with day IR residualised on hillshade and slope (day temperature follows slope facing the sun) | if the +8.7 pt lean vanishes, H1's hint is illumination; if it holds, it is stronger | desktop, minutes | B |
 | A11 | **The breached-crater explanation tested**: recall by Robbins' morphology or degradation fields, if the 2020 release carries them **[?]** (columns not read), else by rim-height deficit on the DEM | the paper asserts why recall stops near one half; this measures it | desktop | B |
 | A13 | **The review rule's sensitivity**: how many fluvial and apron rows change at floor depths of 10 and 30 m and median slopes of 0.5° and 1.5° | bounds how much the v2 labels depend on two thresholds | desktop, minutes | C |
-| A14 | **T8 on the seven-class U-Net**: enrichment per SIM 3292 unit group, as 13b gives for the seven-class SVM. `make_geomap_check.py` reads only the SVM's `_mode11` map today; it needs `--raster` (as the scorer has), its output named after the raster (`logs\geomap_check_<stem>.json`). The U-Net map, `global60_landforms_unet_v2_200m_seamfix.tif`, has the 1.6 km overview the check reads (checked 10-31). Prediction and reading rule in the script first, e.g.: edifice above 1 × on `ve`; if the extra edifice sits on the other volcanic groups (`v`, `vf`), the fault is where edifice ends and its plains begin; if on `h` or `l`, it is a confusion of texture, not of geology | the lead deep-learning map's main fault, edifice on 40.0 % of ±60° against 19.4 % of the held-out label area and 71 % of lava tube's held-out area (§69.25), placed on the geology; the paper can say what the U-Net mistakes for an edifice | laptop or desktop: GDAL on overviews, the T8 runs took under a minute (§69.24); the script edit ~20 min | A |
 | A15 | **Named features for the new classes**, the IAU-crater check (inside 0.7 R against a 1.5–2.5 R ring) extended: edifice on IAU Mons, Tholus and Patera (R from the gazetteer's `diameter`); fluvial channel on named valles, inside a buffer of the Alemanno valley lines within each vallis's extent against an outer buffer; lava tube on named catenae, listed one by one. In `MARS_nomenclature_misc_March2019` within ±60° (counted 10-31, by the first word of `type`): 32 edifice names (Mons 21, Patera 8, Tholus 3), 146 valles, 8 catenae; **19, 112 and 8 of them have no v2 label polygon at their centre**, and only those are scored. Even so the check is not independent: the edifice and fluvial labels were drawn from these names and the SIM 3292 units (§11.2 step 3), so it shows consistency, not accuracy | the three new classes get the named-feature baseline that Crater has in every score (Methods) | laptop, ArcGIS Python, ~1 h | C |
 
 ### 12.3 Small asks of the author (each after the candidate review, never ahead of it)
@@ -473,8 +475,8 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
   documentation).
 - **W6, future work**: the outline's item 10 (§7) has no section in the paper: calibrated THEMIS inertia where it
   exists, CTX for margins, validation blocks for the deep-learning models, R2 if not done. Once the models have
-  validation blocks, the seven-class U-Net's over-predicted edifice (§69.25; A14 if run) is the first target of any
-  retraining.
+  validation blocks, the seven-class U-Net's over-predicted edifice (§69.25; by A14 mostly on the highland group,
+  §69.37) is the first target of any retraining.
 - **W7, data availability** (D23): a DOI for the data release through Zenodo's GitHub link, cited as
   `Edwards2026data`, and a data statement as AAS asks. Publishing: the author's yes.
 - **W8, the deck's half**: the paper's v2 text is drafted for both outcomes (`v2_drafts.tex`, KB §69.18) and the
@@ -509,7 +511,7 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 
 ### 12.6 Order of work
 
-1. **Laptop, now:** A14 (minutes on overviews) and W10; W8's deck half; W3's candidates checked (A4, A12, W1 and the
+1. **Laptop, now:** W10 (A14 done 10-31, KB §69.37); W8's deck half; W3's candidates checked (A4, A12, W1 and the
    paper's half of W8 done 10-27, KB §69.18); A15 if cheap.
 2. **Desktop:** the v2 scoring and D18 done (§11.5; A4b done 10-31, KB §69.34); next A1, A2, A3 (b) and (c) (its
    seven filter-and-score runs queue overnight), A5 with its block table, A6, then A7–A9 and A11 as time allows; A13

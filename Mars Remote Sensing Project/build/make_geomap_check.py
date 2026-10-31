@@ -18,6 +18,19 @@ build\logs\geomap_check.json, naming the map it read ("map").
 --labels v2 (labelsets.py, KB §68): the seven-class map global60_landforms_svm_v2_200m_mode11.tif, its seven
 classes, and logs\geomap_check_v2.json. The prediction above is for the four-class map; the v2 run reports
 the same table with no new prediction.
+
+--raster <tif> reads another classified map (pixel = class code, with a ~1.6 km overview) in place of the SVM's,
+and writes logs\geomap_check_<its name>.json (NEXT-STEPS §12.2 A14). Every run also prints, per class, the share of
+its area on the volcanic groups (v, ve, vf), which hold 24.5 % of the ±60° area with a unit.
+
+A14, the seven-class U-Net (global60_landforms_unet_v2_200m_seamfix.tif, KB §69.25), written 2026-10-31 before
+its first run. Edifice covers 40.0 % of that map, so no group can enrich it above 1 / 0.40 = 2.5 x.
+  P1  edifice is enriched >= 1.5 x on `ve` (it still finds the edifice units, as the SVM's did at 4.15 x).
+  P2  more than half of the edifice area lies off the volcanic groups (v, ve, vf): even if every volcanic pixel
+      were edifice, 15.5 of the 40.0 points would lie elsewhere.
+  Reading rule: if P2 holds, the over-prediction is mainly a confusion of texture off volcanic ground, and the
+  groups holding most of that edifice area are named; if it fails, it is mainly where edifice ends and the volcanic
+  plains begin. P1 failing means the U-Net's edifice no longer tracks the edifice units at all.
 """
 import os, sys, json
 import numpy as np
@@ -33,6 +46,10 @@ gdal.UseExceptions(); ogr.UseExceptions()
 CLS = os.path.join(G.OUTDIR, "global60_landforms_svm%s_200m_mode11.tif" % L.TAG)   # the published map, KB §57
 NAMES = {i + 1: n for i, n in enumerate(L.NAMES)}
 OUT = os.path.join(HERE, "logs", "geomap_check%s.json" % L.TAG)
+if "--raster" in sys.argv:                                   # another map, e.g. the U-Net's (A14)
+    CLS = sys.argv[sys.argv.index("--raster") + 1]
+    OUT = os.path.join(HERE, "logs", "geomap_check_%s.json" % os.path.splitext(os.path.basename(CLS))[0])
+VOLCANIC = ("v", "ve", "vf")
 STEP = 0.02
 GROUPS_OF_INTEREST = ["v", "ve", "vf", "i", "h", "hu", "l", "p", "t", "a"]
 
@@ -96,6 +113,19 @@ def main():
         res["groups"][gname] = {"area_share": float(share), "classes": enr}
         print("  %-6s %7.1f%%   %s" % (gname, 100 * share, "   ".join(
             "%5.1f%% (x%.2f)      " % (100 * enr[NAMES[k]]["share_in_group"], enr[NAMES[k]]["enrichment"]) for k in NAMES)))
+    # where each class's area lies, over every group (the table above skips small ones)
+    volc = np.isin(g, [code for code, gname in names_of.items() if gname in VOLCANIC])
+    res["volcanic_area_share"] = float(ww[volc].sum() / ww.sum())
+    res["class_area_by_group"] = {}
+    print("\nvolcanic groups (%s): %.1f%% of the area with a unit" % (", ".join(VOLCANIC), 100 * res["volcanic_area_share"]))
+    for k in NAMES:
+        ck = c == k
+        tot = ww[ck].sum()
+        by = {names_of[code]: float(ww[ck & (g == code)].sum() / tot) for code in names_of if (ck & (g == code)).any()}
+        res["class_area_by_group"][NAMES[k]] = by
+        top = sorted(by.items(), key=lambda kv: -kv[1])[:4]
+        print("  %-18s on volcanic groups %5.1f%%   largest: %s" % (NAMES[k], 100 * ww[ck & volc].sum() / tot,
+              ", ".join("%s %.1f%%" % (n, 100 * s) for n, s in top)))
     json.dump(res, open(OUT, "w"), indent=1)
     print("\nwrote", OUT)
 
