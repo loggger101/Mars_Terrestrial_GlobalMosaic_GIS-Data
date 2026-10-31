@@ -1,0 +1,146 @@
+{
+ "script": "make_spatial_baseline.py --null 20",
+ "when": "2026-10-31 14:02",
+ "null": "the four-class training polygons' classes shuffled among them",
+ "observed": {
+  "accuracy": 0.832,
+  "balanced_accuracy": 0.6134
+ },
+ "summary": {
+  "accuracy": {
+   "median": 0.47150000000000003,
+   "min": 0.2135,
+   "max": 0.7384,
+   "at_or_above_observed": 0,
+   "at_or_above_published_svm_0.738": 1
+  },
+  "balanced_accuracy": {
+   "median": 0.28915,
+   "min": 0.0942,
+   "max": 0.4173,
+   "at_or_above_observed": 0
+  }
+ },
+ "runs": [
+  {
+   "seed": 1,
+   "accuracy": 0.433,
+   "kappa": 0.1156,
+   "balanced_accuracy": 0.2535
+  },
+  {
+   "seed": 2,
+   "accuracy": 0.4818,
+   "kappa": 0.2007,
+   "balanced_accuracy": 0.3078
+  },
+  {
+   "seed": 3,
+   "accuracy": 0.7384,
+   "kappa": 0.5351,
+   "balanced_accuracy": 0.4173
+  },
+  {
+   "seed": 4,
+   "accuracy": 0.5222,
+   "kappa": 0.1484,
+   "balanced_accuracy": 0.2921
+  },
+  {
+   "seed": 5,
+   "accuracy": 0.3978,
+   "kappa": -0.1602,
+   "balanced_accuracy": 0.1697
+  },
+  {
+   "seed": 6,
+   "accuracy": 0.51,
+   "kappa": 0.1334,
+   "balanced_accuracy": 0.2862
+  },
+  {
+   "seed": 7,
+   "accuracy": 0.4878,
+   "kappa": 0.028,
+   "balanced_accuracy": 0.2421
+  },
+  {
+   "seed": 8,
+   "accuracy": 0.2135,
+   "kappa": -0.498,
+   "balanced_accuracy": 0.0942
+  },
+  {
+   "seed": 9,
+   "accuracy": 0.4327,
+   "kappa": 0.1702,
+   "balanced_accuracy": 0.3801
+  },
+  {
+   "seed": 10,
+   "accuracy": 0.4475,
+   "kappa": 0.0365,
+   "balanced_accuracy": 0.2537
+  },
+  {
+   "seed": 11,
+   "accuracy": 0.5056,
+   "kappa": 0.0564,
+   "balanced_accuracy": 0.2498
+  },
+  {
+   "seed": 12,
+   "accuracy": 0.6122,
+   "kappa": 0.3944,
+   "balanced_accuracy": 0.3306
+  },
+  {
+   "seed": 13,
+   "accuracy": 0.3117,
+   "kappa": -0.0843,
+   "balanced_accuracy": 0.1337
+  },
+  {
+   "seed": 14,
+   "accuracy": 0.6809,
+   "kappa": 0.4527,
+   "balanced_accuracy": 0.3592
+  },
+  {
+   "seed": 15,
+   "accuracy": 0.5698,
+   "kappa": 0.1936,
+   "balanced_accuracy": 0.3142
+  },
+  {
+   "seed": 16,
+   "accuracy": 0.504,
+   "kappa": -0.0775,
+   "balanced_accuracy": 0.3565
+  },
+  {
+   "seed": 17,
+   "accuracy": 0.4612,
+   "kappa": -0.1713,
+   "balanced_accuracy": 0.3382
+  },
+  {
+   "seed": 18,
+   "accuracy": 0.4296,
+   "kappa": -0.2082,
+   "balanced_accuracy": 0.1857
+  },
+  {
+   "seed": 19,
+   "accuracy": 0.2732,
+   "kappa": -0.1202,
+   "balanced_accuracy": 0.3261
+  },
+  {
+   "seed": 20,
+   "accuracy": 0.3283,
+   "kappa": -0.0441,
+   "balanced_accuracy": 0.14
+  }
+ ]
+}

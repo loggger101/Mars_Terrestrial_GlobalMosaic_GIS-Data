@@ -5096,3 +5096,69 @@ the paper's uncompiled edits of 10-27 were compiled on 10-29 (§69.27), the clon
 
 **The laptop's `py` launcher** names an interpreter under a removed temporary folder, so `py -3` fails here; `python`
 (3.14) runs `tools/make_thumbs.py`. The handoff says so.
+
+### 69.35 Two analyses from the vector record: crater size-frequency (A10) and a geography-only baseline (A3a) — 2026-10-31, laptop **[V]**
+
+Both need only the gdb's tables, the logs and the published map's 400 m overview, so they ran on the laptop
+(`NEXT-STEPS.md` §12.2 marks them desktop work). Each script holds its predictions and verdict rules, written before
+the first run.
+
+**A10, crater size-frequency distributions** (`make_crater_sfd.py` → `logs\crater_sfd.json`; figure
+`make_fig_crater_sfd.py` → `final_img\crater_sfd.png`, read). Cumulative craters ≥ D per km² at the √2 diameters,
+D ≥ 1 km, true area on the sphere (±60°: 125,523,330 km²; Ius 363,631; Athabasca 415,900):
+
+- **±60°**, 465,354 closed depressions against 352,796 Robbins craters. The ratio depressions ÷ Robbins is 1.32 at
+  1 km, 1.20 at 2, 0.99 at 2.8, 0.81 at 4, 0.68 at 5.7, then 0.52–0.60 from 8 to 128 km (0.44 and 0.39 at 181 and
+  256 km). Cumulative slopes (least squares, log N on log D): 1–5 km, depressions −1.73, Robbins −1.36; 5–50 km,
+  −1.42 and −1.32. **P1 held** (above 1 at 1 km, crossing between 2 and 5 km, 0.45–0.80 from 10 to 100 km);
+  **P2 held** (1–5 km steeper by 0.37; 5–50 km within 0.10). The detector over-counts small depressions that are not
+  craters (§53.4) and finds about half of the craters ≥ 8 km at every size: its distribution has Robbins' shape above
+  ~5 km at about half its height.
+- **Type areas**, with the review's accepts (§69.31) as a third curve. Precision of the review, accept ÷ (accept +
+  reject), by diameter: Ius 5.5 % at 1–2 km (n 1,222), 19.8 % at 2–5, 38.9 % at 5–10, 50 % at ≥ 10 (n 24);
+  Athabasca 7.2 % (n 1,342), 27.7 %, 72.2 %, 85.7 % (n 7). At ≥ 5 km together: Ius 42.3 % (n 78), Athabasca 74.4 %
+  (n 43). **P3 held** (≥ 5 km at least 3 times 1–2 km: 7.7 and 10.3 times). The accepted rims at ≥ 5 km are 33 of
+  Robbins' 52 in the Ius window (63 %) and 32 of 60 at Athabasca (53 %): **P4 held** (30–70 %).
+- At Ius above ~11 km the accepted rims equal or pass Robbins' count (8 against 7 at ≥ 11.3 km; 3 and 3 at ≥ 16; 1
+  and 1 at ≥ 22.6). The numbers are too small to read. A depression's `DiameterKm` is the equal-area diameter of its
+  region filled > 20 m deep (`make_crater_candidates.py`), good to about 10 % against catalogued craters (median
+  +2.2 %, p10 −12.6 %, p90 +20.8 %, §28.11; Perrotin −7.1 %, §26.3); a +20 % scatter at the bin edges could move
+  a few accepts up one √2 step. Whether some Ius accepts are depressions that Robbins does not list is not checked.
+  **[?]**
+
+**A3(a), a geography-only baseline** (`make_spatial_baseline.py` → `logs\spatial_baseline_nearest.json`,
+`_nearest_v2.json`; the null, `--null 20` → `logs\spatial_baseline_null.json`). Each held-out pixel takes the class
+of the training polygon whose boundary is nearest on the sphere; nothing else. Scored by the scorer's own
+`svmcheck.training_score` on the published map's 400 m overview grid, its mask and cos-latitude weights. **The route
+is checked first:** the published map read through it scores 0.7383, κ 0.5827, its own log's 0.738, 0.583 (§57),
+or the script stops.
+
+| held out | area-weighted accuracy | κ | balanced accuracy | macro F1 | polygons won |
+|---|---|---|---|---|---|
+| **four classes, 183 polygons:** nearest training polygon | **0.832** | 0.658 | 0.613 | 0.642 | 165 (90.2 %) |
+| published SVM map, 200 m 11 × 11 (§57, §69.18) | 0.738 | 0.583 | **0.667** | 0.557 | 149 (81.4 %) |
+| two-pass U-Net (§66.8, §69.18) | 0.989 | 0.980 | 0.948 | 0.939 | 173 (94.5 %) |
+| **seven classes, 237 polygons:** nearest training polygon | **0.456** | 0.318 | 0.510 | 0.471 | 154 (65.0 %) |
+| seven-class SVM (§69.24, §69.34) | 0.425 | 0.310 | 0.419 | 0.388 | 113 (47.7 %) |
+| seven-class U-Net (§69.25, §69.34) | 0.690 | 0.606 | 0.569 | 0.566 | 158 (66.7 %) |
+
+- **Where the labels lie predicts the held-out class better than the published SVM map does**, by area-weighted
+  accuracy, κ and polygons won; the SVM map leads only by balanced accuracy (0.667 against 0.613: hills 0.63 against
+  0.38; the baseline takes Crater at 0.987 against 0.607). On the seven-class labels the baseline beats the
+  seven-class SVM on every measure and comes within 1.7 points of polygons won by the seven-class U-Net. The
+  U-Net four-class map clears it on every measure, by 15.7 points of accuracy.
+- **The null:** the same baseline with the training polygons' classes shuffled among them, 20 seeds: accuracy median
+  0.472, range 0.214–0.738; balanced accuracy median 0.289, at most 0.417. No shuffle reaches the observed 0.832 or
+  0.613 (p < 0.05 for each, 1 in 21), so the labels' arrangement carries class information at the scale of the
+  15° blocks. One shuffle of 20 scores 0.738, the published map's accuracy: **area-weighted accuracy on 183
+  polygons moves by tens of points with which class lands nearest a few large polygons** (Arsia Mons is 31 % of
+  the held-out Crater area, §68.2). Balanced accuracy is the steadier measure here.
+- **P1 held** (≥ 0.638), **P2 held** (< 0.889), **P3 held** (0.456 in 0.325–0.525, below 0.690). P1's rule
+  allowed the baseline up to 10 points from the SVM either way; it lies 9.4 points above it, which no rule anticipated.
+- Boundaries densified to ≤ 0.005° (328,479 points for the four-class training set, 2,571,744 for v2's long valley
+  strips); 107 s and 263 s on the laptop. The labels' one train/test overlap (290/291, 51.5 km², §68.2) takes the
+  nearest boundary's class.
+- **What it means for the paper** (`NEXT-STEPS.md` §2, D30): every held-out score in the paper and the decks sits
+  beside no baseline but the largest class (0.547). The four-class SVM map's 73.8 % is below what geography alone
+  gives on the same polygons; its gain is in the rarer classes, which balanced accuracy shows. A3's (b) and (c)
+  (elevation and latitude alone; the SVM under a ~51 km mode filter) need the rasters, on the desktop.

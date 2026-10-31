@@ -1,0 +1,120 @@
+{
+ "script": "make_spatial_baseline.py",
+ "when": "2026-10-31 12:09",
+ "baseline": "nearest training polygon (boundary, on the sphere)",
+ "labels": {
+  "training_set": "Landform_TrainingSamples_terrain_60_train",
+  "held_out": "Landform_TrainingSamples_terrain_60_test"
+ },
+ "boundary_points": 328479,
+ "step_deg": 0.005,
+ "held_out": {
+  "polygons": 183,
+  "accuracy": 0.832,
+  "kappa": 0.658,
+  "one_class_everywhere": 0.586,
+  "label_area_share": {
+   "Crater": 0.5862,
+   "steep/windy hills": 0.0672,
+   "lava tube": 0.0061,
+   "Normal Ground": 0.3405
+  },
+  "confusion_unrounded": [
+   [
+    0.5785948067006386,
+    0.0,
+    0.0,
+    0.007616524892237056
+   ],
+   [
+    0.04204466937972708,
+    0.025183214590232,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0026082968839937965,
+    0.0034867140430771435
+   ],
+   [
+    0.10862243597291567,
+    0.0,
+    0.005792678918509602,
+    0.22605065861866913
+   ]
+  ],
+  "producers": {
+   "Crater": 0.987,
+   "steep/windy hills": 0.375,
+   "lava tube": 0.428,
+   "Normal Ground": 0.664
+  },
+  "users": {
+   "Crater": 0.793,
+   "steep/windy hills": 1.0,
+   "lava tube": 0.31,
+   "Normal Ground": 0.953
+  },
+  "polygons_majority_own_class": {
+   "Crater": "119/124",
+   "steep/windy hills": "11/16",
+   "lava tube": "18/21",
+   "Normal Ground": "17/22"
+  },
+  "confusion_area_weighted": [
+   [
+    0.5786,
+    0.0,
+    0.0,
+    0.0076
+   ],
+   [
+    0.042,
+    0.0252,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0026,
+    0.0035
+   ],
+   [
+    0.1086,
+    0.0,
+    0.0058,
+    0.2261
+   ]
+  ]
+ },
+ "beyond_accuracy": {
+  "balanced_accuracy": 0.6134,
+  "macro_f1": 0.6418,
+  "quantity_disagreement": 0.1454,
+  "allocation_disagreement": 0.0222
+ },
+ "compared_with": {
+  "svm": 0.738,
+  "unet": 0.989
+ },
+ "predictions": {
+  "P1": {
+   "rule": "four classes: >= 0.638 (within 10 pt of the SVM's 0.738)",
+   "accuracy": 0.832,
+   "held": true
+  },
+  "P2": {
+   "rule": "four classes: < 0.889 (more than 10 pt below the U-Net's 0.989)",
+   "accuracy": 0.832,
+   "held": true
+  },
+  "P3": {
+   "rule": "seven classes: 0.325-0.525 (within 10 pt of the SVM's 0.425) and below the U-Net's 0.690",
+   "accuracy": 0.456,
+   "held": true
+  }
+ }
+}

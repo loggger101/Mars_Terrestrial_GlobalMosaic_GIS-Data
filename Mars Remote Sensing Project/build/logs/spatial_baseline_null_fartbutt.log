@@ -1,0 +1,25 @@
+grid 53347 x 17783 (400 m), lat_top 60.0003, lon_left 0.0008
+self-check, the published map through this route: accuracy 0.7383, kappa 0.5827; its log 0.738, 0.583 -> ok
+seed  1: accuracy 0.4330, kappa 0.1156, balanced 0.2535 (106 s)
+seed  2: accuracy 0.4818, kappa 0.2007, balanced 0.3078 (193 s)
+seed  3: accuracy 0.7384, kappa 0.5351, balanced 0.4173 (278 s)
+seed  4: accuracy 0.5222, kappa 0.1484, balanced 0.2921 (364 s)
+seed  5: accuracy 0.3978, kappa -0.1602, balanced 0.1697 (449 s)
+seed  6: accuracy 0.5100, kappa 0.1334, balanced 0.2862 (541 s)
+seed  7: accuracy 0.4878, kappa 0.0280, balanced 0.2421 (634 s)
+seed  8: accuracy 0.2135, kappa -0.4980, balanced 0.0942 (724 s)
+seed  9: accuracy 0.4327, kappa 0.1702, balanced 0.3801 (814 s)
+seed 10: accuracy 0.4475, kappa 0.0365, balanced 0.2537 (907 s)
+seed 11: accuracy 0.5056, kappa 0.0564, balanced 0.2498 (998 s)
+seed 12: accuracy 0.6122, kappa 0.3944, balanced 0.3306 (1087 s)
+seed 13: accuracy 0.3117, kappa -0.0843, balanced 0.1337 (1178 s)
+seed 14: accuracy 0.6809, kappa 0.4527, balanced 0.3592 (1269 s)
+seed 15: accuracy 0.5698, kappa 0.1936, balanced 0.3142 (1352 s)
+seed 16: accuracy 0.5040, kappa -0.0775, balanced 0.3565 (1505 s)
+seed 17: accuracy 0.4612, kappa -0.1713, balanced 0.3382 (1691 s)
+seed 18: accuracy 0.4296, kappa -0.2082, balanced 0.1857 (1875 s)
+seed 19: accuracy 0.2732, kappa -0.1202, balanced 0.3261 (2228 s)
+seed 20: accuracy 0.3283, kappa -0.0441, balanced 0.1400 (2573 s)
+observed {'accuracy': 0.832, 'balanced_accuracy': 0.6134} 
+null {'accuracy': {'median': 0.47150000000000003, 'min': 0.2135, 'max': 0.7384, 'at_or_above_observed': 0, 'at_or_above_published_svm_0.738': 1}, 'balanced_accuracy': {'median': 0.28915, 'min': 0.0942, 'max': 0.4173, 'at_or_above_observed': 0}} 
+wrote logs\spatial_baseline_null.json
