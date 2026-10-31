@@ -21,9 +21,12 @@
    (rebuild with tools/make_thumbs.py).
 8. Every number in the interim's text (interim.py), the final deck's (final.py) and the paper's .tex is in
    PROJECT-KNOWLEDGE.md (build/verify_interim.py on each), and build/score_metrics.py, rerun on the committed
-   logs, gives what build/logs/score_metrics.json holds (NEXT-STEPS §13.1 P1, KB §69.19).
+   logs, gives what build/logs/score_metrics.json and score_metrics_v2.json hold (NEXT-STEPS §13.1 P1, KB §69.19,
+   §69.34).
 9. Every layer in exports/README.md has a description, and none with rows calls itself empty (§13.1 P3): the
    text comes from github_export_gdb.py's ABOUT, the counts from the export, and the two drift apart.
+10. score_metrics.py's arithmetic gives hand-worked answers on small confusion matrices
+    (tools/test_score_metrics.py, §13.1 P9): 8 shows it is stable, this that it is right.
 
 Exit code 1 and a list of failures if anything is wrong. Stdlib only.
 """
@@ -209,19 +212,39 @@ def run(*args):
     return p.returncode, (p.stdout + p.stderr).strip()
 
 
-def numbers(documents=DOCUMENTS, scores=BUILD / "logs" / "score_metrics.json"):
+# Each stored score_metrics.py output and the logs it was run on: () is its default list, the papers' four-class maps;
+# the v2 run is v2_drafts.tex's MET line (NEXT-STEPS §12.2 A4b, KB §69.34).
+SCORES = [
+    ("score_metrics.json", ()),
+    ("score_metrics_v2.json", tuple("logs/global60_classification_check_%s.json" % s for s in (
+        "v2_200m_mode11", "200m_mode11_on_v2_labels", "global60_landforms_unet_v2_200m_seamfix",
+        "global60_landforms_unet_200m_seamfix_on_v2_labels"))),
+]
+
+
+def numbers(documents=DOCUMENTS, scores=SCORES):
     for doc in documents:
         code, out = run(BUILD / "verify_interim.py", doc)
         if code:
             fails.append(f"numbers not in the record: {doc.relative_to(ROOT)}\n    " + out.replace("\n", "\n    "))
-    with tempfile.TemporaryDirectory() as tmp:
-        fresh = Path(tmp) / "score_metrics.json"
-        code, out = run(BUILD / "score_metrics.py", "--out", fresh)
-        if code or not fresh.exists():
-            fails.append(f"score_metrics.py failed on the committed logs (exit {code}): {out[-300:]}")
-        elif json.loads(fresh.read_text(encoding="utf-8")) != json.loads(scores.read_text(encoding="utf-8")):
-            fails.append(f"build/logs/{scores.name} is not what score_metrics.py gives on the committed logs: rerun it")
-    return len(documents) + 1
+    for name, logs in scores:
+        stored = BUILD / "logs" / name
+        with tempfile.TemporaryDirectory() as tmp:
+            fresh = Path(tmp) / name
+            code, out = run(BUILD / "score_metrics.py", *logs, "--out", fresh)
+            if code or not fresh.exists():
+                fails.append(f"score_metrics.py failed on the committed logs for {name} (exit {code}): {out[-300:]}")
+            elif json.loads(fresh.read_text(encoding="utf-8")) != json.loads(stored.read_text(encoding="utf-8")):
+                fails.append(f"build/logs/{name} is not what score_metrics.py gives on the committed logs: rerun it")
+    return len(documents) + len(scores)
+
+
+def tests(files=(ROOT / "tools" / "test_score_metrics.py",)):
+    for t in files:
+        code, out = run(t)
+        if code:
+            fails.append(f"{t.relative_to(ROOT)} failed\n    " + out[-600:].replace("\n", "\n    "))
+    return len(files)
 
 
 def layers(page=ROOT / "exports" / "README.md"):
@@ -251,6 +274,7 @@ if __name__ == "__main__":
     print(f"previews:        {thumbs()}")
     print(f"number checks:   {numbers()}")
     print(f"layers described: {layers()}")
+    print(f"test files:      {tests()}")
     citation()
     for f in fails:
         print("FAIL", f)

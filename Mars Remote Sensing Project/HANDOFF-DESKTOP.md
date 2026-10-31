@@ -1,7 +1,7 @@
 # Working on the Mars Global Mosaic: the operating guide
 
 How to pick the project up on either machine: the first ten minutes, where everything is, the working rules, and the
-end of a session. Current to 2026-10-26.
+end of a session. Current to 2026-10-31.
 
 **Read this file first, then `NEXT-STEPS.md` "Resume here" (the state, the dates and every open task), then
 `PROJECT-KNOWLEDGE.md` as needed.** The record (`PROJECT-KNOWLEDGE.md`, "KB" below; § numbers point into it, and its
@@ -34,10 +34,10 @@ plans. When they disagree, the KB wins and the plan is fixed.
 | the record | `Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (§1–§16 reference, §17 on the dated log; §11 open questions; tags `[V]` verified, `[E]` earlier, `[?]` open) |
 | the plan | `Mars Remote Sensing Project\NEXT-STEPS.md` ("Resume here"; standing §1; decisions §2; after-review steps §3; tests §4; desktop jobs §5; the review §6; figures and the final §7; schedule §8; risks §9; ruled out §10) |
 | the interim plan | `Mars Remote Sensing Project\INTERIM-PLAN.md` (the living build and its commands §0; progress facts §3; hypotheses §5; timeline §6; wording traps §7) |
-| scripts | `Mars Remote Sensing Project\build\` (163 `.py` / `.ps1`; catalogue in the repo's `docs/scripts.md`); logs and test results in `build\logs\` |
-| interim deck and report | `Mars Remote Sensing Project\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx` (30 slides) and `Mars Mosaic - Interim Report.docx` (21 pages), built from `build\interim.py` |
-| ArcGIS project | `Mars Project\Mars Project.aprx` (33 maps, 17 layouts, KB §5); `Mars Project\Mars Project.gdb` (KB §6); `.aprx` backups in `Mars Project\.backups\` (one per write; drive only) |
-| layout PNGs | `Mars Project\Global60\layouts\` (04–17) and `Mars Project\TypeArea\layouts\` (01–03) |
+| scripts | `Mars Remote Sensing Project\build\` (175 `.py` / `.ps1`; catalogue in the repo's `docs/scripts.md`); logs and test results in `build\logs\` |
+| interim deck and report | `Mars Remote Sensing Project\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx` (32 slides) and `Mars Mosaic - Interim Report.docx` (21 pages), built from `build\interim.py` |
+| ArcGIS project | `Mars Project\Mars Project.aprx` (38 maps, 21 layouts, KB §5); `Mars Project\Mars Project.gdb` (KB §6); `.aprx` backups in `Mars Project\.backups\` (one per write; drive only) |
+| layout PNGs | `Mars Project\Global60\layouts\` (04–18) and `Mars Project\TypeArea\layouts\` (01–03) |
 | ±60° products | `Mars Project\Global60\` (its `README.md` lists them): `global60_svm_stack_200m.tif` (the 7-band stack), **`global60_landforms_svm_200m_mode11.tif` (the published map)**; `build\grid60.py` defines the grid |
 | type areas | `Mars Project\TypeArea\` (`ius_*`) and `Mars Project\Athabasca\` (`ath_*`); windows in `build\areas.py` |
 | reference data | `Mars Project\Reference\` (USGS SIM 3292, Robbins craters, TES thermal inertia; third-party, never mirrored) |
@@ -122,7 +122,8 @@ plans. When they disagree, the KB wins and the plan is fixed.
 3. `github_sync.py` (no `--commit`; if it refuses, exit 3, the clone holds work the drive lacks: run the
    `--to-drive <commit>` it names first, KB §69.20), then in the clone `python tools/check_repo.py`; update the README's counts
    it flags and its "Where it stands", next steps and results, **current state only**. When a layout or figure
-   changed, first `py -3 tools/make_thumbs.py` in the clone: the pages show its 800 px previews, and
+   changed, first `py -3 tools/make_thumbs.py` in the clone (on the laptop `python`: its `py` launcher names a removed
+  interpreter, KB §69.34): the pages show its 800 px previews, and
    `check_repo.py` fails on a preview older than its source (KB §67.1).
 4. Commit by hand with a descriptive message and the attribution trailer, push (standing approval after the
    checks pass), and check CI (`gh run list --limit 1`).

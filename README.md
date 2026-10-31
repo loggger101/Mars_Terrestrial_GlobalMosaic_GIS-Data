@@ -22,7 +22,7 @@ This repository is the project page and an off-drive backup of the project. The 
 
 The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 
-## Where it stands (2026-10-26)
+## Where it stands (2026-10-31)
 
 The interim presentation is on **10 November 2026** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source; their data cut is **26 October** (decision D20): they cover what is measured by then, and later work goes to the final ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)); so are drafts of the final paper (AASTeX) and deck ([`NEXT STUFF/Final/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); how to work on the project is [`HANDOFF-DESKTOP.md`](Mars%20Remote%20Sensing%20Project/HANDOFF-DESKTOP.md).
 
@@ -286,7 +286,9 @@ tools/check_repo.py        the checks CI runs on every push: page links, Python 
                            that the counts this page states match the tree, the figure index,
                            alt text, previews current with their sources, every number in the
                            interim, final deck and paper in the record, the stored scores
-                           reproduced, and every vector layer described
+                           reproduced, every vector layer described, and the tests below
+tools/test_score_metrics.py  hand-worked confusion matrices through the scoring arithmetic
+                           (balanced accuracy, F1, quantity and allocation disagreement)
 tools/make_thumbs.py       rebuilds docs/thumbs/ after a layout or figure changes (needs Pillow)
 tools/check_remote.py      run by hand: release assets against their checksums, linked releases,
                            the source mosaics' addresses and sizes

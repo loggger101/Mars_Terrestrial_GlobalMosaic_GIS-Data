@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-31 (§69.33).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-31 (§69.34).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -232,10 +232,11 @@ stack script's 100 m grid snapped to the day mosaic (§18.1).
 
 ## 5. Project structure
 
-`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-23 (§63, §66.9, §69.2) **[V]**: **33 maps, all in
-Mars coordinate systems, and 17 layouts** (17 since §66.9); 0 broken data sources, none reading through a junction (145
-non-group layers on 2026-10-18, §58.1; layout 15 added four maps and 13 layers; X5's map one map and 6 layers,
-§66.3; X5c's one map and 9 layers, §66.9; "Labels v2: proposals" one map and 9 layers on a basemap, §69.2); 7 hosted services (Esri OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
+`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-31 (§69.34) **[V]**: **38 maps, all in
+Mars coordinate systems, and 21 layouts**; 219 non-group layers, 0 broken data sources, none reading through a junction
+(145 non-group layers on 2026-10-18, §58.1; since then layout 15's four maps, X5's and X5c's maps, §66.3, §66.9,
+"Labels v2: proposals", §69.2, the three seven-class maps, §69.26, and T3a / T3b, §69.30); 7 hosted services (Esri
+OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
 `defaultGeodatabase` = `<drive>\Mars Project\Mars Project.gdb`; `homeFolder` = `<drive>\Mars Project`. The
 `.aprx` stores relative paths, so it opens from either drive letter.
 
@@ -254,11 +255,13 @@ non-group layers on 2026-10-18, §58.1; layout 15 added four maps and 13 layers;
 | `15_athabasca_type_area` | Athabasca Valles: visible, night IR, day IR, topography, with unit `lAv` | `make_athabasca_layout.py` (§63) |
 | `16_x5_detections` | X5, the deep-learning detector, scored per held-out polygon | `make_dl_map.py` (§66.4) |
 | `17_x5c_unet_provinces` | X5c, the U-Net terrain-province map, beside the published SVM map | `make_unet_map.py` (§66.9) |
+| `04b_global60_landforms_v2`, `13b_geomap_check_v2`, `17b_unet_v2_provinces` | the seven-class SVM map, its T8 check and the seven-class U-Net, which lead (D28) | `make_v2_sheets.py` (§69.26) |
+| `18_t3_tes_blocks` | T3 in 5° blocks: where the THEMIS pair tracks TES thermal inertia | `make_tes_block_layout.py` (§69.30) |
 
-The ±60° sheets (04, 05, 07, 08, 10–13, 16) draw in geographic `GCS_Mars_2000`, so 0°E is at the centre (08 since §64);
+The ±60° sheets (04, 04b, 05, 07, 08, 10–13, 13b, 16, 17, 17b, 18) draw in geographic `GCS_Mars_2000`, so 0°E is at the centre (08 since §64);
 the type-area sheets (01–03, 06, 09, 14, 15) draw in `Mars_Equidistant_Cylindrical_CM180`, and their footers name it. **[V]**
 
-Polished exports are in `Mars Project\TypeArea\layouts\` (01–03) and `Mars Project\Global60\layouts\` (04–17);
+Polished exports are in `Mars Project\TypeArea\layouts\` (01–03) and `Mars Project\Global60\layouts\` (04–18);
 the builders' own PNGs are written before `polish_layouts.py` runs, so copy the polished export over them.
 
 - **Map names are not unique**: two maps are named `Mars` (one `Mars_2000_(Sphere)`, one
@@ -503,7 +506,7 @@ older one**. A false claim wearing a `[V]` is worse than none.
 | `verify*`, `check_*`, `test_*` | checks claims against the project files |
 | bare noun | a module: `paths.py`, `grid60.py`, `areas.py`, `interim.py`, `le_theme.py`, `layoutkit.py` |
 
-**Counted 2026-10-27 (§69.8):** 166 build scripts on the drive (161 `.py`, 5 `.ps1`); 165 in the public repo, which leaves out
+**Counted 2026-10-31 (§69.34):** 175 build scripts on the drive (170 `.py`, 5 `.ps1`); 174 in the public repo, which leaves out
 `neutral_voice.py`. The repo's `docs/scripts.md` catalogues them; `tools/check_repo.py` fails if the README's count drifts.
 
 **Every figure has a script that regenerates it.** Type-area products are `ius_*` in `Mars Project\TypeArea\`
@@ -5038,3 +5041,58 @@ The author's review session saved in the gdb and `.aprx` at 2026-10-30 13:49, af
 - **Exported:** `github_export_gdb.py`, 33 feature classes to the clone's `exports\`, every row count checked.
 - **Left for the author:** the other 200 rock-floored Athabasca channels, then the rest; `Origin` on the 199 channel
   copies; the Athabasca lava margins (H1, T5); breached craters by hand.
+
+### 69.34 Layout 11's citation fixed through the interim; the seven-class maps beyond accuracy (A4b); tests and the plan — 2026-10-31, laptop **[V]**
+
+At the author's request to improve and refine the repository, after §69.33.
+
+**Layout 11's citation (§69.22's open item).** The sheet's lower-panel heading still read "Robbins & Hynek (2020)";
+the builder had carried "Robbins & Hynek 2012, 2020 release" since 10-27. A text-only change, so set in the `.aprx`
+element `label_b` directly (§67.2), backed up first; `polish_layouts.py` (no sheet changed); 11 exported at 150 dpi
+and read. Against the drive's PNG only the heading's strip differs (pixels 246–777 × 609–628), so the PNG was replaced.
+Then the interim's crops (`make_interim_figs.py --only 11_global60_depressions`: the whole and `__map` differ only in
+the heading, `__legend` not at all), `make_interim_dark.py`, and both documents rebuilt (live copies first saved to
+`NEXT STUFF\.backup_20261031\`): 32 slides, 21 pages, `verify_interim.py` 335 numbers; slide 14 and report page 7
+(Figure 7) rendered and read. `make_fig_checks.py` redrew `t2_density.png` with its corrected legend ("Robbins &
+Hynek 2012 catalogue (2020 release)"); its other two charts came out pixel-identical and were restored to the
+committed bytes. The final paper and deck use neither image.
+
+**The project re-read (§5).** 38 maps, all in Mars coordinate systems, 21 layouts, 219 non-group layers, 0 broken
+data sources, none through a junction, 7 hosted services; 04b, 13b, 17b and 18 draw in `GCS_Mars_2000`. 175 build
+scripts (170 `.py`, 5 `.ps1`); the repo has 174, without `neutral_voice.py`. §5, its layout table and the handoff
+brought to these.
+
+**A4b: the seven-class maps beyond accuracy and κ** (`NEXT-STEPS.md` §12.2; `v2_drafts.tex`'s MET line:
+`score_metrics.py` on the four v2 logs, `--out logs\score_metrics_v2.json`). On the 237 v2 held-out polygons, area-
+weighted, from the unrounded matrices; accuracy and κ reproduce §69.24–§69.25:
+
+| map, on the v2 held-out polygons | accuracy | κ | balanced accuracy | macro F1 | quantity Q | allocation A |
+|---|---|---|---|---|---|---|
+| seven-class SVM (11 × 11) | 0.4252 | 0.3103 | **0.4187** | 0.3880 | 0.2913 | 0.2835 |
+| four-class SVM (published) | 0.3566 | 0.2445 | **0.4202** | 0.2512 | 0.5538 | 0.0895 |
+| seven-class U-Net | 0.6901 | 0.6063 | **0.5692** | 0.5661 | 0.1474 | 0.1625 |
+| four-class U-Net | 0.4411 | 0.3012 | **0.5672** | 0.3711 | 0.5538 | 0.0051 |
+
+- **By balanced accuracy the seven-class maps gain nothing** over the four-class ones (−0.15 pt SVM, +0.20 pt
+  U-Net). They gain in macro F1 (+13.7 and +19.5 pt) and above all in quantity: the four-class maps cannot name
+  classes 5–7 and put the wrong amount of each class on the map (Q 0.554 for both), nearly all of their error
+  (A 0.090 and 0.005). The overall-accuracy gain of D28's maps is, like the thermal gain of
+  §69.18 (D25), not a gain by balanced accuracy. A question for the author (`NEXT-STEPS.md` §2, D29).
+- Per-class F1, seven-class SVM: Crater 0.499, hills 0.503, lava tube 0.002, Normal Ground 0.892, volcanic edifice
+  0.322, apron 0.088, fluvial channel 0.410; seven-class U-Net: 0.648, 0.534, 0.032, 0.820, 0.609, 0.786, 0.533.
+- `tools/check_repo.py` now reruns `score_metrics.py` on the four v2 logs and fails if `score_metrics_v2.json` differs.
+
+**Tests of the scoring arithmetic (`NEXT-STEPS.md` §13.1 P9).** `tools/test_score_metrics.py`: six hand-worked cases
+through `metrics()` (perfect; two classes; one class everywhere; a class mapped but absent from the labels; the
+unrounded matrix preferred; a log that disagrees with itself refused). Proved on six planted defects in scratch
+copies of `score_metrics.py` (Q not halved, balanced accuracy over every class, a never-mapped class's F1 dropped, an
+absent class's producer's accuracy as 0, the rounded matrix preferred, the self-check removed): all six caught.
+`check_repo.py` runs it in CI and reports a failing test file (checked on a planted one).
+
+**The plan (§13.1 P10).** `NEXT-STEPS.md` "Resume here" condensed from 240 lines of dated paragraphs to 45: the state,
+the next steps and what waits on the author. No open item was dropped: every paragraph's work is in its KB section,
+the paper's uncompiled edits of 10-27 were compiled on 10-29 (§69.27), the clone-only copy of 10-27 was made on
+10-28 (§69.23), and layout 11 is fixed above.
+
+**The laptop's `py` launcher** names an interpreter under a removed temporary folder, so `py -3` fails here; `python`
+(3.14) runs `tools/make_thumbs.py`. The handoff says so.

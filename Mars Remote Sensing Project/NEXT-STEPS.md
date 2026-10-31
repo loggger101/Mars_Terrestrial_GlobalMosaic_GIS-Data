@@ -16,245 +16,50 @@ checklist, is `HANDOFF-DESKTOP.md`.
 
 ---
 
-## Resume here — 2026-10-26
+## Resume here — 2026-10-31
 
-**2026-10-31, laptop (KB §69.33): the review, continued.** The first 209 Athabasca channels are judged, all from
-the rock-floored prompt (105 accept / 104 reject, precision 50 %; 200 of the 409 left): 3,791 of 9,287 candidates.
-The 105 accepts copied at the author's word (`Landform_ChannelCenterlines` 199); layout 14 rebuilt and read; the gdb
-re-exported. T4 stage 2 still waits (`Origin` set on none of the 199).
+Only the state, what waits on whom and the next step; the history behind each line is the KB section it cites
+(condensed 2026-10-31, §13.1 P10: the dated paragraphs since 10-18 are in git history and KB §58–§69.34).
 
-**2026-10-30, laptop (KB §69.31): the review.** Every closed depression at both type areas is judged (Ius 168
-accept / 1,476 reject / 41 unsure, precision 10 %; Athabasca 213 / 1,475 / 21, 13 %): 3,582 of 9,287 candidates.
-The 355 new crater accepts copied at the author's word (`Landform_CraterRims` 381); layout 14 rebuilt and read;
-T4 stage 2 still waits (all 94 channels `Origin` indeterminate). Left for the author: Athabasca lava margins,
-`Origin` on the channel copies, the Athabasca channels (409 rock-floored first), breached craters by hand.
-Then (KB §69.32): rims seen outside Athabasca were the Ius copies drawn in the unfiltered digitising maps; the data
-are sound, and each digitising map now shows only its own area's copies plus hand-drawn rows.
-
-**2026-10-29, laptop (KB §69.29–§69.30), the author's request:** T3 rerun at 15° to 0.5° blocks: the THEMIS
-signal peaks within 2–5° blocks (night IR r ≈ +0.12), fades below 2°; mapped in 5° blocks as maps T3a / T3b
-and **layout 18**, with `final_img\tes_block_scale.png` (in no deliverable yet: the author's call). The
-signal holds on high-inertia southern ground, Ius among the strongest blocks, Athabasca weak. New scripts
-`make_tes_block_scale.py`, `make_tes_block_layout.py`, `make_tes_block_where.py`, `make_fig_tes_scale.py`;
-synced and pushed the same day (README, figures index and layout 18 preview updated).
-
-**2026-10-27, laptop, without the drive (KB §69.10): copy to the drive before the next `github_sync.py`.** The
-interim refined for the 10 November presentation, the 26 Oct cut kept (the author's choice): the T4 and T8 charts
-redrawn at 200 dpi, the U-Net slide's legend moved clear of its takeaways, the title slide's subtitle no longer
-repeats the title, the schedule gives 10 Nov; both documents rebuilt (30 slides, 21 pages, 285 numbers). Then
-the deck redesigned at the author's request (KB §69.11), repainted navy (§69.12), then dark throughout with navy-ground figures (§69.13,
-`make_interim_dark.py`; its `interim_img\dark\` is git-ignored: rerun it on the drive): `mars_theme.py`, 31 slides, words and numbers unchanged
-(294 numbers with the four on the results divider), then refined (§69.14: tighter maps, one legend scale, verdicts on the hypothesis slides, the backgrounds' graticule painted out; 295 numbers), then given a "For scale" slide (§69.15: each band's 15° block against the nearest US state, Texas or California; new `build/interim_block_scale.py`; 32 slides, 325 numbers), and its graphics refined (§69.16: a ±60° grid strip on each block card, wide legends restacked to be read, a hidden dark swatch on a grey chip, Athabasca's legend beside its map); `le_theme.py` and the report untouched. These
-files were written in the clone only: `git diff --name-only e6ec284 HEAD -- "Mars Remote Sensing Project"` (the
-desktop's v2 run writes only `build\logs\run_v2\` and `Global60\`).
-**On the desktop, first** (KB §69.20): the drive's `github_sync.py` predates the guard, so run the clone's
-copy against the drive: `python "<clone>\Mars Remote Sensing Project\build\github_sync.py" --drive F:\
---to-drive e6ec284 --dry-run`, read it, then again without `--dry-run`. It copies each file the clone changed
-since `e6ec284` whose drive copy is still `e6ec284`'s, and lists any the drive changed too (merge those by
-hand) and any the clone has not committed. Close the deck in PowerPoint first (a locked file is listed, not
-copied). Only then `github_sync.py` as usual; if it ever refuses (exit 3), it names the commit to pass.
-**Done 10-28, desktop (KB §69.23):** all 25 copied (none changed on both sides; the `--to-drive` dry run now
-reports 0 to copy), `interim_img\dark\` with them. A restart on 10-27 at 21:18 stopped `run_v2.ps1` after 12 of
-step 01's 21 tiles; resumed 10-28 02:29 with `-ClassifyOnly` on the trained model (SVM results ~17:00 10-28,
-U-Net ~14:00 10-29).
-**Later 10-27, laptop (KB §69.17):** a brainstorm of what would strengthen the final paper, now **§12** of this
-plan: the paper's lines the freeze must change (§12.1), thirteen analyses that need no author time (A1–A13; first,
-after the v2 scoring: the channels scored against the valley map, T1 on v2, spatial baselines for the held-out score,
-block-bootstrap intervals), two small blind checks for the author (R1, R2), the text and figures (W1–W8), the two
-talks, and an order of work (§12.6). Four new decisions for the author, D21–D24 (§2).
-**Later 10-27, laptop (KB §69.18):** §12.6 step 1 mostly done. New `build\score_metrics.py`: balanced accuracy,
-F1 and quantity / allocation disagreement from the logs. The published map's error is mostly quantity (20.5 of
-26.2 points), and **by balanced accuracy the thermal gain vanishes** (D25). The paper: abstract at 250 words,
-Table 3 widened, its limits brought current, two references checked by DOI, the v2 text drafted for both outcomes
-(`v2_drafts.tex`); `final.py`'s review limit fixed. **Not compiled** (no AASTeX on the laptop): rebuild the PDF on
-the desktop and read it. Copy to the drive with the rest (the list is under the first paragraph above).
-**Later 10-27, laptop (KB §69.19):** a second brainstorm, on the repository and the project rather than the paper,
-now **§13**: the number checks into CI (P1), a guard so `github_sync.py` cannot revert clone-only edits (P2), the
-vector-layer guide brought true (P3), the built documents committed at milestones only (P4: they are nearly all of the
-860 MB history), the paper compiled in CI (P6), a real restore (P7), and closing the project
-after 8 Dec (P12). Two new decisions, D26 and D27; D25 widened to the README and an interim backup slide.
-**Later 10-27, laptop (KB §69.20):** P1–P3 done. `tools/check_repo.py` (CI) now runs the number checks on the
-interim, the final deck and the paper, reruns `score_metrics.py` against its stored file, and checks every layer
-in `exports/README.md` is described. `github_sync.py` refuses to copy over or delete clone-only work, and
-`--to-drive <commit>` does the clone → drive copy (the paragraph on the desktop above); tested on a scratch
-drive and clone, and against this clone's history with a drive as of `e6ec284` (20 files to copy). The vector-
-layer guide describes the v2 labels and the reviewed layers. Nothing new on the drive: copy with the rest.
-**Later 10-27, laptop (KB §69.21):** the interim reviewed for truth at the author's request: five corrections (THEMIS
-is band 9, 12.57 µm; layout 05 has no graticule; 2,077 m is the maximum fill raise; one Arsia label, not Arsia
-alone; H1 "not supported" as the rule says), the status brought to 27 October with the 26 October results cut kept
-(the review begun, the v2 labels applied), and the thermal gain qualified by balanced accuracy (D25 for the
-interim, the author's yes). Rebuilt: 32 slides, 21 pages, 334 numbers; read. Clone-only: copy with the rest.
-Then every graphic checked against its log or record (KB §69.22): all agree but one. **On the desktop:** layout 11's
-lower panel says "Robbins & Hynek (2020)" (the citation is 2012, the 2020 release); the script is fixed, so
-rerun `make_global60_candidate_sheets.py` and `polish_layouts.py`, re-export layout 11, `make_interim_figs.py`,
-`make_interim_dark.py`, rebuild both interim documents, `tools/make_thumbs.py`; and `make_fig_checks.py` for
-`t2_density.png`.
-
-**Where it stands.** Every scripted job up to the review is done and recorded (KB §53–§57): the ±60°
-fine pass (465,354 closed depressions ≥ 1 km, 969,822 channel segments, layouts 11–12); the 180° DEM
-column fixed at its source (§54); the 200 m classification, **published as the 200 m map with an 11 × 11
-(2.2 km) majority filter, 73.8 %, κ 0.58 held out** (§55.3, §57), the 400 m map superseded (§57.2);
-T1 confirmed with Pro's SVM (thermal +1.36 pt at 200 m, +1.97 at 400 m, §56); T8 rerun on the published map
-(§57.1); the interim rebuilt, 28 slides and 20 pages (§57.3); GitHub release `data-2026-10-16` (§57.4).
-The project: 32 maps, 17 layouts (§63, §66.4, §66.9); nothing is running on the desktop.
-**2026-10-18, laptop (§58–§61):** no new data since; the drive-root junctions point at `F:` and are broken on
-the laptop (retarget before any Spatial Analyst run there); the record and the plans condensed, two scripts freed
-from a hard-coded `F:`, every sheet re-polished and the interim rebuilt from them, nothing measured changed.
-**2026-10-19, laptop (§62):** the province figure redrawn light from §28.10's tables (47.67 DN covers four
-provinces, −0.0009 seven); slide 11 updated; the interim rebuilt, 28 slides and 19 pages.
-**2026-10-19, laptop (§63):** layout 15 added, the Athabasca Valles type area in visible, night IR, day IR and
-topography with unit `lAv`; every footer now gives "Logan M Edwards"; 08's caption no longer names Tharsis.
-The interim deck still says 14 layouts and does not show 15 (the author's call: leave it for now).
-Release `data-2026-10-19` (§63.2) adds `athabasca.zip`: both type areas are now backed up; `check_remote.py` passes.
-**2026-10-19, laptop (§64):** all 15 sheets read again for quality and accuracy: 08 now centred on 0°E like the
-other ±60° sheets, with a graticule; 09's map enlarged; type-area footers name their CRS; scale bars, legends,
-11's table and 13's footer kept inside the page margin. Three results drawn as charts for the first time
-(`make_fig_checks.py`: the published map's confusion and filter sweep, T2, the lava-tube relabel). The interim
-deck's crop of 08 predates the recentring (deck left as it is).
-**2026-10-19, laptop (§65):** four type-area results (segmentation sweep, diurnal-contrast index, `Fill` trap,
-closed depressions with Oudemans / Perrotin) drawn light for the repo with `--light`, wording brought to the
-record; §25.1's flooded share corrected to 21.7 %; layout 07's size classes rounded; 03's legend titled, and
-`polish_layouts.py` now idempotent on every sheet.
-**2026-10-19, desktop (§66):** the Deep Learning Libraries 3.7.1901 installed (the author answered the UAC prompt);
-`desktop_check.py --gpu` says X5 is ready to train on the 2080 Ti. **X5 trained (§66.1):** RetinaNet takes the 7 bands,
-25 min, early-stopped, epoch 3 kept; validation AP ≤ 0.010 per class. **Detected and scored (§66.2)**, one window per
-held-out block (a mask broke the tool): Crater recall 41.9 %, precision 87.6 % (all-Crater baseline 71.1 %); Normal
-Ground 22.7 % and 56.9 % (baseline 20.9 %); hills and lava tube never predicted. **In the gdb and the `.aprx` (§66.3)**:
-`DL_Detections_heldout_20261019` and the map "X5 — deep-learning detections (held out)"; **layout 16** (§66.4).
-**2026-10-20, desktop (§66.4):** layout 16 built and read; the interim's deep-learning next step and schedule line
-brought current (no X5 slide added: the author's call); rebuilt, only slide 28 and report page 19 changed.
-**2026-10-20, desktop (§66.5–66.6), at the author's request to improve the detector:** **X5b**, RetinaNet retrained
-with the backbone unfrozen, no early stopping (30 epochs, epoch 16 kept), rare-class chips (`make_global60_dl_export.py
---rare`) and edge slivers dropped (`make_dl_model.py --prepare`): names hills (25 % recall, 100 % precision) and
-Crater at 100 % precision, but Normal Ground recall fell to 4.5 % and lava tube is over-predicted on craters, so
-**not improved** by its rule. **X5c**, a U-Net pixel classifier (the author's yes, reversing q26 for this model,
-`make_dl_pixels.py`): **98.75 %, κ 0.977 held out** against the published SVM map's 73.8 %, κ 0.583 under the same
-scorer; lava tube user's 70.7 % (SVM 2.4 %); a map of terrain provinces with tile seams, only in the 14 windows.
-**2026-10-20, desktop (§66.7), the author's yes:** X5c over all of ±60° in 5 h 46 min,
-`Global60\global60_landforms_unet_200m.tif`: held out 98.8 %, κ 0.979; IAU craters 'Crater' inside 91 % against ring
-82 % (SVM 57 / 46 %); elevation bins reproduce 68 % (SVM 55 %); **seams at the tool's 256 px tiles** (ratio 8.6–9.2,
-SVM ~1.0), not removed by padding 112 or test-time augmentation.
-**2026-10-21, desktop (§66.8), the author's yes:** a second pass offset by 128 px, each pixel from the pass farther
-from a tile edge: `Global60\global60_landforms_unet_200m_seamfix.tif`, seams 8.6–9.2 → **1.2**, held out **98.9 %,
-κ 0.980**, crater test and elevation unchanged. Nothing is running on the desktop.
-**2026-10-21, desktop (§66.9), the author's decision:** the SVM map stays the published one; the two-pass U-Net
-map joins the project beside it as the province map: map "X5c — U-Net terrain provinces (±60°)", layout
-**17_x5c_unet_provinces**, and `DL_UNet_Heldout_Scores_20261020` (each held-out polygon under both maps).
-**2026-10-21, desktop (§66.10), the author's request:** the interim gains two deep-learning slides (layouts 16 and
-17; 30 slides, report 21 pages, every changed page read). Release **`data-2026-10-21`**, 12 assets, 7.71 GB: the
-GeoPackage with all 28 classes, both U-Net maps and, new, `dl-models.zip` (the three trained models);
-`check_remote.py` passes, the quick start reproduces, the catalogues point at it.
-**2026-10-22, desktop (§67), the author's request:** the layouts and images audited. All 17 sheets re-export
-pixel-identical to their PNGs on the drive and in the repo, and the drive and the clone are in sync. The interim's
-crops of 01, 02 and 04–11 predated §63–§65 (08 not recentred, 07's old size classes, 09's smaller map): at the
-author's word all 13 were re-exported and the deck and report rebuilt (30 slides, 21 pages, text unchanged), every
-changed page read. Stale counts fixed in the README, `docs/figures.md`, the handoff and the interim plan.
-The repo's pages now show 800 px previews (`tools/make_thumbs.py`, §67.1): the README's images fell from
-25.5 MB to 3.2 MB; CI checks alt text, inline size and that each preview matches its source. The README gains
-a deep-learning results section; its next steps hold only what is open. A writing pass (§67.2) removed named
-AI-prose patterns from the pages and the sheets: em dashes in the 17 sheets' titles, "What it is / is not", colon
-reveals, capitals for emphasis; the builders carry the same text. Numbers untouched; the deck's 05 crop rebuilt.
-Then (§67.3–67.5): the script catalogue regrouped, stale docstrings fixed, the U-Net in the pipeline diagram; every
-number on the pages checked against the record; the drive measured at 429 GB; "#section" links checked in CI; the
-clone's two orphan pack files removed (author's yes); the 05 and 07 slides' legends enlarged.
-**2026-10-22, laptop, without the drive (§68), the author's decision D17:** the class scheme is revised
-**before the interim**: codes 1–4 kept and narrowed (Crater means impact only; volcanic plains are Normal Ground),
-5 volcanic edifice, 6 apron, 7 fluvial channel; the agent proposes, the author accepts (§11). The 512 labels,
-audited from the repo's gdb export: no overlap between classes, one train/test leak (labels 290/291, 51.5 km²),
-five volcanoes labelled Crater (Arsia Mons, held out, 31 % of the held-out Crater area; Ulysses Tholus, held
-out; Ascraeus and Pavonis Mons and Tharsis Tholus, training), lava-tube polygons on fluvial valleys. The author
-approved downloads and a seven-class map beside the four-class one in the interim (D18). The same day, without
-the drive, `propose_label_changes.py` and `apply_label_review.py` were written and tested on downloaded copies
-of the references (KB §68.5): ready for the desktop run (item 2a, §11.2).
-**2026-10-23, laptop, without the drive (KB §68.6):** the v2 runs after the review scripted (`--labels v2`,
-`labelsets.py`; `score_d18_verdict.py`; §11.5 lists the commands), the scorer made fast on long outlines with the
-same results, and everything rehearsed on the released maps: unchanged without `--labels`; the four-class maps
-score 33.6 % (SVM) and 41.6 % (U-Net) on stand-in v2 held-out labels, 58 % of whose area is classes 5–7. A
-question for the author (§2, D19). **Every file under `Mars Remote Sensing Project\` that the clone changed
-since commit `449cc9a` was written in the clone only:** list them with
-`git diff --name-only 449cc9a HEAD -- "Mars Remote Sensing Project"` and copy each to the drive before the next
-`github_sync.py`, which copies drive → clone and would overwrite or remove them. A drive file that existed before
-should still equal `449cc9a` (check with `git hash-object` against `git rev-parse 449cc9a:<path>`); if one
-differs, merge by hand.
-**2026-10-22, desktop (§69), the author's request:** the final started early, as builds: an AASTeX 7 paper (14
-pages, 16 figures, compiled with MiKTeX, installed per-user at the author's choice) and a 32-slide final deck, both in
-`NEXT STUFF\Final\`, both on the machine products as candidates (the review not started); every page and slide read.
-**2026-10-23, desktop (KB §69.1):** the clone's §68 work copied to the drive as the note above asks (nine scripts
-replaced, four added, the record and this plan merged by hand); the final paper and deck now carry §68's audit
-as a limit and the seven-class revision as a next step; everything pushed. The drive and the clone agree again.
-**2026-10-23, desktop (KB §69.2): item 2a done.** The valley map downloaded and checked; `propose_label_changes.py`
-run on the drive gives the laptop's result exactly (1,086 rows: 12 relabel, 23 check, 1 clip, 1 delete, 1 fix,
-574 new); `Landform_TrainingSamples_v2_proposals` and the map "Labels v2: proposals" are in the project, sampled
-and read. **Next is the author's review (2b, §11.4)**; flagged for it: new fluvial strip 778 on the Arsia flank,
-Crater 47; hills and lava tube need more training polygons (§11.3).
-**2026-10-24, desktop (KB §69.3):** no change on the drive since 10-23 (the review not started). An audit pass:
-the KB's gdb inventory (§6) gains the proposals class (31 feature classes, which `audit_record.py` under the ArcGIS
-Python had flagged); four audits that looked for Presentation 1 and the prospectus at the root now read `OLD\`.
-`verify_all.py` 37 / 37, `check_repo.py` passes. `verify_interim.py` now checks the paper's `.tex` as well: all 508
-numbers in the record.
-**2026-10-24, desktop (KB §69.4), the author's request:** while the review waits, the v2 runs are **rehearsed** on
-the proposals taken as proposed (`--labels v2p`, never a result): `apply_label_review.py --rehearsal`, then
-`build\run_rehearsal_v2p.ps1` (SVM, then U-Net, ~21 h unattended). D19 answered: rule (a) on v2 classes 1–4.
-**2026-10-25 (KB §69.4): the SVM rehearsal ran end to end** (21 h 47 min to the map, 7-class ~3 × the 4-class
-time); on the proposals as proposed the seven-class map scores 41.3 %, κ 0.297 and D18 keeps the four-class
-map ((a) on classes 1–4, apron in (b), Crater in (c) fail); fluvial channel paints 32.9 % of ±60°. **For the
-review:** trimming the valley strips to their floors is where the seven-class map stands to gain most.
-**2026-10-26 (KB §69.4): the rehearsal is done**, all 13 steps. The seven-class U-Net scores 88.8 %, κ 0.856 on
-the rehearsal polygons (four-class U-Net 41.6 %); by D18's rule as a report it too keeps the four-class map ((a)
-on classes 1–4, 90.4 against 98.9 %; Crater and hills in (c)). Times for the real run: SVM ~22 h, U-Net ~21 h.
-The label review (2b) has not started: 0 of 1,086 rows have a `Review` (read 2026-10-26 evening).
-**2026-10-26 evening (KB §69.5), D20, the author's decision: the interim's data cut is today.** What is
-measured now is the interim; the label review, the v2 runs, the candidate review and digitising, and the H1 / H2
-retests go to the final (by the 22 Nov freeze). `interim.py` brought to the cut and both documents rebuilt and
-read: 30 slides, 21 pages, `verify_interim.py` 282 numbers. The percent-complete column set by the agent at the
-author's request (D16, toward the final; KB §69.5). Left on the interim: the due date and delivery.
-**Same evening (KB §69.6), the author's request:** the interim's text edited for plain wording (no numbers
-changed), the slides reordered (first maps before the published one; H1, H2, H3, Q5), two stale facts fixed
-(the drive's size, "finds" for 34 of 124 crater polygons right). 30 slides, 23 pages; every slide and page read.
-**Late 10-26 (KB §69.7): the first review session.** At Ius, all 188 steep channels (94 accept, 80 reject, 14
-unsure: precision 54 %) and 361 closed depressions (26 / 331 / 4: 7 %) reviewed; the 120 accepts copied **as they
-stand** at the author's word (Origin indeterminate, Confidence inferred, Preservation empty), so H2's stage 2
-still waits for ≥ 10 fluvial and ≥ 10 volcanic channels: set `Origin` on the copies in
-`Landform_ChannelCenterlines` (a rerun skips copied rows). Layout 14 rebuilt and read.
-**10-27 (KB §69.8): the label review (2b) is all but done.** The author reviewed 162 of the 164 rows that are
-not new apron or fluvial strips (512 and edifice 870 left); the 172 apron and 276 fluvial rows were left to the
-agent and reviewed by a written rule (`build\review_v2_by_rule.py`: fluvial strips accepted only on a floor ≥ 20 m
-below their flanks and off volcanic plains, 192 / 276; aprons only if not flat and not in craters, 155 / 172).
-`apply_label_review.py --dry-run`: no overlaps; **every class meets §11.3 but hills (training in 2 blocks)**.
-The author's answers: the six rejected Crater checks (21, 38, 42, 47, 48, 54) are dropped; hills stays in with
-`--keep-short`. **Applied:** `Landform_TrainingSamples_v2` 971 labels (734 training, 237 held out). **2c is
-running:** `build\run_v2.ps1` started 10-27 01:32, SVM then U-Net, ~2 days (stopped by a restart at 21:18 after 12 of
-21 SVM tiles, resumed 10-28 02:29 with `-ClassifyOnly`, KB §69.23). **The SVM half is done (10-28 08:46, KB
-§69.24): 42.5 %, κ 0.310 against the four-class map's 35.7 %, κ 0.244 on the 237 held-out v2 polygons, but D18's
-rule fails on (a), apron's (b) and Crater's and hills' (c): the four-class map stays published.** **The U-Net half
-is done (10-29 08:23, KB §69.25): 69.0 %, κ 0.606 against the four-class U-Net's 44.1 %, κ 0.301; every new
-class passes (b), but (a) and all three of (c) fail (volcanic edifice takes 40 % of ±60°), by D18's rule it
-would be a test.** **D28 (the author, 10-29): the seven-class maps lead** all the same (KB §69.26); the layouts
-are built (04b, 13b, 17b), and the paper and deck rewritten with them leading (KB §69.27). Release
-`data-2026-10-29` backs up both seven-class maps, the v2p rehearsal's and the two seven-class U-Nets (KB §69.28).
-
-**The digitising classes hold 199 channels and 381 crater rims (0 lava margins, nothing drawn by hand); 3,791 of
-9,287 candidates are reviewed: every closed depression at both type areas, the 188 steep Ius channels, 209 of the
-409 rock-floored Athabasca channels (KB §69.33).** The review is the critical path, and only the author can do it (§6). The class revision (§11) runs beside it and must not
-delay it.
+**Where it stands.**
+- **The ±60° products** (KB §53–§57, §66): 465,354 closed depressions ≥ 1 km and 969,822 routed channel segments
+  (layouts 11, 12); the four-class SVM map at 200 m with an 11 × 11 majority filter, 73.8 %, κ 0.58 held out (§57,
+  layout 04); the two-pass U-Net province map, 98.9 %, κ 0.980 held out (§66.8, layout 17).
+- **Seven classes** (D17, D28): 971 reviewed v2 labels, 734 training and 237 held out (§69.8). On the v2 held-out
+  polygons the seven-class SVM scores 42.5 %, κ 0.310 and the seven-class U-Net 69.0 %, κ 0.606; both fail D18's
+  rule, and **they lead all the same** (layouts 04b, 13b, 17b; §69.24–§69.27).
+- **Thermal:** T1, +1.36 pt at 200 m in overall accuracy and none by balanced accuracy (§56, §69.18, D25); T3, the
+  THEMIS pair against TES inertia peaks in 2–5° blocks at r ≈ 0.12 (§69.29; layout 18, §69.30).
+- **The review, the critical path** (§69.33): **3,791 of 9,287 candidates**: every closed depression at both type
+  areas, the 188 steep Ius channels, 209 of the 409 rock-floored Athabasca channels. The digitising classes hold 199
+  channels, 381 crater rims and 0 lava margins, none drawn by hand; `Origin` is set on no channel, so H2's stage 2
+  waits.
+- **The project and the deliverables:** 38 maps and 21 layouts, no broken source (§5). The interim at its 26 October
+  cut (D20): 32 slides and a 21-page report, rebuilt 10-31 for layout 11's corrected citation (§69.34). The final
+  paper (16 pages) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
+  freeze (§12.1). Backup: release `data-2026-10-29` (§69.28).
+- **The machines:** the drive-root junctions point at `F:` and are broken on the laptop (§58); the drive and the
+  clone agree, and `github_sync.py` refuses if the clone ever holds work the drive lacks (§69.20). Nothing is
+  running.
 
 **Next, in this order:**
 
 | # | what | who | how | done when |
 |---|---|---|---|---|
-| 1 | **Review** (the 188 steep Ius channels, all 3,394 depressions and 209 of the 409 rock-floored Athabasca channels done, KB §69.33): set `Origin` on the 199 channel copies (H2 stage 2 needs ≥ 10 fluvial, ≥ 10 volcanic); review the other 200 rock-floored Athabasca channels, then the rest; draw the Athabasca lava margins (H1) and breached craters | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims`; the tally printed |
+| 1 | **Review:** `Origin` on the 199 channel copies (H2 stage 2 needs ≥ 10 fluvial and ≥ 10 volcanic); the other 200 rock-floored Athabasca channels, then the rest; the Athabasca lava margins (H1) and breached craters, by hand | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims` / `Landform_LavaFlowMargins`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
-| 2a | ~~**Class revision, proposals**~~ **done 2026-10-23 (KB §69.2):** the 512 with evidence and an `Action` each, plus new polygons for classes 5–7, in `Landform_TrainingSamples_v2_proposals` and a map in the `.aprx` | agent, drive | §11.2 | every label has an `Action`; each new class meets §11.3's minimum in proposals |
-| 2b | ~~**Review the label proposals**~~ **done 2026-10-27 (KB §69.8):** the author's rows, the apron and fluvial rows by the agent's rule at the author's word; applied with hills kept short (`--keep-short`) | author, in Pro | §11.4 | every non-`keep` row reviewed |
-| 2c | v2 labels and split (done 10-27); SVM on v2 scored and D18's verdict given (done 10-28, KB §69.24: the four-class map stays); U-Net on v2 run and scored (done 10-29, KB §69.25: 69.0 %, κ 0.606); D28 (10-29): the seven-class maps lead; layouts 04b, 13b, 17b (done 10-29, KB §69.26); the final's text rewritten (done 10-29, KB §69.27) | agent, desktop | §11.5 | results in the KB beside the four-class scores, by the **22 Nov** freeze |
-| 3 | **X5, deep learning**: X5 done to layout 16 (§66.1–66.4); X5b and the U-Net X5c trained and scored (§66.5–66.6). ±60° U-Net map made (§66.7), seams removed (§66.8), in the project beside the published SVM map with layout 17 (§66.9), in the interim and the release `data-2026-10-21` (§66.10). For the author: any further tuning needs its own validation blocks first (§66.5) | author | §5 | held-out recall and precision in the KB beside the SVM's |
-| 4 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
-| 5 | The interim: content cut on 26 Oct (D20) and rebuilt, percentages set (D16); refined for the **10 Nov** presentation (KB §69.10); the report's date from the author, then deliver | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
+| 3 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
+| 4 | The paper's analyses that need no author time, in §12.6's order (A1–A3, A5, A6; A4b done 10-31, KB §69.34) | agent | §12.2 | results in the KB, by the **22 Nov** freeze |
+| 5 | The interim: deliver on **10 Nov**; the report's date from the author | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
+| 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex`; rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
 
-**Waiting on the author:** items 1, 3 and 5 (and Pro kept closed while `run_v2.ps1` runs); D21–D27 (§2, from
-§12 and §13); the interim talk's slot length (§12.5); whether to delete the two recreated `_60_smoke` classes
-(KB §57.1); whether to publish a derivatives release carrying the §54 patch (33 GB; the catalogue says how
-to patch a restore instead, §57.4); emptying the Recycle Bins (~21 GB of finished scratch, §57.5).
+The class revision (§11) is done to the final's text (2a–2c, KB §69.2–§69.27). Deep learning (X5, X5b, X5c) is done
+and scored (§66); further tuning first needs validation blocks of its own (§66.5), the author's call.
+
+**Waiting on the author:** items 1 and 5; D14–D16, D21–D27 and D29 (§2); the interim talk's slot length (§12.5); whether
+layout 18 or `final_img\tes_block_scale.png` goes into a deliverable (§69.30); whether the interim shows layouts 15–18
+(it shows 13 of the 17 that existed at the cut, `INTERIM-PLAN.md` §3); emptying the Recycle Bins (~21 GB of finished
+scratch, §57.5).
 
 ---
 
@@ -300,6 +105,7 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D25 | the abstract's and conclusions' thermal gain: qualify it with the balanced-accuracy result (§12.4 W9); also the README (the interim: done, the author's yes, KB §69.21) | yes: one clause, "in overall accuracy; none by balanced accuracy" |
 | D26 | the built deck, report and paper PDF committed only once per deadline (§13.1 P4); rewriting history to drop the 35 earlier copies needs a force push and a re-clone on both machines | yes to committing at milestones; no rewrite |
 | D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | yes |
+| D29 | the seven-class maps' gain (D28) by balanced accuracy: none (SVM −0.15 pt, U-Net +0.20 pt on the v2 held-out polygons); the gain is in macro F1 and in quantity disagreement (KB §69.34). Say so in the paper's Table 3 and text, the deck and the README? | yes, as for D25: one clause, "in overall accuracy and macro F1; not in balanced accuracy"; D28's lead stands |
 D19 was answered 2026-10-24, before any v2 score existed: D18's rule (a) is judged on the held-out polygons whose
 v2 class is 1–4, the ground both maps can name (KB §68.4 amended, §69.4); `score_d18_verdict.py` does so.
 D28 was answered 2026-10-29, after both seven-class maps had failed D18's rule (KB §69.24–69.25): **the
@@ -631,7 +437,6 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 | A9 | **Day IR at the contacts checked against topography**: T5 rerun with day IR residualised on hillshade and slope (day temperature follows slope facing the sun) | if the +8.7 pt lean vanishes, H1's hint is illumination; if it holds, it is stronger | desktop, minutes | B |
 | A10 | **Crater size-frequency distribution**: cumulative counts, log-log, closed depressions against Robbins, at ±60° and per type area; the completeness diameter where the curves part | the standard planetary figure for a crater catalogue | desktop | B |
 | A11 | **The breached-crater explanation tested**: recall by Robbins' morphology or degradation fields, if the 2020 release carries them **[?]** (columns not read), else by rim-height deficit on the DEM | the paper asserts why recall stops near one half; this measures it | desktop | B |
-| A4b | `score_metrics.py` on the v2 logs (the list is at the top of `v2_drafts.tex`), for Table 3's v2 rows | balanced accuracy, F1, Q and A beside v2's accuracy and κ | either Python, minutes | A |
 | A13 | **The review rule's sensitivity**: how many fluvial and apron rows change at floor depths of 10 and 30 m and median slopes of 0.5° and 1.5° | bounds how much the v2 labels depend on two thresholds | desktop, minutes | C |
 
 ### 12.3 Small asks of the author (each after the candidate review, never ahead of it)
@@ -684,7 +489,7 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 
 1. **Laptop, now:** W8's deck half; W3's candidates checked (A4, A12, W1 and the paper's half of W8 done 10-27,
    KB §69.18).
-2. **Desktop, after "queue done":** the v2 scoring and D18 (§11.5) first; then A4b, A1, A2, A3, A5, A6, then
+2. **Desktop:** the v2 scoring and D18 done (§11.5; A4b done 10-31, KB §69.34); next A1, A2, A3, A5, A6, then
    A7–A11 as time allows; A13 if cheap.
 3. **The author:** the candidate review (§6) first; then R1; R2 if any time is free.
 4. **By 22 Nov:** the freeze; §12.1's lines and every result above that ran, into the KB, then `final.py` and the
@@ -706,8 +511,6 @@ review (§6) or the v2 scoring (§11.5); most of it is laptop work that fills th
 | P6 | **The paper compiled in CI**: a job that builds the `.tex` with TeX Live (a TeX Live container image is the likely source of `aastex701.cls` **[?]**, unchecked) and fails on an undefined reference or citation; the PDF kept as the run's artifact. The laptop then sees a compile without the desktop | catches what the laptop cannot (this session's edits are uncompiled); one more check before the freeze | laptop to write, CI to run | B |
 | P7 | **A real restore**: `restore.py` has only ever been dry-run (KB §67.4). Restore one small release group into scratch on the desktop and compare every file with the drive by hash | the drive is the only full copy (§9); a backup is proven only by a restore | desktop, ~1 h | B |
 | P8 | **The environment on the project page**: the versions are in KB §2.4 only (Pro 3.7, its Python 3.13.13, Deep Learning Libraries 3.7.1901, `arcgis.learn` 2.4.3). A short `docs/environment.md`: both Pythons, the system Python's packages (`python-pptx`, `python-docx`, matplotlib, Pillow) as a `requirements.txt`, MiKTeX and the AASTeX class version, the GPU and driver; written by a script on the desktop so it is read, not typed | a reader can tell what reproduces their run; the paper's data statement (W7) can point at it | desktop, minutes | B |
-| P9 | **Tests of the scoring arithmetic**: hand-worked confusion matrices through `score_metrics.metrics()` (accuracy, κ, balanced accuracy, F1, Q and A, a class absent from the labels), run in CI with P1 | the paper's new Table 3 columns rest on 60 lines no test has exercised beyond the agreement check | laptop | B |
-| P10 | **"Resume here" condensed**: it has grown to ~180 lines of dated paragraphs since 10-18; cut it to where things stand, what waits on whom and the clone → drive list, with the history left to the KB (as §58–§61 did once) | the most-read part of the plan readable in a minute | laptop | B |
 | P11 | **Which runs repeat exactly**: a table in the KB of each published number's run and whether a rerun reproduces it (a fixed seed, Pro's SVM, the U-Net's training); five build scripts name a seed | the paper's methods can say what is deterministic, and the freeze knows which reruns can move a number | laptop to read the scripts; the desktop for any rerun | C |
 | P12 | **Closing the project, after 8 Dec** (D27): a tag `final-2026-12-08` and a final release (the deck, the paper's PDF, the maps); `CITATION.cff` given `version`, the DOI (D23), a `preferred-citation` for the paper and its date; the README's "Where it stands" turned into what was found; this plan closed with a header saying so; the memory and "Resume here" retired; D14's smoke classes settled | the repository reads as finished work, not a project paused mid-term | laptop, ~1 h, 9–12 Dec | after |
 
@@ -718,8 +521,8 @@ question without changing the cut. The README follows whatever the paper says.
 
 ### 13.2 Order of work
 
-1. **Laptop, now:** P4 (code only; its behaviour waits on D26), then P9 and P10 (P1–P3 done 10-27, KB §69.20).
+1. **Laptop, now:** P4 (code only; its behaviour waits on D26). P1–P3 done 10-27 (KB §69.20), P2's first real use
+   10-28 (§69.23); P9 and P10 done 10-31 (§69.34).
 2. **Either machine:** P6.
-3. **Desktop, when it is free of `run_v2.ps1`:** P2's first real use, the clone → drive copy ("Resume here");
-   the next `github_export_gdb.py` writes `exports/README.md` from the same descriptions (P3); P7, P8.
+3. **Desktop:** P7, P8.
 4. **After 8 Dec:** P12.
