@@ -1,5 +1,5 @@
 {
- "read": "2026-10-30 12:05",
+ "read": "2026-10-31 07:25",
  "areas": {
   "ius": {
    "name": "Ius Chasma",
@@ -46,18 +46,18 @@
    "name": "Athabasca Valles",
    "rows": {
     "channels": {
-     "accept": 0,
-     "reject": 0,
+     "accept": 105,
+     "reject": 104,
      "unsure": 0,
-     "open": 3283,
+     "open": 3074,
      "candidates": 3283,
      "candidate_class": "Landform_ChannelCandidates_auto_ath",
-     "copied": 0,
+     "copied": 105,
      "drawn": 0,
-     "precision": null,
-     "judged": 0,
-     "recall": null,
-     "mapped": 0
+     "precision": 0.5023923444976076,
+     "judged": 209,
+     "recall": 1.0,
+     "mapped": 105
     },
     "depressions": {
      "accept": 213,

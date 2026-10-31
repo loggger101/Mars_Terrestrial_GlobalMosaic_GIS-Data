@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-27 (§69.22).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-31 (§69.33).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -461,7 +461,7 @@ There is **no ground truth and no sub-metre imagery.** Validation rests on:
 | 10 | does `GPU_THEN_CPU` engage on the 2080 Ti | yes (§2.3, §53.3) |
 | 11 | the desktop's internal disk | ~32 GB free on `C:`, enough for scratch with per-tile clean-up (§53.0) |
 | 13 | acquire THEMIS Night IR | done 2026-09-18; no global night mosaic exists, coverage is ±60° (§15) |
-| 16 | digitising: seeded, and how it starts | candidates in separate classes (§25, §26); 512 hand-drawn training labels (§29.2); digitising starts as a review (§46). The classes hold 0 lava margins, 94 channels and 381 crater rims, all accepted candidates; 3,582 of 9,287 reviewed (§69.7, §69.31) |
+| 16 | digitising: seeded, and how it starts | candidates in separate classes (§25, §26); 512 hand-drawn training labels (§29.2); digitising starts as a review (§46). The classes hold 0 lava margins, 199 channels and 381 crater rims, all accepted candidates; 3,791 of 9,287 reviewed (§69.7, §69.31, §69.33) |
 | 17 | keep the plateau channel candidates | keep; reject in review: the rejections become layout 14's precision (§50) |
 | 18 | hydrology at ±60° | yes; the fine pass ran (§53.4); the fill mask is not optional (§28.11) |
 | 19 | rebuild the 7-band composite on the night grid with valid slope | done as the corrected stack (§31.2); the GUI `CompositeBand` stays as it is |
@@ -5010,3 +5010,31 @@ channels (~5,000 km east, 271–286°E); zoom to layer landed there. The validat
 - **Sheets 06 and 09** re-exported to scratch: the filter changes nothing inside their frames. Both differ from the
   drive's PNGs because of the 381 accepted rims and the author's review settings (the diurnal-contrast index on,
   the hillshade off, against the builder's defaults); the PNGs and those settings are left as they are.
+
+### 69.33 The review: the first 209 Athabasca channels, all rock-floored; 105 accepts copied — 2026-10-31, laptop **[V]**
+
+The author's review session saved in the gdb and `.aprx` at 2026-10-30 13:49, after §69.32 (no drive file outside
+`.backups\` changed after 14:00 that day). Pro closed, no `.lock` files in the gdb. `accept_reviewed.py`, dry run:
+
+| class | reviewed | accept | reject | unsure | precision, accept ÷ (accept + reject) |
+|---|---|---|---|---|---|
+| Ius channels | 188 of 2,610 (unchanged) | 94 | 80 | 14 | 54 % of 174 |
+| Athabasca channels | **209 of 3,283** (0 at §69.31) | **105** | **104** | 0 | **50 %** of 209 |
+| Ius closed depressions ≥ 1 km | 1,685 of 1,685 (unchanged) | 168 | 1,476 | 41 | 10 % of 1,644 |
+| Athabasca closed depressions ≥ 1 km | 1,709 of 1,709 (unchanged) | 213 | 1,475 | 21 | 13 % of 1,688 |
+
+- **3,791 of 9,287 candidates reviewed** (3,582 at §69.31).
+- **All 209 reviewed Athabasca channels lie in the review prompt**, the rock-floored layer (`ThermIdx < -0.15`,
+  `make_candidate_maps.py`'s `PROMPT["ath"]`, §42.1): read with a cursor, 409 rock-floored rows = 105 accept,
+  104 reject, 200 open; the 2,874 others all open. So 50 % is the rock-floored layer's precision, not the 3,283's,
+  as at Ius (§69.7).
+- **Copied** with `accept_reviewed.py --apply --by "Logan M Edwards"`, at the author's word: 105 rows into
+  `Landform_ChannelCenterlines`, which now holds **199** (94 Ius, 105 Athabasca); a rerun reports 0 to copy.
+  `Landform_CraterRims` 381 and `Landform_LavaFlowMargins` 0, unchanged; nothing drawn by hand.
+- **Layout 14** rebuilt (`make_validation_sheet.py`, `.aprx` backed up first; `polish_layouts.py`, which changed only
+  14), exported at 150 dpi, read: the table matches the tally above; the PNG copied to `Global60\layouts\`.
+- **T4 (H2)**, `make_t4_channel_h2.py`: stage 1 unchanged (AUC thermal 0.50, not supported); **stage 2 still
+  waits**, `{indeterminate: 199}` against ≥ 10 fluvial and ≥ 10 volcanic: `Origin` is set on no copy.
+- **Exported:** `github_export_gdb.py`, 33 feature classes to the clone's `exports\`, every row count checked.
+- **Left for the author:** the other 200 rock-floored Athabasca channels, then the rest; `Origin` on the 199 channel
+  copies; the Athabasca lava margins (H1, T5); breached craters by hand.
