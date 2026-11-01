@@ -51,7 +51,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 - **The project and the deliverables:** 38 maps and 21 layouts, no broken source (§5). The interim at its 26 October
   cut (D20): 32 slides and a 21-page report, rebuilt 10-31 for layout 11's corrected citation (§69.34); speaker
   notes on every slide since 11-01, the slides unchanged (§69.41). The final
-  paper (17 pages, compiled by the repository's CI on every push that touches it, §69.42) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
+  paper (18 pages since 11-01, compiled by the repository's CI on every push that touches it, §69.42) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
   freeze (§12.1). Backup: release `data-2026-10-29` (§69.28).
 - **The machines:** the drive-root junctions point at `F:` and are broken on the laptop (§58); the drive and the
   clone agree, and `github_sync.py` refuses if the clone ever holds work the drive lacks (§69.20). Nothing is

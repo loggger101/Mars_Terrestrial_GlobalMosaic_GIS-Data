@@ -5647,3 +5647,8 @@ and that the four-class U-Net's lead holds by block (+11.1 to +41.0); conclusion
 Neither the paper nor the deck is rebuilt on the laptop: the push compiles the paper in CI (§69.42); the deck waits for
 `build_final_deck.py` (its seven-class U-Net slide now has four points; read it at the rebuild). D30 (the baseline
 in Table 3) is still the author's.
+
+**Read from CI's PDF** (runs 41342819881, 41343098105): 18 pages, one more than at §69.42. Pages 1, 5, 7, 9, 11–14 and
+16 read where the text changed; Figure 8 shows the one-side-cut curve. One defect, fixed: the comment that closes the
+seven-class U-Net's new sentences had been placed before the rest of the source line, which LaTeX then dropped
+("... (+11.1 to +41.0). ed edifice 0.487"); the comment now ends that line, and the second run reads whole.
