@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 430 GB with all derived rasters, measured 2026-10-22). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 178, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 179, by purpose) · [backup and restore](docs/backup.md)
 
 [![Mars ±60° landform classification, seven classes](docs/thumbs/04b_global60_landforms_v2.jpg)](Mars%20Project/Global60/layouts/04b_global60_landforms_v2.png)
 *The landform map in seven classes over ±60°, scored on reviewed polygons the classifier never saw (layout 04b; the four-class map is layout 04).*
@@ -22,7 +22,7 @@ This repository is the project page and an off-drive backup of the project. The 
 
 The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 
-## Where it stands (2026-10-31)
+## Where it stands (2026-11-01)
 
 The interim presentation is on **10 November 2026** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source; their data cut is **26 October** (decision D20): they cover what is measured by then, and later work goes to the final ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)); so are drafts of the final paper (AASTeX) and deck ([`NEXT STUFF/Final/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); how to work on the project is [`HANDOFF-DESKTOP.md`](Mars%20Remote%20Sensing%20Project/HANDOFF-DESKTOP.md).
 
@@ -73,7 +73,7 @@ Yes, a little. With ArcGIS Pro's SVM over the whole ±60°, leaving the thermal 
 
 ### Deep learning (X5)
 
-Two deep-learning models, trained on the desktop GPU on the same training blocks as the SVM and scored on the same held-out polygons. A RetinaNet detector on 7-band chips finds Crater polygons with 41.9% recall and 87.6% precision, against 71.1% for naming every polygon Crater, and never names the two rare classes (layout 16); retrained with its backbone unfrozen it names the hills but loses the plains (Normal Ground recall 4.5%). A U-Net pixel classifier over all of ±60° scores **98.9%, κ 0.980** held out, against the published map's 73.8%, κ 0.583 under the same scorer, and raises lava tube's user's accuracy from 2% to 77%. It paints terrain provinces rather than single landforms: its 'Crater' class covers 83% of the ring around named craters as well as the craters themselves. A second pass on a grid offset by 128 px removes the seams of the tool's 256 px tiles. The SVM map stays the published one; the U-Net map sits beside it as the province map (KB §66). On the reviewed seven-class labels a second U-Net scores 69.0%, κ 0.606 against the seven-class SVM's 42.5%, though volcanic edifice spreads over 40% of ±60° (layout 17b, KB §69.25).
+Two deep-learning models, trained on the desktop GPU on the same training blocks as the SVM and scored on the same held-out polygons. A RetinaNet detector on 7-band chips finds Crater polygons with 41.9% recall and 87.6% precision, against 71.1% for naming every polygon Crater, and never names the two rare classes (layout 16); retrained with its backbone unfrozen it names the hills but loses the plains (Normal Ground recall 4.5%). A U-Net pixel classifier over all of ±60° scores **98.9%, κ 0.980** held out, against the published map's 73.8%, κ 0.583 under the same scorer, and raises lava tube's user's accuracy from 2% to 77%. It paints terrain provinces rather than single landforms: its 'Crater' class covers 83% of the ring around named craters as well as the craters themselves. A second pass on a grid offset by 128 px removes the seams of the tool's 256 px tiles. The SVM map stays the published one; the U-Net map sits beside it as the province map (KB §66). On the reviewed seven-class labels a second U-Net scores 69.0%, κ 0.606 against the seven-class SVM's 42.5%, though volcanic edifice spreads over 40% of ±60° (layout 17b, KB §69.25). Against named features, its fluvial channel gathers on the named valleys (within 2 km of their valley lines more than 10–20 km away for 83% of 83 valles), but its edifice is less common inside each of the 10 smaller named Mons, Tholus and Patera scored than around them; the large volcanoes carry labels and can't be checked this way (KB §69.39).
 
 [<img src="docs/thumbs/17_x5c_unet_provinces.jpg" width="640" alt="Layout 17: the U-Net terrain-province map over ±60°, one held-out block, and its scores beside the SVM map's">](Mars%20Project/Global60/layouts/17_x5c_unet_provinces.png)
 
@@ -257,7 +257,7 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   178 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   179 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
   NEXT STUFF/              interim report and presentation; Final/: the AASTeX paper and the final deck (drafts)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)

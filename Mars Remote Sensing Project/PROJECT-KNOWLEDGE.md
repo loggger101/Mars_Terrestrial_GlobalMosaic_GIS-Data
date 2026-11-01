@@ -5248,3 +5248,58 @@ on the laptop: 20 figures copied). **Not compiled with AASTeX:** the class is on
 figure block itself, with the Methods sentence citing it, compiles under TinyTeX's `pdflatex` in a two-column
 `article` test (text width 505.9 pt): the PDF figure loads and the page reads, the float about a third of a page with
 its caption. The paper's page count (16 at the last build) is to be read at the desktop rebuild (NEXT-STEPS §12.1).
+
+### 69.39 Named features for the new classes (A15): fluvial channel holds on both maps, edifice fails on both — 2026-11-01, laptop **[V]**
+
+`build\make_named_feature_check.py` (ArcGIS Python, ~220 s) extends the IAU-crater check (§30–§31) to the
+seven-class maps, the SVM (200 m, 11 × 11 mode) and the U-Net (§69.24–§69.25), both read from the cached 400 m class
+arrays `verify_global60_classification.py` wrote (the script refuses a cache older than its raster). Names from
+`MARS_nomenclature_misc_March2019` within ±60°, by the first word of `type`; only names with no v2 label polygon (train
+or test) at their centre are scored, and a feature needs ≥ 9 valid pixels in each zone. Predictions written into
+the docstring before the first run. Log `logs\named_feature_check_v2.log`, results `logs\named_feature_check_v2.json`.
+
+- **The rules.** Edifice: 'volcanic edifice' inside 0.7 R against a 1.5–2.5 R ring, R from `diameter`, the crater
+  check's own pixel geometry; the primary set is names ending Mons, Tholus or Patera (22 within ±60°, 11 with no
+  label at the centre), Montes ranges apart (10, 8). Fluvial: 'fluvial channel' within 2 km of the Alemanno &
+  Orofino (2017) valley lines inside the vallis's extent box against a 10–20 km band around the same lines (146
+  valles, 112 with no label at the centre). Lava tube: inside each catena's extent box against boxes 1.5–2.5 times
+  its half-size (8, all 8 free of labels). The counts reproduce NEXT-STEPS §12.2's 32 / 146 / 8 and 19 / 112 / 8.
+- **The checks can fail.** `--self-test`: the script's ring function, given the scorer's exclusion boxes, returns
+  `svmcheck.crater_score`'s values exactly on both maps (620 IAU craters; 0.366 vs 0.171 SVM, 0.524 vs 0.241
+  U-Net, as each map's logged `iau_craters`). `--shift 180` (each map rolled half a planet,
+  `logs\named_feature_check_v2_shift180.json`): the fluvial result falls to chance, near > band for 51.8 % (SVM) and
+  39.8 % (U-Net) of valles, and edifice and lava tube fail on both.
+
+| | seven-class SVM | seven-class U-Net |
+|---|---|---|
+| class's ±60° area share: edifice / fluvial / lava tube | 12.2 / 33.0 / 2.1 % | 40.0 / 8.5 / 1.9 % |
+| **P1 edifice**, n 10: inside vs ring; inside > ring | 0.184 vs 0.284; 30.0 % → **not held** | 0.154 vs 0.533; 0.0 % → **not held** |
+| Montes, n 8 (no verdict set) | 0.144 vs 0.137; 50.0 % | 0.283 vs 0.409; 12.5 % |
+| **P2 fluvial**, n 83: near lines vs band; near > band | 0.402 vs 0.353; 66.3 % → **held** | 0.222 vs 0.101; 83.1 % → **held** |
+| lava tube on catenae, n 7 (no verdict, P3) | 0.040 vs 0.035; 4 of 7 | 0.064 vs 0.081; 2 of 7 |
+
+Skipped valles: 34 with a label at the centre, 27 with no valley line in their box, 2 at the extent's edge; one
+edifice name and one catena too small or at the edge.
+
+- **Fluvial channel:** both maps put more of it near the named valleys' lines than 10–20 km away, the U-Net
+  sharply (median ratio 2.6; 51 of 83 valles at ≥ 2 ×), the SVM weakly (6 of 83 at ≥ 2 ×), as its 33 % share of
+  ±60° leaves little room above the band. The fluvial labels were drawn as strips along the same valley map
+  (§68.5), so this is consistency with the labels' source, not accuracy.
+- **Edifice: the check does not measure what it was meant to.** The large Tharsis and Elysium volcanoes all have a
+  label at their centre and are excluded. Of the 10 scored names, SIM 3292 puts 3 on volcanic groups (Dionysus
+  Patera `Ave`, Labeatis Mons `eHv`, Pindus Mons `lHvf`) and 7 on highland, basin or transition units (Anseris
+  and Peraea Mons near 86°E, 30°S on Hellas's rim, Oceanidum and Octantis Mons near 318°E, 55°S by Argyre, by
+  their coordinates; Apollinaris and Zephyria Tholus on `h`,
+  Gonnus Mons on `HNt`); inside the 0.7 R disc the U-Net calls Crater (Anseris 0.87, Apollinaris 0.84, Peraea 1.00,
+  Zephyria 0.72) or apron (Gonnus 0.94, Oceanidum 0.83, Pindus 1.00) more than edifice. On the 3 volcanic names
+  both maps still give the ring more edifice than the disc (SVM 0.44 / 0.48 / 0.50 against 0.67 / 0.77 / 0.55;
+  U-Net 0.52 / 0.79 / 0.00 against 0.69 / 0.80 / 0.21): on volcanoes 15–50 km across, 'volcanic edifice' marks
+  the volcanic surroundings, not the edifice. With the U-Net's edifice at 40 % of ±60° and mostly on the highland
+  group (§69.37), the ring is edifice on most of the map. These per-name diagnostics (unit at the centre, every
+  class's share inside) were added after the first run; they change no verdict.
+- **Lava tube on catenae:** n 7, no verdict; shares inside are 0–14 %, near the class's 2 % base rate, on both
+  maps.
+- **For the paper:** one sentence each in the seven-class Results, beside the IAU-crater figure the Methods
+  already gives: fluvial channel concentrates on named valleys' lines (U-Net 0.22 against 0.10, 83 % of 83 valles),
+  edifice does not concentrate on the named small edifices (none of 10 on the U-Net), and the named-feature check
+  is consistency with the labels' sources. The large edifices cannot be checked this way, as the labels cover them.

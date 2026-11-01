@@ -1,0 +1,31 @@
+971 v2 label polygons
+names within +-60 (no v2 label at centre): {'edifice_montes': '10 (8)', 'fluvial': '146 (112)', 'lava_tube': '8 (8)', 'edifice': '22 (11)'}
+valley points ... 8832221 (79 s)
+
+svm_v2  (area shares: edifice 0.122, fluvial 0.330, lava tube 0.021)
+  edifice (volcanic edifice)         n  11  inside 0.065 vs outside 0.096; inside > outside 18.2%  -> NOT held
+  edifice_montes (volcanic edifice)  n   8  inside 0.023 vs outside 0.044; inside > outside 25.0%  -> NOT held
+  fluvial (fluvial channel)          n  83  inside 0.379 vs outside 0.385; inside > outside 51.8%  -> NOT held
+  lava_tube (lava tube)              n   7  inside 0.001 vs outside 0.005; inside > outside 0.0%  -> NOT held
+      Acheron Catena          421.8 km  lava tube inside 0.001 vs ring 0.015
+      Artynia Catena          279.3 km  lava tube inside 0.000 vs ring 0.000
+      Baphyras Catena          95.5 km  lava tube inside 0.000 vs ring 0.000
+      Ceraunius Catena         50.5 km  lava tube inside 0.000 vs ring 0.006
+      Elysium Catena           48.5 km  lava tube inside 0.003 vs ring 0.005
+      Phlegethon Catena       399.7 km  lava tube inside 0.002 vs ring 0.008
+      Stygis Catena            65.4 km  lava tube inside 0.000 vs ring 0.000
+
+unet_v2  (area shares: edifice 0.400, fluvial 0.085, lava tube 0.019)
+  edifice (volcanic edifice)         n  11  inside 0.356 vs outside 0.429; inside > outside 36.4%  -> NOT held
+  edifice_montes (volcanic edifice)  n   8  inside 0.383 vs outside 0.396; inside > outside 50.0%  -> NOT held
+  fluvial (fluvial channel)          n  83  inside 0.093 vs outside 0.095; inside > outside 39.8%  -> NOT held
+  lava_tube (lava tube)              n   7  inside 0.001 vs outside 0.002; inside > outside 28.6%  -> NOT held
+      Acheron Catena          421.8 km  lava tube inside 0.003 vs ring 0.003
+      Artynia Catena          279.3 km  lava tube inside 0.000 vs ring 0.000
+      Baphyras Catena          95.5 km  lava tube inside 0.000 vs ring 0.000
+      Ceraunius Catena         50.5 km  lava tube inside 0.000 vs ring 0.004
+      Elysium Catena           48.5 km  lava tube inside 0.004 vs ring 0.001
+      Phlegethon Catena       399.7 km  lava tube inside 0.000 vs ring 0.002
+      Stygis Catena            65.4 km  lava tube inside 0.000 vs ring 0.000
+
+wrote Z:\Mars Remote Sensing Project\build\logs\named_feature_check_v2_shift180.json  (212 s)

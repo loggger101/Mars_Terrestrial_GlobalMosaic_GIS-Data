@@ -1,0 +1,67 @@
+971 v2 label polygons
+names within +-60 (no v2 label at centre): {'edifice_montes': '10 (8)', 'fluvial': '146 (112)', 'lava_tube': '8 (8)', 'edifice': '22 (11)'}
+valley points ... 8832221 (91 s)
+
+svm_v2  (area shares: edifice 0.122, fluvial 0.330, lava tube 0.021)
+  edifice (volcanic edifice)         n  10  inside 0.184 vs outside 0.284; inside > outside 30.0%  -> NOT held
+      Anseris Mons              52 km  unit mNh    (h )  edifice inside 0.012 vs ring 0.005; inside most Crater 0.54
+      Apollinaris Tholus        32 km  unit mNh    (h )  edifice inside 0.000 vs ring 0.138; inside most steep/windy hills 0.46
+      Dionysus Patera           23 km  unit Ave    (ve)  edifice inside 0.443 vs ring 0.665; inside most lava tube 0.49
+      Gonnus Mons               49 km  unit HNt    (t )  edifice inside 0.126 vs ring 0.430; inside most steep/windy hills 0.35
+      Labeatis Mons             43 km  unit eHv    (v )  edifice inside 0.475 vs ring 0.774; inside most volcanic edifice 0.47
+      Oceanidum Mons            33 km  unit HNb    (b )  edifice inside 0.152 vs ring 0.034; inside most apron 0.38
+      Octantis Mons             19 km  unit HNb    (b )  edifice inside 0.125 vs ring 0.063; inside most apron 0.39
+      Peraea Mons               15 km  unit mNh    (h )  edifice inside 0.000 vs ring 0.039; inside most Crater 0.99
+      Pindus Mons               16 km  unit lHvf   (vf)  edifice inside 0.499 vs ring 0.545; inside most volcanic edifice 0.50
+      Zephyria Tholus           36 km  unit eNh    (h )  edifice inside 0.011 vs ring 0.147; inside most Crater 0.58
+  edifice_montes (volcanic edifice)  n   8  inside 0.144 vs outside 0.137; inside > outside 50.0%  -> NOT held
+      Ausonia Montes           333 km  unit eHv    (v )  edifice inside 0.003 vs ring 0.011; inside most fluvial channel 0.65
+      Chalce Montes            100 km  unit HNb    (b )  edifice inside 0.047 vs ring 0.044; inside most Normal Ground 0.48
+      Coprates Montes          350 km  unit Nhu    (hu)  edifice inside 0.064 vs ring 0.074; inside most steep/windy hills 0.44
+      Coronae Montes           247 km  unit eNhm   (hm)  edifice inside 0.438 vs ring 0.452; inside most volcanic edifice 0.44
+      Echus Montes             397 km  unit Ht     (t )  edifice inside 0.442 vs ring 0.305; inside most Normal Ground 0.50
+      Erebus Montes            812 km  unit lAv    (v )  edifice inside 0.015 vs ring 0.012; inside most Normal Ground 0.59
+      Hellas Montes            160 km  unit eNhm   (hm)  edifice inside 0.095 vs ring 0.197; inside most Crater 0.29
+      Hibes Montes             140 km  unit lAv    (v )  edifice inside 0.046 vs ring 0.001; inside most Normal Ground 0.68
+  fluvial (fluvial channel)          n  83  inside 0.402 vs outside 0.353; inside > outside 66.3%  -> held
+  lava_tube (lava tube)              n   7  inside 0.040 vs outside 0.035; inside > outside 57.1%  -> no verdict
+      Acheron Catena          421.8 km  lava tube inside 0.032 vs ring 0.036
+      Artynia Catena          279.3 km  lava tube inside 0.013 vs ring 0.000
+      Baphyras Catena          95.5 km  lava tube inside 0.085 vs ring 0.134
+      Ceraunius Catena         50.5 km  lava tube inside 0.063 vs ring 0.029
+      Elysium Catena           48.5 km  lava tube inside 0.000 vs ring 0.001
+      Phlegethon Catena       399.7 km  lava tube inside 0.063 vs ring 0.043
+      Stygis Catena            65.4 km  lava tube inside 0.024 vs ring 0.005
+
+unet_v2  (area shares: edifice 0.400, fluvial 0.085, lava tube 0.019)
+  edifice (volcanic edifice)         n  10  inside 0.154 vs outside 0.533; inside > outside 0.0%  -> NOT held
+      Anseris Mons              52 km  unit mNh    (h )  edifice inside 0.045 vs ring 0.754; inside most Crater 0.87
+      Apollinaris Tholus        32 km  unit mNh    (h )  edifice inside 0.000 vs ring 0.506; inside most Crater 0.84
+      Dionysus Patera           23 km  unit Ave    (ve)  edifice inside 0.515 vs ring 0.690; inside most volcanic edifice 0.52
+      Gonnus Mons               49 km  unit HNt    (t )  edifice inside 0.012 vs ring 0.163; inside most apron 0.94
+      Labeatis Mons             43 km  unit eHv    (v )  edifice inside 0.793 vs ring 0.802; inside most volcanic edifice 0.79
+      Oceanidum Mons            33 km  unit HNb    (b )  edifice inside 0.001 vs ring 0.711; inside most apron 0.83
+      Octantis Mons             19 km  unit HNb    (b )  edifice inside 0.009 vs ring 0.285; inside most lava tube 0.52
+      Peraea Mons               15 km  unit mNh    (h )  edifice inside 0.000 vs ring 0.771; inside most Crater 1.00
+      Pindus Mons               16 km  unit lHvf   (vf)  edifice inside 0.000 vs ring 0.214; inside most apron 1.00
+      Zephyria Tholus           36 km  unit eNh    (h )  edifice inside 0.163 vs ring 0.428; inside most Crater 0.72
+  edifice_montes (volcanic edifice)  n   8  inside 0.283 vs outside 0.409; inside > outside 12.5%  -> NOT held
+      Ausonia Montes           333 km  unit eHv    (v )  edifice inside 0.476 vs ring 0.614; inside most volcanic edifice 0.48
+      Chalce Montes            100 km  unit HNb    (b )  edifice inside 0.466 vs ring 0.474; inside most volcanic edifice 0.47
+      Coprates Montes          350 km  unit Nhu    (hu)  edifice inside 0.257 vs ring 0.394; inside most steep/windy hills 0.43
+      Coronae Montes           247 km  unit eNhm   (hm)  edifice inside 0.299 vs ring 0.689; inside most apron 0.66
+      Echus Montes             397 km  unit Ht     (t )  edifice inside 0.655 vs ring 0.416; inside most volcanic edifice 0.66
+      Erebus Montes            812 km  unit lAv    (v )  edifice inside 0.060 vs ring 0.182; inside most Normal Ground 0.51
+      Hellas Montes            160 km  unit eNhm   (hm)  edifice inside 0.000 vs ring 0.402; inside most apron 1.00
+      Hibes Montes             140 km  unit lAv    (v )  edifice inside 0.053 vs ring 0.100; inside most apron 0.73
+  fluvial (fluvial channel)          n  83  inside 0.222 vs outside 0.101; inside > outside 83.1%  -> held
+  lava_tube (lava tube)              n   7  inside 0.064 vs outside 0.081; inside > outside 28.6%  -> no verdict
+      Acheron Catena          421.8 km  lava tube inside 0.048 vs ring 0.116
+      Artynia Catena          279.3 km  lava tube inside 0.092 vs ring 0.000
+      Baphyras Catena          95.5 km  lava tube inside 0.140 vs ring 0.245
+      Ceraunius Catena         50.5 km  lava tube inside 0.003 vs ring 0.029
+      Elysium Catena           48.5 km  lava tube inside 0.007 vs ring 0.015
+      Phlegethon Catena       399.7 km  lava tube inside 0.075 vs ring 0.144
+      Stygis Catena            65.4 km  lava tube inside 0.085 vs ring 0.017
+
+wrote Z:\Mars Remote Sensing Project\build\logs\named_feature_check_v2.json  (221 s)
