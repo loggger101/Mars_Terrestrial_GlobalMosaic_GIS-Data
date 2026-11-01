@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 330" width="1220" height="330" font-family="Arial, Helvetica, sans-serif" font-size="13">
-  <title>Mars Global Mosaic: from four source mosaics to a landform map, a U-Net province map and digitising candidates</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 470" width="1220" height="470" font-family="Arial, Helvetica, sans-serif" font-size="13">
+  <title>Mars Global Mosaic: from four source mosaics to seven-class and four-class landform maps by support vector machine and U-Net, and digitising candidates</title>
   <defs>
     <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#57606a"/>
@@ -14,72 +14,84 @@
       text{fill:#1f2328}
       .t{font-weight:bold}
       .s{fill:#57606a;font-size:12px}
+      .n{font-size:12px}
       line,path.l{stroke:#57606a;stroke-width:1.4;fill:none;marker-end:url(#a)}
       .cap{fill:#57606a;font-size:12px;font-weight:bold;letter-spacing:.04em}
     </style>
   </defs>
-  <rect x="0" y="0" width="1220" height="330" rx="10" fill="#ffffff"/>
+  <rect x="0" y="0" width="1220" height="470" rx="10" fill="#ffffff"/>
 
   <text class="cap" x="20" y="22">SOURCES · 3 FRAMES</text>
   <text class="cap" x="270" y="22">ONE GRID</text>
   <text class="cap" x="510" y="22">PRODUCTS AT ±60°</text>
-  <text class="cap" x="770" y="22">METHOD</text>
-  <text class="cap" x="1020" y="22">RESULT</text>
+  <text class="cap" x="770" y="22">LABELS AND METHOD</text>
+  <text class="cap" x="1010" y="22">RESULT</text>
 
   <!-- sources -->
   <rect class="b src" x="20" y="34" width="200" height="56" rx="6"/>
   <text x="32" y="57" class="t">Viking MDIM 2.1 colour</text><text x="32" y="76" class="s">232 m · meridian 0°</text>
-  <rect class="b src" x="20" y="104" width="200" height="56" rx="6"/>
-  <text x="32" y="127" class="t">THEMIS day IR</text><text x="32" y="146" class="s">100 m · meridian 180°</text>
-  <rect class="b src" x="20" y="174" width="200" height="56" rx="6"/>
-  <text x="32" y="197" class="t">THEMIS night IR</text><text x="32" y="216" class="s">100 m · ±60° only</text>
-  <rect class="b src" x="20" y="244" width="200" height="56" rx="6"/>
-  <text x="32" y="267" class="t">HRSC/MOLA DEM</text><text x="32" y="286" class="s">200 m · geographic degrees</text>
+  <rect class="b src" x="20" y="114" width="200" height="56" rx="6"/>
+  <text x="32" y="137" class="t">THEMIS day IR</text><text x="32" y="156" class="s">100 m · meridian 180°</text>
+  <rect class="b src" x="20" y="194" width="200" height="56" rx="6"/>
+  <text x="32" y="217" class="t">THEMIS night IR</text><text x="32" y="236" class="s">100 m · ±60° only</text>
+  <rect class="b src" x="20" y="274" width="200" height="56" rx="6"/>
+  <text x="32" y="297" class="t">HRSC/MOLA DEM</text><text x="32" y="316" class="s">200 m · geographic degrees</text>
 
   <!-- grid -->
-  <rect class="b mid" x="270" y="132" width="190" height="70" rx="6"/>
-  <text x="282" y="155" class="t">±60° grid, grid60.py</text>
-  <text x="282" y="174" class="s">read from the night mosaic</text>
-  <text x="282" y="191" class="s">100 m and 200 m, nested</text>
-  <line x1="220" y1="62" x2="268" y2="152"/>
-  <line x1="220" y1="132" x2="268" y2="162"/>
-  <line x1="220" y1="202" x2="268" y2="172"/>
-  <line x1="220" y1="272" x2="268" y2="182"/>
+  <rect class="b mid" x="270" y="147" width="190" height="70" rx="6"/>
+  <text x="282" y="170" class="t">±60° grid, grid60.py</text>
+  <text x="282" y="189" class="s">read from the night mosaic</text>
+  <text x="282" y="206" class="s">100 m and 200 m, nested</text>
+  <line x1="220" y1="62" x2="268" y2="165"/>
+  <line x1="220" y1="142" x2="268" y2="175"/>
+  <line x1="220" y1="222" x2="268" y2="189"/>
+  <line x1="220" y1="302" x2="268" y2="199"/>
 
   <!-- products -->
   <rect class="b mid" x="510" y="34" width="210" height="56" rx="6"/>
-  <text x="522" y="57" class="t">7-band stack, 200 m</text><text x="522" y="76" class="s">RGB, night, day, slope, relief</text>
-  <rect class="b mid" x="510" y="134" width="210" height="56" rx="6"/>
-  <text x="522" y="157" class="t">Terrain</text><text x="522" y="176" class="s">slope °, aspect, hillshade, relief</text>
-  <rect class="b mid" x="510" y="234" width="210" height="56" rx="6"/>
-  <text x="522" y="257" class="t">Diurnal-contrast index</text><text x="522" y="276" class="s">day vs night, relative only</text>
-  <line x1="460" y1="150" x2="508" y2="66"/>
-  <line x1="460" y1="167" x2="508" y2="162"/>
-  <line x1="460" y1="184" x2="508" y2="258"/>
-  <line x1="615" y1="134" x2="615" y2="92"/>
+  <text x="522" y="57" class="t">Terrain</text><text x="522" y="76" class="s">slope °, aspect, hillshade, relief</text>
+  <rect class="b mid" x="510" y="114" width="210" height="56" rx="6"/>
+  <text x="522" y="137" class="t">7-band stack, 200 m</text><text x="522" y="156" class="s">RGB, night, day, slope, relief</text>
+  <rect class="b mid" x="510" y="194" width="210" height="56" rx="6"/>
+  <text x="522" y="217" class="t">Diurnal-contrast index</text><text x="522" y="236" class="s">day vs night, relative only</text>
+  <rect class="b mid" x="510" y="364" width="210" height="56" rx="6"/>
+  <text x="522" y="387" class="t">Machine candidates</text><text x="522" y="406" class="s">channels, craters, basins</text>
+  <line x1="460" y1="160" x2="508" y2="66"/>
+  <line x1="460" y1="175" x2="508" y2="146"/>
+  <line x1="460" y1="195" x2="508" y2="218"/>
+  <line x1="460" y1="210" x2="508" y2="384"/>
+  <line x1="615" y1="90" x2="615" y2="112"/>
 
-  <!-- method -->
-  <rect class="b mid" x="770" y="34" width="200" height="56" rx="6"/>
-  <text x="782" y="57" class="t">Support vector machine</text><text x="782" y="76" class="s">scored on held-out 15° blocks</text>
-  <rect class="b hand" x="770" y="124" width="200" height="56" rx="6"/>
-  <text x="782" y="147" class="t">512 hand-drawn labels</text><text x="782" y="166" class="s">4 classes, planet-wide</text>
-  <rect class="b mid" x="770" y="234" width="200" height="56" rx="6"/>
-  <text x="782" y="257" class="t">Machine candidates</text><text x="782" y="276" class="s">channels, craters, basins</text>
-  <line x1="720" y1="62" x2="768" y2="62"/>
-  <line x1="870" y1="124" x2="870" y2="92"/>
-  <line x1="720" y1="170" x2="768" y2="250"/>
-  <line x1="720" y1="262" x2="768" y2="262"/>
+  <!-- labels and method -->
+  <rect class="b mid" x="770" y="114" width="210" height="74" rx="6"/>
+  <text x="782" y="137" class="t">SVM and U-Net</text>
+  <text x="782" y="156" class="s">split by whole 15° blocks:</text>
+  <text x="782" y="173" class="s">14 of 39 held out for scoring</text>
+  <rect class="b hand" x="770" y="214" width="210" height="128" rx="6"/>
+  <text x="782" y="237" class="t">Hand-drawn labels</text>
+  <text x="782" y="257" class="n">round 2: 971, seven classes,</text>
+  <text x="782" y="274" class="s">proposed from the geologic</text>
+  <text x="782" y="291" class="s">map, IAU names and valleys,</text>
+  <text x="782" y="308" class="s">reviewed by eye and by a rule</text>
+  <text x="782" y="330" class="s">round 1: 512, four classes</text>
+  <line x1="720" y1="142" x2="768" y2="151"/>
+  <line x1="875" y1="214" x2="875" y2="190"/>
 
   <!-- results -->
-  <rect class="b out" x="1020" y="34" width="180" height="56" rx="6"/>
-  <text x="1032" y="57" class="t">±60° landform map</text><text x="1032" y="76" class="s">200 m · 73.8%, κ 0.58</text>
-  <rect class="b out" x="1020" y="124" width="180" height="56" rx="6"/>
-  <text x="1032" y="147" class="t">U-Net provinces (X5c)</text><text x="1032" y="166" class="s">98.9%, κ 0.98, held out</text>
-  <line x1="970" y1="152" x2="1018" y2="152"/>
-  <rect class="b open" x="1020" y="234" width="180" height="56" rx="6"/>
-  <text x="1032" y="257" class="t">Hand digitising</text><text x="1032" y="276" class="s">open: the critical path</text>
-  <line x1="970" y1="62" x2="1018" y2="62"/>
-  <line x1="970" y1="262" x2="1018" y2="262"/>
+  <rect class="b out" x="1010" y="34" width="190" height="74" rx="6"/>
+  <text x="1022" y="57" class="t">SVM landform map</text>
+  <text x="1022" y="77" class="n">seven classes: 42.5%, κ 0.31</text>
+  <text x="1022" y="96" class="s">four classes: 73.8%, κ 0.58</text>
+  <rect class="b out" x="1010" y="194" width="190" height="74" rx="6"/>
+  <text x="1022" y="217" class="t">U-Net province map</text>
+  <text x="1022" y="237" class="n">seven classes: 69.0%, κ 0.61</text>
+  <text x="1022" y="256" class="s">four classes: 98.9%, κ 0.98</text>
+  <rect class="b open" x="1010" y="364" width="190" height="56" rx="6"/>
+  <text x="1022" y="387" class="t">Hand digitising</text><text x="1022" y="406" class="s">open: the critical path</text>
+  <line x1="980" y1="140" x2="1008" y2="80"/>
+  <line x1="980" y1="162" x2="1008" y2="222"/>
+  <line x1="720" y1="392" x2="1008" y2="392"/>
 
-  <text x="20" y="320" class="s">Elevation stays out of the stack on purpose: in raw metres it would swamp the 8-bit bands. Candidates are prompts for a person to accept or reject, not results.</text>
+  <text x="20" y="444" class="s">Scores: area-weighted accuracy and κ on held-out polygons, 237 for seven classes and 183 for four, so the two lines in a box are not directly comparable. The seven-class maps are the current ones.</text>
+  <text x="20" y="462" class="s">Elevation stays out of the stack on purpose: in raw metres it would swamp the 8-bit bands. Candidates are prompts for a person to accept or reject, not results.</text>
 </svg>

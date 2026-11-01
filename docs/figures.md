@@ -185,6 +185,7 @@ figures on this page, put there by `build_final_paper.py` so the `.tex` compiles
 
 | | What it shows | Made by |
 |---|---|---|
-| [`pipeline.svg`](pipeline.svg) | The pipeline diagram on the front page. | by hand |
+| [`pipeline.svg`](pipeline.svg) | The pipeline diagram on the front page: four sources, one ±60° grid, the products, both rounds of hand-drawn labels, the SVM and the U-Net with their seven-class and four-class scores, and the candidates. KB §69.38. | by hand |
+| [`final_img/pipeline.pdf`](../Mars%20Remote%20Sensing%20Project/build/final_img/pipeline.pdf) · [`pipeline.png`](../Mars%20Remote%20Sensing%20Project/build/final_img/pipeline.png) | The same diagram rendered for the paper: one vector page and a 2,440 × 940 PNG. Not yet in the paper (W4). KB §69.38. | `make_fig_pipeline.py` |
 | [`NEXT STUFF/Final/paper/mars_global_mosaic.pdf`](../Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final/paper/mars_global_mosaic.pdf) | The final paper, a draft in AASTeX 7 (14 pages); the machine products presented as candidates while the review is open. KB §69. | `build_final_paper.py` |
 | [`OLD/ocean first pres LE.pdf`](../Mars%20Remote%20Sensing%20Project/OLD/ocean%20first%20pres%20LE.pdf) | Presentation 1 as delivered (history, not corrected). KB §14.5. | — |

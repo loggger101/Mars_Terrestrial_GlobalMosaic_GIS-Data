@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-31 (§69.37).
+**Started:** 2026-09-18 · **Last updated:** 2026-10-31 (§69.38).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -5220,3 +5220,23 @@ can enrich it above 2.53 ×.
 - The other classes find their units as on the SVM map, more sharply: apron 6.00 × on `a` (90.6 % of it; SVM
   5.69 ×), hills 15.83 × on `hu`, Normal Ground 4.00 × on `l` (80.8 % of it). Lava tube lies 36.1 % on the
   volcanic groups (SVM 22.1 %); fluvial channel 66.9 % on `h`.
+
+### 69.38 The pipeline diagram brought to the seven-class path (W10) — 2026-10-31, laptop **[V]**
+
+`docs/pipeline.svg` (the clone only, drawn by hand; the project page's first figure) still gave the four-class labels
+and maps as the result. Redrawn, 1220 × 470 (was 1220 × 330), same palette and boxes:
+- **Products:** terrain, the 7-band stack, the diurnal-contrast index and the machine candidates (moved here from
+  the method column: they come from the DEM, not from the labels).
+- **Labels and method:** one hand box with both rounds (round 2: 971 labels, seven classes, proposed from the
+  geologic map, IAU names and valleys, reviewed by eye and by a rule, §69.8; round 1: 512, four classes) feeding
+  one box for the SVM and the U-Net, split by whole 15° blocks with 14 of 39 held out.
+- **Result:** one box per classifier, the seven-class score first: SVM 42.5 %, κ 0.31 and 73.8 %, κ 0.58; U-Net
+  69.0 %, κ 0.61 and 98.9 %, κ 0.98 (§69.24, §69.25, §57, §66.8); hand digitising, open. A footnote says the
+  two lines are scored on different held-out sets (237 and 183 polygons) and are not directly comparable, and that
+  the seven-class maps are the current ones (D28).
+
+**For the paper:** `build\make_fig_pipeline.py` (system Python) renders the SVG with Microsoft Edge's headless mode,
+nothing installed: `build\final_img\pipeline.pdf`, one vector page of 914.9 × 353.0 pt, and `pipeline.png`,
+2,440 × 940. Both read: the PDF rasterised with `pypdfium2` and checked by eye against the PNG, nothing clipped.
+Whether the figure enters the paper (`build_final_paper.py`'s list and the `.tex`) is W4's call on the page budget;
+it is not added.

@@ -53,7 +53,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 | 1 | **Review:** `Origin` on the 199 channel copies (H2 stage 2 needs ≥ 10 fluvial and ≥ 10 volcanic); the other 200 rock-floored Athabasca channels, then the rest; the Athabasca lava margins (H1) and breached craters, by hand | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims` / `Landform_LavaFlowMargins`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
 | 3 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
-| 4 | The paper's analyses that need no author time, in §12.6's order (laptop: W10; desktop: A1, A2, A3 (b) and (c), A5, A6; A4b, A3 (a), A10 and A14 done 10-31, KB §69.34–§69.37) | agent | §12.2, §12.4 | results in the KB, by the **22 Nov** freeze |
+| 4 | The paper's analyses that need no author time, in §12.6's order (desktop: A1, A2, A3 (b) and (c), A5, A6; A4b, A3 (a), A10, A14 and W10 done 10-31, KB §69.34–§69.38) | agent | §12.2, §12.4 | results in the KB, by the **22 Nov** freeze |
 | 5 | The interim: deliver on **10 Nov**; the report's date from the author | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 | 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex`; rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
 
@@ -415,8 +415,8 @@ was measured (KB §69.17). Each item says what it adds, where it runs and what i
 the 22 Nov freeze if at all possible; B, if time allows; C, only if cheap. Every new test writes its prediction and
 verdict rule into its script before it runs (§4). Drive items wait for "queue done" in
 `build\logs\run_v2\queue.log` and for the v2 scoring (§11.5), which comes first. Nothing here goes ahead of the
-author's review (§6). A14 (done 10-31, KB §69.37), A15, W10, W11, the additions to A3 (c), A5 and W6, and P13
-(§13) come from an outside brainstorm audited on 2026-10-31 against the record (KB §69.36); the rest of that
+author's review (§6). A14 and W10 (done 10-31, KB §69.37–§69.38), A15, W11, the additions to A3 (c), A5 and
+W6, and P13 (§13) come from an outside brainstorm audited on 2026-10-31 against the record (KB §69.36); the rest of that
 brainstorm was dropped.
 
 ### 12.1 Lines in the paper and `final.py` that the freeze must change
@@ -465,9 +465,10 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
   mapping on Mars (Bue and Stepinski 2006; Luo and Stepinski 2009); deep learning on Mars landforms (Wilhelm et al.
   2020, DoMars16k); accuracy assessment (Olofsson et al. 2014). Alemanno et al. 2018 and Pontius and Millones 2011
   are in, checked by DOI (KB §69.18).
-- **W4, figures** (page budget: 14 pages now): the pipeline (`docs/pipeline.svg`) in Methods; **the block split**,
-  39 blocks with the 14 held out and the polygons by class, so a reader can judge the spatial test; a type-area
-  zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the
+- **W4, figures** (page budget: 14 pages now): the pipeline in Methods (redrawn for seven classes,
+  `final_img\pipeline.pdf` from `make_fig_pipeline.py`, KB §69.38; not yet in `build_final_paper.py`'s list);
+  **the block split**, 39 blocks with the 14 held out and the polygons by class, so a reader can judge the
+  spatial test; a type-area zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the
   detector's limit in one panel; after v2, the seven-class map and its confusion; A6 if run, and A10's `final_img\crater_sfd.png` (KB §69.35).
 - **W5, limits to add**: one labeller; the rule-screened v2 rows; hills short; THEMIS strips differ in local time,
   season and dust, a physical cause beside the stretch (to check in Edwards et al. 2011); Viking MDIM 2.1 colour is
@@ -485,15 +486,6 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 - **W9, the thermal claim** (D25): by balanced accuracy the thermal gain vanishes (−0.3 and +0.1 points, KB
   §69.18); the paper says so in Results, but the abstract and conclusions still give "a resolved 1.4 to 2.0
   points" alone. Whether they should carry the qualifier is the author's call.
-- **W10, the pipeline figure brought to the seven-class path** (`docs/pipeline.svg`, drawn by hand, in the clone
-  only): it still shows "512 hand-drawn labels, 4 classes", the four-class map's 73.8 % and the four-class U-Net's
-  98.9 % as the results (read 10-31), and it is the first figure on the project page; since D28 the seven-class maps
-  lead. Add the v2 branch: the proposals and their review (971 labels, 734 training and 237 held out, the apron and
-  fluvial rows by a written rule) → the seven-class SVM (42.5 %, κ 0.310) and U-Net (69.0 %, κ 0.606) → layouts 04b,
-  13b, 17b; the four-class path kept, marked as the first round; every number from §69.24–§69.25. For the paper
-  (W4), a PNG or PDF of it: no converter is installed, but Edge's headless mode renders the SVG
-  (`msedge --headless --screenshot` or `--print-to-pdf`), with no install. Laptop, ~45 min. **A**: the project page
-  is out of date with D28 whether or not W4's pipeline figure goes in.
 - **W11, the values Methods leaves out**: the detector's, the router's and the SVM's thresholds are already in the
   prose (read 10-31), so a parameter table would repeat them on a tight page budget. Missing: the review rule's
   thresholds (fluvial, floor ≥ 20 m below a 4.8 km flank ring and `ShareVolc` < 0.5; apron, `SlopeMed` ≥ 1° and
@@ -511,8 +503,8 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 
 ### 12.6 Order of work
 
-1. **Laptop, now:** W10 (A14 done 10-31, KB §69.37); W8's deck half; W3's candidates checked (A4, A12, W1 and the
-   paper's half of W8 done 10-27, KB §69.18); A15 if cheap.
+1. **Laptop, now:** W8's deck half; W3's candidates checked; A15 if cheap (A4, A12, W1 and the paper's half of W8
+   done 10-27, KB §69.18; A14 and W10 done 10-31, §69.37–§69.38).
 2. **Desktop:** the v2 scoring and D18 done (§11.5; A4b done 10-31, KB §69.34); next A1, A2, A3 (b) and (c) (its
    seven filter-and-score runs queue overnight), A5 with its block table, A6, then A7–A9 and A11 as time allows; A13
    if cheap.
