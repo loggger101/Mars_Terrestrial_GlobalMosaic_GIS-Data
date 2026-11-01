@@ -26,7 +26,7 @@ Only the state, what waits on whom and the next step; the history behind each li
   (layouts 11, 12); the four-class SVM map at 200 m with an 11 × 11 majority filter, 73.8 %, κ 0.58 held out (§57,
   layout 04); the two-pass U-Net province map, 98.9 %, κ 0.980 held out (§66.8, layout 17). **A geography-only
   baseline**, each pixel the nearest training polygon's class, scores 83.2 % on the same polygons, above the SVM
-  map, which leads it only by balanced accuracy (§69.35, D30). Crater size-frequency curves: §69.35.
+  map, which leads it only by balanced accuracy (§69.35); in the paper since 11-01 (D30, §69.48). Crater size-frequency curves: §69.35.
 - **How firm the scores are** (A5, §69.44): resampling the 14 held-out blocks, the four-class U-Net's lead over the
   SVM map (+11.1 to +41.0 pt) and T1's thermal gain (+0.46 to +2.67 pt) hold; the seven-class U-Net's 26.5-point
   accuracy lead over the seven-class SVM does not (−9.7 to +47.8; by balanced accuracy it does, +2.3 to +19.5), nor
@@ -74,7 +74,7 @@ and scored (§66); further tuning first needs validation blocks of its own (§66
 
 **Where the results are weakest and what would most improve them:** §14 (11-01), ranked.
 
-**Waiting on the author:** items 1 and 5; D14–D16, D21–D27, D29 and D30 (§2); the interim talk's slot length (§12.5); whether
+**Waiting on the author:** items 1 and 5; D14–D16, D21–D27 and D29 (§2); the interim talk's slot length (§12.5); whether
 layout 18 or `final_img\tes_block_scale.png` goes into a deliverable (§69.30); whether the interim shows layouts 15–18
 (it shows 13 of the 17 that existed at the cut, `INTERIM-PLAN.md` §3); emptying the Recycle Bins (~21 GB of finished
 scratch, §57.5).
@@ -124,7 +124,8 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D26 | the built deck, report and paper PDF committed only once per deadline: since 11-01 `github_sync.py` holds them back unless given `--deliverables` (KB §69.42), the recommendation in force until the author says otherwise; rewriting history to drop the 44 earlier copies of the interim deck and report (1.0 GB of blobs) needs a force push and a re-clone on both machines | yes to committing at milestones; no rewrite |
 | D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | yes |
 | D29 | the seven-class maps' gain (D28) by balanced accuracy: none (SVM −0.15 pt, U-Net +0.20 pt on the v2 held-out polygons); the gain is in macro F1 and in quantity disagreement (KB §69.34). Say so in the paper's Table 3 and text, the deck and the README? | yes, as for D25: one clause, "in overall accuracy and macro F1; not in balanced accuracy"; D28's lead stands |
-| D30 | the geography-only baseline (KB §69.35): the nearest training polygon's class scores 83.2 % held out, above the published SVM map's 73.8 %; the SVM map leads only by balanced accuracy (0.667 against 0.613); the U-Net clears it on every measure. Report it beside every held-out score (the paper's Table 3, the final deck), and lead the SVM map's score with balanced accuracy? The interim is cut (D20) | yes: one Table 3 row and one sentence; the interim untouched |
+D30 was answered 2026-11-01, yes: the baseline is a Table 3 row in each half and a paragraph, and the published
+map's score leads with balanced accuracy in the `.tex` and `final.py` (KB §69.48).
 D31 and D32 were answered 2026-11-01, yes to both: the block intervals and the seven-class lead by balanced
 accuracy, and the crater curve with each set cut only where it is scored, are in the `.tex` and `final.py` (KB
 §69.47).
@@ -564,7 +565,7 @@ claim. "Cost" is who and how long; nothing here goes ahead of the review (§6) o
 | # | weakness | evidence | what would improve it | cost |
 |---|---|---|---|---|
 | 1 | **The held-out score rests on a few large polygons in a few blocks.** Three blocks hold 61.6 % of the four-class held-out area; one Normal Ground polygon is 73.7 % of its class's, Arsia Mons 30.7 % of Crater's; dropping one block moves the published map by 8.7 pt | §69.44 | **R2, the probability-sample check** (§12.3): stratified random points labelled blind give unbiased accuracy and class areas with intervals, independent of where polygons were drawn. The single most valuable hour of the author's after the review | author ~2–3 h; agent writes the points and scores them |
-| 2 | **The SVM maps do not beat geography.** The nearest training polygon scores 83.2 % against the published map's 73.8 % (four classes) and 45.6 % against 42.5 % (seven); by block neither gap is resolved either way | §69.35, §69.44 | A3 (c), the SVM under 5–51 km mode filters, measures how much context alone closes the gap (queued for the desktop); the U-Net, which uses context, already clears the baseline. In the paper: report the baseline beside every score (D30) and lead the SVM maps with balanced accuracy, where they are ahead | desktop, ~4.5 h unattended |
+| 2 | **The SVM maps do not beat geography.** The nearest training polygon scores 83.2 % against the published map's 73.8 % (four classes) and 45.6 % against 42.5 % (seven); by block neither gap is resolved either way | §69.35, §69.44 | A3 (c), the SVM under 5–51 km mode filters, measures how much context alone closes the gap (queued for the desktop); the U-Net, which uses context, already clears the baseline. In the paper since 11-01 (D30, KB §69.48): the baseline beside every score, the SVM map led by balanced accuracy, where it is ahead | desktop, ~4.5 h unattended |
 | 3 | **The seven-class lead is two blocks wide.** By accuracy, the seven-class U-Net's lead over the seven-class SVM is not resolved by block (−9.7 to +47.8 pt); it sits on the Tharsis blocks −9_−1 and −9_0; the SVM leads in 8 of 14 blocks | §69.44 | Done 11-01 (D31, KB §69.47): the paper leads with balanced accuracy, which is resolved (+2.3 to +19.5). For a firmer test, edifice and apron labels in held-out blocks outside Tharsis (Elysium, Syrtis, Hesperia) | Labels: author ~1 h, then a v2 rescore (desktop, ~1 h) |
 | 4 | **The seven-class U-Net's edifice is wrong over much of the planet**: 40.0 % of ±60°, 46.8 % of the highland group, none of the 10 named small edifices | §69.25, §69.37, §69.39 | Retrain with validation blocks of its own (§66.5), edifice negatives drawn on the highland group and class weights; score on the same held-out blocks. Not a post-hoc mask by the geologic map: T8 scores against that map | desktop, hours, as X5c (§66.6); the author's call (§66.5) |
 | 5 | **Channels have no score.** 969,822 routed segments, no precision or recall | §53.6 | **A1**, against the Alemanno valley lines with a shifted-network baseline (§12.2) | desktop |

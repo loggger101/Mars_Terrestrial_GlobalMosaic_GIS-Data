@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-01 (§69.47).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-01 (§69.48).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -5652,3 +5652,22 @@ in Table 3) is still the author's.
 16 read where the text changed; Figure 8 shows the one-side-cut curve. One defect, fixed: the comment that closes the
 seven-class U-Net's new sentences had been placed before the rest of the source line, which LaTeX then dropped
 ("... (+11.1 to +41.0). ed edifice 0.487"); the comment now ends that line, and the second run reads whole.
+
+### 69.48 D30 into the paper and `final.py`: the geography-only baseline beside every held-out score — 2026-11-01, laptop **[V]**
+
+The author's yes (2026-11-01). The interim is untouched (D20). The baseline's scores in percent, read from
+`logs\spatial_baseline_nearest.json` and `_nearest_v2.json` (§69.35):
+
+| held out | Acc. | κ | Bal. | F1 | Q | A |
+|---|---|---|---|---|---|---|
+| four classes, 183 polygons | 83.2 | 0.658 | 61.3 (0.6134) | 64.2 (0.6418) | 14.5 (0.1454) | 2.2 (0.0222) |
+| seven classes, 237 polygons | 45.6 | 0.318 | 51.0 (0.5105) | 47.1 (0.4712) | 28.0 (0.2804) | 26.4 (0.2638) |
+
+The four-class Q + A is 16.76 against 100 − 83.24, so the rounded row adds to 99.9: Table 3's note now says "to
+rounding". In the `.tex`: Table 3 gains one "Nearest training polygon" row in each half (its note counts seven and
+six rows and defines the row); a paragraph after the map's scores gives the baseline, its null (20 shuffles, median
+47.2 %, none reaching 83.2 %), the block intervals of §69.44 (neither gap resolved; the U-Net clears it overall,
++0.9 to +32.6) and the seven-class baseline; the published map's score leads with balanced accuracy (66.7 %, then
+73.8 %, κ 0.583 overall) in the Results, the figure caption, the abstract and conclusion 5, the last two with the
+baseline beside it. `final.py`: the four-class map slide leads with balanced accuracy and gains one line for the
+baseline; the conclusion the same. The deck waits for `build_final_deck.py` (that slide now has four points).

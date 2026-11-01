@@ -57,7 +57,7 @@ The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.m
 
 ### ±60° landform classification
 
-A support vector machine on the hand-drawn labels, scored on 183 polygons in 15° blocks it never saw. The published map (200 m, 11 × 11, the map at the top) scores **73.8%, κ 0.58**, against 58.6% for one class everywhere; per pixel 69.9%, κ 0.53. Normal Ground is reliable (99% producer's) and Crater behaves as cratered terrain. The lava tube class isn't usable (2% user's accuracy).
+A support vector machine on the hand-drawn labels, scored on 183 polygons in 15° blocks it never saw. The published map (200 m, 11 × 11, the map at the top) scores a **balanced accuracy of 66.7%** and **73.8%, κ 0.58** overall, against 58.6% for one class everywhere; per pixel 69.9%, κ 0.53. Geography alone, giving each pixel the class of the nearest training polygon, scores 83.2% overall but 61.3% balanced: the map is ahead class by class, behind overall, and resampling the held-out blocks resolves neither gap (KB §69.35, §69.44). Normal Ground is reliable (99% producer's) and Crater behaves as cratered terrain. The lava tube class isn't usable (2% user's accuracy).
 
 [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/accuracy_200m.png" width="760" alt="The published map's held-out confusion matrix, and held-out accuracy against the majority filter window at 200 m and 400 m">](Mars%20Remote%20Sensing%20Project/build/interim_img/accuracy_200m.png)
 

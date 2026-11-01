@@ -32,7 +32,8 @@ THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking albedo
 ($r=-0.36$). Fill depth yields 465,354 closed depressions $\ge1$~km; 63.2\% of those $\ge5$~km are catalogued
 craters, only 15.3\% at $\ge1$~km, and the catalogued craters missed are mostly degraded or breached. Of 969,822 routed channel
 segments 89.8\% lie on slopes under $2^{\circ}$. A support vector machine trained on 329 of 512 hand-drawn landform polygons and scored on the other 183, in whole $15^{\circ}$
-blocks it never saw, reaches 73.8\%, \kap\,0.58; the thermal bands add a resolved 1.4 to 2.0 points. A U-Net reaches 98.9\% on
+blocks it never saw, reaches a balanced accuracy of 66.7\% (73.8\%, \kap\,0.58 overall), where the nearest training
+polygon's class alone gives 61.3\% (83.2\% overall); the thermal bands add a resolved 1.4 to 2.0 points. A U-Net reaches 98.9\% on
 the same blocks as a terrain-province map. Revised to seven classes, a U-Net scores 69.0\% on 237 held-out
 polygons, weaker on the original four but naming volcanoes, aprons and valleys. No band separates the lava
 contacts of the 1:20\,M geologic map at Athabasca Valles much better than chance, so lava flows are taken from
@@ -475,8 +476,8 @@ separates, with bootstrap intervals over contacts; 10\% is chance by constructio
 \subsection{The landform classification}
 
 The four-class map (Figure~\ref{fig:landforms}) is the 200~m support vector machine map with an $11\times11$ (2.2~km)
-majority filter. On the 183 held-out polygons it scores 73.8\%, \kap\,0.583, against 58.6\% for one class everywhere and
-69.9\%, \kap\,0.532 unfiltered (Table~\ref{tab:svm}, Figure~\ref{fig:accuracy}). Normal Ground is found almost
+majority filter. On the 183 held-out polygons it scores a balanced accuracy of 66.7\% and 73.8\%, \kap\,0.583 overall,
+against 58.6\% for one class everywhere and 69.9\%, \kap\,0.532 unfiltered (Table~\ref{tab:svm}, Figure~\ref{fig:accuracy}). Normal Ground is found almost
 everywhere it was drawn (producer's 99.2\%) and Crater is reliable where mapped (user's 93.3\%), but lava tube is not a
 usable class (user's 2.4\%). Halving the cell from 400~m bought no held-out accuracy (70.5\% raw at 400~m). The map is
 no longer an elevation map (elevation bins reproduce 55.4\%, within a point of its largest class alone, 54.7\%), shows
@@ -490,11 +491,19 @@ ground to Crater against the labels' 58.6\% and painting the rest of the Crater 
 Normal Ground (8.1) and hills (4.1). Over all of \pmsixty\ it is 54.7\% Normal Ground, 33.9\% Crater, 9.4\% lava tube
 and 1.9\% hills. %% KB §69.18; logs\score_metrics.json
 
+Geography alone is a stronger baseline than one class everywhere. Giving each held-out pixel the class of the nearest
+training polygon, and nothing else, scores 83.2\%, \kap\,0.658 overall but 61.3\% balanced (Table~\ref{tab:svm}):
+above the map overall, below it class by class. Shuffling the training polygons' classes among them (20 seeds) never
+reaches 83.2\% (median 47.2\%), so where the labels lie carries class information at the scale of the blocks.
+Resampling the blocks resolves neither gap between the map and this baseline (overall $-35.8$ to $+19.1$ points,
+balanced $-16.1$ to $+16.9$); the U-Net clears it overall ($+0.9$ to $+32.6$). On the seven-class labels the baseline
+scores 45.6\% and 51.0\% balanced, above the seven-class support vector machine on both. %% KB §69.35, §69.44
+
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/04_global60_landforms.png}
 \caption{The four-class \pmsixty\ landform map: support vector machine on the seven-band 200~m stack, $11\times11$
-majority filter, with the held-out hand-drawn labels outlined in their class colours. Held out: 73.8\%, \kap\,0.58.
+majority filter, with the held-out hand-drawn labels outlined in their class colours. Held out: balanced accuracy 66.7\%; 73.8\%, \kap\,0.58 overall.
 \label{fig:landforms}}
 \end{figure*}
 
@@ -516,6 +525,7 @@ by feature size. \label{fig:accuracy}}
 Map & Acc. & $\kappa$ & Bal. & F1 & Q & A \\
 \hline
 One class everywhere & 58.6 & -- & -- & -- & -- & -- \\
+Nearest training polygon & 83.2 & 0.658 & 61.3 & 64.2 & 14.5 & 2.2 \\
 SVM 400 m, raw & 70.5 & 0.540 & 63.5 & 53.4 & 23.6 & 5.9 \\
 SVM 200 m, raw & 69.9 & 0.532 & 63.1 & 52.8 & 24.2 & 5.9 \\
 SVM 200 m, $5\times5$ & 72.0 & 0.560 & 65.1 & 54.4 & 22.2 & 5.8 \\
@@ -524,6 +534,7 @@ U-Net, two passes & 98.9 & 0.980 & 94.8 & 93.9 & 0.5 & 0.6 \\
 \hline
 \multicolumn{7}{l}{\textit{On the 237 v2 held-out polygons}} \\
 One class everywhere & 29.5 & -- & -- & -- & -- & -- \\
+Nearest training polygon & 45.6 & 0.318 & 51.0 & 47.1 & 28.0 & 26.4 \\
 SVM four-class$^{a}$ & 35.7 & 0.244 & 42.0 & 25.1 & 55.4 & 8.9 \\
 SVM seven-class$^{b}$ & 42.5 & 0.310 & 41.9 & 38.8 & 29.1 & 28.3 \\
 U-Net four-class & 44.1 & 0.301 & 56.7 & 37.1 & 55.4 & 0.5 \\
@@ -532,8 +543,9 @@ U-Net seven-class & 69.0 & 0.606 & 56.9 & 56.6 & 14.7 & 16.3 \\
 \end{tabular}
 \par\vspace{3pt}\noindent\parbox{\columnwidth}{\footnotesize Note: In percent but $\kappa$. Acc., overall accuracy;
 Bal., balanced accuracy; F1, mean per-class F1; Q and A, quantity and allocation disagreement ($\mathrm{Q}+\mathrm{A}=
-100-\mathrm{Acc.}$). Area-weighted by $\cos$ latitude, scored at 400~m. The first six rows are on the 183
-four-class held-out polygons, the last five on the 237 seven-class ones; the two sets are not comparable. Block
+100-\mathrm{Acc.}$, to rounding). Area-weighted by $\cos$ latitude, scored at 400~m. The first seven rows are on the
+183 four-class held-out polygons, the last six on the 237 seven-class ones; the two sets are not comparable. Nearest
+training polygon: each pixel given the class of the closest training polygon, geography alone. Block
 intervals on accuracy (95\%, the 14 held-out blocks resampled): SVM $11\times11$ 57.5--87.8, U-Net two passes
 97.3--99.6, SVM seven-class 23.8--71.5, U-Net seven-class 50.5--80.2.
 $^{a}$The four-class map of Figure~\ref{fig:landforms}. $^{b}$Figure~\ref{fig:landforms7}.}
@@ -762,8 +774,9 @@ against Robbins rises from 15.3\% to 63.2\% at 5~km; recall, 52.4\% at 5~km, fal
 for the freshest rims to 38.4\% for the most degraded, and breached craters stay invisible.
 \item Routed channels are dominated by the elevation model at \pmsixty\ (89.8\% under $2^{\circ}$), and stream order is a
 parameter, not a measurement.
-\item The four-class landform map scores 73.8\%, \kap\,0.58 on blocks it never saw; the thermal bands add a resolved 1.4
-to 2.0 points. A U-Net reaches 98.9\% as a terrain-province map.
+\item The four-class landform map scores a balanced accuracy of 66.7\% (73.8\%, \kap\,0.58 overall) on blocks it never
+saw, where geography alone, the nearest training polygon's class, gives 61.3\% (83.2\% overall); the thermal bands add
+a resolved 1.4 to 2.0 points. A U-Net reaches 98.9\% as a terrain-province map.
 \item Revised to seven classes, the maps separate impact craters from volcanoes and name volcanic edifices, aprons
 and fluvial channels: the U-Net scores 69.0\%, \kap\,0.606 and the support vector machine 42.5\% on 237 held-out
 polygons, below the four-class maps on the original classes. The U-Net's lead is firm by balanced accuracy (56.9\%

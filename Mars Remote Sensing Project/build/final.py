@@ -131,9 +131,10 @@ FIGURES = [
          title="The four-class landform map at ±60°",
          images=[("layout", "04_global60_landforms")],
          points=["SVM on 512 hand-drawn polygons, split by whole 15° blocks: 329 train, 183 held out",
-                 "200 m, 11 × 11 majority filter: 73.8%, κ 0.58 held out (one class everywhere: 58.6%)",
+                 "200 m, 11 × 11 majority filter: balanced accuracy 66.7% held out; 73.8%, κ 0.58 overall",
+                 "Geography alone, the nearest training polygon's class: 61.3% balanced, 83.2% overall",
                  "Normal Ground and cratered terrain solid; lava tube is not a result (user's 2%)"],
-         source="§31.3, §55.3, §57"),
+         source="§31.3, §55.3, §57, §69.35"),
     dict(title="Where each held-out class lands",
          images=[("file", r"interim_img\accuracy_200m.png")],
          points=["Smoothing raises every score because the labelled polygons are large; the window is set by "
@@ -219,7 +220,7 @@ CONCLUSIONS = [
     "Visible albedo, day IR and night IR span about three dimensions, night IR nearly independent of the others, but the THEMIS mosaics carry "
     "local contrast only, and calibrated inertia follows Viking",
     "Craters ≥ 5 km are mostly recovered as closed depressions (63.2% precision); those missed are mostly degraded or breached",
-    "The four-class landform map scores 73.8%, κ 0.58 on blocks it never saw; thermal adds a resolved 1.4–2.0 points",
+    "The four-class landform map scores 66.7% balanced (73.8%, κ 0.58 overall) on blocks it never saw, above geography alone by class (61.3%); thermal adds a resolved 1.4–2.0 points",
     "A U-Net reaches 98.9% as a four-class province map and 69.0% with seven classes, which name volcanoes, aprons "
     "and valleys; lava flows still come from the geologic map",
 ]
