@@ -5671,3 +5671,6 @@ six rows and defines the row); a paragraph after the map's scores gives the base
 73.8 %, κ 0.583 overall) in the Results, the figure caption, the abstract and conclusion 5, the last two with the
 baseline beside it. `final.py`: the four-class map slide leads with balanced accuracy and gains one line for the
 baseline; the conclusion the same. The deck waits for `build_final_deck.py` (that slide now has four points).
+
+Read from CI's PDF (run 41343716129): 18 pages; the abstract (page 1), the Results and the new paragraph (10–11),
+Table 3 with both baseline rows (11), the caption (12) and conclusion 5 (16) read whole.
