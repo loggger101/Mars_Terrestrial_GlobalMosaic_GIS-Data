@@ -4485,7 +4485,8 @@ Nothing measured, no file but the two plans changed. Facts found while reading, 
   extended, or `DL_UNet_Heldout_Scores_20261020` (four-class maps only).
 - The clone's copy of `build\logs\run_v2\queue.log` (untracked) shows the SVM training started 10-27 01:32; it is a
   copy, not the desktop's live log, and says nothing of the run's progress since.
-- The literature candidates in §12.4 W3 are **[?]**: named from memory, none looked up.
+- The literature candidates in §12.4 W3 are **[?]**: named from memory, none looked up (all six checked by DOI
+  2026-11-01, §69.40).
 
 ### 69.18 Scores beyond accuracy and κ; class areas; the paper's abstract and limits brought current — 2026-10-27, laptop **[V]**
 
@@ -5310,3 +5311,41 @@ edifice name and one catena too small or at the edge.
   paragraph alone compiles under TinyTeX's `pdflatex` in a two-column `article` test with natbib and
   `references.bib`, no warning, `Alemanno2018` resolved, ~17 lines of a column: read the page count at the desktop
   rebuild (16 at the last build).
+
+### 69.40 The prior-work candidates (W3) checked by DOI; six entries in `references.bib`, the prose drafted — 2026-11-01, laptop **[V]**
+
+NEXT-STEPS §12.4 W3 named six papers from memory. Each was found in Crossref by its bibliographic description, its
+DOI resolved at doi.org and the registrar's BibTeX read; all six exist as named:
+
+| key | paper | DOI | what it did (from the source named) |
+|---|---|---|---|
+| `DeLatte2019` | DeLatte, Crites, Guttenberg & Yairi, Adv. Space Res. 64, 1615–1628 | 10.1016/j.asr.2019.07.017 | a review of automated crater detection, from handcrafted features to CNNs (abstract, Semantic Scholar) |
+| `Silburt2019` | Silburt et al. (8 authors), Icarus 317, 27–38 | 10.1016/j.icarus.2018.06.022 | a CNN on lunar DEMs recovers 92 % of a human-made test set's craters (abstract, Semantic Scholar) |
+| `Bue2006` | Bue & Stepinski, Computers & Geosciences 32, 604–614 | 10.1016/j.cageo.2005.09.004 | unsupervised (self-organising map) classification of topographic attributes into landform classes, Terra Cimmeria (secondary indexes only; the publisher's page refused) **[?]** for detail |
+| `Luo2009` | Luo & Stepinski, JGR Planets 114, E11010 | 10.1029/2009JE003357 | a valley-network map by an algorithm on topography, edited by eye; 2.3 times the length of the Viking-era map (abstract, Crossref; E11010 from the NIU repository record) |
+| `Wilhelm2020` | Wilhelm et al. (7 authors), Remote Sensing 12, 3981 | 10.3390/rs12233981 | DoMars16k: 16,150 CTX samples of 15 landforms, a CNN with sliding windows and Markov random field smoothing (abstract, Crossref) |
+| `Olofsson2014` | Olofsson et al. (6 authors), Remote Sens. Environ. 148, 42–57 | 10.1016/j.rse.2014.02.015 | good practice for sample-based accuracy assessment and area estimation (title; no abstract read) |
+
+`Edwards2011`, which W5 points at for THEMIS's local time, season and dust, was already in the file. The six entries
+are in `NEXT STUFF\Final\paper\references.bib` in the file's own form; uncited entries do not print, so the paper's
+PDF is unchanged. A two-column `article` test with natbib, citing all six and `Lee2019`, compiles under TinyTeX with
+no BibTeX or LaTeX warning, seven references printed.
+
+**Drafted for the paper, not inserted (the author's yes first):** after the introduction's second paragraph,
+
+> Automated mapping of Mars has mostly taken one landform at a time. Crater detection has moved from handcrafted
+> image features to convolutional neural networks \citep{DeLatte2019}, which find craters in lunar elevation models
+> \citep{Silburt2019} and in Mars data \citep{Lee2019}; valley networks were mapped across the planet by an algorithm
+> that recognises valleys in topography, its output then edited by eye \citep{Luo2009}. Landform classes have been
+> mapped without labels, from topographic attributes \citep{Bue2006}, and with a convolutional network trained on
+> fifteen landforms in Context Camera images \citep{Wilhelm2020}. Here the visible, thermal-infrared and elevation
+> mosaics are stacked first, and the three families are mapped from the one stack.
+
+and in Limits, before the held-out-blocks paragraph (W5's polygon bias; R2's reason):
+
+> Every score in this paper is taken on hand-drawn polygons, which sit where a class is clear, so each flatters its
+> map; an unbiased accuracy, and class areas with intervals, need a probability sample of the map labelled blind
+> \citep{Olofsson2014}.
+
+About 12 lines of a column together. No claim is made about what the cited studies did not do, as none of the full
+texts was read.
