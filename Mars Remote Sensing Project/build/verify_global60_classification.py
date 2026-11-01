@@ -33,7 +33,7 @@ gdal.UseExceptions()
 GDB = on_drive(r"Mars Project\Mars Project.gdb")
 from make_global60_classification import OUT as CLS, CELL   # --cell 400 (default) or 200
 # --raster scores another version of the map, e.g. a mode-filtered one; it is named in the outputs
-SET = L.TAG.lstrip("_")                                       # "", "v2", or "v2p" (the rehearsal, KB §69.4)
+SET = L.TAG.lstrip("_")                                       # "", "v2", "v2p" (the rehearsal, KB §69.4) or "v3"
 TAG = "%s%dm" % (SET + "_" if SET else "", CELL)
 if "--raster" in sys.argv:
     CLS = sys.argv[sys.argv.index("--raster") + 1]

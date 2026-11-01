@@ -233,7 +233,7 @@ stack script's 100 m grid snapped to the day mosaic (§18.1).
 ## 5. Project structure
 
 `Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-31 (§69.34) **[V]**: **38 maps, all in
-Mars coordinate systems, and 21 layouts**; 219 non-group layers, 0 broken data sources, none reading through a junction
+Mars coordinate systems, and 21 layouts**, and 39 maps since the map "Labels v3" (2026-11-01, §69.49); 219 non-group layers, 0 broken data sources, none reading through a junction
 (145 non-group layers on 2026-10-18, §58.1; since then layout 15's four maps, X5's and X5c's maps, §66.3, §66.9,
 "Labels v2: proposals", §69.2, the three seven-class maps, §69.26, and T3a / T3b, §69.30); 7 hosted services (Esri
 OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
@@ -275,10 +275,10 @@ the builders' own PNGs are written before `polish_layouts.py` runs, so copy the 
 ## 6. Geodatabase inventory
 
 `Mars Project.gdb`, read with `arcpy` on 2026-10-18 (§58.2); X5's detections added 2026-10-19 (§66.3), the label
-proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal labels the same day (§69.4), the v2 labels 2026-10-27 (§69.8). All of
+proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal labels the same day (§69.4), the v2 labels 2026-10-27 (§69.8), the v3 labels 2026-11-01 (§69.49). All of
 §6 is **[V]**.
 
-### Feature classes — 37 present
+### Feature classes — 41 present
 
 | Dataset | Geometry | Rows | Made by |
 |---|---|---|---|
@@ -301,6 +301,8 @@ proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal lab
 | `Landform_TrainingSamples_v2_proposals` | Polygon | 1,086 | the seven-class proposals (§69.2): the 512 copied with an `Action` (474 keep, 12 relabel, 23 check, 1 clip, 1 delete, 1 fix) and 574 new; for the author's review (2b), never a training set until applied |
 | `Landform_TrainingSamples_v2p`, `_v2p_60_train`, `_v2p_60_test` | Polygon | 1,085, 827, 258 | the rehearsal labels (§69.4): every proposal taken as proposed, **not the author's review**; for `--labels v2p` only |
 | `Landform_TrainingSamples_v2`, `_v2_60_train`, `_v2_60_test` | Polygon | 971, 734, 237 | the seven-class labels from the review (§69.8; apron and fluvial rows by the agent's rule at the author's word); for `--labels v2` |
+| `Landform_TrainingSamples_v3_proposals` | Polygon | 14,104 | every v2 piece and new polygon of `propose_v3_labels.py` with its measures, reason and `Review` set by the written rule (§69.49) |
+| `Landform_TrainingSamples_v3`, `_v3_60_train`, `_v3_60_test` | Polygon | 11,815, 10,213, 1,602 | the v3 labels (§69.49): the v2 polygons cut and screened plus new polygons from reference data, accepted by rule, not review; for `--labels v3` |
 | `DL_Detections_heldout_20261019` | Polygon | 1,838 | X5's RetinaNet boxes around the held-out labels (§66.2); stack SR, XY domain widened 400 km (§66.3) |
 | `DL_UNet_Heldout_Scores_20261020` | Polygon | 183 | the held-out labels with each one's own-class share and majority class under the U-Net (two passes) and the published SVM map, at 400 m (§66.9) |
 | `TrainingSamples_202609290009589587982` | Polygon | 455 | manual (GUI), 29 Sep (§29.2) |
@@ -5674,3 +5676,86 @@ baseline; the conclusion the same. The deck waits for `build_final_deck.py` (tha
 
 Read from CI's PDF (run 41343716129): 18 pages; the abstract (page 1), the Results and the new paragraph (10–11),
 Table 3 with both baseline rows (11), the caption (12) and conclusion 5 (16) read whole.
+
+### 69.49 The v3 labels: the v2 polygons cut and screened, and new polygons from reference data — 2026-11-01, laptop **[V]**
+
+The author's request, 2026-11-01: the seven-class deep-learning and SVM maps score far below the four-class ones
+(§69.24, §69.25); more training polygons, "a few thousand samples", based on available data, and the large polygons
+split into much smaller ones, "especially if the polygon risks covering multiple classes". As with the apron and
+fluvial rows of §69.8, every row is accepted or rejected by a **rule written into the script before it ran, not by
+anyone's eye**; the final must say so. `Landform_TrainingSamples_terrain` and every v2 class are only read; the
+author's four classes and codes stay as they are (§68.1).
+
+- **`build\propose_v3_labels.py`.** The 200 m DEM (`Global60\global60_dem.tif`) summarised once in 16 × 16 px cells
+  (3.2 km): median and 90th-percentile metric slope, 5th / 50th / 95th-percentile height (750 s; cached in
+  `C:\MarsScratch\label_v3`). Robbins crater discs drawn on an 800 m grid at 1.0 R (every crater, the rim test) and
+  1.3 R (3–100 km, the exclusion: a larger basin's floor is plains at the 51 km chip scale); SIM 3292 unit kinds per
+  cell (§68.5's grouping: edifice, apron, landslide, volcanic plains, highland).
+- **Pieces.** Every v2 polygon over 1,500 km² or wider than 1° is cut by a 0.5° grid (pieces under 25 km² dropped);
+  each piece keeps its parent's split, so no v2 held-out ground becomes training, and is kept if it passes its
+  class's screen: Crater ≥ 0.5 inside Robbins rims (≥ 4 km); hills median cell slope p90 ≥ 8° and under half on
+  edifice, apron or landslide units; Normal Ground median slope ≤ 2°, crater cover ≤ 0.3, off those units, then
+  Robbins craters 8–100 km cut out at 1.2 R with half the piece left; edifice on edifice units or a named volcano,
+  sloping ≥ 1° unless within 0.3 of the volcano's radius; apron on apron units, slope ≥ 0.7°, cell p90 ≤ 15° at
+  |lat| ≥ 30° only; fluvial §69.8's floor rule per piece. **Lava-tube polygons are kept whole**: no data screens a
+  piece of a pit chain (below). Smaller v2 polygons are kept whole and unscreened.
+- **New polygons**, never touching any v2 polygon's ground (kept or dropped) or each other (one 3.2 km cell apart),
+  capped per 15° block: Crater, a Robbins disc at the rim, one per diameter bin (6–12, 12–25, 25–50, 50–120 km) per
+  block, if the rim stands ≥ max(50 m, 5 m per km of D) above the floor (693 placed of 1,049 measured); hills, 3 × 3
+  cells with ≥ 7 of 9 at p90 ≥ 10°, relief ≥ 1,000 m, no crater ≥ 10 km within 1.3 R, off edifice, apron and
+  landslide units (4 per block); Normal Ground, 4 × 4 cells every one at slope ≤ 1°, p90 ≤ 3°, relief ≤ 150 m, no
+  crater ≥ 4 km within 1.3 R, off those units (5 per block; volcanic and highland plains alike); edifice and apron,
+  4 × 4 cells of their units (12 per block); fluvial, 20 km strips 2.4 km wide along every second segment of the
+  Alemanno & Orofino valleys, §69.8's floor rule (589 placed of 1,269 measured, 2 per valley, 6 per block); lava
+  tube, troughs in the mapped extent of each of the 16 named catenae: a black top-hat of the DEM (4.2 km closing)
+  ≥ 50 m deep, elongation ≥ 3, ≥ 6 km long, outside crater rims, dilated 400 m (592 troughs, 119 placed, ≤ 15 per
+  catena). Named volcano summits placed 0: the v2 edifice pieces already hold every one.
+- **The split:** a new polygon goes by its centroid's 15° block (the 14 held-out blocks of §31.3), so v3 adds
+  held-out polygons too. **The v2 held-out set is untouched and stays the like-for-like score.**
+- **Result (run 3, 650 s on the cached cells; `logs\label_v3.json`, `logs\label_v3_run_fartbutt.log`):**
+  `Landform_TrainingSamples_v3_proposals` 14,104 rows (every piece and new polygon, accepted or not, with its
+  measures, reason and `Review`); `Landform_TrainingSamples_v3` 11,815, **`_v3_60_train` 10,213, `_v3_60_test`
+  1,602** (v2: 734 and 237); no overlap between classes or across the split. Per class, training / held out,
+  polygons (blocks), against v2's polygons:
+
+  | class | training | held out | v2 training / held out |
+  |---|---|---|---|
+  | 1 Crater | 949 (178) | 305 (14) | 170 / 121 |
+  | 2 steep/windy hills | 631 (150) | 121 (11) | 28 / 16 |
+  | 3 lava tube | 106 (11) | 51 (5) | 20 / 18 |
+  | 4 Normal Ground | 2,081 (178) | 319 (14) | 99 / 22 |
+  | 5 volcanic edifice | 1,637 (23) | 207 (3) | 112 / 12 |
+  | 6 apron | 1,868 (21) | 306 (3) | 139 / 16 |
+  | 7 fluvial channel | 2,941 (111) | 293 (8) | 166 / 32 |
+
+  Training area: Crater 849,961 km² (v2 141,138), hills 63,607 (19,433), Normal Ground 687,532 (591,910), edifice
+  976,716 (1,137,925), apron 1,049,896 (1,105,288), fluvial 324,276 (390,137). Hills now train in 150 blocks (v2: 2,
+  the shortfall of §69.8) and lava tube in 11 (3). Screens rejected 161 Crater pieces (outside rims), 345 edifice,
+  146 apron, 47 Normal Ground and 910 fluvial pieces, and 680 new valley strips.
+- **Read by eye** (`build\check_v3_labels.py`: per class 8 accepted and 4 rejected rows over DEM hillshade,
+  `logs\v3_label_sheets\`): Crater discs on rims, rejected pieces outside them; Normal Ground squares on smooth
+  plains, rejected pieces cratered; hills on ridges, knobs and scarps, a few at high latitude on subdued relief;
+  edifice pieces on shield flanks; fluvial pieces on valley floors. **Two rules were changed after reading, before
+  the write that stands:** (1) run 1 placed 315 lava-tube "chains" of X2 closed depressions (§53) not covered by a
+  Robbins rim, linked within 10 km on volcanic units; at full resolution none showed a pit, while the author's
+  polygon 390 is a clear trough. The X2 depressions inside the author's lava-tube polygons (29 in 33 polygons) have
+  the depth of all X2 depressions (median 49 against 52 m), 358,229 of 452,112 X2 depressions of 1–10 km lie outside
+  every Robbins rim, and none of 1.5 km or more and 50 m deep has an aspect of 2.5: the layer cannot find pit
+  chains. Replaced by the catena
+  troughs, which read as troughs; the v2 lava-tube pieces kept by "holds an uncatalogued depression" were dropped
+  with it (lava tube now kept whole). (2) the p90 ≤ 15° apron cap rejected the ridged Olympus aureole lobes, apron
+  by §68.1; it now applies at |lat| ≥ 30° only (apron pieces rejected 398 → 135 in training). Aureole pieces above
+  30° N are still rejected by it **[E]**.
+- **Limits, for the final:** screens, not review; edifice and apron pieces are still pieces of 1:20 M units, cut
+  smaller (0.5°) and screened by slope, not trimmed to the landform; the Valles Marineris catenae (Ophir, Tithoniae,
+  Coprates, Ganges) give long, deep troughs at chasma edges; Crater discs come from the catalogue, so a v3 held-out
+  Crater score partly measures agreement with Robbins.
+- **In the project:** map "Labels v3" (v3 training, v3 held out, v2 labels before, rows rejected by the screens);
+  39 maps, 21 layouts, 0 broken sources. `createMap` adds Pro's Earth basemap; the builder removes it (§37).
+  `.aprx` backups `.backups\Mars Project 20261101-160538.aprx`, `-162232`, `-162507`.
+- **The runs (desktop, not started):** `labelsets.py` takes `--labels v3` (outputs `_v3`; `WRITER`, the only script
+  a split may come from, guards `make_global60_classification.py`); `build\run_v3.ps1`, `run_v2.ps1`'s queue with
+  the U-Net chain first: export, train, both passes in chunks of 60 tiles, mosaic, then each v3 map scored on the v3
+  and the v2 held-out polygons and each v2 map on the v3 ones; then the SVM chain and T8. By §69.25's times ~21 h for
+  the U-Net after its export and ~22 h for the SVM, longer if the export gives more chips than v2's 17,444 (training
+  scales with chips: 30 epochs at ~12 min for v2). Nothing is scored yet; whether v3 helps is the run's to show.

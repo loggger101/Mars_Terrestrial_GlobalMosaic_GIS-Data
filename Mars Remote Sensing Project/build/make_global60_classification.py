@@ -127,17 +127,17 @@ def make_split():
 
 
 def check_v2_split():
-    """The v2 split is apply_label_review.py's, never made here: both halves exist, were written by it, and
-    hold only codes 1-7."""
+    """The v2 (v3) split is apply_label_review.py's (propose_v3_labels.py's), never made here: both halves exist,
+    were written by it (labelsets.WRITER), and hold only codes 1-7."""
     for fc in (TRAIN, TEST):
         if not arcpy.Exists(fc):
-            sys.exit("%s is missing: run apply_label_review.py first (NEXT-STEPS §11.5)" % fc)
+            sys.exit("%s is missing: run %s first (NEXT-STEPS §11.5)" % (fc, L.WRITER))
         with arcpy.da.SearchCursor(fc, ["MappedBy", "Classvalue"]) as cur:
             rows = list(cur)
-        bad = [r for r in rows if r[0] != "apply_label_review.py" or r[1] not in range(1, len(L.NAMES) + 1)]
+        bad = [r for r in rows if r[0] != L.WRITER or r[1] not in range(1, len(L.NAMES) + 1)]
         if not rows or bad:
-            sys.exit("%s: %d rows, %d not apply_label_review.py's or outside codes 1-%d"
-                     % (fc, len(rows), len(bad), len(L.NAMES)))
+            sys.exit("%s: %d rows, %d not %s's or outside codes 1-%d"
+                     % (fc, len(rows), len(bad), L.WRITER, len(L.NAMES)))
         print("  %s: %d polygons" % (os.path.basename(fc), len(rows)))
 
 

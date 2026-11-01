@@ -1,0 +1,55 @@
+[16:11:58] v2 labels 971 (train 734, held out 237); held-out blocks -11_1 -11_2 -3_-1 -4_-1 -4_-2 -5_-1 -6_1 -9_-1 -9_0 0_0 1_0 4_0 4_2 5_-2
+[16:11:58] terrain cells 6668 x 2222 (2 s)
+[16:12:04] Robbins 385049; named volcanoes 44 of 101; named catenae 16 (8 s)
+[16:12:11]   v2 polygons 300 of 971, 997 rows (7 s)
+[16:18:42]   v2 polygons 400 of 971, 4563 rows (398 s)
+[16:18:53]   v2 polygons 500 of 971, 5296 rows (409 s)
+[16:18:58]   v2 polygons 600 of 971, 6593 rows (414 s)
+[16:19:02]   v2 polygons 700 of 971, 8357 rows (418 s)
+[16:19:20] v2 pieces done: 10387 rows (443 s)
+[16:19:22]   volcano summits: 0
+[16:19:30]   craters: 693 placed of 1049 measured
+[16:19:33]   lava: 16 named catenae, 592 troughs, 119 placed
+[16:20:40]   fluvial: 17735 segments, 1269 measured, 589 placed
+[16:20:47] new candidates 3717 (531 s)
+[16:20:50] overlaps between classes 0, across the split 0 (533 s)
+
+rows by class and action (split accept/reject):
+   1 Crater             keep   {'test accept': 93, 'train accept': 143}
+   1 Crater             new    {'test accept': 48, 'train accept': 645}
+   1 Crater             piece  {'test accept': 164, 'test reject': 86, 'train accept': 161, 'train reject': 75}
+   2 steep/windy hills  keep   {'test accept': 8, 'train accept': 21}
+   2 steep/windy hills  new    {'test accept': 43, 'train accept': 569}
+   2 steep/windy hills  piece  {'test accept': 70, 'train accept': 41}
+   3 lava tube          keep   {'test accept': 18, 'train accept': 20}
+   3 lava tube          new    {'test accept': 33, 'train accept': 86}
+   4 Normal Ground      keep   {'test accept': 16, 'train accept': 75}
+   4 Normal Ground      new    {'test accept': 70, 'train accept': 890}
+   4 Normal Ground      piece  {'test accept': 233, 'test reject': 3, 'train accept': 1116, 'train reject': 44}
+   5 volcanic edifice   keep   {'test accept': 1, 'train accept': 6}
+   5 volcanic edifice   new    {'train accept': 19}
+   5 volcanic edifice   piece  {'test accept': 206, 'test reject': 20, 'train accept': 1612, 'train reject': 325}
+   6 apron              keep   {'train accept': 22}
+   6 apron              new    {'test accept': 6, 'train accept': 39}
+   6 apron              piece  {'test accept': 300, 'test reject': 11, 'train accept': 1807, 'train reject': 135}
+   7 fluvial channel    keep   {'test accept': 7, 'train accept': 16}
+   7 fluvial channel    new    {'test accept': 24, 'test reject': 38, 'train accept': 565, 'train reject': 642}
+   7 fluvial channel    piece  {'test accept': 262, 'test reject': 74, 'train accept': 2360, 'train reject': 836}
+
+accepted per class: polygons (blocks), km²; v2 km² beside
+   1 Crater             train   949 (178)    849961 km² [v2  170,    141138]   held out   305 ( 14)    200906 km² [v2  121,    155345]
+   2 steep/windy hills  train   631 (150)     63607 km² [v2   28,     19433]   held out   121 ( 11)     31302 km² [v2   16,     27588]
+   3 lava tube          train   106 ( 11)     37096 km² [v2   20,     19291]   held out    51 (  5)      6154 km² [v2   18,      1064]
+   4 Normal Ground      train  2081 (178)    687532 km² [v2   99,    591910]   held out   319 ( 14)    149097 km² [v2   22,    139633]
+   5 volcanic edifice   train  1637 ( 23)    976716 km² [v2  112,   1137925]   held out   207 (  3)    132614 km² [v2   12,    140688]
+   6 apron              train  1868 ( 21)   1049896 km² [v2  139,   1105288]   held out   306 (  3)    211330 km² [v2   16,    214449]
+   7 fluvial channel    train  2941 (111)    324276 km² [v2  166,    390137]   held out   293 (  8)     31436 km² [v2   32,     38213]
+   all: train 10213, held out 1602
+[16:21:18] log Z:\Mars Remote Sensing Project\build\logs\label_v3.json
+[16:21:54] wrote Landform_TrainingSamples_v3_proposals: 14104 rows
+[16:22:06] wrote Landform_TrainingSamples_v3: 11815 rows
+[16:22:21] wrote Landform_TrainingSamples_v3_60_train: 10213 rows
+[16:22:32] wrote Landform_TrainingSamples_v3_60_test: 1602 rows
+[16:22:32] backup Z:\Mars Project\.backups\Mars Project 20261101-162232.aprx
+[16:22:47] map 'Labels v3': 5 layers
+[16:22:47] done in 650 s

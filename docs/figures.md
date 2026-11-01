@@ -122,6 +122,18 @@ in this project. `180E_col53346_after_fix` shows the 180° column after its patc
 | <a href="../Mars%20Project/Global60/checks/dem_step_chips_20261015/345.8E_col102499_a.png"><img src="thumbs/345.8E_col102499_a.jpg" width="250" alt="DEM step chip at 345.8°E (a), a seam"></a><br>345.8°E (a), a seam | <a href="../Mars%20Project/Global60/checks/dem_step_chips_20261015/345.8E_col102499_b.png"><img src="thumbs/345.8E_col102499_b.jpg" width="250" alt="DEM step chip at 345.8°E (b), a seam"></a><br>345.8°E (b), a seam | <a href="../Mars%20Project/Global60/checks/dem_step_chips_20261015/61.9E_col18333.png"><img src="thumbs/61.9E_col18333.jpg" width="250" alt="DEM step chip at 61.9°E, a seam"></a><br>61.9°E, a seam |
 | <a href="../Mars%20Project/Global60/checks/dem_step_chips_20261015/15.0S_row22230.png"><img src="thumbs/15.0S_row22230.jpg" width="250" alt="DEM step chip at 15.0°S (a row), a seam"></a><br>15.0°S (a row), a seam | | |
 
+### The v3 label screens (2026-11-01)
+
+[`build/logs/v3_label_sheets/`](../Mars%20Remote%20Sensing%20Project/build/logs/v3_label_sheets): per seven-class class,
+eight accepted and four rejected rows of `propose_v3_labels.py` (solid accepted, dashed rejected) over DEM hillshade,
+the read by eye behind the 11,815 v3 labels. The rows are accepted by a written rule, not reviewed. KB §69.49.
+
+| | | |
+|---|---|---|
+| <a href="../Mars%20Remote%20Sensing%20Project/build/logs/v3_label_sheets/v3_class1_Crater.png"><img src="thumbs/v3_class1_Crater.jpg" width="250" alt="v3 label screen, class 1 Crater"></a><br>1 Crater: Robbins discs and pieces of the hand-drawn polygons, pieces outside the rims rejected | <a href="../Mars%20Remote%20Sensing%20Project/build/logs/v3_label_sheets/v3_class2_steep_windy.png"><img src="thumbs/v3_class2_steep_windy.jpg" width="250" alt="v3 label screen, class 2 steep/windy hills"></a><br>2 steep/windy hills: 3 × 3-cell squares on steep, high-relief ground and pieces of the hand-drawn polygons | <a href="../Mars%20Remote%20Sensing%20Project/build/logs/v3_label_sheets/v3_class3_lava.png"><img src="thumbs/v3_class3_lava.jpg" width="250" alt="v3 label screen, class 3 lava tube"></a><br>3 lava tube: troughs in the mapped extent of the named catenae |
+| <a href="../Mars%20Remote%20Sensing%20Project/build/logs/v3_label_sheets/v3_class4_Normal.png"><img src="thumbs/v3_class4_Normal.jpg" width="250" alt="v3 label screen, class 4 Normal Ground"></a><br>4 Normal Ground: smooth crater-free squares and pieces of the hand-drawn polygons, cratered pieces rejected | <a href="../Mars%20Remote%20Sensing%20Project/build/logs/v3_label_sheets/v3_class5_volcanic.png"><img src="thumbs/v3_class5_volcanic.jpg" width="250" alt="v3 label screen, class 5 volcanic edifice"></a><br>5 volcanic edifice: pieces of the edifice units, flat ones rejected | <a href="../Mars%20Remote%20Sensing%20Project/build/logs/v3_label_sheets/v3_class6_apron.png"><img src="thumbs/v3_class6_apron.jpg" width="250" alt="v3 label screen, class 6 apron"></a><br>6 apron: pieces of the apron units, rough mid-latitude ones rejected |
+| <a href="../Mars%20Remote%20Sensing%20Project/build/logs/v3_label_sheets/v3_class7_fluvial.png"><img src="thumbs/v3_class7_fluvial.jpg" width="250" alt="v3 label screen, class 7 fluvial channel"></a><br>7 fluvial channel: valley strips and their pieces, those not on a floor rejected |  |  |
+
 ## Deep-learning model (X5)
 
 Written by `TrainDeepLearningModel` beside the model in
