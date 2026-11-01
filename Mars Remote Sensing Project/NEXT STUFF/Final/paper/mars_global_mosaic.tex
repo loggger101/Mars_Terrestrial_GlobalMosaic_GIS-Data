@@ -59,6 +59,14 @@ quickly, so the diurnal temperature contrast follows thermal inertia, a property
 hold each of these quantities have been available for years \citep{Archinal2003, Edwards2011, Fergason2018}, but
 they come on three different coordinate frames, and a usable stack of them is not a given.
 
+Automated mapping of Mars has mostly taken one landform at a time. Crater detection has moved from handcrafted
+image features to convolutional neural networks \citep{DeLatte2019}, which find craters in lunar elevation models
+\citep{Silburt2019} and in Mars data \citep{Lee2019}; valley networks were mapped across the planet by an algorithm
+that recognises valleys in topography, its output then edited by eye \citep{Luo2009}. Landform classes have been
+mapped without labels, from topographic attributes \citep{Bue2006}, and with a convolutional network trained on
+fifteen landforms in Context Camera images \citep{Wilhelm2020}. Here the visible, thermal-infrared and elevation
+mosaics are stacked first, and the three families are mapped from the one stack. %% KB §69.40
+
 This paper reports the stack, the landform products made from it and the tests run on them. The goals were (1) one
 co-registered stack of Viking visible colour, THEMIS day and night infrared and HRSC/MOLA topography on a single grid;
 (2) maps of the three landform families, first in a type area and then across the whole extent; (3) a test of whether
@@ -702,6 +710,10 @@ score: the support vector machine over-predicts fluvial channel and the U-Net vo
 The detectors are elevation-model products. Closed depressions miss breached craters by construction, and below about
 5~km their density follows the sharpness of the HRSC/MOLA blend. Channels inherit the same dependence, and the fill
 mask that removes synthetic lakes also breaks networks where the DEM is pitted.
+
+Every score in this paper is taken on hand-drawn polygons, which sit where a class is clear, so each flatters its
+map; an unbiased accuracy, and class areas with intervals, need a probability sample of the map labelled blind
+\citep{Olofsson2014}. %% KB §69.40
 
 The held-out blocks have now been used twice, once by the four-class models and once by the seven-class ones. Any
 further tuning, of the deep-learning models above all, would

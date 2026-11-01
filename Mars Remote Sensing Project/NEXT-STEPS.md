@@ -61,7 +61,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 The class revision (§11) is done to the final's text (2a–2c, KB §69.2–§69.27). Deep learning (X5, X5b, X5c) is done
 and scored (§66); further tuning first needs validation blocks of its own (§66.5), the author's call.
 
-**Waiting on the author:** items 1 and 5; W3's two drafted passages for the paper (KB §69.40); D14–D16, D21–D27, D29 and D30 (§2); the interim talk's slot length (§12.5); whether
+**Waiting on the author:** items 1 and 5; D14–D16, D21–D27, D29 and D30 (§2); the interim talk's slot length (§12.5); whether
 layout 18 or `final_img\tes_block_scale.png` goes into a deliverable (§69.30); whether the interim shows layouts 15–18
 (it shows 13 of the 17 that existed at the cut, `INTERIM-PLAN.md` §3); emptying the Recycle Bins (~21 GB of finished
 scratch, §57.5).
@@ -461,9 +461,9 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
   title that names the stack and what it can and cannot map would match the results.
 - **W3, prior work**: the introduction cites the data but no earlier automated mapping, and the discussion compares
   with none. The six candidates are checked by DOI and in `references.bib` (DeLatte2019, Silburt2019, Bue2006,
-  Luo2009, Wilhelm2020, Olofsson2014; KB §69.40), uncited so far. **Waiting on the author:** the two drafted passages
-  in KB §69.40 (a prior-work paragraph for the introduction, one Limits sentence on polygon bias), compiled in a test
-  document; then insert, and read the page count at the desktop rebuild. The Discussion's comparison is still open.
+  Luo2009, Wilhelm2020, Olofsson2014; KB §69.40), and cited since 11-01 by a prior-work paragraph in the
+  introduction and a Limits sentence on polygon bias. Read the page count at the desktop rebuild. The Discussion's
+  comparison with prior work is still open.
 - **W4, figures** (page budget: 16 pages at the last build): ~~the pipeline in Methods~~ (in since 10-31,
   `fig:pipeline`, KB §69.38; compiled only in a test document, so read its page at the desktop rebuild);
   **the block split**, 39 blocks with the 14 held out and the polygons by class, so a reader can judge the
@@ -499,7 +499,7 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 
 ### 12.6 Order of work
 
-1. **Laptop, now:** W3's drafts into the paper at the author's yes (checked 11-01, KB §69.40) (A4, A12, W1 and the paper's half of W8 done 10-27, KB §69.18; the
+1. **Laptop, now:** nothing left from this list (W3 done 11-01, KB §69.40; A4, A12, W1 and the paper's half of W8 done 10-27, KB §69.18; the
    deck's half of W8 with the D28 rewrite 10-29, §69.27; A14 and W10 done 10-31, §69.37–§69.38; A15 done 11-01,
    §69.39).
 2. **Desktop:** the v2 scoring and D18 done (§11.5; A4b done 10-31, KB §69.34); next A1, A2, A3 (b) and (c) (its

@@ -5349,3 +5349,11 @@ and in Limits, before the held-out-blocks paragraph (W5's polygon bias; R2's rea
 
 About 12 lines of a column together. No claim is made about what the cited studies did not do, as none of the full
 texts was read.
+
+**Inserted at the author's yes (2026-11-01):** the paragraph as the introduction's third (after the data mosaics,
+before the goals) and the sentence as its own paragraph in Limits, before the held-out-blocks paragraph, each closed
+by `%% KB §69.40`. Both passages, extracted from the `.tex` as it stands, compile under TinyTeX with
+`references.bib`: no warning, seven references printed. `verify_interim.py` on the `.tex`: all 681 numbers in the
+record. The introduction now cites `DeLatte2019`, `Silburt2019`, `Lee2019`, `Luo2009`, `Bue2006` and
+`Wilhelm2020`; Limits cites `Olofsson2014`. Not compiled with AASTeX (desktop only): read the page count at the
+desktop rebuild (16 at the last build; this and §69.39 add about 29 lines of a column).
