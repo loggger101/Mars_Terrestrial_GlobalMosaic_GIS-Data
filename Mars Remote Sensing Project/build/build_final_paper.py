@@ -8,7 +8,9 @@ make_final_figs.py, make_fig_final.py or an interim chart script reaches the pap
   py -3.13 build_final_paper.py [--no-compile]
 
 Needs MiKTeX (installed per-user 2026-10-22; pdflatex and bibtex under %LOCALAPPDATA%\Programs\MiKTeX), which
-fetches missing packages on demand.
+fetches missing packages on demand. The repository's CI (.github/workflows/paper.yml) gathers the figures with
+--no-compile and compiles in TeX Live on every push that touches the paper, failing on an undefined citation or
+reference (NEXT-STEPS §13.1 P6).
 """
 import os, shutil, subprocess, sys
 
@@ -58,7 +60,7 @@ def run(exe, *args):
 def main():
     os.makedirs(FIGS, exist_ok=True)
     for src, name in FIGURES:
-        p = os.path.join(HERE, src)
+        p = os.path.join(HERE, *src.split("\\"))   # CI runs --no-compile on Linux (.github/workflows/paper.yml)
         if not os.path.exists(p):
             sys.exit("missing figure %s: run make_final_figs.py / make_fig_final.py first" % p)
         if name in CROP:

@@ -1,0 +1,60 @@
+name: paper
+
+# The final paper compiled from the committed .tex, references.bib and figure sources (NEXT-STEPS §13.1 P6): the
+# laptop's TinyTeX has no aastex701.cls, so without this a session there edits the paper uncompiled. The figures are
+# gathered by build_final_paper.py --no-compile (as on the desktop), then pdflatex, bibtex, pdflatex twice in TeX
+# Live, which carries AASTeX 7.0.1. Fails on a LaTeX error or an undefined citation or reference; the log names the
+# page count, and the PDF is kept as the run's artifact (the committed PDF is replaced only at a deadline, D26).
+
+on:
+  push:
+    paths:
+      - "Mars Remote Sensing Project/NEXT STUFF/Final/paper/**"
+      - "Mars Remote Sensing Project/build/final_img/**"
+      - "Mars Remote Sensing Project/build/interim_img/**"
+      - "Mars Remote Sensing Project/build/pres1_img/**"
+      - "Mars Remote Sensing Project/build/build_final_paper.py"
+      - ".github/workflows/paper.yml"
+  pull_request:
+    paths:
+      - "Mars Remote Sensing Project/NEXT STUFF/Final/paper/**"
+      - "Mars Remote Sensing Project/build/build_final_paper.py"
+      - ".github/workflows/paper.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  paper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install Pillow
+      - run: python "Mars Remote Sensing Project/build/build_final_paper.py" --no-compile
+      - name: compile (TeX Live)
+        run: |
+          docker run --rm -v "$PWD:/work" -w "/work/Mars Remote Sensing Project/NEXT STUFF/Final/paper" \
+            texlive/texlive:latest bash -c '
+              set -e
+              tex="pdflatex -interaction=nonstopmode -halt-on-error mars_global_mosaic.tex"
+              $tex > /dev/null || { tail -40 mars_global_mosaic.log; exit 1; }
+              bibtex mars_global_mosaic || [ $? -eq 1 ]
+              $tex > /dev/null
+              $tex > /dev/null || { tail -40 mars_global_mosaic.log; exit 1; }'
+      - name: undefined citations or references
+        working-directory: "Mars Remote Sensing Project/NEXT STUFF/Final/paper"
+        run: |
+          grep -h "Output written on" mars_global_mosaic.log
+          grep -h "Overfull" mars_global_mosaic.log || true
+          if grep -E "(Citation|Reference) .* undefined|There were undefined" mars_global_mosaic.log; then exit 1; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mars_global_mosaic
+          path: |
+            Mars Remote Sensing Project/NEXT STUFF/Final/paper/mars_global_mosaic.pdf
+            Mars Remote Sensing Project/NEXT STUFF/Final/paper/mars_global_mosaic.log

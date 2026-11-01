@@ -7,6 +7,8 @@ r"""Mirrors the project's small, irreplaceable files into the GitHub repo clone 
     python github_sync.py --to-drive <commit> [--dry-run]
                                         the other way: files the clone changed since <commit>, onto the drive
     python github_sync.py --force       copy and remove even where the guard below refuses
+    python github_sync.py --deliverables
+                                        also copy the built decks, report and paper PDF: once per deadline
     --drive <path>                      the drive's root, for running the clone's copy of this script
 
 Repo: loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data, cloned by default at
@@ -22,6 +24,11 @@ What goes to the repo, mirrored under the same folder names as on the drive:
                                 (the .aprx snapshots; git versions the .aprx itself, KB §57.6)
   <drive root>\  -> drive-root\ sidecars of the four globals (not "new training.*", KB §57.6)
 Any single file over 95 MB is skipped and reported (GitHub refuses files over 100 MB).
+
+The built deliverables (NEXT-STEPS §13.1 P4, D26): every .pptx, .docx and .pdf under NEXT STUFF\ outside a figures\
+folder is rebuilt from source on the drive, and each commit of one adds 15-25 MB to the history for good (nearly all
+of the .git, KB §69.19). A new or changed one is held back and listed unless --deliverables is given, used once per
+deadline; the mirror keeps the copy last committed, never deletes it for being held back.
 
 What does not, and where it goes instead:
   Mars Project.gdb vectors      github_export_gdb.py writes them to exports\ in the repo
@@ -60,6 +67,7 @@ REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
 assert DRIVE.resolve() != REPO.resolve(), f"the drive and the clone are one folder ({DRIVE}): pass --drive <drive>"
 DRY = "--dry-run" in sys.argv
 FORCE = "--force" in sys.argv
+DELIVERABLES = "--deliverables" in sys.argv
 TO_DRIVE = sys.argv[sys.argv.index("--to-drive") + 1] if "--to-drive" in sys.argv else None
 MAX = 95 * 1000 * 1000
 
@@ -82,6 +90,13 @@ PRES1_USED = {n for m in ("interim.py", "final.py")
                                                             m).read_text(encoding="utf-8"))}
 # LaTeX's working files beside the final paper; the .bbl stays so the .tex compiles without BibTeX (KB §69.1)
 LATEX_WORK = {".aux", ".log", ".out", ".blg", ".synctex", ".fls", ".fdb_latexmk"}
+
+
+def deliverable(p):
+    """A built deck, report or paper PDF (the module docstring); a paper's figures\\ PDFs are sources, not builds."""
+    parts = p.relative_to(DRIVE).parts
+    return (p.suffix.lower() in {".pptx", ".docx", ".pdf"} and "NEXT STUFF" in parts
+            and "figures" not in parts)
 
 
 def keep_rsp(p):   # Mars Remote Sensing Project
@@ -370,7 +385,7 @@ def main():
     assert REPO.is_dir() and (REPO / ".git").exists(), f"clone the repo first: {REPO}"
     if TO_DRIVE:
         sys.exit(to_drive(TO_DRIVE))
-    copies, unchanged, too_big, removals = [], 0, [], []
+    copies, unchanged, too_big, removals, held = [], 0, [], [], []
     for src, dst, recurse, keep in TREES:
         wanted = set()
         for p in walk(src, recurse, keep):
@@ -382,6 +397,9 @@ def main():
             wanted.add(out)
             if same(p, out):
                 unchanged += 1
+                continue
+            if deliverable(p) and not DELIVERABLES:
+                held.append(out.relative_to(REPO))
                 continue
             copies.append((p, out))
         top = REPO / dst
@@ -403,7 +421,8 @@ def main():
 
     tag = "would copy" if DRY else "copied"
     print(f"drive {DRIVE}  ->  repo {REPO}")
-    print(f"{tag} {len(copied)}, unchanged {unchanged}, removed {len(removed)}, too big {len(too_big)}")
+    print(f"{tag} {len(copied)}, unchanged {unchanged}, removed {len(removed)}, too big {len(too_big)}, "
+          f"held back {len(held)}")
     for c in copied[:40]:
         print("  +", c)
     if len(copied) > 40:
@@ -412,6 +431,8 @@ def main():
         print("  -", r)
     for p, s in too_big:
         print(f"  SKIPPED (> 95 MB, {s / 1e6:.0f} MB): {p}")
+    for h in held:
+        print(f"  HELD BACK (a built deliverable; --deliverables at a deadline): {h}")
     if not DRY and write_script_index():
         print("  docs\\scripts.md regenerated")
 
