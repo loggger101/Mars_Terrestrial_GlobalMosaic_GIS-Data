@@ -5303,3 +5303,10 @@ edifice name and one catena too small or at the edge.
   already gives: fluvial channel concentrates on named valleys' lines (U-Net 0.22 against 0.10, 83 % of 83 valles),
   edifice does not concentrate on the named small edifices (none of 10 on the U-Net), and the named-feature check
   is consistency with the labels' sources. The large edifices cannot be checked this way, as the labels cover them.
+- **Into the paper, at the author's yes (2026-11-01):** one paragraph after the seven-class U-Net's in Results
+  ("Deep learning"), on both maps: the caveat first, then fluvial (83 % / 66 % of 83 valles, the means, the
+  180° shift), then edifice (none / 3 of 10; seven of the ten off volcanic units; the large volcanoes labelled).
+  `verify_interim.py` on the `.tex`: all 681 numbers in the record. Not compiled with AASTeX (desktop only); the
+  paragraph alone compiles under TinyTeX's `pdflatex` in a two-column `article` test with natbib and
+  `references.bib`, no warning, `Alemanno2018` resolved, ~17 lines of a column: read the page count at the desktop
+  rebuild (16 at the last build).
