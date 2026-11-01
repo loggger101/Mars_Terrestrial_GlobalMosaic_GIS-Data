@@ -3,7 +3,9 @@ r"""Renders the pipeline diagram (docs/pipeline.svg in the clone) to a PDF and a
 
 The diagram is drawn by hand as SVG and lives only in the repository's docs\ (the project page shows it). LaTeX
 cannot include SVG and no converter is installed, so Microsoft Edge's headless mode renders it: a PDF page the
-SVG's own size (vector, for \includegraphics) and a PNG at twice that size. Nothing is installed.
+SVG's own size (vector, for \includegraphics) and a PNG at twice that size. Nothing is installed. The paper's caption
+carries the footnote, so its text (class "note") is dropped and the page cut to the SVG's data-paper-height.
+At \textwidth (~504 pt) a 1,100 px wide SVG sets 15 px text at ~6.9 pt.
 
   python make_fig_pipeline.py [--repo <clone>]
 
@@ -34,14 +36,22 @@ def main():
         sys.exit("Microsoft Edge not found")
     src = SVG.read_text(encoding="utf-8")
     w, h = (int(v) for v in re.search(r'viewBox="0 0 (\d+) (\d+)"', src).groups())
+    ph = int(re.search(r'data-paper-height="(\d+)"', src).group(1))
+    notes = len(re.findall(r'<text[^>]*class="note"', src))
+    paper = re.sub(r'\s*<text[^>]*class="note"[^>]*>.*?</text>', "", src)
+    if notes == 0 or 'class="note"' in paper:
+        sys.exit("footnote not found or not removed (%d note lines)" % notes)
+    paper = paper.replace('viewBox="0 0 %d %d"' % (w, h), 'viewBox="0 0 %d %d"' % (w, ph), 1)
+    paper = re.sub(r'(<svg[^>]*?) height="%d"' % h, r'\1 height="%d"' % ph, paper, count=1)
     OUT.mkdir(exist_ok=True)
     pdf, png = OUT / "pipeline.pdf", OUT / "pipeline.png"
     with tempfile.TemporaryDirectory() as tmp:
         page = Path(tmp) / "pipeline.html"
         page.write_text("<!doctype html><meta charset='utf-8'><style>@page{size:%dpx %dpx;margin:0}"
-                        "html,body{margin:0;padding:0}svg{display:block}</style>%s" % (w, h, src), encoding="utf-8")
+                        "html,body{margin:0;padding:0}svg{display:block}</style>%s" % (w, ph, paper), encoding="utf-8")
         edge("--no-pdf-header-footer", "--print-to-pdf=%s" % pdf, page.as_uri())
-        edge("--force-device-scale-factor=2", "--window-size=%d,%d" % (w, h), "--screenshot=%s" % png, SVG.as_uri())
+        edge("--force-device-scale-factor=2", "--window-size=%d,%d" % (w, ph), "--screenshot=%s" % png, page.as_uri())
+    print("paper version: %d footnote lines dropped, %d x %d px" % (notes, w, ph))
     for p in (pdf, png):
         if not p.exists() or p.stat().st_mtime < SVG.stat().st_mtime:
             sys.exit("not written: %s" % p)

@@ -428,7 +428,7 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 |---|---|---|
 | Methods, labels | four classes, 512 polygons | v2: seven classes, 734 training / 237 held out; **347 apron and fluvial rows accepted by a written rule, not by eye**, and hills short of §11.3 (`--keep-short`): both stated (KB §69.8) |
 | Limits, held-out use | "used once for each model" | the v2 maps are a second use of the 14 blocks; say so |
-| the PDF and the final deck | built 2026-10-22/23 | rebuild on the desktop (`build_final_paper.py`, MiKTeX; `build_final_deck.py`) and read every page: Table 3 is wider now |
+| the PDF and the final deck | built 2026-10-22/23 | rebuild on the desktop (`build_final_paper.py`, MiKTeX; `build_final_deck.py`) and read every page: Table 3 is wider now, and the pipeline figure (`fig:pipeline`, KB §69.38) is new; note the page count |
 
 ### 12.2 Analyses that need no author time
 
@@ -465,8 +465,8 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
   mapping on Mars (Bue and Stepinski 2006; Luo and Stepinski 2009); deep learning on Mars landforms (Wilhelm et al.
   2020, DoMars16k); accuracy assessment (Olofsson et al. 2014). Alemanno et al. 2018 and Pontius and Millones 2011
   are in, checked by DOI (KB §69.18).
-- **W4, figures** (page budget: 14 pages now): the pipeline in Methods (redrawn for seven classes,
-  `final_img\pipeline.pdf` from `make_fig_pipeline.py`, KB §69.38; not yet in `build_final_paper.py`'s list);
+- **W4, figures** (page budget: 16 pages at the last build): ~~the pipeline in Methods~~ (in since 10-31,
+  `fig:pipeline`, KB §69.38; compiled only in a test document, so read its page at the desktop rebuild);
   **the block split**, 39 blocks with the 14 held out and the polygons by class, so a reader can judge the
   spatial test; a type-area zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the
   detector's limit in one panel; after v2, the seven-class map and its confusion; A6 if run, and A10's `final_img\crater_sfd.png` (KB §69.35).

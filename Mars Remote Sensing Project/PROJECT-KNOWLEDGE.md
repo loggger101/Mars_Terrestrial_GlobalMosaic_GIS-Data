@@ -5221,22 +5221,30 @@ can enrich it above 2.53 ×.
   5.69 ×), hills 15.83 × on `hu`, Normal Ground 4.00 × on `l` (80.8 % of it). Lava tube lies 36.1 % on the
   volcanic groups (SVM 22.1 %); fluvial channel 66.9 % on `h`.
 
-### 69.38 The pipeline diagram brought to the seven-class path (W10) — 2026-10-31, laptop **[V]**
+### 69.38 The pipeline diagram brought to the seven-class path (W10) and into the paper's Methods — 2026-10-31, laptop **[V]**
 
 `docs/pipeline.svg` (the clone only, drawn by hand; the project page's first figure) still gave the four-class labels
-and maps as the result. Redrawn, 1220 × 470 (was 1220 × 330), same palette and boxes:
+and maps as the result. Redrawn twice the same day: first at 1220 × 470 with the old 12–13 px text, then, once the
+paper was to take it, at **1100 × 500 with 15–16 px text**, because at the paper's text width (~504 pt) the first
+version set its text at ~5 pt; the second sets it at ~6.9 pt. Same palette and box styles.
 - **Products:** terrain, the 7-band stack, the diurnal-contrast index and the machine candidates (moved here from
   the method column: they come from the DEM, not from the labels).
-- **Labels and method:** one hand box with both rounds (round 2: 971 labels, seven classes, proposed from the
-  geologic map, IAU names and valleys, reviewed by eye and by a rule, §69.8; round 1: 512, four classes) feeding
-  one box for the SVM and the U-Net, split by whole 15° blocks with 14 of 39 held out.
+- **Labels and method:** one hand box with both rounds (round 2: 971 labels, seven classes, proposed and reviewed,
+  §69.8; round 1: 512, four classes) feeding one box for the SVM and the U-Net, whole 15° blocks, 14 of 39 held out.
 - **Result:** one box per classifier, the seven-class score first: SVM 42.5 %, κ 0.31 and 73.8 %, κ 0.58; U-Net
-  69.0 %, κ 0.61 and 98.9 %, κ 0.98 (§69.24, §69.25, §57, §66.8); hand digitising, open. A footnote says the
-  two lines are scored on different held-out sets (237 and 183 polygons) and are not directly comparable, and that
-  the seven-class maps are the current ones (D28).
+  69.0 %, κ 0.61 and 98.9 %, κ 0.98 (§69.24, §69.25, §57, §66.8); hand digitising, open. A footnote (class `note`)
+  says the two lines are scored on different held-out sets (237 and 183 polygons) and are not directly comparable,
+  that the seven-class maps are the current ones, and why elevation stays out of the stack.
 
 **For the paper:** `build\make_fig_pipeline.py` (system Python) renders the SVG with Microsoft Edge's headless mode,
-nothing installed: `build\final_img\pipeline.pdf`, one vector page of 914.9 × 353.0 pt, and `pipeline.png`,
-2,440 × 940. Both read: the PDF rasterised with `pypdfium2` and checked by eye against the PNG, nothing clipped.
-Whether the figure enters the paper (`build_final_paper.py`'s list and the `.tex`) is W4's call on the page budget;
-it is not added.
+nothing installed, dropping the footnote (the caption carries it) and cutting the page to the SVG's
+`data-paper-height` (446 px): `build\final_img\pipeline.pdf`, one vector page of 824.9 × 335.0 pt, and
+`pipeline.png`, 2,200 × 892. The PDF was rasterised with `pypdfium2` and read; nothing clipped.
+
+**Into the paper, at the author's yes (2026-10-31):** a `figure*` after Figure 2 (`fig:pipeline`, the third
+figure), cited in the Methods' opening paragraph; its caption gives the chain, the two label rounds and the
+footnote's caveat. `build_final_paper.py` copies `final_img\pipeline.pdf` into `figures\` (run with `--no-compile`
+on the laptop: 20 figures copied). **Not compiled with AASTeX:** the class is on the desktop's MiKTeX only. The
+figure block itself, with the Methods sentence citing it, compiles under TinyTeX's `pdflatex` in a two-column
+`article` test (text width 505.9 pt): the PDF figure loads and the page reads, the float about a third of a page with
+its caption. The paper's page count (16 at the last build) is to be read at the desktop rebuild (NEXT-STEPS §12.1).

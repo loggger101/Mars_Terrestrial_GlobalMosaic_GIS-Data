@@ -137,13 +137,27 @@ day infrared, (D) the HRSC/MOLA elevation model ($-4{,}495$ to $1{,}945$~m) over
 \lAv, Late Amazonian volcanic, of SIM~3292. \label{fig:athabasca}}
 \end{figure*}
 
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/pipeline.pdf}
+\caption{The processing chain. Four mosaics in three frames go onto one \pmsixty\ grid; terrain, the seven-band stack
+and the diurnal-contrast index are built on it, and closed depressions and channels are taken from the elevation model
+as candidates for review by hand. A support vector machine and a U-Net are trained on hand-drawn labels in two rounds
+(round 2: 971 labels in seven classes, proposed from the geologic map, the IAU names and the valley map, then
+reviewed; round 1: 512 labels in four classes) and scored on whole $15^{\circ}$ blocks, 14 of 39 held out. Scores are
+area-weighted accuracy and \kap\ on the held-out polygons, 237 for seven classes and 183 for four, so the two lines
+in a box are not directly comparable. \label{fig:pipeline}}
+\end{figure*}
+%% KB §69.38 (the diagram, docs/pipeline.svg, rendered by build\make_fig_pipeline.py); scores §69.24, §69.25, §57, §66.8
+
 %% ====================================================================================================
 \section{Methods} \label{sec:methods}
 
 All processing ran headless through \texttt{arcpy} in ArcGIS Pro~3.7 \citep{ArcGISPro}, with GDAL \citep{GDAL} and
 NumPy \citep{Harris2020} for raster arithmetic, on a workstation with an Intel i7-8700K, 64~GB of memory and an NVIDIA
 RTX~2080~Ti; figures were drawn with Matplotlib \citep{Hunter2007} or exported from the project's map layouts. Every
-product and figure has a script that regenerates it \citep{Edwards2026data}. %% KB §2.1, §2.4, §12.1
+product and figure has a script that regenerates it \citep{Edwards2026data}. Figure~\ref{fig:pipeline} outlines the
+chain from the source mosaics to the maps. %% KB §2.1, §2.4, §12.1, §69.38
 
 \subsection{Co-registration on one grid}
 
