@@ -5484,5 +5484,9 @@ The plan's "Resume here" gave the seven-class U-Net's edifice as 39.5 % of ±60�
    supported as stated" (H4 answered by fill depth, not image gradients) → "Three of four hypotheses are not
    supported; the fourth is answered by another method."
 
+**Inserted at the author's yes (2026-11-01):** all four as drafted, 1 in both the `.tex` and `final.py`'s
+`CONCLUSIONS` (the final deck's slide gains about 40 characters; read it at the rebuild); `final.py`'s methods slide
+already gave 329 and 183. The interim stays at its cut (D20).
+
 Not compiled on the laptop (no `aastex701.cls`); the push compiles it in CI (§69.42). The final deck's data line is
 stale until `build_final_deck.py` runs.

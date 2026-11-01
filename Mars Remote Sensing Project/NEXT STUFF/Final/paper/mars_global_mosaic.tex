@@ -31,12 +31,12 @@ Viking red but by $-0.19$ and $+0.02$~DN in day and night infrared, and against 
 THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking albedo tracks inertia planet-wide
 ($r=-0.36$). Fill depth yields 465,354 closed depressions $\ge1$~km; 62.2\% of those $\ge5$~km are catalogued
 craters, only 15.3\% at $\ge1$~km, and breached craters are missed. Of 969,822 routed channel
-segments 89.8\% lie on slopes under $2^{\circ}$. A support vector machine trained on 512 hand-drawn landform polygons and scored on whole $15^{\circ}$
-blocks it never saw reaches 73.8\%, \kap\,0.58; the thermal bands add a resolved 1.4 to 2.0 points. A U-Net reaches 98.9\% on
+segments 89.8\% lie on slopes under $2^{\circ}$. A support vector machine trained on 329 of 512 hand-drawn landform polygons and scored on the other 183, in whole $15^{\circ}$
+blocks it never saw, reaches 73.8\%, \kap\,0.58; the thermal bands add a resolved 1.4 to 2.0 points. A U-Net reaches 98.9\% on
 the same blocks as a terrain-province map. Revised to seven classes, a U-Net scores 69.0\% on 237 held-out
 polygons, weaker on the original four but naming volcanoes, aprons and valleys. No band separates the lava
 contacts of the 1:20\,M geologic map at Athabasca Valles much better than chance, so lava flows are taken from
-that map. Three of four hypotheses are not supported.
+that map. Three of four hypotheses are not supported; the fourth is answered by another method.
 \end{abstract}
 
 \keywords{Mars --- Planetary surfaces --- Remote sensing --- Infrared imaging --- Impact craters --- Lava flows ---
@@ -476,7 +476,7 @@ no longer an elevation map (elevation bins reproduce 55.4\%, within a point of i
 no tile seams (ratio 1.00), and labels 56.8\% of the ground inside named craters as Crater against 46.2\% in the ring
 around them. %% KB §55.3, §57; logs\global60_classification_check_200m_mode11.json
 
-The overall score flatters the map. Crater is 58.6\% of the held-out area, and its balanced accuracy is 66.7\% with a
+The overall score flatters the map. Crater is 58.6\% of the held-out area, and the map's balanced accuracy is 66.7\% with a
 mean F1 of 55.7\%, lava tube's F1 being 4.5\%. Of the 26.2 points of disagreement, 20.5 are quantity and 5.7
 allocation: most of the error is in how much of each class the map paints, not where, giving 38.1\% of the held-out
 ground to Crater against the labels' 58.6\% and painting the rest of the Crater polygons lava tube (10.9 points),
@@ -741,7 +741,7 @@ candidates with measured recall and precision. %% KB §66.5, §6, §69.7, NEXT-S
 \begin{enumerate}
 \item Four global products now share one co-registered grid over \pmsixty, 86.6\% of Mars, with the THEMIS pair never
 resampled and the elevation model reproduced exactly at 200~m.
-\item Visible albedo, day infrared and night infrared are three nearly independent dimensions locally, but the held THEMIS
+\item Visible albedo, day infrared and night infrared span about three dimensions locally, night infrared nearly independent of the others, but the held THEMIS
 mosaics carry local contrast only; calibrated thermal inertia follows Viking albedo across the planet.
 \item Fill depth recovers 68\% of the large named craters and gives 465,354 closed depressions $\ge1$~km whose precision
 against Robbins rises from 15.3\% to 62.2\% at 5~km; breached craters stay invisible.

@@ -215,7 +215,7 @@ LIMITS = [   # (head, text)
 
 CONCLUSIONS = [
     "Four global products now share one co-registered grid over ±60°; the co-registration that failed four times works",
-    "Visible albedo, day IR and night IR are three nearly independent dimensions, but the THEMIS mosaics carry "
+    "Visible albedo, day IR and night IR span about three dimensions, night IR nearly independent of the others, but the THEMIS mosaics carry "
     "local contrast only, and calibrated inertia follows Viking",
     "Craters ≥ 5 km are mostly recovered as closed depressions (62.2% precision); smaller ones and breached craters are not",
     "The four-class landform map scores 73.8%, κ 0.58 on blocks it never saw; thermal adds a resolved 1.4–2.0 points",
