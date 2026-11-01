@@ -122,7 +122,7 @@ T2 counts craters per unit. The catalogue ranks the flood lava lowest at Athabas
 
 ### Craters
 
-Across ±60°, 465,354 closed depressions ≥ 1 km; against the Robbins catalogue 15.3% of them are catalogued craters, 62.2% of those ≥ 5 km and 83.1% of those ≥ 20 km, each far above a chance baseline; recall levels off near half, and Robbins' degradation states show why: at ≥ 5 km the freshest rims are found at 66% and the most degraded at 35%, above 10 km the freshest at 90–100%, and partial rims 18–27 points less often than full ones (KB §69.45). Below ~5 km the density follows the DEM's makeup more than the craters (layout 11). Large craters are measured well: Perrotin within 7.1% in diameter.
+Across ±60°, 465,354 closed depressions ≥ 1 km; against the Robbins catalogue 15.3% of them are catalogued craters, 63.2% of those ≥ 5 km and 87.4% of those ≥ 20 km, each far above a chance baseline (each set cut at the minimum diameter only where it is scored); recall levels off near half (52.4% at ≥ 5 km), and Robbins' degradation states show why: the freshest rims are found at 83.1% and the most degraded at 38.4%, fresh rims ≥ 10 km at 90–100%, and partial rims at 41.3% against 63.9% for full ones (KB §69.45, §69.47). Below ~5 km the density follows the DEM's makeup more than the craters (layout 11). Large craters are measured well: Perrotin within 7.1% in diameter.
 
 [<img src="docs/thumbs/ius_crater_candidates.jpg" width="640" alt="Ius Chasma closed depressions, their size-frequency, and the Oudemans miss and Perrotin hit">](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_crater_candidates.png)
 

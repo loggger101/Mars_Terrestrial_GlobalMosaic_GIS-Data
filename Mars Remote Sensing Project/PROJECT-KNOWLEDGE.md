@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-01 (§69.46).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-01 (§69.47).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -5617,3 +5617,33 @@ class shares on this mask equal their own records (U-Net edifice 40.0 %, SVM 12.
   §69.44–§69.46: the held-out score's dependence on a few blocks (R2), the SVM maps against geography (A3 (c), D30),
   the seven-class lead's two blocks (D31), the U-Net's edifice (a retrain with validation blocks, §66.5), channels
   unscored (A1), the review's two tests (`Origin` first), crater recall (D32; a nested-basin detector after 8 Dec).
+
+### 69.47 D31 and D32 into the paper and `final.py`: block intervals, and the crater curve with one side cut — 2026-11-01, laptop **[V]**
+
+The author's yes to both (2026-11-01). The interim is untouched (D20).
+
+**D32, the crater curve.** `make_crater_recall_by_state.py` now also cuts the chance baseline on one side only
+(C5b's shift, 3 diameters east); **route check first:** its two-sided baseline at ≥ 5 km equals
+`global60_candidates_check.json`'s 2.8851 % to 10⁻⁹. Every other number reran unchanged, in 19 s.
+The one-side-cut chance baseline: precision
+0.8 % at ≥ 1 km rising to 13.4 % at ≥ 100 km (13.25 % at ≥ 50), recall 1.1 % rising to 10.0 % at ≥ 50 km; **chance
+below 14 % at every size**. `make_fig_final.py` draws `final_img\depressions_vs_robbins.png` from
+`crater_recall_by_state.json`'s `curve_one_side_cut` (read: the legend moved off the 80.8 label, the footer wrapped
+onto two lines). In the `.tex`: the Results paragraph gives the rule's one-side cut, precision 15.3 / 63.2 / 87.4 %,
+chance below 14 %, recall 52.4 % at ≥ 5 km and why (rim states 38.4 / 49.2 / 71.7 / 83.1 %, fresh rims ≥ 10 km
+90–100 %, partial rims 41.3 against 63.9 % for full ones: the one-side-cut figures of §69.45); the figure caption
+says how the sets are cut; the abstract gives 63.2 % and "the catalogued craters missed are mostly degraded or
+breached"; conclusion 3 gives recall by rim state. `final.py`: the Robbins slide's two lines and the crater
+conclusion the same.
+
+**D31, the block intervals.** In the `.tex`: the Uncertainty subsection names them (the 14 held-out blocks, 10,000
+resamples, every map on the same draw); Table 3's note gives them for the four maps; T1's paragraph, that the 200 m
+gain stays resolved by block (+0.46 to +2.67); the seven-class U-Net paragraph, that its lead over the seven-class SVM
+is firm by balanced accuracy (56.9 against 41.9 %, block interval +2.3 to +19.5) but not by accuracy (−9.7 to +47.8),
+most of the 26.5 points lying in the two Tharsis blocks, **47.5 %** of the v2 held-out area (29.7 + 17.8, §69.44),
+and that the four-class U-Net's lead holds by block (+11.1 to +41.0); conclusion 6, the same in one sentence.
+`final.py`: one line on the seven-class U-Net's slide.
+
+Neither the paper nor the deck is rebuilt on the laptop: the push compiles the paper in CI (§69.42); the deck waits for
+`build_final_deck.py` (its seven-class U-Net slide now has four points; read it at the rebuild). D30 (the baseline
+in Table 3) is still the author's.

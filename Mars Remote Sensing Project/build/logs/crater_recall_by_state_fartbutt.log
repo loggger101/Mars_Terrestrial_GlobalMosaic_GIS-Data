@@ -1,4 +1,4 @@
-read 465354 depressions, 352796 Robbins craters within ±60° (6 s)
+read 465354 depressions, 352796 Robbins craters within ±60° (2 s)
 route check D >= 1 km: recall 0.204129, its log 0.204129 -> ok
 route check D >= 2 km: recall 0.357743, its log 0.357743 -> ok
 route check D >= 5 km: recall 0.457618, its log 0.457618 -> ok
@@ -6,7 +6,8 @@ route check D >= 10 km: recall 0.477717, its log 0.477717 -> ok
 route check D >= 20 km: recall 0.480683, its log 0.480683 -> ok
 route check D >= 50 km: recall 0.458266, its log 0.458266 -> ok
 route check D >= 100 km: recall 0.382900, its log 0.382900 -> ok
-C5's curve with only the scored set cut: {'1': {'recall_c5': 0.2041, 'recall_uncut': 0.2041, 'precision_c5': 0.1531, 'precision_uncut': 0.1531}, '2': {'recall_c5': 0.3577, 'recall_uncut': 0.4376, 'precision_c5': 0.2925, 'precision_uncut': 0.3013}, '5': {'recall_c5': 0.4576, 'recall_uncut': 0.5236, 'precision_c5': 0.6219, 'precision_uncut': 0.6317}, '10': {'recall_c5': 0.4777, 'recall_uncut': 0.5327, 'precision_c5': 0.7921, 'precision_uncut': 0.8081}, '20': {'recall_c5': 0.4807, 'recall_uncut': 0.5264, 'precision_c5': 0.831, 'precision_uncut': 0.8736}, '50': {'recall_c5': 0.4583, 'recall_uncut': 0.5245, 'precision_c5': 0.7851, 'precision_uncut': 0.9342}, '100': {'recall_c5': 0.3829, 'recall_uncut': 0.4387, 'precision_c5': 0.6901, 'precision_uncut': 0.8873}}
+route check, the chance baseline at D >= 5 km: 0.028851, its log 0.028851 -> ok
+C5's curve with only the scored set cut: {'1': {'recall_c5': 0.2041, 'recall_uncut': 0.2041, 'precision_c5': 0.1531, 'precision_uncut': 0.1531, 'robbins': 352796, 'depressions': 465354, 'baseline_recall_uncut': 0.0112, 'baseline_precision_uncut': 0.0084}, '2': {'recall_c5': 0.3577, 'recall_uncut': 0.4376, 'precision_c5': 0.2925, 'precision_uncut': 0.3013, 'robbins': 118124, 'depressions': 142308, 'baseline_recall_uncut': 0.0214, 'baseline_precision_uncut': 0.0157}, '5': {'recall_c5': 0.4576, 'recall_uncut': 0.5236, 'precision_c5': 0.6219, 'precision_uncut': 0.6317, 'robbins': 43049, 'depressions': 30901, 'baseline_recall_uncut': 0.0332, 'baseline_precision_uncut': 0.0414}, '10': {'recall_c5': 0.4777, 'recall_uncut': 0.5327, 'precision_c5': 0.7921, 'precision_uncut': 0.8081, 'robbins': 21990, 'depressions': 12783, 'baseline_recall_uncut': 0.0475, 'baseline_precision_uncut': 0.0739}, '20': {'recall_c5': 0.4807, 'recall_uncut': 0.5264, 'precision_c5': 0.831, 'precision_uncut': 0.8736, 'robbins': 9784, 'depressions': 5372, 'baseline_recall_uncut': 0.0694, 'baseline_precision_uncut': 0.1115}, '50': {'recall_c5': 0.4583, 'recall_uncut': 0.5245, 'precision_c5': 0.7851, 'precision_uncut': 0.9342, 'robbins': 1857, 'depressions': 1019, 'baseline_recall_uncut': 0.1002, 'baseline_precision_uncut': 0.1325}, '100': {'recall_c5': 0.3829, 'recall_uncut': 0.4387, 'precision_c5': 0.6901, 'precision_uncut': 0.8873, 'robbins': 269, 'depressions': 142, 'baseline_recall_uncut': 0.0706, 'baseline_precision_uncut': 0.1338}}
 recall with the depressions uncut (>= 1 km): {'all': 0.5236, 'DEG_RIM': {'1': 0.3836, '2': 0.4919, '3': 0.717, '4': 0.8305}, 'DEG_RIM_by_diameter': {'5-10': {'1': 0.3328, '2': 0.4018, '3': 0.6703, '4': 0.813}, '10-20': {'1': 0.4211, '2': 0.4957, '3': 0.779, '4': 0.9021}, '20-50': {'1': 0.4134, '2': 0.6, '3': 0.8073, '4': 0.9478}, '>=50': {'1': 0.3487, '2': 0.6696, '3': 0.8667, '4': 1.0}}, 'ARC_IMG': {'full': 0.6393, 'partial': 0.413}}
 misses: {'n': 23349, 'none': 0.6451, 'in_factor_2_below_dmin': 0.1217, 'only_smaller': 0.2297, 'only_larger': 0.0034, 'smaller_and_larger': 0.0}
    by_rim_state 1      {'n': 11280, 'none': 0.6264, 'in_factor_2_below_dmin': 0.0526, 'only_smaller': 0.3185, 'only_larger': 0.0025, 'smaller_and_larger': 0.0}
@@ -34,4 +35,4 @@ D >= 5 km: 43049 Robbins craters, recall 0.458 (baseline 0.029); states missing 
 P1 held {'recall_by_rim_state': [0.3494, 0.4399, 0.6238, 0.6604]}
 P2 NOT held {'rim4': 0.6604, 'rim1': 0.3494}
 P3 held {'full_minus_partial_pt': {'5-10': 18.3, '10-20': 25.5, '20-50': 24.6}}
-wrote Z:\Mars Remote Sensing Project\build\logs\crater_recall_by_state.json  (4925 s)
+wrote Z:\Mars Remote Sensing Project\build\logs\crater_recall_by_state.json  (19 s)

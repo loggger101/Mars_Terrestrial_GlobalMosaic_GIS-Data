@@ -31,11 +31,11 @@ Only the state, what waits on whom and the next step; the history behind each li
   SVM map (+11.1 to +41.0 pt) and T1's thermal gain (+0.46 to +2.67 pt) hold; the seven-class U-Net's 26.5-point
   accuracy lead over the seven-class SVM does not (−9.7 to +47.8; by balanced accuracy it does, +2.3 to +19.5), nor
   does the SVM map's position against the baseline either way. Three blocks hold 61.6 % of the four-class held-out
-  area; the seven-class lead sits on the two Tharsis blocks (D31).
+  area; the seven-class lead sits on the two Tharsis blocks. In the paper since 11-01 (D31, §69.47).
 - **Crater recall explained** (A11, §69.45): recall rises with Robbins' rim state, 34.9 → 66.0 % at ≥ 5 km; fresh
   rims ≥ 10 km are found at 90–100 %; partial rims 18–27 points less often. C5's rule cuts both sets at Dmin, which
   understates recall by 4.5–8 points at every Dmin above 1 km (≥ 5 km: 52.4 % with one side cut) and precision at
-  ≥ 50 km by 15–20 (D32).
+  ≥ 50 km by 15–20. The paper's figure and text take the one-side cut since 11-01 (D32, §69.47).
 - **Seven classes** (D17, D28): 971 reviewed v2 labels, 734 training and 237 held out (§69.8). On the v2 held-out
   polygons the seven-class SVM scores 42.5 %, κ 0.310 and the seven-class U-Net 69.0 %, κ 0.606; both fail D18's
   rule, and **they lead all the same** (layouts 04b, 13b, 17b; §69.24–§69.27). The U-Net maps edifice on 40.0 % of
@@ -74,7 +74,7 @@ and scored (§66); further tuning first needs validation blocks of its own (§66
 
 **Where the results are weakest and what would most improve them:** §14 (11-01), ranked.
 
-**Waiting on the author:** items 1 and 5; D14–D16, D21–D27 and D29–D32 (§2); the interim talk's slot length (§12.5); whether
+**Waiting on the author:** items 1 and 5; D14–D16, D21–D27, D29 and D30 (§2); the interim talk's slot length (§12.5); whether
 layout 18 or `final_img\tes_block_scale.png` goes into a deliverable (§69.30); whether the interim shows layouts 15–18
 (it shows 13 of the 17 that existed at the cut, `INTERIM-PLAN.md` §3); emptying the Recycle Bins (~21 GB of finished
 scratch, §57.5).
@@ -125,8 +125,9 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | yes |
 | D29 | the seven-class maps' gain (D28) by balanced accuracy: none (SVM −0.15 pt, U-Net +0.20 pt on the v2 held-out polygons); the gain is in macro F1 and in quantity disagreement (KB §69.34). Say so in the paper's Table 3 and text, the deck and the README? | yes, as for D25: one clause, "in overall accuracy and macro F1; not in balanced accuracy"; D28's lead stands |
 | D30 | the geography-only baseline (KB §69.35): the nearest training polygon's class scores 83.2 % held out, above the published SVM map's 73.8 %; the SVM map leads only by balanced accuracy (0.667 against 0.613); the U-Net clears it on every measure. Report it beside every held-out score (the paper's Table 3, the final deck), and lead the SVM map's score with balanced accuracy? The interim is cut (D20) | yes: one Table 3 row and one sentence; the interim untouched |
-| D31 | the block intervals (KB §69.44): beside the paper's polygon intervals (Table 2, Table 3), the intervals that resample the 14 held-out blocks; they keep the four-class U-Net's lead and T1's gain, and drop the seven-class U-Net's accuracy lead over the seven-class SVM (−9.7 to +47.8 pt; by balanced accuracy +2.3 to +19.5). Report them, and give the seven-class lead by balanced accuracy? | yes: one column or footnote and one sentence; D28's lead stands, stated by balanced accuracy |
-| D32 | crater recall (KB §69.45): the paper's "recall levels off near one half because breached and degraded craters are not closed" is now measured (fresh rims ≥ 10 km found at 90–100 %, the most degraded at 35–42 %); and C5's rule cuts both sets at Dmin, which understates recall by 4.5–8 pt above 1 km and precision at ≥ 50 km by 15–20 pt. Replace the sentence with the measured one, and redraw `fig:robbins` with only the scored set cut (or say both are cut)? | yes to both; the interim keeps C5 (D20) |
+D31 and D32 were answered 2026-11-01, yes to both: the block intervals and the seven-class lead by balanced
+accuracy, and the crater curve with each set cut only where it is scored, are in the `.tex` and `final.py` (KB
+§69.47).
 D19 was answered 2026-10-24, before any v2 score existed: D18's rule (a) is judged on the held-out polygons whose
 v2 class is 1–4, the ground both maps can name (KB §68.4 amended, §69.4); `score_d18_verdict.py` does so.
 D28 was answered 2026-10-29, after both seven-class maps had failed D18's rule (KB §69.24–69.25): **the
@@ -564,12 +565,12 @@ claim. "Cost" is who and how long; nothing here goes ahead of the review (§6) o
 |---|---|---|---|---|
 | 1 | **The held-out score rests on a few large polygons in a few blocks.** Three blocks hold 61.6 % of the four-class held-out area; one Normal Ground polygon is 73.7 % of its class's, Arsia Mons 30.7 % of Crater's; dropping one block moves the published map by 8.7 pt | §69.44 | **R2, the probability-sample check** (§12.3): stratified random points labelled blind give unbiased accuracy and class areas with intervals, independent of where polygons were drawn. The single most valuable hour of the author's after the review | author ~2–3 h; agent writes the points and scores them |
 | 2 | **The SVM maps do not beat geography.** The nearest training polygon scores 83.2 % against the published map's 73.8 % (four classes) and 45.6 % against 42.5 % (seven); by block neither gap is resolved either way | §69.35, §69.44 | A3 (c), the SVM under 5–51 km mode filters, measures how much context alone closes the gap (queued for the desktop); the U-Net, which uses context, already clears the baseline. In the paper: report the baseline beside every score (D30) and lead the SVM maps with balanced accuracy, where they are ahead | desktop, ~4.5 h unattended |
-| 3 | **The seven-class lead is two blocks wide.** By accuracy, the seven-class U-Net's lead over the seven-class SVM is not resolved by block (−9.7 to +47.8 pt); it sits on the Tharsis blocks −9_−1 and −9_0; the SVM leads in 8 of 14 blocks | §69.44 | Lead with balanced accuracy, which is resolved (+2.3 to +19.5, D31). For a firmer test, edifice and apron labels in held-out blocks outside Tharsis (Elysium, Syrtis, Hesperia) | D31: none. Labels: author ~1 h, then a v2 rescore (desktop, ~1 h) |
+| 3 | **The seven-class lead is two blocks wide.** By accuracy, the seven-class U-Net's lead over the seven-class SVM is not resolved by block (−9.7 to +47.8 pt); it sits on the Tharsis blocks −9_−1 and −9_0; the SVM leads in 8 of 14 blocks | §69.44 | Done 11-01 (D31, KB §69.47): the paper leads with balanced accuracy, which is resolved (+2.3 to +19.5). For a firmer test, edifice and apron labels in held-out blocks outside Tharsis (Elysium, Syrtis, Hesperia) | Labels: author ~1 h, then a v2 rescore (desktop, ~1 h) |
 | 4 | **The seven-class U-Net's edifice is wrong over much of the planet**: 40.0 % of ±60°, 46.8 % of the highland group, none of the 10 named small edifices | §69.25, §69.37, §69.39 | Retrain with validation blocks of its own (§66.5), edifice negatives drawn on the highland group and class weights; score on the same held-out blocks. Not a post-hoc mask by the geologic map: T8 scores against that map | desktop, hours, as X5c (§66.6); the author's call (§66.5) |
 | 5 | **Channels have no score.** 969,822 routed segments, no precision or recall | §53.6 | **A1**, against the Alemanno valley lines with a shifted-network baseline (§12.2) | desktop |
 | 6 | **Two hypotheses wait on the review**: H2 stage 2 needs `Origin` on ≥ 10 fluvial and ≥ 10 volcanic of the 199 copied channels; H1 needs lava margins at Athabasca (0 drawn) | §69.33 | `Origin` on the 199 channels is the cheapest step in the project that unblocks a test | author ~1 h (`Origin`), ~2 h (margins) |
-| 7 | **Crater recall stops near one half**, mostly from degraded and partial rims (77 % of the misses are rim states 1–2) and, at 5–10 km, from C5's two-sided cut | §69.45 | The figure and sentence (D32): no run. To recover recall: 23 % of the misses (72 % at ≥ 50 km) hold only a smaller closed basin, which a rim-based diameter or merging nested basins would match; that is a change to the detector and an 11 h fine pass, so future work (W6), not before the freeze | D32: agent, minutes; detector: after 8 Dec |
+| 7 | **Crater recall stops near one half**, mostly from degraded and partial rims (77 % of the misses are rim states 1–2) and, at 5–10 km, from C5's two-sided cut | §69.45 | The figure and sentence: done 11-01 (D32, KB §69.47). To recover recall: 23 % of the misses (72 % at ≥ 50 km) hold only a smaller closed basin, which a rim-based diameter or merging nested basins would match; that is a change to the detector and an 11 h fine pass, so future work (W6), not before the freeze | detector: after 8 Dec |
 | 8 | **The thermal gain is small** (+1.36 pt, resolved by block; none by balanced accuracy) | §56, §69.18, §69.44 | Nothing to fix: A2 (T1 on the v2 classes) asks whether thermal helps the new classes; A8 (material labels) whether it helps where the labels are material | desktop, numpy |
 
-**Order for the agent:** D31 and D32 into the paper at the author's yes (laptop, minutes); then the desktop list of
+**Order for the agent:** D31 and D32 done 11-01 (KB §69.47); next the desktop list of
 §12.6 step 2 (A1, A2, A3 (b) and (c)). **For the author:** the review (§6) with `Origin` first; then R2.

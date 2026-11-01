@@ -29,8 +29,8 @@ and night infrared is nearly independent of every band ($|r|\le0.12$). Across \p
 the THEMIS mosaics are 8-bit products stretched region by region: dusty and rocky provinces differ by 47.67~DN in
 Viking red but by $-0.19$ and $+0.02$~DN in day and night infrared, and against calibrated TES thermal inertia the
 THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking albedo tracks inertia planet-wide
-($r=-0.36$). Fill depth yields 465,354 closed depressions $\ge1$~km; 62.2\% of those $\ge5$~km are catalogued
-craters, only 15.3\% at $\ge1$~km, and breached craters are missed. Of 969,822 routed channel
+($r=-0.36$). Fill depth yields 465,354 closed depressions $\ge1$~km; 63.2\% of those $\ge5$~km are catalogued
+craters, only 15.3\% at $\ge1$~km, and the catalogued craters missed are mostly degraded or breached. Of 969,822 routed channel
 segments 89.8\% lie on slopes under $2^{\circ}$. A support vector machine trained on 329 of 512 hand-drawn landform polygons and scored on the other 183, in whole $15^{\circ}$
 blocks it never saw, reaches 73.8\%, \kap\,0.58; the thermal bands add a resolved 1.4 to 2.0 points. A U-Net reaches 98.9\% on
 the same blocks as a terrain-province map. Revised to seven classes, a U-Net scores 69.0\% on 237 held-out
@@ -279,7 +279,9 @@ the Deep Learning Libraries of ArcGIS Pro, built on PyTorch \citep{Paszke2019}. 
 
 Intervals are 95\% paired bootstrap intervals \citep{Efron1993} over whole held-out polygons (1,000 resamples), over
 contacts for the flow-margin test and over 50~km cells for the channel test, so that spatially correlated pixels are
-never treated as independent.
+never treated as independent. Polygons in one held-out block share its geology and its errors, so the map scores are
+also given with block intervals, which resample the 14 held-out blocks (10,000 resamples, every map on the same
+draw). %% KB §69.44
 
 %% ====================================================================================================
 \section{Results} \label{sec:results}
@@ -370,17 +372,22 @@ H4 with fill depth rather than image gradients. %% KB §28.11
 The fine pass at 200~m, 11~h on the workstation, yields 465,354 closed depressions $\ge1$~km with clean tile seams
 (density across seams 0.990 and 0.979 of mid-tile). Against Robbins (Figure~\ref{fig:robbins}), a candidate matches if
 its centre lies within half the catalogued diameter and its diameter within a factor of two; a chance baseline shifts
-every candidate east by three of its own diameters. Precision rises from 15.3\% at $\ge1$~km to 62.2\% at $\ge5$~km
-and 83.1\% at $\ge20$~km, against chance below 11\% at every size; recall levels off near one half, because breached
-and degraded craters are not closed. In the type areas the same rule gives a precision of 11\% (Ius) and 13\%
-(Athabasca) at $\ge1$~km. %% KB §53.4, §54.4, §42.3; logs\global60_candidates_check.json
+every candidate east by three of its own diameters. Each set is cut at the minimum diameter only where it is scored:
+recall counts catalogued craters $\ge D$ matched by any depression, precision depressions $\ge D$ matching any
+catalogued crater. Precision rises from 15.3\% at $\ge1$~km to 63.2\% at $\ge5$~km and 87.4\% at $\ge20$~km, against
+chance below 14\% at every size. Recall levels off near one half (52.4\% at $\ge5$~km), and the catalogue's own
+degradation states \citep{Robbins2012} show why: from the most degraded rims to the freshest, 38.4, 49.2, 71.7 and
+83.1\% of craters $\ge5$~km are found, and fresh rims $\ge10$~km 90--100\%; craters whose rim is only partly traced
+are found at 41.3\%, against 63.9\% for full rims. Breached and degraded craters are not closed. In the type areas
+the same rule gives a precision of 11\% (Ius) and 13\% (Athabasca) at $\ge1$~km. %% KB §53.4, §54.4, §42.3, §69.45, §69.47; logs\crater_recall_by_state.json
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/depressions_vs_robbins.png}
 \caption{The 465,354 closed depressions $\ge1$~km against the Robbins and Hynek crater database
 \citep{Robbins2012} by minimum diameter: (A) precision, (B) recall, each beside a chance baseline made by shifting
-every candidate three of its diameters east. \label{fig:robbins}}
+every candidate three of its diameters east; each set is cut at the minimum diameter only where it is scored.
+\label{fig:robbins}}
 \end{figure*}
 
 Mapped by density, the small candidates do not follow the craters: per 0.5$^{\circ}$ cell their log density correlates
@@ -526,7 +533,9 @@ U-Net seven-class & 69.0 & 0.606 & 56.9 & 56.6 & 14.7 & 16.3 \\
 \par\vspace{3pt}\noindent\parbox{\columnwidth}{\footnotesize Note: In percent but $\kappa$. Acc., overall accuracy;
 Bal., balanced accuracy; F1, mean per-class F1; Q and A, quantity and allocation disagreement ($\mathrm{Q}+\mathrm{A}=
 100-\mathrm{Acc.}$). Area-weighted by $\cos$ latitude, scored at 400~m. The first six rows are on the 183
-four-class held-out polygons, the last five on the 237 seven-class ones; the two sets are not comparable.
+four-class held-out polygons, the last five on the 237 seven-class ones; the two sets are not comparable. Block
+intervals on accuracy (95\%, the 14 held-out blocks resampled): SVM $11\times11$ 57.5--87.8, U-Net two passes
+97.3--99.6, SVM seven-class 23.8--71.5, U-Net seven-class 50.5--80.2.
 $^{a}$The four-class map of Figure~\ref{fig:landforms}. $^{b}$Figure~\ref{fig:landforms7}.}
 \end{table}
 %% KB §55.3, §57, §66.8, §69.18, §69.24, §69.25
@@ -536,7 +545,8 @@ A Gaussian maximum-likelihood ablation on 2.69 million held-out pixels (Figure~\
 thermal bands add $+1.3$ points (interval $+0.6$ to $+2.2$), that slope and relief alone (68.6\%) match all seven bands
 (67.0\%), and that without terrain the visible and thermal bands score below the one-class baseline (42.4\%).
 Retraining ArcGIS Pro's support vector machine over all of \pmsixty\ without each band group confirms it
-(Table~\ref{tab:t1}): the thermal gain is the one difference resolved at both cells. It is not uniform: thermal helps
+(Table~\ref{tab:t1}): the thermal gain is the one difference resolved at both cells, and at 200~m it stays resolved
+when whole held-out blocks are resampled ($+0.46$ to $+2.67$ points). It is not uniform: thermal helps
 Crater (producer's $+1.9$ points, nine more polygons won) and hills ($+5.5$ points) and hurts lava tube ($-8.5$
 points). Weighted by class rather than by area, the gain disappears: balanced accuracy is 63.1\% with the thermal
 bands and 63.4\% without at 200~m, 63.5\% and 63.4\% at 400~m, because Crater and hills hold most of the held-out
@@ -617,7 +627,11 @@ the landform map, with the U-Net map beside it as a province map. %% KB §66.6, 
 
 Retrained on the seven classes (17,444 chips, 6.2~h), the U-Net scores 69.0\%, \kap\,0.606 on the v2 held-out
 polygons, against 44.1\%, \kap\,0.301 for the four-class U-Net and 42.5\% for the seven-class support vector machine
-(Figure~\ref{fig:unet7}). Each new class has a user's accuracy above its share of the held-out area: volcanic
+(Figure~\ref{fig:unet7}). Its lead over the latter is firm by balanced accuracy, 56.9\% against 41.9\% (block interval
+$+2.3$ to $+19.5$ points), but not by accuracy ($-9.7$ to $+47.8$): most of the 26.5 points lie in the two Tharsis
+blocks, 47.5\% of the held-out area, where the support vector machine scores 16.0\% and 25.6\% and the U-Net 68.6\% and
+96.3\%. The four-class U-Net's lead over the support vector machine map holds by block ($+11.1$ to $+41.0$).
+%% KB §69.44 Each new class has a user's accuracy above its share of the held-out area: volcanic
 edifice 0.487, apron 0.798 and fluvial channel 0.702. By the same rule it would not replace the four-class U-Net: on
 classes 1--4 it scores 61.9\% against 98.9\%, and Crater, hills and Normal Ground lose 41.3, 52.6 and 28.8 points of
 producer's accuracy. Its fault is volcanic edifice, which covers 40.0\% of \pmsixty\ against 19.4\% of the held-out
@@ -744,14 +758,16 @@ resampled and the elevation model reproduced exactly at 200~m.
 \item Visible albedo, day infrared and night infrared span about three dimensions locally, night infrared nearly independent of the others, but the held THEMIS
 mosaics carry local contrast only; calibrated thermal inertia follows Viking albedo across the planet.
 \item Fill depth recovers 68\% of the large named craters and gives 465,354 closed depressions $\ge1$~km whose precision
-against Robbins rises from 15.3\% to 62.2\% at 5~km; breached craters stay invisible.
+against Robbins rises from 15.3\% to 63.2\% at 5~km; recall, 52.4\% at 5~km, falls with rim degradation, from 83.1\%
+for the freshest rims to 38.4\% for the most degraded, and breached craters stay invisible.
 \item Routed channels are dominated by the elevation model at \pmsixty\ (89.8\% under $2^{\circ}$), and stream order is a
 parameter, not a measurement.
 \item The four-class landform map scores 73.8\%, \kap\,0.58 on blocks it never saw; the thermal bands add a resolved 1.4
 to 2.0 points. A U-Net reaches 98.9\% as a terrain-province map.
 \item Revised to seven classes, the maps separate impact craters from volcanoes and name volcanic edifices, aprons
 and fluvial channels: the U-Net scores 69.0\%, \kap\,0.606 and the support vector machine 42.5\% on 237 held-out
-polygons, below the four-class maps on the original classes.
+polygons, below the four-class maps on the original classes. The U-Net's lead is firm by balanced accuracy (56.9\%
+against 41.9\%) and rests, by accuracy, on the two Tharsis blocks.
 \item Lava flows are not separable in these bands; the geologic map remains the lava-flow reference, and H1 and H2 await
 digitised margins and channels.
 \end{enumerate}

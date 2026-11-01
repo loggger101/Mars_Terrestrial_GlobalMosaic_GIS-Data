@@ -1,6 +1,6 @@
 {
  "script": "make_crater_recall_by_state.py",
- "when": "2026-11-01 13:06",
+ "when": "2026-11-01 14:35",
  "dmin_km": 5.0,
  "all": {
   "n": 43049,
@@ -520,43 +520,71 @@
    "recall_c5": 0.2041,
    "recall_uncut": 0.2041,
    "precision_c5": 0.1531,
-   "precision_uncut": 0.1531
+   "precision_uncut": 0.1531,
+   "robbins": 352796,
+   "depressions": 465354,
+   "baseline_recall_uncut": 0.0112,
+   "baseline_precision_uncut": 0.0084
   },
   "2": {
    "recall_c5": 0.3577,
    "recall_uncut": 0.4376,
    "precision_c5": 0.2925,
-   "precision_uncut": 0.3013
+   "precision_uncut": 0.3013,
+   "robbins": 118124,
+   "depressions": 142308,
+   "baseline_recall_uncut": 0.0214,
+   "baseline_precision_uncut": 0.0157
   },
   "5": {
    "recall_c5": 0.4576,
    "recall_uncut": 0.5236,
    "precision_c5": 0.6219,
-   "precision_uncut": 0.6317
+   "precision_uncut": 0.6317,
+   "robbins": 43049,
+   "depressions": 30901,
+   "baseline_recall_uncut": 0.0332,
+   "baseline_precision_uncut": 0.0414
   },
   "10": {
    "recall_c5": 0.4777,
    "recall_uncut": 0.5327,
    "precision_c5": 0.7921,
-   "precision_uncut": 0.8081
+   "precision_uncut": 0.8081,
+   "robbins": 21990,
+   "depressions": 12783,
+   "baseline_recall_uncut": 0.0475,
+   "baseline_precision_uncut": 0.0739
   },
   "20": {
    "recall_c5": 0.4807,
    "recall_uncut": 0.5264,
    "precision_c5": 0.831,
-   "precision_uncut": 0.8736
+   "precision_uncut": 0.8736,
+   "robbins": 9784,
+   "depressions": 5372,
+   "baseline_recall_uncut": 0.0694,
+   "baseline_precision_uncut": 0.1115
   },
   "50": {
    "recall_c5": 0.4583,
    "recall_uncut": 0.5245,
    "precision_c5": 0.7851,
-   "precision_uncut": 0.9342
+   "precision_uncut": 0.9342,
+   "robbins": 1857,
+   "depressions": 1019,
+   "baseline_recall_uncut": 0.1002,
+   "baseline_precision_uncut": 0.1325
   },
   "100": {
    "recall_c5": 0.3829,
    "recall_uncut": 0.4387,
    "precision_c5": 0.6901,
-   "precision_uncut": 0.8873
+   "precision_uncut": 0.8873,
+   "robbins": 269,
+   "depressions": 142,
+   "baseline_recall_uncut": 0.0706,
+   "baseline_precision_uncut": 0.1338
   }
  },
  "recall_candidates_uncut": {

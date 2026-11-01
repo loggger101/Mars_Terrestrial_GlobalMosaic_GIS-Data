@@ -24,6 +24,9 @@ Predictions, written before the first run (Dmin 5 km, where the states are near 
       5-10, 10-20, 20-50 km (partial rims are commoner among large craters, so the bins keep size apart).
 Each is reported as held or not held; none is adjusted after the run.
 
+Added 2026-11-01 for D32 (the paper's figure takes the one-side-cut curve): the chance baseline cut the same way,
+checked first against C5b's logged baseline at 5 km.
+
 Added after the first run (2026-11-01; it changes no verdict): why each missed crater >= 5 km is missed. Within half
 its diameter of its centre, is there no closed depression >= 1 km at all, or only ones smaller than half its
 diameter, or only larger than twice it, or one within the factor of 2 that C5's rule drops because it is itself below
@@ -159,16 +162,34 @@ def main():
     uncut = found(lon, lat, D, rlon, rlat, rd, 1.0)          # depressions >= 1 km; recall read on Robbins >= DMIN
     # the same for every Dmin of C5's curve, and precision the other way round (depressions >= Dmin against every
     # Robbins crater >= 1 km), so only the set being scored is cut
-    prec_uncut = np.zeros(len(D), bool)
-    for k, h in enumerate(t.query_ball_point(unit(rlon, rlat), 2 * np.sin(0.5 * (0.5 * rd) / R_KM))):
-        if h:
-            h = np.asarray(h)
-            prec_uncut[h[np.abs(np.log(D[h] / rd[k])) <= np.log(2)]] = True
+    def precise(tree):
+        """Which depressions (in tree's order) match some Robbins crater >= 1 km, by C5's rule."""
+        out = np.zeros(len(D), bool)
+        for k, h in enumerate(tree.query_ball_point(unit(rlon, rlat), 2 * np.sin(0.5 * (0.5 * rd) / R_KM))):
+            if h:
+                h = np.asarray(h)
+                out[h[np.abs(np.log(D[h] / rd[k])) <= np.log(2)]] = True
+        return out
+    prec_uncut = precise(t)
+    # and the chance baseline the same way (C5b's shift, 3 diameters east), for the paper's figure (D32)
+    slon = np.mod(lon + dlon, 360)
+    base_rec = found(slon, lat, D, rlon, rlat, rd, 1.0)
+    base_prec = precise(cKDTree(unit(slon, lat)))
+    shifted_log = json.load(open(os.path.join(HERE, "logs", "global60_candidates_check.json"),
+                                 encoding="utf-8"))["robbins_shifted_3D"]
+    ok = abs(base[big].mean() - shifted_log["5"]["recall"]) < 1e-9
+    print("route check, the chance baseline at D >= 5 km: %.6f, its log %.6f -> %s"
+          % (base[big].mean(), shifted_log["5"]["recall"], "ok" if ok else "MISMATCH"))
+    if not ok:
+        sys.exit(2)
     curve = {}
     for d, s in log.items():
         if s:
             curve[d] = dict(recall_c5=round(s["recall"], 4), recall_uncut=round(float(uncut[rd >= float(d)].mean()), 4),
-                            precision_c5=round(s["precision"], 4), precision_uncut=round(float(prec_uncut[D >= float(d)].mean()), 4))
+                            precision_c5=round(s["precision"], 4), precision_uncut=round(float(prec_uncut[D >= float(d)].mean()), 4),
+                            robbins=int((rd >= float(d)).sum()), depressions=int((D >= float(d)).sum()),
+                            baseline_recall_uncut=round(float(base_rec[rd >= float(d)].mean()), 4),
+                            baseline_precision_uncut=round(float(base_prec[D >= float(d)].mean()), 4))
     res["curve_one_side_cut"] = curve
     print("C5's curve with only the scored set cut:", curve)
     def rec(sel):

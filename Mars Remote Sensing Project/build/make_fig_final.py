@@ -2,8 +2,10 @@
 r"""Three charts the final paper and deck need that the interim never drew; all read from the logs, never retyped.
 
   final_img\depressions_vs_robbins.png   the ±60° closed depressions against Robbins by minimum diameter (KB §53.4,
-                                         §54.4; logs\global60_candidates_check.json, run 3): recall and precision
-                                         beside the 3-diameter-shift chance baseline
+                                         §69.45; logs\crater_recall_by_state.json, make_crater_recall_by_state.py):
+                                         recall and precision beside the 3-diameter-shift chance baseline, each set cut
+                                         at the minimum diameter only where it is scored (D32; the two-sided cut of
+                                         global60_candidates_check.json understated both)
   final_img\svm_vs_unet.png              the four-class SVM map and the two-pass U-Net map under the same scorer
                                          (KB §57, §66.8; logs\global60_classification_check_200m_mode11.json and
                                          ..._global60_landforms_unet_200m_seamfix.json): producer's and user's per class
@@ -38,15 +40,14 @@ def clean(ax):
 
 
 def depressions():
-    d = log("global60_candidates_check.json")
-    obs, base = d["robbins"], d["robbins_shifted_3D"]
-    keys = sorted(obs, key=float)
+    c = log("crater_recall_by_state.json")["curve_one_side_cut"]
+    keys = sorted(c, key=float)
     x = range(len(keys))
     fig, axes = plt.subplots(1, 2, figsize=(10, 3.9), dpi=200)
     for ax, what, title in ((axes[0], "precision", "A  Precision: candidates that are catalogued craters"),
                             (axes[1], "recall", "B  Recall: catalogued craters found")):
-        o = [100 * obs[k][what] for k in keys]
-        b = [100 * base[k][what] for k in keys]
+        o = [100 * c[k][what + "_uncut"] for k in keys]
+        b = [100 * c[k]["baseline_%s_uncut" % what] for k in keys]
         ax.plot(x, o, "-o", color=BLUE, lw=2, ms=6, zorder=3, label="closed depressions")
         ax.plot(x, b, "--o", color=PALE, lw=1.6, ms=5, zorder=2, label="chance (shifted 3 diameters east)")
         for i, v in enumerate(o):
@@ -56,12 +57,13 @@ def depressions():
         ax.set_ylim(0, 100); ax.set_ylabel("%", color=MUTED)
         ax.set_title(title, loc="left", color=INK, fontsize=11)
         clean(ax)
-    axes[0].legend(frameon=False, loc="upper left", fontsize=9)
-    n = obs["1"]["candidates"]
+    axes[0].legend(frameon=False, loc="lower right", bbox_to_anchor=(1, 0.3), fontsize=9)
+    n = c["1"]["depressions"]
     fig.text(0.01, 0.01, "%s closed depressions ≥ 1 km over ±60° against the Robbins & Hynek database; a match is a centre "
-             "within half the catalogued diameter and a diameter within a factor of 2." % format(n, ","),
+             "within half the catalogued diameter and a diameter within a factor of 2;\n"
+             "each set is cut at the minimum diameter only where it is scored." % format(n, ","),
              color=MUTED, fontsize=8.5)
-    fig.tight_layout(rect=(0, 0.05, 1, 1))
+    fig.tight_layout(rect=(0, 0.09, 1, 1))
     p = os.path.join(OUT, "depressions_vs_robbins.png")
     fig.savefig(p, facecolor="white"); plt.close(fig)
     print("wrote", p)
