@@ -232,4 +232,4 @@ NEXT_STEPS = [
 ]
 
 DATA = ("Every map, script and model: github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data, "
-        "release data-2026-10-21 (CC BY 4.0 data, MIT scripts)")
+        "release data-2026-10-29 (CC BY 4.0 data, MIT scripts)")

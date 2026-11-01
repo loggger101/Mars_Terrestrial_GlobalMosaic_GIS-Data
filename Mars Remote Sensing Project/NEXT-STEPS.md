@@ -29,8 +29,8 @@ Only the state, what waits on whom and the next step; the history behind each li
   map, which leads it only by balanced accuracy (§69.35, D30). Crater size-frequency curves: §69.35.
 - **Seven classes** (D17, D28): 971 reviewed v2 labels, 734 training and 237 held out (§69.8). On the v2 held-out
   polygons the seven-class SVM scores 42.5 %, κ 0.310 and the seven-class U-Net 69.0 %, κ 0.606; both fail D18's
-  rule, and **they lead all the same** (layouts 04b, 13b, 17b; §69.24–§69.27). The U-Net maps edifice on 39.5 % of
-  ±60°, 70 % of it off the volcanic units, most on SIM 3292's highland group, 46.8 % of which it calls edifice
+  rule, and **they lead all the same** (layouts 04b, 13b, 17b; §69.24–§69.27). The U-Net maps edifice on 40.0 % of
+  ±60° (§69.25; 39.5 % on T8's 1.6 km mask), 70 % of it off the volcanic units, most on SIM 3292's highland group, 46.8 % of which it calls edifice
   (T8, A14, §69.37). Against named features (A15, §69.39), fluvial channel concentrates on the named valleys' lines
   on both maps (U-Net 83 % of 83 valles), edifice on none of the 10 named small edifices on the U-Net.
 - **Thermal:** T1, +1.36 pt at 200 m in overall accuracy and none by balanced accuracy (§56, §69.18, D25); T3, the

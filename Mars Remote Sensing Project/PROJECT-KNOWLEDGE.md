@@ -705,8 +705,10 @@ Band-pixels fall from 56.38 bn to 42.64 bn (−24.4 %). **Clipping to ±60° rem
 
 ### 16.3 The science survives it **[V]**
 
-DEM minimum −8,263 m at Hellas Planitia (32.8°S, 62.1°E) and maximum +21,080 m at Olympus Mons (17.3°N, 227°E),
-both inside ±60° (from the cached decimated DEM): relief within ±60° equals global relief, 29,343 m. Lost: the
+DEM minimum **−8,528 m** at Hellas Planitia (32.80°S, 62.14°E) and maximum **+21,226 m** at Olympus Mons (17.35°N,
+226.56°E), both inside ±60°: relief within ±60° equals global relief, **29,754 m** (the exact statistics of the full
+DEM and of `global60_dem.tif`, skip factor 1, agree; located by a windowed full-resolution read, §69.43). The
+cached decimated DEM gave −8,263 and +21,080 m, 29,343 m, at the same two places; that figure is superseded. Lost: the
 polar layered deposits, both ice caps and the north polar erg, none of them a target landform family.
 
 ### 16.4 Consequences
@@ -5449,3 +5451,38 @@ the flag the deck is held back and both PDFs copied ("would copy 3 … held back
 - **History, read 2026-11-01 at 131 commits:** the interim deck has 26 versions (608.9 MB of blobs), the interim
   report 18 (394.4 MB), the paper's PDF and the final deck 2 each (35.9 and 38.3 MB); `.git` is 709 MB on disk, 679
   MiB packed (604 MiB at §69.19). Eleven deliverable commits came between §69.19 and the gate.
+
+### 69.43 The paper read whole from CI's PDF: three slips fixed, four wordings drafted — 2026-11-01, laptop **[V]**
+
+Only pages 4–6 of CI's 17-page PDF (run 41317559243) had been read since §69.38–§69.41. All 17 were read from the
+run's artifact (text extracted with PyMuPDF; the data citation rendered at 200 dpi) and every number checked against
+the record. Table 3's quantity and allocation add to 100 − accuracy in each row; the orders of §4.4 sum to 969,822;
+21 and 243 tiles follow from the grid. Three slips, fixed:
+- **Relief inside ±60°**: the text gave 29,343 m from the decimated DEM (§16.3), while Table 1 gives −8.5 to +21.2 km
+  from the full DEM, 29.75 km. The exact statistics of the full DEM and of `global60_dem.tif` (skip factor 1, not
+  approximate; 3,794,572,110 pixels counted at ±60°) agree at −8,528 and +21,226 m. A windowed full-resolution read
+  (`osgeo.gdal`, two windows of a few hundred MB) places them at 32.80°S, 62.14°E (Hellas, as decimated) and
+  17.35°N, 226.56°E (Olympus Mons). §16.3 now gives **29,754 m**; the `.tex` follows. No other document used the
+  figure.
+- **The data citation** named release `data-2026-10-21`, which lacks the seven-class maps the paper leads with;
+  `references.bib` and `final.py`'s `DATA` now name `data-2026-10-29` (§69.28). The pre-final release (D23) will move
+  it again.
+- **Figure 17's caption** gave block 57 as "30–15°S"; now 15–30°S (§69.41's block list).
+
+The plan's "Resume here" gave the seven-class U-Net's edifice as 39.5 % of ±60°, the share on T8's 1.6 km mask
+(§69.37); the map's own share is 40.0 % (§69.25), as the paper says. Both are now stated.
+
+**Drafted, not inserted (wording; the author's yes first):**
+1. Conclusion 2 (`.tex` and `final.py`): "three nearly independent dimensions locally" against Table 2's day–visible
+   r ≈ −0.49 → "span about three dimensions locally, night infrared nearly independent of the others".
+2. Abstract: "A support vector machine trained on 512 hand-drawn landform polygons and scored on whole 15° blocks it
+   never saw" → "trained on 329 of 512 hand-drawn landform polygons and scored on the other 183, in whole 15° blocks
+   it never saw".
+3. §4.6: "Crater is 58.6% of the held-out area, and its balanced accuracy is 66.7%": "its" reads as Crater's → "the
+   map's balanced accuracy".
+4. Abstract "Three of four hypotheses are not supported" against the Discussion's "None of the four hypotheses is
+   supported as stated" (H4 answered by fill depth, not image gradients) → "Three of four hypotheses are not
+   supported; the fourth is answered by another method."
+
+Not compiled on the laptop (no `aastex701.cls`); the push compiles it in CI (§69.42). The final deck's data line is
+stale until `build_final_deck.py` runs.
