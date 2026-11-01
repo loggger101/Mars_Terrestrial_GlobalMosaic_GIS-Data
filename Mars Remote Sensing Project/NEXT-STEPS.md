@@ -42,7 +42,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 - **The project and the deliverables:** 38 maps and 21 layouts, no broken source (§5). The interim at its 26 October
   cut (D20): 32 slides and a 21-page report, rebuilt 10-31 for layout 11's corrected citation (§69.34); speaker
   notes on every slide since 11-01, the slides unchanged (§69.41). The final
-  paper (16 pages) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
+  paper (17 pages, compiled by the repository's CI on every push that touches it, §69.42) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
   freeze (§12.1). Backup: release `data-2026-10-29` (§69.28).
 - **The machines:** the drive-root junctions point at `F:` and are broken on the laptop (§58); the drive and the
   clone agree, and `github_sync.py` refuses if the clone ever holds work the drive lacks (§69.20). Nothing is
@@ -109,7 +109,7 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D23 | a DOI for the data release through Zenodo, and a data statement (§12.4 W7); publishing | yes, with the pre-final release (§7) |
 | D24 | the final deck in the interim's dark `mars_theme` (§12.5) | yes: one look for both talks |
 | D25 | the abstract's and conclusions' thermal gain: qualify it with the balanced-accuracy result (§12.4 W9); also the README (the interim: done, the author's yes, KB §69.21) | yes: one clause, "in overall accuracy; none by balanced accuracy" |
-| D26 | the built deck, report and paper PDF committed only once per deadline (§13.1 P4); rewriting history to drop the 35 earlier copies needs a force push and a re-clone on both machines | yes to committing at milestones; no rewrite |
+| D26 | the built deck, report and paper PDF committed only once per deadline: since 11-01 `github_sync.py` holds them back unless given `--deliverables` (KB §69.42), the recommendation in force until the author says otherwise; rewriting history to drop the 44 earlier copies of the interim deck and report (1.0 GB of blobs) needs a force push and a re-clone on both machines | yes to committing at milestones; no rewrite |
 | D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | yes |
 | D29 | the seven-class maps' gain (D28) by balanced accuracy: none (SVM −0.15 pt, U-Net +0.20 pt on the v2 held-out polygons); the gain is in macro F1 and in quantity disagreement (KB §69.34). Say so in the paper's Table 3 and text, the deck and the README? | yes, as for D25: one clause, "in overall accuracy and macro F1; not in balanced accuracy"; D28's lead stands |
 | D30 | the geography-only baseline (KB §69.35): the nearest training polygon's class scores 83.2 % held out, above the published SVM map's 73.8 %; the SVM map leads only by balanced accuracy (0.667 against 0.613); the U-Net clears it on every measure. Report it beside every held-out score (the paper's Table 3, the final deck), and lead the SVM map's score with balanced accuracy? The interim is cut (D20) | yes: one Table 3 row and one sentence; the interim untouched |
@@ -463,12 +463,10 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 - **W3, prior work**: the introduction cites the data but no earlier automated mapping, and the discussion compares
   with none. The six candidates are checked by DOI and in `references.bib` (DeLatte2019, Silburt2019, Bue2006,
   Luo2009, Wilhelm2020, Olofsson2014; KB §69.40), and cited since 11-01 by a prior-work paragraph in the
-  introduction and a Limits sentence on polygon bias. Read the page count at the desktop rebuild. The Discussion's
-  comparison with prior work is still open.
-- **W4, figures** (page budget: 16 pages at the last build): ~~the pipeline in Methods~~ (in since 10-31,
-  `fig:pipeline`, KB §69.38; compiled only in a test document, so read its page at the desktop rebuild);
-  ~~the block split~~ (in since 11-01, `fig:split`, `final_img\block_split.png`, KB §69.41; uncompiled, read its page
-  at the desktop rebuild); a type-area zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the
+  introduction and a Limits sentence on polygon bias. The Discussion's comparison with prior work is still open.
+- **W4, figures** (**17 pages** since these, compiled in CI 11-01, KB §69.42; 16 at the last desktop build):
+  ~~the pipeline in Methods~~ (in since 10-31, `fig:pipeline`, KB §69.38; page 5, read); ~~the block split~~ (in since
+  11-01, `fig:split`, `final_img\block_split.png`, KB §69.41; page 6, read); a type-area zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the
   detector's limit in one panel; after v2, the seven-class map and its confusion; A6 if run, and A10's `final_img\crater_sfd.png` (KB §69.35).
 - **W5, limits to add**: one labeller; the rule-screened v2 rows; hills short; THEMIS strips differ in local time,
   season and dust, a physical cause beside the stretch (to check in Edwards et al. 2011); Viking MDIM 2.1 colour is
@@ -526,8 +524,6 @@ review (§6) or the v2 scoring (§11.5); most of it is laptop work that fills th
 
 | # | what | adds | where | pri |
 |---|---|---|---|---|
-| P4 | **The built documents committed at milestones only** (D26): the interim deck has been committed 22 times (498 MB of history) and the report 15 times (331 MB): nearly all of the 860 MB `.git` (KB §69.19). GitHub reports 720 MB and asks for under 1 GB. `github_sync.py` would skip the `.pptx`, `.docx` and paper `.pdf` unless given `--deliverables`, used once per deadline; between deadlines they are rebuilt from source on the drive and are not needed in the tree | stops ~25 MB per rebuild; the final's rebuilds alone would pass 1 GB at the interim's rate | laptop, minutes | A |
-| P6 | **The paper compiled in CI**: a job that builds the `.tex` with TeX Live (a TeX Live container image is the likely source of `aastex701.cls` **[?]**, unchecked) and fails on an undefined reference or citation; the PDF kept as the run's artifact. The laptop then sees a compile without the desktop | catches what the laptop cannot (this session's edits are uncompiled); one more check before the freeze | laptop to write, CI to run | B |
 | P7 | **A real restore**: `restore.py` has only ever been dry-run (KB §67.4). Restore one small release group into scratch on the desktop and compare every file with the drive by hash | the drive is the only full copy (§9); a backup is proven only by a restore | desktop, ~1 h | B |
 | P8 | **The environment on the project page**: the versions are in KB §2.4 only (Pro 3.7, its Python 3.13.13, Deep Learning Libraries 3.7.1901, `arcgis.learn` 2.4.3). A short `docs/environment.md`: both Pythons, the system Python's packages (`python-pptx`, `python-docx`, matplotlib, Pillow) as a `requirements.txt`, MiKTeX and the AASTeX class version, the GPU and driver; written by a script on the desktop so it is read, not typed | a reader can tell what reproduces their run; the paper's data statement (W7) can point at it | desktop, minutes | B |
 | P11 | **Which runs repeat exactly**: a table in the KB of each published number's run and whether a rerun reproduces it (a fixed seed, Pro's SVM, the U-Net's training); five build scripts name a seed | the paper's methods can say what is deterministic, and the freeze knows which reruns can move a number | laptop to read the scripts; the desktop for any rerun | C |
@@ -541,8 +537,7 @@ question without changing the cut. The README follows whatever the paper says.
 
 ### 13.2 Order of work
 
-1. **Laptop, now:** P4 (code only; its behaviour waits on D26). P1–P3 done 10-27 (KB §69.20), P2's first real use
-   10-28 (§69.23); P9 and P10 done 10-31 (§69.34).
-2. **Either machine:** P6.
-3. **Desktop:** P7, P8.
-4. **After 8 Dec:** P12; P13 if the project goes on.
+1. **Laptop:** nothing left. P1–P3 done 10-27 (KB §69.20), P2's first real use 10-28 (§69.23); P9 and P10 done
+   10-31 (§69.34); P4 and P6 done 11-01 (§69.42).
+2. **Desktop:** P7, P8.
+3. **After 8 Dec:** P12; P13 if the project goes on.

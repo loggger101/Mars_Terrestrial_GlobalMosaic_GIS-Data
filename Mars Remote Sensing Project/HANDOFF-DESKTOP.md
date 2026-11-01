@@ -120,13 +120,15 @@ plans. When they disagree, the KB wins and the plan is fixed.
    `verify_all.py`, and `verify_interim.py` if `interim.py` or the KB moved (with `final.py` and the paper's `.tex`
    as its argument for the final, KB §69.3).
 3. `github_sync.py` (no `--commit`; if it refuses, exit 3, the clone holds work the drive lacks: run the
-   `--to-drive <commit>` it names first, KB §69.20), then in the clone `python tools/check_repo.py`; update the README's counts
+   `--to-drive <commit>` it names first, KB §69.20; it holds a rebuilt deck, report or paper PDF back unless given
+   `--deliverables`, once per deadline, KB §69.42), then in the clone `python tools/check_repo.py`; update the README's counts
    it flags and its "Where it stands", next steps and results, **current state only**. When a layout or figure
    changed, first `py -3 tools/make_thumbs.py` in the clone (on the laptop `python`: its `py` launcher names a removed
   interpreter, KB §69.34): the pages show its 800 px previews, and
    `check_repo.py` fails on a preview older than its source (KB §67.1).
 4. Commit by hand with a descriptive message and the attribution trailer, push (standing approval after the
-   checks pass), and check CI (`gh run list --limit 1`).
+   checks pass), and check CI (`gh run list --limit 2`): `check` on every push, and `paper` on a push that touches the
+   paper or its figures, which compiles it in TeX Live and keeps the PDF as the run's artifact (KB §69.42).
 5. **The clone sits in OneDrive, shared by both machines:** fetch and compare with `origin/main` first (the clone
    can lag, KB §58); let OneDrive finish syncing before git work; never commit from both machines at once;
    `git status` can show phantom changes (confirm with `git diff`); never `git stash`; files named

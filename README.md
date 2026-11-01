@@ -1,6 +1,7 @@
 # Mars Global Mosaic
 
 [![check](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/actions/workflows/check.yml/badge.svg)](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/actions/workflows/check.yml)
+[![paper](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/actions/workflows/paper.yml/badge.svg)](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/actions/workflows/paper.yml)
 
 **Mapping Lava Flows, Fluvial Channels, and Impact Craters in Visible and Infrared.**
 Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Institute of Technology
@@ -292,6 +293,8 @@ tools/test_score_metrics.py  hand-worked confusion matrices through the scoring 
 tools/make_thumbs.py       rebuilds docs/thumbs/ after a layout or figure changes (needs Pillow)
 tools/check_remote.py      run by hand: release assets against their checksums, linked releases,
                            the source mosaics' addresses and sizes
+.github/workflows/paper.yml  compiles the paper in TeX Live on every push that touches it; fails on
+                           an undefined citation or reference; the PDF is the run's artifact
 CITATION.cff               how to cite the project ("Cite this repository" on GitHub)
 ```
 

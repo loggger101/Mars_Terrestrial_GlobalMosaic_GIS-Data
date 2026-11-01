@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-01 (§69.41).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-01 (§69.42).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -33,7 +33,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | classification: type area | §19, §23, §27 |
 | classification: ±60°, the published map | §31, §32.2, §55.3, §57 |
 | the class scheme and the labels' audit | §29.2, §43.3, §68, §69.2 |
-| the final builds: the AASTeX paper and the deck | §69; what would strengthen them, §69.17 (`NEXT-STEPS.md` §12) |
+| the final builds: the AASTeX paper and the deck | §69; what would strengthen them, §69.17 (`NEXT-STEPS.md` §12); compiled in CI, §69.42 |
 | craters and closed depressions | §26, §28.11, §42.3, §53.4, §53.6 |
 | channels | §25, §47.4, §53.4, §53.6, §54.4 |
 | lava flows and the geologic map | §41, §43.2, §43.3, §44, §47.2 |
@@ -41,7 +41,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | the GUI work of 24 Sep–1 Oct and its checks | §29, §30, §53.2 |
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
-| GitHub backup and releases | what would make the repository better, §69.19, and the sync's guard, §69.20 (`NEXT-STEPS.md` §13); §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca), §66.10 (`data-2026-10-21`, the first with the deep-learning models), §69.28 (`data-2026-10-29`, the first with the seven-class maps) |
+| GitHub backup and releases | what would make the repository better, §69.19, the sync's guard, §69.20, and its deliverables gate, §69.42 (`NEXT-STEPS.md` §13); §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca), §66.10 (`data-2026-10-21`, the first with the deep-learning models), §69.28 (`data-2026-10-29`, the first with the seven-class maps) |
 | the interim builds | §39.3, §45, §48, §51.5, §57.3, §66.10, §67; speaker notes §69.41 |
 
 ---
@@ -5405,4 +5405,47 @@ seven-class revision, cited from the split sentence and from that paragraph, whi
 lie in 129 blocks, not 25"; `build_final_paper.py` copies the figure. **Not compiled:** the laptop's TinyTeX has
 no `aastex701.cls`, and installing it needs the author's yes; read the figure's page and the page count at the
 desktop rebuild (the figure adds about a third of a page). Easily reverted: one figure block and two clauses, each
-marked `%% KB §69.41`.
+marked `%% KB §69.41`. *(Compiled since: §69.42.)*
+
+### 69.42 The paper compiled in CI (P6); the built deliverables held back from the sync (P4) — 2026-11-01, laptop **[V]**
+
+A review of the project on 2026-11-01 found every check passing (`check_repo.py`, `verify_all.py` 37/37,
+`verify_interim.py` on `interim.py` 538, `final.py` 204 and the `.tex` 694 numbers; a scratch scan of the `.tex`: every
+`\cite` key in `references.bib`, every `\ref` labelled, all 21 figures present) and two gaps in `NEXT-STEPS.md` §13.1,
+both rated for the laptop: the paper had last been compiled 2026-10-29 while its `.tex` was edited through 11-01
+(§69.38, §69.40, §69.41, each passage compiled only in a test document), and P4 was unwritten. The author's yes to
+both the same day.
+
+**P6, the paper in CI.** P6's open question is settled: TeX Live carries AASTeX as the package `aastex`, version
+7.0.1 (read with the laptop's TinyTeX `tlmgr info aastex`; not installed there), which holds `aastex701.cls`. A second
+workflow in the repository, `.github/workflows/paper.yml`, runs on a push or pull request that touches the paper, its
+figure sources (`build\final_img\`, `interim_img\`, `pres1_img\`) or `build_final_paper.py`, and by hand: it gathers the
+figures with `build_final_paper.py --no-compile` (system Python with Pillow, for the two crops), then in the
+`texlive/texlive:latest` container runs `pdflatex`, `bibtex`, `pdflatex` twice (`-halt-on-error`), and fails on a
+LaTeX error or on a log line `Citation … undefined`, `Reference … undefined` or `There were undefined`. The PDF and the
+log are the run's artifact; the committed PDF is not replaced (D26). `build_final_paper.py` joined its Windows-style
+figure paths with `os.path.join(HERE, src)`, which on Linux names a file with backslashes; it now splits them first,
+and gathers byte-identical figures on the drive (the sync copied none).
+- **The first run (`5b8ab94`, run 41317559243): passes.** `Output written on mars_global_mosaic.pdf (17 pages,
+  19,974,187 bytes)`: **17 pages**, one more than the 16 of the last desktop build (§69.38–§69.41 add the pipeline
+  figure, the block-split figure and the prior-work paragraph). No undefined citation or reference, no overfull box;
+  the log's one warning is `nameref`'s "The definition of \label has changed!", which is benign. Pages 4–6 read from
+  the artifact: Figure 3, the pipeline, sits at the head of page 5 beside the Methods it illustrates, and Figure 4, the
+  held-out split, at the head of page 6; both legible at print size, their captions whole.
+- **The planted defect** (proven to fail): on a throwaway branch, `ci-planted-defect` (`b03a970`), one citation
+  gained an unknown key, `PlantedNoSuchKey`. Run 41317664398 compiled it (17 pages) and **failed** at the
+  "undefined citations or references" step on `Citation 'PlantedNoSuchKey' on page 1 undefined`. The branch was
+  then deleted.
+- `references.bib` holds one entry the `.tex` never cites, `Comaniciu2002`; BibTeX leaves it out of the list. Left for
+  the freeze: cite it or drop it.
+
+**P4, the deliverables held back.** `github_sync.py` treats every `.pptx`, `.docx` and `.pdf` under `NEXT STUFF\`
+outside a `figures\` folder as a built deliverable: a new or changed one is not copied unless `--deliverables` is
+given, and is listed `HELD BACK`; the mirror keeps the copy last committed and never deletes it for being held back.
+The paper's `figures\pipeline.pdf` and `build\final_img\pipeline.pdf` are sources and still sync. **Proven both ways**
+by a scratch test that fakes a change to the interim deck and to `pipeline.pdf` (dry runs, nothing written): without
+the flag the deck is held back and both PDFs copied ("would copy 3 … held back 1"); with it, the deck is copied too
+("would copy 4 … held back 0"). D26's recommendation is now the default; the history is not rewritten.
+- **History, read 2026-11-01 at 131 commits:** the interim deck has 26 versions (608.9 MB of blobs), the interim
+  report 18 (394.4 MB), the paper's PDF and the final deck 2 each (35.9 and 38.3 MB); `.git` is 709 MB on disk, 679
+  MiB packed (604 MiB at §69.19). Eleven deliverable commits came between §69.19 and the gate.
