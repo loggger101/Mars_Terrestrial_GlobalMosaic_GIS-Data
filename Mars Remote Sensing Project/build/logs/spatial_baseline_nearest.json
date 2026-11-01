@@ -1,6 +1,6 @@
 {
  "script": "make_spatial_baseline.py",
- "when": "2026-10-31 12:09",
+ "when": "2026-11-01 11:31",
  "baseline": "nearest training polygon (boundary, on the sphere)",
  "labels": {
   "training_set": "Landform_TrainingSamples_terrain_60_train",

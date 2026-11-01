@@ -44,11 +44,11 @@ import grid60 as G
 from svmcheck import kappa, training_score
 from labelsets import FOUR, SEVEN
 from score_metrics import metrics
+from nearest_polygon import STEP, unit, boundary_points, Nearest
 
 gdal.UseExceptions()
 MAP = on_drive(r"Mars Project\Global60\global60_landforms_svm_200m_mode11.tif")      # the published map: grid, mask
 MARS = arcpy.SpatialReference(104905)
-STEP = 0.005                                                                      # degrees between boundary points
 SETS = [("four", FOUR, "Landform_TrainingSamples_terrain_60_train", "Landform_TrainingSamples_terrain_60_test",
          "spatial_baseline_nearest.json", dict(svm=0.738, unet=0.989)),
         ("v2", SEVEN, "Landform_TrainingSamples_v2_60_train", "Landform_TrainingSamples_v2_60_test",
@@ -62,39 +62,6 @@ def polys(fc):
         for g, v in c:
             out.append((int(v), [[(p.X, p.Y) for p in part if p is not None] for part in g]))
     return out
-
-
-def unit(lon, lat):
-    lo, la = np.radians(lon), np.radians(lat)
-    return np.c_[np.cos(la) * np.cos(lo), np.cos(la) * np.sin(lo), np.sin(la)]
-
-
-def boundary_points(P):
-    """Every training ring densified to <= STEP degrees, with its polygon's class index (code - 1)."""
-    xs, ys, ks = [], [], []
-    for v, rings in P:
-        for ring in rings:
-            xy = np.array(ring, float)
-            xy = np.r_[xy, xy[:1]]
-            for (x0, y0), (x1, y1) in zip(xy[:-1], xy[1:]):
-                dx = (x1 - x0 + 180) % 360 - 180                                  # the short way round
-                n = max(1, int(np.ceil(max(abs(dx), abs(y1 - y0)) / STEP)))
-                t = np.arange(n) / n
-                xs.append(x0 + t * dx); ys.append(y0 + t * (y1 - y0)); ks.append(np.full(n, v - 1))
-    return np.concatenate(xs), np.concatenate(ys), np.concatenate(ks).astype(np.uint8)
-
-
-class Nearest:
-    """Stands in for the map array: a[rows, cols] is the nearest training polygon's class at those pixels."""
-    def __init__(self, tree, cls, g, shape):
-        self.tree, self.cls, self.g, self.shape = tree, cls, g, shape
-
-    def __getitem__(self, rc):
-        r, c = (np.asarray(x) for x in rc)
-        lon = self.g["lon_left"] + (c + .5) * self.g["dpx"]
-        lat = self.g["lat_top"] - (r + .5) * self.g["dpy"]
-        _, i = self.tree.query(unit(lon.ravel(), lat.ravel()))
-        return self.cls[i].reshape(r.shape)
 
 
 class Mask:

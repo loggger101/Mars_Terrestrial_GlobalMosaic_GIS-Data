@@ -1,0 +1,19 @@
+four: agree on 61.4 % of ±60°; held-out polygons 73.6 %, training 86.5 %; largest disagreement: SVM Normal Ground / U-Net Crater, 19.7 % (128 s)
+   Crater             SVM  33.9 %  U-Net  55.1 %  both  27.0 %  IoU 0.4356
+   steep/windy hills  SVM   1.9 %  U-Net   1.0 %  both   0.4 %  IoU 0.1789
+   lava tube          SVM   9.4 %  U-Net   4.7 %  both   1.1 %  IoU 0.0869
+   Normal Ground      SVM  54.8 %  U-Net  39.2 %  both  32.8 %  IoU 0.5369
+   by latitude: {'60 to 50': 0.9093, '50 to 40': 0.755, '40 to 30': 0.6711, '30 to 20': 0.6302, '20 to 10': 0.6511, '10 to 0': 0.6236, '0 to -10': 0.5568, '-10 to -20': 0.5382, '-20 to -30': 0.5271, '-30 to -40': 0.502, '-40 to -50': 0.5312, '-50 to -60': 0.5849}
+v2: agree on 39.7 % of ±60°; held-out polygons 43.2 %, training 54.6 %; largest disagreement: SVM Normal Ground / U-Net volcanic edifice, 13.5 % (3717 s)
+   Crater             SVM  11.8 %  U-Net  14.0 %  both   5.9 %  IoU 0.2966
+   steep/windy hills  SVM   1.2 %  U-Net   0.5 %  both   0.3 %  IoU 0.2539
+   lava tube          SVM   2.1 %  U-Net   1.9 %  both   0.3 %  IoU 0.0791
+   Normal Ground      SVM  33.3 %  U-Net  20.2 %  both  15.9 %  IoU 0.4241
+   volcanic edifice   SVM  12.2 %  U-Net  40.0 %  both   8.1 %  IoU 0.1839
+   apron              SVM   6.5 %  U-Net  14.9 %  both   2.4 %  IoU 0.128
+   fluvial channel    SVM  33.0 %  U-Net   8.5 %  both   6.7 %  IoU 0.1933
+   by latitude: {'60 to 50': 0.6782, '50 to 40': 0.523, '40 to 30': 0.4251, '30 to 20': 0.3883, '20 to 10': 0.4003, '10 to 0': 0.4064, '0 to -10': 0.4076, '-10 to -20': 0.3847, '-20 to -30': 0.3364, '-30 to -40': 0.3095, '-40 to -50': 0.2805, '-50 to -60': 0.2536}
+P1 held {'agreement': 0.6141}
+P2 held {'agreement': 0.3971, 'largest': {'svm': 'Normal Ground', 'unet': 'volcanic edifice', 'share': 0.1354}}
+P3 held {'four': [0.7357, 0.6141], 'v2': [0.4322, 0.3971]}
+wrote Z:\Mars Remote Sensing Project\build\logs\map_agreement.json  (3717 s)

@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-01 (§69.42).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-01 (§69.46).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -31,10 +31,10 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | how scripted work is done, and its traps | §2, §9, §12, §13 |
 | what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1 (by block size, §69.29; mapped, §69.30), §56, §62 |
 | classification: type area | §19, §23, §27 |
-| classification: ±60°, the published map | §31, §32.2, §55.3, §57 |
+| classification: ±60°, the published map | §31, §32.2, §55.3, §57; block intervals §69.44; SVM against U-Net §69.46 |
 | the class scheme and the labels' audit | §29.2, §43.3, §68, §69.2 |
 | the final builds: the AASTeX paper and the deck | §69; what would strengthen them, §69.17 (`NEXT-STEPS.md` §12); compiled in CI, §69.42 |
-| craters and closed depressions | §26, §28.11, §42.3, §53.4, §53.6 |
+| craters and closed depressions | §26, §28.11, §42.3, §53.4, §53.6; size-frequency §69.35; recall by degradation state §69.45 |
 | channels | §25, §47.4, §53.4, §53.6, §54.4 |
 | lava flows and the geologic map | §41, §43.2, §43.3, §44, §47.2 |
 | tests T1–T8 and the hypotheses | §40.1, §42.2–§42.4, §43, §47, §51.1, §56 (status: `NEXT-STEPS.md` §4) |
@@ -5490,3 +5490,130 @@ already gave 329 and 183. The interim stays at its cut (D20).
 
 Not compiled on the laptop (no `aastex701.cls`); the push compiles it in CI (§69.42). The final deck's data line is
 stale until `build_final_deck.py` runs.
+
+### 69.44 Block-bootstrap intervals for every held-out score, and where the errors sit (A5) — 2026-11-01, laptop **[V]**
+
+Every interval in the record resampled whole held-out polygons; the polygons sit in 14 whole 15° blocks and share
+each block's geology and errors. `build\make_block_bootstrap.py` (ArcGIS Python, ~14 min) scores each held-out
+polygon alone with `svmcheck.training_score` on the 400 m grid, then resamples the 14 blocks and, beside them, the
+polygons (10,000 times each, seed 60, every map on the same draw). Predictions written into the docstring before the
+first run. Log `logs\block_bootstrap_fartbutt.log`, results `logs\block_bootstrap.json`.
+
+- **The route is checked first:** each map's polygons summed reproduce its own log (accuracy and κ within 0.001):
+  the published SVM map, the two-pass U-Net, T1's all-band and no-thermal 200 m maps, the nearest-polygon baseline
+  (§69.35), the seven-class SVM, U-Net and baseline; T1's polygon bootstrap redrawn as `score_t1_bootstrap.py` drew
+  it gives its logged interval exactly (−2.47 to −0.46 pt). **The check can fail:** `--plant` (the published map
+  rolled half a planet) scores 0.341 and the script exits 2. The baseline's three helpers moved verbatim into
+  `nearest_polygon.py` (extracted by `ast`); `make_spatial_baseline.py` imports them and reruns to its logged JSON,
+  identical apart from the timestamp.
+- **95 % intervals, block bootstrap (polygon bootstrap in brackets)**, area-weighted accuracy unless named:
+
+| | estimate | block | polygon |
+|---|---|---|---|
+| published SVM map, four classes | 73.8 % | 57.5–87.8 | (60.6–86.4) |
+| two-pass U-Net, four classes | 98.9 % | 97.3–99.6 | (98.0–99.4) |
+| nearest training polygon, four classes | 83.2 % | 66.0–98.1 | (70.3–96.5) |
+| SVM − baseline, accuracy / balanced | −9.4 / +5.5 pt | −35.8 to +19.1 / −16.1 to +16.9 | (−33.9 to +15.2 / −10.8 to +12.0) |
+| U-Net − SVM, four classes | +25.1 pt | +11.1 to +41.0 | (+12.7 to +38.3) |
+| U-Net − baseline, four classes | +15.7 pt | +0.9 to +32.6 | (+2.5 to +28.7) |
+| T1 at 200 m, all bands − no thermal, accuracy / balanced | +1.36 / −0.34 pt | +0.46 to +2.67 / −5.4 to +2.9 | (+0.43 to +2.39 / −4.1 to +1.6) |
+| seven-class SVM | 42.5 % | 23.8–71.5 | (27.2–60.0) |
+| seven-class U-Net | 69.0 % | 50.5–80.2 | (60.1–75.3) |
+| seven-class U-Net − SVM, accuracy / balanced | +26.5 / +15.1 pt | −9.7 to +47.8 / +2.3 to +19.5 | (+8.8 to +43.5 / +8.3 to +20.3) |
+| seven-class U-Net − baseline | +23.4 pt | −5.7 to +40.0 | (+1.6 to +42.9) |
+
+- **P1 not held:** the published map's block interval is 1.17 times the polygon interval's width (30.3 against 25.8
+  points), not ≥ 1.5: the polygon intervals were already wide, because a few large polygons carry most of the area.
+  **P2 held:** neither the SVM map's 9.4-point deficit to the baseline nor its 5.5-point lead in balanced accuracy is
+  resolved. **P3 held:** the four-class U-Net's lead over the SVM map is resolved by block. **P4 not held:** the
+  seven-class U-Net's 26.5-point lead in accuracy is **not** resolved by block (it is by polygon); its 15.1-point
+  lead in balanced accuracy is. **P5 not held:** T1's +1.36 points stays above 0 under the block bootstrap; by
+  balanced accuracy there is none (as §69.18). **P6 held:** leaving out block −11_1 moves the published map's
+  accuracy by 8.7 points (to 65.1 %).
+- **Where the four-class score sits.** Three blocks hold 61.6 % of the held-out area: −11_1 (25.4 %, six polygons,
+  nearly all Normal Ground; one polygon is 73.7 % of that class's held-out area), 5_−2 (18.2 %, 57 Crater
+  polygons) and −9_−1 (18.0 %, one polygon, Arsia Mons, 30.7 % of the held-out Crater area). The SVM map scores
+  99.4 % on −11_1 and 28–93 % on the seven blocks that hold Crater (55.4 % on Arsia Mons); the U-Net 97.9–100 % on
+  12 of 14 blocks, 79.2 % on −6_1 and 44.1 % on 4_2 (lava tube and Normal Ground, 0.7 and 0.6 % of the area), and no
+  block left out moves its score by more than 0.35 points. With
+  its largest polygon left out, the SVM map's producer's accuracy moves Crater 60.7 → 63.0 %, hills 62.7 → 72.3 %,
+  lava tube 44.6 → 55.0 % (that polygon is 40.3 % of the class's area), Normal Ground 99.2 → 97.0 %.
+- **Where the seven-class lead sits.** The two Tharsis blocks, −9_−1 (29.7 % of the v2 held-out area, edifice and
+  apron) and −9_0 (17.8 %), carry it: the seven-class SVM scores 16.0 % and 25.6 % there, the U-Net 68.6 % and
+  96.3 %. The U-Net leads in 6 of the 14 blocks; the SVM leads on the Normal Ground blocks −11_1 and −11_2 (96.1 and
+  99.9 % against 77.7 and 54.3 %) and on six smaller ones.
+- **For the paper:** the polygon intervals in Table 2 stand beside block intervals, which are the honest ones for a
+  block split (one sentence and a column, or a footnote). The four-class U-Net's lead and T1's accuracy gain survive
+  them; the seven-class U-Net's accuracy lead (D28's ground) and the SVM map's position against the baseline do not.
+  With 14 blocks a percentile bootstrap under-covers somewhat; the intervals are the least width the data allow.
+  `NEXT-STEPS.md` §2, D31.
+
+### 69.45 Crater recall by degradation state (A11): the breached-crater explanation measured, and the rule's cut — 2026-11-01, laptop **[V]**
+
+The paper says recall against Robbins "levels off near one half because breached and degraded craters are not
+closed". The 2020 release's `FullMorphData` table carries `DEG_RIM` and `DEG_FLR` (1–4), `DEG_EJC` (1–3) and
+`ARC_IMG`, the share of the rim traced (1 a full circle) **[V]**, read for the first time (§12.2 A11's [?] closed).
+Described before any recall was computed: the states cover 85.8 % of craters at 3–5 km within ±60°, 95.7 % at
+5–10 km, 99.0 % at ≥ 10 km (203 of 280,944 at 1–3 km); higher is fresher (layered-ejecta craters have `DEG_EJC`
+2–3 in 98.8 % of cases, others in 40.4 %). `build\make_crater_recall_by_state.py` (ArcGIS Python) applies C5's rule
+exactly (§53.4); **route check:** its recall at all seven Dmin equals `global60_candidates_check.json`'s to 10⁻⁹.
+Log `logs\crater_recall_by_state_fartbutt.log`, results `logs\crater_recall_by_state.json`. Predictions written
+first; a diagnostic of the misses and the one-side-cut curve were added after the first run (stated in the
+docstring) and change no verdict.
+
+- **At D ≥ 5 km** (43,049 Robbins craters, recall 45.8 %, local chance baseline 2.9 %; states missing on 1,129):
+  by rim state 1 → 4, recall 34.9 / 44.0 / 62.4 / 66.0 % (n 17,339 / 10,659 / 9,614 / 4,308; baselines 1.1–3.6 %);
+  by floor state 35.6 / 56.0 / 64.0 / 67.3 %; by ejecta state 34.3 / 58.7 / 68.7 %. Full rims 54.0 % (21,043),
+  partial rims 37.9 % (22,006); full minus partial 18.3, 25.5, 24.6 and 26.7 points at 5–10, 10–20, 20–50 and
+  ≥ 50 km. **P1 held** (recall rises with every rim state). **P2 not held** (the freshest rims 66.0 %, below 70 %;
+  the most degraded 34.9 %, within ≤ 35 %). **P3 held** (partial rims ≥ 15 points lower in every bin).
+- **By size, the freshest rims:** 60.6 % at 5–10 km, 90.2 % at 10–20, 94.8 % at 20–50, 10 of 10 at ≥ 50 km; the most
+  degraded 23.8, 42.1, 41.3, 34.9 %. **Above 10 km the explanation holds:** a fresh crater is nearly always a closed
+  depression, a degraded one usually not. At 5–10 km it does not hold alone.
+- **Why the misses are missed** (23,349 at ≥ 5 km): 64.5 % have no closed depression ≥ 1 km within half their
+  diameter (breached, filled or too shallow at 200 m); 23.0 % hold only smaller ones (72.0 % of the misses ≥ 50 km,
+  41.5 % at 20–50 km: floor pits in large degraded craters, which a rim-based diameter or a merge of nested basins
+  could recover); 12.2 % hold one within the factor of 2 that the rule drops because it is itself under 5 km
+  (21.7 % of the 5–10 km misses, **50.1 % of the freshest rims' misses**). Rim states 1 and 2 are 77.3 % of the
+  misses that carry a state.
+- **The rule's cut.** C5 cuts both sets at Dmin, so a 4.5 km depression in a 6 km crater is a miss at ≥ 5 km and a
+  6 km depression in a 4.5 km crater a false alarm. Cutting only the set being scored (recall: Robbins ≥ Dmin against
+  every depression; precision: depressions ≥ Dmin against every Robbins crater), the curve is, C5 → one side cut:
+  recall ≥ 2 km 35.8 → 43.8 %, ≥ 5 km 45.8 → 52.4 %, ≥ 10 km 47.8 → 53.3 %, ≥ 20 km 48.1 → 52.6 %, ≥ 50 km 45.8 →
+  52.5 %, ≥ 100 km 38.3 → 43.9 %; precision ≥ 5 km 62.2 → 63.2 %, ≥ 20 km 83.1 → 87.4 %, ≥ 50 km 78.5 → 93.4 %,
+  ≥ 100 km 69.0 → 88.7 %. At ≥ 1 km the two are identical (20.4 %, 15.3 %), as they must be. With one side cut, the
+  freshest rims are found at 83.1 % (5–10 km 81.3 %), the most degraded at 38.4 %.
+- **For the paper** (`NEXT-STEPS.md` §2, D32): the recall sentence becomes measured ("fresh rims ≥ 10 km are found
+  at 90–100 %, the most degraded at 35–42 %; partial rims 18–27 points less often"), and Figure `fig:robbins` and its
+  sentence either take the one-side-cut curve or say that both sets are cut at Dmin. The interim (cut, D20) keeps C5.
+
+### 69.46 Where the SVM and U-Net maps agree over ±60° (A6); the plan's weakest results ranked — 2026-11-01, laptop **[V]**
+
+`build\make_map_agreement.py` (ArcGIS Python, 62 min, most of it the scorer over the seven-class training strips)
+compares each SVM map with its U-Net on the cached 400 m class arrays, cos-latitude weighted, on pixels valid in
+both; the agreement on the polygons is `svmcheck.training_score` run on an agree/disagree array. Predictions written
+first. Log `logs\map_agreement_fartbutt.log`, results `logs\map_agreement.json`; figure `make_fig_map_agreement.py`
+(system Python) → `final_img\map_agreement.png` (read: the panels place Olympus Mons, Valles Marineris, Hellas and
+Argyre where they lie; the white stripes near ±60° are the night mosaic's gaps). **Route:** the seven-class maps'
+class shares on this mask equal their own records (U-Net edifice 40.0 %, SVM 12.2 %, §69.39).
+
+| | four classes: published SVM map / two-pass U-Net | seven classes: SVM / U-Net |
+|---|---|---|
+| agree, share of ±60° | **61.4 %** | **39.7 %** |
+| agree on the held-out / training polygons | 73.6 % / 86.5 % | 43.2 % / 54.6 % |
+| largest disagreement | SVM Normal Ground, U-Net Crater: 19.7 % of ±60° | SVM Normal Ground, U-Net edifice: 13.5 % |
+| intersection over union by class | Normal Ground 0.54, Crater 0.44, hills 0.18, lava tube 0.09 | Normal Ground 0.42, Crater 0.30, hills 0.25, fluvial 0.19, edifice 0.18, apron 0.13, lava tube 0.08 |
+| share of ±60°, SVM / U-Net | Crater 33.9 / 55.1, Normal Ground 54.8 / 39.2, lava tube 9.4 / 4.7, hills 1.9 / 1.0 % | fluvial 33.0 / 8.5, Normal Ground 33.3 / 20.2, edifice 12.2 / 40.0, apron 6.5 / 14.9 % |
+| by 10° band | 90.9 % at 50–60°N falling to 50.2 % at 30–40°S | 67.8 % at 50–60°N falling to 25.4 % at 50–60°S |
+
+- **P1 held** (four classes < 75 %), **P2 held** (seven < 50 %; the largest cell the U-Net's edifice), **P3 held**
+  (both agree more on the held-out polygons than on ±60°, and more again on the training polygons).
+- **What it means.** The two methods share the northern plains (Normal Ground) and little else: four-class, the
+  U-Net calls Crater over a fifth of ±60° where the SVM calls Normal Ground, and agreement falls from 90.9 % at
+  50–60°N to 50–59 % south of 10°S. Seven-class, they agree on two fifths, and on 25–34 % south of 20°S.
+  The polygons sit where the two agree more than they do elsewhere (73.6 against 61.4 %), the premise of R2:
+  scores on hand-drawn polygons flatter both maps, by an amount only a probability sample measures.
+- `NEXT-STEPS.md` §14 now ranks where the results are weakest and what would most improve each, from §69.35 and
+  §69.44–§69.46: the held-out score's dependence on a few blocks (R2), the SVM maps against geography (A3 (c), D30),
+  the seven-class lead's two blocks (D31), the U-Net's edifice (a retrain with validation blocks, §66.5), channels
+  unscored (A1), the review's two tests (`Origin` first), crater recall (D32; a nested-basin detector after 8 Dec).
