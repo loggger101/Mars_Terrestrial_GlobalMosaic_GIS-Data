@@ -11,7 +11,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 430 GB with all derived rasters, measured 2026-10-22). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 179, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 181, by purpose) · [backup and restore](docs/backup.md)
 
 [![Mars ±60° landform classification, seven classes](docs/thumbs/04b_global60_landforms_v2.jpg)](Mars%20Project/Global60/layouts/04b_global60_landforms_v2.png)
 *The landform map in seven classes over ±60°, scored on reviewed polygons the classifier never saw (layout 04b; the four-class map is layout 04).*
@@ -48,7 +48,7 @@ The full list, with who does what, is the "Resume here" section of [`NEXT-STEPS.
 2. **The seven-class labels**: `propose_label_changes.py` has proposed a class for each of the 512 labels and new polygons for the three new classes (KB §69.2); reviewed and applied on 2026-10-27 (KB §69.8: the author's own rows, the apron and fluvial rows by a written rule at the author's request); the SVM is run and scored on them ([`run_v2.ps1`](Mars%20Remote%20Sensing%20Project/build/run_v2.ps1)), and so is the U-Net (69.0 %, κ 0.606); both fail D18's rule, judged on classes 1–4 (D19, KB §69.4, §69.24–69.25), but the author leads with them as the more detailed maps (D28, KB §69.26; layouts 04b, 13b, 17b). The final shows the four-class and seven-class maps side by side; the interim describes the scheme as proposed ([`NEXT-STEPS.md` §11](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md#11-the-class-revision-d17-for-the-final)).
 3. **Deep learning**: trained and scored ([below](#deep-learning-x5)). Any further tuning first needs validation blocks of its own, apart from the held-out test blocks (KB §66.5).
 4. **The retests that wait for the review**, for the final: volcanic against fluvial channels by origin (H2, stage 2), and flow margins in IR against Viking on lava margins digitised at Athabasca (H1).
-5. **The interim**: its content is set at the 26 October cut and both documents are rebuilt to it, the percent-complete column included; the presentation is on 10 November. **The final report and presentation** follow, from the layouts and the results below (data freeze 22 November).
+5. **The interim**: its content is set at the 26 October cut and both documents are rebuilt to it, the percent-complete column included, and the deck carries a speaker note on every slide; the presentation is on 10 November. **The final report and presentation** follow, from the layouts and the results below (data freeze 22 November).
 
 ## Results so far
 
@@ -257,7 +257,7 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   179 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   181 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
   NEXT STUFF/              interim report and presentation; Final/: the AASTeX paper and the final deck (drafts)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)

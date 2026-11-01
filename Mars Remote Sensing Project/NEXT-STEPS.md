@@ -40,7 +40,8 @@ Only the state, what waits on whom and the next step; the history behind each li
   channels, 381 crater rims and 0 lava margins, none drawn by hand; `Origin` is set on no channel, so H2's stage 2
   waits.
 - **The project and the deliverables:** 38 maps and 21 layouts, no broken source (§5). The interim at its 26 October
-  cut (D20): 32 slides and a 21-page report, rebuilt 10-31 for layout 11's corrected citation (§69.34). The final
+  cut (D20): 32 slides and a 21-page report, rebuilt 10-31 for layout 11's corrected citation (§69.34); speaker
+  notes on every slide since 11-01, the slides unchanged (§69.41). The final
   paper (16 pages) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
   freeze (§12.1). Backup: release `data-2026-10-29` (§69.28).
 - **The machines:** the drive-root junctions point at `F:` and are broken on the laptop (§58); the drive and the
@@ -466,8 +467,8 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
   comparison with prior work is still open.
 - **W4, figures** (page budget: 16 pages at the last build): ~~the pipeline in Methods~~ (in since 10-31,
   `fig:pipeline`, KB §69.38; compiled only in a test document, so read its page at the desktop rebuild);
-  **the block split**, 39 blocks with the 14 held out and the polygons by class, so a reader can judge the
-  spatial test; a type-area zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the
+  ~~the block split~~ (in since 11-01, `fig:split`, `final_img\block_split.png`, KB §69.41; uncompiled, read its page
+  at the desktop rebuild); a type-area zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the
   detector's limit in one panel; after v2, the seven-class map and its confusion; A6 if run, and A10's `final_img\crater_sfd.png` (KB §69.35).
 - **W5, limits to add**: one labeller; the rule-screened v2 rows; hills short; THEMIS strips differ in local time,
   season and dust, a physical cause beside the stretch (to check in Edwards et al. 2011); Viking MDIM 2.1 colour is
@@ -491,15 +492,19 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 
 ### 12.5 The two talks
 
-- **The interim, 10 Nov:** speaker notes on every slide; one timed run-through (the slot's length from the author);
-  backup slides for the likely questions: why no calibrated thermal inertia, why the U-Net's 98.9 % is not the
-  headline, what a held-out block is, what has changed since the cut (the v2 labels).
+- **The interim, 10 Nov:** ~~speaker notes on every slide~~ (done 11-01, `interim.NOTES`, KB §69.41: 2,348 words,
+  about 17 min read aloud; they answer the four likely questions below in the notes of the slides that raise them);
+  one timed run-through (the slot's length from the author; trim the notes to it); backup slides for the likely
+  questions only if the author wants them on screen: why no calibrated thermal inertia, why the U-Net's 98.9 % is
+  not the headline, what a held-out block is, what has changed since the cut (the v2 labels). Before the talk, bring
+  the "Next Steps" note's review tally to the day's.
 - **The final deck** (D24): rebuild it in the interim's dark `mars_theme` so the two talks look alike; `final.py`
   keeps the words.
 
 ### 12.6 Order of work
 
-1. **Laptop, now:** nothing left from this list (W3 done 11-01, KB §69.40; A4, A12, W1 and the paper's half of W8 done 10-27, KB §69.18; the
+1. **Laptop, now:** nothing left from this list (W4's block split and §12.5's speaker notes done 11-01, KB §69.41; W3
+   done 11-01, KB §69.40; A4, A12, W1 and the paper's half of W8 done 10-27, KB §69.18; the
    deck's half of W8 with the D28 rewrite 10-29, §69.27; A14 and W10 done 10-31, §69.37–§69.38; A15 done 11-01,
    §69.39).
 2. **Desktop:** the v2 scoring and D18 done (§11.5; A4b done 10-31, KB §69.34); next A1, A2, A3 (b) and (c) (its

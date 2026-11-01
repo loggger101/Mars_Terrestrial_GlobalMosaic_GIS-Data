@@ -345,3 +345,183 @@ SCHEDULE = [   # (when, what)
     ("23 Nov – 4 Dec", "Final report and presentation"),
     ("8 Dec", "Final due"),
 ]
+
+# ------------------------------------------------------------------ speaker notes
+# One note per slide of the deck, keyed by the slide's title ("title", "results", "issues: limits" and
+# "issues: work" for the slides without one of their own); build_interim_live.py fails if a slide has none or a
+# note is left unused (NEXT-STEPS §12.5, 2026-11-01). The notes stay at the 26 October cut, like the slides; only
+# the last answers the likely question of what has changed since. Numbers checked by verify_interim.py as above.
+NOTES = {
+    "title":
+        "The Mars Global Mosaic: one co-registered visible and thermal-infrared mosaic over ±60°, and what it can "
+        "and cannot map. Results are to the 26 October data cut, status lines to 27 October. The background is Ius "
+        "Chasma in Viking colour on the project's 100 m grid.",   # §16 §69.5 §69.21
+    "Project Goals":
+        "The question in one line: can a co-registered visible and thermal-infrared mosaic map lava flows, fluvial "
+        "channels and impact craters across ±60°? Four goals follow: one grid for four datasets; the three families, "
+        "first in a type area, then across ±60°; a test of whether thermal IR separates what visible light cannot; "
+        "and a score for every product against something it never saw. The last goal shapes the talk: every number "
+        "shown is a held-out or reference score, not agreement with the training data.",
+    "Relevant Spectral Bands":
+        "Five layers. Viking MDIM 2.1 gives visible albedo at 232 m; THEMIS day and night IR at 100 m give day "
+        "and night temperature as display brightness; the HRSC/MOLA DEM at 200 m gives slope, relief and flow routing. "
+        "The diurnal-contrast index is day minus night, each first stretched to its own range: it separates "
+        "materials inside one area and is not thermal inertia. If asked why not thermal inertia: both THEMIS "
+        "mosaics are 8-bit display products, stretched independently, with no scaling to temperature, so calibrated "
+        "inertia cannot be derived from them; it comes only from TES, at about 3 km.",   # §20 §24.1 §24.2 §41
+    "Why Fuse Them: Three Independent Dimensions":
+        "The case for fusion, measured at Ius Chasma with every pixel valid in all five bands. The three Viking "
+        "bands repeat each other (r 0.93 to 0.99): visible colour is one dimension. Day IR runs against visible at "
+        "about −0.49, because bright ground stays cooler by day. Night IR correlates with nothing above 0.12, a third "
+        "dimension. Independence is needed for fusion to help but does not prove it helps: the classification "
+        "slides measure how much it adds.",   # §18.3
+    "Project Tasks and Percent Complete":
+        "Percent complete toward the final, not the interim. Light blue: done by the 13 September deck; blue: added "
+        "since. The data, the grids, the composite and the coordinate work are complete. The open rows are landform "
+        "digitising at 20%, the crater inventory at 60% and classification at 80%; what remains in them is mostly "
+        "the review of machine candidates, which runs to the 22 November data freeze.",   # §69.5
+    "Processing Completed Since the Last Report":
+        "Each step since the last report, with its measured outcome. Three to point at: the ±60° crater and channel "
+        "pass in mid-October, 465,354 closed depressions and 969,822 channel segments; the 200 m published map, "
+        "73.8%, κ 0.58 held out; and the deep-learning runs from 19 October. The last row, the audit of the 512 "
+        "labels, found five Crater labels drawn on volcanoes; that led to the seven-class scheme.",   # §54.4 §57 §66 §68
+    "results":
+        "Four headline numbers, each explained on its own slide: the ±60° extent is 86.6% of the planet; the "
+        "published landform map scores 73.8% on held-out labels; the thermal bands add 1.36 points of overall "
+        "accuracy and none by balanced accuracy; and 465,354 closed depressions of 1 km and more. Every map that "
+        "follows is a layout in the ArcGIS Pro project, exported for this deck. The background is the same canyon "
+        "in THEMIS night IR.",   # §16 §54.4 §56 §57 §69.18
+    "The analysis extent and the two type areas":
+        "The extent is set by the THEMIS night mosaic, which stops at 60° north and south: 86.6% of the surface, "
+        "so the work is ±60°, never global. Two type areas: Ius Chasma, a canyon with tributary valleys, for "
+        "channels and craters; Athabasca Valles, a young flood-lava channel, for lava flows. Orange marks the "
+        "volcanic units of the USGS geologic map, SIM 3292, the lava-flow reference throughout.",   # §16 §42 §44
+    "The mosaic at ±60°":
+        "Four panels on one 200 m grid: Viking visible, THEMIS day IR, THEMIS night IR and topography. The hurdle "
+        "was the Composite Bands tool, which failed four times on the global rasters; projecting each input first "
+        "and bounding the extent to ±60° fixed it. The source files also came in different coordinate frames, a "
+        "misregistration that stays silent unless each file is checked.",   # §15–20 §28.1 §38
+    "Ius Chasma type area: visible and night IR":
+        "The type area at full resolution, 271 to 286°E and 6 to 13°S: canyon walls, plateau and the Louros Valles "
+        "tributaries. Left, Viking colour; right, THEMIS night IR on the same 100 m grid. Night IR is brightest "
+        "where the ground holds heat, and it barely correlates with any other band (|r| ≤ 0.12), so it carries "
+        "information the others lack. The next two slides ask whether that information is material.",   # §14.3 §18
+    "Can the thermal pair map material across ±60°?":
+        "A province test: seven provinces with a textbook contrast in thermal inertia, dusty ones such as Arabia "
+        "Terra and Amazonis against rocky ones such as Syrtis Major and Acidalia. Viking red separates dusty from "
+        "rocky by 47.67 DN; day and night IR by −0.19 and +0.02 DN, effectively nothing. The cause is processing, "
+        "not physics: both THEMIS mosaics were stretched region by region, so every province repeats the whole "
+        "mosaic's mean and spread. Across the planet the material signal is in visible albedo.",   # §28.10
+    "Checked against calibrated thermal inertia (TES)":
+        "The check against an independent measure, calibrated TES thermal inertia at about 3 km. Viking albedo "
+        "follows it across the planet, r −0.36. Night IR and the diurnal-contrast index follow it weakly and only "
+        "inside regions, |r| near 0.1; day IR not at all. This is the project's main measured limit, and it is why "
+        "the thermal layer is called a relative diurnal-contrast index and never thermal inertia.",   # §42.4 §43.1
+    "Craters at ±60°: closed depressions ≥ 20 km":
+        "The first crater product: depressions found by how deep they fill, run over ±60° in 48 seconds, 5,144 "
+        "basins of 20 km and more. Of 117 IAU-named craters of 100 km and more, 68% are recovered with a diameter "
+        "within ±50%, and the median diameter error is +2.2%. A breached crater, its rim cut by a channel, does not "
+        "close, so it is missed by design: the method's main limit.",   # §28.11
+    "Closed depressions ≥ 1 km across ±60°":
+        "The same method from 1 km up, an 11-hour run: 465,354 closed depressions. Against the Robbins catalogue, "
+        "15.3% are catalogued craters at 1 km and more, 62.2% at 5 km and 83.1% at 20 km. Below about 5 km their "
+        "density follows the DEM's sharpness rather than the craters, so the small ones are mostly DEM texture. "
+        "They are prompts for review; for crater counts the Robbins catalogue, 385,049 craters, is the reference.",   # §41 §53.4 §54.4 §55.4
+    "Channels across ±60°":
+        "Flow routing on the DEM over ±60°: 969,822 channel segments, orders 3 to 5 drawn. Filling closed basins "
+        "before routing makes false channels, so 60.5% of stream cells were discarded as fill artefact (56% at Ius "
+        "alone). 89.8% of the segments lie on ground under 2°: the plateau channels are DEM noise. No channel "
+        "reference exists at ±60°, so the network is a candidate layer, not scored.",   # §53.6 §54.4 §55.4
+    "Ius Chasma: candidates to digitise":
+        "Filling raised the canyon floor by up to 2,077 m, which is why 56% of the first channel network was "
+        "artefact. 188 channel candidates are steep and rock-floored; they were reviewed first and 94 accepted. "
+        "Only 11% of the 1,685 closed depressions match a Robbins crater, so they too are prompts. Accepted "
+        "candidates are copied into the digitising classes; nothing enters them without a review.",   # §25 §26 §42.3 §46 §69.7
+    "Athabasca Valles: the second type area":
+        "Athabasca Valles was once read as a water-carved channel; the USGS map calls it Late Amazonian volcanic, "
+        "lAv. Built the same way as Ius: 3,283 channel candidates, 409 of them rock-floored. Catalogued craters "
+        "number 1,122 per million km² on lAv against 1,760 and 2,183 on the older units, so the lava is the "
+        "youngest of the three surfaces (test T2). Here the diurnal-contrast index does not track TES inertia (r about 0); "
+        "Viking albedo does (−0.55).",   # §41 §42
+    "Checking the first two classifications":
+        "Two SVM maps made in the Pro interface on 29 and 30 September, checked before anything was built on them. "
+        "The 29 September map follows its 4096-pixel processing tiles rather than the terrain. The 30 September "
+        "map is mostly elevation: elevation alone reproduces 62% of it. Both led to the corrected stack, with no "
+        "elevation band and slope in degrees.",   # §30
+    "How big is a 15° block? About the size of Texas":
+        "The unit of the test that follows. The hand-drawn labels were split by whole 15° blocks, not by polygon, "
+        "so no held-out polygon shares a block with a training polygon: the score measures the map on ground it "
+        "has not seen nearby. A block is 889 km north to south, about Texas near the equator and California from "
+        "45° to 60°. The labels fall in 39 blocks; 14 are held out.",   # §31.3 §69.15
+    "Landforms at ±60°, scored on labels the model never saw":
+        "The published map. 512 hand-drawn polygons in four classes, split by whole blocks: 329 train the SVM and "
+        "183 are held out. At 200 m with an 11 × 11 majority filter, 2.2 km, it scores 73.8%, κ 0.58 on the "
+        "held-out polygons, where naming one class everywhere scores 58.6%. Halving the cell bought no accuracy. "
+        "Normal Ground and cratered terrain hold up; lava tube does not, at 2% user's accuracy.",   # §31.3 §55.3 §57
+    "The landform classes against the USGS geologic map":
+        "Each cell is an enrichment: how much more often a class occurs on a unit group than across ±60°, where ×1 "
+        "means no link. Lava tube gathers on volcano flanks and aprons, ×3.30 and ×4.29, not on volcanic plains, "
+        "×0.84, and 76% of the volcanic plains come out Normal Ground. The classes follow terrain rather than "
+        "material, so the lava flows come from the geologic map, not the classifier.",   # §43.2 §57.1
+    "Does thermal infrared improve the classification?":
+        "Test T1: the same classifier trained with and without each band group, scored held out. Slope and relief "
+        "alone reach 68.6%, κ 0.51; all seven bands 67.0%, κ 0.50. The thermal bands add 1.3 points of overall "
+        "accuracy, 95% interval +0.6 to +2.2: small but clear of zero. Without terrain, visible and thermal score "
+        "below naming one class everywhere. The labels are landforms, so terrain decides them; a fair test of "
+        "thermal value would need material labels.",   # §40 §40.1
+    "The thermal gain, checked with ArcGIS Pro's own SVM":
+        "The same question asked of ArcGIS Pro's own SVM, retrained over all of ±60° with one band group left out "
+        "at a time. Thermal adds 1.36 points at 200 m (+0.46 to +2.47) and 1.97 at 400 m. It helps craters and "
+        "hills and hurts lava tube, so with every class weighted equally, balanced accuracy, the gain disappears: "
+        "−0.31 points at 200 m, +0.07 at 400 m. In short: a small gain in overall accuracy, none by balanced "
+        "accuracy.",   # §56 §56.1 §69.18
+    "Deep learning, 1: a detector that draws boxes":
+        "A RetinaNet box detector on the 7-band stack, trained on the training blocks only and scored on the same "
+        "183 held-out polygons. Crater: 41.9% of polygons found and 87.6% of boxes right, but always naming Crater "
+        "would be right 71.1% of the time. Hills and lava tube are never named, and retraining with the backbone "
+        "unfrozen names hills but loses Normal Ground. Boxes do not suit classes that cover areas.",   # §66.1 §66.2 §66.5
+    "Deep learning, 2: a U-Net maps terrain provinces":
+        "A U-Net labels every pixel, run over all of ±60° in two passes offset by 128 pixels to remove its tile "
+        "seams. Held out: 98.9%, κ 0.980, against the SVM map's 73.8% under the same scorer; lava tube becomes "
+        "usable at 77.1% user's accuracy. Why it is not the headline: it maps terrain provinces, not single "
+        "landforms. Its Crater class covers 82.6% of the ring around named craters, so it is right about regions "
+        "rather than about each crater. The SVM map stays the published one.",   # §66.6–66.9
+    "Do the infrared mosaics show lava-flow edges Viking misses? (H1)":
+        "H1: 905 profiles across 10 of the geologic map's lava contacts at Athabasca, asking whether each band "
+        "tells the two sides apart. Chance is 10%; Viking red scores 12.3% and day IR 21.0%. Day IR leans toward "
+        "H1, but the difference, +8.7 points, has an interval from −1.7 to +18.1 that includes zero. Contacts on a "
+        "1:20 M map are kilometres wide, so H1 is retested on margins digitised at 100 m.",   # §47.2
+    "Do volcanic channels differ from fluvial ones? (H2)":
+        "H2, stage 1, with the window standing in for origin: the Ius candidates as fluvial, 2,588, against the "
+        "Athabasca ones as volcanic, 3,272. H2 expected the volcanic channels to be steeper; they are shallower, a "
+        "median 1.4 against 10.2 m per km. Thermal response separates them no better than chance, AUC 0.50. The "
+        "window sets the gradient, not the origin, so stage 2 waits for channels reviewed with their origin set.",   # §51.1
+    "Is the composite more stable than a single band? (H3)":
+        "H3: Iso Cluster trained on the west half of Ius and on the east half, the two maps compared over the "
+        "whole window. The composites are the least reproducible inputs, 0.40 and 0.38, against 0.61 to 0.89 for "
+        "single bands. They give the smoothest maps, just ahead of Viking, 0.85 against 0.84. Not supported.",   # §47.3
+    "How many tributary orders does 100 m resolve? (Q5)":
+        "Q5: channel thresholds from 1 to 500 km² of catchment at Ius. The highest order follows the threshold: 5 "
+        "at 1 km², 3 at 50 km², 2 at 500 km². At every threshold only 30.8% to 36.7% of first-order streams lie on "
+        "slopes of 2° or more. The count reflects the threshold chosen, so the DEM cannot answer Q5.",   # §47.4
+    "issues: limits":
+        "The six limits the measurements set. The thermal signal is weak wherever it can be checked against TES. "
+        "The landform classes are terrain classes. Five Crater labels are volcanoes, and one, on Arsia Mons, is 31% "
+        "of the held-out Crater area. Lava flows come from the geologic map. Closed depressions are prompts, not a "
+        "crater count. Four hypotheses were tested and none is supported. Each is a result: it says what this "
+        "stack can and cannot map.",   # §40.1 §43 §47 §51 §54.4 §68.2
+    "issues: work":
+        "Three practical hurdles. The review had only begun at the cut: 549 of 9,287 candidates, all at Ius, with "
+        "precision 54% on the steep channels and 7% on the depressions; H1 and H2 wait for it. The project is "
+        "428.7 GB on one USB drive that reads near 112 MB/s and has dropped off mid-write, so big outputs are "
+        "built on internal disk first. And what was solved since September: three coordinate frames, the z-factor "
+        "defect, four failed global composites, the missing night mosaic and a defective DEM column at 180°.",   # §2.2 §36.4 §54 §69.7
+    "Next Steps":
+        "Four steps for the final, due 8 December after a data freeze on 22 November: finish the review at both "
+        "type areas and draw breached craters and lava margins by hand; score the candidates against the reviewed "
+        "features and retest H1 and H2 on them; score the seven-class SVM and U-Net on the same held-out blocks; "
+        "and set aside validation blocks before any further deep-learning tuning. If asked what has changed since "
+        "the cut: both seven-class maps are scored on the 237 held-out seven-class polygons, the SVM at 42.5%, "
+        "κ 0.310 and the U-Net at 69.0%, κ 0.606, and they lead the final; the review reached 3,791 of 9,287 "
+        "candidates by 31 October (read the current tally before the talk).",   # §66.5 §69.24–69.26 §69.33
+}

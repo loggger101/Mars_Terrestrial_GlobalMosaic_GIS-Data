@@ -22,6 +22,7 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"final_img\10_global60_locator.png", "10_global60_locator.png"),
     (r"final_img\15_athabasca_type_area.png", "15_athabasca_type_area.png"),
     (r"final_img\pipeline.pdf", "pipeline.pdf"),     # make_fig_pipeline.py, from docs/pipeline.svg (KB §69.38)
+    (r"final_img\block_split.png", "block_split.png"),   # make_fig_block_split.py (W4, KB §69.41)
     (r"final_img\08_global60_mosaic.png", "08_global60_mosaic.png"),
     (r"pres1_img\global60_thermal.png", "global60_thermal.png"),     # cropped: CROP
     (r"interim_img\tes_check.png", "tes_check.png"),

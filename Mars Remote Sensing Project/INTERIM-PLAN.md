@@ -34,7 +34,7 @@ python verify_interim.py
 - **`build\build_interim_live.py`** lays it out in `mars_theme.py` (since 2026-10-27, KB §69.11–§69.16: every slide navy,
   the charts and maps in navy-ground copies from `make_interim_dark.py`, over the Ius mosaic, Cambria and Calibri; `le_theme.py`, the Presentation 1 design, before): title, goals,
   spectral bands, the correlation matrix, tasks with progress bars, the processing log, a results divider with
-  four headline numbers, one slide per figure, issues on two slides, next steps over a timeline. **32 slides; the report 21 pages, 21 figures** (2026-10-27, KB §69.21: reviewed for truth, five corrections, the status
+  four headline numbers, one slide per figure, issues on two slides, next steps over a timeline; a speaker note on every slide from `interim.NOTES` (2026-11-01, KB §69.41). **32 slides; the report 21 pages, 21 figures** (2026-10-27, KB §69.21: reviewed for truth, five corrections, the status
   brought to 27 October with the 26 October results cut kept, the thermal gain qualified by balanced accuracy; KB §69.9: nothing that reads as machine-made; 2026-10-26, KB §69.6: the text
   edited for plain wording, the failed first maps moved before the published one, the hypotheses in order H1, H2,
   H3, Q5). Earlier, 2026-10-21 (KB §66.10): the two

@@ -385,6 +385,15 @@ def mix(a, b, t):
     return RGBColor(*[int(round(a[i] + (b[i] - a[i]) * t)) for i in range(3)])
 
 
+NOTES = dict(I.NOTES)                        # speaker notes, one per slide (NEXT-STEPS §12.5); each used once
+
+
+def speak(s, key):
+    """The slide's speaker note from interim.NOTES (2026-11-01)."""
+    s.notes_slide.notes_text_frame.text = NOTES.pop(key)
+    return s
+
+
 prs = deck()
 no_footer = []                               # slide numbers that carry no footer
 
@@ -399,10 +408,11 @@ line(s, MARGIN, 246 * PT, 500 * PT, 56 * PT, subtitle, 20, color=PALE)
 line(s, MARGIN, 322 * PT, 500 * PT, 22 * PT, I.AUTHOR, 16, bold=True, color=WHITE)
 line(s, MARGIN, 344 * PT, 500 * PT, 18 * PT, "Status as of " + I.STATUS_DATE, 12, color=PALE)
 credit(s, CREDIT_VIS)
+speak(s, "title")
 no_footer.append(len(prs.slides._sldIdLst))
 
 # ------------------------------------------------------------ goals
-s = new(prs, "Project Goals", "The question")
+s = speak(new(prs, "Project Goals", "The question"), "Project Goals")
 line(s, MARGIN, BODY_Y, CONTENT_W, 90 * PT, I.MISSION, 19, font=HEAD, italic=True, color=INK)
 gap = 16 * PT
 cw = int((CONTENT_W - 3 * gap) / 4)
@@ -413,13 +423,14 @@ for i, g in enumerate(I.GOALS):              # the cards closer under the missio
     line(s, x + 18 * PT, 286 * PT, cw - 36 * PT, 160 * PT, g, 16, color=INK)
 
 # ------------------------------------------------------------ relevant spectral bands
-s = new(prs, "Relevant Spectral Bands", "The data")
+s = speak(new(prs, "Relevant Spectral Bands", "The data"), "Relevant Spectral Bands")
 table(s, ["Band or product", "Wavelength", "Cell", "What it contributes"],
       [[c.replace("r −", "r −").replace("| ≤ ", "| ≤ ") for c in r]
        for r in I.BANDS],                                             # "r −0.49" and "|r| ≤ 0.12" unbroken
       widths=[2.4, 2.25, 0.75, 5.6], size=14, row_h=60 * PT, bold_first=True)
 
-s = new(prs, "Why Fuse Them: Three Independent Dimensions", "The data")
+s = speak(new(prs, "Why Fuse Them: Three Independent Dimensions", "The data"),
+          "Why Fuse Them: Three Independent Dimensions")
 c = I.CORRELATION
 rows = [[b] + [("%+.3f" % v).replace("-", MINUS) if v != 1 else "1" for v in r]
         for b, r in zip(c["bands"], c["r"])]
@@ -450,7 +461,7 @@ def cell(s, x, y, w, h, text, bold=False, color=INK, align=PP_ALIGN.LEFT):
 
 
 # drawn from shapes, not a table: PowerPoint sizes table rows itself, and the bars must sit on their rows
-s = new(prs, "Project Tasks and Percent Complete", "Where it stands")
+s = speak(new(prs, "Project Tasks and Percent Complete", "Where it stands"), "Project Tasks and Percent Complete")
 ROW_H = 24 * PT
 cols = [32 * PT, 180 * PT, 424 * PT, 152 * PT, 60 * PT]       # 848 pt
 xs = [MARGIN + sum(cols[:k]) for k in range(len(cols))]
@@ -475,7 +486,8 @@ note(s, "Bar: percent complete toward the final. Light blue: done by 13 Septembe
         "dark: still to do.",
      BODY_Y + 15 * ROW_H + 10 * PT, size=11)
 
-s = new(prs, "Processing Completed Since the Last Report", "Where it stands")
+s = speak(new(prs, "Processing Completed Since the Last Report", "Where it stands"),
+          "Processing Completed Since the Last Report")
 table(s, ["When", "What", "Outcome"], [list(r[:3]) for r in I.LOG],   # the KB column is not printed (§69.9)
       widths=[1.0, 4.8, 4.5], size=11, row_h=26 * PT, bold_first=True)
 
@@ -493,12 +505,13 @@ for i, (num, what) in enumerate(I.HEADLINES):
     line(s, x, 300 * PT, tw, 52 * PT, num, 40, font=HEAD, color=SKY)
     line(s, x, 356 * PT, tw - 8 * PT, 60 * PT, what, 13, color=PALE)
 credit(s, CREDIT_NIGHT)
+speak(s, "results")
 no_footer.append(len(prs.slides._sldIdLst))
 
 for f in I.FIGURES:
     if f["title"] == I.BLOCK_SLIDE["before"]:   # the blocks' size, where they are first used
-        block_scale_slide(prs, I.BLOCK_SLIDE)
-    figure_slide(prs, f)
+        speak(block_scale_slide(prs, I.BLOCK_SLIDE), I.BLOCK_SLIDE["title"])
+    speak(figure_slide(prs, f), f["title"])
 
 # ------------------------------------------------------------ issues and hurdles
 def issue_cards(s, items, cols, top, h, size):
@@ -519,9 +532,9 @@ def issue_cards(s, items, cols, top, h, size):
 
 
 n_limits = 6                                 # the measured limits lead (D12); then the work itself
-s = new(prs, "Project Issues and Hurdles", "What the measurements limit")
+s = speak(new(prs, "Project Issues and Hurdles", "What the measurements limit"), "issues: limits")
 issue_cards(s, I.ISSUES[:n_limits], 2, BODY_Y, int((BOTTOM - BODY_Y - 28 * PT) / 3), 13)
-s = new(prs, "Project Issues and Hurdles", "What slows the work")
+s = speak(new(prs, "Project Issues and Hurdles", "What slows the work"), "issues: work")
 gap = 14 * PT                                # three items: one full-width band each, label left (KB §69.14)
 rh = int((BOTTOM - 12 * PT - BODY_Y - 2 * gap) / 3)
 for k, (label, body) in enumerate(I.ISSUES[n_limits:]):
@@ -535,7 +548,7 @@ for k, (label, body) in enumerate(I.ISSUES[n_limits:]):
     style(tf.paragraphs[0].add_run(), 17, color=INK).text = body
 
 # ------------------------------------------------------------ next steps and schedule
-s = new(prs, "Next Steps", "For the final")
+s = speak(new(prs, "Next Steps", "For the final"), "Next Steps")
 gap = 16 * PT
 cw = int((CONTENT_W - 3 * gap) / 4)
 for i, text in enumerate(I.NEXT_STEPS):
@@ -557,6 +570,10 @@ for i, (when, what) in enumerate(I.SCHEDULE):
          align=PP_ALIGN.CENTER, color=MUTED)
 
 footer(prs, I.DECK_TITLE + "  \u00b7  Interim presentation", set(no_footer))
+
+assert not NOTES, "speaker notes for no slide: %s" % sorted(NOTES)
+silent = [i for i, sl in enumerate(prs.slides, 1) if not sl.notes_slide.notes_text_frame.text.strip()]
+assert not silent, "slides without a speaker note: %s" % silent
 
 cp = prs.core_properties                      # python-pptx's defaults name its own author (KB §69.9)
 cp.author = cp.last_modified_by = I.AUTHOR

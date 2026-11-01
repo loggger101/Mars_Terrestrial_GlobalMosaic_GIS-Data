@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-10-31 (§69.38).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-01 (§69.41).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -42,7 +42,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
 | GitHub backup and releases | what would make the repository better, §69.19, and the sync's guard, §69.20 (`NEXT-STEPS.md` §13); §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca), §66.10 (`data-2026-10-21`, the first with the deep-learning models), §69.28 (`data-2026-10-29`, the first with the seven-class maps) |
-| the interim builds | §39.3, §45, §48, §51.5, §57.3, §66.10, §67 |
+| the interim builds | §39.3, §45, §48, §51.5, §57.3, §66.10, §67; speaker notes §69.41 |
 
 ---
 
@@ -5357,3 +5357,52 @@ by `%% KB §69.40`. Both passages, extracted from the `.tex` as it stands, compi
 record. The introduction now cites `DeLatte2019`, `Silburt2019`, `Lee2019`, `Luo2009`, `Bue2006` and
 `Wilhelm2020`; Limits cites `Olofsson2014`. Not compiled with AASTeX (desktop only): read the page count at the
 desktop rebuild (16 at the last build; this and §69.39 add about 29 lines of a column).
+
+### 69.41 Speaker notes on the interim deck; the held-out split drawn for the paper (W4) — 2026-11-01, laptop **[V]**
+
+**Speaker notes** (`NEXT-STEPS.md` §12.5). The interim deck had none on any of its 32 slides. `interim.py` gains
+`NOTES`, one note per slide keyed by its title (`"title"`, `"results"`, `"issues: limits"`, `"issues: work"` for the
+four slides without a title of their own), and `build_interim_live.py` sets each with `speak()`, failing the build
+if a note is left unused or a slide has none. The notes stay at the 26 October cut like the slides (D20), each
+number taken from the slide or from the section beside it; the "Relevant Spectral Bands" note answers why the
+project has no calibrated thermal inertia (§24.1), the U-Net and block-scale notes why 98.9 % is not the headline and
+what a held-out block is, and the "Next Steps" note alone answers what has changed since the cut (§69.24–§69.26,
+§69.33), with a reminder to read the review tally on the day. 2,348 words in all, about 17 min at 140 words a
+minute; the talk's slot length is still the author's (§12.5).
+- `verify_interim.py`: all **538** numbers in `interim.py` in the record (282 at §69.5; the notes are string
+  constants, so the check covers them). **Proven to fail on a planted defect** in a note (54 % → 57.91 %: exit 1,
+  the note named); a first plant, 57.3, passed, because 57.3 is in the record for another reason: the check proves
+  a number is recorded, not that it is the right one.
+- Rebuilt with `python build_interim_live.py` to scratch, then compared with the deck it replaced shape by shape
+  (text, position, size, image hashes): **0 of 32 slides differ**; only the notes are new. Copied over
+  `NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx`. The report is unchanged (it reads no notes).
+- `neutral_voice.py --check interim.py build_interim_live.py`: 0 personal forms.
+
+**The held-out split as a figure** (§12.4 W4). `build\make_block_split.py` (ArcGIS Python, reads the gdb only)
+writes `logs\block_split.json`: each label's `Block` field as the split wrote it (floor(lon / 15)_floor(lat / 15),
+GCS_Mars_2000, −180..180), its half, class, label point and geodesic area. Read 2026-11-01:
+
+| | training | held out | blocks with training labels | held-out blocks | on both sides |
+|---|---|---|---|---|---|
+| four classes (§31.3) | 329 | 183 | **25** | 14 | none |
+| seven classes (§69.8) | 734 | 237 | **129** | the same 14 | none |
+
+The four-class counts and the held-out ones per class (124 / 16 / 21 / 22) match §31.3; 39 blocks in all. **The
+seven-class training labels lie in 129 blocks**, because the proposals for the new classes (edifices, aprons and
+above all fluvial strips, 166 training labels) were drawn wherever the geologic map, the IAU names and the valley
+map put them, while the held-out set stayed in the 14 blocks of the four-class split. Nine of the 14 lie between
+195° and 330°E (195–210°E at 15–45°N; 225–240°E at 15°S–15°N; 270–285°E at 15–30°N; 285–330°E south of the equator
+to 30°S), the other five between 0° and 90°E (0–30°E and 60–75°E at 0–15°N, 60–75°E at 30–45°N, 75–90°E at 15–30°S);
+none lies between 90° and 195°E or poleward of 45° (read from the JSON). Held-out area per seven class, km² on the sphere: Crater 153,771, hills 27,291, lava tube 1,054, Normal
+Ground 138,452, edifice 139,129, apron 212,041, fluvial channel 37,847.
+
+`build\make_fig_block_split.py` (system Python) → `final_img\block_split.png`, read: two panels over ±60°, centred
+on 0°E as the paper's maps with ticks in degrees east 0–360 as its text; training blocks grey, held-out blocks blue,
+each label a dot in its class's map colour, held-out labels ringed, the per-class counts in each legend.
+
+**Into the paper** (W4's first figure): `fig:split`, a full-width figure after the Methods paragraph on the
+seven-class revision, cited from the split sentence and from that paragraph, which gains "the training labels now
+lie in 129 blocks, not 25"; `build_final_paper.py` copies the figure. **Not compiled:** the laptop's TinyTeX has
+no `aastex701.cls`, and installing it needs the author's yes; read the figure's page and the page count at the
+desktop rebuild (the figure adds about a third of a page). Easily reverted: one figure block and two clauses, each
+marked `%% KB §69.41`.
