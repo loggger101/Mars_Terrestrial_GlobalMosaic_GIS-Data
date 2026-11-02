@@ -6322,3 +6322,66 @@ R1**: on R2's calibration (§69.53) it matched the author on 1 of 4 apron and 0 
   on planted answers; a planted defect (chance agreement from one rater's margins only) fails it; an answers file with a
   missing slot or a bad letter is refused.
 - The README's R1 section gives the key and the command. **Left:** the author's ~45 minutes on the sheets.
+
+### 69.55 The agent's review written in, marked as its own, at the author's word; R1 and R2 on the agent's labels — 2026-11-02, laptop **[V]**
+
+The author: "please perform the review yourself". Asked whether the agent's decisions should go into the data though
+they had failed their registered checks (§69.51–§69.53), the author chose **"Yes, marked as mine"**: every row tagged
+as the agent's, the paper reporting them as an AI reading with its measured agreement, the author's own decisions never
+overwritten. The gates stay on the record as failed; they are waived, not passed.
+
+**How agent rows are marked and replaced** (`apply_sheet_review.py`, changed first): Review writes stamp `ReviewNote`
+"sheets <date>, <by>"; Origin writes now stamp `Notes` "Origin <date>, <by>; " (the copies had no record of who set
+`Origin`, and "indeterminate", their default, left no trace), the earlier stamp replaced and the rest kept. A decision
+whose stamp names a reviewer starting "agent" is **open to anyone else's answer**, which replaces it (or restamps it
+when they agree); the agent never replaces a decision, its own or the author's. Rehearsed on a scratch gdb,
+`build\test_apply_sheet_review.py`, **9 / 9**; a planted defect (every row open) fails 4.
+- **Written** (`--by "agent CTX (KB 69.55)"`, each class backed up first: `.backups\sheets_20261102-173514.gdb`,
+  `-173530`, `-173548`): the 200 open rock-floored Athabasca channels, **3 accept, 186 reject, 11 unsure**; Origin on
+  all 199 copies, Athabasca **105 indeterminate**, Ius **29 fluvial, 65 indeterminate**; the answer files in
+  `logs\agent_review\ctx_*_answers.txt`, the logs `logs\sheet_review_ctx_*_20261102-17*.json`.
+- `accept_reviewed.py --apply --by "agent CTX (KB 69.55)"`: the 3 accepts copied; `Landform_ChannelCenterlines` holds
+  **202** (199 the author's, 3 the agent's; their `Origin` unread). Tally: Athabasca channels 108 accept, 290 reject,
+  11 unsure, 2,874 open, **27 %** precision combined; the author's alone stays 50 % (105 of 209).
+- **H2 stage 2 still cannot run:** 29 fluvial, 0 volcanic against ≥ 10 of each.
+- Layout 14 (`make_validation_sheet.py`, now counting agent decisions apart): the table gives the combined tally, the
+  note the agent's 200 and the author's own 50 %; exported and read. The gdb re-exported, the two layers' descriptions
+  saying who decided what.
+
+**R1 on the agent's answers** (registration amended before any answer, `logs\r1\r1_registration.md`; sheets A, G, N
+had been seen for layout, no verdict): `logs\r1\agent_answers.txt`, written before the key or the scorer was opened;
+`score_r1.py --agent`, `logs\r1\r1_agent_result.json`.
+- **Fluvial:** 33 decided (7 unsure); **27 of 27 rule accepts accepted** (precision 100 %, 87.5–100); 2 of 6 rule
+  rejects rejected; agreement 87.9 %, **κ 0.45**.
+- **Apron:** 34 decided (6 unsure); **20 of 26 rule accepts accepted (76.9 %, 57.9–89.0)**, so 90–138 of the 155
+  accepts fair labels; 2 of 8 rejects rejected; agreement 64.7 %, **κ 0.02**. The six rule accepts the agent rejected:
+  two Medusae Fossae yardang fields (B6, M1), two troughs by Alba Mons (C1, J1), two scarps over plains (H6, J4).
+  **Of the 6 rule rejects it accepted, 5 are Tharsis fan-shaped deposits** (Arsia A2, D1, M6; Pavonis B3, L2) and one a
+  mesa's apron (C6): the fans are flat, so the rule's `SlopeMed` ≥ 1° throws out the very deposits the key names.
+  Fluvial rule rejects it accepted (B5, D6, K6, L3) include the channels of Apollinaris Mons and one from an Elysium
+  fossa, rejected by `ShareVolc`.
+- Predictions: 4 (fluvial below 80 %) **not held**; 5 (apron below half) **not held**; 6 (κ < 0.3 in both) held for
+  apron only. **What it says:** in this reading the fluvial screen's accepts all hold and the apron screen's three in
+  four, while most of both screens' rejects (on volcanic share for fluvial, flatness for apron) would pass by eye, the
+  fan-shaped deposits above all: a v3 or later rule should not test apron by slope. The author's answers would test it;
+  the agent's κ with the author on these two classes is unmeasured here and was poor on R2.
+
+**R2 on the agent's labels, gate waived** (`score_r2.py --waive-gate`, labelled so in the result;
+`logs\r2\r2_agent_waived_result.json`; rehearsal still 8 / 8). 142 sample rows decided (33 unsure). Overall accuracy
+by the stratified estimator: **four-class SVM 56.9 % (48.8–65.0)**, on four-class reference 59.7 %; four-class U-Net
+44.4 % (35.8–52.9); **seven-class SVM 39.9 % (35.6–44.2)**; seven-class U-Net 21.7 % (13.7–29.7). Area-adjusted
+shares against the seven-class SVM's mapped ones: Normal Ground **79.8 % (73.4–86.3) against 33.3 %**; fluvial 3.3 %
+against 33.0 % (user's accuracy 4.8 %); edifice 1.3 % against 12.2 % (user's 10 %); Crater 8.3 % against 11.8 %;
+hills 5.7 % against 1.2 %; apron 0 (the agent named no sample point apron: its blind spot, not a measurement).
+- Predictions 2 (every map's sample accuracy below its polygon score) and 3 (fluvial user's accuracy < 20 %, Normal
+  Ground's reference share above its mapped share) **held** on the agent's labels.
+- **What it says, with the caveat:** a labeller that calls most ground plains finds every map well below its polygon
+  score, the U-Nets most of all, and the seven-class map's fluvial third mostly plains. The labeller's bias toward
+  Normal Ground (92 of 210 labels) and away from apron and fluvial runs the same way as these findings, so they are an
+  upper bound on the gap, not its size.
+
+The paper's drafts: block 15 (e) carries the agent's 200 and the 202 channels; **block 16** gives R2's estimates and
+R1's precisions as the assistant's reading. **Left for the author:** nothing is required; any answer on the sheets
+(`r1`, `r2`, `ctx_*`, `1_`–`3_`) replaces the agent's, then the after-review steps (NEXT-STEPS §3). Not done: the
+5,296 candidates outside the review prompts (2,874 Athabasca, 2,422 Ius channels): about 880 sheets at the CTX
+renderer's pace, days of rendering, and at the agent's κ with the author they would add rejections, not precision.

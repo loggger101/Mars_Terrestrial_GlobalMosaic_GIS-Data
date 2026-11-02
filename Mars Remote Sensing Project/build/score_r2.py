@@ -10,6 +10,7 @@ e volcanic edifice, a apron, f fluvial channel, u unsure. Reads logs\r2\r2_key.j
 1. The gate, on the calibration rows (points inside the author's held-out polygons): at least 25 decided, agreement
    with the polygon's class >= 0.70 and Cohen's kappa >= 0.60. Reported first; if it fails, nothing else is estimated.
    --author: the author's own answers; the gate (registered for the agent's labelling) is reported, not enforced.
+   --waive-gate: the agent's answers estimated though the gate failed, at the author's word (KB §69.55); labelled so.
 2. On the sample rows, by the stratified estimator (Olofsson et al. 2014), unsure rows dropped: each map's overall
    accuracy with a 95 % interval (an unbiased estimator for any map: the strata are the seven-class SVM's classes and
    their area weights W_h); the four-class maps also on the rows whose reference is one of their four classes (a
@@ -134,8 +135,10 @@ def main():
     bad = {s: v for s, v in lab.items() if v not in LETTERS + "u"}
     if bad or set(lab) != set(key["slots"]):
         sys.exit("refused: letters %s; slots missing %s" % (bad, sorted(set(key["slots"]) - set(lab))[:10]))
-    res = {"gate": gate(key["slots"], lab), "labeller": "author" if "--author" in sys.argv else "agent"}
-    if res["gate"]["gate"] == "PASS" or "--author" in sys.argv:
+    waived = "--waive-gate" in sys.argv                         # the author's word, 2026-11-02 (KB §69.55)
+    res = {"gate": gate(key["slots"], lab), "labeller": "author" if "--author" in sys.argv else
+           "agent, gate waived by the author (KB 69.55)" if waived else "agent"}
+    if res["gate"]["gate"] == "PASS" or "--author" in sys.argv or waived:
         res.update(score(key["slots"], lab, key["Wh"], key["classes"]))
     print(json.dumps(res, indent=1, ensure_ascii=False))
     if "--out" in sys.argv:

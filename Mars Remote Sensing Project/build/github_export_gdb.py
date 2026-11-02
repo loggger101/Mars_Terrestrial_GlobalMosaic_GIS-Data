@@ -68,7 +68,9 @@ ABOUT = {
     "Landform_TrainingSamples_v3_60_test": "The v3 labels, held out in the same 14 blocks (1,602; KB §69.49).",
     "TrainingSamples_202609290009589587982": "The first hand-drawn training set, saved from Pro on 29 Sep (455 polygons, KB §29.2).",
     "Landform_ChannelCenterlines": "Digitising target, task 11: channel centrelines accepted in review from the "
-        "machine candidates (`accept_reviewed.py`), and any drawn by hand (KB §69.7).",
+        "machine candidates (`accept_reviewed.py`), and any drawn by hand (KB §69.7). MappedBy says who accepted each; "
+        "Notes begins \"Origin <date>, <who>\" where an origin was read: since 2026-11-02 the agent's, on CTX, on the "
+        "199 copies (29 fluvial, 0 volcanic; KB §69.55), which the author's own answers replace.",
     "Landform_CraterRims": "Digitising target, task 11: crater rims accepted in review from the machine candidates "
         "(`accept_reviewed.py`), and any drawn by hand (KB §69.7).",
     "Landform_LavaFlowMargins": "Digitising target, task 11: lava-flow margins at the Athabasca type area. Since 2026-11-02, 86 margins (1,476 km) traced by the agent on the CTX mosaic (MappedBy \"agent CTX (KB 69.52)\"); the author adds or checks margins by hand.",
@@ -90,7 +92,8 @@ ABOUT = {
     "Landform_ChannelCandidates_auto_60_o3": "Its Strahler order ≥ 3 segments, each with ValleyKm5 and ValleyShare5: "
         "the km and the share of its length within 5 km of a mapped valley, A1's measure (layout 19, KB §69.50).",
     "Landform_CraterCandidates_auto_ath": "Crater candidates over the Athabasca Valles type area (KB §42.1).",
-    "Landform_ChannelCandidates_auto_ath": "Channel candidates over the Athabasca Valles type area (KB §42.1).",
+    "Landform_ChannelCandidates_auto_ath": "Channel candidates over the Athabasca Valles type area (KB §42.1). Review "
+        "holds the author's decisions and, where ReviewNote ends \"agent CTX (KB 69.55)\", 200 the agent made on CTX.",
     "Landform_CraterCandidates_auto_60_smoke": "X2's smoke-test window (KB §53.3), recreated by the smoke run.",
     "Landform_ChannelCandidates_auto_60_smoke": "X2's smoke-test window (KB §53.3), recreated by the smoke run.",
     "Graticule_30deg": "Latitude / longitude lines every 30° over ±60°, labelled (KB §44).",

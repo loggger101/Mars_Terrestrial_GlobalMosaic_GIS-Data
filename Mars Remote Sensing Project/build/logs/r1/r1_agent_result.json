@@ -1,0 +1,55 @@
+{
+ "labeller": "agent (KB 69.55)",
+ "fluvial channel": {
+  "rows": 40,
+  "unsure": 7,
+  "precision_of_rule_accepts": {
+   "share": 1.0,
+   "k": 27,
+   "n": 27,
+   "lo": 0.875,
+   "hi": 1.0
+  },
+  "rule_rejects_rejected": {
+   "share": 0.333,
+   "k": 2,
+   "n": 6,
+   "lo": 0.097,
+   "hi": 0.7
+  },
+  "agreement": 0.879,
+  "kappa": 0.45,
+  "rule_accepts_in_class": 192,
+  "fair_labels_among_them": [
+   168,
+   192,
+   192
+  ]
+ },
+ "apron": {
+  "rows": 40,
+  "unsure": 6,
+  "precision_of_rule_accepts": {
+   "share": 0.769,
+   "k": 20,
+   "n": 26,
+   "lo": 0.579,
+   "hi": 0.89
+  },
+  "rule_rejects_rejected": {
+   "share": 0.25,
+   "k": 2,
+   "n": 8,
+   "lo": 0.071,
+   "hi": 0.591
+  },
+  "agreement": 0.647,
+  "kappa": 0.019,
+  "rule_accepts_in_class": 155,
+  "fair_labels_among_them": [
+   90,
+   119,
+   138
+  ]
+ }
+}

@@ -1,0 +1,125 @@
+{
+ "gate": {
+  "decided": 27,
+  "of": 35,
+  "agreement": 0.667,
+  "kappa": 0.604,
+  "gate": "FAIL"
+ },
+ "labeller": "agent, gate waived by the author (KB 69.55)",
+ "rows": 142,
+ "unsure": 33,
+ "per_stratum": [
+  18,
+  24,
+  18,
+  24,
+  20,
+  17,
+  21
+ ],
+ "overall": {
+  "svm4": {
+   "est": 0.5691,
+   "lo": 0.4884,
+   "hi": 0.6497
+  },
+  "svm4_on_four_class_reference": {
+   "est": 0.5968,
+   "lo": 0.5137,
+   "hi": 0.6799
+  },
+  "unet4": {
+   "est": 0.4436,
+   "lo": 0.3582,
+   "hi": 0.5291
+  },
+  "unet4_on_four_class_reference": {
+   "est": 0.4653,
+   "lo": 0.3759,
+   "hi": 0.5546
+  },
+  "svm7": {
+   "est": 0.3992,
+   "lo": 0.3561,
+   "hi": 0.4422
+  },
+  "unet7": {
+   "est": 0.2166,
+   "lo": 0.1367,
+   "hi": 0.2966
+  }
+ },
+ "svm7_classes": {
+  "Crater": {
+   "mapped_share": 0.1181,
+   "reference_share": {
+    "est": 0.0829,
+    "lo": 0.0372,
+    "hi": 0.1286
+   },
+   "users": 0.278,
+   "producers": 0.396
+  },
+  "steep/windy hills": {
+   "mapped_share": 0.0116,
+   "reference_share": {
+    "est": 0.0566,
+    "lo": 0.0266,
+    "hi": 0.0867
+   },
+   "users": 0.458,
+   "producers": 0.094
+  },
+  "lava tube": {
+   "mapped_share": 0.0207,
+   "reference_share": {
+    "est": 0.0157,
+    "lo": -0.0151,
+    "hi": 0.0464
+   },
+   "users": 0.0,
+   "producers": 0.0
+  },
+  "Normal Ground": {
+   "mapped_share": 0.3331,
+   "reference_share": {
+    "est": 0.7983,
+    "lo": 0.7335,
+    "hi": 0.8632
+   },
+   "users": 1.0,
+   "producers": 0.417
+  },
+  "volcanic edifice": {
+   "mapped_share": 0.1225,
+   "reference_share": {
+    "est": 0.0134,
+    "lo": -0.0033,
+    "hi": 0.0301
+   },
+   "users": 0.1,
+   "producers": 0.914
+  },
+  "apron": {
+   "mapped_share": 0.0645,
+   "reference_share": {
+    "est": 0.0,
+    "lo": 0.0,
+    "hi": 0.0
+   },
+   "users": 0.0,
+   "producers": null
+  },
+  "fluvial channel": {
+   "mapped_share": 0.3295,
+   "reference_share": {
+    "est": 0.033,
+    "lo": -0.0026,
+    "hi": 0.0687
+   },
+   "users": 0.048,
+   "producers": 0.475
+  }
+ }
+}

@@ -1,0 +1,16 @@
+# R1, the agent's answers (KB 69.55), written 2026-11-02 before score_r1.py or r1_key.json was opened.
+# By the registration's key and the review_sheets README's R1 table; the author's own answers replace these.
+A1 a, A2 a, A3 a, A4 u, A5 a, A6 u
+B1 r, B2 a, B3 a, B4 a, B5 a, B6 r
+C1 r, C2 a, C3 a, C4 u, C5 a, C6 a
+D1 a, D2 a, D3 a, D4 u, D5 a, D6 a
+E1 a, E2 a, E3 r, E4 a, E5 u, E6 u
+F1 a, F2 u, F3 a, F4 u, F5 a, F6 a
+G1 a, G2 a, G3 a, G4 a, G5 a, G6 r
+H1 a, H2 a, H3 u, H4 a, H5 a, H6 r
+I1 a, I2 a, I3 a, I4 a, I5 a, I6 a
+J1 r, J2 a, J3 r, J4 r, J5 a, J6 a
+K1 a, K2 u, K3 a, K4 a, K5 a, K6 a
+L1 a, L2 a, L3 a, L4 a, L5 a, L6 a
+M1 r, M2 a, M3 u, M4 u, M5 a, M6 a
+N1 u, N2 a

@@ -1,0 +1,1210 @@
+{
+ "folder": "Z:/Mars Project/review_sheets/ctx_1_athabasca_channels_open",
+ "answers": "logs/agent_review/ctx_open_answers.txt",
+ "field": "Review",
+ "class": "Z:\\Mars Project\\Mars Project.gdb\\Landform_ChannelCandidates_auto_ath",
+ "apply": true,
+ "by": "agent CTX (KB 69.55)",
+ "rows": [
+  {
+   "slot": "A1",
+   "oid": 1274,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "A2",
+   "oid": 1282,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "A3",
+   "oid": 1294,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "A4",
+   "oid": 1296,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "A5",
+   "oid": 1305,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "A6",
+   "oid": 1306,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "B1",
+   "oid": 1311,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "B2",
+   "oid": 1318,
+   "was": null,
+   "now": "unsure"
+  },
+  {
+   "slot": "B3",
+   "oid": 1321,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "B4",
+   "oid": 1325,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "B5",
+   "oid": 1326,
+   "was": null,
+   "now": "unsure"
+  },
+  {
+   "slot": "B6",
+   "oid": 1328,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "C1",
+   "oid": 1337,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "C2",
+   "oid": 1341,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "C3",
+   "oid": 1342,
+   "was": null,
+   "now": "unsure"
+  },
+  {
+   "slot": "C4",
+   "oid": 1344,
+   "was": null,
+   "now": "accept"
+  },
+  {
+   "slot": "C5",
+   "oid": 1352,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "C6",
+   "oid": 1355,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "D1",
+   "oid": 1361,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "D2",
+   "oid": 1363,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "D3",
+   "oid": 1365,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "D4",
+   "oid": 1369,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "D5",
+   "oid": 1370,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "D6",
+   "oid": 1374,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "E1",
+   "oid": 1375,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "E2",
+   "oid": 1376,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "E3",
+   "oid": 1383,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "E4",
+   "oid": 1386,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "E5",
+   "oid": 1395,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "E6",
+   "oid": 1396,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "F1",
+   "oid": 1409,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "F2",
+   "oid": 1410,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "F3",
+   "oid": 1412,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "F4",
+   "oid": 1414,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "F5",
+   "oid": 1415,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "F6",
+   "oid": 1416,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "G1",
+   "oid": 1420,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "G2",
+   "oid": 1427,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "G3",
+   "oid": 1430,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "G4",
+   "oid": 1431,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "G5",
+   "oid": 1441,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "G6",
+   "oid": 1449,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "H1",
+   "oid": 1456,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "H2",
+   "oid": 1457,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "H3",
+   "oid": 1458,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "H4",
+   "oid": 1474,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "H5",
+   "oid": 1482,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "H6",
+   "oid": 1499,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "I1",
+   "oid": 1513,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "I2",
+   "oid": 1523,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "I3",
+   "oid": 1526,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "I4",
+   "oid": 1530,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "I5",
+   "oid": 1534,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "I6",
+   "oid": 1538,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "J1",
+   "oid": 1539,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "J2",
+   "oid": 1544,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "J3",
+   "oid": 1545,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "J4",
+   "oid": 1551,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "J5",
+   "oid": 1552,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "J6",
+   "oid": 1559,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "K1",
+   "oid": 1570,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "K2",
+   "oid": 1587,
+   "was": null,
+   "now": "accept"
+  },
+  {
+   "slot": "K3",
+   "oid": 1595,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "K4",
+   "oid": 1598,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "K5",
+   "oid": 1620,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "K6",
+   "oid": 1623,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "L1",
+   "oid": 1640,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "L2",
+   "oid": 1656,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "L3",
+   "oid": 1667,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "L4",
+   "oid": 1669,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "L5",
+   "oid": 1697,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "L6",
+   "oid": 1712,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "M1",
+   "oid": 1715,
+   "was": null,
+   "now": "unsure"
+  },
+  {
+   "slot": "M2",
+   "oid": 1721,
+   "was": null,
+   "now": "unsure"
+  },
+  {
+   "slot": "M3",
+   "oid": 1741,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "M4",
+   "oid": 1742,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "M5",
+   "oid": 1750,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "M6",
+   "oid": 1762,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "N1",
+   "oid": 1763,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "N2",
+   "oid": 1768,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "N3",
+   "oid": 1770,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "N4",
+   "oid": 1773,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "N5",
+   "oid": 1774,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "N6",
+   "oid": 1777,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "O1",
+   "oid": 1780,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "O2",
+   "oid": 1781,
+   "was": null,
+   "now": "unsure"
+  },
+  {
+   "slot": "O3",
+   "oid": 1782,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "O4",
+   "oid": 1783,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "O5",
+   "oid": 1786,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "O6",
+   "oid": 1788,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "P1",
+   "oid": 1793,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "P2",
+   "oid": 1800,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "P3",
+   "oid": 1805,
+   "was": null,
+   "now": "unsure"
+  },
+  {
+   "slot": "P4",
+   "oid": 1814,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "P5",
+   "oid": 1830,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "P6",
+   "oid": 1834,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Q1",
+   "oid": 1835,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Q2",
+   "oid": 1837,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Q3",
+   "oid": 1842,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Q4",
+   "oid": 1847,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Q5",
+   "oid": 1854,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Q6",
+   "oid": 1855,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "R1",
+   "oid": 1858,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "R2",
+   "oid": 1863,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "R3",
+   "oid": 1871,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "R4",
+   "oid": 1885,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "R5",
+   "oid": 1903,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "R6",
+   "oid": 1907,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "S1",
+   "oid": 1912,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "S2",
+   "oid": 1915,
+   "was": null,
+   "now": "unsure"
+  },
+  {
+   "slot": "S3",
+   "oid": 1925,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "S4",
+   "oid": 1931,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "S5",
+   "oid": 1953,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "S6",
+   "oid": 1956,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "T1",
+   "oid": 1958,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "T2",
+   "oid": 1983,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "T3",
+   "oid": 1984,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "T4",
+   "oid": 1985,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "T5",
+   "oid": 2011,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "T6",
+   "oid": 2021,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "U1",
+   "oid": 2022,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "U2",
+   "oid": 2027,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "U3",
+   "oid": 2028,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "U4",
+   "oid": 2034,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "U5",
+   "oid": 2050,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "U6",
+   "oid": 2058,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "V1",
+   "oid": 2075,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "V2",
+   "oid": 2082,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "V3",
+   "oid": 2093,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "V4",
+   "oid": 2096,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "V5",
+   "oid": 2097,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "V6",
+   "oid": 2104,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "W1",
+   "oid": 2113,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "W2",
+   "oid": 2134,
+   "was": null,
+   "now": "unsure"
+  },
+  {
+   "slot": "W3",
+   "oid": 2135,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "W4",
+   "oid": 2166,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "W5",
+   "oid": 2179,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "W6",
+   "oid": 2181,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "X1",
+   "oid": 2203,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "X2",
+   "oid": 2252,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "X3",
+   "oid": 2259,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "X4",
+   "oid": 2267,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "X5",
+   "oid": 2273,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "X6",
+   "oid": 2291,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Y1",
+   "oid": 2319,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Y2",
+   "oid": 2327,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Y3",
+   "oid": 2335,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Y4",
+   "oid": 2336,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Y5",
+   "oid": 2337,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Y6",
+   "oid": 2343,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Z1",
+   "oid": 2353,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Z2",
+   "oid": 2354,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Z3",
+   "oid": 2355,
+   "was": null,
+   "now": "unsure"
+  },
+  {
+   "slot": "Z4",
+   "oid": 2363,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Z5",
+   "oid": 2398,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "Z6",
+   "oid": 2411,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "AA1",
+   "oid": 2419,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "AA2",
+   "oid": 2420,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "AA3",
+   "oid": 2425,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "AA4",
+   "oid": 2428,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "AA5",
+   "oid": 2442,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "AA6",
+   "oid": 2443,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "BB1",
+   "oid": 2444,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "BB2",
+   "oid": 2453,
+   "was": null,
+   "now": "accept"
+  },
+  {
+   "slot": "BB3",
+   "oid": 2458,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "BB4",
+   "oid": 2476,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "BB5",
+   "oid": 2483,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "BB6",
+   "oid": 2489,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "CC1",
+   "oid": 2491,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "CC2",
+   "oid": 2495,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "CC3",
+   "oid": 2496,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "CC4",
+   "oid": 2512,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "CC5",
+   "oid": 2535,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "CC6",
+   "oid": 2541,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "DD1",
+   "oid": 2542,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "DD2",
+   "oid": 2554,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "DD3",
+   "oid": 2590,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "DD4",
+   "oid": 2593,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "DD5",
+   "oid": 2594,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "DD6",
+   "oid": 2603,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "EE1",
+   "oid": 2614,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "EE2",
+   "oid": 2616,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "EE3",
+   "oid": 2617,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "EE4",
+   "oid": 2635,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "EE5",
+   "oid": 2640,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "EE6",
+   "oid": 2641,
+   "was": null,
+   "now": "unsure"
+  },
+  {
+   "slot": "FF1",
+   "oid": 2677,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "FF2",
+   "oid": 2683,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "FF3",
+   "oid": 2759,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "FF4",
+   "oid": 2768,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "FF5",
+   "oid": 2843,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "FF6",
+   "oid": 2871,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "GG1",
+   "oid": 2872,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "GG2",
+   "oid": 3041,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "GG3",
+   "oid": 3051,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "GG4",
+   "oid": 3054,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "GG5",
+   "oid": 3059,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "GG6",
+   "oid": 3060,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "HH1",
+   "oid": 3078,
+   "was": null,
+   "now": "reject"
+  },
+  {
+   "slot": "HH2",
+   "oid": 3181,
+   "was": null,
+   "now": "reject"
+  }
+ ]
+}

@@ -291,11 +291,12 @@ origin is read on the images.
 Finally, the manual review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709
 depressions) has reached 3,791, with a precision (accepts over accepts and rejects) of 54\% on the 188 steep,
 rock-floored Ius channels, 50\% on 209 rock-floored Athabasca channels, and 10\% and 13\% on the closed depressions
-of the two areas. On CTX a stricter reading accepts far fewer of the Athabasca lines (3 of 48 that the author reviewed, against the
-author's 22),
-so the channel precisions are the author's standard at 100~m, not ground truth. The digitised classes hold 199
-channels and 381 crater rims accepted in that review and the 86 traced lava margins, so the machine products are
-presented as candidates with measured recall and precision. %% KB §69.33, §69.52, NEXT-STEPS §6
+of the two areas. The AI assistant read the other 200 rock-floored Athabasca channels on CTX, at the author's
+decision, and accepted 3 (186 rejected, 11 unsure); on 48 lines the author had reviewed, the same reading accepted 3
+against the author's 22 and agreed with the author no better than chance ($\kappa=0.14$), so the channel precisions
+are each reader's standard, not ground truth. The digitised classes hold 202 channels (199 accepted by the author, 3 by
+the assistant) and 381 crater rims, and the 86 traced lava margins, so the machine products are presented as
+candidates with measured recall and precision. %% KB §69.33, §69.52, §69.55, NEXT-STEPS §6
 %% (f) Conclusions, the last item: replace "and H1 and H2 await digitised margins and channels." with:
 %% and H1 is not supported on 1,476~km of margins traced on CTX either; H2 awaits channels whose origin is read on the images.
 %% (g) Abstract: replace "No band separates the lava contacts of the 1:20\,M geologic map at Athabasca Valles much
@@ -306,3 +307,33 @@ presented as candidates with measured recall and precision. %% KB §69.33, §69.
 %% Channel origins read on Context Camera images \citep{Malin2007}, with volcanic channels drawn by hand on the
 %% Athabasca lava, where the routed candidates hold none, would test H2 on the features themselves; the author's check
 %% of the traced lava margins would make H1's test the project's own.
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 16. R1 and R2 as the AI assistant labelled them (KB §69.55), drafted 2026-11-02, at the freeze. The author decided
+%%     the assistant's answers go in, marked as its own, though R2's calibration gate failed. If the author answers
+%%     the r1 / r2 sheets before the freeze, replace these with build\logs\r1\ / r2\ results from those answers
+%%     (score_r1.py, score_r2.py --author) and drop every "assistant" clause. Numbers: logs\r1\r1_agent_result.json,
+%%     logs\r2\r2_agent_waived_result.json. With (a), drop block 12's R2 sentence.
+%% ---------------------------------------------------------------------------------------------------------
+%% (a) Results, a paragraph after the held-out scores (before "Deep learning"):
+A probability sample \citep{Olofsson2014} gives scores free of where the polygons were drawn. Twenty-five points were
+drawn in each class of the seven-class support vector machine map, with probability proportional to area, and 35
+more inside the author's held-out polygons were hidden among them as a check on the labeller; the AI assistant
+labelled all 210 blind on Context Camera images and elevation-model shading, with no map class shown. On the hidden
+points it agreed with the author's classes on 66.7\% of the 27 it decided ($\kappa=0.604$), short of the 70\% set in
+advance, and missed the apron and fluvial polygons, so what follows is the assistant's reading, reported at the
+author's decision. On the 142 sample points it decided, by the stratified estimator, the published four-class map
+scores 56.9\% (48.8--65.0\%), the four-class U-Net 44.4\% (35.8--52.9\%), the seven-class support vector machine
+39.9\% (35.6--44.2\%) and the seven-class U-Net 21.7\% (13.7--29.7\%), each below its score on the held-out polygons.
+Normal Ground covers 79.8\% of the sampled ground (73.4--86.3\%) against 33.3\% of the seven-class map, and fluvial
+channel, a third of the map, 3.3\% (a user's accuracy of 4.8\%). The labeller named none of the 175 sample points apron, its
+weakest class on the check, so the apron share is not measured. %% KB §69.53, §69.55
+%% (b) Methods, labels: after "347 apron and fluvial rows accepted by a written rule, not by eye" (block 1 / §12.1):
+On 80 of those rows, 30 the rule accepted and 10 it rejected in each class, shown on Context Camera images without the
+rule's verdict, the AI assistant accepted all 27 rule-accepted fluvial strips it decided and 20 of 26 apron pieces
+(77\%, 58--89\%), and accepted 4 of 6 and 6 of 8 of the rule's rejects: the screen erred toward strictness. Five
+of the apron rejects it accepted are the flat fan-shaped deposits of Arsia and Pavonis Montes, which a slope test
+cannot keep.
+%% KB §69.55
+%% (c) Table tab:svm: a column or a note, "sample (assistant-labelled)": 56.9, 44.4, 39.9 and 21.7 for the four
+%%     rows of the same maps. Decide at the freeze whether the table has room; otherwise (a) alone.

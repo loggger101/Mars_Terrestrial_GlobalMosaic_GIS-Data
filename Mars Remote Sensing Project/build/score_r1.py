@@ -2,7 +2,7 @@
 r"""Score R1: the author's blind answers on the rule-screened apron and fluvial rows (NEXT-STEPS §12.3; registration
 logs\r1\r1_registration.md; sheets from make_r1_sheets.py).
 
-    python score_r1.py <answers.txt | labels.json> [--out <result.json>]
+    python score_r1.py <answers.txt | labels.json> [--agent] [--out <result.json>]     --agent: the agent's answers (KB §69.55)
     python score_r1.py --rehearse        planted answers, nothing written; every check must PASS
 
 <answers.txt>: one "A1 a" per line (a accept, r reject, u unsure), # comments; or {"A1": "a", ...}. Every slot must be
@@ -51,7 +51,7 @@ def score(key, lab, totals):
         po, k = kappa(dec)
         out[name] = {"rows": len(rows), "unsure": len(rows) - len(dec),
                      "precision_of_rule_accepts": prec,
-                     "rule_rejects_author_rejects": wilson(sum(a == "r" for a in rej), len(rej)),
+                     "rule_rejects_rejected": wilson(sum(a == "r" for a in rej), len(rej)),
                      "agreement": po, "kappa": k,
                      "rule_accepts_in_class": totals[cls],
                      "fair_labels_among_them": None if prec is None else
@@ -100,7 +100,7 @@ def rehearse():
               ("answers = the rule's opposite: precision 0, kappa -0.6 (30:10 margins)", all(v["precision_of_rule_accepts"]["share"] == 0
                                                                           and v["kappa"] == -0.6 for v in sf.values())),
               ("all unsure: nothing estimated", all(v["precision_of_rule_accepts"] is None and v["kappa"] is None for v in su.values())),
-              ("all accept: kappa 0, rejects-rejected 0", all(v["kappa"] == 0 and v["rule_rejects_author_rejects"]["share"] == 0
+              ("all accept: kappa 0, rejects-rejected 0", all(v["kappa"] == 0 and v["rule_rejects_rejected"]["share"] == 0
                                                               for v in sa.values())),
               ("half the accepts rejected: precision 0.5", all(v["precision_of_rule_accepts"]["share"] == 0.5 for v in sh.values())),
               ("the totals are the KB's 192 and 155", T == {7: 192, 6: 155}),
@@ -115,7 +115,7 @@ def main():
         sys.exit(0 if rehearse() else 1)
     key = json.load(open(KEY, encoding="utf-8"))["slots"]
     lab = read(sys.argv[1], key)
-    res = score(key, lab, totals())
+    res = {"labeller": "agent (KB 69.55)" if "--agent" in sys.argv else "author", **score(key, lab, totals())}
     print(json.dumps(res, indent=1, ensure_ascii=False))
     if "--out" in sys.argv:
         json.dump(res, open(sys.argv[sys.argv.index("--out") + 1], "w", encoding="utf-8"), indent=1, ensure_ascii=False)

@@ -31,3 +31,18 @@ Predictions:
 2. Apron: the author accepts a smaller share of the rule's accepts than for fluvial (the pieces are 3 deg pieces of
    SIM 3292 units, untrimmed, with mesas and plains inside, KB 68.5).
 3. Kappa between rule and author below 0.4 in both classes.
+
+## Amendment, 2026-11-02, before any answer: the agent answers R1 at the author's word
+
+The author, asked whether the agent's review decisions should go into the data though they failed their checks:
+"Yes, marked as mine" (KB 69.55). So the agent answers all 80 rows itself, by the key above and the README's R1 table,
+writing logs\r1\agent_answers.txt before score_r1.py or the key is opened. The answers are reported as the agent's
+reading of the rule, never as the author's; the author's own answers, if given later, replace them. Seen before
+answering: sheets A, G and N, while checking the layout; the rule's verdicts on no row.
+
+Predictions for the agent's answers (the three above stand for the author's):
+4. The agent accepts fewer rule-accepted fluvial strips than the rule (precision below 80 %): the strips follow mapped
+   valley lines, but on CTX many cross plains and crater floors between the valley's reaches.
+5. The agent accepts under half of the rule's apron accepts: the 3 deg pieces are untrimmed and the agent missed the
+   aureole on R2.
+6. Kappa between rule and agent below 0.3 in both classes.

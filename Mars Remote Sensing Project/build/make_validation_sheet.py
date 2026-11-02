@@ -69,10 +69,15 @@ def digitised(fc, cand_class, bounds):
 
 
 def review(cand_class):
+    """The tally by Review; agent_<decision> counts the rows the agent decided (ReviewNote "sheets <date>, agent ...",
+    KB §69.55), which the author's own precision leaves out."""
     t = dict.fromkeys(DECISIONS + ("open",), 0)
-    with arcpy.da.SearchCursor(os.path.join(GDB, cand_class), ["Review"]) as c:
-        for (v,) in c:
+    t.update(dict.fromkeys(["agent_" + d for d in DECISIONS], 0))
+    with arcpy.da.SearchCursor(os.path.join(GDB, cand_class), ["Review", "ReviewNote"]) as c:
+        for v, n in c:
             t[v if v in DECISIONS else "open"] += 1
+            if v in DECISIONS and ", agent" in (n or ""):
+                t["agent_" + v] += 1
     return t
 
 
@@ -87,7 +92,9 @@ def tally():
             copied, drawn = digitised(dst, cand, b)
             judged = t["accept"] + t["reject"]
             mapped = copied + drawn
-            r = dict(t, candidates=sum(t.values()), candidate_class=cand, copied=copied, drawn=drawn,
+            a_acc, a_rej = t["accept"] - t["agent_accept"], t["reject"] - t["agent_reject"]
+            r = dict(t, candidates=sum(t[k] for k in DECISIONS + ("open",)), candidate_class=cand, copied=copied, drawn=drawn,
+                     precision_author=a_acc / (a_acc + a_rej) if a_acc + a_rej else None,
                      precision=t["accept"] / judged if judged else None, judged=judged,
                      recall=copied / mapped if mapped else None, mapped=mapped)
             if kind == "depressions":
@@ -251,11 +258,23 @@ def notes(res):
 
 
 def agent_note(res):
-    """Say which lava margins the agent traced on CTX rather than the author by hand (KB §69.52)."""
+    """Say which lava margins the agent traced on CTX rather than the author by hand (KB §69.52), and which review
+    decisions are the agent's (KB §69.55), with the author's own precision beside the table's."""
     parts = ["%d of %d at %s" % (a["rows"]["lava margins"].get("by_agent", 0), a["rows"]["lava margins"]["drawn"],
                                  a["name"]) for a in res["areas"].values() if a["rows"]["lava margins"].get("by_agent")]
-    return ("\nLava margins traced by the agent on CTX, not by the author (KB §69.52): " + "; ".join(parts) + "."
-            if parts else "")
+    out = ("\nLava margins traced by the agent on CTX, not by the author (KB §69.52): " + "; ".join(parts) + "."
+           if parts else "")
+    dec = []
+    for a in res["areas"].values():
+        for kind, r in a["rows"].items():
+            n = sum(r.get("agent_" + d, 0) for d in DECISIONS)
+            if n:
+                dec.append("%s %s, %d (%d accept, %d reject, %d unsure); the author's alone %s precision" % (
+                    a["name"], kind, n, r["agent_accept"], r["agent_reject"], r["agent_unsure"],
+                    "–" if r["precision_author"] is None else "%.0f %%" % (100 * r["precision_author"])))
+    if dec:
+        out += "\nReview decisions made by the agent on CTX, at the author's word (KB §69.55): " + "; ".join(dec) + "."
+    return out
 
 
 def main():

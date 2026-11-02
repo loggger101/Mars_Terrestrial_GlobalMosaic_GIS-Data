@@ -1,0 +1,574 @@
+{
+ "folder": "Z:/Mars Project/review_sheets/ctx_3_origin_ius",
+ "answers": "logs/agent_review/ctx_origin_ius_answers.txt",
+ "field": "Origin",
+ "class": "Z:\\Mars Project\\Mars Project.gdb\\Landform_ChannelCenterlines",
+ "apply": true,
+ "by": "agent CTX (KB 69.55)",
+ "rows": [
+  {
+   "slot": "A1",
+   "oid": 1,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "A2",
+   "oid": 2,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "A3",
+   "oid": 3,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "A4",
+   "oid": 4,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "A5",
+   "oid": 5,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "A6",
+   "oid": 6,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "B1",
+   "oid": 7,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "B2",
+   "oid": 8,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "B3",
+   "oid": 9,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "B4",
+   "oid": 10,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "B5",
+   "oid": 11,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "B6",
+   "oid": 12,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "C1",
+   "oid": 13,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "C2",
+   "oid": 14,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "C3",
+   "oid": 15,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "C4",
+   "oid": 16,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "C5",
+   "oid": 17,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "C6",
+   "oid": 18,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "D1",
+   "oid": 19,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "D2",
+   "oid": 20,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "D3",
+   "oid": 21,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "D4",
+   "oid": 22,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "D5",
+   "oid": 23,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "D6",
+   "oid": 24,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "E1",
+   "oid": 25,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "E2",
+   "oid": 26,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "E3",
+   "oid": 27,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "E4",
+   "oid": 28,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "E5",
+   "oid": 29,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "E6",
+   "oid": 30,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "F1",
+   "oid": 31,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "F2",
+   "oid": 32,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "F3",
+   "oid": 33,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "F4",
+   "oid": 34,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "F5",
+   "oid": 35,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "F6",
+   "oid": 36,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "G1",
+   "oid": 37,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "G2",
+   "oid": 38,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "G3",
+   "oid": 39,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "G4",
+   "oid": 40,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "G5",
+   "oid": 41,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "G6",
+   "oid": 42,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "H1",
+   "oid": 43,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "H2",
+   "oid": 44,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "H3",
+   "oid": 45,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "H4",
+   "oid": 46,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "H5",
+   "oid": 47,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "H6",
+   "oid": 48,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "I1",
+   "oid": 49,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "I2",
+   "oid": 50,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "I3",
+   "oid": 51,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "I4",
+   "oid": 52,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "I5",
+   "oid": 53,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "I6",
+   "oid": 54,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "J1",
+   "oid": 55,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "J2",
+   "oid": 56,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "J3",
+   "oid": 57,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "J4",
+   "oid": 58,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "J5",
+   "oid": 59,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "J6",
+   "oid": 60,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "K1",
+   "oid": 61,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "K2",
+   "oid": 62,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "K3",
+   "oid": 63,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "K4",
+   "oid": 64,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "K5",
+   "oid": 65,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "K6",
+   "oid": 66,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "L1",
+   "oid": 67,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "L2",
+   "oid": 68,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "L3",
+   "oid": 69,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "L4",
+   "oid": 70,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "L5",
+   "oid": 71,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "L6",
+   "oid": 72,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "M1",
+   "oid": 73,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "M2",
+   "oid": 74,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "M3",
+   "oid": 75,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "M4",
+   "oid": 76,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "M5",
+   "oid": 77,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "M6",
+   "oid": 78,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "N1",
+   "oid": 79,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "N2",
+   "oid": 80,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "N3",
+   "oid": 81,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "N4",
+   "oid": 82,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "N5",
+   "oid": 83,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "N6",
+   "oid": 84,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "O1",
+   "oid": 85,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "O2",
+   "oid": 86,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "O3",
+   "oid": 87,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "O4",
+   "oid": 88,
+   "was": "indeterminate",
+   "now": "fluvial"
+  },
+  {
+   "slot": "O5",
+   "oid": 89,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "O6",
+   "oid": 90,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "P1",
+   "oid": 91,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "P2",
+   "oid": 92,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "P3",
+   "oid": 93,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  },
+  {
+   "slot": "P4",
+   "oid": 94,
+   "was": "indeterminate",
+   "now": "indeterminate"
+  }
+ ]
+}
