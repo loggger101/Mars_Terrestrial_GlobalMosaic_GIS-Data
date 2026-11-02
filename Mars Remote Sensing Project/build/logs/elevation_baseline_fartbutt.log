@@ -1,0 +1,4 @@
+four: accuracy 62.5 % [35.3, 90.0], kappa 0.236, balanced 38.7 %; the SVM 73.8 %  (2686167 test px, 3126 s)
+seven: accuracy 31.8 % [17.5, 50.7], kappa 0.160, balanced 27.0 %; the SVM 42.5 %  (4691468 test px, 17370 s)
+predictions: {'P1 four-class >= 63.8 %': False, 'P2 seven-class 32.5-52.5 %': False}
+-> Z:\Mars Remote Sensing Project\build\logs\elevation_baseline.json

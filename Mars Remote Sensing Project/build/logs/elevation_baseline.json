@@ -1,0 +1,114 @@
+{
+ "method": "Gaussian maximum likelihood on (elevation, latitude), equal priors; 400 m; held-out, area-weighted; polygon bootstrap 1,000, seed 60",
+ "sets": {
+  "four": {
+   "train_px": 39940052,
+   "test_px": 2686167,
+   "test_polygons": 183,
+   "accuracy": 0.6245,
+   "accuracy_ci95": [
+    0.3532,
+    0.8998
+   ],
+   "kappa": 0.2355,
+   "kappa_ci95": [
+    0.0133,
+    0.7271
+   ],
+   "balanced": 0.3872,
+   "balanced_ci95": [
+    0.3051,
+    0.6465
+   ],
+   "producers": [
+    0.866,
+    0.402,
+    0.017,
+    0.263
+   ],
+   "svm_accuracy": 0.738,
+   "class_means": [
+    [
+     4697.12,
+     -3.81
+    ],
+    [
+     1735.53,
+     -5.62
+    ],
+    [
+     2603.76,
+     23.29
+    ],
+    [
+     -3661.63,
+     53.9
+    ]
+   ]
+  },
+  "seven": {
+   "train_px": 26098215,
+   "test_px": 4691468,
+   "test_polygons": 237,
+   "accuracy": 0.3182,
+   "accuracy_ci95": [
+    0.1748,
+    0.507
+   ],
+   "kappa": 0.1598,
+   "kappa_ci95": [
+    -0.0459,
+    0.3651
+   ],
+   "balanced": 0.2705,
+   "balanced_ci95": [
+    0.2216,
+    0.3338
+   ],
+   "producers": [
+    0.505,
+    0.33,
+    0.026,
+    0.02,
+    0.893,
+    0.056,
+    0.065
+   ],
+   "svm_accuracy": 0.425,
+   "class_means": [
+    [
+     -609.68,
+     -15.03
+    ],
+    [
+     1738.77,
+     -5.63
+    ],
+    [
+     2615.21,
+     23.33
+    ],
+    [
+     -1106.37,
+     24.21
+    ],
+    [
+     4662.35,
+     5.45
+    ],
+    [
+     -1931.01,
+     26.89
+    ],
+    [
+     -420.65,
+     -19.3
+    ]
+   ]
+  }
+ },
+ "predictions": {
+  "P1 four-class >= 63.8 %": false,
+  "P2 seven-class 32.5-52.5 %": false
+ }
+}

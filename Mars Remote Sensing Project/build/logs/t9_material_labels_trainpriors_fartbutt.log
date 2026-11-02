@@ -1,0 +1,55 @@
+[   0.3s] selftest lattice -> image centres             ok
+[   0.3s] selftest a hole filled by the unit inside it  ok
+[   0.3s] selftest a ring at -180 lands mid-lattice     ok
+[   0.3s] selftest accuracy and balanced accuracy       ok
+[ 101.9s] SIM 3292: 1311 polygons, 1311 exterior rings, 19 unit groups
+[ 227.4s] check: lattice labels agree with arcpy at 99.2 % of 400 samples; shifted 100 km, 77.8 % of 400
+[ 227.8s] lattice from cache C:\Users\Loggg\AppData\Local\Temp\mars_scratch\t9_samples.npz
+[ 229.9s] lattice 1778 x 5335; 9031605 valid labelled samples; groups kept ['a', 'h', 'he', 'hm', 'hu', 'i', 'l', 't', 'to', 'tu', 'v', 've', 'vf'], dropped ['b', 'p', 'pc', 'pd', 'pe', 'pu']
+[ 232.2s] block  all 7 bands                      acc  27.9 %  kappa 0.094  balanced  14.9 %
+[ 233.8s] block  without thermal (no night, day)  acc  26.9 %  kappa 0.087  balanced  14.6 %
+[ 234.7s] block  thermal only                     acc  32.2 %  kappa 0.000  balanced   7.7 %
+[ 235.9s] block  without visible (no Viking)      acc  15.8 %  kappa 0.024  balanced  11.9 %
+[ 235.9s] block    all 7 minus without thermal (no night, day) acc  +1.0 pt [+0.1, +2.1]  balanced  +0.4 pt [+0.2, +0.7]
+[ 235.9s] block    all 7 minus thermal only                   acc  -4.4 pt [-23.8, +14.5]  balanced  +7.2 pt [-0.6, +9.7]
+[ 235.9s] block    all 7 minus without visible (no Viking)    acc +12.0 pt [+1.4, +22.9]  balanced  +3.0 pt [+0.9, +6.0]
+[ 235.9s] block      a    producer's  +0.1 pt [-0.3, +0.5]
+[ 235.9s] block      h    producer's  -0.2 pt [-0.9, +0.5]
+[ 235.9s] block      he   producer's  +0.0 pt [+0.0, +0.0]
+[ 235.9s] block      hm   producer's  +1.1 pt [+1.1, +1.1]
+[ 235.9s] block      hu   producer's  +1.2 pt [+0.2, +3.1]
+[ 235.9s] block      i    producer's  +0.0 pt [+0.0, +0.0]
+[ 235.9s] block      l    producer's  -0.4 pt [-0.5, +0.6]
+[ 235.9s] block      t    producer's  +0.1 pt [+0.0, +0.3]
+[ 235.9s] block      to   producer's  +0.0 pt [+0.0, +0.0]
+[ 235.9s] block      tu   producer's  +0.0 pt [+0.0, +0.0]
+[ 235.9s] block      v    producer's  +2.6 pt [+0.4, +5.1]
+[ 235.9s] block      ve   producer's  +0.1 pt [+0.0, +0.1]
+[ 235.9s] block      vf   producer's  +0.0 pt [+0.0, +0.0]
+[ 235.9s] block  thermal HELPS on material labels (one group everywhere: 36.4 %)
+[ 243.5s] within all 7 bands                      acc  31.6 %  kappa 0.140  balanced  14.8 %
+[ 249.0s] within without thermal (no night, day)  acc  31.2 %  kappa 0.137  balanced  14.6 %
+[ 251.8s] within thermal only                     acc  41.5 %  kappa 0.000  balanced   7.7 %
+[ 256.2s] within without visible (no Viking)      acc  27.3 %  kappa 0.084  balanced  12.2 %
+[ 256.2s] within   all 7 minus without thermal (no night, day) acc  +0.3 pt [+0.2, +0.5]  balanced  +0.3 pt [+0.2, +0.3]
+[ 256.2s] within   all 7 minus thermal only                   acc  -9.9 pt [-16.4, -3.1]  balanced  +7.1 pt [+6.0, +8.1]
+[ 256.2s] within   all 7 minus without visible (no Viking)    acc  +4.3 pt [+2.1, +6.7]  balanced  +2.6 pt [+1.8, +3.4]
+[ 256.2s] within     a    producer's  +0.5 pt [-0.1, +1.2]
+[ 256.2s] within     h    producer's  -0.2 pt [-0.3, -0.0]
+[ 256.2s] within     he   producer's  +0.0 pt [+0.0, +0.0]
+[ 256.2s] within     hm   producer's  +1.0 pt [+0.4, +1.6]
+[ 256.2s] within     hu   producer's  +0.7 pt [+0.1, +1.4]
+[ 256.2s] within     i    producer's  +0.0 pt [-0.0, +0.0]
+[ 256.2s] within     l    producer's  -0.3 pt [-0.5, -0.1]
+[ 256.2s] within     t    producer's  -0.0 pt [-0.1, +0.0]
+[ 256.2s] within     to   producer's  +0.0 pt [+0.0, +0.0]
+[ 256.2s] within     tu   producer's  +0.0 pt [+0.0, +0.0]
+[ 256.2s] within     v    producer's  +1.6 pt [+1.1, +2.1]
+[ 256.2s] within     ve   producer's  +0.0 pt [-0.1, +0.1]
+[ 256.2s] within     vf   producer's  +0.0 pt [+0.0, +0.0]
+[ 256.2s] within thermal HELPS on material labels (one group everywhere: 41.5 %)
+[ 256.2s] prediction P1 block split: thermal adds < 3 pt of accuracy              held (post hoc)
+[ 256.2s] prediction P2 thermal adds more within blocks than at the block split   NOT HELD (post hoc)
+[ 256.2s] prediction P3 block split: balanced gain's interval includes 0          NOT HELD (post hoc)
+[ 256.3s] wrote Z:\Mars Remote Sensing Project\build\logs\t9_material_labels_trainpriors.json
+exit 0

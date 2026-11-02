@@ -158,6 +158,30 @@ writing the `.aprx`**; destructive changes and overwriting a hand-edited deliver
 
 ---
 
+### 2.6 Which runs repeat exactly (P11) **[V]**
+
+Read from the 194 build scripts and Pro's own parameter lists (2026-11-02, laptop; §69.50). Every random draw a
+script makes itself is seeded (`numpy.random.default_rng` or `random.Random`); **none of Pro's training tools takes
+a seed** (`arcpy.Usage`: `TrainSupportVectorMachineClassifier`, `TrainRandomTreesClassifier`,
+`TrainIsoClusterClassifier`, `TrainDeepLearningModel`; the one random-number setting is the `randomGenerator`
+environment, `0 ACM599`). A number is as repeatable as the least repeatable run under it.
+
+| Published number | Run | Randomness | A rerun gives |
+|---|---|---|---|
+| the held-out split (183 / 329 polygons, 14 of 39 blocks) | `make_global60_classification.py` | seed 60 | the same split: the centroid rule reproduces all 183 / 329 (§68.5, §69.2) |
+| the v2 and v3 labels | `propose_label_changes.py`, `propose_v3_labels.py` | seeds 68, 69 (the v3 check, `check_v3_labels.py`, seed 1 unless `--seed`) | the same: the desktop's v2 run gave the laptop's exactly (§69.2) |
+| every score of a map already on disk (73.8 %, 98.9 %, 41.3 %, 88.8 %, …) | `verify_global60_classification.py`, `score_*.py` | none | the same, every value (§36.2, §68.6, §69.4) |
+| every bootstrap interval | `score_t1_bootstrap.py`, `make_block_bootstrap.py`, `make_thermal_ablation.py`, `make_elevation_baseline.py`, `make_t4_*.py`, `make_flow_margin_test.py`, `make_t9_material_labels.py` | seeded: 60 (most), 20261101 (T9) | the same (`score_t1_bootstrap.py` reproduces verify's point values, §56) |
+| the numpy classifiers (T1 +1.3 pt, T1b, A3 (b), T9) | Gaussian maximum likelihood in numpy | none in the fit | the same |
+| the nearest-polygon baseline and its null | `make_spatial_baseline.py` | null: `random.Random(seed)`, seeds 1–20 | the same |
+| the unsupervised partitions (T6, T7) | `make_composite_stability.py`, Iso Cluster | seed 20261008 (the metric's self-test); Iso Cluster reproduces from its signature file (§7) | the same (§47) |
+| crater and channel candidates (465,354; 969,822) | X2's detector and router | none | the same: the desktop's tiles gave the laptop's (§53.3) |
+| layout PNGs | the builders, `polish_layouts.py` | none | pixel-identical (§67) |
+| **the published SVM map (73.8 %), T1 in Pro (+1.36 pt), the seven-class SVM maps** | Pro's SVM, `max_samples_per_class=1000` | Pro's own sample; no seed | **the same**: two trainings on one block give byte-identical `.ecd` files and 0 of 18,160,923 pixels different, and the `randomGenerator` setting changes nothing (§69.50). Tested on the laptop at small scale; the desktop's full-size retrain was not repeated |
+| the type-area Random Trees (62.7 %, superseded) | Pro's Random Trees, 50 trees | Pro's own draw; no seed | **different**: two trainings differ in the `.ecd` and on 5.0 % of the pixels (§69.50); a Random Trees number would need several runs and their spread |
+| **the U-Nets (98.9 %; seven-class 88.8 % rehearsal)** and the RetinaNet detector (X5, X5b) | `TrainDeepLearningModel` (`make_dl_pixels.py`, `make_dl_model.py`) | weight initialisation, chip order and the 10 % validation chips drawn by the tool; no seed; GPU | **not tested**; a retrain is expected to differ **[?]**. The models are kept (`DLModels\`), so a map is re-made from the saved model, not by retraining |
+| his GUI work (the 29 and 30 Sep SVMs, the first segmentation) | the Pro GUI | not recorded | not repeatable by script; superseded (§30) |
+
 ## 3. The data actually held
 
 **Four** global GeoTIFFs at the drive root, **~58 GB** together (this table's "GB" are GiB, 2³⁰ bytes, as
@@ -5765,7 +5789,7 @@ author's four classes and codes stay as they are (§68.1).
   the U-Net after its export and ~22 h for the SVM, longer if the export gives more chips than v2's 17,444 (training
   scales with chips: 30 epochs at ~12 min for v2). Nothing is scored yet; whether v3 helps is the run's to show.
 
-### 69.50 The laptop's share of §12.2: A13, T1b (A2), A9, A3 (c), A1, A7; layouts 19 and 20; W5's sources, P8 — 2026-11-01, laptop **[V]**
+### 69.50 The laptop's share of §12.2: A13, T1b (A2), A9, A3 (b) and (c), A1, A7, A8 (T9); layouts 19 and 20; W5's sources, P8, P11 — 2026-11-01/02, laptop **[V]**
 
 With the drive on the laptop (Z:) while `run_v3.ps1` waits for the desktop, the analyses of §12.2 that need no GPU
 ran here, one ArcGIS job at a time (free memory ~3 GB beside T1b). Each prediction was written into its script before
@@ -5960,3 +5984,95 @@ its first run and is reported held or not held.
   desktop's waits for one run there.
 - **Paths.** `make_flow_margin_test.py` reads the Athabasca folder by its real path (`on_drive`), not through the
   drive-root junction (§58), so T5 and A9 run on either machine without retargeting.
+
+- **A3 (b), a classifier on elevation and latitude alone** (`build\make_elevation_baseline.py`,
+  `logs\elevation_baseline.json`): T1's Gaussian maximum likelihood (numpy, equal priors) fitted to two features, the
+  DEM's height at its 400 m overview and the latitude, on every 400 m pixel inside the training polygons; scored on
+  the held-out polygons, area-weighted by cos(latitude); 1,000 bootstrap resamples of whole held-out polygons (seed
+  60). Both splits are the published ones (four classes, `terrain_60`, 183 held-out polygons; seven, `v2_60`, 237).
+  Extraction runs polygon by polygon: four classes 3,126 s, seven 17,370 s on the laptop.
+
+  | held out, area-weighted | four classes | seven classes |
+  |---|---|---|
+  | elevation and latitude only: accuracy, 95 % interval | **62.5 %** [35.3, 90.0] | **31.8 %** [17.5, 50.7] |
+  | κ; balanced accuracy, 95 % interval | 0.236; 38.7 % [30.5, 64.7] | 0.160; 27.0 % [22.2, 33.4] |
+  | producer's | Crater 0.866, hills 0.402, lava tube 0.017, Normal Ground 0.263 | Crater 0.505, hills 0.330, lava tube 0.026, Normal Ground 0.020, edifice 0.893, apron 0.056, fluvial 0.065 |
+  | one class everywhere (§69.35) | 58.6 % | 29.5 % |
+  | the SVM: raw at 400 m (A3 (c)); the published map | 69.9 %; 73.8 % (200 m, 11 × 11) | 42.4 %; 42.5 % |
+  | nearest training polygon (§69.35) | 83.2 % | 45.6 % |
+
+  **Predictions:** P1 four classes ≥ 63.8 % **not held** (62.5 %); P2 seven classes 32.5–52.5 % **not held**
+  (31.8 %, just below). Elevation and latitude alone did less than predicted: 3.9 points over one class everywhere
+  on four classes and 2.3 on seven, nearly all of it from one class each (Crater 0.866 on four, edifice 0.893 on
+  seven) and almost nothing for lava tube, Normal Ground, apron or fluvial. The
+  SVM's held-out score is therefore **not mostly elevation**: on the same 400 m pixels it is 7.4 points above this
+  baseline on four classes and 10.6 on seven, and by balanced accuracy 24.2 and 14.5 points (62.9 % and 41.5 %
+  against 38.7 % and 27.0 %). (§30's finding that elevation bins reproduce 62 % of the 30 Sep GUI map measured
+  agreement with a map, not held-out accuracy, and that map is superseded.) The four-class interval is very wide
+  because a few large held-out polygons carry most of the area. What beats the SVM is not height but position: the
+  nearest training polygon's class (83.2 %, 45.6 %).
+- **The figure** (`build\make_fig_baselines.py`, `build\final_img\svm_baselines.png`, system Python): A3 (c)'s
+  curves, accuracy and balanced accuracy, from the raw map to the 51 km filter, against flat lines for the U-Net,
+  the nearest polygon, this baseline and one class everywhere; four classes above, seven below, on one 20–100 %
+  scale. The first draft (two panels side by side, a log axis) overlapped its tick labels and put a series label
+  across a reference line; redrawn with the panels stacked, the widths as evenly spaced steps, the reference labels
+  in one right-hand margin pushed apart where two lines sit close, and read.
+
+- **A8, T9: thermal value on material labels** (`build\make_t9_material_labels.py`, `logs\t9_material_labels.json`;
+  NEXT-STEPS §4 T9): SIM 3292's `UnitGroup` as the label, rasterised with Pillow onto a 4 km lattice of the stack's
+  400 m overview (every 10th pixel; 9,031,605 samples valid in all seven bands); 13 groups kept, 6 dropped for too
+  few samples (`b`, `p`, `pc`, `pd`, `pe`, `pu`). **Checks:** the lattice labels agree with arcpy point-in-polygon at
+  99.2 % of 400 samples, and at 77.8 % with the labels shifted 100 km (so the check can fail); 150 single-pixel reads
+  match the strip reads. T1's Gaussian maximum likelihood, equal priors, at two splits: the label sets' 14 held-out
+  15° blocks, and within blocks (3° cells, a random half held out); 1,000 bootstrap resamples of whole 15° blocks.
+  The read took 271 s; a rerun from the cached samples reproduced every value.
+
+  | as registered (equal priors) | block split: accuracy | balanced | within blocks: accuracy | balanced |
+  |---|---|---|---|---|
+  | all 7 bands | 4.0 % | 18.3 % | 11.7 % | 22.7 % |
+  | without thermal | 3.9 % | 17.4 % | 11.5 % | 22.2 % |
+  | thermal only | 1.4 % | 12.0 % | 1.4 % | 11.2 % |
+  | without Viking | 2.1 % | 13.9 % | 11.0 % | 14.1 % |
+  | thermal's gain (all 7 − without thermal) | +0.1 pt [−0.1, +0.3] | +0.9 pt [+0.2, +1.2] | +0.2 pt [+0.0, +0.3] | +0.5 pt [−0.0, +1.0] |
+  | one group everywhere | 36.4 % | | 41.5 % | |
+
+  **Predictions:** P1 block-split thermal gain under 3 points **held**; P2 more within blocks than at the block split
+  **held** (+0.2 against +0.1); P3 the block-split balanced gain's interval includes 0 **not held** ([+0.2, +1.2]). By
+  the answer rule (both intervals above 0) **thermal does NOT HELP at either split.**
+
+  **But the classifier fails, so the registered test prices little.** Overall accuracy of 4 % against 36 % for one
+  group everywhere is the bug signature of §27; it was checked rather than reported. Every run now records each
+  set's predicted share by group, and the rerun shows the cause, a design flaw, not a code fault: with equal priors
+  the broad, rare groups take the map (`l` 29 % and `vf` 19 % of the block split's predictions against 0.3 % and
+  0.2 % of its area; thermal only gives `vf` 57 %), while `h` and `v`, 69 % of the held-out area, are almost never
+  predicted. **Post hoc** (`--priors train`, each group's training share as prior; `t9_material_labels_trainpriors.json`,
+  verdicts recorded, not counted): all 7 bands 27.9 % (balanced 14.9 %) at the block split and 31.6 % (14.8 %) within
+  blocks, **still under one group everywhere**; thermal only predicts one group (κ 0.000); thermal's gain +1.0 pt
+  [+0.1, +2.1] and balanced +0.4 [+0.2, +0.7] at the block split, +0.3 / +0.3 within, which "helps" by the rule.
+  **Reading:** under either prior the stack cannot predict SIM 3292's unit groups above the commonest group, so
+  material in this sense (unit groups mix age, stratigraphy and material, as the docstring said) is not what the
+  stack sees at 4 km; thermal's increment is at most about one point either way, and its verdict turns on the prior.
+  T9 neither rescues the thermal claim nor sinks it. It bears out the paper's Limits sentence that material labels
+  come only from photo interpretation: the mapped unit groups do not serve. At the freeze one clause can say so
+  (§12.1). Viking adds more than thermal in every variant (block split +1.9 to +12.0 points).
+
+- **P11, which runs repeat exactly** (NEXT-STEPS §13; the table is §2.6): the 194 build scripts read for every random
+  draw (each seeded: 60 for the split and most bootstraps, 68 and 69 for the label proposals, 20261101 for T9,
+  20261008 for T6's metric check, seeds 1–20 for the baseline's null), and Pro's training tools' own parameter lists
+  read with `arcpy.Usage` (none takes a seed; the one random-number setting is the `randomGenerator` environment,
+  `0 ACM599`). The open question, whether Pro's SVM repeats, was tested (`build\test_pro_repeatability.py`,
+  `logs\pro_repeatability.json`): one 15° block of the stack (`-6_-1`, 4,201 × 4,323 × 7, clipped to internal disk)
+  and its 57 four-class training polygons (Crater 95,525, hills 472,070 and Normal Ground 328,401 pixels at 200 m,
+  so each class's 1,000 samples are a real draw), five trainings, each applied to the block. **Predictions:** P1 two
+  identical SVM trainings classify alike **held** (the `.ecd` files byte-identical, 0 of 18,160,923 pixels differ);
+  P2 the same for Random Trees **not held** (the `.ecd` files differ, 910,057 pixels, 5.0 %); P3 the SVM ignores
+  `randomGenerator` (`1 ACM599`) **held** (byte-identical). The comparison can fail: SVM against Random Trees differs
+  on 4,074,984 pixels. So every published SVM number (the four-class map, T1 in Pro, the seven-class maps) is
+  reproducible by retraining, as far as one block on one machine shows; the type-area Random Trees figure (§27,
+  superseded) is not, and the U-Nets (no seed; the tool draws its own validation chips) were not tested and are
+  reproduced from their saved models. Training took 503–645 s per SVM (Pro computes the clip's statistics) and 1–2 s
+  per Random Trees. The scratch block, models and maps are kept in `%LOCALAPPDATA%\Temp\mars_scratch\p11`.
+- **Along the way.** `make_elevation_baseline.py` extracts polygon by polygon, as T1b does: 52 min for the four-class
+  set and 4.8 h for the seven-class set on the laptop, so its first run outgrew its 2 h `timeout`; the wrapper was
+  removed mid-run and the process finished on its own. The gdb export was rerun after layout 19 added a feature class
+  (38 classes to the repository's export, 40 to the release GeoPackage, `Ref_*` skipped, row counts matched).

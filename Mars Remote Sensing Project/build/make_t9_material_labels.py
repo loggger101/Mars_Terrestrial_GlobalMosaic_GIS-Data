@@ -34,6 +34,13 @@ Each is reported as held or not held.
 
   "<ArcGIS Pro Python>" make_t9_material_labels.py [--fresh]   -> logs\t9_material_labels.json
   (reads ~6.6 GB of the 400 m overview, once; the samples are cached in %LOCALAPPDATA%\Temp\mars_scratch)
+
+Post hoc, added 2026-11-02 after the first run (KB §69.50): with equal priors the two commonest groups, h and v
+(69 % of the held-out area), were almost never predicted, so overall accuracy fell to 4 % against 36 % for one group
+everywhere, and the band comparison was made on a classifier that fails. Every run now records each set's
+predicted share by group. `--priors train` gives each group its training share as prior (maximum a posteriori)
+and writes logs\t9_material_labels_trainpriors.json; it is a second look, not the registered test, and its
+prediction verdicts are recorded but not counted.
 """
 import os, sys, json, time, math
 sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
@@ -45,7 +52,9 @@ import grid60 as G
 
 STACK = os.path.join(G.OUTDIR, "global60_svm_stack_200m.tif")
 SIM = "Ref_SIM3292_GeologicUnits"
-OUT = os.path.join(HERE, "logs", "t9_material_labels.json")
+PRIORS = sys.argv[sys.argv.index("--priors") + 1] if "--priors" in sys.argv else "equal"
+assert PRIORS in ("equal", "train"), PRIORS
+OUT = os.path.join(HERE, "logs", "t9_material_labels%s.json" % ("" if PRIORS == "equal" else "_trainpriors"))
 SPLIT = os.path.join(HERE, "logs", "block_split.json")
 CACHE = os.path.join(os.environ.get("LOCALAPPDATA", HERE), "Temp", "mars_scratch", "t9_samples.npz")
 BANDS = ["Viking R", "Viking G", "Viking B", "Night IR", "Day IR", "slope", "relief"]
@@ -173,11 +182,13 @@ def spot_check(lab, polys, codes, rng, shift=0):
 
 
 def fit(X, y, cols, K):
+    """Per-group mean, inverse covariance, log-determinant and log prior (0 for equal priors, as registered)."""
     models = []
     for k in range(K):
         Z = X[y == k][:, cols].astype(np.float64)
         cov = np.cov(Z, rowvar=False) + np.eye(len(cols)) * 1e-3
-        models.append((Z.mean(0), np.linalg.inv(cov), np.linalg.slogdet(cov)[1]))
+        lp = math.log(len(Z) / len(y)) if PRIORS == "train" else 0.0
+        models.append((Z.mean(0), np.linalg.inv(cov), np.linalg.slogdet(cov)[1], lp))
     return models
 
 
@@ -185,8 +196,8 @@ def predict(models, X, cols, chunk=500000):
     out = np.empty(len(X), np.int16)
     for i in range(0, len(X), chunk):
         Z = X[i:i + chunk][:, cols].astype(np.float64)
-        ll = np.stack([-0.5 * (np.einsum("ij,jk,ik->i", Z - mu, icov, Z - mu) + logdet)
-                       for mu, icov, logdet in models], axis=1)
+        ll = np.stack([-0.5 * (np.einsum("ij,jk,ik->i", Z - mu, icov, Z - mu) + logdet) + lp
+                       for mu, icov, logdet, lp in models], axis=1)
         out[i:i + chunk] = ll.argmax(1)
     return out
 
@@ -299,8 +310,10 @@ def main():
             np.add.at(cmb, (binv, yte, p), wte)
             po, kap, ba, prod = stats(cmb.sum(0))
             boot[name] = stats(np.tensordot(counts, cmb, axes=1))
+            pshare = np.bincount(p, weights=wte, minlength=K) / wte.sum()
             out["sets"][name] = {"accuracy": float(po), "kappa": float(kap), "balanced_accuracy": float(ba),
-                                 "producers": dict(zip(keep, np.round(prod, 4).tolist()))}
+                                 "producers": dict(zip(keep, np.round(prod, 4).tolist())),
+                                 "predicted_share": dict(zip(keep, np.round(pshare, 4).tolist()))}
             log("%-6s %-32s acc %5.1f %%  kappa %.3f  balanced %5.1f %%" % (sname, name, 100 * po, kap, 100 * ba))
         ci = lambda a: [float(np.nanpercentile(a, 2.5)), float(np.nanpercentile(a, 97.5))]
         full = out["sets"]["all 7 bands"]
@@ -334,8 +347,12 @@ def main():
         "P2 thermal adds more within blocks than at the block split": bool(gw["accuracy"] > gb["accuracy"]),
         "P3 block split: balanced gain's interval includes 0": bool(gb["balanced_accuracy_ci95"][0] <= 0
                                                                    <= gb["balanced_accuracy_ci95"][1])}
+    res["priors"] = PRIORS
+    if PRIORS != "equal":
+        res["post_hoc"] = ("training-share priors, added after the registered run; the prediction verdicts below "
+                           "are recorded, not counted")
     for k, v in res["predictions"].items():
-        log("prediction %-60s %s" % (k, "held" if v else "NOT HELD"))
+        log("prediction %-60s %s%s" % (k, "held" if v else "NOT HELD", "" if PRIORS == "equal" else " (post hoc)"))
     json.dump(res, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     log("wrote %s" % OUT)
 

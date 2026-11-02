@@ -1,0 +1,88 @@
+{
+ "script": "test_pro_repeatability.py",
+ "when": "2026-11-02 00:21",
+ "host": "FARTBUTT",
+ "pro": "3.7",
+ "block": "-6_-1",
+ "polygons": 57,
+ "train_px_per_class": {
+  "1": 95525,
+  "2": 472070,
+  "4": 328401
+ },
+ "max_samples_per_class": 1000,
+ "runs": {
+  "svm_a": {
+   "trainer": "svm",
+   "randomGenerator": "0 ACM599",
+   "train_s": 503.0,
+   "classify_s": 121.4,
+   "ecd_bytes": 296734
+  },
+  "svm_b": {
+   "trainer": "svm",
+   "randomGenerator": "0 ACM599",
+   "train_s": 566.1,
+   "classify_s": 97.8,
+   "ecd_bytes": 296734
+  },
+  "svm_r": {
+   "trainer": "svm",
+   "randomGenerator": "1 ACM599",
+   "train_s": 645.0,
+   "classify_s": 96.4,
+   "ecd_bytes": 296734
+  },
+  "rt_a": {
+   "trainer": "rt",
+   "randomGenerator": "0 ACM599",
+   "train_s": 1.7,
+   "classify_s": 92.3,
+   "ecd_bytes": 234392
+  },
+  "rt_b": {
+   "trainer": "rt",
+   "randomGenerator": "0 ACM599",
+   "train_s": 1.5,
+   "classify_s": 84.3,
+   "ecd_bytes": 234660
+  }
+ },
+ "compare": {
+  "svm_a_vs_svm_b": {
+   "ecd_text_identical": true,
+   "ecd_json_identical_without_times": true,
+   "pixels": 18160923,
+   "pixels_different": 0,
+   "share_different": 0.0
+  },
+  "svm_a_vs_svm_r": {
+   "ecd_text_identical": true,
+   "ecd_json_identical_without_times": true,
+   "pixels": 18160923,
+   "pixels_different": 0,
+   "share_different": 0.0
+  },
+  "rt_a_vs_rt_b": {
+   "ecd_text_identical": false,
+   "ecd_json_identical_without_times": false,
+   "pixels": 18160923,
+   "pixels_different": 910057,
+   "share_different": 0.05011072399789372
+  },
+  "svm_a_vs_rt_a": {
+   "ecd_text_identical": false,
+   "ecd_json_identical_without_times": false,
+   "pixels": 18160923,
+   "pixels_different": 4074984,
+   "share_different": 0.22438198763355804
+  }
+ },
+ "predictions": {
+  "P1 svm_a = svm_b": "held",
+  "P2 rt_a = rt_b": "not held",
+  "P3 svm_r = svm_a": "held"
+ },
+ "check_svm_vs_rt_differs": true,
+ "seconds": 2217
+}

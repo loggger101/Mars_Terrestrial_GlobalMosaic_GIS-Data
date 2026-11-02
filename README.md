@@ -12,7 +12,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 430 GB with all derived rasters, measured 2026-10-22). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 199, by purpose) · [software environment](docs/environment.md) (each machine's versions, read from the machine) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 200, by purpose) · [software environment](docs/environment.md) (each machine's versions, read from the machine) · [backup and restore](docs/backup.md)
 
 [![Mars ±60° landform classification, seven classes](docs/thumbs/04b_global60_landforms_v2.jpg)](Mars%20Project/Global60/layouts/04b_global60_landforms_v2.png)
 *The landform map in seven classes over ±60°, scored on reviewed polygons the classifier never saw (layout 04b; the four-class map is layout 04).*
@@ -57,7 +57,7 @@ The method, the traps and every number behind these are in [`PROJECT-KNOWLEDGE.m
 
 ### ±60° landform classification
 
-A support vector machine on the hand-drawn labels, scored on 183 polygons in 15° blocks it never saw. The published map (200 m, 11 × 11, the map at the top) scores a **balanced accuracy of 66.7%** and **73.8%, κ 0.58** overall, against 58.6% for one class everywhere; per pixel 69.9%, κ 0.53. Geography alone, giving each pixel the class of the nearest training polygon, scores 83.2% overall but 61.3% balanced: the map is ahead class by class, behind overall, and resampling the held-out blocks resolves neither gap (KB §69.35, §69.44). Normal Ground is reliable (99% producer's) and Crater behaves as cratered terrain. The lava tube class isn't usable (2% user's accuracy).
+A support vector machine on the hand-drawn labels, scored on 183 polygons in 15° blocks it never saw. The published map (200 m, 11 × 11, the map at the top) scores a **balanced accuracy of 66.7%** and **73.8%, κ 0.58** overall, against 58.6% for one class everywhere; per pixel 69.9%, κ 0.53. Geography alone, giving each pixel the class of the nearest training polygon, scores 83.2% overall but 61.3% balanced: the map is ahead class by class, behind overall, and resampling the held-out blocks resolves neither gap (KB §69.35, §69.44). Elevation and latitude alone score 62.5% (one class everywhere 58.6%), so the score is not mostly height; a 51 km majority filter lifts the per-pixel map to 82.1%, still under the nearest-polygon line ([figure](Mars%20Remote%20Sensing%20Project/build/final_img/svm_baselines.png); A3, KB §69.50). Normal Ground is reliable (99% producer's) and Crater behaves as cratered terrain. The lava tube class isn't usable (2% user's accuracy).
 
 [<img src="Mars%20Remote%20Sensing%20Project/build/interim_img/accuracy_200m.png" width="760" alt="The published map's held-out confusion matrix, and held-out accuracy against the majority filter window at 200 m and 400 m">](Mars%20Remote%20Sensing%20Project/build/interim_img/accuracy_200m.png)
 
@@ -65,7 +65,7 @@ A support vector machine on the hand-drawn labels, scored on 183 polygons in 15�
 
 ### Does thermal infrared help? (test T1)
 
-Yes, a little. With ArcGIS Pro's SVM over the whole ±60°, leaving the thermal bands out costs 1.36 points at 200 m (95% interval 0.46 to 2.47) and 1.97 at 400 m (1.08 to 3.35), from crater and hill terrain; lava tube scores better without them. A numpy classifier on the same split gives +1.3. The gain at 200 m holds when whole held-out blocks are resampled instead of polygons (0.46 to 2.67, KB §69.44); by balanced accuracy there is none. Leaving out the Viking bands, or both spectral groups, ties the full stack inside wide intervals, but terrain alone makes a poor crater map. The hand-drawn classes are landforms, and terrain decides them. On the seven reviewed classes the numpy classifier gains 1.1 points from thermal (0.6 to 1.7), 0.8 balanced, mostly on Crater; none of the three new classes gains 2 points (T1b, KB §69.50).
+Yes, a little. With ArcGIS Pro's SVM over the whole ±60°, leaving the thermal bands out costs 1.36 points at 200 m (95% interval 0.46 to 2.47) and 1.97 at 400 m (1.08 to 3.35), from crater and hill terrain; lava tube scores better without them. A numpy classifier on the same split gives +1.3. The gain at 200 m holds when whole held-out blocks are resampled instead of polygons (0.46 to 2.67, KB §69.44); by balanced accuracy there is none. Leaving out the Viking bands, or both spectral groups, ties the full stack inside wide intervals, but terrain alone makes a poor crater map. The hand-drawn classes are landforms, and terrain decides them. On the seven reviewed classes the numpy classifier gains 1.1 points from thermal (0.6 to 1.7), 0.8 balanced, mostly on Crater; none of the three new classes gains 2 points (T1b, KB §69.50). The geologic map's unit groups (SIM 3292) were tried as material labels instead (T9): on a 4 km lattice the stack predicts them no better than their commonest group, with or without thermal, which adds at most a point, so they cannot price the thermal bands either (KB §69.50).
 
 | What each band group adds (ArcGIS Pro SVM) | Held-out accuracy by band set (numpy classifier, 400 m) |
 |---|---|
@@ -261,7 +261,7 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   199 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   200 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
   NEXT STUFF/              interim report and presentation; Final/: the AASTeX paper and the final deck (drafts)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)

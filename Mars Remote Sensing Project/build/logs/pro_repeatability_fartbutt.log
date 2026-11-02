@@ -1,0 +1,13 @@
+00:21:44 block -6_-1, training pixels per class at 200 m: {1: 95525, 2: 472070, 4: 328401}
+00:21:51 57 polygons; clip 4201 x 4323 x 7
+00:32:15 svm_a: trained 503 s, classified 121 s
+00:43:19 svm_b: trained 566 s, classified 98 s
+00:55:41 svm_r: trained 645 s, classified 96 s
+00:57:15 rt_a: trained 2 s, classified 92 s
+00:58:40 rt_b: trained 1 s, classified 84 s
+00:58:40 svm_a vs svm_b: ecd text True, json True, 0 of 18160923 pixels differ
+00:58:40 svm_a vs svm_r: ecd text True, json True, 0 of 18160923 pixels differ
+00:58:41 rt_a vs rt_b: ecd text False, json False, 910057 of 18160923 pixels differ
+00:58:41 svm_a vs rt_a: ecd text False, json False, 4074984 of 18160923 pixels differ
+00:58:41 predictions: {'P1 svm_a = svm_b': 'held', 'P2 rt_a = rt_b': 'not held', 'P3 svm_r = svm_a': 'held'} | check (SVM vs RT differ): True
+00:58:41 wrote Z:\Mars Remote Sensing Project\build\logs\pro_repeatability.json
