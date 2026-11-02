@@ -1,0 +1,9 @@
+{"note": "Agent decisions, written before the author's Review values were read (KB 69.51). a = accept, r = reject, u = unsure.",
+ "A1": "r", "A2": "r", "A3": "r", "A4": "r", "A5": "r", "A6": "u",
+ "B1": "a", "B2": "u", "B3": "r", "B4": "r", "B5": "r", "B6": "r",
+ "C1": "a", "C2": "r", "C3": "r", "C4": "a", "C5": "r", "C6": "r",
+ "D1": "r", "D2": "r", "D3": "a", "D4": "u", "D5": "r", "D6": "r",
+ "E1": "r", "E2": "r", "E3": "r", "E4": "r", "E5": "r", "E6": "r",
+ "F1": "r", "F2": "r", "F3": "r", "F4": "r", "F5": "r", "F6": "r",
+ "G1": "r", "G2": "a", "G3": "u", "G4": "r", "G5": "r", "G6": "u",
+ "H1": "r", "H2": "r", "H3": "r", "H4": "r", "H5": "r", "H6": "r"}

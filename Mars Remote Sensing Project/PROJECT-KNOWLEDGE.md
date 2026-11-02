@@ -6098,3 +6098,45 @@ its first run and is reported held or not held.
   README gives them; the DOI added to `Edwards2026data` at the pre-final release, D23). `Malin2007` (the Context
   Camera paper) added to `references.bib`, its fields taken from the DOI's own record (doi.org and Crossref,
   2026-11-02); a citation number given from memory (E05S04) was not in either and was dropped.
+
+### 69.51 The review handed to the agent: a blind calibration fails, so the review stays the author's, on contact sheets — 2026-11-02, laptop **[V]**
+
+The author asked the agent to do the review tasks it could ("i do not have the time or general knowledge to do it by
+myself"). The gdb's review state, read first (`accept_reviewed.py`, dry run): unchanged since §69.33, **3,791 of
+9,287**; `Origin` indeterminate on all 199 channel copies; `Landform_LavaFlowMargins` 0 rows; nothing drawn by hand.
+
+**The agent's eye, calibrated first.** `build\make_review_chips.py` draws each candidate as one row of four panels
+at 100 m: local relief (the DEM minus its 2.1 km mean) with the line, a 5x hillshade computed from the DEM, Viking
+colour, THEMIS day IR. The drive's 8-bit hillshade was dropped after the first sheet: over the Athabasca plains it
+shows only its quantisation steps. The sheets carry no `Review`, `ThermIdx` or slope. Registered before any sheet
+was viewed (`logs\agent_review\calibration_registration.md`): on 48 of the author's 209 reviewed Athabasca
+channels (seed 51), agreement ≥ 70 % and κ ≥ 0.40, else the agent reviews none of the 200 open ones.
+`score_agent_calibration.py` → `logs\agent_review\calibration_result.json`:
+
+| | author accept | author reject |
+|---|---|---|
+| agent accept | 4 | 1 |
+| agent reject | 22 | 16 |
+
+- **Not held: agreement 46.5 % (20 of 43 both decided), κ 0.08**; the agent unsure on 5, the author on none. The
+  author accepts 58 % of the sample, the agent 10 %; four of the agent's five accepts are the author's too (B1, C1,
+  C4, D3: long lines along a visible trough). **By the rule, the agent reviews no open row**; the 200 stay open.
+- **What predicts the author's calls** (all 209 Athabasca, 174 Ius decided; AUC of accept over reject): length
+  0.74 / 0.70, Strahler order 0.64 / 0.51, `SlopeDeg` 0.26 / 0.58, `ThermIdx` 0.50 / 0.56. The author favours longer
+  lines and, at Athabasca, flatter ones; the thermal index plays no part. Neither reviewer can be checked against
+  ground truth at 100 m on plains where the DEM steps in 1 m terraces; the 50 % and 54 % precisions are the author's
+  standard, and stay so.
+- **`Origin` and the lava margins are not set by the agent either.** No author `Origin` exists to calibrate on;
+  and an origin read from the same day IR or slope that H2 stage 2 compares would make the test circular, as would
+  margins traced on the day IR for H1 (T5 asks whether IR shows margins Viking misses).
+
+**What the agent did instead: the author's review without Pro.** Sheets in `Mars Project\review_sheets\`, with a
+`README.md` (what each panel shows, the letters, accept and origin cues, the 48 worked examples with both answers):
+`1_athabasca_channels_open` (the 200 open rock-floored channels, 34 sheets), `2_origin_athabasca` (the 105
+Athabasca copies, 40 km windows, 18 sheets), `3_origin_ius` (the 94 Ius copies, 16 sheets), `0_worked_examples`.
+The author types `answers.txt` beside a folder (`A1 a, A2 r`; origin `f` / `v` / `i`); `build\apply_sheet_review.py`
+refuses the whole file on any unknown slot, wrong letter, slot given twice, or a stored decision it would
+overwrite; backs up the class to `.backups\sheets_<time>.gdb`; writes `Review` (`ReviewNote` "sheets <date>, <by>")
+or `Origin` on the copy; logs every row to `logs\sheet_review_*.json`. Rehearsed on a scratch gdb: 10 / 10,
+including the five planted defects refused with nothing written. `review_sheets\` is left off the GitHub mirror
+(`github_sync.py`'s `SKIP_DIRS`): 123 MB of PNG, redrawn by the script.

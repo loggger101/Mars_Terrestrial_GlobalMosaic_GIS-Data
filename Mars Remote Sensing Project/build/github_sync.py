@@ -81,6 +81,9 @@ SKIP_DIR_PREFIX = (".backup_", ".py_backup_")
 # History, not current work, kept on the drive and in git history only (KB §57.6): the .aprx snapshots (git
 # versions Mars Project.aprx itself), a stale unpacked copy of the .aprx, Presentation 1's figure folders.
 SKIP_DIRS |= {".backups", "aprx_live", "le_img"}
+# Mars Project\review_sheets: the review contact sheets, ~120 MB of PNG redrawn by make_review_chips.py (KB §69.51);
+# their index.json files and the answers applied are logged in build\logs\ instead
+SKIP_DIRS |= {"review_sheets"}
 SKIP_FILES = {"neutral_voice.py",
               "ocean first pres LE.pptx"}     # Presentation 1, delivered; its PDF stays in OLD\
 RASTER = {".tif", ".tiff", ".ovr", ".img", ".jp2"}

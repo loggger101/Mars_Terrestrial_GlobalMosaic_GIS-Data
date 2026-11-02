@@ -1,0 +1,199 @@
+{
+ "area": "ath",
+ "where": "Review IS NOT NULL",
+ "copies": false,
+ "slots": {
+  "A1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 56
+  },
+  "A2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 166
+  },
+  "A3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 569
+  },
+  "A4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 518
+  },
+  "A5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1012
+  },
+  "A6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 86
+  },
+  "B1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 106
+  },
+  "B2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1104
+  },
+  "B3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1051
+  },
+  "B4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 762
+  },
+  "B5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 47
+  },
+  "B6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 566
+  },
+  "C1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 861
+  },
+  "C2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 336
+  },
+  "C3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 878
+  },
+  "C4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 684
+  },
+  "C5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1136
+  },
+  "C6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 776
+  },
+  "D1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 793
+  },
+  "D2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 354
+  },
+  "D3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 986
+  },
+  "D4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 25
+  },
+  "D5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1244
+  },
+  "D6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1105
+  },
+  "E1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 383
+  },
+  "E2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 752
+  },
+  "E3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 510
+  },
+  "E4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1172
+  },
+  "E5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1004
+  },
+  "E6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 104
+  },
+  "F1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 883
+  },
+  "F2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 635
+  },
+  "F3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 937
+  },
+  "F4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1087
+  },
+  "F5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 195
+  },
+  "F6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 848
+  },
+  "G1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 948
+  },
+  "G2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1154
+  },
+  "G3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 658
+  },
+  "G4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 631
+  },
+  "G5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 444
+  },
+  "G6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 499
+  },
+  "H1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 854
+  },
+  "H2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 194
+  },
+  "H3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 515
+  },
+  "H4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 99
+  },
+  "H5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 497
+  },
+  "H6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 371
+  }
+ }
+}

@@ -49,7 +49,9 @@ Only the state, what waits on whom and the next step; the history behind each li
 - **The review, the critical path** (§69.33): **3,791 of 9,287 candidates**: every closed depression at both type
   areas, the 188 steep Ius channels, 209 of the 409 rock-floored Athabasca channels. The digitising classes hold 199
   channels, 381 crater rims and 0 lava margins, none drawn by hand; `Origin` is set on no channel, so H2's stage 2
-  waits.
+  waits. **The agent cannot stand in** (§69.51, 11-02): blind on 48 of the author's calls it agreed at chance
+  (46.5 %, κ 0.08), so the review stays the author's, now **without Pro**: contact sheets and a guide in
+  `Mars Project\review_sheets\`, answered as letters in `answers.txt`, written in by `apply_sheet_review.py`.
 - **The project and the deliverables:** 41 maps and 23 layouts, no broken source (§5). The interim at its 26 October
   cut (D20): 32 slides and a 21-page report, rebuilt 10-31 for layout 11's corrected citation (§69.34); speaker
   notes on every slide since 11-01, the slides unchanged (§69.41). The final
@@ -64,7 +66,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 
 | # | what | who | how | done when |
 |---|---|---|---|---|
-| 1 | **Review:** `Origin` on the 199 channel copies (H2 stage 2 needs ≥ 10 fluvial and ≥ 10 volcanic); the other 200 rock-floored Athabasca channels, then the rest; the Athabasca lava margins (H1) and breached craters, by hand | author, in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims` / `Landform_LavaFlowMargins`; the tally printed |
+| 1 | **Review:** `Origin` on the 199 channel copies (H2 stage 2 needs ≥ 10 fluvial and ≥ 10 volcanic); the other 200 rock-floored Athabasca channels, then the rest; the Athabasca lava margins (H1) and breached craters, by hand | author, on the sheets (`Mars Project\review_sheets\README.md`, §69.51) or in Pro; margins in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims` / `Landform_LavaFlowMargins`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
 | 3 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
 | 3b | **The v3 runs** (more and smaller seven-class training polygons, KB §69.49): `powershell -File run_v3.ps1` from `build\`, Pro closed; U-Net then SVM, ~2 days; then the KB section, and the seven-class layouts (04b, 17b) only if the author picks the v3 maps | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
