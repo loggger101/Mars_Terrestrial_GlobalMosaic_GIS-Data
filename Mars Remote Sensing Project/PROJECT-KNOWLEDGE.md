@@ -6251,3 +6251,40 @@ feet, across spurs, structural troughs, or on blurred CTX tiles).
 **Left:** nothing for the agent. The author may check the 86 margins (plates in `margins_ath`, or in Pro) and may
 still set Origin on the sheets (`ctx_3_origin_ius`, `3_origin_ius`); the agent's letters stay in
 `logs\agent_review\` as a second reading.
+
+### 69.53 R2, the probability-sample accuracy check: drawn, rendered, labelled by the agent, gate failed — 2026-11-02, laptop **[V]**
+
+Asked to do the remaining work, the agent took NEXT-STEPS §12.3 R2, ranked first in §14 (the held-out scores rest on
+hand-drawn polygons in a few blocks; only a probability sample gives unbiased accuracy and class areas, Olofsson et
+al. 2014). Registration first: `build\logs\r2\r2_registration.md` (design, gate, three predictions), before any
+point was drawn.
+- **The sample** (`build\make_r2_points.py`, seed 5301): strata the seven classes of the seven-class SVM map (11 × 11
+  mode), 25 points each, drawn area-proportional (cos latitude) on the 400 m cached array, over pixels valid in all
+  four scored maps; stratum weights Crater 11.8 %, hills 1.2 %, lava tube 2.1 %, Normal Ground 33.3 %, edifice
+  12.2 %, apron 6.5 %, fluvial 33.0 %. Hidden among them: 35 calibration points, 5 per class, inside the author's
+  held-out polygons (`Landform_TrainingSamples_v2_60_test`). One shuffled order; the key in `r2_key.json`, not
+  opened while labelling.
+- **The sheets** (`build\make_r2_sheets.py`, 35 sheets in `Mars Project\review_sheets\r2\`): per point CTX over 8 km
+  (point ringed, 1 km), CTX over 40 km, DEM hillshade over 40 and 160 km, each in a local equidistant frame centred on
+  the point; the CTX views through make_ctx_chips' checked renders. One export hung twice on point S6 (the tile
+  service, not the script); it was marked unchecked and the run went on (the sheet says "CTX UNCHECKED").
+- **The scorer** (`build\score_r2.py`): the gate, then the stratified estimator per map, user's and producer's
+  accuracy and area-adjusted class areas for the seven-class SVM. **Rehearsed 8 / 8** on planted labels, among them
+  a planted defect (one stratum wrong must cost exactly its weight). Takes the author's `answers.txt`; `--author`
+  reports the gate without enforcing it (the gate was registered for the agent).
+- **The agent's labels** (`r2\agent_labels.json`, blind): n 92, u 41, h 29, c 28, f 9, t 4, e 4, a 3.
+- **The gate FAILED, narrowly: no accuracy or area estimate is reported from the agent's labels.** On the 35
+  calibration points, 27 decided, agreement **66.7 %** (needed 70 %), κ **0.604** (needed 0.60). Prediction 1 (more
+  likely fails; agreement 50–75 %, κ 0.4–0.65) **held**; predictions 2 and 3 are not tested.
+- **Where the agent and the author's polygons part** (calibration rows only; no sample row was read): Crater 5 / 5,
+  hills 4 / 5, lava tube 3 / 3 decided, Normal Ground 4 / 4 decided; edifice 1 / 2 decided (3 unsure), **apron 1 of 4 decided**
+  (3 called hills: the points at 226–234°E, 9–11°N sit on ridged terrain that the key's apron explicitly includes,
+  the Olympus Mons aureole; the agent did not apply that part of its own key), **fluvial 0 of 4 decided** (points
+  inside fluvial polygons fall on the plains or walls between channels, which at 1 km the agent called Normal Ground
+  or hills). Not relabelled after the key was read.
+- **What it says:** on the four original classes the agent's reading of CTX matches the author's polygons (16 of 17
+  decided); the new classes apron and fluvial are where a labeller needs the author's own sense of the class. That is
+  also a finding about the classes: a fluvial polygon is mostly not channel at 1 km.
+
+**Left:** the sheets are ready for the author (`review_sheets\README.md`, section R2; ~2–3 h); `score_r2.py
+answers.txt --author` then gives every map's unbiased accuracy and the class areas with intervals.

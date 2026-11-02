@@ -1,0 +1,10 @@
+{
+ "gate": {
+  "decided": 27,
+  "of": 35,
+  "agreement": 0.667,
+  "kappa": 0.604,
+  "gate": "FAIL"
+ },
+ "labeller": "agent"
+}
