@@ -451,6 +451,7 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 | Limits, held-out use | "used once for each model" | the v2 maps are a second use of the 14 blocks; say so |
 | Results, channels; Discussion, H2 and Table `tab:hyp` | "The network is not scored here"; H2 at stage 1 only | A1 and A7 (KB §69.50): the drafts are `v2_drafts.tex` block 10 |
 | wherever the paper says "Viking albedo" (Conclusion 2 among them) | albedo | "Viking colour": MDIM 2.1 is high-pass filtered at ~50 km, its colour an uncalibrated blend (W5, KB §69.50) |
+| Discussion, after Limits; before the acknowledgments | no future work; no data statement | W6 and W7: `v2_drafts.tex` blocks 12 and 13 (the DOI first, D23) |
 | Results, baselines; Table `tab:svm`; Limits, labels | no height baseline; "a test of thermal value needs material labels" alone | A3 (b) and A8 (KB §69.50): elevation and latitude alone score 62.5 % / 31.8 %; the geologic map's unit groups are no substitute for material labels. The drafts are `v2_drafts.tex` block 11 |
 | the PDF and the final deck | built 2026-10-22/23 | rebuild on the desktop (`build_final_paper.py`, MiKTeX; `build_final_deck.py`) and read every page: Table 3 is wider now, and the pipeline figure (`fig:pipeline`, KB §69.38) is new; note the page count |
 
@@ -479,8 +480,7 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
   `v2_drafts.tex` block 9, KB §69.50): a subsection "Against earlier automated mapping", in at the freeze.
 - **W4, figures** (**17 pages** since these, compiled in CI 11-01, KB §69.42; 16 at the last desktop build):
   ~~the pipeline in Methods~~ (in since 10-31, `fig:pipeline`, KB §69.38; page 5, read); ~~the block split~~ (in since
-  11-01, `fig:split`, `final_img\block_split.png`, KB §69.41; page 6, read); a type-area zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the
-  detector's limit in one panel; after v2, the seven-class map and its confusion; A6's `final_img\map_agreement.png` (KB §69.46) and A10's `final_img\crater_sfd.png` (KB §69.35).
+  11-01, `fig:split`, `final_img\block_split.png`, KB §69.41; page 6, read); ~~a type-area zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the detector's limit in one panel~~ (made 11-02, `final_img\typearea_zoom.png` and `crater_limit.png`, with A3's `svm_baselines.png`, drafted into `v2_drafts.tex` block 14, KB §69.50); after v2, the seven-class map and its confusion; A6's `final_img\map_agreement.png` (KB §69.46) and A10's `final_img\crater_sfd.png` (KB §69.35).
 - **W5, limits to add**: one labeller; the rule-screened v2 rows; hills short; THEMIS strips differ in local time,
   season and dust, a physical cause beside the stretch (Edwards et al. 2011's abstract confirms running contrast
   stretches; the rest needs its full text **[?]**); **Viking, checked 11-01 (KB §69.50):** MDIM 2.1 is high-pass
@@ -492,9 +492,13 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 - **W6, future work**: the outline's item 10 (§7) has no section in the paper: calibrated THEMIS inertia where it
   exists, CTX for margins, validation blocks for the deep-learning models, R2 if not done. Once the models have
   validation blocks, the seven-class U-Net's over-predicted edifice (§69.25; by A14 mostly on the highland group,
-  §69.37) is the first target of any retraining.
+  §69.37) is the first target of any retraining. **Drafted 11-02** (`v2_drafts.tex` block 12, KB §69.50): a
+  "Future work" subsection after Limits, adding material labels by photo interpretation (T9) and the crater
+  detector's rim-based diameter (§14 row 7); `Malin2007` (CTX) added to `references.bib`, its DOI checked.
 - **W7, data availability** (D23): a DOI for the data release through Zenodo's GitHub link, cited as
-  `Edwards2026data`, and a data statement as AAS asks. Publishing: the author's yes.
+  `Edwards2026data`, and a data statement as AAS asks. Publishing: the author's yes (D23: with the pre-final
+  release). **The statement is drafted 11-02** (`v2_drafts.tex` block 13, KB §69.50); at the release, add the DOI
+  and version to `Edwards2026data`.
 - **W9, the thermal claim** (D25): by balanced accuracy the thermal gain vanishes (−0.3 and +0.1 points, KB
   §69.18); the paper says so in Results, but the abstract and conclusions still give "a resolved 1.4 to 2.0
   points" alone. Whether they should carry the qualifier is the author's call.

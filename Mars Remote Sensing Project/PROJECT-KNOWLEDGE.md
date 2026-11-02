@@ -5789,7 +5789,7 @@ author's four classes and codes stay as they are (§68.1).
   the U-Net after its export and ~22 h for the SVM, longer if the export gives more chips than v2's 17,444 (training
   scales with chips: 30 epochs at ~12 min for v2). Nothing is scored yet; whether v3 helps is the run's to show.
 
-### 69.50 The laptop's share of §12.2: A13, T1b (A2), A9, A3 (b) and (c), A1, A7, A8 (T9); layouts 19 and 20; W5's sources, P8, P11 — 2026-11-01/02, laptop **[V]**
+### 69.50 The laptop's share of §12.2: A13, T1b (A2), A9, A3 (b) and (c), A1, A7, A8 (T9); layouts 19 and 20; W4, W5's sources, W6, W7; P8, P11 — 2026-11-01/02, laptop **[V]**
 
 With the drive on the laptop (Z:) while `run_v3.ps1` waits for the desktop, the analyses of §12.2 that need no GPU
 ran here, one ArcGIS job at a time (free memory ~3 GB beside T1b). Each prediction was written into its script before
@@ -6076,3 +6076,25 @@ its first run and is reported held or not held.
   set and 4.8 h for the seven-class set on the laptop, so its first run outgrew its 2 h `timeout`; the wrapper was
   removed mid-run and the process finished on its own. The gdb export was rerun after layout 19 added a feature class
   (38 classes to the repository's export, 40 to the release GeoPackage, `Ref_*` skipped, row counts matched).
+
+- **W4, two paper figures** (NEXT-STEPS §12.4), each drawn, then read as an image:
+  `build\make_fig_typearea_zoom.py` → `final_img\typearea_zoom.png`: one window south of Ius Chasma (277–280°E,
+  10.5–7.5°S), Viking colour (bands 1–3 of `ius_composite_5band.tif`) and THEMIS day IR (band 4) at their 100 m
+  pixels beside the published map (`global60_landforms_svm_200m_mode11.tif`), each 200 m map pixel drawn as four
+  image pixels, nothing resampled; the map's pixel values are checked against its attribute table (pixel = class
+  code, §36) before any colour is drawn. In that window the map is 40 % hills, 25 % Normal Ground, 22 % Crater and
+  12 % lava tube, and it follows terrain rather than naming landforms: the canyon floor is Crater, the walls and
+  spurs hills, the plateau's fresh craters rings of hills, the plains a patchwork of Crater, lava tube and Normal
+  Ground. `build\make_fig_crater_limit.py` → `final_img\crater_limit.png`: §26.3's two validation windows
+  (`TypeArea\val`), the DEM in grey, every closed depression deeper than 20 m by its depth, the IAU rims dashed:
+  Perrotin found, Oudemans breached and empty; the drawing of the interim figure's panels C and D, on the paper's
+  light ground with a depth scale. With A3's `svm_baselines.png`, the three are drafted as figure environments in
+  `v2_drafts.tex` block 14, for the freeze.
+- **W6 and W7 drafted** (`v2_drafts.tex` blocks 12 and 13): a "Future work" subsection after Limits (the probability
+  sample, R2, unless done by the freeze; material labels by photo interpretation, after T9; THEMIS-derived inertia;
+  margins and channel origins on CTX at Athabasca for H1 and H2; validation blocks before any retraining, the
+  seven-class U-Net's edifice first; a rim-based diameter for the 23 % of missed craters that hold only a smaller
+  basin, 72 % of the misses at ≥ 50 km, §14 row 7) and a data statement (the archive's contents and licences as the
+  README gives them; the DOI added to `Edwards2026data` at the pre-final release, D23). `Malin2007` (the Context
+  Camera paper) added to `references.bib`, its fields taken from the DOI's own record (doi.org and Crossref,
+  2026-11-02); a citation number given from memory (E05S04) was not in either and was dropped.

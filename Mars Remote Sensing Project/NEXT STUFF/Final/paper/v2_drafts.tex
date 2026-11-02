@@ -182,3 +182,78 @@ is not elevation, and what beats it is where the labels lie, not how high.
 %% (c) Limits, after "a test of thermal value needs material labels, which only photo interpretation can give.":
 The geologic map's unit groups \citep{Tanaka2014} are no substitute: on a 4~km lattice of the stack they are
 predicted no better than by their commonest group, with or without the thermal bands, which add at most a point.
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 12. W6 (NEXT-STEPS §12.4), drafted 2026-11-02: a "Future work" subsection, the outline's item 10, at the end of
+%%     the Discussion (after Limits). Malin2007 is in references.bib (DOI checked on Crossref 2026-11-02). If R2 is
+%%     done by the freeze, drop its sentence and say what it found in Results instead. Every number is in the KB:
+%%     §69.44 (blocks), §69.45 (crater misses), §69.25/§69.37 (edifice), §69.50 (T9).
+%% ---------------------------------------------------------------------------------------------------------
+\subsection{Future work}
+
+Four steps would move these results furthest. A probability sample of the published maps, labelled blind
+\citep{Olofsson2014}, would give unbiased accuracies and class areas with intervals, free of where the polygons were
+drawn. Material labels from photo interpretation, rather than landforms or the geologic map's unit groups, would test
+what the thermal bands add, and THEMIS-derived inertia \citep{Fergason2006}, where it exists, would replace the
+display mosaics' local contrast. Lava-flow margins and channel origins traced at Athabasca Valles on Context Camera
+images \citep{Malin2007} would test H1 and H2 on the features themselves rather than on stand-ins. The deep-learning
+models need validation blocks of their own before any retraining; the seven-class U-Net's volcanic edifice, mapped
+mostly on the highland units, is the first thing to correct. For the craters, a rim-based diameter or merged nested
+basins would recover the 23\% of missed craters that hold only a smaller closed basin, 72\% of the misses at
+$\ge50$~km.
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 13. W7 (NEXT-STEPS §12.4, D23), drafted 2026-11-02: the data statement. At the pre-final release (D23's yes),
+%%     Zenodo's GitHub link mints the DOI: add `doi = {10.5281/zenodo.<id>}` and the release tag as `version` to
+%%     Edwards2026data in references.bib, then place this paragraph as the class file and AAS ask (a "Data
+%%     availability" section before the acknowledgments), and cut the acknowledgments' last sentence, which it
+%%     replaces. The licences and contents are the README's (Licence; Releases). "Each machine" holds once the
+%%     desktop's section of docs/environment.md is written (P8); until then it lists the laptop's only.
+%% ---------------------------------------------------------------------------------------------------------
+\section*{Data availability}
+
+The $\pm60^{\circ}$ landform maps, the type-area products, the candidate and label layers, the trained models, every
+build script and the project record are archived at \citet{Edwards2026data}: the code under the MIT licence and
+everything else under CC~BY~4.0. A script there regenerates every product and figure, and the archive lists the
+software and versions that each machine ran. The source mosaics, the elevation model, the geologic map, the
+thermal-inertia map and the crater database are public from the sources cited in Section~\ref{sec:data}.
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 14. W4 (NEXT-STEPS §12.4), drafted 2026-11-02: three figures, at the freeze. For each, add its line to
+%%     build_final_paper.py's figure list (final_img\<name> -> figures\<name>), insert the environment, and add the
+%%     \ref where marked. Read the page count after (17 pages since 11-01): if the budget is tight, (b) goes first, then (c).
+%% ---------------------------------------------------------------------------------------------------------
+%% (a) Methods, "Closed depressions and channels": after "...its lowest rim point lies 33~m below its floor"
+%%     add " (Figure~\ref{fig:craterlimit})"; the environment after that paragraph.
+%%     build\make_fig_crater_limit.py -> final_img\crater_limit.png (KB §26.3, §69.50)
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/crater_limit.png}
+\caption{The closed-depression detector on the two named craters it was tuned on. Grey, the HRSC/MOLA elevation; in
+colour, every closed depression deeper than 20~m by its depth below the filled surface; dashed, the IAU rim. Perrotin
+is a closed basin and is found at 77.0~km; Oudemans is breached into the canyon, its lowest rim point 33~m below its
+floor, so filling leaves it empty and the detector cannot see it. \label{fig:craterlimit}}
+\end{figure*}
+%% (b) Results, "The landform classification": after the A3 (b) sentences of block 11 (a), add
+%%     "(Figure~\ref{fig:baselines})"; the environment after that paragraph.
+%%     build\make_fig_baselines.py -> final_img\svm_baselines.png (KB §69.50)
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/svm_baselines.png}
+\caption{Held-out scores of the support vector machine maps as a majority filter widens from the raw 400~m map to
+51~km, four classes above and seven below, against the U-Net, the nearest training polygon's class, a classifier on
+elevation and latitude alone, and one class everywhere (dashed; accuracy). Filtering brings the four-class map to
+82.1\%, never above the nearest polygon; the seven-class curve stays flat. \label{fig:baselines}}
+\end{figure}
+%% (c) Results, "The landform classification": after the paragraph on what the map gets right and wrong by class
+%%     (Normal Ground reliable, Crater as cratered terrain, lava tube unusable), add "(Figure~\ref{fig:zoom})".
+%%     build\make_fig_typearea_zoom.py -> final_img\typearea_zoom.png (KB §69.50); window 277-280 E, 10.5-7.5 S.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/typearea_zoom.png}
+\caption{The published map at full resolution, south of Ius Chasma ($277^{\circ}$--$280^{\circ}$E,
+$10.5^{\circ}$--$7.5^{\circ}$S): Viking colour and THEMIS day IR at their 100~m pixels, and the four-class map at
+200~m, each map pixel drawn as four image pixels. The map follows terrain rather than naming landforms: the canyon
+floor is Crater, the walls and spurs hills, the plateau's craters rings of hills, and the plains a patchwork of
+Crater, lava tube and Normal Ground. Shares are of this window. \label{fig:zoom}}
+\end{figure*}
