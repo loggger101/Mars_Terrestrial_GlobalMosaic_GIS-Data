@@ -59,6 +59,13 @@ ABOUT = {
         "blocks as the four-class split (KB §69.8).",
     "Landform_TrainingSamples_v2_60_test": "The seven-class labels clipped to ±60°, held out in the same 14 blocks: "
         "never trained on, used only for scoring (KB §69.8).",
+    "Landform_TrainingSamples_v3_proposals": "Every v3 candidate with its screen's measures, reason and verdict: the v2 "
+        "polygons cut into 0.5° pieces and new polygons from reference data (`propose_v3_labels.py`, KB §69.49).",
+    "Landform_TrainingSamples_v3": "The v3 labels: the accepted v3 proposals, 11,815 rows in the seven classes, by "
+        "written rule, not review (KB §69.49). For the v3 runs; the v2 labels stay the final's until those are scored.",
+    "Landform_TrainingSamples_v3_60_train": "The v3 labels, training half, in the same 15° blocks as every split (10,213; "
+        "KB §69.49).",
+    "Landform_TrainingSamples_v3_60_test": "The v3 labels, held out in the same 14 blocks (1,602; KB §69.49).",
     "TrainingSamples_202609290009589587982": "The first hand-drawn training set, saved from Pro on 29 Sep (455 polygons, KB §29.2).",
     "Landform_ChannelCenterlines": "Digitising target, task 11: channel centrelines accepted in review from the "
         "machine candidates (`accept_reviewed.py`), and any drawn by hand (KB §69.7).",
@@ -80,6 +87,8 @@ ABOUT = {
     "Landform_CraterCandidates_auto_60": "Closed depressions ≥ 1 km over ±60°, the X2 fine pass (KB §53.4; the tiles "
         "over 180° rerun, §54).",
     "Landform_ChannelCandidates_auto_60": "Channel segments over ±60°, the X2 fine pass (KB §53.4, §54).",
+    "Landform_ChannelCandidates_auto_60_o3": "Its Strahler order ≥ 3 segments, each with ValleyKm5 and ValleyShare5: "
+        "the km and the share of its length within 5 km of a mapped valley, A1's measure (layout 19, KB §69.50).",
     "Landform_CraterCandidates_auto_ath": "Crater candidates over the Athabasca Valles type area (KB §42.1).",
     "Landform_ChannelCandidates_auto_ath": "Channel candidates over the Athabasca Valles type area (KB §42.1).",
     "Landform_CraterCandidates_auto_60_smoke": "X2's smoke-test window (KB §53.3), recreated by the smoke run.",

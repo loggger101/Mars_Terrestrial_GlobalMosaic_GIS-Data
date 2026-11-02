@@ -1,0 +1,16 @@
+svm4   1 px (  0.4 km): accuracy 0.6987 kappa 0.5323 balanced 0.6293  (7 s)
+check: its log 0.699 / 0.532
+svm4   3 px (  1.2 km): accuracy 0.7217 kappa 0.5614 balanced 0.6504  (72 s)
+svm4   5 px (  2.0 km): accuracy 0.7354 kappa 0.5789 balanced 0.6643  (71 s)
+svm4  13 px (  5.2 km): accuracy 0.7639 kappa 0.6164 balanced 0.6813  (71 s)
+svm4  37 px ( 14.8 km): accuracy 0.8050 kappa 0.6716 balanced 0.6566  (70 s)
+svm4 127 px ( 50.8 km): accuracy 0.8212 kappa 0.6832 balanced 0.5475  (76 s)
+check: global60_landforms_v2_200m_mode11_ov400.npy gives 0.4252 / 0.3103, its log 0.425 / 0.310, confusion identical
+svm7   1 px (  0.4 km): accuracy 0.4240 kappa 0.3098 balanced 0.4153  (32 s)
+svm7   3 px (  1.2 km): accuracy 0.4238 kappa 0.3095 balanced 0.4190  (138 s)
+svm7   5 px (  2.0 km): accuracy 0.4250 kappa 0.3102 balanced 0.4184  (131 s)
+svm7  13 px (  5.2 km): accuracy 0.4320 kappa 0.3166 balanced 0.4205  (133 s)
+svm7  37 px ( 14.8 km): accuracy 0.4390 kappa 0.3226 balanced 0.4218  (133 s)
+svm7 127 px ( 50.8 km): accuracy 0.3993 kappa 0.2793 balanced 0.3868  (146 s)
+predictions: {'P1 both rise raw -> 13 px': True, 'P2 four-class at 127 px < 88.9 %': True, 'P3 seven-class at 127 px < 59.0 %': True}
+-> Z:\Mars Remote Sensing Project\build\logs\mode_curve.json

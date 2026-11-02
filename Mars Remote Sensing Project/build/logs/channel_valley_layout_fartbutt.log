@@ -1,0 +1,11 @@
+1. data
+valleys: 2226454 points, 706086 km within ±60°
+   44484 segments, 419801 km (A1: 419801 km); within 5 km of a valley 0.027986 (A1: 0.027986)
+   ValleyKm5 / ValleyShare5 written to 44704 rows
+backup Z:\Mars Project\.backups\Mars Project 20261101-225135.aprx
+2. map: Mars ±60° — channels against the valley map
+   graticule -> Mars ±60° — channels against the valley map
+3. layout 19_channels_vs_valleys
+    Z:\Mars Project\Global60\layouts\19_channels_vs_valleys.png
+   Mars ±60° — channels against the valley map: ['Graticule 30°', 'Analysis extent ±60°', 'Routed, order ≥ 3: mostly within 5 km of a mapped valley', 'Mapped valleys (Alemanno & Orofino)', 'Routed, order ≥ 3: mostly farther', 'Hillshade (±60°, 200 m)']
+saved. maps: 40 layouts: 22

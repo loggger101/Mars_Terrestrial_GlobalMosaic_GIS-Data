@@ -12,7 +12,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 430 GB with all derived rasters, measured 2026-10-22). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 189, by purpose) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 199, by purpose) · [software environment](docs/environment.md) (each machine's versions, read from the machine) · [backup and restore](docs/backup.md)
 
 [![Mars ±60° landform classification, seven classes](docs/thumbs/04b_global60_landforms_v2.jpg)](Mars%20Project/Global60/layouts/04b_global60_landforms_v2.png)
 *The landform map in seven classes over ±60°, scored on reviewed polygons the classifier never saw (layout 04b; the four-class map is layout 04).*
@@ -39,7 +39,7 @@ The interim presentation is on **10 November 2026** and the final deliverable **
 | Deep learning | done on the held-out blocks: a RetinaNet detector (layout 16) and its retrain, scored per held-out polygon; a U-Net pixel classifier over ±60°, **98.9%, κ 0.980 held out** against the SVM map's 73.8% under the same scorer: a terrain-province map, its tile seams removed by a second, offset pass, shown beside the published SVM map (layout 17); on the reviewed seven-class labels a second U-Net, 69.0%, κ 0.606 (layout 17b) |
 | Class scheme, four classes to seven | **in progress, for the final**: Crater narrowed to impact craters, volcanic plains counted as Normal Ground, three new classes (volcanic edifice, apron, fluvial channel). The 512 labels audited: five volcanoes had been labelled Crater. The proposals are built (1,086 rows: 12 relabels, 23 to check, 574 new polygons, the rest kept) in `Landform_TrainingSamples_v2_proposals` and the map "Labels v2: proposals", **reviewed** (KB §69.8): the author's own rows done, the apron and fluvial strips screened by a written rule at the author's request (fluvial strips kept only on a valley floor, 192 of 276; aprons only where not flat, 155 of 172); six Crater polygons that are not craters dropped; hills kept although it has training polygons in only two blocks. The v2 labels are applied (971: 734 training, 237 held out). The seven-class SVM and U-Net runs are rehearsed end to end on the proposals taken as proposed (`--labels v2p`: a test of the pipeline, never a result); on the reviewed labels the seven-class SVM scores 42.5 %, κ 0.310 against the published map's 35.7 %, κ 0.244 on the 237 held-out polygons, and the U-Net on v2 69.0 %, κ 0.606 against the four-class U-Net's 44.1 %, κ 0.301. Both fail D18's rule on classes 1–4 (SVM 66.0 % against 79.9 %) and on the fall in Crater and hills, but **the author leads with the seven-class maps as the more detailed ones (D28, 2026-10-29)**: layouts 04b, 13b and 17b, beside 04, 13 and 17 (KB §68, §69.2, §69.4, §69.8, §69.24–69.26). **Since 2026-11-01 a v3 label set** (KB §69.49): the v2 polygons cut into 0.5° pieces and screened against the DEM, the Robbins catalogue and SIM 3292, plus new polygons from the same data (Robbins craters, steep and smooth terrain, catena troughs, valley strips): 10,213 training and 1,602 held-out labels, accepted by a written rule, not reviewed; the v3 runs wait for the desktop |
 | Landform digitising | **under way, the critical path**: 3,791 of 9,287 candidates reviewed, every closed depression at both type areas (precision 10% at Ius, 13% at Athabasca), the 188 steep Ius channels (54%) and 209 of the 409 rock-floored Athabasca channels (50%); 199 channels and 381 crater rims accepted into the landform layers; the lava margins not started (KB §69.33) |
-| Map layouts | twenty, below |
+| Map layouts | twenty-three, below |
 
 ### Next steps
 
@@ -65,7 +65,7 @@ A support vector machine on the hand-drawn labels, scored on 183 polygons in 15�
 
 ### Does thermal infrared help? (test T1)
 
-Yes, a little. With ArcGIS Pro's SVM over the whole ±60°, leaving the thermal bands out costs 1.36 points at 200 m (95% interval 0.46 to 2.47) and 1.97 at 400 m (1.08 to 3.35), from crater and hill terrain; lava tube scores better without them. A numpy classifier on the same split gives +1.3. The gain at 200 m holds when whole held-out blocks are resampled instead of polygons (0.46 to 2.67, KB §69.44); by balanced accuracy there is none. Leaving out the Viking bands, or both spectral groups, ties the full stack inside wide intervals, but terrain alone makes a poor crater map. The hand-drawn classes are landforms, and terrain decides them.
+Yes, a little. With ArcGIS Pro's SVM over the whole ±60°, leaving the thermal bands out costs 1.36 points at 200 m (95% interval 0.46 to 2.47) and 1.97 at 400 m (1.08 to 3.35), from crater and hill terrain; lava tube scores better without them. A numpy classifier on the same split gives +1.3. The gain at 200 m holds when whole held-out blocks are resampled instead of polygons (0.46 to 2.67, KB §69.44); by balanced accuracy there is none. Leaving out the Viking bands, or both spectral groups, ties the full stack inside wide intervals, but terrain alone makes a poor crater map. The hand-drawn classes are landforms, and terrain decides them. On the seven reviewed classes the numpy classifier gains 1.1 points from thermal (0.6 to 1.7), 0.8 balanced, mostly on Crater; none of the three new classes gains 2 points (T1b, KB §69.50).
 
 | What each band group adds (ArcGIS Pro SVM) | Held-out accuracy by band set (numpy classifier, 400 m) |
 |---|---|
@@ -130,7 +130,7 @@ Across ±60°, 465,354 closed depressions ≥ 1 km; against the Robbins catalogu
 
 ### Channels
 
-`Fill` flooded Ius Chasma 2,077 m deep (21.7% of the type area raised by more than 1 m), and 56% of the stream cells in the first network were an artefact of it; of the 2,610 candidates left, 188 steep, rock-floored ones are worth digitising (layout 06). Across ±60°, 969,822 routed segments (layout 12); 89.8% lie on ground under 2°, so plateau channels are DEM noise. No channel reference exists at ±60° to score them.
+`Fill` flooded Ius Chasma 2,077 m deep (21.7% of the type area raised by more than 1 m), and 56% of the stream cells in the first network were an artefact of it; of the 2,610 candidates left, 188 steep, rock-floored ones are worth digitising (layout 06). Across ±60°, 969,822 routed segments (layout 12); 89.8% lie on ground under 2°, so plateau channels are DEM noise. Scored against the global valley map of Alemanno & Orofino (A1, layout 19), 2.8% of the order ≥ 3 length lies within 5 km of a mapped valley, no better than the same valley map rotated in longitude (median 3.3%); only the largest trunks (10.3%) and the southern highlands (18.0% at 45–60°S) meet the valleys well, and 46% of the order ≥ 3 length lies from the equator to 30°N, where 0.1% does. The routed network is the DEM's drainage, not a valley map (KB §69.50).
 
 [<img src="docs/thumbs/ius_channel_candidates.jpg" width="640" alt="Ius Chasma channel candidates by diurnal-contrast index, and the depth Fill added">](Mars%20Remote%20Sensing%20Project/build/interim_img/ius_channel_candidates.png)
 
@@ -138,7 +138,7 @@ Across ±60°, 465,354 closed depressions ≥ 1 km; against the Robbins catalogu
 
 ### The prospectus' hypotheses (T4–T7)
 
-No band separates the geologic map's lava contacts at Athabasca much better than chance (H1, at 1:20 M); the volcanic channel candidates are shallower than the fluvial ones and thermal response doesn't tell them apart (H2, stage 1); the composite's Iso Cluster classes are the least reproducible input (H3); no channel threshold keeps first-order streams on real slopes, so the tributary order count is a setting, not a measurement (Q5).
+No band separates the geologic map's lava contacts at Athabasca much better than chance (H1, at 1:20 M; day IR's small lead survives removing topography, A9); the volcanic channel candidates are shallower than the fluvial ones and thermal response doesn't tell them apart (H2, stage 1), and the same holds over the whole ±60° network with origin taken from the valley map and the geologic map: order ≥ 2 segments on volcanic units have a median gradient of 2.4 m/km against 13.9 m/km on mapped valleys, and thermal Cohen's d is −0.21 (stage 1b, KB §69.50); the composite's Iso Cluster classes are the least reproducible input (H3); no channel threshold keeps first-order streams on real slopes, so the tributary order count is a setting, not a measurement (Q5).
 
 <details>
 <summary>The four charts</summary>
@@ -159,7 +159,7 @@ Made in the Pro GUI: one follows its 4096-pixel processing tiles and scores belo
 
 ## Layouts
 
-The 21 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets, 08 included, are centred on 0°E; the type-area sheets are drawn on the mosaics' own grid, central meridian 180°.
+The 23 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets, 08 included, are centred on 0°E; the type-area sheets are drawn on the mosaics' own grid, central meridian 180°.
 
 **The data at ±60°**
 
@@ -182,13 +182,14 @@ The 21 map sheets in the ArcGIS Pro project, grouped by what they show. Click on
 | [![Layout 04b: The landform map in seven classes, scored](docs/thumbs/04b_global60_landforms_v2.jpg)](Mars%20Project/Global60/layouts/04b_global60_landforms_v2.png) **04b** · The landform map in seven classes, scored | [![Layout 13b: The seven classes against the USGS geologic map (T8)](docs/thumbs/13b_geomap_check_v2.jpg)](Mars%20Project/Global60/layouts/13b_geomap_check_v2.png) **13b** · The seven classes against the USGS geologic map (T8) |
 | [![Layout 03: Ius Chasma, unsupervised (Iso Cluster, 10 classes)](docs/thumbs/03_classification.jpg)](Mars%20Project/TypeArea/layouts/03_classification.png) **03** · Ius Chasma, unsupervised (Iso Cluster, 10 classes) | [![Layout 05: The first two SVM maps, checked and superseded](docs/thumbs/05_svm_checks.jpg)](Mars%20Project/Global60/layouts/05_svm_checks.png) **05** · The first two SVM maps, checked and superseded |
 | [![Layout 16: A deep-learning detector (X5), scored per held-out polygon](docs/thumbs/16_x5_detections.jpg)](Mars%20Project/Global60/layouts/16_x5_detections.png) **16** · A deep-learning detector (X5), scored per held-out polygon | [![Layout 17: Terrain provinces from a U-Net (X5c), beside the published SVM map](docs/thumbs/17_x5c_unet_provinces.jpg)](Mars%20Project/Global60/layouts/17_x5c_unet_provinces.png) **17** · Terrain provinces from a U-Net (X5c), beside the published SVM map |
-| [![Layout 17b: Seven classes from a U-Net, beside the seven-class SVM](docs/thumbs/17b_unet_v2_provinces.jpg)](Mars%20Project/Global60/layouts/17b_unet_v2_provinces.png) **17b** · Seven classes from a U-Net, beside the seven-class SVM | |
+| [![Layout 17b: Seven classes from a U-Net, beside the seven-class SVM](docs/thumbs/17b_unet_v2_provinces.jpg)](Mars%20Project/Global60/layouts/17b_unet_v2_provinces.png) **17b** · Seven classes from a U-Net, beside the seven-class SVM | [![Layout 20: The v3 seven-class labels](docs/thumbs/20_labels_v3.jpg)](Mars%20Project/Global60/layouts/20_labels_v3.png) **20** · The v3 seven-class labels, before their runs |
 
 **Craters and channels**
 
 | | | |
 |---|---|---|
 | [![Layout 11: Closed depressions ≥ 1 km against the Robbins catalogue](docs/thumbs/11_global60_depressions.jpg)](Mars%20Project/Global60/layouts/11_global60_depressions.png) **11** · Closed depressions ≥ 1 km against the Robbins catalogue | [![Layout 07: Basin and crater candidates ≥ 20 km](docs/thumbs/07_global60_basins.jpg)](Mars%20Project/Global60/layouts/07_global60_basins.png) **07** · Basin and crater candidates ≥ 20 km | [![Layout 12: The channel network routed on the DEM, order ≥ 3](docs/thumbs/12_global60_channels.jpg)](Mars%20Project/Global60/layouts/12_global60_channels.png) **12** · The channel network routed on the DEM, order ≥ 3 |
+| [![Layout 19: The routed channels against the mapped valleys (A1)](docs/thumbs/19_channels_vs_valleys.jpg)](Mars%20Project/Global60/layouts/19_channels_vs_valleys.png) **19** · The routed channels against the mapped valleys (A1) | | |
 
 **Digitising and validation**
 
@@ -206,6 +207,8 @@ Not in this repository: 62 GB, public. [`tools/check_remote.py`](tools/check_rem
 | [`Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif`](https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Mars_MO_THEMIS-IR-Day_mosaic_global_100m_v12.tif) | 22.8 GB | 100 m, central meridian 180° |
 | [`Mars_MO_THEMIS-IR-Night_mosaic_60N60S_100m_v14.tif`](https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Mars_MO_THEMIS-IR-Night_mosaic_60N60S_100m_v14.tif) | 15.2 GB | 100 m, central meridian 180°, ±60° |
 | [`Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif`](https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Mars/HRSC_MOLA_Blend/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif) | 11.4 GB | 0.00337° geographic |
+
+Neither imagery source is calibrated: the THEMIS mosaics are contrast-stretched region by region (KB §28.10), and the Viking mosaic's brightness, MDIM 2.1, was high-pass filtered at ~50 km to remove regional albedo and normalised so equal slopes show equal contrast, with an older colour mosaic blended over it "artistically" (USGS product pages; KB §69.50). The Viking bands therefore carry topographic shading as well as albedo.
 
 The four files use three coordinate frames, so check `Central_Meridian` per file before reading a window, or THEMIS lands half a planet away. Their statistics sidecars (`.aux.xml`), the night mosaic's PDS label and MD5 are in [`drive-root/`](drive-root).
 
@@ -258,12 +261,12 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   189 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   199 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
   NEXT STUFF/              interim report and presentation; Final/: the AASTeX paper and the final deck (drafts)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 38 maps, all Mars, and 21 layouts
+  Mars Project.aprx        the ArcGIS Pro project: 41 maps, all Mars, and 23 layouts
   Global60/, TypeArea/,    metadata sidecars, models (.ecd), raster attribute tables, layouts;
   Athabasca/               Global60/checks/ holds the DEM step chips
   DLModels/                the five deep-learning models' metadata and training plots (the

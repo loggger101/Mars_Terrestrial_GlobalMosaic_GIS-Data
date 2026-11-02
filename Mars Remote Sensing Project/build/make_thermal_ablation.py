@@ -21,6 +21,17 @@ Method
 
 Read-only. Samples cached to %LOCALAPPDATA%\Temp\mars_scratch\ablation_samples.npz (rerun with
 --fresh to re-extract). Writes build\logs\thermal_ablation.json.
+
+T1b, --labels v2 or v3 (labelsets.py; NEXT-STEPS §12.2 A2, KB §69.50): the same on the seven-class split, cache
+and log named _v2 / _v3. Every run now also gives, for each band set, the paired bootstrap interval of the change
+in balanced accuracy and in each class's producer's accuracy. Prediction for T1b, written before its first run
+(2026-11-01), the "without thermal" set against the full stack, on v2:
+  (1) thermal adds under 3 points of overall accuracy (four classes: +1.3);
+  (2) at least one of volcanic edifice, apron or fluvial channel gains >= 2 points of producer's accuracy from
+      thermal, with a 95 % interval above 0: the classes most likely to carry material are where thermal should
+      help, if anywhere;
+  (3) balanced accuracy gains under 2 points.
+Each is reported as held or not held; v3 is reported beside it without a prediction of its own.
 """
 import os, sys, json, time
 import os, sys
@@ -33,12 +44,14 @@ from matplotlib.path import Path
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import grid60 as G
+import labelsets as L
 
 STACK = os.path.join(G.OUTDIR, "global60_svm_stack_200m.tif")
 GDB = on_drive(r"Mars Project\Mars Project.gdb")
-SETS = {"train": "Landform_TrainingSamples_terrain_60_train", "test": "Landform_TrainingSamples_terrain_60_test"}
+SETS = {"train": L.TRAIN, "test": L.TEST}
 BANDS = ["Viking R", "Viking G", "Viking B", "Night IR", "Day IR", "slope", "relief"]
-NAMES = ["Crater", "steep/windy hills", "lava tube", "Normal Ground"]      # Classvalue 1..4
+NAMES = L.NAMES                                                            # Classvalue 1..K
+K = len(NAMES)
 BANDSETS = {
     "all 7 bands":                     [0, 1, 2, 3, 4, 5, 6],
     "without thermal (no night, day)": [0, 1, 2, 5, 6],
@@ -48,8 +61,8 @@ BANDSETS = {
     "thermal only":                    [3, 4],
     "terrain only":                    [5, 6],
 }
-CACHE = os.path.join(os.environ.get("LOCALAPPDATA", HERE), "Temp", "mars_scratch", "ablation_samples.npz")
-OUT = os.path.join(HERE, "logs", "thermal_ablation.json")
+CACHE = os.path.join(os.environ.get("LOCALAPPDATA", HERE), "Temp", "mars_scratch", "ablation_samples%s.npz" % L.TAG)
+OUT = os.path.join(HERE, "logs", "thermal_ablation%s.json" % L.TAG)
 CELL = 400.0
 NBOOT = 1000
 SEED = 60
@@ -103,7 +116,7 @@ def extract():
 def fit(X, y, cols):
     """Per-class mean and covariance, equal priors."""
     models = []
-    for k in range(4):
+    for k in range(K):
         Z = X[y == k][:, cols].astype(np.float64)
         mu = Z.mean(0)
         cov = np.cov(Z, rowvar=False) + np.eye(len(cols)) * 1e-3
@@ -122,7 +135,7 @@ def predict(models, X, cols, chunk=500000):
 
 
 def scores(t, p, w):
-    cm = np.zeros((4, 4))
+    cm = np.zeros((K, K))
     np.add.at(cm, (t, p), w)
     tot = cm.sum()
     po = np.trace(cm) / tot
@@ -148,7 +161,7 @@ def main():
            "n_train_px": int(tr.sum()), "n_test_px": int(te.sum()),
            "n_test_polygons": int(len(np.unique(pid[te]))), "bands": BANDS, "sets": {}}
     # the baseline the record quotes: one class everywhere (the commonest held-out class by area)
-    area = np.bincount(y[te], weights=w[te], minlength=4)
+    area = np.bincount(y[te], weights=w[te], minlength=K)
     res["one_class_everywhere"] = float(area.max() / area.sum())
     # paired bootstrap over whole held-out polygons: each polygon's weighted confusion matrix is
     # computed once per band set, and a resample is a count-weighted sum of them. (Re-indexing the
@@ -162,7 +175,7 @@ def main():
         models = fit(X[tr], y[tr], cols)
         p = predict(models, X[te], cols)
         preds[name] = p
-        cmp_ = np.zeros((P, 4, 4))
+        cmp_ = np.zeros((P, K, K))
         np.add.at(cmp_, (inv, y[te], p), w[te])
         poly_cm[name] = cmp_
         po, k, prod, user, cm = scores(y[te], p, w[te])
@@ -170,26 +183,53 @@ def main():
                              "producers": dict(zip(NAMES, prod.tolist())), "users": dict(zip(NAMES, user.tolist()))}
         print("  %-34s acc %5.1f%%  kappa %.3f" % (name, 100 * po, k))
     # paired differences against the full stack, with 95% bootstrap intervals
-    def acc_kappa(cms):                       # cms: NBOOT x 4 x 4
+    def acc_kappa(cms):                       # cms: NBOOT x K x K
         tot = cms.sum(axis=(1, 2))
         po = np.trace(cms, axis1=1, axis2=2) / tot
         pe = (cms.sum(1) * cms.sum(2)).sum(1) / tot ** 2
         return po, (po - pe) / (1 - pe)
-    a_full, k_full = acc_kappa(np.tensordot(counts, poly_cm["all 7 bands"], axes=1))
+
+    def producers(cms):                       # NBOOT x K; a class absent from a resample is nan
+        rows = cms.sum(2)
+        return np.where(rows > 0, np.diagonal(cms, axis1=1, axis2=2) / np.where(rows > 0, rows, 1), np.nan)
+
+    ci = lambda a: [float(np.nanpercentile(a, 2.5)), float(np.nanpercentile(a, 97.5))]
+    full_cms = np.tensordot(counts, poly_cm["all 7 bands"], axes=1)
+    a_full, k_full = acc_kappa(full_cms)
+    p_full = producers(full_cms)
+    obs_full = scores(y[te], preds["all 7 bands"], w[te])[2]
     for name in BANDSETS:
         if name == "all 7 bands":
             continue
-        a_sub, k_sub = acc_kappa(np.tensordot(counts, poly_cm[name], axes=1))
+        sub_cms = np.tensordot(counts, poly_cm[name], axes=1)
+        a_sub, k_sub = acc_kappa(sub_cms)
         da, dk = a_full - a_sub, k_full - k_sub
+        dp = p_full - producers(sub_cms)
+        obs_sub = scores(y[te], preds[name], w[te])[2]
         res["sets"][name]["gain_from_full_stack"] = {
             "accuracy": float(res["sets"]["all 7 bands"]["accuracy"] - res["sets"][name]["accuracy"]),
             "accuracy_ci95": [float(np.percentile(da, 2.5)), float(np.percentile(da, 97.5))],
             "kappa": float(res["sets"]["all 7 bands"]["kappa"] - res["sets"][name]["kappa"]),
-            "kappa_ci95": [float(np.percentile(dk, 2.5)), float(np.percentile(dk, 97.5))]}
+            "kappa_ci95": [float(np.percentile(dk, 2.5)), float(np.percentile(dk, 97.5))],
+            "balanced_accuracy": float(np.mean(obs_full) - np.mean(obs_sub)),
+            "balanced_accuracy_ci95": ci(np.nanmean(p_full, 1) - np.nanmean(producers(sub_cms), 1)),
+            "producers": {n: dict(gain=float(obs_full[i] - obs_sub[i]), ci95=ci(dp[:, i])) for i, n in enumerate(NAMES)}}
         g = res["sets"][name]["gain_from_full_stack"]
-        print("    full stack minus %-30s acc %+5.1f pt [%+.1f, %+.1f]   kappa %+.3f [%+.3f, %+.3f]"
+        print("    full stack minus %-30s acc %+5.1f pt [%+.1f, %+.1f]   kappa %+.3f [%+.3f, %+.3f]   balanced %+.1f [%+.1f, %+.1f]"
               % (name, 100 * g["accuracy"], 100 * g["accuracy_ci95"][0], 100 * g["accuracy_ci95"][1],
-                 g["kappa"], g["kappa_ci95"][0], g["kappa_ci95"][1]))
+                 g["kappa"], g["kappa_ci95"][0], g["kappa_ci95"][1], 100 * g["balanced_accuracy"],
+                 100 * g["balanced_accuracy_ci95"][0], 100 * g["balanced_accuracy_ci95"][1]))
+        if name.startswith("without thermal"):
+            for n, v in g["producers"].items():
+                print("        %-18s producer's %+5.1f pt [%+.1f, %+.1f]" % (n, 100 * v["gain"], 100 * v["ci95"][0], 100 * v["ci95"][1]))
+    if L.TAG == "_v2":
+        g = res["sets"]["without thermal (no night, day)"]["gain_from_full_stack"]
+        new = [n for n in ("volcanic edifice", "apron", "fluvial channel")
+               if g["producers"][n]["gain"] >= 0.02 and g["producers"][n]["ci95"][0] > 0]
+        res["prediction"] = {"1 overall gain < 3 pt": g["accuracy"] < 0.03,
+                             "2 a new class gains >= 2 pt, interval above 0": bool(new), "2 classes": new,
+                             "3 balanced gain < 2 pt": g["balanced_accuracy"] < 0.02}
+        print("  prediction (T1b):", res["prediction"])
     res["one_class_everywhere_note"] = "area share of the commonest held-out class"
     print("  one class everywhere: %.1f%%" % (100 * res["one_class_everywhere"]))
     json.dump(res, open(OUT, "w"), indent=1)

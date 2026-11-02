@@ -1,0 +1,26 @@
+backup Z:\Mars Project\.backups\Mars Project 20261101-232110.aprx
+graticule halos         1 layers
+01_visible             no change
+02_night_ir            no change
+03_classification      no change
+04_global60_landforms  no change
+04b_global60_landforms_v2 no change
+05_svm_checks          no change
+06_ius_digitising      no change
+07_global60_basins     no change
+08_global60_mosaic     no change
+09_athabasca_digitising no change
+10_global60_locator    no change
+11_global60_depressions no change
+12_global60_channels   no change
+13_geomap_check        no change
+13b_geomap_check_v2    no change
+14_validation          no change
+15_athabasca_type_area no change
+16_x5_detections       no change
+17_x5c_unet_provinces  no change
+17b_unet_v2_provinces  no change
+18_t3_tes_blocks       no change
+19_channels_vs_valleys no change
+20_labels_v3           no change
+saved Z:\Mars Project\Mars Project.aprx

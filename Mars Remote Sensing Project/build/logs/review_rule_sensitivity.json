@@ -1,0 +1,136 @@
+{
+ "source": "label_review_by_rule.json",
+ "rule": {
+  "FLOOR_M": 20.0,
+  "FLANK_KM": 4.8,
+  "VOLC_MAX": 0.5,
+  "APRON_SLOPE": 1.0,
+  "APRON_CRATER": 0.5
+ },
+ "settings": [
+  {
+   "cls": "fluvial channel",
+   "threshold": "floor_m",
+   "value": 10.0,
+   "rows": 276,
+   "changed": 18,
+   "share": 0.0652,
+   "to_accept": 18,
+   "to_reject": 0,
+   "accepted_train": 181,
+   "accepted_test": 29,
+   "test_blocks": [
+    "-3_-1",
+    "-4_-1",
+    "-4_-2",
+    "-9_-1",
+    "0_0",
+    "1_0",
+    "4_2",
+    "5_-2"
+   ],
+   "prediction": "held"
+  },
+  {
+   "cls": "fluvial channel",
+   "threshold": "floor_m",
+   "value": 20.0,
+   "rows": 276,
+   "changed": 0,
+   "share": 0.0,
+   "to_accept": 0,
+   "to_reject": 0,
+   "accepted_train": 163,
+   "accepted_test": 29,
+   "test_blocks": [
+    "-3_-1",
+    "-4_-1",
+    "-4_-2",
+    "-9_-1",
+    "0_0",
+    "1_0",
+    "4_2",
+    "5_-2"
+   ],
+   "prediction": "held"
+  },
+  {
+   "cls": "fluvial channel",
+   "threshold": "floor_m",
+   "value": 30.0,
+   "rows": 276,
+   "changed": 20,
+   "share": 0.0725,
+   "to_accept": 0,
+   "to_reject": 20,
+   "accepted_train": 147,
+   "accepted_test": 25,
+   "test_blocks": [
+    "-3_-1",
+    "-4_-1",
+    "-4_-2",
+    "-9_-1",
+    "0_0",
+    "1_0",
+    "4_2",
+    "5_-2"
+   ],
+   "prediction": "held"
+  },
+  {
+   "cls": "apron",
+   "threshold": "slope",
+   "value": 0.5,
+   "rows": 172,
+   "changed": 9,
+   "share": 0.0523,
+   "to_accept": 9,
+   "to_reject": 0,
+   "accepted_train": 143,
+   "accepted_test": 21,
+   "test_blocks": [
+    "-11_1",
+    "-9_-1",
+    "-9_0"
+   ],
+   "prediction": "held"
+  },
+  {
+   "cls": "apron",
+   "threshold": "slope",
+   "value": 1.0,
+   "rows": 172,
+   "changed": 0,
+   "share": 0.0,
+   "to_accept": 0,
+   "to_reject": 0,
+   "accepted_train": 139,
+   "accepted_test": 16,
+   "test_blocks": [
+    "-11_1",
+    "-9_-1",
+    "-9_0"
+   ],
+   "prediction": "held"
+  },
+  {
+   "cls": "apron",
+   "threshold": "slope",
+   "value": 1.5,
+   "rows": 172,
+   "changed": 14,
+   "share": 0.0814,
+   "to_accept": 0,
+   "to_reject": 14,
+   "accepted_train": 130,
+   "accepted_test": 11,
+   "test_blocks": [
+    "-11_1",
+    "-9_-1",
+    "-9_0"
+   ],
+   "prediction": "held"
+  }
+ ],
+ "prediction_held": true
+}

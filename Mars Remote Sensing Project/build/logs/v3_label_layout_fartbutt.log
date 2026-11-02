@@ -1,0 +1,12 @@
+1. tally
+   v3 train {'Crater': 949, 'steep/windy hills': 631, 'lava tube': 106, 'Normal Ground': 2081, 'volcanic edifice': 1637, 'apron': 1868, 'fluvial channel': 2941}
+   v3 test  {'Crater': 305, 'steep/windy hills': 121, 'lava tube': 51, 'Normal Ground': 319, 'volcanic edifice': 207, 'apron': 306, 'fluvial channel': 293}
+   v2 train {'Crater': 170, 'steep/windy hills': 28, 'lava tube': 20, 'Normal Ground': 99, 'volcanic edifice': 112, 'apron': 139, 'fluvial channel': 166}
+   v2 test  {'Crater': 121, 'steep/windy hills': 16, 'lava tube': 18, 'Normal Ground': 22, 'volcanic edifice': 12, 'apron': 16, 'fluvial channel': 32}
+backup Z:\Mars Project\.backups\Mars Project 20261101-232022.aprx
+2. map: Labels v3 — sheet
+   graticule -> Labels v3 — sheet
+3. layout 20_labels_v3
+    Z:\Mars Project\Global60\layouts\20_labels_v3.png
+   Labels v3 — sheet: ['Graticule 30°', 'Analysis extent ±60°', 'v3 held out (black outline)', 'v3 training', 'Hillshade (±60°, 200 m)']
+saved. maps: 41 layouts: 23

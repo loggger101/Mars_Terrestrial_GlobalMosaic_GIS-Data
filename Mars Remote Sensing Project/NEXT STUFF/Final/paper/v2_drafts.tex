@@ -108,3 +108,61 @@ further tuning needs validation blocks of its own.
 %%                    held-out polygons and replaces the four-class map by a rule set in advance."
 %% replaces = false: "A seven-class revision after an audit of the labels scores \VV{SV2}{acc} on 237 held-out
 %%                    polygons and fails the rule set in advance to replace the four-class map."
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 8. W11 (NEXT-STEPS §12.4), drafted 2026-11-01 (KB §69.50): the values Methods leaves out. Re-read each from its
+%%    source at the freeze. Sources: review_v2_by_rule.py FLOOR_M, FLANK_KM, VOLC_MAX = 20.0, 4.8, 0.5 and
+%%    APRON_SLOPE, APRON_CRATER = 1.0, 0.5; the v2 U-Net's own run_config.json (Mars Project\DLModels\
+%%    global60_unet_x5c_v2_20261028): batch_size 8, validation_percentage 10, freeze UNFREEZE_MODEL, chip_size 256,
+%%    max_epochs 30; make_dl_pixels.py's inference call: "padding 64;batch_size 8".
+%% ---------------------------------------------------------------------------------------------------------
+%% (a) Discussion, Limits: replace the parenthesis "(a strip kept only on a floor at least 20~m below its flanks and
+%%     off volcanic plains, an apron only where neither flat nor in a crater)" with:
+(a strip kept only where its median height lies at least 20~m below that of a 4.8~km flank ring and under half of it
+lies on volcanic plains; an apron only where its median slope is at least $1^{\circ}$ and under half of it lies inside
+crater rims)
+%% (b) Methods, the deep-learning paragraph: after "was trained for 30 epochs on the same chips as pixel labels,":
+in batches of 8 with 10\% of the chips held back for validation and the backbone unfrozen,
+%%     and after "in 243 tiles of 4,096 pixels with a 256-pixel margin," nothing changes; after "the U-Net was run a
+%%     second time", the inference padding: each 256-pixel tile was predicted with 64 pixels of padding.
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 9. W3 (NEXT-STEPS §12.4), drafted 2026-11-01 (KB §69.40, §69.50): the Discussion's comparison with prior work, a
+%%    new subsection between "The hypotheses" and "Limits". Every fact about the cited papers is from §69.40's
+%%    table (read from each abstract); every number of ours is in the paper already or in §69.50. Check the crater
+%%    recall against Conclusion 3 at the freeze.
+%% ---------------------------------------------------------------------------------------------------------
+\subsection{Against earlier automated mapping}
+
+Each product here falls short of the method built for its own landform, and the comparison shows where. A
+convolutional network on lunar elevation models recovers 92\% of a human-made test set's craters
+\citep{Silburt2019}; fill depth on the Mars model recovers 52.4\% of the catalogued craters $\ge5$~km and does not see
+degraded or breached rims, which a learned detector was not tried on here. The global valley map of \citet{Luo2009}
+was found by an algorithm on topography and then edited by eye; unedited, the routed network here meets the valley
+lines of \citet{Alemanno2018} no more often than the same map rotated in longitude, so the editing is the method, and
+the candidate review stands in for it. DoMars16k \citep{Wilhelm2020} trains a network on 16,150 Context Camera samples
+of fifteen landforms; the classes here rest on 971 polygons at 200~m, which is why every score sits beside a
+geography-only baseline and why the U-Net's lead reads as a province map. Unsupervised classes from topographic
+attributes \citep{Bue2006} need no labels but name nothing; the supervised maps here name their classes and are scored
+on blocks they never saw. What the stack adds is the one grid: the three families are mapped from co-registered
+visible, thermal and elevation data, and the thermal bands' share is measured rather than assumed, small (1.4 to 2.0
+points on four classes) and, by balanced accuracy, absent.
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 10. A1 and A7 (KB §69.50) into the text, at the freeze.
+%% ---------------------------------------------------------------------------------------------------------
+%% (a) Results, channels: replace "The network is not scored here; the global valley maps of \citet{Hynek2010} and
+%%     \citet{Alemanno2018} are the natural references, and the second is held for that test." with:
+Of the two global valley maps, \citet{Hynek2010} and \citet{Alemanno2018}, the second is the reference: against its
+lines, 2.8\% of the order-$\ge3$ length lies within 5~km of a mapped
+valley and 2.0\% of the valley length within 5~km of such a segment, no better than the valley map rotated in longitude
+(precision 1.2 to 4.7\%, median 3.3\%). Precision is 10.3\% for the largest trunks (order $\ge5$) and 18.0\% from
+$45^{\circ}$ to $60^{\circ}$S, and 0.1\% from the equator to $30^{\circ}$N, where 46\% of the order-$\ge3$ length lies
+and few valleys are mapped. The routed network is the elevation model's drainage, not a valley map.
+%% (b) Discussion, "The hypotheses": after "H1 and H2 were tested on stand-ins (map contacts and windows) and remain
+%%     open for features digitised on the stack.":
+A second stand-in for H2, origin taken from the valley map and the geologic map over the whole network, gives the same
+answer: the 155,236 order-$\ge2$ segments on volcanic units are shallower than the 10,799 on mapped valleys (median 2.4
+against 13.9~m~km$^{-1}$), and the two differ little on the thermal index (Cohen's $d=-0.21$).
+%% (c) Table tab:hyp, the H2 row:
+%% H2 & Fluvial and volcanic channels separate & not supported at stages 1 and 1b & volcanic shallower; thermal $|d|\le0.31$ \

@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-01 (§69.48).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-01 (§69.50).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -25,19 +25,19 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 
 | topic | sections |
 |---|---|
-| sources, the three frames, the ±60° grid | §3, §4, §15, §16, §28.1–§28.2 |
+| sources, the three frames, the ±60° grid | §3, §4, §15, §16, §28.1–§28.2; how the Viking and THEMIS mosaics were processed, §69.50 |
 | the ArcGIS project and the gdb | §5, §6 |
 | the map layouts: builders, polish, defects found by reading | §5, §22, §33, §61, §63, §64, §65, §67 |
 | how scripted work is done, and its traps | §2, §9, §12, §13 |
-| what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1 (by block size, §69.29; mapped, §69.30), §56, §62 |
+| what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1 (by block size, §69.29; mapped, §69.30), §56 (on seven classes, §69.50), §62 |
 | classification: type area | §19, §23, §27 |
-| classification: ±60°, the published map | §31, §32.2, §55.3, §57; block intervals §69.44; SVM against U-Net §69.46 |
+| classification: ±60°, the published map | §31, §32.2, §55.3, §57; block intervals §69.44; SVM against U-Net §69.46; under mode filters to 51 km §69.50 |
 | the class scheme and the labels' audit | §29.2, §43.3, §68, §69.2 |
 | the final builds: the AASTeX paper and the deck | §69; what would strengthen them, §69.17 (`NEXT-STEPS.md` §12); compiled in CI, §69.42 |
 | craters and closed depressions | §26, §28.11, §42.3, §53.4, §53.6; size-frequency §69.35; recall by degradation state §69.45 |
-| channels | §25, §47.4, §53.4, §53.6, §54.4 |
+| channels | §25, §47.4, §53.4, §53.6, §54.4; scored against the valley map, §69.50 |
 | lava flows and the geologic map | §41, §43.2, §43.3, §44, §47.2 |
-| tests T1–T8 and the hypotheses | §40.1, §42.2–§42.4, §43, §47, §51.1, §56 (status: `NEXT-STEPS.md` §4) |
+| tests T1–T8 and the hypotheses | §40.1, §42.2–§42.4, §43, §47, §51.1, §56; T1b, A9 and T4 stage 1b §69.50 (status: `NEXT-STEPS.md` §4) |
 | the GUI work of 24 Sep–1 Oct and its checks | §29, §30, §53.2 |
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
@@ -187,7 +187,8 @@ it (§54).
 | THEMIS Night IR | 1 | 255 | 124.60 | 32.79 | — | — |
 
 THEMIS DN 0 is NoData, so valid data run 1–255. **Viking MDIM**, every one of its 4,246,732,800 pixels valid
-(no fill at all, minimum 18, although NoData is declared 0):
+(no fill at all, minimum 18, although NoData is declared 0). Not calibrated albedo: MDIM 2.1 is high-pass filtered
+at ~50 km and slope-normalised, the colour an older mosaic blended over it "artistically" (USGS, §69.50):
 
 | Band | min | max | mean | stddev |
 |---|---|---|---|---|
@@ -232,8 +233,8 @@ stack script's 100 m grid snapped to the day mosaic (§18.1).
 
 ## 5. Project structure
 
-`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-10-31 (§69.34) **[V]**: **38 maps, all in
-Mars coordinate systems, and 21 layouts**, and 39 maps since the map "Labels v3" (2026-11-01, §69.49); 219 non-group layers, 0 broken data sources, none reading through a junction
+`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-11-01 after layouts 19 and 20 (§69.50) **[V]**: **41 maps, all in
+Mars coordinate systems, and 23 layouts** (the map "Labels v3", §69.49, and layouts 19 and 20 with their maps, §69.50, the newest); 236 non-group layers, 0 broken data sources, none reading through a junction
 (145 non-group layers on 2026-10-18, §58.1; since then layout 15's four maps, X5's and X5c's maps, §66.3, §66.9,
 "Labels v2: proposals", §69.2, the three seven-class maps, §69.26, and T3a / T3b, §69.30); 7 hosted services (Esri
 OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
@@ -257,6 +258,8 @@ OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
 | `17_x5c_unet_provinces` | X5c, the U-Net terrain-province map, beside the published SVM map | `make_unet_map.py` (§66.9) |
 | `04b_global60_landforms_v2`, `13b_geomap_check_v2`, `17b_unet_v2_provinces` | the seven-class SVM map, its T8 check and the seven-class U-Net, which lead (D28) | `make_v2_sheets.py` (§69.26) |
 | `18_t3_tes_blocks` | T3 in 5° blocks: where the THEMIS pair tracks TES thermal inertia | `make_tes_block_layout.py` (§69.30) |
+| `19_channels_vs_valleys` | A1: the order ≥ 3 routed segments against the mapped valleys, ±60° and the southern highlands | `make_channel_valley_layout.py` (§69.50) |
+| `20_labels_v3` | the v3 labels, training and held out, ±60° and Tharsis, per class beside v2 | `make_v3_label_layout.py` (§69.50) |
 
 The ±60° sheets (04, 04b, 05, 07, 08, 10–13, 13b, 16, 17, 17b, 18) draw in geographic `GCS_Mars_2000`, so 0°E is at the centre (08 since §64);
 the type-area sheets (01–03, 06, 09, 14, 15) draw in `Mars_Equidistant_Cylindrical_CM180`, and their footers name it. **[V]**
@@ -278,7 +281,7 @@ the builders' own PNGs are written before `polish_layouts.py` runs, so copy the 
 proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal labels the same day (§69.4), the v2 labels 2026-10-27 (§69.8), the v3 labels 2026-11-01 (§69.49). All of
 §6 is **[V]**.
 
-### Feature classes — 41 present
+### Feature classes — 43 present
 
 | Dataset | Geometry | Rows | Made by |
 |---|---|---|---|
@@ -295,6 +298,7 @@ proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal lab
 | `Landform_BasinCandidates_auto_60` | Point | 5,144 | ±60° basins ≥ 20 km, coarse pass (§28.11) |
 | `Landform_CraterCandidates_auto_60` | Point | 465,354 | ±60° closed depressions ≥ 1 km (§54.4) |
 | `Landform_ChannelCandidates_auto_60` | Polyline | 969,822 | ±60° routed channels (§54.4) |
+| `Landform_ChannelCandidates_auto_60_o3` | Polyline | 44,704 | its order ≥ 3 segments, with `ValleyKm5` and `ValleyShare5`, A1's measure per segment (§69.50) |
 | `Landform_CraterCandidates_auto_60_smoke`, `Landform_ChannelCandidates_auto_60_smoke` | Point, Polyline | 8,098, 5,305 | X2's smoke run (§53.3); deleting them is open decision D14 |
 | `Landform_TrainingSamples_terrain` | Polygon | 512 | **the hand-drawn labels** (§29.2); never overwrite |
 | `Landform_TrainingSamples_terrain_60_train`, `_60_test` | Polygon | 329, 183 | the labels clipped to ±60° and split by 15° blocks (§31.3) |
@@ -310,6 +314,7 @@ proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal lab
 | `Check_Tiles_4096px_60` | Polygon | 954 | the §30.2 tile grid (§31.1) |
 | `Ref_SIM3292_GeologicUnits` | Polygon | 1,311 | USGS geologic map units (§41, §47.1) |
 | `Ref_Craters_Robbins2020` | Point | 385,049 | the Robbins crater database (§41) |
+| `Ref_Valleys_Alemanno2018` | Polyline | 3,772 | Alemanno & Orofino's valley lines, copied from `Reference\Alemanno2017_valleys` (§68.5, §69.50) |
 | `Graticule_30deg`, `Graticule_2deg` | Polyline | 17, 25 | graticules as data (§44) |
 | `Type_Areas` | Polygon | 2 | the two windows of `areas.py` (§44) |
 
@@ -5759,3 +5764,199 @@ author's four classes and codes stay as they are (§68.1).
   and the v2 held-out polygons and each v2 map on the v3 ones; then the SVM chain and T8. By §69.25's times ~21 h for
   the U-Net after its export and ~22 h for the SVM, longer if the export gives more chips than v2's 17,444 (training
   scales with chips: 30 epochs at ~12 min for v2). Nothing is scored yet; whether v3 helps is the run's to show.
+
+### 69.50 The laptop's share of §12.2: A13, T1b (A2), A9, A3 (c), A1, A7; layouts 19 and 20; W5's sources, P8 — 2026-11-01, laptop **[V]**
+
+With the drive on the laptop (Z:) while `run_v3.ps1` waits for the desktop, the analyses of §12.2 that need no GPU
+ran here, one ArcGIS job at a time (free memory ~3 GB beside T1b). Each prediction was written into its script before
+its first run and is reported held or not held.
+
+- **A13, the review rule's sensitivity** (`build\make_review_rule_sensitivity.py`, plain Python, `logs\review_rule_
+  sensitivity.json`): §69.8's rule re-applied to the measures `review_v2_by_rule.py` logged for every row
+  (`logs\label_review_by_rule.json`), nothing re-measured; the logged verdicts are reproduced first.
+
+  | threshold | rows | verdicts changed | accepted training / held out (blocks) |
+  |---|---|---|---|
+  | fluvial floor 10 m (rule 20 m) | 276 | 18 (6.5 %), all to accept | 181 / 29 (8) |
+  | fluvial floor 20 m, the rule | 276 | — | 163 / 29 (8) |
+  | fluvial floor 30 m | 276 | 20 (7.2 %), all to reject | 147 / 25 (8) |
+  | apron slope 0.5° (rule 1°) | 172 | 9 (5.2 %), all to accept | 143 / 21 (3) |
+  | apron slope 1°, the rule | 172 | — | 139 / 16 (3) |
+  | apron slope 1.5° | 172 | 14 (8.1 %), all to reject | 130 / 11 (3) |
+
+  **Prediction held** (under 20 % change at each alternative; every class keeps ≥ 10 held-out polygons in ≥ 2
+  blocks). The v2 labels depend on the two thresholds for under a tenth of the rule-screened rows.
+- **T1b (A2), T1 on the v2 labels** (`build\make_thermal_ablation.py --labels v2`, `logs\thermal_ablation_v2.json`):
+  §40.1's Gaussian ablation on the seven-class split, 400 m, area-weighted, polygon bootstrap 1,000. 25,702,172
+  training pixels in 730 polygons, 4,690,648 held out in 237; extraction 6,538 s (the 7,000 s limit was lifted by
+  stopping its `timeout` wrapper once the sample cache was written). The script now also gives balanced accuracy
+  and each class's producer's accuracy with paired intervals, for every label set.
+
+  | bands | accuracy | κ |
+  |---|---|---|
+  | all 7 | 38.5 % | 0.261 |
+  | without thermal | 37.4 % | 0.249 |
+  | without visible | 35.6 % | 0.234 |
+  | terrain only | 34.2 % | 0.225 |
+  | visible only | 33.3 % | 0.189 |
+  | thermal only | 25.2 % | 0.098 |
+  | one class everywhere | 29.5 % | |
+
+  Thermal's gain: **+1.1 pt [+0.6, +1.7]** overall, κ +0.012 [+0.007, +0.017], **balanced +0.8 pt [+0.1, +1.3]**
+  (four classes: +1.36 pt overall, none by balanced accuracy, §69.18). By class (producer's): Crater +4.4 [+3.5,
+  +5.3], fluvial channel +1.5 [+0.1, +3.0], volcanic edifice +1.2 [−0.3, +1.9], lava tube +1.7 [−1.9, +2.8], apron
+  −0.2 [−0.4, +0.0], Normal Ground 0.0, hills −3.1 [−5.3, −0.3]. **Prediction:** (1) overall gain < 3 pt **held**;
+  (2) a new class (edifice, apron, fluvial) gains ≥ 2 pt with its interval above 0 **not held** (fluvial's
+  interval is above 0 but its gain is 1.5 pt); (3) balanced gain < 2 pt **held**. On seven classes thermal's gain is
+  as small as on four, and now resolved by balanced accuracy too; it does not concentrate in the classes most
+  likely to carry material. The Gaussian classifier is T1's yardstick, not the published SVM (42.5 %).
+- **A9, day IR at the contacts against topography** (`build\make_flow_margin_test.py --topo`,
+  `logs\t5_flow_margins_topo.json`): day IR and Viking red each replaced by their residual from one least-squares
+  fit over the Athabasca window on the DEM's two gradient components, slope and the type area's hillshade (225°,
+  45°), at 100 m; profiled as two further bands with T5 otherwise unchanged. **Check:** the six original bands
+  reproduce `t5_flow_margins.json` exactly. Topography explains **14.4 %** of day IR's variance and **7.6 %** of
+  Viking red's. lAv contacts (905 profiles, 10 contacts):
+
+  | | separates | lead over Viking red |
+  |---|---|---|
+  | day IR (T5) | 21.0 % [3.3, 38.4] | +8.7 pt [−1.7, +18.1] |
+  | day IR, topography removed | 21.5 % [4.1, 38.4] | **+9.3 pt [−0.7, +19.0]**; day-only 143, Viking-only 59 |
+  | the same against Viking red with topography removed | | +8.2 pt [−2.8, +18.4] |
+
+  All 13 contacts: +5.9 pt [−2.0, +15.5]. **Prediction:** P1 the lead shrinks **not held** (it grows by 0.6 pt);
+  P2 its interval still includes 0 **held**; P3 topography explains ≥ 5 % of day IR, more than of Viking red,
+  **held**. H1's hint is not illumination: it survives the topographic residual. It is still a hint, not a
+  result (10 contacts at 1:20 M); the digitised margins (§6) remain the test.
+- **The gdb export** (`github_export_gdb.py`, descriptions added for the four v3 classes): 37 classes into the
+  repository's `exports\mars_project_vectors.gdb`, 39 into the release GeoPackage (`%LOCALAPPDATA%\Temp\
+  mars_github_dist`, not uploaded); rows checked against the source: v3 11,815, `_v3_60_train` 10,213,
+  `_v3_60_test` 1,602, `_v3_proposals` 14,104.
+- **A3 (c), the SVM maps under mode filters up to 51 km** (`build\make_mode_curve.py`, `logs\mode_curve.json`):
+  each raw 200 m SVM map read at its 400 m overview and majority-filtered there (`make_global60_landforms_clean.py`'s
+  rules: nodata never votes, a tie keeps the class, longitude wraps) at 1, 3, 5, 13, 37 and 127 px, then scored on its
+  held-out polygons by `svmcheck.training_score`. Filtering at 400 m rather than at 200 m is the laptop's
+  simplification (a 400 m array fits in memory); the plan's 25 / 75 / 255 px at 200 m are 13 / 37 / 127 here.
+  **Checks:** the raw four-class map reproduces its log (69.9 %, κ 0.532), and the cached 400 m array of the
+  published seven-class map its log's confusion exactly. The seven-class check first compared an area-sum confusion
+  with the log's normalised one and stopped the run; both are now normalised, and the check was shown to fail on a
+  copy with two classes swapped (largest difference 0.189). The next run stopped at the JSON write (numpy booleans);
+  the predictions are now cast, and a third run (1,128 s) wrote the file, its numbers identical to the second's.
+
+  | window | four classes: accuracy | κ | balanced | seven classes: accuracy | κ | balanced |
+  |---|---|---|---|---|---|---|
+  | raw (0.4 km) | 69.9 % | 0.532 | 62.9 % | 42.4 % | 0.310 | 41.5 % |
+  | 3 px (1.2 km) | 72.2 % | 0.561 | 65.0 % | 42.4 % | 0.310 | 41.9 % |
+  | 5 px (2.0 km) | 73.5 % | 0.579 | 66.4 % | 42.5 % | 0.310 | 41.8 % |
+  | 13 px (5.2 km) | 76.4 % | 0.616 | **68.1 %** | 43.2 % | 0.317 | 42.1 % |
+  | 37 px (14.8 km) | 80.5 % | 0.672 | 65.7 % | **43.9 %** | 0.323 | **42.2 %** |
+  | 127 px (50.8 km) | **82.1 %** | 0.683 | 54.8 % | 39.9 % | 0.279 | 38.7 % |
+  | beside it: nearest polygon (§69.35, §69.44) | 83.2 % | | | 45.6 % | | |
+  | beside it: the U-Net | 98.9 % | 0.980 | | 69.0 % | 0.606 | |
+
+  **Prediction:** P1 both curves rise from raw to 13 px **held** (four classes by 6.5 pt, seven by 0.8 pt); P2 the
+  four-class SVM at 51 km stays more than 10 points below its U-Net **held** (82.1 % against 98.9 %); P3 the same for
+  seven classes **held** (39.9 % against 69.0 %). A plain majority filter reproduces 12.2 of the four-class U-Net's
+  29.0 points over the raw map and brings the SVM to within 1.1 points of the nearest-polygon baseline, never above
+  it; its balanced accuracy peaks at 5 km and falls by 13 points at 51 km, where the smaller classes are voted
+  away. The seven-class curve is nearly flat (at most +1.5 pt, at 15 km) and falls at 51 km: smoothing reproduces
+  none of the seven-class U-Net's 26.5-point lead, which therefore is not province-scale context alone. The
+  four-class U-Net's 98.9 % is part context (about two-fifths of its lead) and part what the network learns.
+- **A1, the routed channels against the mapped valleys** (`build\make_channel_valley_check.py`,
+  `logs\channel_valley_check.json`, 142 s): the 969,822 routed segments (5,400,048 km measured on the sphere between vertices, pieces over
+  5 km dropped as part breaks; 419,801 km of order ≥ 3; §54.4's 6.17 million km is measured otherwise, not
+  reconciled here **[?]**) against Alemanno & Orofino's valley lines (706,086 km inside ±60°, densified to 2,226,454 points at ≤ 0.5 km),
+  distances on the sphere; chance baseline the valley map rotated in longitude by 30°, 60°, … 330°. The first run
+  stopped at the rotations (a subset distance array against full-length masks); fixed and rerun. **Registration
+  checked** because the 180° rotation scored above the observed value: of six named valleys, four (Warrego,
+  Parana, Evros, Samara) have 4–33 times more valley points within 150 km of their IAU centre than of the point
+  180° away; Nirgal and Ma'adim, single valleys, have fewer, their antipodal points falling in valley-dense
+  highland. Both layers are in the frames assumed (channels CM 180°, x = R·(lon − 180°); valleys CM 0°, read in
+  degrees by the cursor and matched to their metres).
+
+  | within | precision, order ≥ 3 | precision, all orders | recall by order ≥ 3 | recall by all orders |
+  |---|---|---|---|---|
+  | 2 km | 1.9 % | 3.3 % | 1.1 % | 35.7 % |
+  | 5 km | **2.8 %** (rotations: median 3.3 %, 1.2–4.7 %) | 4.9 % | **2.0 %** (median 2.2 %, max 3.4 %) | 65.8 % |
+  | 10 km | 4.0 % | 7.1 % | 3.5 % | 87.4 % |
+
+  Precision at 5 km by Strahler order: 6.4 % (1), 3.7 % (2), 2.8 % (3), 2.5 % (4), 10.3 % (≥ 5). By latitude (order
+  ≥ 3, 5 km): 18.0 % at 45–60° S, 5.8 % at 30–45° S, 1.0 % and 0.6 % from 30° S to the equator, 0.1 % from 0 to
+  30° N (192,489 km, 46 % of the order ≥ 3 length), 4.5 % and 3.5 % at 30–60° N. By SIM 3292 unit group: 68 % of
+  the length (285,929 km) lies on the volcanic group v (3.2 %); the highland group h, 26,905 km, 6.9 %. The
+  rotation null is not flat: it rises from 1.2–1.3 % at ±30° to 4.3–4.7 % at 120–240°, because both layers are
+  lumpy in longitude; all-order recall has no baseline and is not read alone.
+  **Prediction:** P1 order ≥ 3 precision at 5 km ≥ 1.5 × the rotations' median and above every rotation **not
+  held** (2.8 % against 5.0 % and 4.7 %); P2 recall at 5 km ≥ 50 % **not held** (2.0 %); P3 precision rises with
+  order **not held** (U-shaped, lowest at orders 3–4). The routed network as a whole finds the mapped valleys no
+  better than a rotated valley map: most of its higher-order length is flow routed across the low-latitude
+  volcanic plains, where no valleys are mapped, and only the largest trunks (order ≥ 5) and the southern highlands
+  reach 10–18 %. The routed segments are the DEM's drainage paths, not a channel map; §14 row 5 now has its score.
+
+- **A7, T4 stage 1b: H2 with reference maps for origin** (`build\make_t4_channel_origin.py`,
+  `logs\t4_channel_origin.json`, 588 s): of the 948,393 routed segments ≥ 1 km with both measures, 36,639 whose
+  middle vertex lies within 2 km of an Alemanno & Orofino valley are taken as fluvial, and 279,009 on SIM 3292's
+  volcanic groups (v 260,571; ve 11,871; vf 6,567) and more than 25 km from any valley as volcanic. Gradient on the
+  200 m DEM; thermal as a z-score of the contrast index against its own 15° block; intervals from 2,000 resamples of
+  50 km cells; AUC 5-fold cross-validated. A 50-pixel spot check of the strip reads passed.
+
+  | set (fluvial / volcanic) | median gradient, fluvial / volcanic | difference, 95 % interval | d log gradient | d thermal | AUC: gradient / thermal / both |
+  |---|---|---|---|---|---|
+  | order ≥ 2 (10,799 / 155,236) | 13.85 / 2.41 m/km | −11.44 [−11.83, −11.03] m/km | −1.34 | −0.21 [−0.24, −0.18] | 0.86 / 0.57 / 0.86 |
+  | all orders (36,639 / 279,009) | 16.20 / 3.18 m/km | −13.03 [−13.37, −12.73] m/km | −1.30 | −0.31 [−0.33, −0.29] | 0.85 / 0.59 / 0.86 |
+
+  Differences are volcanic minus fluvial. **H2 NOT SUPPORTED at stage 1b**, as at stage 1 (§51.1): the two
+  origins separate, but in the direction opposite to H2, the segments on mapped valleys 5.7 times steeper by median
+  than those on the volcanic units on order ≥ 2 (5.1 on all orders); thermal differs with an interval clear of 0 but
+  |d| ≤ 0.31, and adds at most 0.01 to the AUC (0.86 with gradient alone on order ≥ 2). **Predictions:** P1 the gradient direction fails **held**; P2 |d thermal| < 0.5
+  **held**; P3 NOT SUPPORTED **held**. As at stage 1, the setting decides the gradient: the valleys cut the
+  highlands' slopes and the volcanic units are mostly plains (v alone is 93 % of the volcanic set), so a routed
+  segment's gradient reports where it lies more than what cut it. Still a stand-in for origin; stage 2 on reviewed
+  channels with `Origin` stays the authority (NEXT-STEPS §3 step 3).
+
+- **Drafted for the freeze, not inserted** (`NEXT STUFF\Final\paper\v2_drafts.tex`, blocks 8–10): **W11**, the
+  review rule's thresholds as `review_v2_by_rule.py` holds them (a fluvial strip at least 20 m below a 4.8 km flank
+  ring, ShareVolc < 0.5; an apron at SlopeMed ≥ 1°, CraterCover < 0.5) and the v2 U-Net's training as its own
+  `run_config.json` records it (batch 8, 10 % of chips for validation, backbone unfrozen, 256-pixel chips, 30
+  epochs), with the inference padding of 64 from `make_dl_pixels.py`; **W3**, a Discussion subsection "Against
+  earlier automated mapping" that compares each product with the method built for its landform, using only §69.40's
+  facts about the cited papers; **A1 and A7** into the channel paragraph (replacing "The network is not scored
+  here"), the hypotheses text and the H2 row of Table `tab:hyp`.
+
+- **W5's two sources checked** (NEXT-STEPS §12.4; the USGS product pages and Edwards et al. 2011's abstract, read
+  2026-11-01). **Viking:** MDIM 2.1's images were "high-pass-filtered at a scale of ~50 km to remove regional albedo
+  variations", because albedo and topography cannot both be corrected for the varying incidence angle, and then
+  normalised so that equal slopes appear with equal contrast everywhere (the MDIM 2.1 grayscale page). The colour
+  product the stack uses (`Mars_Viking_MDIM21_ClrMosaic_global_232m.tif`, §3) is the older Viking colorized mosaic
+  warped by NASA Ames and blended over MDIM 2.1, its stated purpose "an artistically colorized version" (the 232 m
+  colorized page). The colour product's red band nonetheless tracks TES inertia across the planet (r −0.31 and −0.36,
+  §43.1) far more than within 15° blocks (−0.06, −0.10), so a regional signal survives in it; since MDIM 2.1's
+  brightness holds none above ~50 km, it most likely comes from the blended colour layer **[?]** (the blend is not
+  documented). So: the Viking bands are shading plus albedo below ~50 km, with an uncalibrated regional colour on top.
+  §42.4 (Athabasca, 3 km cells in one window) and §43.1 stand as measured; what changes is the word. Call the regional
+  signal "Viking colour" or "the Viking mosaic's brightness", not calibrated albedo, and say in Data or Limits that the
+  Viking bands carry topographic shading, beside the stack's "no elevation band" (§31.2).
+  **THEMIS:** the night IR page says only that values are "a visual representation" of night temperatures,
+  "stretched and blended"; Edwards et al.'s abstract confirms running contrast stretches (as §28.10). Local time,
+  season and dust are not in either; they need the paper's full text **[?]**.
+
+- **Layout 19, A1 in the project** (`build\make_channel_valley_layout.py`; map "Mars ±60° — channels against the
+  valley map"): the valley map was in no map before. Two new feature classes: `Ref_Valleys_Alemanno2018` (3,772
+  lines, the shapefile copied after its SHA-256 check) and `Landform_ChannelCandidates_auto_60_o3` (the 44,704
+  order ≥ 3 segments, with `ValleyKm5` and `ValleyShare5`, A1's measure per segment). **Check:** the length-weighted
+  share within 5 km reproduces A1's precision exactly (0.027986, 419,801 km), or nothing is drawn; 1,329 segments
+  lie mostly within 5 km. The sheet: ±60° and the southern highlands (90°W–0°, 60–30°S), the latitude and order
+  tables read from `logs\channel_valley_check.json`; rehearsed on a copy, then built, polished and read.
+- **Layout 20, the v3 labels** (`build\make_v3_label_layout.py`; its own map "Labels v3 — sheet", so
+  `propose_v3_labels.py`'s map is left to that script): the training and held-out polygons in the class colours at
+  ±60° and over Tharsis (135–75°W, 10°S–10°N), and per class v3 beside v2, counted from the gdb at run time
+  (10,213 / 1,602 and 734 / 237, as §69.49 and §69.8). Rehearsed, then built and read; the held-out outline was
+  thinned to 0.25 pt after the rehearsal, where 0.7 pt merged the small pieces into black at ±60°. The project now
+  holds 41 maps, 23 layouts, 236 non-group layers, none broken or read through a junction.
+- **P8** (NEXT-STEPS §13): the new `build\github_environment.py` writes the repository's `docs/environment.md`, one
+  section per machine, every value read from the machine (OS, CPU, memory, GPU and driver; Pro 3.7 build 1901 and
+  its extensions; the ArcGIS Python 3.13.13 and system Python 3.14.6 with their packages; the Deep Learning
+  Libraries; MiKTeX and `aastex701.cls`), and `docs/requirements-system.txt`. A rerun replaces only its own
+  machine's section (tested on a scratch copy with a planted desktop section). The laptop's section is written; the
+  desktop's waits for one run there.
+- **Paths.** `make_flow_margin_test.py` reads the Athabasca folder by its real path (`on_drive`), not through the
+  drive-root junction (§58), so T5 and A9 run on either machine without retargeting.

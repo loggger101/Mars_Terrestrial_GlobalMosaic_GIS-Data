@@ -23,7 +23,8 @@ Only the state, what waits on whom and the next step; the history behind each li
 
 **Where it stands.**
 - **The ±60° products** (KB §53–§57, §66): 465,354 closed depressions ≥ 1 km and 969,822 routed channel segments
-  (layouts 11, 12); the four-class SVM map at 200 m with an 11 × 11 majority filter, 73.8 %, κ 0.58 held out (§57,
+  (layouts 11, 12), which find the mapped valleys no better than a rotated valley map (A1, §69.50): the DEM's
+  drainage paths, not a channel map; the four-class SVM map at 200 m with an 11 × 11 majority filter, 73.8 %, κ 0.58 held out (§57,
   layout 04); the two-pass U-Net province map, 98.9 %, κ 0.980 held out (§66.8, layout 17). **A geography-only
   baseline**, each pixel the nearest training polygon's class, scores 83.2 % on the same polygons, above the SVM
   map, which leads it only by balanced accuracy (§69.35); in the paper since 11-01 (D30, §69.48). Crater size-frequency curves: §69.35.
@@ -48,7 +49,7 @@ Only the state, what waits on whom and the next step; the history behind each li
   areas, the 188 steep Ius channels, 209 of the 409 rock-floored Athabasca channels. The digitising classes hold 199
   channels, 381 crater rims and 0 lava margins, none drawn by hand; `Origin` is set on no channel, so H2's stage 2
   waits.
-- **The project and the deliverables:** 38 maps and 21 layouts, no broken source (§5). The interim at its 26 October
+- **The project and the deliverables:** 41 maps and 23 layouts, no broken source (§5). The interim at its 26 October
   cut (D20): 32 slides and a 21-page report, rebuilt 10-31 for layout 11's corrected citation (§69.34); speaker
   notes on every slide since 11-01, the slides unchanged (§69.41). The final
   paper (18 pages since 11-01, compiled by the repository's CI on every push that touches it, §69.42) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
@@ -156,8 +157,8 @@ v2 is a reported test. The author makes time for both reviews: no cap.
    channels exist. **Stage 2 is not written yet:** when the counts are reached, extend the script to compare
    by `Origin` (sample the type-area index along the reviewed channels), prediction and rule written first.
 4. When lava margins exist at Athabasca: give `make_flow_margin_test.py` a `--margins` source
-   (`Landform_LavaFlowMargins` in place of the SIM 3292 contacts) and rerun T5 (H1). The script needs the
-   `<drive>\Athabasca` junction (retarget it first on the laptop, KB §58.2).
+   (`Landform_LavaFlowMargins` in place of the SIM 3292 contacts) and rerun T5 (H1). The script reads the
+   Athabasca folder by its real path, not the drive-root junction, so it runs on either machine (KB §69.50).
 5. `github_export_gdb.py`, then the end-of-session sequence (`HANDOFF-DESKTOP.md` §4).
 
 ---
@@ -172,12 +173,12 @@ Each writes its prediction and verdict rule into the script before it runs.
 | T2 | is Athabasca younger than Ius's plateau? | **done** (§42.2) |
 | T3 | which layer tracks calibrated thermal inertia? | **done**: Viking does, the THEMIS pair barely (§42.4, §43.1) |
 | T4 | H2: do volcanic and fluvial channels separate on gradient and thermal response? | stage 1 done, not supported (§51.1); **stage 2 open**, on reviewed channels (§3 step 3) |
-| T5 | H1: does IR show flow margins Viking misses? | inconclusive at 1:20 M (§47.2); **open**, on digitised margins (§3 step 4) |
+| T5 | H1: does IR show flow margins Viking misses? | inconclusive at 1:20 M (§47.2); the lean survives removing topography (A9, §69.50); **open**, on digitised margins (§3 step 4) |
 | T6 | H3: is the composite more stable than any single input? | **done**, not supported (§47.3) |
 | T7 | Q5: how many tributary orders does 100 m resolve? | **done**: no DEM-supported answer (§47.4) |
 | T8 | the classes against the geologic map | **done** (§43.2), rerun on the published map (§57.1) |
-| T1b | T1 on the seven v2 classes | **proposed** (§12.2 A2), after the v2 scoring |
-| T4, stage 1b | H2 with the valley map and SIM 3292 standing in for origin | **proposed** (§12.2 A7); stage 2 stays the authority |
+| T1b | T1 on the seven v2 classes | **done** 11-01: +1.1 pt [+0.6, +1.7], balanced +0.8; Crater +4.4, fluvial +1.5, hills −3.1; no new class gains ≥ 2 pt (KB §69.50) |
+| T4, stage 1b | H2 with the valley map and SIM 3292 standing in for origin | **done** 11-01, not supported: the segments on mapped valleys are 5.7 times steeper than those on volcanic units (order ≥ 2), thermal |d| ≤ 0.31 (KB §69.50); stage 2 stays the authority |
 | T9 | does thermal IR help predict geologic-unit groups, material labels? | **proposed** (§12.2 A8) |
 
 **Scope:** every open test is optional; if time runs short, drop tests, never the digitising checkpoint or
@@ -436,7 +437,7 @@ verdict rule into its script before it runs (§4). Drive items wait for "queue d
 `build\logs\run_v2\queue.log` and for the v2 scoring (§11.5), which comes first. Nothing here goes ahead of the
 author's review (§6). A14 and W10 (done 10-31, KB §69.37–§69.38), A15 (done 11-01, §69.39), W11, the additions to A3 (c), A5 and
 W6, and P13 (§13) come from an outside brainstorm audited on 2026-10-31 against the record (KB §69.36); the rest of that
-brainstorm was dropped.
+brainstorm was dropped. Done 11-01 on the laptop and removed from the table (KB §69.50): A1 (the routed channels find the mapped valleys no better than a rotated valley map), A2 (T1b, thermal +1.1 pt on seven classes), A3 (c), A7 (T4 stage 1b, H2 not supported), A9 (the lean survives topography) and A13 (under 10 % of rows change).
 
 ### 12.1 Lines in the paper and `final.py` that the freeze must change
 
@@ -447,19 +448,16 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 |---|---|---|
 | Methods, labels | four classes, 512 polygons | v2: seven classes, 734 training / 237 held out; **347 apron and fluvial rows accepted by a written rule, not by eye**, and hills short of §11.3 (`--keep-short`): both stated (KB §69.8) |
 | Limits, held-out use | "used once for each model" | the v2 maps are a second use of the 14 blocks; say so |
+| Results, channels; Discussion, H2 and Table `tab:hyp` | "The network is not scored here"; H2 at stage 1 only | A1 and A7 (KB §69.50): the drafts are `v2_drafts.tex` block 10 |
+| wherever the paper says "Viking albedo" (Conclusion 2 among them) | albedo | "Viking colour": MDIM 2.1 is high-pass filtered at ~50 km, its colour an uncalibrated blend (W5, KB §69.50) |
 | the PDF and the final deck | built 2026-10-22/23 | rebuild on the desktop (`build_final_paper.py`, MiKTeX; `build_final_deck.py`) and read every page: Table 3 is wider now, and the pipeline figure (`fig:pipeline`, KB §69.38) is new; note the page count |
 
 ### 12.2 Analyses that need no author time
 
 | # | what | adds | where | pri |
 |---|---|---|---|---|
-| A1 | **The routed channels scored against the valley map**: share of order ≥ 3 length within 2 / 5 / 10 km of a mapped valley, and of valley length within the same of a routed channel, beside a shifted-network chance baseline (as for craters); by latitude band and SIM 3292 unit group | the network gets a precision and recall, the test the paper names as missing | desktop, ArcGIS Python | A |
-| A2 | **T1 on the v2 labels** (§4, T1b): §40.1's Gaussian ablation on the v2 split; does thermal help edifice, apron or fluvial channel, as it helped Crater and hills? | the central claim retested on the classes most likely to carry material | desktop, numpy | A |
-| A3 | **Spatial baselines for the held-out score**: ~~(a) each pixel given the class of the nearest training polygon~~ (done 10-31, KB §69.35: 83.2 %, κ 0.658, above the published SVM map); (b) a classifier on elevation and latitude only (the crustal dichotomy); (c) the SVM map under mode filters up to ~51 km, the U-Net's context (256-pixel chips at 200 m): a curve, not one point, at 25, 75 and 255 px (5, 15 and 51 km) beside §55.3's 3–11 px, **for the four-class and the seven-class SVM maps**, each beside its U-Net; the raw seven-class map has never been scored, so its curve starts there. `make_global60_landforms_clean.py --cell 200 --size N [--labels v2]`, then `verify_global60_classification.py --cell 200 [--labels v2] --raster <output>`; ~10 min a filter (uniform-filter votes, so the window's size barely matters) and ~29 min a score (§69.24), ~4.5 h unattended for all seven. The paper sets its window from the resolving rule because every score rises with the window (Methods): the curve is read as how much of each U-Net's lead a plain smoothing reproduces, never as a choice of window | turns "the U-Net's 98.9 % measures agreement at province scale" into a measured statement, and asks the same of the seven-class U-Net's 26.5-point lead | desktop | A |
-| A7 | **H2 with references for origin** (§4, T4 stage 1b): routed segments on Alemanno valleys as fluvial against segments on SIM 3292 volcanic units off them as volcanic; gradient and thermal z-score as in stage 1 | H2 tested by origin rather than by window, without waiting for 10 + 10 reviewed channels; still a stand-in, and stage 2 stays the authority if the review reaches it | desktop | B |
+| A3 | **Spatial baselines for the held-out score**: ~~(a) each pixel given the class of the nearest training polygon~~ (done 10-31, KB §69.35: 83.2 %, κ 0.658, above the published SVM map); (b) a classifier on elevation and latitude only (the crustal dichotomy); ~~(c) the SVM map under mode filters up to ~51 km, for the four-class and the seven-class SVM maps~~ (done 11-01 on the laptop at 400 m, KB §69.50: four classes 69.9 % raw to 82.1 % at 51 km, below the nearest-polygon baseline throughout; seven classes flat, 42.4 % to at most 43.9 %) | turns "the U-Net's 98.9 % measures agreement at province scale" into a measured statement, and asks the same of the seven-class U-Net's 26.5-point lead | desktop | A |
 | A8 | **T9: thermal value on material labels** (§4): SIM 3292 unit groups as the labels at 400 m, the same block split, thermal ablated; also within blocks | answers the paper's own limit, "a test of thermal value needs material labels", with the only material map held | desktop, numpy | B |
-| A9 | **Day IR at the contacts checked against topography**: T5 rerun with day IR residualised on hillshade and slope (day temperature follows slope facing the sun) | if the +8.7 pt lean vanishes, H1's hint is illumination; if it holds, it is stronger | desktop, minutes | B |
-| A13 | **The review rule's sensitivity**: how many fluvial and apron rows change at floor depths of 10 and 30 m and median slopes of 0.5° and 1.5° | bounds how much the v2 labels depend on two thresholds | desktop, minutes | C |
 
 ### 12.3 Small asks of the author (each after the candidate review, never ahead of it)
 
@@ -477,15 +475,20 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 - **W3, prior work**: the introduction cites the data but no earlier automated mapping, and the discussion compares
   with none. The six candidates are checked by DOI and in `references.bib` (DeLatte2019, Silburt2019, Bue2006,
   Luo2009, Wilhelm2020, Olofsson2014; KB §69.40), and cited since 11-01 by a prior-work paragraph in the
-  introduction and a Limits sentence on polygon bias. The Discussion's comparison with prior work is still open.
+  introduction and a Limits sentence on polygon bias. The Discussion's comparison with prior work is drafted (11-01,
+  `v2_drafts.tex` block 9, KB §69.50): a subsection "Against earlier automated mapping", in at the freeze.
 - **W4, figures** (**17 pages** since these, compiled in CI 11-01, KB §69.42; 16 at the last desktop build):
   ~~the pipeline in Methods~~ (in since 10-31, `fig:pipeline`, KB §69.38; page 5, read); ~~the block split~~ (in since
   11-01, `fig:split`, `final_img\block_split.png`, KB §69.41; page 6, read); a type-area zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the
   detector's limit in one panel; after v2, the seven-class map and its confusion; A6's `final_img\map_agreement.png` (KB §69.46) and A10's `final_img\crater_sfd.png` (KB §69.35).
 - **W5, limits to add**: one labeller; the rule-screened v2 rows; hills short; THEMIS strips differ in local time,
-  season and dust, a physical cause beside the stretch (to check in Edwards et al. 2011); Viking MDIM 2.1 colour is
-  itself a balanced mosaic, so part of its albedo signal may be processing **[?]** (to check in the MDIM 2.1
-  documentation).
+  season and dust, a physical cause beside the stretch (Edwards et al. 2011's abstract confirms running contrast
+  stretches; the rest needs its full text **[?]**); **Viking, checked 11-01 (KB §69.50):** MDIM 2.1 is high-pass
+  filtered at ~50 km to remove regional albedo and normalised so equal slopes show equal contrast, and its colour
+  is an older mosaic blended over it "artistically", which most likely carries §43.1's regional signal: the
+  Viking bands are shading, local albedo and an uncalibrated regional colour. Say so in Data and Limits, beside
+  the stack's "no elevation band"; and at the freeze (§12.1) read "Viking albedo" as "Viking colour" in the
+  paper, Conclusion 2 among them.
 - **W6, future work**: the outline's item 10 (§7) has no section in the paper: calibrated THEMIS inertia where it
   exists, CTX for margins, validation blocks for the deep-learning models, R2 if not done. Once the models have
   validation blocks, the seven-class U-Net's over-predicted edifice (§69.25; by A14 mostly on the highland group,
@@ -500,7 +503,7 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
   thresholds (fluvial, floor ≥ 20 m below a 4.8 km flank ring and `ShareVolc` < 0.5; apron, `SlopeMed` ≥ 1° and
   `CraterCover` < 0.5; KB §69.8), which §12.1's line and A13 need stated; the U-Net's batch of 8, 10 % of chips for
   validation, backbone unfrozen, 64-pixel padding at inference (`make_dl_pixels.py`). One sentence each, every
-  value read from its script at the freeze. **B**, with §12.1.
+  value read from its script at the freeze. **B**, with §12.1. Drafted 11-01 (`v2_drafts.tex` block 8, KB §69.50).
 
 ### 12.5 The two talks
 
@@ -539,7 +542,7 @@ review (§6) or the v2 scoring (§11.5); most of it is laptop work that fills th
 | # | what | adds | where | pri |
 |---|---|---|---|---|
 | P7 | **A real restore**: `restore.py` has only ever been dry-run (KB §67.4). Restore one small release group into scratch on the desktop and compare every file with the drive by hash | the drive is the only full copy (§9); a backup is proven only by a restore | desktop, ~1 h | B |
-| P8 | **The environment on the project page**: the versions are in KB §2.4 only (Pro 3.7, its Python 3.13.13, Deep Learning Libraries 3.7.1901, `arcgis.learn` 2.4.3). A short `docs/environment.md`: both Pythons, the system Python's packages (`python-pptx`, `python-docx`, matplotlib, Pillow) as a `requirements.txt`, MiKTeX and the AASTeX class version, the GPU and driver; written by a script on the desktop so it is read, not typed | a reader can tell what reproduces their run; the paper's data statement (W7) can point at it | desktop, minutes | B |
+| P8 | **The environment on the project page**: `build\github_environment.py` (11-01, KB §69.50) writes `docs/environment.md`, one section per machine read from the machine (OS, CPU, memory, GPU and driver; Pro, its extensions, both Pythons and their packages; the Deep Learning Libraries; MiKTeX and `aastex701.cls`), and `docs/requirements-system.txt`; the laptop's section is written. **Left: run it once on the desktop** (`python github_environment.py`, then sync) for the 2080 Ti, the Deep Learning Libraries and MiKTeX | a reader can tell what reproduces their run; the paper's data statement (W7) can point at it | desktop, a minute | B |
 | P11 | **Which runs repeat exactly**: a table in the KB of each published number's run and whether a rerun reproduces it (a fixed seed, Pro's SVM, the U-Net's training); five build scripts name a seed | the paper's methods can say what is deterministic, and the freeze knows which reruns can move a number | laptop to read the scripts; the desktop for any rerun | C |
 | P12 | **Closing the project, after 8 Dec** (D27): a tag `final-2026-12-08` and a final release (the deck, the paper's PDF, the maps); `CITATION.cff` given `version`, the DOI (D23), a `preferred-citation` for the paper and its date; the README's "Where it stands" turned into what was found; this plan closed with a header saying so; the memory and "Resume here" retired; D14's smoke classes settled | the repository reads as finished work, not a project paused mid-term | laptop, ~1 h, 9–12 Dec | after |
 | P13 | **The maps viewable without ArcGIS, after 8 Dec and only if the project continues**: the two seven-class maps as cloud-optimised GeoTIFFs (`gdal_translate -of COG` under the ArcGIS Python, which has GDAL) in a release, and a simple web map of them on the project page | a reader can pan the maps in a browser instead of downloading 106,694 × 35,565-pixel rasters | laptop, ~2 h | after |
@@ -566,13 +569,13 @@ claim. "Cost" is who and how long; nothing here goes ahead of the review (§6) o
 | # | weakness | evidence | what would improve it | cost |
 |---|---|---|---|---|
 | 1 | **The held-out score rests on a few large polygons in a few blocks.** Three blocks hold 61.6 % of the four-class held-out area; one Normal Ground polygon is 73.7 % of its class's, Arsia Mons 30.7 % of Crater's; dropping one block moves the published map by 8.7 pt | §69.44 | **R2, the probability-sample check** (§12.3): stratified random points labelled blind give unbiased accuracy and class areas with intervals, independent of where polygons were drawn. The single most valuable hour of the author's after the review | author ~2–3 h; agent writes the points and scores them |
-| 2 | **The SVM maps do not beat geography.** The nearest training polygon scores 83.2 % against the published map's 73.8 % (four classes) and 45.6 % against 42.5 % (seven); by block neither gap is resolved either way | §69.35, §69.44 | A3 (c), the SVM under 5–51 km mode filters, measures how much context alone closes the gap (queued for the desktop); the U-Net, which uses context, already clears the baseline. In the paper since 11-01 (D30, KB §69.48): the baseline beside every score, the SVM map led by balanced accuracy, where it is ahead | desktop, ~4.5 h unattended |
+| 2 | **The SVM maps do not beat geography.** The nearest training polygon scores 83.2 % against the published map's 73.8 % (four classes) and 45.6 % against 42.5 % (seven); by block neither gap is resolved either way | §69.35, §69.44 | A3 (c), done 11-01 (KB §69.50): a 51 km mode filter lifts the four-class SVM from 69.9 % to 82.1 %, still below the baseline, and leaves the seven-class SVM flat (at most 43.9 %); context alone closes neither gap. The U-Net, which uses context, already clears the baseline. In the paper since 11-01 (D30, KB §69.48): the baseline beside every score, the SVM map led by balanced accuracy, where it is ahead | done |
 | 3 | **The seven-class lead is two blocks wide.** By accuracy, the seven-class U-Net's lead over the seven-class SVM is not resolved by block (−9.7 to +47.8 pt); it sits on the Tharsis blocks −9_−1 and −9_0; the SVM leads in 8 of 14 blocks | §69.44 | Done 11-01 (D31, KB §69.47): the paper leads with balanced accuracy, which is resolved (+2.3 to +19.5). For a firmer test, edifice and apron labels in held-out blocks outside Tharsis (Elysium, Syrtis, Hesperia) | Labels: author ~1 h, then a v2 rescore (desktop, ~1 h) |
 | 4 | **The seven-class U-Net's edifice is wrong over much of the planet**: 40.0 % of ±60°, 46.8 % of the highland group, none of the 10 named small edifices | §69.25, §69.37, §69.39 | Retrain with validation blocks of its own (§66.5), edifice negatives drawn on the highland group and class weights; score on the same held-out blocks. Not a post-hoc mask by the geologic map: T8 scores against that map | desktop, hours, as X5c (§66.6); the author's call (§66.5) |
-| 5 | **Channels have no score.** 969,822 routed segments, no precision or recall | §53.6 | **A1**, against the Alemanno valley lines with a shifted-network baseline (§12.2) | desktop |
+| 5 | **The routed channels are not a channel map.** Against the valley map (A1), order ≥ 3 precision 2.8 % and recall 2.0 % at 5 km, no better than the valley map rotated in longitude (median 3.3 %); 46 % of the order ≥ 3 length lies at 0–30° N, where 0.1 % meets a valley | §53.6, §69.50 | Call the network the DEM's drainage paths in the final, not channels; a channel claim rests on the reviewed candidates (§6), or on the order ≥ 5 trunks and the southern highlands, where precision reaches 10–18 % | the score done 11-01; the wording at the freeze |
 | 6 | **Two hypotheses wait on the review**: H2 stage 2 needs `Origin` on ≥ 10 fluvial and ≥ 10 volcanic of the 199 copied channels; H1 needs lava margins at Athabasca (0 drawn) | §69.33 | `Origin` on the 199 channels is the cheapest step in the project that unblocks a test | author ~1 h (`Origin`), ~2 h (margins) |
 | 7 | **Crater recall stops near one half**, mostly from degraded and partial rims (77 % of the misses are rim states 1–2) and, at 5–10 km, from C5's two-sided cut | §69.45 | The figure and sentence: done 11-01 (D32, KB §69.47). To recover recall: 23 % of the misses (72 % at ≥ 50 km) hold only a smaller closed basin, which a rim-based diameter or merging nested basins would match; that is a change to the detector and an 11 h fine pass, so future work (W6), not before the freeze | detector: after 8 Dec |
-| 8 | **The thermal gain is small** (+1.36 pt, resolved by block; none by balanced accuracy) | §56, §69.18, §69.44 | Nothing to fix: A2 (T1 on the v2 classes) asks whether thermal helps the new classes; A8 (material labels) whether it helps where the labels are material | desktop, numpy |
+| 8 | **The thermal gain is small** (+1.36 pt, resolved by block; none by balanced accuracy) | §56, §69.18, §69.44 | Nothing to fix: A2 (done 11-01, KB §69.50) found +1.1 pt on seven classes, not concentrated in the new classes; A8 (material labels) whether it helps where the labels are material | desktop, numpy |
 
 **Order for the agent:** D31 and D32 done 11-01 (KB §69.47); next the desktop list of
 §12.6 step 2 (A1, A2, A3 (b) and (c)). **For the author:** the review (§6) with `Origin` first; then R2.

@@ -30,6 +30,19 @@ Coordinates: the unit class is labelled GCS_Mars_2000 (WKID 104905, the ellipsoi
 are the source's spherical coordinates, checked to 5e-10 deg (KB §47.1). They are converted here
 directly, x = R (lon - 180 deg), y = R lat on R = 3,396,190 m, the stack's CM 180 grid, so no datum
 transformation can enter. Read-only; writes build\logs\t5_flow_margins.json.
+
+A9, --topo (NEXT-STEPS §12.2, KB §69.50): T5's day-IR lean (+8.7 pt over Viking red on the lAv contacts, interval
+across 0) could be illumination, since day temperature follows the slope's facing to the sun. Day IR and, for a fair
+comparison, Viking red are each replaced by their residual from one least-squares fit over the window on the DEM's
+topography: the two gradient components (any sun azimuth, to first order), slope and the type area's hillshade
+(azimuth 225, altitude 45), all at 100 m. Both residuals are profiled as further bands, with everything else
+unchanged; the six original bands must reproduce t5_flow_margins.json exactly or nothing is written. Writes
+logs\t5_flow_margins_topo.json. Prediction, written before the first run (2026-11-01), lAv contacts:
+  P1  the day-IR residual's lead over Viking red is smaller than the raw +8.7 pt;
+  P2  its 95 % interval still includes 0 (H1 still not supported by the rule above);
+  P3  topography explains >= 5 % of day IR's variance in the window (R^2), and less of Viking red's.
+Each is reported as held or not held. A flow front is itself a slope, so the residual can also remove a real
+contact signal: a lean that vanishes is read as "not shown to be material", not as "shown to be illumination".
 """
 import os, sys, json, time
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -39,13 +52,15 @@ from matplotlib.path import Path
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from paths import GDB, junction
+from paths import GDB, on_drive
 import areas
 
 A = dict(areas.AREAS["ath"], key="ath")
-WS = junction(A["folder"])
+WS = on_drive(os.path.join("Mars Project", A["folder"]))   # read only: the folder itself, not its junction
 UNITS = os.path.join(GDB, "Ref_SIM3292_GeologicUnits")
-OUT = os.path.join(HERE, "logs", "t5_flow_margins.json")
+TOPO = "--topo" in sys.argv
+OUT0 = os.path.join(HERE, "logs", "t5_flow_margins.json")
+OUT = os.path.join(HERE, "logs", "t5_flow_margins_topo.json") if TOPO else OUT0
 R = 3396190.0
 STEP, HALF, GAP, RES = 2000.0, 20000.0, 3000.0, 100.0
 NNULL, NBOOT, SEED, NULL_MIN_KM = 2000, 2000, 20261008, 25.0
@@ -143,6 +158,38 @@ for name, f, b in BANDS:
     bands[name] = arr
 H, W = bands["day_ir"].shape
 log("bands read: %d x %d px; valid %s" % (W, H, ", ".join("%s %.1f%%" % (k, 100 * np.isfinite(v).mean()) for k, v in bands.items())))
+ORIGINAL = list(bands)
+r2 = {}
+if TOPO:
+    def read1(f):
+        path = os.path.join(WS, f)
+        r = arcpy.Raster(path)
+        assert abs(r.extent.XMin - xmin) < 1 and abs(r.extent.YMax - ymax) < 1 and abs(r.meanCellWidth - RES) < 1e-6, f
+        a = arcpy.RasterToNumPyArray(path).astype("float32")
+        assert a.shape == (H, W), (f, a.shape)
+        if r.noDataValue is not None:
+            a[a == r.noDataValue] = np.nan
+        return a
+    dem = read1("ath_dem.tif")
+    gy, gx = np.gradient(dem, RES)
+    del dem
+    topo = [gx.astype("float32"), gy.astype("float32"), read1("ath_slope_deg.tif"), read1("ath_hillshade.tif")]
+    del gx, gy
+    for src in ("day_ir", "viking_r"):
+        v = bands[src]
+        ok = np.isfinite(v) & np.all([np.isfinite(t) for t in topo], axis=0)
+        fit = ok.copy(); fit[1::3, :] = False; fit[2::3, :] = False; fit[:, 1::3] = False; fit[:, 2::3] = False
+        Xf = np.column_stack([np.ones(fit.sum())] + [t[fit].astype(np.float64) for t in topo])
+        coef = np.linalg.lstsq(Xf, v[fit].astype(np.float64), rcond=None)[0]
+        res_ = v[fit] - Xf @ coef
+        r2[src] = float(1 - res_.var() / v[fit].var())
+        out = np.full(v.shape, np.nan, "float32")
+        pred = float(coef[0]) + sum(float(c) * t for c, t in zip(coef[1:], topo))     # float32, not float64
+        out[ok] = (v - pred)[ok]
+        bands[src + "_topo"] = out
+        del pred, Xf
+        log("%s on topography (gx, gy, slope, hillshade): R^2 %.3f on %d px" % (src, r2[src], fit.sum()))
+    del topo
 
 S = np.arange(-HALF, HALF + RES / 2, RES)
 SIDE_A, SIDE_B = (S <= -GAP), (S >= GAP)
@@ -156,8 +203,8 @@ def profiles(px, py, nx, ny):
     ok = ((col >= 0) & (col < W) & (row >= 0) & (row < H)).all(axis=1)
     col = np.clip(col, 0, W - 1); row = np.clip(row, 0, H - 1)
     vals = {k: v[row, col] for k, v in bands.items()}
-    for v in vals.values():
-        ok &= np.isfinite(v).all(axis=1)
+    for k in ORIGINAL:                      # T5's own bands decide validity, so --topo leaves T5's profiles alone
+        ok &= np.isfinite(vals[k]).all(axis=1)
     return vals, ok
 
 
@@ -232,12 +279,16 @@ thr = {k: float(np.nanquantile(dn[k][nok], 0.9)) for k in bands}
 
 is_primary = np.array([PRIMARY in p.split("-") for p in cpair])      # exact unit name: lAvf is not lAv
 for set_name, sel in (("lAv contacts", is_primary), ("all contacts", np.ones(len(cpair), bool))):
-    m = sel & cok & np.all([np.isfinite(dc[k]) for k in bands], axis=0)
+    m = sel & cok & np.all([np.isfinite(dc[k]) for k in ORIGINAL], axis=0)
+    if TOPO:
+        bad = sum(int((~np.isfinite(dc[k][m])).sum()) for k in bands if k not in ORIGINAL)
+        if bad:
+            sys.exit("%d of T5's profiles have no topography-residual value: nothing written" % bad)
     hit = {k: dc[k][m] > thr[k] for k in bands}
     ids = cid[m]
     uniq = np.unique(ids)
     boot = {k: [] for k in bands}
-    diff_day, diff_night = [], []
+    diff_day, diff_night, diff_topo, diff_fair = [], [], [], []
     for _ in range(NBOOT):
         pick = rng.choice(uniq, len(uniq), replace=True)
         w = np.concatenate([np.flatnonzero(ids == u) for u in pick])
@@ -245,6 +296,9 @@ for set_name, sel in (("lAv contacts", is_primary), ("all contacts", np.ones(len
             boot[k].append(hit[k][w].mean())
         diff_day.append(hit["day_ir"][w].mean() - hit["viking_r"][w].mean())
         diff_night.append(hit["night_ir"][w].mean() - hit["viking_r"][w].mean())
+        if TOPO:
+            diff_topo.append(hit["day_ir_topo"][w].mean() - hit["viking_r"][w].mean())
+            diff_fair.append(hit["day_ir_topo"][w].mean() - hit["viking_r_topo"][w].mean())
     s = {"profiles": int(m.sum()), "contacts": int(len(uniq)), "bands": {}}
     for k in bands:
         s["bands"][k] = {"null_p90": round(thr[k], 3), "median_d_contact": round(float(np.median(dc[k][m])), 3),
@@ -260,7 +314,31 @@ for set_name, sel in (("lAv contacts", is_primary), ("all contacts", np.ones(len
     s["night_only"] = int((hit["night_ir"] & ~hit["viking_r"]).sum())
     s["viking_only_vs_night"] = int((hit["viking_r"] & ~hit["night_ir"]).sum())
     s["h1_supported"] = bool(s["day_minus_viking_r"]["ci95"][0] > 0 and s["day_only"] > s["viking_only"])
+    if TOPO:
+        q = lambda a: [round(float(np.quantile(a, x)), 3) for x in (0.025, 0.975)]
+        s["day_topo_minus_viking_r"] = {"diff": round(float(hit["day_ir_topo"].mean() - hit["viking_r"].mean()), 3),
+                                        "ci95": q(diff_topo)}
+        s["day_topo_minus_viking_r_topo"] = {"diff": round(float(hit["day_ir_topo"].mean() - hit["viking_r_topo"].mean()), 3),
+                                             "ci95": q(diff_fair)}
+        s["day_topo_only"] = int((hit["day_ir_topo"] & ~hit["viking_r"]).sum())
+        s["viking_only_vs_day_topo"] = int((hit["viking_r"] & ~hit["day_ir_topo"]).sum())
+        s["h1_supported_topo"] = bool(s["day_topo_minus_viking_r"]["ci95"][0] > 0
+                                      and s["day_topo_only"] > s["viking_only_vs_day_topo"])
     res["sets"][set_name] = s
+
+if TOPO:
+    ref = json.load(open(OUT0, encoding="utf-8"))["sets"]
+    same = all(res["sets"][n]["bands"][k] == ref[n]["bands"][k] and
+               res["sets"][n]["day_minus_viking_r"] == ref[n]["day_minus_viking_r"] for n in ref for k in ORIGINAL)
+    log("check: the six original bands %s t5_flow_margins.json" % ("reproduce" if same else "DO NOT reproduce"))
+    if not same:
+        sys.exit("the check failed: nothing written")
+    lav = res["sets"]["lAv contacts"]
+    res["a9"] = {"r2": {k: round(v, 4) for k, v in r2.items()},
+                 "predictions": {
+                     "P1 the residual's lead < raw +8.7 pt": lav["day_topo_minus_viking_r"]["diff"] < lav["day_minus_viking_r"]["diff"],
+                     "P2 its interval includes 0": lav["day_topo_minus_viking_r"]["ci95"][0] <= 0 <= lav["day_topo_minus_viking_r"]["ci95"][1],
+                     "P3 R^2 day >= 0.05 and > Viking red's": r2["day_ir"] >= 0.05 and r2["day_ir"] > r2["viking_r"]}}
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 with open(OUT, "w", encoding="utf-8") as f:
@@ -279,5 +357,13 @@ for set_name, s in res["sets"].items():
         100 * s["night_minus_viking_r"]["diff"], 100 * s["night_minus_viking_r"]["ci95"][0],
         100 * s["night_minus_viking_r"]["ci95"][1], s["night_only"], s["viking_only_vs_night"]))
     print("  H1 supported by the rule fixed in advance:", s["h1_supported"])
+    if TOPO:
+        for key, lab in (("day_topo_minus_viking_r", "day(topo) - Viking red     "),
+                         ("day_topo_minus_viking_r_topo", "day(topo) - Viking red(topo)")):
+            print("  %s %+.1f pt [%+.1f, %+.1f]" % (lab, 100 * s[key]["diff"], 100 * s[key]["ci95"][0], 100 * s[key]["ci95"][1]))
+        print("  day(topo)-only %d, Viking-only %d; H1 supported on the residual: %s" % (
+            s["day_topo_only"], s["viking_only_vs_day_topo"], s["h1_supported_topo"]))
+if TOPO:
+    print("\nA9:", res["a9"])
 print("\ncontacts by unit pair (km):", res["contacts_by_pair_km"])
 log("wrote %s" % OUT)
