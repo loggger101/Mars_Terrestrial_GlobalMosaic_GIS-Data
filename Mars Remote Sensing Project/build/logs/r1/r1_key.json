@@ -1,0 +1,406 @@
+{
+ "seed": 5401,
+ "source": "Z:\\Mars Remote Sensing Project\\build\\logs\\label_review_by_rule.json",
+ "slots": {
+  "A1": {
+   "oid": 1011,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "A2": {
+   "oid": 857,
+   "cls": 6,
+   "rule": "reject"
+  },
+  "A3": {
+   "oid": 986,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "A4": {
+   "oid": 1053,
+   "cls": 6,
+   "rule": "reject"
+  },
+  "A5": {
+   "oid": 572,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "A6": {
+   "oid": 608,
+   "cls": 7,
+   "rule": "reject"
+  },
+  "B1": {
+   "oid": 679,
+   "cls": 7,
+   "rule": "reject"
+  },
+  "B2": {
+   "oid": 1008,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "B3": {
+   "oid": 877,
+   "cls": 6,
+   "rule": "reject"
+  },
+  "B4": {
+   "oid": 550,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "B5": {
+   "oid": 643,
+   "cls": 7,
+   "rule": "reject"
+  },
+  "B6": {
+   "oid": 884,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "C1": {
+   "oid": 1019,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "C2": {
+   "oid": 1073,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "C3": {
+   "oid": 576,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "C4": {
+   "oid": 1064,
+   "cls": 6,
+   "rule": "reject"
+  },
+  "C5": {
+   "oid": 582,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "C6": {
+   "oid": 1062,
+   "cls": 6,
+   "rule": "reject"
+  },
+  "D1": {
+   "oid": 854,
+   "cls": 6,
+   "rule": "reject"
+  },
+  "D2": {
+   "oid": 721,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "D3": {
+   "oid": 1050,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "D4": {
+   "oid": 891,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "D5": {
+   "oid": 988,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "D6": {
+   "oid": 703,
+   "cls": 7,
+   "rule": "reject"
+  },
+  "E1": {
+   "oid": 1028,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "E2": {
+   "oid": 978,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "E3": {
+   "oid": 1059,
+   "cls": 6,
+   "rule": "reject"
+  },
+  "E4": {
+   "oid": 529,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "E5": {
+   "oid": 753,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "E6": {
+   "oid": 1074,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "F1": {
+   "oid": 955,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "F2": {
+   "oid": 710,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "F3": {
+   "oid": 636,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "F4": {
+   "oid": 733,
+   "cls": 7,
+   "rule": "reject"
+  },
+  "F5": {
+   "oid": 653,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "F6": {
+   "oid": 1076,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "G1": {
+   "oid": 729,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "G2": {
+   "oid": 604,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "G3": {
+   "oid": 1016,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "G4": {
+   "oid": 1044,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "G5": {
+   "oid": 657,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "G6": {
+   "oid": 772,
+   "cls": 7,
+   "rule": "reject"
+  },
+  "H1": {
+   "oid": 594,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "H2": {
+   "oid": 661,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "H3": {
+   "oid": 1026,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "H4": {
+   "oid": 717,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "H5": {
+   "oid": 581,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "H6": {
+   "oid": 1082,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "I1": {
+   "oid": 606,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "I2": {
+   "oid": 722,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "I3": {
+   "oid": 766,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "I4": {
+   "oid": 621,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "I5": {
+   "oid": 1041,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "I6": {
+   "oid": 980,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "J1": {
+   "oid": 1018,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "J2": {
+   "oid": 1046,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "J3": {
+   "oid": 893,
+   "cls": 6,
+   "rule": "reject"
+  },
+  "J4": {
+   "oid": 1083,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "J5": {
+   "oid": 566,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "J6": {
+   "oid": 626,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "K1": {
+   "oid": 737,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "K2": {
+   "oid": 640,
+   "cls": 7,
+   "rule": "reject"
+  },
+  "K3": {
+   "oid": 630,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "K4": {
+   "oid": 806,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "K5": {
+   "oid": 675,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "K6": {
+   "oid": 751,
+   "cls": 7,
+   "rule": "reject"
+  },
+  "L1": {
+   "oid": 641,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "L2": {
+   "oid": 876,
+   "cls": 6,
+   "rule": "reject"
+  },
+  "L3": {
+   "oid": 555,
+   "cls": 7,
+   "rule": "reject"
+  },
+  "L4": {
+   "oid": 898,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "L5": {
+   "oid": 998,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "L6": {
+   "oid": 526,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "M1": {
+   "oid": 883,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "M2": {
+   "oid": 1072,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "M3": {
+   "oid": 779,
+   "cls": 7,
+   "rule": "accept"
+  },
+  "M4": {
+   "oid": 705,
+   "cls": 7,
+   "rule": "reject"
+  },
+  "M5": {
+   "oid": 1043,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "M6": {
+   "oid": 852,
+   "cls": 6,
+   "rule": "reject"
+  },
+  "N1": {
+   "oid": 994,
+   "cls": 6,
+   "rule": "accept"
+  },
+  "N2": {
+   "oid": 563,
+   "cls": 7,
+   "rule": "accept"
+  }
+ }
+}

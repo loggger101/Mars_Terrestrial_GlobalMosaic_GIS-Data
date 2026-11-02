@@ -257,3 +257,52 @@ $10.5^{\circ}$--$7.5^{\circ}$S): Viking colour and THEMIS day IR at their 100~m 
 floor is Crater, the walls and spurs hills, the plateau's craters rings of hills, and the plains a patchwork of
 Crater, lava tube and Normal Ground. Shares are of this window. \label{fig:zoom}}
 \end{figure*}
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 15. T5 on the traced margins (KB §69.52), drafted 2026-11-02, at the freeze. Every number from
+%%     build\logs\t5_flow_margins_traced.json; the tally in (e) from KB §69.33, brought to the day's tally at the
+%%     freeze (layout 14). Dickson2024 is in references.bib (read on Crossref 2026-11-02). If the author checks or
+%%     redraws the margins first, rerun make_flow_margin_test.py --margins and make_fig_t5_traced.py, and replace
+%%     every number below. THE AUTHOR'S CALL (NEXT-STEPS D33): how the paper names who traced the margins; (a) says
+%%     it plainly, as the KB does, and drops that clause only if the author has checked them.
+%% ---------------------------------------------------------------------------------------------------------
+%% (a) Results, the H1 paragraph: replace "A map at 1:20\,M generalises contacts by kilometres, and ten contacts
+%%     cannot settle the question; H1 needs margins digitised on the 100~m stack." with:
+A map at 1:20\,M generalises contacts by kilometres, so the test was repeated on lava-flow margins traced on the
+Context Camera mosaic \citep{Malin2007,Dickson2024}: 86 margins (1,476~km) along the \lAv\ boundaries, on 126 plates
+that showed CTX alone, by a rule written before any plate was viewed. The margins were traced by the AI assistant that
+wrote the project's scripts, and the author has not checked them. Across 633 profiles on 78 of them, day infrared
+separates 19.7\% (13.1--27.2\%), Viking red 14.8\%, night infrared 14.5\% and the index 10.0\%. Day infrared leads
+Viking red by $+4.9$ points, interval $-2.7$ to $+13.1$, so H1 is again not supported (Figure~\ref{fig:t5}): the
+sharper margins halve the interval's width but leave zero inside it. %% KB §69.52
+%% (b) The figure fig:t5: \includegraphics{figures/t5_traced.png} in place of t5_margins.png, this caption, and add
+%%     (r"final_img\t5_traced.png", "t5_traced.png") to build_final_paper.py's FIGURES (make_fig_t5_traced.py).
+\caption{Test T5 (H1): the share of profiles that each band separates across the geologic map's \lAv\ contacts at
+1:20\,M (open) and across 86 lava-flow margins traced on CTX (filled) at Athabasca Valles, with bootstrap intervals
+over contacts and margins; 10\% is chance by construction. \label{fig:t5}}
+%% (c) Discussion, "The hypotheses": replace "H1 and H2 were tested on stand-ins (map contacts and windows) and remain
+%%     open for features digitised on the stack." (and block 10 (b)'s anchor with it) with:
+H1 was tested on the geologic map's contacts and on margins traced on CTX, and is supported on neither. H2 was
+tested on stand-ins (windows, and origins taken from the valley and geologic maps) and remains open for channels whose
+origin is read on the images.
+%% (d) Table tab:hyp, the H1 row:
+%% H1 & Day IR shows flow margins Viking misses & not supported, on map contacts and traced margins & day $-$ Viking $+4.9$ pt, interval $-2.7$ to $+13.1$ \\
+%% (e) Limits: replace from "Finally, the manual review" to the paragraph's end with:
+Finally, the manual review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709
+depressions) has reached 3,791, with a precision (accepts over accepts and rejects) of 54\% on the 188 steep,
+rock-floored Ius channels, 50\% on 209 rock-floored Athabasca channels, and 10\% and 13\% on the closed depressions
+of the two areas. On CTX a stricter reading accepts far fewer of the Athabasca lines (3 of 48 that the author reviewed, against the
+author's 22),
+so the channel precisions are the author's standard at 100~m, not ground truth. The digitised classes hold 199
+channels and 381 crater rims accepted in that review and the 86 traced lava margins, so the machine products are
+presented as candidates with measured recall and precision. %% KB §69.33, §69.52, NEXT-STEPS §6
+%% (f) Conclusions, the last item: replace "and H1 and H2 await digitised margins and channels." with:
+%% and H1 is not supported on 1,476~km of margins traced on CTX either; H2 awaits channels whose origin is read on the images.
+%% (g) Abstract: replace "No band separates the lava contacts of the 1:20\,M geologic map at Athabasca Valles much
+%%     better than chance" with (two words longer; the abstract is at its budget, cut elsewhere):
+%% No band separates the lava contacts of the 1:20\,M geologic map at Athabasca Valles, or margins traced on CTX, much better than chance
+%% (h) Block 12 (Future work): replace "Lava-flow margins and channel origins traced at Athabasca Valles on Context
+%%     Camera images \citep{Malin2007} would test H1 and H2 on the features themselves rather than on stand-ins." with:
+%% Channel origins read on Context Camera images \citep{Malin2007}, with volcanic channels drawn by hand on the
+%% Athabasca lava, where the routed candidates hold none, would test H2 on the features themselves; the author's check
+%% of the traced lava margins would make H1's test the project's own.

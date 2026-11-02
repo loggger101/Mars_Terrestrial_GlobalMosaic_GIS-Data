@@ -84,7 +84,7 @@ and scored (§66); further tuning first needs validation blocks of its own (§66
 
 **Where the results are weakest and what would most improve them:** §14 (11-01), ranked.
 
-**Waiting on the author:** items 1 and 5; D14–D16, D21–D27 and D29 (§2); the interim talk's slot length (§12.5); whether
+**Waiting on the author:** items 1 and 5; R1 and R2 on their sheets (`review_sheets\r1\`, `r2\`; ~45 min and ~2–3 h, §12.3); D14–D16, D21–D27, D29 and D33 (§2); the interim talk's slot length (§12.5); whether
 layout 18 or `final_img\tes_block_scale.png` goes into a deliverable (§69.30); whether the interim shows layouts 15–18
 (it shows 13 of the 17 that existed at the cut, `INTERIM-PLAN.md` §3); emptying the Recycle Bins (~21 GB of finished
 scratch, §57.5).
@@ -134,6 +134,7 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D26 | the built deck, report and paper PDF committed only once per deadline: since 11-01 `github_sync.py` holds them back unless given `--deliverables` (KB §69.42), the recommendation in force until the author says otherwise; rewriting history to drop the 44 earlier copies of the interim deck and report (1.0 GB of blobs) needs a force push and a re-clone on both machines | yes to committing at milestones; no rewrite |
 | D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | yes |
 | D29 | the seven-class maps' gain (D28) by balanced accuracy: none (SVM −0.15 pt, U-Net +0.20 pt on the v2 held-out polygons); the gain is in macro F1 and in quantity disagreement (KB §69.34). Say so in the paper's Table 3 and text, the deck and the README? | yes, as for D25: one clause, "in overall accuracy and macro F1; not in balanced accuracy"; D28's lead stands |
+| D33 | how the final paper names who traced the 86 Athabasca lava margins T5 now runs on (the AI assistant, on CTX; unchecked by the author, KB §69.52); drafted as `v2_drafts.tex` block 15 (a) | say it plainly, as drafted; drop the clause only once the author has checked or redrawn the margins (then rerun T5) |
 D30 was answered 2026-11-01, yes: the baseline is a Table 3 row in each half and a paragraph, and the published
 map's score leads with balanced accuracy in the `.tex` and `final.py` (KB §69.48).
 D31 and D32 were answered 2026-11-01, yes to both: the block intervals and the seven-class lead by balanced
@@ -460,6 +461,7 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 | wherever the paper says "Viking albedo" (Conclusion 2 among them) | albedo | "Viking colour": MDIM 2.1 is high-pass filtered at ~50 km, its colour an uncalibrated blend (W5, KB §69.50) |
 | Discussion, after Limits; before the acknowledgments | no future work; no data statement | W6 and W7: `v2_drafts.tex` blocks 12 and 13 (the DOI first, D23) |
 | Results, baselines; Table `tab:svm`; Limits, labels | no height baseline; "a test of thermal value needs material labels" alone | A3 (b) and A8 (KB §69.50): elevation and latitude alone score 62.5 % / 31.8 %; the geologic map's unit groups are no substitute for material labels. The drafts are `v2_drafts.tex` block 11 |
+| Results, H1 and `fig:t5`; Discussion, the hypotheses; Table `tab:hyp`; Limits, the review tally; Conclusions; abstract | H1 on the 1:20 M contacts only; "94 channels, 26 crater rims and no lava margins"; the review at 549 | T5 on the 86 CTX-traced margins (KB §69.52; `final_img\t5_traced.png`, `make_fig_t5_traced.py`) and the tally of §69.33: `v2_drafts.tex` block 15, with D33; `Dickson2024` in `references.bib` |
 | the PDF and the final deck | built 2026-10-22/23 | rebuild on the desktop (`build_final_paper.py`, MiKTeX; `build_final_deck.py`) and read every page: Table 3 is wider now, and the pipeline figure (`fig:pipeline`, KB §69.38) is new; note the page count |
 
 ### 12.2 Analyses that need no author time
@@ -471,7 +473,7 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
 
 | # | what | adds | cost | pri |
 |---|---|---|---|---|
-| R1 | **A blind spot-check of the rule-screened rows**: 30 accepted and 10 rejected of each of fluvial and apron, shown without the rule's verdict; agreement gives the rule a measured precision | the paper can say how good the screen is, not only that it is one | ~45 min in Pro | A |
+| R1 | **A blind spot-check of the rule-screened rows**: 30 accepted and 10 rejected of each of fluvial and apron, shown without the rule's verdict; agreement gives the rule a measured precision; **registered, drawn and rendered 11-02 (KB §69.54)**: 80 rows on 14 sheets in `Mars Project\review_sheets\r1\` (no Pro), `score_r1.py answers.txt`; the agent does not answer it (its R2 calibration missed exactly apron and fluvial) | the paper can say how good the screen is, not only that it is one | ~45 min on the sheets | A |
 | R2 | **A probability-sample accuracy check** (Olofsson et al. 2014): stratified random points on the published map (and the U-Net and v2 maps), 25–50 per mapped class, labelled blind from the imagery with the maps hidden; **points, sheets and scorer done 11-02 (KB §69.53)**: 210 points in `Mars Project\review_sheets\r2\` (35 hidden calibration points), `score_r2.py answers.txt --author`; the agent's own labelling failed its gate (66.7 %, κ 0.60) | unbiased map accuracy and area-adjusted class areas with intervals; hand-drawn polygons sit where a class is clear, so the polygon score flatters every map | ~2–3 h for ~200 points | A if any time is free |
 | R3 | Lava margins at Athabasca, for H1 (already §6 step 4) | H1 tested at the stack's own scale | | |
 | R4 | A few hills polygons in a third training block (§11.3) | only if v2 is rerun; otherwise the limit is stated | ~20 min | C |
@@ -588,4 +590,4 @@ claim. "Cost" is who and how long; nothing here goes ahead of the review (§6) o
 | 8 | **The thermal gain is small** (+1.36 pt, resolved by block; none by balanced accuracy) | §56, §69.18, §69.44 | Nothing to fix: A2 (done 11-01, KB §69.50) found +1.1 pt on seven classes, not concentrated in the new classes; A8 (done 11-02, KB §69.50): SIM 3292's unit groups are not predictable from the stack above the commonest group, with or without thermal, so the mapped units are not the material labels a thermal test needs; that test waits on photo-interpreted labels (W6) | done |
 
 **Order for the agent:** D31 and D32 done 11-01 (KB §69.47), and §12.6 step 2's list (A1–A3, A7–A9, A13; KB
-§69.50); what is left is the desktop's (`run_v3.ps1`, P8) and the freeze. **For the author:** the review (§6) with `Origin` first; then R2, whose sheets are ready (§69.53).
+§69.50); what is left is the desktop's (`run_v3.ps1`, P8) and the freeze. **For the author:** the review (§6) with `Origin` first; then R1 and R2, whose sheets are ready (§69.54, §69.53).

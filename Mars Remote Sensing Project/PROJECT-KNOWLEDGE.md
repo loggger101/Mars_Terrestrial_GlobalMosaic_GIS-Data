@@ -6288,3 +6288,37 @@ point was drawn.
 
 **Left:** the sheets are ready for the author (`review_sheets\README.md`, section R2; ~2–3 h); `score_r2.py
 answers.txt --author` then gives every map's unbiased accuracy and the class areas with intervals.
+
+### 69.54 T5 on the traced margins drafted into the paper; R1's sheets drawn and rendered — 2026-11-02, laptop **[V]**
+
+The author: "continue working on the different areas you are able to". Two pieces of NEXT-STEPS that need no author
+time.
+
+**The paper's H1 text, for the freeze.** The `.tex` still gives H1 on the 1:20 M contacts alone and its Limits a review
+at 549 with "no lava margins". `build\make_fig_t5_traced.py` draws `final_img\t5_traced.png` from the two T5 logs (map
+contacts open, traced margins filled, per band, intervals; the interim's `t5_margins.png` untouched, D20); rendered and
+read. `v2_drafts.tex` **block 15** drafts (a) the H1 paragraph on the 86 margins (633 profiles on 78; day IR 19.7 %,
+13.1–27.2; Viking red 14.8; day − Viking red +4.9 pt [−2.7, +13.1]), (b) the figure and caption, (c) the hypotheses
+sentence, (d) Table `tab:hyp`'s H1 row, (e) the Limits tally from §69.33 (3,791 reviewed; precisions 54, 50, 10 and 13 %;
+199 channels, 381 rims, 86 margins) with §69.52's CTX reading (3 of 48 against the author's 22), (f) the conclusion,
+(g) the abstract clause and (h) block 12's future-work sentence. `Dickson2024` (the CTX mosaic, read on Crossref
+2026-11-02) added to `references.bib`. **D33**, the author's: how the paper names who traced the margins; drafted to say
+plainly that the AI assistant traced them and the author has not checked them.
+
+**R1, the blind spot-check of the rule-screened rows** (NEXT-STEPS §12.3; the paper must say how good §69.8's screen
+is). Registration first, before any row was drawn: `build\logs\r1\r1_registration.md` (design, scoring, three
+predictions: fluvial precision ≥ 60 %; apron's below fluvial's; κ rule–author < 0.4 in both). **The agent does not answer
+R1**: on R2's calibration (§69.53) it matched the author on 1 of 4 apron and 0 of 4 fluvial, the two classes asked.
+- `build\make_r1_sheets.py --sample` (seed 5401, from `logs\label_review_by_rule.json`): 30 accepts and 10 rejects per
+  class, 80 rows shuffled together; the key (with the rule's verdict) in `logs\r1\r1_key.json`, the sheets read only
+  `r1_slots.json`.
+- The sheets: 14 in `Mars Project\review_sheets\r1\` (six rows each, two on N). Per row the outline over the DEM
+  hillshade and over CTX across the whole piece (56–540 km), and CTX over 20 km at the piece's label point and its far
+  end, each a checked render (§69.52) against a 40 km view at the same place; every panel in a local equidistant frame.
+  All 80 whole views and 159 of 160 close views agreed at the first zoom level, one after a ×1.5 render; none fell back.
+  A first render's row titles crowded the row above; re-rendered from the cache with explicit spacing, read (A, G, N).
+- `build\score_r1.py`: per class, the precision of the rule's accepts and the share of its rejects the author rejects
+  (Wilson intervals), agreement and κ, and the precision applied to all 192 fluvial / 155 apron accepts. **Rehearsed 8 / 8**
+  on planted answers; a planted defect (chance agreement from one rater's margins only) fails it; an answers file with a
+  missing slot or a bad letter is refused.
+- The README's R1 section gives the key and the command. **Left:** the author's ~45 minutes on the sheets.
