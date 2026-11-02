@@ -6209,7 +6209,26 @@ of 126 plates: W001–W003 plus a seeded sample, seed 5252): `build\make_margin_
 image seam. **T5 on them** (`make_flow_margin_test.py --margins`, `logs\t5_flow_margins_traced.json`, 166 profiles on
 19 margins): day IR 31.9 %, Viking red 25.3 %, night 18.7 %; day − Viking red +6.6 pt [−11.9, +25.8]; day-only 32,
 Viking-only 21: **H1 not supported, as predicted.** Every band separates the traced margins more often than the 1:20 M
-contacts (§47.2: 11–21 %), so the tracing is sharper than the map; the day-IR lean persists, its interval wide.
+contacts (§47.2: 11–21 %), so the tracing is sharper than the map; the day-IR lean persists, its interval wide. (That
+40-plate run is kept as `logs\t5_flow_margins_traced_40plates.json`.)
+- **All 126 plates (amendment 2, registered before the other 86 were viewed):** the 86 left were traced by the same
+  rule, lines kept inside each plate's own 20 km cell so overlapping plates do not trace one edge twice. **66 more
+  margins, 1,118 km, on 58 of the 86 plates** (28 showed no edge; straight steps that run along CTX tile seams were
+  not traced; backup `.backups\margins_20261102-085954.gdb`). The class now holds **86 margins, 1,476 km**, all
+  agent-traced. **T5 on all of them** (`logs\t5_flow_margins_traced.json`, 633 profiles on 78 margins): day IR
+  19.7 %, Viking red 14.8 % (green 15.2, blue 15.6), night 14.5 %, contrast index 10.0 %; day − Viking red **+4.9 pt
+  [−2.7, +13.1]**, day-only 84, Viking-only 53; night − Viking red −0.3 pt [−6.7, +5.6]. **H1 not supported.**
+- Predictions: H1 not supported, **held**; a narrower interval than the 40-plate run's, **held** (15.8 pt wide against
+  37.7); every band above its 1:20 M rate, **not held**: the three Viking bands (+2.5 to +4.1 pt) and night IR (+2.8)
+  separate the traced margins more often than the lAv contacts of §47.2, but day IR (19.7 against 21.0) and the
+  contrast index (10.0 against 13.0) less often. The 40-plate rates were higher in every band (day IR 31.9, Viking
+  red 25.3). The two sets differ in kind: of the 40 plates' 20 lines, 4 are embayments (lava against knobs or
+  scarps) and 5 inferred; of the 86 plates' 66, 35 are embayments and 22 inferred. Which of the two lowers the
+  rates is not tested here.
+- **What it says:** at 1:20 M and on 1,476 km of CTX-traced margins alike, day IR leans ahead of Viking by about
+  5 points and the lean is not resolved. Sharper margins narrow the interval but do not move it off zero. The
+  margins are the agent's reading of CTX, not the author's; the author checking or redrawing them is what would
+  make the test the project's.
 
 **Origin (H2 stage 2).** Stage 2 is written into `make_t4_channel_h2.py` (prediction and rule in its docstring before
 any origin existed; within-window comparisons, every qualifying window must support H2; rehearsed 3 / 3 on planted
@@ -6229,6 +6248,6 @@ feet, across spurs, structural troughs, or on blurred CTX tiles).
   have to come from channels drawn by hand on the Athabasca lava (levéed channels, rilles), not from the routed
   candidates.
 
-**Left:** layout 14, the gdb export and the GitHub sync for the 20 margins; this section's NEXT-STEPS lines. The
-author may still set Origin on the sheets (`ctx_3_origin_ius`, `3_origin_ius`); the agent's letters stay in
+**Left:** nothing for the agent. The author may check the 86 margins (plates in `margins_ath`, or in Pro) and may
+still set Origin on the sheets (`ctx_3_origin_ius`, `3_origin_ius`); the agent's letters stay in
 `logs\agent_review\` as a second reading.

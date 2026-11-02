@@ -23,3 +23,12 @@ Plates W001-W003 were viewed (no line traced). Scope cut for time: margins are t
 sample of 37 more of the 126 plates (random.Random(5252).sample of W004-W126), 40 in all; the rest stay untraced and
 are listed as such. T5's design is unchanged; its contacts are whatever the 40 plates yield. If fewer than 10 lines
 (or under 100 km in all) are traced, T5 is not run on them and that is reported instead.
+
+## Amendment 2, 2026-11-02, after T5 ran on the 40 plates and before any of the other 86 is viewed
+The author asked for the remaining work to be done. The 86 plates left untraced (W004-W126 not in the sample) are
+traced by the same rule, so the margins cover all 126. To avoid tracing one edge twice where plates overlap (24 km
+plates on 20 km cells), lines on the new plates stay inside the plate's own cell (2-22 km on both axes). T5 is rerun
+on all traced margins (make_flow_margin_test.py --margins), design and rule unchanged; the 40-plate result stays on
+record beside it.
+Prediction: H1 still NOT supported (day IR minus Viking red, interval includes 0), with the interval narrower than
+the 40-plate one ([-11.9, +25.8]); every band's rate stays above the 1:20 M contacts' 11-21 %.

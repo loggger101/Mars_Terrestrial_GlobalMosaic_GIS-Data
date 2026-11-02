@@ -1,5 +1,5 @@
 {
- "read": "2026-11-02 08:09",
+ "read": "2026-11-02 09:01",
  "areas": {
   "ius": {
    "name": "Ius Chasma",
@@ -80,8 +80,8 @@
      }
     },
     "lava margins": {
-     "drawn": 20,
-     "by_agent": 20
+     "drawn": 83,
+     "by_agent": 83
     }
    }
   }

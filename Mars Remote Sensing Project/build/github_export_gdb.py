@@ -71,7 +71,7 @@ ABOUT = {
         "machine candidates (`accept_reviewed.py`), and any drawn by hand (KB §69.7).",
     "Landform_CraterRims": "Digitising target, task 11: crater rims accepted in review from the machine candidates "
         "(`accept_reviewed.py`), and any drawn by hand (KB §69.7).",
-    "Landform_LavaFlowMargins": "Digitising target, task 11: lava-flow margins at the Athabasca type area. Since 2026-11-02, 20 margins traced by the agent on the CTX mosaic (MappedBy \"agent CTX (KB 69.52)\"); the author adds or checks margins by hand.",
+    "Landform_LavaFlowMargins": "Digitising target, task 11: lava-flow margins at the Athabasca type area. Since 2026-11-02, 86 margins (1,476 km) traced by the agent on the CTX mosaic (MappedBy \"agent CTX (KB 69.52)\"); the author adds or checks margins by hand.",
     "Landform_ChannelCandidates_auto": "Machine channel centrelines over Ius Chasma, from flow routing with filled ground masked out "
         "(KB §25). `SlopeDeg >= 5 AND ThermIdx < -0.15` selects the 188 steep, rock-floored ones worth digitising.",
     "Landform_CraterCandidates_auto": "Machine crater candidates over Ius Chasma: closed depressions ≥ 1 km from fill "
