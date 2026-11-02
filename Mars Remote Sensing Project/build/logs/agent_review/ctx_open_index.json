@@ -1,0 +1,1008 @@
+{
+ "area": "ath",
+ "where": "ThermIdx < -0.15 AND Review IS NULL",
+ "copies": false,
+ "ctx": true,
+ "slots": {
+  "A1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1274,
+   "ctx": "CTX (render x1.5)"
+  },
+  "A2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1282,
+   "ctx": "CTX (render x2)"
+  },
+  "A3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1294,
+   "ctx": "CTX (render x1.5)"
+  },
+  "A4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1296,
+   "ctx": "CTX"
+  },
+  "A5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1305,
+   "ctx": "CTX"
+  },
+  "A6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1306,
+   "ctx": "CTX"
+  },
+  "B1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1311,
+   "ctx": "CTX (render x1.5)"
+  },
+  "B2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1318,
+   "ctx": "CTX"
+  },
+  "B3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1321,
+   "ctx": "CTX"
+  },
+  "B4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1325,
+   "ctx": "CTX"
+  },
+  "B5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1326,
+   "ctx": "CTX"
+  },
+  "B6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1328,
+   "ctx": "CTX: close tiles misplaced, 40 km view"
+  },
+  "C1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1337,
+   "ctx": "CTX"
+  },
+  "C2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1341,
+   "ctx": "CTX"
+  },
+  "C3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1342,
+   "ctx": "CTX (render x1.5)"
+  },
+  "C4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1344,
+   "ctx": "CTX"
+  },
+  "C5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1352,
+   "ctx": "CTX"
+  },
+  "C6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1355,
+   "ctx": "CTX"
+  },
+  "D1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1361,
+   "ctx": "CTX"
+  },
+  "D2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1363,
+   "ctx": "CTX"
+  },
+  "D3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1365,
+   "ctx": "CTX"
+  },
+  "D4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1369,
+   "ctx": "CTX"
+  },
+  "D5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1370,
+   "ctx": "CTX"
+  },
+  "D6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1374,
+   "ctx": "CTX"
+  },
+  "E1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1375,
+   "ctx": "CTX"
+  },
+  "E2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1376,
+   "ctx": "CTX"
+  },
+  "E3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1383,
+   "ctx": "CTX"
+  },
+  "E4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1386,
+   "ctx": "CTX"
+  },
+  "E5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1395,
+   "ctx": "CTX (render x1.5)"
+  },
+  "E6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1396,
+   "ctx": "CTX"
+  },
+  "F1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1409,
+   "ctx": "CTX"
+  },
+  "F2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1410,
+   "ctx": "CTX"
+  },
+  "F3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1412,
+   "ctx": "CTX"
+  },
+  "F4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1414,
+   "ctx": "CTX"
+  },
+  "F5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1415,
+   "ctx": "CTX"
+  },
+  "F6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1416,
+   "ctx": "CTX"
+  },
+  "G1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1420,
+   "ctx": "CTX"
+  },
+  "G2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1427,
+   "ctx": "CTX (render x1.5)"
+  },
+  "G3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1430,
+   "ctx": "CTX"
+  },
+  "G4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1431,
+   "ctx": "CTX"
+  },
+  "G5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1441,
+   "ctx": "CTX"
+  },
+  "G6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1449,
+   "ctx": "CTX"
+  },
+  "H1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1456,
+   "ctx": "CTX"
+  },
+  "H2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1457,
+   "ctx": "CTX"
+  },
+  "H3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1458,
+   "ctx": "CTX"
+  },
+  "H4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1474,
+   "ctx": "CTX"
+  },
+  "H5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1482,
+   "ctx": "CTX"
+  },
+  "H6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1499,
+   "ctx": "CTX"
+  },
+  "I1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1513,
+   "ctx": "CTX"
+  },
+  "I2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1523,
+   "ctx": "CTX (render x1.5)"
+  },
+  "I3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1526,
+   "ctx": "CTX (render x1.5)"
+  },
+  "I4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1530,
+   "ctx": "CTX"
+  },
+  "I5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1534,
+   "ctx": "CTX (render x1.5)"
+  },
+  "I6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1538,
+   "ctx": "CTX (render x1.5)"
+  },
+  "J1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1539,
+   "ctx": "CTX"
+  },
+  "J2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1544,
+   "ctx": "CTX (render x1.5)"
+  },
+  "J3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1545,
+   "ctx": "CTX (render x1.5)"
+  },
+  "J4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1551,
+   "ctx": "CTX"
+  },
+  "J5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1552,
+   "ctx": "CTX"
+  },
+  "J6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1559,
+   "ctx": "CTX"
+  },
+  "K1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1570,
+   "ctx": "CTX"
+  },
+  "K2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1587,
+   "ctx": "CTX"
+  },
+  "K3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1595,
+   "ctx": "CTX"
+  },
+  "K4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1598,
+   "ctx": "CTX (render x1.5)"
+  },
+  "K5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1620,
+   "ctx": "CTX"
+  },
+  "K6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1623,
+   "ctx": "CTX"
+  },
+  "L1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1640,
+   "ctx": "CTX"
+  },
+  "L2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1656,
+   "ctx": "CTX"
+  },
+  "L3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1667,
+   "ctx": "CTX (render x1.5)"
+  },
+  "L4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1669,
+   "ctx": "CTX"
+  },
+  "L5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1697,
+   "ctx": "CTX"
+  },
+  "L6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1712,
+   "ctx": "CTX"
+  },
+  "M1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1715,
+   "ctx": "CTX"
+  },
+  "M2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1721,
+   "ctx": "CTX"
+  },
+  "M3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1741,
+   "ctx": "CTX"
+  },
+  "M4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1742,
+   "ctx": "CTX"
+  },
+  "M5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1750,
+   "ctx": "CTX"
+  },
+  "M6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1762,
+   "ctx": "CTX"
+  },
+  "N1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1763,
+   "ctx": "CTX"
+  },
+  "N2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1768,
+   "ctx": "CTX"
+  },
+  "N3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1770,
+   "ctx": "CTX"
+  },
+  "N4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1773,
+   "ctx": "CTX"
+  },
+  "N5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1774,
+   "ctx": "CTX"
+  },
+  "N6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1777,
+   "ctx": "CTX"
+  },
+  "O1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1780,
+   "ctx": "CTX"
+  },
+  "O2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1781,
+   "ctx": "CTX: close tiles misplaced, 40 km view"
+  },
+  "O3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1782,
+   "ctx": "CTX"
+  },
+  "O4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1783,
+   "ctx": "CTX"
+  },
+  "O5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1786,
+   "ctx": "CTX"
+  },
+  "O6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1788,
+   "ctx": "CTX"
+  },
+  "P1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1793,
+   "ctx": "CTX"
+  },
+  "P2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1800,
+   "ctx": "CTX"
+  },
+  "P3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1805,
+   "ctx": "CTX (render x0.67)"
+  },
+  "P4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1814,
+   "ctx": "CTX (render x1.5)"
+  },
+  "P5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1830,
+   "ctx": "CTX (render x1.5)"
+  },
+  "P6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1834,
+   "ctx": "CTX (render x1.5)"
+  },
+  "Q1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1835,
+   "ctx": "CTX (render x1.5)"
+  },
+  "Q2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1837,
+   "ctx": "CTX"
+  },
+  "Q3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1842,
+   "ctx": "CTX (render x1.5)"
+  },
+  "Q4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1847,
+   "ctx": "CTX"
+  },
+  "Q5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1854,
+   "ctx": "CTX"
+  },
+  "Q6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1855,
+   "ctx": "CTX"
+  },
+  "R1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1858,
+   "ctx": "CTX"
+  },
+  "R2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1863,
+   "ctx": "CTX"
+  },
+  "R3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1871,
+   "ctx": "CTX"
+  },
+  "R4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1885,
+   "ctx": "CTX (render x1.5)"
+  },
+  "R5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1903,
+   "ctx": "CTX (render x1.5)"
+  },
+  "R6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1907,
+   "ctx": "CTX"
+  },
+  "S1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1912,
+   "ctx": "CTX"
+  },
+  "S2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1915,
+   "ctx": "CTX"
+  },
+  "S3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1925,
+   "ctx": "CTX: close tiles misplaced, 40 km view"
+  },
+  "S4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1931,
+   "ctx": "CTX"
+  },
+  "S5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1953,
+   "ctx": "CTX"
+  },
+  "S6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1956,
+   "ctx": "CTX"
+  },
+  "T1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1958,
+   "ctx": "CTX"
+  },
+  "T2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1983,
+   "ctx": "CTX"
+  },
+  "T3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1984,
+   "ctx": "CTX"
+  },
+  "T4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 1985,
+   "ctx": "CTX"
+  },
+  "T5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2011,
+   "ctx": "CTX"
+  },
+  "T6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2021,
+   "ctx": "CTX"
+  },
+  "U1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2022,
+   "ctx": "CTX"
+  },
+  "U2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2027,
+   "ctx": "CTX: close tiles misplaced, 40 km view"
+  },
+  "U3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2028,
+   "ctx": "CTX"
+  },
+  "U4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2034,
+   "ctx": "CTX"
+  },
+  "U5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2050,
+   "ctx": "CTX"
+  },
+  "U6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2058,
+   "ctx": "CTX"
+  },
+  "V1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2075,
+   "ctx": "CTX"
+  },
+  "V2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2082,
+   "ctx": "CTX"
+  },
+  "V3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2093,
+   "ctx": "CTX"
+  },
+  "V4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2096,
+   "ctx": "CTX (render x1.5)"
+  },
+  "V5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2097,
+   "ctx": "CTX"
+  },
+  "V6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2104,
+   "ctx": "CTX"
+  },
+  "W1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2113,
+   "ctx": "CTX (render x2)"
+  },
+  "W2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2134,
+   "ctx": "CTX"
+  },
+  "W3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2135,
+   "ctx": "CTX: close tiles misplaced, 40 km view"
+  },
+  "W4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2166,
+   "ctx": "CTX"
+  },
+  "W5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2179,
+   "ctx": "CTX: close tiles misplaced, 40 km view"
+  },
+  "W6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2181,
+   "ctx": "CTX"
+  },
+  "X1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2203,
+   "ctx": "CTX"
+  },
+  "X2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2252,
+   "ctx": "CTX"
+  },
+  "X3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2259,
+   "ctx": "CTX (render x1.5)"
+  },
+  "X4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2267,
+   "ctx": "CTX"
+  },
+  "X5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2273,
+   "ctx": "CTX"
+  },
+  "X6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2291,
+   "ctx": "CTX"
+  },
+  "Y1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2319,
+   "ctx": "CTX"
+  },
+  "Y2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2327,
+   "ctx": "CTX"
+  },
+  "Y3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2335,
+   "ctx": "CTX"
+  },
+  "Y4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2336,
+   "ctx": "CTX"
+  },
+  "Y5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2337,
+   "ctx": "CTX"
+  },
+  "Y6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2343,
+   "ctx": "CTX"
+  },
+  "Z1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2353,
+   "ctx": "CTX"
+  },
+  "Z2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2354,
+   "ctx": "CTX"
+  },
+  "Z3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2355,
+   "ctx": "CTX"
+  },
+  "Z4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2363,
+   "ctx": "CTX"
+  },
+  "Z5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2398,
+   "ctx": "CTX"
+  },
+  "Z6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2411,
+   "ctx": "CTX (render x1.5)"
+  },
+  "AA1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2419,
+   "ctx": "CTX"
+  },
+  "AA2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2420,
+   "ctx": "CTX (render x1.5)"
+  },
+  "AA3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2425,
+   "ctx": "CTX"
+  },
+  "AA4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2428,
+   "ctx": "CTX (render x2)"
+  },
+  "AA5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2442,
+   "ctx": "CTX (render x1.5)"
+  },
+  "AA6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2443,
+   "ctx": "CTX"
+  },
+  "BB1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2444,
+   "ctx": "CTX: close tiles misplaced, 40 km view"
+  },
+  "BB2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2453,
+   "ctx": "CTX"
+  },
+  "BB3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2458,
+   "ctx": "CTX"
+  },
+  "BB4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2476,
+   "ctx": "CTX"
+  },
+  "BB5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2483,
+   "ctx": "CTX"
+  },
+  "BB6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2489,
+   "ctx": "CTX (render x1.5)"
+  },
+  "CC1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2491,
+   "ctx": "CTX (render x2)"
+  },
+  "CC2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2495,
+   "ctx": "CTX"
+  },
+  "CC3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2496,
+   "ctx": "CTX"
+  },
+  "CC4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2512,
+   "ctx": "CTX"
+  },
+  "CC5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2535,
+   "ctx": "CTX"
+  },
+  "CC6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2541,
+   "ctx": "CTX"
+  },
+  "DD1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2542,
+   "ctx": "CTX"
+  },
+  "DD2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2554,
+   "ctx": "CTX"
+  },
+  "DD3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2590,
+   "ctx": "CTX"
+  },
+  "DD4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2593,
+   "ctx": "CTX"
+  },
+  "DD5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2594,
+   "ctx": "CTX"
+  },
+  "DD6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2603,
+   "ctx": "CTX"
+  },
+  "EE1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2614,
+   "ctx": "CTX"
+  },
+  "EE2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2616,
+   "ctx": "CTX"
+  },
+  "EE3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2617,
+   "ctx": "CTX"
+  },
+  "EE4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2635,
+   "ctx": "CTX (render x1.5)"
+  },
+  "EE5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2640,
+   "ctx": "CTX"
+  },
+  "EE6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2641,
+   "ctx": "CTX"
+  },
+  "FF1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2677,
+   "ctx": "CTX"
+  },
+  "FF2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2683,
+   "ctx": "CTX (render x1.5)"
+  },
+  "FF3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2759,
+   "ctx": "CTX"
+  },
+  "FF4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2768,
+   "ctx": "CTX"
+  },
+  "FF5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2843,
+   "ctx": "CTX"
+  },
+  "FF6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2871,
+   "ctx": "CTX: close tiles misplaced, 40 km view"
+  },
+  "GG1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 2872,
+   "ctx": "CTX"
+  },
+  "GG2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 3041,
+   "ctx": "CTX"
+  },
+  "GG3": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 3051,
+   "ctx": "CTX (render x1.5)"
+  },
+  "GG4": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 3054,
+   "ctx": "CTX"
+  },
+  "GG5": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 3059,
+   "ctx": "CTX"
+  },
+  "GG6": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 3060,
+   "ctx": "CTX"
+  },
+  "HH1": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 3078,
+   "ctx": "CTX"
+  },
+  "HH2": {
+   "class": "Landform_ChannelCandidates_auto_ath",
+   "oid": 3181,
+   "ctx": "CTX"
+  }
+ }
+}

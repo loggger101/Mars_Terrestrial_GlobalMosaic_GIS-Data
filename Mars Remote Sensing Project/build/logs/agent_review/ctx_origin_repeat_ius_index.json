@@ -1,0 +1,93 @@
+{
+ "area": "ius",
+ "where": null,
+ "copies": true,
+ "ctx": true,
+ "slots": {
+  "A1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 59,
+   "ctx": "CTX"
+  },
+  "A2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 6,
+   "ctx": "CTX"
+  },
+  "A3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 25,
+   "ctx": "CTX"
+  },
+  "A4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 21,
+   "ctx": "CTX"
+  },
+  "A5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 57,
+   "ctx": "CTX"
+  },
+  "A6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 84,
+   "ctx": "CTX"
+  },
+  "B1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 77,
+   "ctx": "CTX"
+  },
+  "B2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 45,
+   "ctx": "CTX"
+  },
+  "B3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 74,
+   "ctx": "CTX"
+  },
+  "B4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 37,
+   "ctx": "CTX"
+  },
+  "B5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 47,
+   "ctx": "CTX"
+  },
+  "B6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 76,
+   "ctx": "CTX"
+  },
+  "C1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 50,
+   "ctx": "CTX"
+  },
+  "C2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 92,
+   "ctx": "CTX"
+  },
+  "C3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 53,
+   "ctx": "CTX"
+  },
+  "C4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 78,
+   "ctx": "CTX"
+  },
+  "C5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 42,
+   "ctx": "CTX"
+  }
+ }
+}

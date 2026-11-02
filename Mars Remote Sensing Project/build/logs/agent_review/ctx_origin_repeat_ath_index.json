@@ -1,0 +1,73 @@
+{
+ "area": "ath",
+ "where": null,
+ "copies": true,
+ "ctx": true,
+ "slots": {
+  "A1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 121,
+   "ctx": "CTX"
+  },
+  "A2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 147,
+   "ctx": "CTX (render x1.5)"
+  },
+  "A3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 173,
+   "ctx": "CTX"
+  },
+  "A4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 190,
+   "ctx": "CTX (render x1.5)"
+  },
+  "A5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 149,
+   "ctx": "CTX"
+  },
+  "A6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 136,
+   "ctx": "CTX (render x1.5)"
+  },
+  "B1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 143,
+   "ctx": "CTX (render x1.5)"
+  },
+  "B2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 181,
+   "ctx": "CTX"
+  },
+  "B3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 186,
+   "ctx": "CTX"
+  },
+  "B4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 145,
+   "ctx": "CTX: close tiles misplaced, 40 km view"
+  },
+  "B5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 167,
+   "ctx": "CTX"
+  },
+  "B6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 160,
+   "ctx": "CTX"
+  },
+  "C1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 137,
+   "ctx": "CTX"
+  }
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "rows": 30,
+ "decided_both": 2,
+ "agreement": 1.0,
+ "kappa": null,
+ "first": {
+  "f": 2,
+  "i": 28
+ },
+ "repeat": {
+  "f": 2,
+  "i": 28
+ },
+ "changed": [],
+ "gate": "FAIL"
+}

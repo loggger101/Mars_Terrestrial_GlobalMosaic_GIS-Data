@@ -52,6 +52,10 @@ Only the state, what waits on whom and the next step; the history behind each li
   waits. **The agent cannot stand in** (§69.51, 11-02): blind on 48 of the author's calls it agreed at chance
   (46.5 %, κ 0.08), so the review stays the author's, now **without Pro**: contact sheets and a guide in
   `Mars Project\review_sheets\`, answered as letters in `answers.txt`, written in by `apply_sheet_review.py`.
+  **On CTX (§69.52, 11-02)** the agent traced **20 Athabasca lava margins (358 km)** into
+  `Landform_LavaFlowMargins` (MappedBy "agent CTX"), so T5 has run on traced margins: H1 still not supported. Its
+  channel review (3 accepts of 200) and its Origin (29 fluvial, 0 volcanic of 199) both **failed their repeat gates**
+  and are not written; they stay in `build\logs\agent_review\`. H2 stage 2 needs volcanic channels drawn by hand.
 - **The project and the deliverables:** 41 maps and 23 layouts, no broken source (§5). The interim at its 26 October
   cut (D20): 32 slides and a 21-page report, rebuilt 10-31 for layout 11's corrected citation (§69.34); speaker
   notes on every slide since 11-01, the slides unchanged (§69.41). The final
@@ -68,7 +72,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 |---|---|---|---|---|
 | 1 | **Review:** `Origin` on the 199 channel copies (H2 stage 2 needs ≥ 10 fluvial and ≥ 10 volcanic); the other 200 rock-floored Athabasca channels, then the rest; the Athabasca lava margins (H1) and breached craters, by hand | author, on the sheets (`Mars Project\review_sheets\README.md`, §69.51) or in Pro; margins in Pro | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims` / `Landform_LavaFlowMargins`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
-| 3 | Retests that wait for the review: H2 stage 2, H1 on digitised margins | agent | §4 | results in the KB, either way |
+| 3 | Retests that wait for the review: H2 stage 2 (code ready in `make_t4_channel_h2.py`; needs ≥ 10 fluvial and ≥ 10 volcanic Origins); H1 on traced margins done 11-02 on the agent's 20 (§69.52), rerun `make_flow_margin_test.py --margins` when the author adds or checks margins | agent | §4 | results in the KB, either way |
 | 3b | **The v3 runs** (more and smaller seven-class training polygons, KB §69.49): `powershell -File run_v3.ps1` from `build\`, Pro closed; U-Net then SVM, ~2 days; then the KB section, and the seven-class layouts (04b, 17b) only if the author picks the v3 maps | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
 | 4 | The paper's analyses that need no author time, in §12.6's order (A1, A2, A3 (b) and (c), A7, A8, A9 and A13 done 11-01/02 on the laptop; A4b, A3 (a), A10, A14 and W10 done 10-31, A15, A5, A6 and A11 11-01, KB §69.34–§69.46) | agent | §12.2, §12.4 | results in the KB, by the **22 Nov** freeze |
 | 5 | The interim: deliver on **10 Nov**; the report's date from the author | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |

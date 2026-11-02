@@ -1,0 +1,478 @@
+{
+ "area": "ius",
+ "where": null,
+ "copies": true,
+ "ctx": true,
+ "slots": {
+  "A1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 1,
+   "ctx": "CTX"
+  },
+  "A2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 2,
+   "ctx": "CTX (render x1.5)"
+  },
+  "A3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 3,
+   "ctx": "CTX"
+  },
+  "A4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 4,
+   "ctx": "CTX"
+  },
+  "A5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 5,
+   "ctx": "CTX"
+  },
+  "A6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 6,
+   "ctx": "CTX"
+  },
+  "B1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 7,
+   "ctx": "CTX"
+  },
+  "B2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 8,
+   "ctx": "CTX"
+  },
+  "B3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 9,
+   "ctx": "CTX"
+  },
+  "B4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 10,
+   "ctx": "CTX"
+  },
+  "B5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 11,
+   "ctx": "CTX"
+  },
+  "B6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 12,
+   "ctx": "CTX"
+  },
+  "C1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 13,
+   "ctx": "CTX"
+  },
+  "C2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 14,
+   "ctx": "CTX"
+  },
+  "C3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 15,
+   "ctx": "CTX"
+  },
+  "C4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 16,
+   "ctx": "CTX"
+  },
+  "C5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 17,
+   "ctx": "CTX"
+  },
+  "C6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 18,
+   "ctx": "CTX"
+  },
+  "D1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 19,
+   "ctx": "CTX"
+  },
+  "D2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 20,
+   "ctx": "CTX"
+  },
+  "D3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 21,
+   "ctx": "CTX"
+  },
+  "D4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 22,
+   "ctx": "CTX"
+  },
+  "D5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 23,
+   "ctx": "CTX"
+  },
+  "D6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 24,
+   "ctx": "CTX"
+  },
+  "E1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 25,
+   "ctx": "CTX"
+  },
+  "E2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 26,
+   "ctx": "CTX"
+  },
+  "E3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 27,
+   "ctx": "CTX"
+  },
+  "E4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 28,
+   "ctx": "CTX"
+  },
+  "E5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 29,
+   "ctx": "CTX"
+  },
+  "E6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 30,
+   "ctx": "CTX"
+  },
+  "F1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 31,
+   "ctx": "CTX"
+  },
+  "F2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 32,
+   "ctx": "CTX"
+  },
+  "F3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 33,
+   "ctx": "CTX"
+  },
+  "F4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 34,
+   "ctx": "CTX (render x1.5)"
+  },
+  "F5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 35,
+   "ctx": "CTX"
+  },
+  "F6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 36,
+   "ctx": "CTX"
+  },
+  "G1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 37,
+   "ctx": "CTX"
+  },
+  "G2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 38,
+   "ctx": "CTX"
+  },
+  "G3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 39,
+   "ctx": "CTX"
+  },
+  "G4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 40,
+   "ctx": "CTX"
+  },
+  "G5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 41,
+   "ctx": "CTX"
+  },
+  "G6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 42,
+   "ctx": "CTX"
+  },
+  "H1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 43,
+   "ctx": "CTX"
+  },
+  "H2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 44,
+   "ctx": "CTX (render x2)"
+  },
+  "H3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 45,
+   "ctx": "CTX"
+  },
+  "H4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 46,
+   "ctx": "CTX"
+  },
+  "H5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 47,
+   "ctx": "CTX"
+  },
+  "H6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 48,
+   "ctx": "CTX"
+  },
+  "I1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 49,
+   "ctx": "CTX"
+  },
+  "I2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 50,
+   "ctx": "CTX"
+  },
+  "I3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 51,
+   "ctx": "CTX"
+  },
+  "I4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 52,
+   "ctx": "CTX"
+  },
+  "I5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 53,
+   "ctx": "CTX"
+  },
+  "I6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 54,
+   "ctx": "CTX (render x0.67)"
+  },
+  "J1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 55,
+   "ctx": "CTX"
+  },
+  "J2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 56,
+   "ctx": "CTX"
+  },
+  "J3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 57,
+   "ctx": "CTX"
+  },
+  "J4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 58,
+   "ctx": "CTX"
+  },
+  "J5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 59,
+   "ctx": "CTX"
+  },
+  "J6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 60,
+   "ctx": "CTX"
+  },
+  "K1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 61,
+   "ctx": "CTX"
+  },
+  "K2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 62,
+   "ctx": "CTX"
+  },
+  "K3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 63,
+   "ctx": "CTX"
+  },
+  "K4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 64,
+   "ctx": "CTX"
+  },
+  "K5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 65,
+   "ctx": "CTX"
+  },
+  "K6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 66,
+   "ctx": "CTX"
+  },
+  "L1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 67,
+   "ctx": "CTX"
+  },
+  "L2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 68,
+   "ctx": "CTX"
+  },
+  "L3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 69,
+   "ctx": "CTX"
+  },
+  "L4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 70,
+   "ctx": "CTX"
+  },
+  "L5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 71,
+   "ctx": "CTX"
+  },
+  "L6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 72,
+   "ctx": "CTX"
+  },
+  "M1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 73,
+   "ctx": "CTX: close tiles misplaced, 40 km view"
+  },
+  "M2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 74,
+   "ctx": "CTX"
+  },
+  "M3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 75,
+   "ctx": "CTX"
+  },
+  "M4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 76,
+   "ctx": "CTX"
+  },
+  "M5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 77,
+   "ctx": "CTX"
+  },
+  "M6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 78,
+   "ctx": "CTX"
+  },
+  "N1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 79,
+   "ctx": "CTX"
+  },
+  "N2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 80,
+   "ctx": "CTX"
+  },
+  "N3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 81,
+   "ctx": "CTX (render x1.5)"
+  },
+  "N4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 82,
+   "ctx": "CTX"
+  },
+  "N5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 83,
+   "ctx": "CTX"
+  },
+  "N6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 84,
+   "ctx": "CTX"
+  },
+  "O1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 85,
+   "ctx": "CTX (render x2)"
+  },
+  "O2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 86,
+   "ctx": "CTX"
+  },
+  "O3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 87,
+   "ctx": "CTX"
+  },
+  "O4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 88,
+   "ctx": "CTX (render x2)"
+  },
+  "O5": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 89,
+   "ctx": "CTX"
+  },
+  "O6": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 90,
+   "ctx": "CTX"
+  },
+  "P1": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 91,
+   "ctx": "CTX"
+  },
+  "P2": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 92,
+   "ctx": "CTX"
+  },
+  "P3": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 93,
+   "ctx": "CTX"
+  },
+  "P4": {
+   "class": "Landform_ChannelCenterlines",
+   "oid": 94,
+   "ctx": "CTX"
+  }
+ }
+}

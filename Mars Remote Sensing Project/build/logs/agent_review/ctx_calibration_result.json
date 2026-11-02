@@ -1,0 +1,258 @@
+{
+ "n": 48,
+ "both_decided": 37,
+ "agreement": 0.676,
+ "kappa": 0.136,
+ "table_agent/author": {
+  "accept/accept": 2,
+  "accept/reject": 1,
+  "reject/accept": 11,
+  "reject/reject": 23
+ },
+ "agent_unsure": 11,
+ "author_unsure": 0,
+ "author_accept_share": 0.458,
+ "agent_accept_share": 0.062,
+ "rows": [
+  {
+   "slot": "A1",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "A2",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "A3",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "A4",
+   "agent": "reject",
+   "author": "accept"
+  },
+  {
+   "slot": "A5",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "A6",
+   "agent": "reject",
+   "author": "accept"
+  },
+  {
+   "slot": "B1",
+   "agent": "accept",
+   "author": "reject"
+  },
+  {
+   "slot": "B2",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "B3",
+   "agent": "unsure",
+   "author": "accept"
+  },
+  {
+   "slot": "B4",
+   "agent": "unsure",
+   "author": "accept"
+  },
+  {
+   "slot": "B5",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "B6",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "C1",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "C2",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "C3",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "C4",
+   "agent": "unsure",
+   "author": "reject"
+  },
+  {
+   "slot": "C5",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "C6",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "D1",
+   "agent": "reject",
+   "author": "accept"
+  },
+  {
+   "slot": "D2",
+   "agent": "unsure",
+   "author": "accept"
+  },
+  {
+   "slot": "D3",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "D4",
+   "agent": "accept",
+   "author": "accept"
+  },
+  {
+   "slot": "D5",
+   "agent": "unsure",
+   "author": "accept"
+  },
+  {
+   "slot": "D6",
+   "agent": "unsure",
+   "author": "reject"
+  },
+  {
+   "slot": "E1",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "E2",
+   "agent": "reject",
+   "author": "accept"
+  },
+  {
+   "slot": "E3",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "E4",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "E5",
+   "agent": "unsure",
+   "author": "accept"
+  },
+  {
+   "slot": "E6",
+   "agent": "reject",
+   "author": "accept"
+  },
+  {
+   "slot": "F1",
+   "agent": "unsure",
+   "author": "accept"
+  },
+  {
+   "slot": "F2",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "F3",
+   "agent": "unsure",
+   "author": "accept"
+  },
+  {
+   "slot": "F4",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "F5",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "F6",
+   "agent": "unsure",
+   "author": "accept"
+  },
+  {
+   "slot": "G1",
+   "agent": "reject",
+   "author": "accept"
+  },
+  {
+   "slot": "G2",
+   "agent": "reject",
+   "author": "accept"
+  },
+  {
+   "slot": "G3",
+   "agent": "reject",
+   "author": "accept"
+  },
+  {
+   "slot": "G4",
+   "agent": "unsure",
+   "author": "accept"
+  },
+  {
+   "slot": "G5",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "G6",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "H1",
+   "agent": "reject",
+   "author": "accept"
+  },
+  {
+   "slot": "H2",
+   "agent": "reject",
+   "author": "accept"
+  },
+  {
+   "slot": "H3",
+   "agent": "accept",
+   "author": "accept"
+  },
+  {
+   "slot": "H4",
+   "agent": "reject",
+   "author": "reject"
+  },
+  {
+   "slot": "H5",
+   "agent": "reject",
+   "author": "accept"
+  },
+  {
+   "slot": "H6",
+   "agent": "reject",
+   "author": "reject"
+  }
+ ]
+}

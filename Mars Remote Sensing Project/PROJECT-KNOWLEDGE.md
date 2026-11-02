@@ -6140,3 +6140,95 @@ overwrite; backs up the class to `.backups\sheets_<time>.gdb`; writes `Review` (
 or `Origin` on the copy; logs every row to `logs\sheet_review_*.json`. Rehearsed on a scratch gdb: 10 / 10,
 including the five planted defects refused with nothing written. `review_sheets\` is left off the GitHub mirror
 (`github_sync.py`'s `SKIP_DIRS`): 123 MB of PNG, redrawn by the script.
+
+### 69.52 The review on CTX: the mosaic streamed into Pro, a tile defect caught, the agent's review by a registered rule — 2026-11-02, laptop **[V]**
+
+The author, after §69.51: "continue performing work where you can, remember i want most things done for me".
+
+**CTX in Pro.** The Murray Lab's global CTX mosaic V01 (~5 m, visible; Dickson et al. 2024, *Earth and Space
+Science* 11(7), e2024EA003555, read on Crossref 11-02; credit NASA/JPL/MSSS/The Murray Lab, free use for all
+purposes) is hosted by Esri as a tiled map service (`astro.arcgis.com/.../OnMars/CTX1/MapServer`, owner
+`esri_astro`, 512-px JPEG tiles in GCS Mars 2000 sphere). `build\add_ctx_layer.py` adds it, streamed, to both
+digitising maps ("CTX mosaic, ~5 m (Murray Lab V01, streamed: needs a network)", under the candidates, over the 100 m
+rasters; the `.aprx` backed up first, Pro closed; a rerun skips). Nothing is downloaded to the drive. The Murray Lab's
+own 4° tiles are 1.7 GB each; the review's candidates fall in 21 of them (~36 GB), so the service is the route. A
+render of candidate 986 (34 km, accepted by both reviewers in §69.51) at 40 km puts its line on a trough CTX shows:
+registration holds in the maps' CM180 frame.
+
+**A defect in the service, caught.** Around one Athabasca candidate the 12 and 16 km windows show a canyon wall
+with gullies pasted over the lava plains, in the CM180 frame and in the service's own GCS alike, while the 8, 24
+and 40 km windows show the plains and the crater the DEM puts there: misplaced tiles at some zoom levels, in Esri's
+cache, not Pro's reprojection. `build\ctx_consistency.py` compares a close view with the 40 km view over the same
+ground (both block-averaged to 30 × 30 greys, each grid's mean plane removed, correlated): the known good windows
+score 0.97–0.99, the misplaced 0.14–0.16. `build\make_ctx_chips.py` (four panels per candidate: CTX with the line,
+CTX with its ends, CTX over 40 km, local relief) keeps a close view only at r ≥ 0.9, otherwise renders it again over
+1.5, 2 and 0.67 times the window (other zoom levels) and keeps the first that agrees, else shows the 40 km view and
+says so; the 40 km view is itself checked against a 30 km render, with a 56 km one deciding a disagreement. The
+renders are cached in `Mars Project\review_sheets\ctx_cache\` (off the GitHub mirror with the sheets).
+
+**The protocol, registered first** (`logs\agent_review\ctx_protocol_registration.md`, before any CTX sheet was
+viewed): accept when CTX shows an incised channel, trough, groove or a channel between banks under the line for at
+least half its length; reject when the line runs over ground with no such feature or crosses ridges, scarps or rims;
+unsure otherwise. Origin by morphology on CTX alone: fluvial (streamlined islands or grooves of an outflow channel, a
+branching network, a valley cut into a wall), volcanic (a leveed channel on a lobate flow, a sinuous rille from a
+pit, fissure or vent, a channel in platy or ridged lava), indeterminate (neither, or an outflow form under a lava
+surface: Athabasca's flood-carved and lava-draped channels are debated). CTX is independent of the 100 m DEM, slope
+and THEMIS layers H1 and H2 test, so origins set on it do not make H2 circular. Writes never change an author's
+decision (`apply_sheet_review.py` refuses).
+
+**Check 1, reported, against the author** (48 author-reviewed Athabasca rows not used in §69.51, seed 52;
+`ctx_calibration_result.json`): **agreement 67.6 % (25 of 37 both decided), κ 0.14**, inside the prediction (55–75
+%, κ 0.1–0.5): **held**. The agent accepted 3 of 48 (6 %; unsure on 11), the author 22 (46 %); of the author's 13
+decided accepts the agent rejects 11. On CTX most rock-floored lines over the Athabasca plains follow no visible
+channel: they run over flat lava, wind streaks, lobe edges and, where CTX is blurred (several tiles are), nothing
+resolvable. The three the agent accepts follow a narrow sinuous trough, a leveed channel and a bright-floored channel.
+
+**The 200 open rock-floored Athabasca channels, on CTX** (`ctx_open_decisions.json`, by the registered rule):
+**3 accept, 186 reject, 11 unsure.** The three: a narrow trough along the base of a lobe's scarp (C4), a sinuous
+channel with a bright floor (K2), a dark channel along a flow's edge (BB2). The rejects run over flat lava, platy
+or ridged flow surfaces, wind streaks and lobe edges with no channel along them; where CTX is blurred (several tiles
+are, and 4 of the 200 close views fell back to the 40 km view) nothing is resolvable at the line's scale.
+- **The gate, registered first, FAILED: none of the 200 is written to the gdb.** A blind repeat of 30 rows (new slots,
+  new order, seed 53; `ctx_open_repeat_result.json`) agrees on 29 of 29 decided both times, one reject becoming
+  unsure; but all 29 are rejects, so κ is undefined, and the rule (`score_agent_repeat.py`) counts an undefined κ as a
+  failure: a constant answer agrees with itself. The sample held none of the three accepts, so the repeat cannot show
+  that the agent tells channels from non-channels consistently. The decisions stay in `logs\agent_review\`.
+- **Read with the calibration:** on CTX the agent and the author agree no better than chance (κ 0.14, above), the agent
+  accepting 6 % of lines and the author 46 %. Two readings fit: the author accepted lines that follow a real but
+  faint feature at 100 m which CTX's blur or lighting hides, or the 100 m DEM's routed lines mostly do not follow
+  channels and the author's eye was generous. The precisions recorded in §69.33 (50 % at Athabasca) are the author's
+  standard; under the agent's on CTX the same layer would sit near 6 % (3 of 48 calibration rows, 3 of 189 decided
+  open rows). Neither is a ground truth. The paper should report the author's as reviewed and say that a reading on
+  CTX accepts far fewer.
+
+**Lava-flow margins (H1), traced on CTX** (registration `ctx_margins_registration.md`, amended before tracing to 40
+of 126 plates: W001–W003 plus a seeded sample, seed 5252): `build\make_margin_plates.py` (24 km CTX plates along SIM
+3292's lAv boundaries, no THEMIS or Viking shown), `build\apply_margin_tracing.py` (rehearsed 7 / 7). **20 margins,
+358 km, written to `Landform_LavaFlowMargins`** (`MappedBy` "agent CTX (KB 69.52)"; backup
+`.backups\margins_20261102-020318.gdb`); 20 plates showed no edge; W118's straight tonal step was dropped as a likely
+image seam. **T5 on them** (`make_flow_margin_test.py --margins`, `logs\t5_flow_margins_traced.json`, 166 profiles on
+19 margins): day IR 31.9 %, Viking red 25.3 %, night 18.7 %; day − Viking red +6.6 pt [−11.9, +25.8]; day-only 32,
+Viking-only 21: **H1 not supported, as predicted.** Every band separates the traced margins more often than the 1:20 M
+contacts (§47.2: 11–21 %), so the tracing is sharper than the map; the day-IR lean persists, its interval wide.
+
+**Origin (H2 stage 2).** Stage 2 is written into `make_t4_channel_h2.py` (prediction and rule in its docstring before
+any origin existed; within-window comparisons, every qualifying window must support H2; rehearsed 3 / 3 on planted
+origins). By the registered rule all 105 Athabasca copies are **indeterminate** (lines over flood lava inside the
+outflow channel). Ius, all 94 (`ctx_origin_ius_decisions.json`): **29 fluvial** (gullies and alcove-fed valleys cut
+into the canyon walls, between spurs), **0 volcanic, 65 indeterminate** (lines over landslide aprons, along scarp
+feet, across spurs, structural troughs, or on blurred CTX tiles).
+- **The origin gate, registered first (amendment in `ctx_protocol_registration.md`), FAILED: no Origin is written.**
+  30 of the 199 copies (pooled, `random.Random(54)`; 13 Athabasca, 17 Ius), redrawn under new slots and order: the
+  same answer on all 30 (`ctx_origin_repeat_result.json`), but only 2 are decided (f) both times and 28 are
+  indeterminate, so κ is undefined and the rule counts that as a failure. The prediction (fails or passes narrowly,
+  mostly indeterminate) held. A caveat on the repeat itself: the Ius rows were seen within the hour, so it tests
+  recall as much as judgement.
+- **H2 stage 2 cannot run from this review in any case:** 0 volcanic channels at either window, against the 10 of
+  each it needs. The Ius result says the routed lines that follow real channels there are wall gullies; the
+  Athabasca copies lie on lava over the outflow channel, which the rule calls indeterminate. A volcanic set would
+  have to come from channels drawn by hand on the Athabasca lava (levéed channels, rilles), not from the routed
+  candidates.
+
+**Left:** layout 14, the gdb export and the GitHub sync for the 20 margins; this section's NEXT-STEPS lines. The
+author may still set Origin on the sheets (`ctx_3_origin_ius`, `3_origin_ius`); the agent's letters stay in
+`logs\agent_review\` as a second reading.

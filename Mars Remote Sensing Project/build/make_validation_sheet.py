@@ -95,7 +95,9 @@ def tally():
                 r["robbins_1km"] = {"recall": m["recall"], "precision": m["precision"], "robbins": m["robbins"]}
             rows[kind] = r
         _, lava = digitised(LAVA, None, b)
-        rows["lava margins"] = {"drawn": lava}
+        by_agent = sum(1 for xy, by in arcpy.da.SearchCursor(os.path.join(GDB, LAVA), ["SHAPE@XY", "MappedBy"])
+                       if xy and in_window(xy, b) and (by or "").lower().startswith("agent"))
+        rows["lava margins"] = {"drawn": lava, "by_agent": by_agent}
         res["areas"][key] = {"name": A["name"], "rows": rows}
     return res
 
@@ -149,7 +151,7 @@ def build(res):
         drawn_q = "SourceID IS NULL OR SourceID = ''"
         lyr(os.path.join(GDB, CHAN), "Channels: drawn by hand (missed)", drawn_q, COL["drawn"], 2.2, True)
         lyr(os.path.join(GDB, RIMS), "Crater rims: drawn by hand (missed)", drawn_q, COL["drawn"], 2.0, False)
-        lyr(os.path.join(GDB, LAVA), "Lava flow margins: drawn by hand", None, COL["lava"], 2.2, True)
+        lyr(os.path.join(GDB, LAVA), "Lava flow margins: traced (MappedBy says who)", None, COL["lava"], 2.2, True)
         lyr(os.path.join(GDB, CHAN), "Channels: accepted", "SourceID LIKE '%s:%%'" % A["channels"], COL["accept"], 2.0, True)
         lyr(os.path.join(GDB, RIMS), "Crater rims: accepted", "SourceID LIKE '%s:%%'" % A["craters"], COL["accept"], 1.8, False)
         lyr(chan, "Channels: unsure", "Review = 'unsure'", COL["unsure"], 1.6, True)
@@ -245,7 +247,15 @@ def notes(res):
     return (state + "Precision = accepted ÷ (accepted + rejected). Recall = accepted ÷ (accepted + drawn by hand): "
             "the share of the features mapped by hand that the detector proposed.\nRobbins: a candidate matches a "
             "catalogued crater whose centre lies within half its diameter, with a diameter within ×2 (KB §42.3). "
-            "The depressions are closed depressions, not a crater count.")
+            "The depressions are closed depressions, not a crater count." + agent_note(res))
+
+
+def agent_note(res):
+    """Say which lava margins the agent traced on CTX rather than the author by hand (KB §69.52)."""
+    parts = ["%d of %d at %s" % (a["rows"]["lava margins"].get("by_agent", 0), a["rows"]["lava margins"]["drawn"],
+                                 a["name"]) for a in res["areas"].values() if a["rows"]["lava margins"].get("by_agent")]
+    return ("\nLava margins traced by the agent on CTX, not by the author (KB §69.52): " + "; ".join(parts) + "."
+            if parts else "")
 
 
 def main():

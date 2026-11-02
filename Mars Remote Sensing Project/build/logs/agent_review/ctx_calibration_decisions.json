@@ -1,0 +1,9 @@
+{"note": "Agent decisions on CTX by the registered rule (ctx_protocol_registration.md), written before the author's Review values were read (KB 69.52). a / r / u.",
+ "A1": "r", "A2": "r", "A3": "r", "A4": "r", "A5": "r", "A6": "r",
+ "B1": "a", "B2": "r", "B3": "u", "B4": "u", "B5": "r", "B6": "r",
+ "C1": "r", "C2": "r", "C3": "r", "C4": "u", "C5": "r", "C6": "r",
+ "D1": "r", "D2": "u", "D3": "r", "D4": "a", "D5": "u", "D6": "u",
+ "E1": "r", "E2": "r", "E3": "r", "E4": "r", "E5": "u", "E6": "r",
+ "F1": "u", "F2": "r", "F3": "u", "F4": "r", "F5": "r", "F6": "u",
+ "G1": "r", "G2": "r", "G3": "r", "G4": "u", "G5": "r", "G6": "r",
+ "H1": "r", "H2": "r", "H3": "a", "H4": "r", "H5": "r", "H6": "r"}

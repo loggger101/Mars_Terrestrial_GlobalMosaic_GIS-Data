@@ -43,6 +43,11 @@ logs\t5_flow_margins_topo.json. Prediction, written before the first run (2026-1
   P3  topography explains >= 5 % of day IR's variance in the window (R^2), and less of Viking red's.
 Each is reported as held or not held. A flow front is itself a slope, so the residual can also remove a real
 contact signal: a lean that vanishes is read as "not shown to be material", not as "shown to be illumination".
+
+--margins (KB §69.52): the same test on the lava-flow margins traced on CTX at Athabasca (Landform_LavaFlowMargins,
+apply_margin_tracing.py) in place of the 1:20 M contacts; every other part of the design unchanged. They form the
+"lAv contacts" set; the registration check is reported, not enforced (a traced edge need not be a map contact).
+Writes logs\t5_flow_margins_traced.json. Prediction and rule: logs\agent_review\ctx_margins_registration.md.
 """
 import os, sys, json, time
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -59,8 +64,10 @@ A = dict(areas.AREAS["ath"], key="ath")
 WS = on_drive(os.path.join("Mars Project", A["folder"]))   # read only: the folder itself, not its junction
 UNITS = os.path.join(GDB, "Ref_SIM3292_GeologicUnits")
 TOPO = "--topo" in sys.argv
+MARGINS = "--margins" in sys.argv
 OUT0 = os.path.join(HERE, "logs", "t5_flow_margins.json")
-OUT = os.path.join(HERE, "logs", "t5_flow_margins_topo.json") if TOPO else OUT0
+OUT = (os.path.join(HERE, "logs", "t5_flow_margins_traced.json") if MARGINS else
+       os.path.join(HERE, "logs", "t5_flow_margins_topo.json") if TOPO else OUT0)
 R = 3396190.0
 STEP, HALF, GAP, RES = 2000.0, 20000.0, 3000.0, 100.0
 NNULL, NBOOT, SEED, NULL_MIN_KM = 2000, 2000, 20261008, 25.0
@@ -125,6 +132,18 @@ with arcpy.da.SearchCursor(mem_l, ["SHAPE@", "LEFT_FID", "RIGHT_FID"]) as c:
         for part in geom_xy(g):
             for line in part:
                 contacts.append((pair, line))
+if MARGINS:
+    # --margins (KB §69.52): the lines in Landform_LavaFlowMargins (traced on CTX, already in the CM180 frame) take
+    # the contacts' place; each is labelled lAv-traced, so the "lAv contacts" set below is the traced set.
+    contacts = []
+    with arcpy.da.SearchCursor(os.path.join(GDB, "Landform_LavaFlowMargins"), ["SHAPE@"]) as c:
+        for (g,) in c:
+            for part in g:
+                pts = np.array([(p.X, p.Y) for p in part if p is not None])
+                if len(pts) > 1:
+                    contacts.append((("lAv", "traced"), pts))
+    if not contacts:
+        sys.exit("--margins: Landform_LavaFlowMargins holds no lines; nothing written")
 log("units in window: %s; contacts: %d lines, %.0f km" % (
     sorted(set(unit_of.values())), len(contacts),
     sum(np.hypot(*np.diff(l, axis=0).T).sum() for _, l in contacts) / 1000.0))
@@ -258,12 +277,15 @@ def sides_differ(x, y, ux, uy):
 
 c_diff, _, _ = sides_differ(px, py, nx, ny)
 n_diff, _, _ = sides_differ(*map(np.array, (nxs, nys, nnx, nny)))
-log("registration: contact profiles with different units at +-10 km %.1f %%; null profiles %.1f %%"
-    % (100 * c_diff[cok].mean(), 100 * n_diff[nok].mean()))
+log("registration: contact profiles with different units at +-10 km %.1f %%; null profiles %.1f %%%s"
+    % (100 * c_diff[cok].mean(), 100 * n_diff[nok].mean(),
+       " (traced margins: a CTX edge need not be a SIM 3292 contact, so this is reported, not a check)" if MARGINS else ""))
 
 # ------------------------------------------------------------------ separation, thresholds, rates
-res = {"test": "T5", "hypothesis": "H1",
-       "prediction": "Viking red separates at least as many contacts as day IR; IR-only <= Viking-only; night IR fewest; H1 not supported",
+res = {"test": "T5" + (" on CTX-traced margins (KB 69.52)" if MARGINS else ""), "hypothesis": "H1",
+       "prediction": ("H1 not supported: day IR's rate does not exceed Viking red's with an interval above 0 "
+                      "(logs/agent_review/ctx_margins_registration.md)" if MARGINS else
+                      "Viking red separates at least as many contacts as day IR; IR-only <= Viking-only; night IR fewest; H1 not supported"),
        "design": {"step_km": STEP / 1000, "half_km": HALF / 1000, "gap_km": GAP / 1000, "null_n": NNULL,
                   "null_min_km": NULL_MIN_KM, "boot": NBOOT, "seed": SEED, "null_quantile": 0.9},
        "contacts_by_pair_km": {}, "registration": {"contact_sides_differ": float(c_diff[cok].mean()),

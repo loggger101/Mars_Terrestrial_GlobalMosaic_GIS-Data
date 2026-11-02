@@ -32,6 +32,20 @@ Design (fixed before any number was read):
     between the windows with |d| >= 0.5 and its interval excluding zero. Otherwise NOT SUPPORTED at
     stage 1. Either way stage 1 cannot confirm H2: window is a proxy for origin.
 
+Stage 2, written 2026-11-02 before any channel had an Origin (KB §69.52):
+  Data       the reviewed copies in Landform_ChannelCenterlines with Origin fluvial or volcanic, >= 1 km; gradient on
+             their window's 100 m DEM as above; thermal response = the source candidate's ThermIdx (the index sampled
+             along the line, SourceID) as a z-score against that window's background, as in stage 1.
+  Origin     set on CTX (~5 m, visible) by morphology alone (KB §69.52's registered rule), never from the DEM, the
+             slope or THEMIS, so the comparison is not circular.
+  Window     if all fluvial channels sat at Ius and all volcanic at Athabasca, stage 2 would repeat stage 1. So the
+             verdict uses the within-window comparison in every window holding >= 10 of each origin (all must
+             support H2), and the pooled one (reported with the window counts) only when no window does.
+  Prediction gradient: H2's direction FAILS again: volcanic channels are not steeper than fluvial ones (stage 1 and
+             1b: lava-plain channels are the shallow ones, KB §51.1, §69.50); thermal: |d| < 0.5.
+  Rule       stage 1's: SUPPORTED only if volcanic median gradient > fluvial with the cell-bootstrap interval above
+             zero AND the thermal |d| >= 0.5 with its interval excluding zero; otherwise NOT SUPPORTED.
+
 Read-only; writes build\logs\t4_channel_h2.json.
 """
 import os, sys, json, time
@@ -151,6 +165,53 @@ def verdict(r):
                 stage1="CONSISTENT with H2 (window as proxy)" if a and b else "NOT SUPPORTED at stage 1")
 
 
+def stage2(dems, bgs):
+    """Fluvial against volcanic on the reviewed copies: within each window holding >= ORIGIN_MIN of both, and pooled."""
+    therm = {}
+    for key, A in areas.AREAS.items():
+        with arcpy.da.SearchCursor(os.path.join(GDB, A["channels"]), ["OID@", "ThermIdx"]) as c:
+            for oid, t in c:
+                therm["%s:%d" % (A["channels"], oid)] = (key, t)
+    segs = []
+    with arcpy.da.SearchCursor(os.path.join(GDB, "Landform_ChannelCenterlines"), ["SHAPE@", "Origin", "SourceID"],
+                               "Origin IN ('fluvial', 'volcanic')") as c:
+        for g, origin, src in c:
+            if g is None or src not in therm or therm[src][1] is None or g.length / 1000.0 < MIN_KM:
+                continue
+            key, t = therm[src]
+            km = g.length / 1000.0
+            z0, z1 = dems[key].at(g.firstPoint.X, g.firstPoint.Y), dems[key].at(g.lastPoint.X, g.lastPoint.Y)
+            mid = g.positionAlongLine(0.5, True).firstPoint
+            s = dict(win=origin, area=key, km=km, grad=abs(z0 - z1) / km, tz=(t - bgs[key][0]) / bgs[key][1],
+                     x=mid.X, y=mid.Y)
+            if np.isfinite(s["grad"]):
+                segs.append(s)
+    out = {"counts": {"%s/%s" % (a, o): sum(1 for s in segs if s["area"] == a and s["win"] == o)
+                      for a in areas.AREAS for o in ("fluvial", "volcanic")}}
+    flu = [s for s in segs if s["win"] == "fluvial"]; vol = [s for s in segs if s["win"] == "volcanic"]
+    out["pooled"] = compare(flu, vol, "fluvial", "volcanic")
+    out["pooled"]["verdict"] = verdict(out["pooled"])
+    within = []
+    for a in areas.AREAS:
+        fa = [s for s in flu if s["area"] == a]; va = [s for s in vol if s["area"] == a]
+        if len(fa) >= ORIGIN_MIN and len(va) >= ORIGIN_MIN:
+            out["within_" + a] = compare(fa, va, "fluvial, " + a, "volcanic, " + a)
+            out["within_" + a]["verdict"] = verdict(out["within_" + a])
+            within.append("within_" + a)
+    # every window that can test it must support H2; the pooled comparison decides only when none can
+    keys = within or ["pooled"]
+    out["decided_on"] = ", ".join(within) if within else "pooled (no window holds >= %d of each)" % ORIGIN_MIN
+    ok = all(out[k]["verdict"]["gradient_volcanic_steeper"] and out[k]["verdict"]["thermal_separates"] for k in keys)
+    out["verdict"] = "SUPPORTED" if ok else "NOT SUPPORTED"
+    for k in [k for k in out if k == "pooled" or k.startswith("within_")]:
+        x = out[k]
+        log("stage 2 %s: n %d / %d; median gradient fluvial %.2f, volcanic %.2f m/km (diff %+.2f [%+.2f, %+.2f]); "
+            "d thermal %+.2f [%+.2f, %+.2f]" % (k, x["n_a"], x["n_b"], x["grad_median_a"], x["grad_median_b"],
+                                                x["grad_median_diff"], *x["grad_median_diff_ci95"], x["d_thermal"],
+                                                *x["d_thermal_ci95"]))
+    return out
+
+
 def selftest():
     """The statistics on data with known answers, before they touch real data."""
     y = np.r_[np.zeros(500), np.ones(500)]
@@ -169,7 +230,7 @@ def main():
     selftest()
     res = {"prediction": "gradient: Ius steeper than Athabasca (H2 direction fails); thermal: |d| < 0.5",
            "design": {"min_km": MIN_KM, "background_pixels": NBG, "bootstrap": NBOOT, "cell_m": CELL, "seed": SEED}}
-    data = {}
+    data, dems, bgs = {}, {}, {}
     for key, A in areas.AREAS.items():
         folder = on_drive(os.path.join("Mars Project", A["folder"]))
         dem = Grid(os.path.join(folder, A["prefix"] + "_dem.tif"))
@@ -184,7 +245,7 @@ def main():
         for s in segs:
             s["tz"] = (s["therm"] - bg.mean()) / bg.std() if s["therm"] is not None else np.nan
         segs = [s for s in segs if np.isfinite(s["tz"])]
-        data[key] = segs
+        data[key], dems[key], bgs[key] = segs, dem, (float(bg.mean()), float(bg.std()))
         res.setdefault("windows", {})[key] = dict(name=A["name"], n=len(segs), background_mean=float(bg.mean()),
             background_sd=float(bg.std()), grad_median=float(np.median([s["grad"] for s in segs])),
             grad_p90=float(np.percentile([s["grad"] for s in segs], 90)),
@@ -206,12 +267,13 @@ def main():
     with arcpy.da.SearchCursor(os.path.join(GDB, "Landform_ChannelCenterlines"), ["Origin"]) as c:
         for (o,) in c:
             cnt[o] = cnt.get(o, 0) + 1
-    res["stage2"] = {"origin_counts": cnt}
+    res["stage2"] = {"origin_counts": cnt, "prediction": "gradient: volcanic not steeper than fluvial (H2 direction "
+                     "fails); thermal |d| < 0.5", "origin_source": "CTX morphology (KB 69.52)"}
     if cnt.get("fluvial", 0) >= ORIGIN_MIN and cnt.get("volcanic", 0) >= ORIGIN_MIN:
-        res["stage2"]["note"] = "enough reviewed channels: extend this script to compare by Origin"
+        res["stage2"].update(stage2(dems, bgs))
     else:
         res["stage2"]["note"] = ("waiting: needs >= %d fluvial and >= %d volcanic reviewed channels" % (ORIGIN_MIN, ORIGIN_MIN))
-    log("stage 2: %s %s" % (cnt, res["stage2"]["note"]))
+    log("stage 2: %s %s" % (cnt, res["stage2"].get("note", res["stage2"].get("verdict"))))
     json.dump(res, open(OUT, "w"), indent=1, default=float)
     log("wrote " + OUT)
 
