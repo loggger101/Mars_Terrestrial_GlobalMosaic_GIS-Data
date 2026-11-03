@@ -3,7 +3,8 @@ r"""Writes docs\environment.md in the GitHub repo: what each machine runs, read 
 
     python github_environment.py        (the system Python; it asks the ArcGIS Python for its own versions)
 
-One section per machine, headed by its host name; a run replaces its own machine's section and keeps the others', so
+One section per machine, headed by its role, "desktop" or "laptop" (ROLES; the laptop's host name stays off the public
+page, the author's request 2026-11-03), never by its host name; a run replaces its own machine's section and keeps the others', so
 a run on each machine gives both. Read, not typed: the OS, CPU, memory, GPU and driver from Windows (and nvidia-smi
 where present); ArcGIS Pro's version, licensed extensions and packages from the ArcGIS Python; the system Python's
 packages that the build scripts import; MiKTeX and the AASTeX class from the TeX on the path. Also writes
@@ -21,6 +22,7 @@ REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
             Path.home() / "OneDrive" / "Documents" / "GitHub" / "Mars_Terrestrial_GlobalMosaic_GIS-Data")
 SYSTEM_PKGS = ["numpy", "matplotlib", "Pillow", "python-pptx", "python-docx", "PyMuPDF"]
 ARCGIS_PKGS = ["numpy", "scipy", "matplotlib", "Pillow", "GDAL", "arcgis", "torch", "torchvision", "fastai"]
+ROLES = {"DESKTOP-PJS73RO": "desktop"}  # host name -> section heading; any other machine is the laptop
 CLASS = "aastex701"                     # the paper's \documentclass (NEXT STUFF\Final\paper\mars_global_mosaic.tex)
 
 # Run inside the ArcGIS Python: its own versions, as JSON on stdout
@@ -142,12 +144,13 @@ def section(host, m, sp, ag, tx):
 
 
 def main():
-    host = platform.node()
+    host = ROLES.get(platform.node().upper(), "laptop")
     sp = system_python()
     new = section(host, machine(), sp, arcgis(), tex())
     path = REPO / "docs" / "environment.md"
     old = path.read_text(encoding="utf-8") if path.exists() else ""
-    blocks = {m.group(1): m.group(0) for m in re.finditer(r"<!-- machine: (\S+) -->.*?<!-- end: \1 -->", old, re.S)}
+    blocks = {m.group(1): m.group(0) for m in re.finditer(r"<!-- machine: (\S+) -->.*?<!-- end: \1 -->", old, re.S)
+              if m.group(1) in {"laptop", *ROLES.values()}}     # sections headed by a host name are dropped
     blocks[host] = new                                         # this machine's section replaced, the others kept
     head = ["# The software environment", "",
             "What each machine that built this project runs, read from the machine by "
@@ -160,7 +163,7 @@ def main():
     path.parent.mkdir(exist_ok=True)
     if text != old:
         path.write_text(text, encoding="utf-8", newline="\n")
-    req = ["# The system Python's packages the build scripts import, as on %s (%s); see environment.md." % (
+    req = ["# The system Python's packages the build scripts import, as on the %s (%s); see environment.md." % (
         host, time.strftime("%Y-%m-%d"))] + ["%s==%s" % (k, v) for k, v in sp["packages"].items() if v]
     (REPO / "docs" / "requirements-system.txt").write_text("\n".join(req) + "\n", encoding="utf-8", newline="\n")
     print(new)

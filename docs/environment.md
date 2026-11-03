@@ -2,12 +2,12 @@
 
 What each machine that built this project runs, read from the machine by `Mars Remote Sensing Project/build/github_environment.py`; a run replaces its own machine's section. Rasters and arcpy run on the ArcGIS Python, decks and reports on the system Python (KB §2.4); the U-Net and RetinaNet need the Deep Learning Libraries and a CUDA GPU. `requirements-system.txt` pins the system Python's packages as the last machine to run this had them. Generated; don't edit it here.
 
-<!-- machine: fartbutt -->
-## fartbutt
+<!-- machine: laptop -->
+## laptop
 
 | | |
 |---|---|
-| Written | 2026-11-01 |
+| Written | 2026-11-03 |
 | OS | Windows 11 (build 10.0.26300) |
 | CPU | Intel(R) Core(TM) Ultra 5 225U |
 | Memory | 16.5 GB |
@@ -21,4 +21,4 @@ What each machine that built this project runs, read from the machine by `Mars R
 | System Python packages | numpy `2.5.2`, matplotlib `3.11.1`, Pillow `12.3.0`, python-pptx `1.0.2`, python-docx `1.2.0`, PyMuPDF `1.28.2` |
 | TeX | not on the path |
 | aastex701.cls | not found by kpsewhich |
-<!-- end: fartbutt -->
+<!-- end: laptop -->

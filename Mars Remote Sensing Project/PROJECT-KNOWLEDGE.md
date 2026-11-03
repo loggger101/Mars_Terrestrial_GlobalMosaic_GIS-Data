@@ -6694,3 +6694,6 @@ notes (§69.9: no KB reference on a slide), so every slide has one. Until today 
   seven-class maps (D28) and the release zip that holds them (`global60-classification-part2.zip`, read from the zip's
   own directory), with codes 5–7. The layer catalogue's class-code note named only `*_v2*` as seven-class; it now names
   `*_v3*` and `*_offtharsis_draw` too (`github_export_gdb.py`'s header, so the next export keeps it).
+- **The environment page names machines by role:** `docs/environment.md` was headed by the laptop's host name; at the
+  author's request (2026-11-03) `github_environment.py` heads each section "laptop" or "desktop" (`ROLES`) and drops
+  any section headed by a host name. The desktop's section is still missing: the script has never run there.

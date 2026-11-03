@@ -1,4 +1,4 @@
-# The system Python's packages the build scripts import, as on fartbutt (2026-11-01); see environment.md.
+# The system Python's packages the build scripts import, as on the laptop (2026-11-03); see environment.md.
 numpy==2.5.2
 matplotlib==3.11.1
 Pillow==12.3.0
