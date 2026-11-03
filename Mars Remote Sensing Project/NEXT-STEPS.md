@@ -82,7 +82,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 | 3b | **The v3 runs** (more and smaller seven-class training polygons, KB §69.49; the fan deposits admitted as apron by D34, §69.56: 10,269 training, 1,652 held out): `powershell -File run_v3.ps1` from `build\`, Pro closed; U-Net then SVM, ~2 days; then the KB section, and the seven-class layouts (04b, 17b) only if the author picks the v3 maps; steps 08 and 13 (the v2 maps on the v3 held-out polygons) are already measured at the same 400 m, A16, §69.57 | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
 | 4 | The paper's analyses that need no author time, in §12.6's order (A1, A2, A3 (b) and (c), A7, A8, A9 and A13 done 11-01/02 on the laptop; A4b, A3 (a), A10, A14 and W10 done 10-31, A15, A5, A6 and A11 11-01, KB §69.34–§69.46) | agent | §12.2, §12.4 | results in the KB, by the **22 Nov** freeze |
 | 5 | The interim: deliver on **10 Nov**; the report's date from the author | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
-| 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex`; rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
+| 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex` (the settled blocks 8–11, 14 and "Viking colour" went in early, 11-02, §69.58; left: blocks 12, 13, 15, 16 and the open decisions' clauses); rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
 
 The class revision (§11) is done to the final's text (2a–2c, KB §69.2–§69.27). Deep learning (X5, X5b, X5c) is done
 and scored (§66); further tuning first needs validation blocks of its own (§66.5), the author's call.
@@ -461,16 +461,15 @@ brainstorm was dropped. Done 11-01 on the laptop and removed from the table (KB 
 ### 12.1 Lines in the paper and `final.py` that the freeze must change
 
 The abstract, the limits on the labels and the candidates, the channel reference and the two citations were brought
-current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT STUFF\Final\paper\v2_drafts.tex`:
+current on 2026-10-27 (KB §69.18). **Applied early, 2026-11-02 (KB §69.58):** the blocks no answer can change,
+`v2_drafts.tex` 8 (W11), 9 (W3), 10 (A1, A7), 11 (A3 (b), A8) and 14 (W4's three figures), and "Viking colour" (W5)
+in the paper and the final deck. Left for the freeze, each drafted in `NEXT STUFF\Final\paper\v2_drafts.tex`:
 
 | where | today | true since |
 |---|---|---|
 | Methods, labels | four classes, 512 polygons | v2: seven classes, 734 training / 237 held out; **347 apron and fluvial rows accepted by a written rule, not by eye**, and hills short of §11.3 (`--keep-short`): both stated (KB §69.8) |
 | Limits, held-out use | "used once for each model" | the v2 maps are a second use of the 14 blocks; say so |
-| Results, channels; Discussion, H2 and Table `tab:hyp` | "The network is not scored here"; H2 at stage 1 only | A1 and A7 (KB §69.50): the drafts are `v2_drafts.tex` block 10 |
-| wherever the paper says "Viking albedo" (Conclusion 2 among them) | albedo | "Viking colour": MDIM 2.1 is high-pass filtered at ~50 km, its colour an uncalibrated blend (W5, KB §69.50) |
 | Discussion, after Limits; before the acknowledgments | no future work; no data statement | W6 and W7: `v2_drafts.tex` blocks 12 and 13 (the DOI first, D23) |
-| Results, baselines; Table `tab:svm`; Limits, labels | no height baseline; "a test of thermal value needs material labels" alone | A3 (b) and A8 (KB §69.50): elevation and latitude alone score 62.5 % / 31.8 %; the geologic map's unit groups are no substitute for material labels. The drafts are `v2_drafts.tex` block 11 |
 | Results, H1 and `fig:t5`; Discussion, the hypotheses; Table `tab:hyp`; Limits, the review tally; Conclusions; abstract | H1 on the 1:20 M contacts only; "94 channels, 26 crater rims and no lava margins"; the review at 549 | T5 on the 86 CTX-traced margins (KB §69.52; `final_img\t5_traced.png`, `make_fig_t5_traced.py`) and the tally of §69.33: `v2_drafts.tex` block 15, with D33; `Dickson2024` in `references.bib` |
 | the PDF and the final deck | built 2026-10-22/23 | rebuild on the desktop (`build_final_paper.py`, MiKTeX; `build_final_deck.py`) and read every page: Table 3 is wider now, and the pipeline figure (`fig:pipeline`, KB §69.38) is new; note the page count |
 
@@ -496,17 +495,17 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
   with none. The six candidates are checked by DOI and in `references.bib` (DeLatte2019, Silburt2019, Bue2006,
   Luo2009, Wilhelm2020, Olofsson2014; KB §69.40), and cited since 11-01 by a prior-work paragraph in the
   introduction and a Limits sentence on polygon bias. The Discussion's comparison with prior work is drafted (11-01,
-  `v2_drafts.tex` block 9, KB §69.50): a subsection "Against earlier automated mapping", in at the freeze.
+  `v2_drafts.tex` block 9, KB §69.50): a subsection "Against earlier automated mapping", in the paper since 11-02 (KB §69.58).
 - **W4, figures** (**17 pages** since these, compiled in CI 11-01, KB §69.42; 16 at the last desktop build):
   ~~the pipeline in Methods~~ (in since 10-31, `fig:pipeline`, KB §69.38; page 5, read); ~~the block split~~ (in since
-  11-01, `fig:split`, `final_img\block_split.png`, KB §69.41; page 6, read); ~~a type-area zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the detector's limit in one panel~~ (made 11-02, `final_img\typearea_zoom.png` and `crater_limit.png`, with A3's `svm_baselines.png`, drafted into `v2_drafts.tex` block 14, KB §69.50); after v2, the seven-class map and its confusion; A6's `final_img\map_agreement.png` (KB §69.46) and A10's `final_img\crater_sfd.png` (KB §69.35).
+  11-01, `fig:split`, `final_img\block_split.png`, KB §69.41; page 6, read); ~~a type-area zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the detector's limit in one panel~~ (made 11-02, `final_img\typearea_zoom.png` and `crater_limit.png`, with A3's `svm_baselines.png`, in the paper since 11-02, KB §69.58); after v2, the seven-class map and its confusion; A6's `final_img\map_agreement.png` (KB §69.46) and A10's `final_img\crater_sfd.png` (KB §69.35).
 - **W5, limits to add**: one labeller; the rule-screened v2 rows; hills short; THEMIS strips differ in local time,
   season and dust, a physical cause beside the stretch (Edwards et al. 2011's abstract confirms running contrast
   stretches; the rest needs its full text **[?]**); **Viking, checked 11-01 (KB §69.50):** MDIM 2.1 is high-pass
   filtered at ~50 km to remove regional albedo and normalised so equal slopes show equal contrast, and its colour
   is an older mosaic blended over it "artistically", which most likely carries §43.1's regional signal: the
   Viking bands are shading, local albedo and an uncalibrated regional colour. Say so in Data and Limits, beside
-  the stack's "no elevation band"; and at the freeze (§12.1) read "Viking albedo" as "Viking colour" in the
+  the stack's "no elevation band"; and (done 11-02, KB §69.58) read "Viking albedo" as "Viking colour" in the
   paper, Conclusion 2 among them.
 - **W6, future work**: the outline's item 10 (§7) has no section in the paper: calibrated THEMIS inertia where it
   exists, CTX for margins, validation blocks for the deep-learning models, R2 if not done. Once the models have
@@ -526,7 +525,7 @@ current on 2026-10-27 (KB §69.18). Left for the freeze, each drafted in `NEXT S
   thresholds (fluvial, floor ≥ 20 m below a 4.8 km flank ring and `ShareVolc` < 0.5; apron, `SlopeMed` ≥ 1° and
   `CraterCover` < 0.5; KB §69.8), which §12.1's line and A13 need stated; the U-Net's batch of 8, 10 % of chips for
   validation, backbone unfrozen, 64-pixel padding at inference (`make_dl_pixels.py`). One sentence each, every
-  value read from its script at the freeze. **B**, with §12.1. Drafted 11-01 (`v2_drafts.tex` block 8, KB §69.50).
+  value read from its script at the freeze. **B**, with §12.1. Drafted 11-01 (`v2_drafts.tex` block 8, KB §69.50); in the paper since 11-02 (§69.58).
 
 ### 12.5 The two talks
 

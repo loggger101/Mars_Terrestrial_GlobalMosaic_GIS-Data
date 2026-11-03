@@ -111,6 +111,7 @@ further tuning needs validation blocks of its own.
 
 %% ---------------------------------------------------------------------------------------------------------
 %% 8. W11 (NEXT-STEPS §12.4), drafted 2026-11-01 (KB §69.50): the values Methods leaves out. Re-read each from its
+%%    APPLIED 2026-11-02, ahead of the freeze (KB §69.58): in the .tex; kept here as the record of the wording.
 %%    source at the freeze. Sources: review_v2_by_rule.py FLOOR_M, FLANK_KM, VOLC_MAX = 20.0, 4.8, 0.5 and
 %%    APRON_SLOPE, APRON_CRATER = 1.0, 0.5; the v2 U-Net's own run_config.json (Mars Project\DLModels\
 %%    global60_unet_x5c_v2_20261028): batch_size 8, validation_percentage 10, freeze UNFREEZE_MODEL, chip_size 256,
@@ -128,6 +129,7 @@ in batches of 8 with 10\% of the chips held back for validation and the backbone
 
 %% ---------------------------------------------------------------------------------------------------------
 %% 9. W3 (NEXT-STEPS §12.4), drafted 2026-11-01 (KB §69.40, §69.50): the Discussion's comparison with prior work, a
+%%    APPLIED 2026-11-02, ahead of the freeze (KB §69.58): in the .tex; kept here as the record of the wording.
 %%    new subsection between "The hypotheses" and "Limits". Every fact about the cited papers is from §69.40's
 %%    table (read from each abstract); every number of ours is in the paper already or in §69.50. Check the crater
 %%    recall against Conclusion 3 at the freeze.
@@ -150,6 +152,7 @@ points on four classes) and, by balanced accuracy, absent.
 
 %% ---------------------------------------------------------------------------------------------------------
 %% 10. A1 and A7 (KB §69.50) into the text, at the freeze.
+%%    APPLIED 2026-11-02, ahead of the freeze (KB §69.58): in the .tex; kept here as the record of the wording.
 %% ---------------------------------------------------------------------------------------------------------
 %% (a) Results, channels: replace "The network is not scored here; the global valley maps of \citet{Hynek2010} and
 %%     \citet{Alemanno2018} are the natural references, and the second is held for that test." with:
@@ -169,6 +172,7 @@ against 13.9~m~km$^{-1}$), and the two differ little on the thermal index (Cohen
 
 %% ---------------------------------------------------------------------------------------------------------
 %% 11. A3 (b) and A8 (KB §69.50) into the text, at the freeze.
+%%    APPLIED 2026-11-02, ahead of the freeze (KB §69.58): in the .tex; kept here as the record of the wording.
 %% ---------------------------------------------------------------------------------------------------------
 %% (a) Results, after "On the seven-class labels the baseline scores 45.6\% and 51.0\% balanced, above the
 %%     seven-class support vector machine on both.":
@@ -220,6 +224,7 @@ thermal-inertia map and the crater database are public from the sources cited in
 
 %% ---------------------------------------------------------------------------------------------------------
 %% 14. W4 (NEXT-STEPS §12.4), drafted 2026-11-02: three figures, at the freeze. For each, add its line to
+%%    APPLIED 2026-11-02, ahead of the freeze (KB §69.58): in the .tex; kept here as the record of the wording.
 %%     build_final_paper.py's figure list (final_img\<name> -> figures\<name>), insert the environment, and add the
 %%     \ref where marked. Read the page count after (17 pages since 11-01): if the budget is tight, (b) goes first, then (c).
 %% ---------------------------------------------------------------------------------------------------------
@@ -265,6 +270,8 @@ Crater, lava tube and Normal Ground. Shares are of this window. \label{fig:zoom}
 %%     redraws the margins first, rerun make_flow_margin_test.py --margins and make_fig_t5_traced.py, and replace
 %%     every number below. THE AUTHOR'S CALL (NEXT-STEPS D33): how the paper names who traced the margins; (a) says
 %%     it plainly, as the KB does, and drops that clause only if the author has checked them.
+%%    NOTE 2026-11-02 (KB §69.58): block 10 (b)'s A7 sentence is now in the .tex right after (c)'s anchor; (c) replaces
+%%    the anchor sentence only and keeps that A7 sentence after it.
 %% ---------------------------------------------------------------------------------------------------------
 %% (a) Results, the H1 paragraph: replace "A map at 1:20\,M generalises contacts by kilometres, and ten contacts
 %%     cannot settle the question; H1 needs margins digitised on the 100~m stack." with:

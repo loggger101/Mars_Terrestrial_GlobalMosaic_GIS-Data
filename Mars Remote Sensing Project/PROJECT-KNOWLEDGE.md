@@ -6461,3 +6461,35 @@ the author's (NEXT-STEPS §2), drafted as `v2_drafts.tex` block 17.
 resolved by balanced accuracy on the v2 held-out polygons, then give the v3 scores and interval (52.9 % against
 40.4 %, −3.7 to +16.3); the Conclusions add "though not on a larger rule-screened set"; `final.py`'s U-Net slide
 says the same. `verify_interim.py` on both: every number in the record (215 in `final.py`, 781 in the `.tex`).
+
+### 69.58 The freeze's settled blocks applied early: W11, W3, A1, A7, A3 (b), A8, W4's three figures, "Viking colour" — 2026-11-02, laptop **[V]**
+
+Every laptop analysis in NEXT-STEPS §12.2 was done (§69.50), so the drafts in `v2_drafts.tex` that no review answer
+or open decision can change went into `mars_global_mosaic.tex` now rather than at the 22 Nov freeze, leaving the
+freeze only the blocks that wait on someone. Each value was re-read from its source first.
+
+- **Block 8 (W11):** Limits gives the review rule's thresholds as `review_v2_by_rule.py` holds them (FLOOR_M,
+  FLANK_KM, VOLC_MAX = 20.0, 4.8, 0.5; APRON_SLOPE, APRON_CRATER = 1.0, 0.5); Methods, the U-Net's training as all
+  four saved `run_config.json` files in `Mars Project\DLModels\` record it (batch_size 8, validation_percentage 10,
+  UNFREEZE_MODEL, chip_size 256, max_epochs 30) and the inference padding of 64 (`make_dl_pixels.py`).
+- **Block 9 (W3):** the Discussion subsection "Against earlier automated mapping", between the hypotheses and Limits.
+- **Block 10 (A1, A7):** the channel paragraph scores the routed network against the valley map (replacing "The
+  network is not scored here"); the hypotheses add the second stand-in for H2; Table `tab:hyp`'s H2 row reads "not
+  supported at stages 1 and 1b", thermal |d| ≤ 0.31.
+- **Block 11 (A3 (b), A8):** a paragraph on the elevation-and-latitude baseline, a row for it in each half of
+  Table `tab:svm` (the note now says eight rows and seven), and the Limits sentence on SIM 3292's unit groups.
+- **Block 14 (W4):** `fig:craterlimit` (Methods), `fig:zoom` and `fig:baselines` (Results); the three added to
+  `build_final_paper.py`'s FIGURES (24 now). Each image was read against its caption; the zoom's caption now says
+  Viking and day IR are shown "on the 100 m grid", since Viking's own cell is 231.5 m.
+- **W5, "Viking colour"** (§12.1's row; sources §69.50): the abstract, Table `tab:data`, the thermal section, the
+  figure caption on provinces, Limits and Conclusion 2 say Viking colour, not albedo; Data says why (MDIM 2.1
+  high-pass filtered at ~50 km and slope-normalised, the colour an older mosaic blended over it) and the stack
+  paragraph that the Viking bands carry shading. The final deck's five "Viking albedo" / "visible albedo" lines
+  (`final.py`) say the same. The introduction's "Visible albedo also separates bright dust from dark basalt", about
+  the physics and not the product, stays.
+
+Left for the freeze, each waiting on someone: block 12 (future work; its R2 sentence and H1/H2 sentence depend on
+blocks 15 and 16), 13 (the data statement, at the DOI, D23), 15 (T5 on the traced margins and the review tally, D33),
+16 (R1 and R2, replaced if the author answers the sheets); D21 (title), D25 and D29 (the thermal and seven-class
+qualifiers). `verify_interim.py`: all 837 numbers in the `.tex` and all 215 in `final.py` in the record;
+`neutral_voice.py --check` passes. The page count is read from the CI build (below).

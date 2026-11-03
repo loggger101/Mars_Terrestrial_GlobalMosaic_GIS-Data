@@ -44,7 +44,7 @@ HYPOTHESES = [   # (id, claim, verdict, KB)
     ("T1", "Thermal IR improves the landform classification",
      "Yes, a little: +1.3 pt (numpy), +1.36 and +1.97 pt (Pro SVM), every interval above 0", "§40.1, §56"),
     ("T3", "The THEMIS pair tracks calibrated thermal inertia",
-     "Weakly and only locally (|r| ≈ 0.1 within 15° blocks); Viking albedo carries the regional signal (r −0.36)",
+     "Weakly and only locally (|r| ≈ 0.1 within 15° blocks); Viking colour carries the regional signal (r −0.36)",
      "§43.1"),
 ]
 
@@ -59,7 +59,7 @@ FIGURES = [
          images=[("layout", "15_athabasca_type_area")], side_h=330,
          points=["150–162°E, 4–14°N: unit lAv, Late Amazonian volcanic (outlined)",
                  "Catalogued craters: 1,122 per million km² on lAv, 1,760 and 2,183 on the older units",
-                 "Viking albedo tracks calibrated inertia here (r −0.55); the diurnal-contrast index does not"],
+                 "Viking colour tracks calibrated inertia here (r −0.55); the diurnal-contrast index does not"],
          source="§14.4, §42, §63"),
     dict(section=("Building the mosaic", "Four datasets, three coordinate frames, one grid"), special="bands"),
     dict(special="correlation"),
@@ -85,9 +85,9 @@ FIGURES = [
          source="§24.1, §28.10"),
     dict(title="Checked against calibrated thermal inertia (TES)",
          images=[("file", r"interim_img\tes_check.png")],
-         points=["Viking albedo tracks TES inertia across the planet (r −0.31 dayside, −0.36 nightside)",
+         points=["Viking colour tracks TES inertia across the planet (r −0.31 dayside, −0.36 nightside)",
                  "Night IR and the index: a weak signal inside 15° blocks only (|r| ≈ 0.1); day IR none",
-                 "The material signal at 3 km is in visible albedo"],
+                 "The material signal at 3 km is in Viking colour, not calibrated albedo"],
          source="§41, §42.4, §43.1"),
     dict(section=("Landforms", "Craters, channels, lava flows"),
          title="Basins ≥ 20 km: the large craters",
@@ -218,7 +218,7 @@ LIMITS = [   # (head, text)
 
 CONCLUSIONS = [
     "Four global products now share one co-registered grid over ±60°; the co-registration that failed four times works",
-    "Visible albedo, day IR and night IR span about three dimensions, night IR nearly independent of the others, but the THEMIS mosaics carry "
+    "Viking colour, day IR and night IR span about three dimensions, night IR nearly independent of the others, but the THEMIS mosaics carry "
     "local contrast only, and calibrated inertia follows Viking",
     "Craters ≥ 5 km are mostly recovered as closed depressions (63.2% precision); those missed are mostly degraded or breached",
     "The four-class landform map scores 66.7% balanced (73.8%, κ 0.58 overall) on blocks it never saw, above geography alone by class (61.3%); thermal adds a resolved 1.4–2.0 points",

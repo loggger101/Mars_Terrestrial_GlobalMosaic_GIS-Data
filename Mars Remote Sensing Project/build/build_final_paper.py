@@ -28,12 +28,15 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"final_img\08_global60_mosaic.png", "08_global60_mosaic.png"),
     (r"pres1_img\global60_thermal.png", "global60_thermal.png"),     # cropped: CROP
     (r"interim_img\tes_check.png", "tes_check.png"),
+    (r"final_img\crater_limit.png", "crater_limit.png"),     # make_fig_crater_limit.py (W4, KB §69.50)
     (r"final_img\depressions_vs_robbins.png", "depressions_vs_robbins.png"),
     (r"interim_img\ius_channel_candidates.png", "ius_channel_candidates.png"),   # cropped: CROP
     (r"final_img\12_global60_channels.png", "12_global60_channels.png"),
     (r"interim_img\t8_enrichment.png", "t8_enrichment.png"),
     (r"interim_img\t5_margins.png", "t5_margins.png"),
     (r"final_img\04_global60_landforms.png", "04_global60_landforms.png"),
+    (r"final_img\typearea_zoom.png", "typearea_zoom.png"),     # make_fig_typearea_zoom.py (W4, KB §69.50)
+    (r"final_img\svm_baselines.png", "svm_baselines.png"),     # make_fig_baselines.py (A3, KB §69.50)
     (r"interim_img\accuracy_200m.png", "accuracy_200m.png"),
     (r"interim_img\thermal_ablation.png", "thermal_ablation.png"),
     (r"final_img\16_x5_detections.png", "16_x5_detections.png"),

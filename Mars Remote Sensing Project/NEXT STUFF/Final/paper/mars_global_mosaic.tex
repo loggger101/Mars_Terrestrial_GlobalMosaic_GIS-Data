@@ -28,7 +28,7 @@ craters, fluvial channels and lava flows. At Ius Chasma the visible bands are on
 and night infrared is nearly independent of every band ($|r|\le0.12$). Across \pmsixty, however,
 the THEMIS mosaics are 8-bit products stretched region by region: dusty and rocky provinces differ by 47.67~DN in
 Viking red but by $-0.19$ and $+0.02$~DN in day and night infrared, and against calibrated TES thermal inertia the
-THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking albedo tracks inertia planet-wide
+THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking colour tracks inertia planet-wide
 ($r=-0.36$). Fill depth yields 465,354 closed depressions $\ge1$~km; 63.2\% of those $\ge5$~km are catalogued
 craters, only 15.3\% at $\ge1$~km, and the catalogued craters missed are mostly degraded or breached. Of 969,822 routed channel
 segments 89.8\% lie on slopes under $2^{\circ}$. A support vector machine trained on 329 of 512 hand-drawn landform polygons and scored on the other 183, in whole $15^{\circ}$
@@ -88,8 +88,11 @@ Four global or near-global products were used (Table~\ref{tab:data}). The THEMIS
 Edwards2011} are single-band 8-bit display products: the night mosaic's label gives a base of 0 and a multiplier of 1,
 with no scaling to radiance or temperature, and the two mosaics were stretched independently (2nd and 98th percentiles
 of 35 and 205~DN by day, 58 and 203~DN by night over Ius Chasma). Calibrated thermal inertia cannot be derived from
-them. Viking MDIM~2.1 has every one of its 4.25 billion pixels valid; the HRSC/MOLA blend
-\citep{Smith2001, Jaumann2007, Fergason2018} is signed 16-bit metres on a geographic grid. %% KB §3, §24.1
+them. Viking MDIM~2.1 has every one of its 4.25 billion pixels valid, but it is not calibrated albedo either: its
+images were high-pass filtered at about 50~km to remove regional albedo and normalised so that equal slopes show equal
+contrast, and the colour product is an older colourised mosaic blended over it. The Viking bands therefore carry
+topographic shading and local albedo under an uncalibrated colour, called Viking colour here. The HRSC/MOLA blend
+\citep{Smith2001, Jaumann2007, Fergason2018} is signed 16-bit metres on a geographic grid. %% KB §3, §24.1, §69.50 (W5)
 
 \begin{table*}[t]
 \centering
@@ -100,7 +103,7 @@ them. Viking MDIM~2.1 has every one of its 4.25 billion pixels valid; the HRSC/M
 \hline\hline
 Product & Cell & Size (px) & Frame & Holds \\
 \hline
-Viking MDIM 2.1 colour & 231.5 m & $92{,}160\times46{,}080\times3$ & cylindrical, CM $0^{\circ}$ & visible albedo, RGB \\
+Viking MDIM 2.1 colour & 231.5 m & $92{,}160\times46{,}080\times3$ & cylindrical, CM $0^{\circ}$ & visible colour, RGB \\
 THEMIS Day IR v12 & 100 m & $213{,}390\times106{,}696$ & cylindrical, CM $180^{\circ}$ & day brightness, 8-bit \\
 THEMIS Night IR v14 & 100 m & $213{,}388\times71{,}130$ & cylindrical, CM $180^{\circ}$, \pmsixty & night brightness, 8-bit \\
 HRSC/MOLA blend DEM v2 & $0.0033741^{\circ}$ & $106{,}694\times53{,}347$ & geographic, degrees & elevation, $-8.5$ to $+21.2$ km \\
@@ -195,7 +198,8 @@ The seven-band stack for classification is on G200 with 97.33\% of pixels valid 
 (bilinear from 231.5~m), THEMIS night and day infrared ($2\times2$ averages on their own grid), slope in degrees, and
 local relief in a $9\times9$ window (1.8~km). Every band is stretched from its 1st and 99th percentiles over \pmsixty\
 to 1--255. Elevation itself is excluded: a raw elevation band beside 8-bit bands dominates any distance-based classifier,
-and an earlier map built with one was 62\% reproducible from elevation alone. %% KB §31.2, §30.3, §14.2
+and an earlier map built with one was 62\% reproducible from elevation alone. The Viking bands still carry its
+shading (Section~\ref{sec:data}). %% KB §31.2, §30.3, §14.2, §69.50 (W5)
 
 \subsection{The diurnal-contrast index}
 
@@ -212,9 +216,19 @@ topographically, so fill depth is a crater detector. A depression is kept if it 
 across (about ten 100~m pixels, the resolving rule used throughout), no more than twice as long as wide, and fills at
 least 0.55 of its bounding box. The thresholds were tuned on two named craters near Ius Chasma: Perrotin (82.8~km) is
 found at 77.0~km ($-7.1\%$) and ranks first of 1,321 candidates; Oudemans (124.2~km) is missed, because it is breached
-into the canyon and its lowest rim point lies 33~m below its floor. Across \pmsixty\ the detector runs at two scales:
-the whole extent at 1.6~km for basins $\ge20$~km, and 8,192-pixel tiles of G200 with a 1,024-pixel (205~km) halo for
-depressions $\ge1$~km. %% KB §26.2, §26.3, §26.4, §28.6
+into the canyon and its lowest rim point lies 33~m below its floor (Figure~\ref{fig:craterlimit}). Across \pmsixty\
+the detector runs at two scales: the whole extent at 1.6~km for basins $\ge20$~km, and 8,192-pixel tiles of G200 with a
+1,024-pixel (205~km) halo for depressions $\ge1$~km. %% KB §26.2, §26.3, §26.4, §28.6
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/crater_limit.png}
+\caption{The closed-depression detector on the two named craters it was tuned on. Grey, the HRSC/MOLA elevation; in
+colour, every closed depression deeper than 20~m by its depth below the filled surface; dashed, the IAU rim. Perrotin
+is a closed basin and is found at 77.0~km; Oudemans is breached into the canyon, its lowest rim point 33~m below its
+floor, so filling leaves it empty and the detector cannot see it. \label{fig:craterlimit}}
+\end{figure*}
+%% KB §26.3, §69.50; build\make_fig_crater_limit.py
 
 Channel centrelines come from D8 flow routing on the filled surface \citep{Jenson1988} with a 5,000-cell (50~km$^2$)
 accumulation threshold, ordered after \citet{Strahler1957}. Because \texttt{Fill} turns closed basins into synthetic
@@ -270,9 +284,11 @@ Two models were trained on the training blocks only and scored on the same held-
 \citep{Lin2017} with a ResNet-50 backbone \citep{He2016} was trained on 3,622 chips of $256\times256\times7$ pixels
 (stride 128) holding 5,293 boxes; its score is per polygon, recall being the share of held-out polygons at least half
 covered by boxes of their own class. A U-Net \citep{Ronneberger2015} with a ResNet-34 backbone, class balancing and
-unlabelled ground ignored in the loss, was trained for 30 epochs on the same chips as pixel labels, applied to all of
+unlabelled ground ignored in the loss, was trained for 30 epochs on the same chips as pixel labels, in batches of 8
+with 10\% of the chips held back for validation and the backbone unfrozen, applied to all of
 \pmsixty\ in 243 tiles of 4,096 pixels with a 256-pixel margin, and scored with the same code as the support vector
-machine. Because the classification tool works internally in 256-pixel tiles, the U-Net was run a second time on a grid
+machine. Because the classification tool works internally in 256-pixel tiles, each predicted with 64 pixels of
+padding, the U-Net was run a second time on a grid
 offset by 128 pixels, and each pixel was taken from the pass that places it farther from a tile edge. Both models used
 the Deep Learning Libraries of ArcGIS Pro, built on PyTorch \citep{Paszke2019}. %% KB §50.2, §51.3, §66.1, §66.6, §66.7, §66.8
 
@@ -343,7 +359,7 @@ same groups (dayside medians of 45 and 246 tiu). The THEMIS DN are local contras
 \includegraphics[width=\textwidth]{figures/global60_thermal.png}
 \caption{(A) The diurnal-contrast index over seven provinces: dusty and rocky provinces differ by $-0.0009$. (B) The
 source DN of four provinces: the THEMIS mosaics repeat the mosaic-wide mean and spread everywhere, while Viking red
-keeps a 47.67~DN albedo difference. \label{fig:provinces}}
+keeps a 47.67~DN difference. \label{fig:provinces}}
 \end{figure*}
 
 Calibrated inertia agrees (Figure~\ref{fig:tes}). Averaged into TES cells ($\sim3$~km), Viking red tracks log thermal
@@ -351,7 +367,7 @@ inertia across \pmsixty\ ($r=-0.31$ dayside, $-0.36$ nightside), much less withi
 $-0.06$, $-0.10$): a regional signal, the dust provinces. Night infrared and the index carry a weak local signal in the
 physical direction (median within-block $r=+0.11$ and $-0.08$ against nightside inertia, quartiles of one sign) that
 vanishes planet-wide, as region-by-region stretching predicts; day infrared carries none. In the type areas the index
-tracks nightside inertia weakly at Ius ($r=-0.22$) and not at all at Athabasca ($-0.01$), where Viking albedo does
+tracks nightside inertia weakly at Ius ($r=-0.22$) and not at all at Athabasca ($-0.01$), where Viking colour does
 ($-0.64$). The prediction that the index would track inertia clearly in both windows fails. %% KB §43.1, §42.4
 
 \begin{figure}[t]
@@ -419,8 +435,12 @@ At \pmsixty\ the fill mask discards 60.5\% of stream cells and leaves 969,822 se
 orders 1--5: 564,882, 360,236, 41,442, 3,165 and 97; Figure~\ref{fig:channels}). Of 40,410 sampled midpoints, 89.8\%
 lie on ground under $2^{\circ}$, and 96.7\% of those of order 3 and higher: the long high-order paths gather on smooth
 ground where the DEM holds few pits, and their length per cell correlates negatively with the density of 1--2~km
-depressions ($r=-0.35$). The network is not scored here; the global valley maps of \citet{Hynek2010} and
-\citet{Alemanno2018} are the natural references, and the second is held for that test. %% KB §54.4, §55.4, §53.6, §68.5; NEXT-STEPS §12.2 A1
+depressions ($r=-0.35$). Of the two global valley maps, \citet{Hynek2010} and \citet{Alemanno2018}, the second is the
+reference: against its lines, 2.8\% of the order-$\ge3$ length lies within 5~km of a mapped valley and 2.0\% of the
+valley length within 5~km of such a segment, no better than the valley map rotated in longitude (precision 1.2 to
+4.7\%, median 3.3\%). Precision is 10.3\% for the largest trunks (order $\ge5$) and 18.0\% from $45^{\circ}$ to
+$60^{\circ}$S, and 0.1\% from the equator to $30^{\circ}$N, where 46\% of the order-$\ge3$ length lies and few valleys
+are mapped. The routed network is the elevation model's drainage, not a valley map. %% KB §54.4, §55.4, §53.6, §68.5, §69.50 (A1)
 
 \begin{figure*}[t]
 \centering
@@ -479,10 +499,22 @@ The four-class map (Figure~\ref{fig:landforms}) is the 200~m support vector mach
 majority filter. On the 183 held-out polygons it scores a balanced accuracy of 66.7\% and 73.8\%, \kap\,0.583 overall,
 against 58.6\% for one class everywhere and 69.9\%, \kap\,0.532 unfiltered (Table~\ref{tab:svm}, Figure~\ref{fig:accuracy}). Normal Ground is found almost
 everywhere it was drawn (producer's 99.2\%) and Crater is reliable where mapped (user's 93.3\%), but lava tube is not a
-usable class (user's 2.4\%). Halving the cell from 400~m bought no held-out accuracy (70.5\% raw at 400~m). The map is
+usable class (user's 2.4\%). At full resolution the map follows terrain rather than naming landforms
+(Figure~\ref{fig:zoom}). Halving the cell from 400~m bought no held-out accuracy (70.5\% raw at 400~m). The map is
 no longer an elevation map (elevation bins reproduce 55.4\%, within a point of its largest class alone, 54.7\%), shows
 no tile seams (ratio 1.00), and labels 56.8\% of the ground inside named craters as Crater against 46.2\% in the ring
 around them. %% KB §55.3, §57; logs\global60_classification_check_200m_mode11.json
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/typearea_zoom.png}
+\caption{The published map at full resolution, south of Ius Chasma ($277^{\circ}$--$280^{\circ}$E,
+$10.5^{\circ}$--$7.5^{\circ}$S): Viking colour and THEMIS day IR on the 100~m grid, and the four-class map at
+200~m, each map pixel drawn as four image pixels. The map follows terrain rather than naming landforms: the canyon
+floor is Crater, the walls and spurs hills, the plateau's craters rings of hills, and the plains a patchwork of
+Crater, lava tube and Normal Ground. Shares are of this window. \label{fig:zoom}}
+\end{figure*}
+%% KB §69.50 (W4); build\make_fig_typearea_zoom.py
 
 The overall score flatters the map. Crater is 58.6\% of the held-out area, and the map's balanced accuracy is 66.7\% with a
 mean F1 of 55.7\%, lava tube's F1 being 4.5\%. Of the 26.2 points of disagreement, 20.5 are quantity and 5.7
@@ -498,6 +530,21 @@ reaches 83.2\% (median 47.2\%), so where the labels lie carries class informatio
 Resampling the blocks resolves neither gap between the map and this baseline (overall $-35.8$ to $+19.1$ points,
 balanced $-16.1$ to $+16.9$); the U-Net clears it overall ($+0.9$ to $+32.6$). On the seven-class labels the baseline
 scores 45.6\% and 51.0\% balanced, above the seven-class support vector machine on both. %% KB §69.35, §69.44
+
+Height is a much weaker baseline. A classifier on elevation and latitude alone, the crustal dichotomy and nothing
+else, scores 62.5\% (38.7\% balanced) on the four-class held-out polygons and 31.8\% (27.0\%) on the seven-class
+ones, 3.9 and 2.3 points above one class everywhere: what the support vector machine adds over one class everywhere
+is not elevation, and what beats it is where the labels lie, not how high (Figure~\ref{fig:baselines}). %% KB §69.50 (A3 (b))
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/svm_baselines.png}
+\caption{Held-out scores of the support vector machine maps as a majority filter widens from the raw 400~m map to
+51~km, four classes above and seven below, against the U-Net, the nearest training polygon's class, a classifier on
+elevation and latitude alone, and one class everywhere (dashed; accuracy). Filtering brings the four-class map to
+82.1\%, never above the nearest polygon; the seven-class curve stays flat. \label{fig:baselines}}
+\end{figure}
+%% KB §69.50 (A3 (c)); build\make_fig_baselines.py
 
 \begin{figure*}[t]
 \centering
@@ -526,6 +573,7 @@ Map & Acc. & $\kappa$ & Bal. & F1 & Q & A \\
 \hline
 One class everywhere & 58.6 & -- & -- & -- & -- & -- \\
 Nearest training polygon & 83.2 & 0.658 & 61.3 & 64.2 & 14.5 & 2.2 \\
+Elevation and latitude only & 62.5 & 0.236 & 38.7 & -- & -- & -- \\
 SVM 400 m, raw & 70.5 & 0.540 & 63.5 & 53.4 & 23.6 & 5.9 \\
 SVM 200 m, raw & 69.9 & 0.532 & 63.1 & 52.8 & 24.2 & 5.9 \\
 SVM 200 m, $5\times5$ & 72.0 & 0.560 & 65.1 & 54.4 & 22.2 & 5.8 \\
@@ -535,6 +583,7 @@ U-Net, two passes & 98.9 & 0.980 & 94.8 & 93.9 & 0.5 & 0.6 \\
 \multicolumn{7}{l}{\textit{On the 237 v2 held-out polygons}} \\
 One class everywhere & 29.5 & -- & -- & -- & -- & -- \\
 Nearest training polygon & 45.6 & 0.318 & 51.0 & 47.1 & 28.0 & 26.4 \\
+Elevation and latitude only & 31.8 & 0.160 & 27.0 & -- & -- & -- \\
 SVM four-class$^{a}$ & 35.7 & 0.244 & 42.0 & 25.1 & 55.4 & 8.9 \\
 SVM seven-class$^{b}$ & 42.5 & 0.310 & 41.9 & 38.8 & 29.1 & 28.3 \\
 U-Net four-class & 44.1 & 0.301 & 56.7 & 37.1 & 55.4 & 0.5 \\
@@ -543,9 +592,10 @@ U-Net seven-class & 69.0 & 0.606 & 56.9 & 56.6 & 14.7 & 16.3 \\
 \end{tabular}
 \par\vspace{3pt}\noindent\parbox{\columnwidth}{\footnotesize Note: In percent but $\kappa$. Acc., overall accuracy;
 Bal., balanced accuracy; F1, mean per-class F1; Q and A, quantity and allocation disagreement ($\mathrm{Q}+\mathrm{A}=
-100-\mathrm{Acc.}$, to rounding). Area-weighted by $\cos$ latitude, scored at 400~m. The first seven rows are on the
-183 four-class held-out polygons, the last six on the 237 seven-class ones; the two sets are not comparable. Nearest
-training polygon: each pixel given the class of the closest training polygon, geography alone. Block
+100-\mathrm{Acc.}$, to rounding). Area-weighted by $\cos$ latitude, scored at 400~m. The first eight rows are on the
+183 four-class held-out polygons, the last seven on the 237 seven-class ones; the two sets are not comparable. Nearest
+training polygon: each pixel given the class of the closest training polygon, geography alone. Elevation and
+latitude only: a classifier on those two values, F1, Q and A not computed. Block
 intervals on accuracy (95\%, the 14 held-out blocks resampled): SVM $11\times11$ 57.5--87.8, U-Net two passes
 97.3--99.6, SVM seven-class 23.8--71.5, U-Net seven-class 50.5--80.2.
 $^{a}$The four-class map of Figure~\ref{fig:landforms}. $^{b}$Figure~\ref{fig:landforms7}.}
@@ -702,7 +752,10 @@ Table~\ref{tab:hyp} collects the verdicts. None of the four hypotheses is suppor
 Cluster partitions trained on the west and east halves of Ius Chasma agree less for the four-band composite (adjusted
 Rand index 0.40, \citealt{Hubert1985}) than for any single input (0.61 to 0.89), although the composite gives the most
 coherent maps; a one-band clustering is close to a density slice and reproduces easily. H1 and H2 were tested on
-stand-ins (map contacts and windows) and remain open for features digitised on the stack. %% KB §47.3, §47.5
+stand-ins (map contacts and windows) and remain open for features digitised on the stack. A second stand-in for H2,
+origin taken from the valley map and the geologic map over the whole network, gives the same answer: the 155,236
+order-$\ge2$ segments on volcanic units are shallower than the 10,799 on mapped valleys (median 2.4 against
+13.9~m~km$^{-1}$), and the two differ little on the thermal index (Cohen's $d=-0.21$). %% KB §47.3, §47.5, §69.50 (A7)
 
 \begin{table*}[t]
 \centering
@@ -713,7 +766,7 @@ stand-ins (map contacts and windows) and remain open for features digitised on t
  & Claim & Verdict & Decisive number \\
 \hline
 H1 & Day IR shows flow margins Viking misses & not supported at 1:20\,M & day $-$ Viking $+8.7$ pt, interval $-1.7$ to $+18.1$ \\
-H2 & Fluvial and volcanic channels separate & not supported at stage 1 & volcanic shallower; thermal AUC 0.50 \\
+H2 & Fluvial and volcanic channels separate & not supported at stages 1 and 1b & volcanic shallower; thermal $|d|\le0.31$ \\
 H3 & Composite classes are most stable & not supported & ARI 0.40 against 0.61--0.89 \\
 H4 & Large IAU craters recovered & answered by fill depth & 68\% of 117 craters $\ge100$~km \\
 T1 & Thermal IR improves the classification & yes, slightly & $+1.36$ and $+1.97$ pt, intervals above 0 \\
@@ -723,16 +776,34 @@ T7 & Tributary orders resolved at 100~m & no DEM-supported answer & order follow
 \end{tabular}
 \end{table*}
 
+\subsection{Against earlier automated mapping}
+
+Each product here falls short of the method built for its own landform, and the comparison shows where. A
+convolutional network on lunar elevation models recovers 92\% of a human-made test set's craters
+\citep{Silburt2019}; fill depth on the Mars model recovers 52.4\% of the catalogued craters $\ge5$~km and does not see
+degraded or breached rims, which a learned detector was not tried on here. The global valley map of \citet{Luo2009}
+was found by an algorithm on topography and then edited by eye; unedited, the routed network here meets the valley
+lines of \citet{Alemanno2018} no more often than the same map rotated in longitude, so the editing is the method, and
+the candidate review stands in for it. DoMars16k \citep{Wilhelm2020} trains a network on 16,150 Context Camera samples
+of fifteen landforms; the classes here rest on 971 polygons at 200~m, which is why every score sits beside a
+geography-only baseline and why the U-Net's lead reads as a province map. Unsupervised classes from topographic
+attributes \citep{Bue2006} need no labels but name nothing; the supervised maps here name their classes and are scored
+on blocks they never saw. What the stack adds is the one grid: the three families are mapped from co-registered
+visible, thermal and elevation data, and the thermal bands' share is measured rather than assumed, small (1.4 to 2.0
+points on four classes) and, by balanced accuracy, absent. %% KB §69.40, §69.50 (W3)
+
 \subsection{Limits}
 
 The central limit is in the data held. The THEMIS mosaics used here are display products, stretched region by region,
 so they carry local contrast and texture; planet-wide material discrimination needs calibrated products such as the
 TES inertia map, at the cost of resolution (3~km), or THEMIS-derived inertia \citep{Fergason2006} where it exists. In
-this study the visible albedo carries the regional material signal.
+this study the Viking colour carries the regional material signal, and it is not calibrated albedo.
 
 The labels limit what the classification can show. The four hand-drawn classes are landforms, and slope and relief
 alone predict them as well as the full stack; a test of thermal value needs material labels, which only photo
-interpretation can give. Lava tube, with 44 polygons, is too thin a class for a planet-scale map; the U-Net makes it
+interpretation can give. The geologic map's unit groups \citep{Tanaka2014} are no substitute: on a 4~km lattice of the
+stack they are predicted no better than by their commonest group, with or without the thermal bands, which add at
+most a point. Lava tube, with 44 polygons, is too thin a class for a planet-scale map; the U-Net makes it
 usable only as a province.
 
 An audit of the 512 labels found no two classes sharing ground, but five Crater polygons drawn around volcanoes (Arsia,
@@ -741,8 +812,9 @@ alone is 31\% of the held-out Crater area, so part of the Crater score, and of t
 volcanic shields. A seven-class scheme follows from the audit: Crater narrowed to impact craters, with volcanic edifice,
 apron and fluvial channel as new classes. Its 971 labels (734 training, 237 held out in the same 14 blocks) were
 applied on 27 October. Every relabel, check and new edifice outline was reviewed by eye; the 172 apron and 276
-fluvial-strip proposals were screened by a rule written before it ran (a strip kept only on a floor at least 20~m below
-its flanks and off volcanic plains, an apron only where neither flat nor in a crater), not inspected one by one; and
+fluvial-strip proposals were screened by a rule written before it ran (a strip kept only where its median height lies
+at least 20~m below that of a 4.8~km flank ring and under half of it lies on volcanic plains; an apron only where its
+median slope is at least $1^{\circ}$ and under half of it lies inside crater rims), not inspected one by one; and
 hills fall short of the training minimum, in two training blocks against three. Both seven-class maps failed the
 rule set before they ran, on the four original classes, and are presented for what they name rather than for that
 score: the support vector machine over-predicts fluvial channel and the U-Net volcanic edifice.
@@ -771,8 +843,8 @@ candidates with measured recall and precision. %% KB §66.5, §6, §69.7, NEXT-S
 \begin{enumerate}
 \item Four global products now share one co-registered grid over \pmsixty, 86.6\% of Mars, with the THEMIS pair never
 resampled and the elevation model reproduced exactly at 200~m.
-\item Visible albedo, day infrared and night infrared span about three dimensions locally, night infrared nearly independent of the others, but the held THEMIS
-mosaics carry local contrast only; calibrated thermal inertia follows Viking albedo across the planet.
+\item Viking colour, day infrared and night infrared span about three dimensions locally, night infrared nearly independent of the others, but the held THEMIS
+mosaics carry local contrast only; calibrated thermal inertia follows Viking colour across the planet.
 \item Fill depth recovers 68\% of the large named craters and gives 465,354 closed depressions $\ge1$~km whose precision
 against Robbins rises from 15.3\% to 63.2\% at 5~km; recall, 52.4\% at 5~km, falls with rim degradation, from 83.1\%
 for the freshest rims to 38.4\% for the most degraded, and breached craters stay invisible.
