@@ -1,0 +1,414 @@
+{
+ "script": "score_v2maps_on_v3.py",
+ "when": "2026-11-02 21:03",
+ "boot": 10000,
+ "seed": 60,
+ "labels": "Landform_TrainingSamples_v3_60_test",
+ "classes": [
+  "Crater",
+  "steep/windy hills",
+  "lava tube",
+  "Normal Ground",
+  "volcanic edifice",
+  "apron",
+  "fluvial channel"
+ ],
+ "route_check": {
+  "svm7": {
+   "accuracy": 0.4252,
+   "kappa": 0.3103,
+   "balanced": 0.4187
+  },
+  "unet7": {
+   "accuracy": 0.6901,
+   "kappa": 0.6063,
+   "balanced": 0.5692
+  },
+  "near7": {
+   "accuracy": 0.4559,
+   "kappa": 0.3177,
+   "balanced": 0.5105
+  }
+ },
+ "full": {
+  "svm7": {
+   "accuracy": 0.3976,
+   "kappa": 0.281,
+   "balanced": 0.4043,
+   "producers": {
+    "Crater": 0.3539,
+    "steep/windy hills": 0.4652,
+    "lava tube": 0.0336,
+    "Normal Ground": 0.9684,
+    "volcanic edifice": 0.4294,
+    "apron": 0.0508,
+    "fluvial channel": 0.5289
+   }
+  },
+  "unet7": {
+   "accuracy": 0.6578,
+   "kappa": 0.5649,
+   "balanced": 0.529,
+   "producers": {
+    "Crater": 0.5255,
+    "steep/windy hills": 0.4243,
+    "lava tube": 0.0485,
+    "Normal Ground": 0.6687,
+    "volcanic edifice": 0.828,
+    "apron": 0.7379,
+    "fluvial channel": 0.4698
+   }
+  },
+  "near7": {
+   "accuracy": 0.4129,
+   "kappa": 0.2759,
+   "balanced": 0.4121,
+   "producers": {
+    "Crater": 0.4902,
+    "steep/windy hills": 0.3321,
+    "lava tube": 0.1156,
+    "Normal Ground": 0.2312,
+    "volcanic edifice": 0.8336,
+    "apron": 0.2171,
+    "fluvial channel": 0.6651
+   }
+  }
+ },
+ "polygons": 1652,
+ "polygons_without_pixels": 0,
+ "blocks": [
+  "-11_1",
+  "-11_2",
+  "-3_-1",
+  "-4_-1",
+  "-4_-2",
+  "-5_-1",
+  "-6_1",
+  "-9_-1",
+  "-9_0",
+  "0_0",
+  "1_0",
+  "4_0",
+  "4_2",
+  "5_-2"
+ ],
+ "block_bootstrap": {
+  "svm7": {
+   "accuracy_ci95": [
+    0.2224,
+    0.6731
+   ],
+   "kappa_ci95": [
+    0.0398,
+    0.5202
+   ],
+   "balanced_ci95": [
+    0.3207,
+    0.4879
+   ],
+   "accuracy_width": 0.4507
+  },
+  "unet7": {
+   "accuracy_ci95": [
+    0.4798,
+    0.7694
+   ],
+   "kappa_ci95": [
+    0.2979,
+    0.6929
+   ],
+   "balanced_ci95": [
+    0.3659,
+    0.626
+   ],
+   "accuracy_width": 0.2896
+  },
+  "near7": {
+   "accuracy_ci95": [
+    0.2733,
+    0.5867
+   ],
+   "kappa_ci95": [
+    0.1068,
+    0.4656
+   ],
+   "balanced_ci95": [
+    0.3353,
+    0.5627
+   ],
+   "accuracy_width": 0.3133
+  },
+  "unet7-svm7": {
+   "accuracy_ci95": [
+    -0.0766,
+    0.4546
+   ],
+   "balanced_ci95": [
+    -0.0365,
+    0.163
+   ],
+   "kappa_ci95": [
+    -0.0642,
+    0.4911
+   ],
+   "share_above_0_accuracy": 0.9267,
+   "share_above_0_balanced": 0.9641
+  },
+  "svm7-near7": {
+   "accuracy_ci95": [
+    -0.2161,
+    0.3462
+   ],
+   "balanced_ci95": [
+    -0.1711,
+    0.0729
+   ],
+   "kappa_ci95": [
+    -0.2206,
+    0.3052
+   ],
+   "share_above_0_accuracy": 0.4272,
+   "share_above_0_balanced": 0.2777
+  },
+  "unet7-near7": {
+   "accuracy_ci95": [
+    -0.0071,
+    0.3907
+   ],
+   "balanced_ci95": [
+    -0.1339,
+    0.2185
+   ],
+   "kappa_ci95": [
+    -0.0225,
+    0.481
+   ],
+   "share_above_0_accuracy": 0.9724,
+   "share_above_0_balanced": 0.7861
+  }
+ },
+ "polygon_bootstrap": {
+  "svm7": {
+   "accuracy_ci95": [
+    0.3746,
+    0.4217
+   ],
+   "kappa_ci95": [
+    0.2556,
+    0.3066
+   ],
+   "balanced_ci95": [
+    0.3882,
+    0.4216
+   ],
+   "accuracy_width": 0.047
+  },
+  "unet7": {
+   "accuracy_ci95": [
+    0.6323,
+    0.6825
+   ],
+   "kappa_ci95": [
+    0.5333,
+    0.595
+   ],
+   "balanced_ci95": [
+    0.509,
+    0.551
+   ],
+   "accuracy_width": 0.0502
+  },
+  "near7": {
+   "accuracy_ci95": [
+    0.3809,
+    0.4462
+   ],
+   "kappa_ci95": [
+    0.2391,
+    0.3137
+   ],
+   "balanced_ci95": [
+    0.38,
+    0.4561
+   ],
+   "accuracy_width": 0.0653
+  },
+  "unet7-svm7": {
+   "accuracy_ci95": [
+    0.2315,
+    0.2883
+   ],
+   "balanced_ci95": [
+    0.1103,
+    0.1396
+   ],
+   "kappa_ci95": [
+    0.2523,
+    0.3143
+   ],
+   "share_above_0_accuracy": 1.0,
+   "share_above_0_balanced": 1.0
+  },
+  "svm7-near7": {
+   "accuracy_ci95": [
+    -0.0545,
+    0.0237
+   ],
+   "balanced_ci95": [
+    -0.0488,
+    0.0225
+   ],
+   "kappa_ci95": [
+    -0.0385,
+    0.0494
+   ],
+   "share_above_0_accuracy": 0.2257,
+   "share_above_0_balanced": 0.3111
+  },
+  "unet7-near7": {
+   "accuracy_ci95": [
+    0.2066,
+    0.2814
+   ],
+   "balanced_ci95": [
+    0.0767,
+    0.1483
+   ],
+   "kappa_ci95": [
+    0.2422,
+    0.3341
+   ],
+   "share_above_0_accuracy": 1.0,
+   "share_above_0_balanced": 1.0
+  }
+ },
+ "by_origin": {
+  "v2 pieces": {
+   "polygons": 1380,
+   "area_share": 0.8533,
+   "svm7": {
+    "accuracy": 0.4283,
+    "balanced": 0.4237
+   },
+   "unet7": {
+    "accuracy": 0.7009,
+    "balanced": 0.5766
+   },
+   "near7": {
+    "accuracy": 0.4487,
+    "balanced": 0.5159
+   }
+  },
+  "new": {
+   "polygons": 218,
+   "area_share": 0.1055,
+   "svm7": {
+    "accuracy": 0.3029,
+    "balanced": 0.3651
+   },
+   "unet7": {
+    "accuracy": 0.3615,
+    "balanced": 0.2407
+   },
+   "near7": {
+    "accuracy": 0.2852,
+    "balanced": 0.2245
+   }
+  },
+  "fan": {
+   "polygons": 54,
+   "area_share": 0.0413,
+   "svm7": {
+    "accuracy": 0.0038,
+    "balanced": 0.0038
+   },
+   "unet7": {
+    "accuracy": 0.5248,
+    "balanced": 0.5248
+   },
+   "near7": {
+    "accuracy": 0.0,
+    "balanced": 0.0
+   }
+  }
+ },
+ "by_block": {
+  "-11_1": {
+   "svm7": 0.9527,
+   "unet7": 0.777,
+   "near7": 0.0717
+  },
+  "-11_2": {
+   "svm7": 0.9911,
+   "unet7": 0.5449,
+   "near7": 0.9908
+  },
+  "-3_-1": {
+   "svm7": 0.3876,
+   "unet7": 0.7256,
+   "near7": 0.9149
+  },
+  "-4_-1": {
+   "svm7": 0.2832,
+   "unet7": 0.4336,
+   "near7": 0.4741
+  },
+  "-4_-2": {
+   "svm7": 0.3534,
+   "unet7": 0.4824,
+   "near7": 0.2163
+  },
+  "-5_-1": {
+   "svm7": 0.5899,
+   "unet7": 0.5512,
+   "near7": 0.5902
+  },
+  "-6_1": {
+   "svm7": 0.2412,
+   "unet7": 0.0641,
+   "near7": 0.3293
+  },
+  "-9_-1": {
+   "svm7": 0.1409,
+   "unet7": 0.6619,
+   "near7": 0.3465
+  },
+  "-9_0": {
+   "svm7": 0.2656,
+   "unet7": 0.967,
+   "near7": 0.5637
+  },
+  "0_0": {
+   "svm7": 0.2127,
+   "unet7": 0.1496,
+   "near7": 0.0187
+  },
+  "1_0": {
+   "svm7": 0.2112,
+   "unet7": 0.165,
+   "near7": 0.2928
+  },
+  "4_0": {
+   "svm7": 0.5542,
+   "unet7": 0.5544,
+   "near7": 0.0
+  },
+  "4_2": {
+   "svm7": 0.3527,
+   "unet7": 0.1441,
+   "near7": 0.5364
+  },
+  "5_-2": {
+   "svm7": 0.5595,
+   "unet7": 0.7386,
+   "near7": 0.6031
+  }
+ },
+ "predictions": {
+  "P1": "held",
+  "P2": "held",
+  "P3": "NOT held",
+  "P4": "held",
+  "P5": "held"
+ }
+}

@@ -6414,3 +6414,45 @@ prediction before its dry run; `compare_v3_d34.py` matches the rows before and a
   pieces on Arsia and Pavonis. The counts updated in §6's table, §69.49's result, the gdb export's descriptions, the
   repo's README and figure index. `run_v3.ps1` reads `Landform_TrainingSamples_v3`, so the v3 runs use the amended
   labels. The v2 labels and v2's held-out score are unchanged: D34 touches v3 only.
+
+### 69.57 A16: the v2 seven-class maps on the v3 held-out labels; the U-Net's balanced lead not resolved there — 2026-11-02, laptop **[V]**
+
+Why: the seven-class results rest on 237 held-out polygons, and NEXT-STEPS §14 row 3 calls the U-Net's lead "two
+blocks wide". The v3 labels (§69.49, §69.56) hold **1,652** held-out polygons in the same 14 blocks (1,237 pieces
+and 143 kept v2 polygons, 218 new, 54 fan pieces), none seen by either v2 map in training. `run_v3.ps1` steps 08 and
+13 would make this score on the desktop; the full verifier needs ~8 GB for its weight array, so
+`build\score_v2maps_on_v3.py` scores the cached 400 m arrays polygon by polygon with the scorer's own routine
+(`make_block_bootstrap.py`'s, 10,000 block and polygon resamples, seed 60). **Route check:** each map on the v2
+held-out polygons gives its logged accuracy and κ (svm7 0.4252 / 0.3103, unet7 0.6901 / 0.6063, near7 0.4559 /
+0.3177); `--plant` (svm7 rolled half a planet) is refused, exit 2, nothing written. 881 s;
+`logs\v2maps_on_v3.json`, `.log`.
+
+| map | v2 held out (237) | **v3 held out (1,652)** | v3 block 95 % accuracy | v3 balanced (block 95 %) |
+|---|---|---|---|---|
+| seven-class SVM (svm7) | 42.5 %, κ 0.310, bal. 41.9 % | **39.8 %, κ 0.281** | 22.2–67.3 | **40.4 %** (32.1–48.8) |
+| seven-class U-Net (unet7) | 69.0 %, κ 0.606, bal. 56.9 % | **65.8 %, κ 0.565** | 48.0–76.9 | **52.9 %** (36.6–62.6) |
+| nearest v2 training polygon (near7) | 45.6 %, κ 0.318, bal. 51.0 % | **41.3 %, κ 0.276** | 27.3–58.7 | **41.2 %** (33.5–56.3) |
+
+- **unet7 − svm7, block bootstrap:** accuracy −7.7 to +45.5 (92.7 % of resamples above 0); **balanced accuracy
+  −3.7 to +16.3 (96.4 % above 0)**. On v2's polygons it was +2.3 to +19.5 (98.6 %). By polygon both are resolved
+  (accuracy +23.2 to +28.8, balanced +11.0 to +14.0). svm7 − near7: accuracy −21.6 to +34.6, balanced −17.1 to
+  +7.3. unet7 − near7: accuracy −0.7 to +39.1, balanced −13.4 to +21.9.
+- **Producer's accuracy, svm7 / unet7 / near7:** Crater 35 / 53 / 49 %; hills 47 / 42 / 33 %; lava tube 3 / 5 /
+  12 %; Normal Ground 97 / 67 / 23 %; edifice 43 / 83 / 83 %; **apron 5 / 74 / 22 %**; fluvial 53 / 47 / 67 %.
+- **By origin:** the v2 pieces and kept polygons (85.3 % of the area) svm7 42.8 %, unet7 70.1 %, near7 44.9 %; the
+  218 new polygons (10.5 %) 30.3 / 36.1 / 28.5 %; the 54 fan pieces (4.1 %) **0.4 / 52.5 / 0.0 %**: the SVM maps
+  none of the Tharsis fans as apron, the U-Net half.
+- By block, unet7 leads by more than 30 points in −9_−1, −9_0 and −3_−1, and svm7 leads in −11_1, −11_2, −5_−1, −6_1,
+  0_0, 1_0 and 4_2 (4_0 a tie).
+- **Predictions** (written into the script before any v3 score was read): P1 (unet7 in 61–77 %) **held**; P2 (svm7
+  in 34.5–50.5 %) **held**; P3 (accuracy interval includes 0, balanced interval above 0) **NOT held**: the balanced
+  interval reaches −3.7; P4 (svm7 − near7 includes 0) **held**; P5 (every map lower on the new polygons) **held**.
+
+**What it says:** on a held-out set seven times larger, in the same blocks, both maps score 3 points lower and the
+order is the same: the U-Net leads the SVM by 26 points of accuracy and 12.5 of balanced accuracy, and the SVM does
+not beat the nearest training polygon. But the U-Net's balanced-accuracy lead, which the paper calls firm (D31,
+§69.47), is **not resolved by block on the v3 polygons** (96.4 % of resamples, below the 97.5 % a 95 % interval
+needs). Two caveats: the v3 pieces keep the classes of the v2 polygons they were cut from, but which pieces survive and the new polygons are by rule, not review; and 85 % of the area is the v2 held-out
+ground; so this is a second reading of the same blocks rather than an independent test, and the v2 score stays the
+like-for-like one. The paper's "firm by balanced accuracy" needs a qualifier or the v3 interval beside it: **D35**,
+the author's (NEXT-STEPS §2), drafted as `v2_drafts.tex` block 17.

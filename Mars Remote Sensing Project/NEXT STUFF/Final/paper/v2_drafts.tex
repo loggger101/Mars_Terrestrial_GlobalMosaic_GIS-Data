@@ -337,3 +337,17 @@ cannot keep; the v3 labels admit them by unit, not slope, a net 106 more apron l
 %% KB §69.55, §69.56 (D34)
 %% (c) Table tab:svm: a column or a note, "sample (assistant-labelled)": 56.9, 44.4, 39.9 and 21.7 for the four
 %%     rows of the same maps. Decide at the freeze whether the table has room; otherwise (a) alone.
+
+%% 17. A16 (KB §69.57), drafted 2026-11-02, at the freeze, if the author picks it (D35). On the 1,652 v3 held-out
+%%     polygons the U-Net's balanced-accuracy lead is not resolved by block, so "firm by balanced accuracy" needs
+%%     a qualifier. Every number from logs\v2maps_on_v3.json.
+%% (a) Results, the seven-class U-Net paragraph: "Its lead over the latter is firm by balanced accuracy" becomes
+Its lead over the latter is resolved by balanced accuracy on these polygons, 56.9\% against 41.9\% (block interval
+$+2.3$ to $+19.5$ points), but not by accuracy ($-9.7$ to $+47.8$).
+%% (b) then, after the Tharsis sentence:
+On the 1,652 held-out polygons of a larger, rule-screened label set in the same blocks (the v2 polygons cut into
+0.5\textdegree{} pieces, plus polygons placed from reference data), both maps score about 3 points lower (65.8\% and
+39.8\%) and the order holds, but the balanced-accuracy lead, 52.9\% against 40.4\%, is no longer resolved by block
+($-3.7$ to $+16.3$ points). The lead is clear by polygon and rests on a few blocks. %% KB §69.57
+%% (c) Conclusions, "The U-Net's lead is firm by balanced accuracy (56.9\%": read "resolved by balanced accuracy on the
+%%     v2 held-out polygons (56.9\%" and add "though not on a larger rule-screened set".

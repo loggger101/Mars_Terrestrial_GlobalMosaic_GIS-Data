@@ -1,0 +1,18 @@
+v3 held out: 1652 polygons in 14 blocks; {'piece': 1237, 'keep': 143, 'fan': 54, 'new': 218}
+svm7   on v2 held out: accuracy 0.4252 kappa 0.3103; its log 0.425, 0.31 -> ok  (96 s)
+svm7   on v3 held out: accuracy 0.3976 kappa 0.2810 balanced 0.4043  (118 s)
+unet7  on v2 held out: accuracy 0.6901 kappa 0.6063; its log 0.69, 0.606 -> ok  (198 s)
+unet7  on v3 held out: accuracy 0.6578 kappa 0.5649 balanced 0.5290  (220 s)
+near7  on v2 held out: accuracy 0.4559 kappa 0.3177; its log 0.456, 0.318 -> ok  (600 s)
+near7  on v3 held out: accuracy 0.4129 kappa 0.2759 balanced 0.4121  (861 s)
+v2 pieces  1380 polygons,  85.3 % of the area: svm7 0.428  unet7 0.701  near7 0.449
+new         218 polygons,  10.5 % of the area: svm7 0.303  unet7 0.361  near7 0.285
+fan          54 polygons,   4.1 % of the area: svm7 0.004  unet7 0.525  near7 0.000
+svm7   block 95 %: accuracy [0.2224, 0.6731], balanced [0.3207, 0.4879]
+unet7  block 95 %: accuracy [0.4798, 0.7694], balanced [0.3659, 0.626]
+near7  block 95 %: accuracy [0.2733, 0.5867], balanced [0.3353, 0.5627]
+unet7 - svm7 block 95 %: accuracy [-0.0766, 0.4546], balanced [-0.0365, 0.163]
+svm7 - near7 block 95 %: accuracy [-0.2161, 0.3462], balanced [-0.1711, 0.0729]
+unet7 - near7 block 95 %: accuracy [-0.0071, 0.3907], balanced [-0.1339, 0.2185]
+predictions: {'P1': 'held', 'P2': 'held', 'P3': 'NOT held', 'P4': 'held', 'P5': 'held'}
+wrote Z:\Mars Remote Sensing Project\build\logs\v2maps_on_v3.json  (881 s)
