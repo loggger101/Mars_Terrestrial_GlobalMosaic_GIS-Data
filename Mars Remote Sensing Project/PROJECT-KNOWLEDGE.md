@@ -6895,5 +6895,7 @@ The author will submit the report (D16, Thursday 5 November) and asked that it b
   position as in the earlier PDF (`…before_props.pdf`) once the footer is set aside; the footers read 1–21.
 - **The name:** the report, like the prospectus and Presentation 1, says "Logan Edwards" (`content.py`, unchanged
   since the prospectus); the final and the repository use "Logan M Edwards". Left as the course has seen it.
-- **Not pushed:** `github_sync.py --deliverables` would also commit the rebuilt final deck (~29 MB) ahead of its
-  deadline (D26), so the built files stay held back; the files to submit are on the drive.
+- **Pushed alone (repo 2e5ef36):** `github_sync.py --deliverables` would also commit the rebuilt final deck (~26 MB)
+  ahead of its deadline (D26), so on the author's "push whatever you can" the sync was run without `--commit`, the
+  final deck restored to its committed copy in the clone, and only the report's `.docx` and `.pdf` committed, as
+  the 5 Nov deadline commit (byte-identical to the drive). The final deck stays held back.
