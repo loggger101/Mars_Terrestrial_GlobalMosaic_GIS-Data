@@ -1,0 +1,78 @@
+labels
+  ok   v3 train: 10269 polygons  expected 10269
+  ok   v3 train: every row propose_v3_labels.py's, codes 1-7
+  ok   v3 test: 1652 polygons  expected 1652
+  ok   v3 test: every row propose_v3_labels.py's, codes 1-7
+  ok   v3 held-out blocks are v2's 14  v3 has 14
+  ok   no v3 training polygon in a held-out block
+steps (20 parsed from run_v3.ps1)
+  ok   20 steps parsed (01-08 with 03a-d and 04a-d, then 09-14)  20
+  ok   01_unet_export: every flag known to make_dl_pixels.py
+  ok   01_unet_export: loads, labels _v3  expected _v3
+  ok   02_unet_train: every flag known to make_dl_pixels.py
+  ok   02_unet_train: loads, labels _v3  expected _v3
+  ok   03a_unet_pass_a_to60: every flag known to make_dl_pixels.py
+  ok   03a_unet_pass_a_to60: loads, labels _v3  expected _v3
+  ok   03b_unet_pass_a_to120: every flag known to make_dl_pixels.py
+  ok   03b_unet_pass_a_to120: loads, labels _v3  expected _v3
+  ok   03c_unet_pass_a_to180: every flag known to make_dl_pixels.py
+  ok   03c_unet_pass_a_to180: loads, labels _v3  expected _v3
+  ok   03d_unet_pass_a_to243: every flag known to make_dl_pixels.py
+  ok   03d_unet_pass_a_to243: loads, labels _v3  expected _v3
+  ok   04a_unet_pass_b_to60: every flag known to make_dl_pixels.py
+  ok   04a_unet_pass_b_to60: loads, labels _v3  expected _v3
+  ok   04b_unet_pass_b_to120: every flag known to make_dl_pixels.py
+  ok   04b_unet_pass_b_to120: loads, labels _v3  expected _v3
+  ok   04c_unet_pass_b_to180: every flag known to make_dl_pixels.py
+  ok   04c_unet_pass_b_to180: loads, labels _v3  expected _v3
+  ok   04d_unet_pass_b_to243: every flag known to make_dl_pixels.py
+  ok   04d_unet_pass_b_to243: loads, labels _v3  expected _v3
+  ok   05_unet_mosaic: every flag known to make_dl_pixels.py
+  ok   05_unet_mosaic: loads, labels _v3  expected _v3
+  ok   06_score_unet_v3: every flag known to verify_global60_classification.py
+  ok   06_score_unet_v3: loads, labels _v3  expected _v3
+  ok   07_score_unet_v3_on_v2: every flag known to verify_global60_classification.py
+  ok   07_score_unet_v3_on_v2: loads, labels _v2  expected _v2
+  ok   08_score_unet_v2_on_v3: every flag known to verify_global60_classification.py
+  ok   08_score_unet_v2_on_v3: loads, labels _v3  expected _v3
+  ok   09_svm_train_classify: every flag known to make_global60_classification.py
+  ok   09_svm_train_classify: loads, labels _v3  expected _v3
+  ok   10_svm_mode11: every flag known to make_global60_landforms_clean.py
+  ok   10_svm_mode11: loads, labels _v3  expected _v3
+  ok   11_score_svm_v3: every flag known to verify_global60_classification.py
+  ok   11_score_svm_v3: loads, labels _v3  expected _v3
+  ok   12_score_svm_v3_on_v2: every flag known to verify_global60_classification.py
+  ok   12_score_svm_v3_on_v2: loads, labels _v2  expected _v2
+  ok   13_score_svm_v2_on_v3: every flag known to verify_global60_classification.py
+  ok   13_score_svm_v2_on_v3: loads, labels _v3  expected _v3
+  ok   14_geomap_v3: every flag known to make_geomap_check.py
+  ok   14_geomap_v3: loads, labels _v3  expected _v3
+names
+  ok   step 06 scores the mosaic step 05 writes  F:\Mars Project\Global60\global60_landforms_unet_v3_200m_seamfix.tif vs Z:\Mars Project\Global60\global60_landforms_unet_v3_200m_seamfix.tif
+  ok   step 07 scores the mosaic step 05 writes  F:\Mars Project\Global60\global60_landforms_unet_v3_200m_seamfix.tif vs Z:\Mars Project\Global60\global60_landforms_unet_v3_200m_seamfix.tif
+  ok   the U-Net trains in C:\MarsScratch\x5c_v3\models, where Emd looks  C:\MarsScratch\x5c_v3
+  ok   Emd's filter global60_unet_x5c_v3_*.emd is the model name make_dl_pixels.py gives
+  ok   step 10 filters the map step 09 writes  Z:\Mars Project\Global60\global60_landforms_svm_v3_200m.tif vs Z:\Mars Project\Global60\global60_landforms_svm_v3_200m.tif
+  FAIL step 11 scores the map step 10 writes  F:\Mars Project\Global60\global60_landforms_svm_v3_200m_mode13.tif vs Z:\Mars Project\Global60\global60_landforms_svm_v3_200m_mode11.tif
+  ok   step 12 scores the map step 10 writes  F:\Mars Project\Global60\global60_landforms_svm_v3_200m_mode11.tif vs Z:\Mars Project\Global60\global60_landforms_svm_v3_200m_mode11.tif
+  ok   step 14 reads the map step 10 writes  Z:\Mars Project\Global60\global60_landforms_svm_v3_200m_mode11.tif vs Z:\Mars Project\Global60\global60_landforms_svm_v3_200m_mode11.tif
+files
+  ok   not made yet: global60_landforms_svm_v3.ecd
+  ok   not made yet: global60_landforms_svm_v3_200m.tif
+  ok   not made yet: global60_landforms_svm_v3_200m_mode11.tif
+  ok   not made yet: global60_landforms_unet_v3_200m_seamfix.tif
+  ok   the stack exists: global60_svm_stack_200m.tif
+  ok   06_score_unet_v3: its log is new: global60_classification_check_global60_landforms_unet_v3_200m_seamfix.json
+  ok   07_score_unet_v3_on_v2: its log is new: global60_classification_check_global60_landforms_unet_v3_200m_seamfix_on_v2_labels.json
+  ok   08_score_unet_v2_on_v3: its raster exists (no step makes it): global60_landforms_unet_v2_200m_seamfix.tif
+  ok   08_score_unet_v2_on_v3: its log is new: global60_classification_check_global60_landforms_unet_v2_200m_seamfix_on_v3_labels.json
+  FAIL 11_score_svm_v3: its raster exists (no step makes it): global60_landforms_svm_v3_200m_mode13.tif
+  ok   11_score_svm_v3: its log is new: global60_classification_check_v3_200m_mode13.json
+  ok   12_score_svm_v3_on_v2: its log is new: global60_classification_check_v3_200m_mode11_on_v2_labels.json
+  ok   13_score_svm_v2_on_v3: its raster exists (no step makes it): global60_landforms_svm_v2_200m_mode11.tif
+  ok   13_score_svm_v2_on_v3: its log is new: global60_classification_check_v2_200m_mode11_on_v3_labels.json
+  ok   14_geomap_v3: its log is new: geomap_check_v3.json
+
+70 checks, 2 failed (planted)
+  FAILED: step 11 scores the map step 10 writes
+  FAILED: 11_score_svm_v3: its raster exists (no step makes it): global60_landforms_svm_v3_200m_mode13.tif

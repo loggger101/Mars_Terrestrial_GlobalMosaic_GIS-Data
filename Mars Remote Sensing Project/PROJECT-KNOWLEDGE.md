@@ -6511,3 +6511,30 @@ channel clause. 37 slides (36 before).
 Every changed slide was read: "Channels across ±60°" overflowed onto its source line twice (four bullets, then a
 wrapped one) and now holds three one-line bullets. `verify_interim.py`: all 228 numbers in `final.py` and all 837 in
 the `.tex` in the record; `neutral_voice.py --check` passes.
+
+### 69.60 A preflight for `run_v3.ps1`: 69 checks pass on the laptop, and a planted name mismatch fails — 2026-11-02, laptop **[V]**
+
+`run_v2.ps1` was rehearsed end to end before its real run (v2p, §69.4); `run_v3.ps1` never ran, and the desktop
+spends ~2 days on it (§69.49). `build\preflight_v3.py` (ArcGIS Python, reads only, ~5 min) checks what can be
+checked without running a step:
+
+- **Labels:** `Landform_TrainingSamples_v3_60_train` / `_test` hold 10,269 / 1,652 polygons, every row written by
+  `propose_v3_labels.py` (the `MappedBy` guard of `make_global60_classification.py`), codes 1–7; the held-out blocks
+  are v2's 14, and no training polygon lies in one.
+- **Steps:** the 20 steps parsed from `run_v3.ps1` (01–08 with 03a–d and 04a–d, then 09–14); every flag a step
+  passes is one its script, or a module it imports that reads the argv (`labelsets.py`, `make_dl_model.py`,
+  `make_global60_classification.py`), knows; each script loads in a fresh process with the step's argv, its labels
+  resolving to the set the step names (`_v2` for steps 07 and 12, `_v3` for the rest).
+- **Names:** the U-Net mosaic's final path (`Global60\global60_landforms_unet_v3_200m_seamfix.tif`) is the raster
+  steps 06 and 07 score; the SVM's `global60_landforms_svm_v3_200m.tif` is the mode filter's source, and its
+  `_mode11` output the raster steps 11, 12 and 14 read; the U-Net trains in `C:\MarsScratch\x5c_v3\models`, where
+  `run_v3.ps1`'s `Emd` looks, under the name its filter `global60_unet_x5c_v3_*.emd` expects.
+- **Files:** the stack and the two v2 maps that steps 08 and 13 score exist; none of the four `_v3` outputs does yet,
+  and each scorer's log name is new and distinct, so no step refuses and no earlier result is overwritten.
+
+**Result** (`logs\preflight_v3.log`): **69 checks, 0 failed.** The first run failed 8, both faults the preflight's
+own: `--cell` is read by `make_global60_classification.py`, which the scorer and the filter import, and the queue
+has 20 steps, not 14. **Planted** (`--plant`, step 11's raster renamed `_mode13`; `logs\preflight_v3_plant.log`):
+2 failed, exit 1. What it cannot check: the desktop's own paths (`D:\ArcGISPro`, free space on `C:`), the export's
+chip count, or anything a step does once it runs. `NEXT-STEPS.md` row 3b and `run_v3.ps1`'s header now say to run
+it first on the desktop.

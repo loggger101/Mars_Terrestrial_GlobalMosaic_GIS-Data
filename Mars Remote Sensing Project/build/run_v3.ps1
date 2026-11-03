@@ -5,6 +5,7 @@
 # A chain stops at its first failure; the other still runs. Each step's output goes to logs\run_v3\<step>.log, and one
 # line per step to queue.log. Pro closed. Desktop only. Run from build\:  powershell -File run_v3.ps1 [-From <step>] [-ClassifyOnly]
 # -ClassifyOnly resumes the SVM step on its trained .ecd and finished tiles (a restart stopped run_v2's, KB §69.23).
+# First, under the ArcGIS Python: preflight_v3.py (reads only, ~5 min; the steps' flags, names, inputs and outputs, KB §69.60).
 param([string]$From = "", [switch]$ClassifyOnly)
 $ErrorActionPreference = "Stop"
 $py = "D:\ArcGISPro\bin\Python\envs\arcgispro-py3\python.exe"
