@@ -6,3 +6,5 @@ __pycache__/
 *.lock
 # navy copies of the interim figures, rebuilt by make_interim_dark.py (KB 69.13)
 Mars Remote Sensing Project/build/interim_img/dark/
+# and of the final deck's, rebuilt by make_final_dark.py (KB 69.65)
+Mars Remote Sensing Project/build/final_img/dark/

@@ -38,7 +38,8 @@ GOALS = [
 # ------------------------------------------------------------------ spectral bands
 BANDS = [   # (band or product, wavelength, cell, what it contributes)
     ("Viking MDIM 2.1 R, G, B", "visible, ~0.4–0.7 µm", "232 m",
-     "Albedo: bright dust, dark basalt; not stretched by region, so regional differences are real."),  # §28.10
+     "Colour and shading: bright dust, dark basalt. High-pass filtered at ~50 km; the colour, an uncalibrated "
+     "blend, still carries regional differences."),  # §28.10 §43.1 §69.50
     ("THEMIS Day IR (v12)", "thermal IR, 12.57 µm", "100 m",
      "Daytime temperature. Ground that is bright in visible stays cooler by day (r −0.49 at Ius)."),  # §18.3
     ("THEMIS Night IR (v14, ±60°)", "thermal IR, 12.57 µm", "100 m",
@@ -148,14 +149,14 @@ FIGURES = [
                  "THEMIS day and night IR separate them by −0.19 and +0.02 DN; the index, over seven provinces, by −0.0009",
                  "Every province repeats the whole mosaic's mean and spread, because both THEMIS mosaics were "
                  "stretched region by region",
-                 "Across the planet, the material signal is in visible albedo"],
+                 "Across the planet, the material signal is in Viking colour"],
          source="§28.10"),
     dict(group="Thermal signal", title="Checked against calibrated thermal inertia (TES)",
          images=[("file", r"interim_img\tes_check.png")],
-         points=["Viking albedo follows calibrated thermal inertia across the planet (r −0.36)",
+         points=["Viking colour follows calibrated thermal inertia across the planet (r −0.36)",
                  "Night IR and the diurnal-contrast index follow it weakly, and only inside regions (|r| ≈ 0.1)",
                  "Day IR does not follow it, and across the planet neither THEMIS mosaic does",
-                 "At TES's ~3 km cells the material signal is in visible albedo; thermal IR adds little"],
+                 "At TES's ~3 km cells the material signal is in Viking colour; thermal IR adds little"],
          source="§41, §42.4, §43.1"),
     dict(group="Craters", title="Craters at ±60°: closed depressions ≥ 20 km",
          images=[("layout", "07_global60_basins")], map_h=230,  # a lower map leaves the tall legend room
@@ -190,7 +191,7 @@ FIGURES = [
          points=["Flood lava once mapped as a water channel; the USGS map calls it Late Amazonian volcanic (lAv)",
                  "Built the same way as Ius: 3,283 channel candidates, 409 of them rock-floored",
                  "Catalogued craters: 1,122 per million km² on lAv, against 1,760 and 2,183 on the older units",
-                 "The diurnal-contrast index does not track calibrated TES inertia here (r ≈ 0); Viking albedo does (−0.55)"],
+                 "The diurnal-contrast index does not track calibrated TES inertia here (r ≈ 0); Viking colour does (−0.55)"],
          source="§41, §42"),
     dict(group="Classification", title="Checking the first two classifications",
          images=[("layout", "05_svm_checks")], map_left=True,         # two maps stacked: map left, legend right
@@ -301,7 +302,7 @@ STATE_AREA = {"Texas": (695662, "695,662 km²"), "California": (423967, "423,967
 ISSUES = [   # led by the measured limits (decision D12, 2026-10-08)
     ("The thermal signal is weak where it can be checked",
      "The THEMIS mosaics follow calibrated TES thermal inertia only weakly inside 15° blocks (|r| ≈ 0.1) and "
-     "not at all across the planet; Viking albedo follows it (r −0.31 to −0.36). In the classification the "
+     "not at all across the planet; Viking colour follows it (r −0.31 to −0.36). In the classification the "
      "thermal bands add 1.3–2.0 points of overall accuracy, with two classifiers, but none by balanced accuracy."),   # §40.1 §42.4 §43.1 §56 §69.18
     ("The landform classes are terrain classes",
      "Slope and relief alone score as well as all seven bands. On the geologic map the classes sit where terrain "
@@ -363,7 +364,7 @@ NOTES = {
         "and a score for every product against something it never saw. The last goal shapes the talk: every number "
         "shown is a held-out or reference score, not agreement with the training data.",
     "Relevant Spectral Bands":
-        "Five layers. Viking MDIM 2.1 gives visible albedo at 232 m; THEMIS day and night IR at 100 m give day "
+        "Five layers. Viking MDIM 2.1 gives visible colour at 232 m, not calibrated albedo; THEMIS day and night IR at 100 m give day "
         "and night temperature as display brightness; the HRSC/MOLA DEM at 200 m gives slope, relief and flow routing. "
         "The diurnal-contrast index is day minus night, each first stretched to its own range: it separates "
         "materials inside one area and is not thermal inertia. If asked why not thermal inertia: both THEMIS "
@@ -411,9 +412,9 @@ NOTES = {
         "Terra and Amazonis against rocky ones such as Syrtis Major and Acidalia. Viking red separates dusty from "
         "rocky by 47.67 DN; day and night IR by −0.19 and +0.02 DN, effectively nothing. The cause is processing, "
         "not physics: both THEMIS mosaics were stretched region by region, so every province repeats the whole "
-        "mosaic's mean and spread. Across the planet the material signal is in visible albedo.",   # §28.10
+        "mosaic's mean and spread. Across the planet the material signal is in Viking colour.",   # §28.10
     "Checked against calibrated thermal inertia (TES)":
-        "The check against an independent measure, calibrated TES thermal inertia at about 3 km. Viking albedo "
+        "The check against an independent measure, calibrated TES thermal inertia at about 3 km. Viking colour "
         "follows it across the planet, r −0.36. Night IR and the diurnal-contrast index follow it weakly and only "
         "inside regions, |r| near 0.1; day IR not at all. This is the project's main measured limit, and it is why "
         "the thermal layer is called a relative diurnal-contrast index and never thermal inertia.",   # §42.4 §43.1
@@ -442,7 +443,7 @@ NOTES = {
         "lAv. Built the same way as Ius: 3,283 channel candidates, 409 of them rock-floored. Catalogued craters "
         "number 1,122 per million km² on lAv against 1,760 and 2,183 on the older units, so the lava is the "
         "youngest of the three surfaces (test T2). Here the diurnal-contrast index does not track TES inertia (r about 0); "
-        "Viking albedo does (−0.55).",   # §41 §42
+        "Viking colour does (−0.55).",   # §41 §42
     "Checking the first two classifications":
         "Two SVM maps made in the Pro interface on 29 and 30 September, checked before anything was built on them. "
         "The 29 September map follows its 4096-pixel processing tiles rather than the terrain. The 30 September "

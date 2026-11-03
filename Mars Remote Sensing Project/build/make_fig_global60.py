@@ -9,7 +9,7 @@ Two panels, every number parsed from section 28.10 of PROJECT-KNOWLEDGE.md at ru
   B  mean DN +/- sd of the four provinces 28.10 tabulates DN for, in THEMIS day IR, THEMIS night IR and
      Viking red, against the whole-mosaic mean +/- sd, with 28.10's dusty-minus-rocky differences
      (-0.19, +0.02, +47.67 DN). Every province reproduces the mosaic-wide mean and spread in both THEMIS
-     products (locally contrast-normalised); Viking keeps its albedo differences.
+     products (locally contrast-normalised); Viking keeps its regional colour differences (not calibrated albedo, KB §69.50).
 
 The script checks the record against itself before drawing: the index difference recomputed from the
 seven rows must round to the recorded -0.0009 (it does only for three dusty against four rocky), and the
@@ -190,7 +190,7 @@ def main():
     fig.text(0.01, 0.015,
              "Both THEMIS mosaics are 8-bit DN stretched region by region: each province repeats the mosaic-wide "
              "mean and spread, so the index is local contrast, not thermal inertia.\nViking is not stretched that "
-             "way and keeps the albedo difference. Dusty − rocky in B: the provinces' group means. "
+             "way and keeps the regional difference in its colour. Dusty − rocky in B: the provinces' group means. "
              "No whole-mosaic mean is recorded for night IR.",   # KB §28.10; no KB reference on the figure (§69.9)
              color=MUTED, fontsize=8.6, va="bottom", linespacing=1.4)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

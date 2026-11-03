@@ -323,7 +323,8 @@ proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal lab
 | `Landform_CraterCandidates_auto_60` | Point | 465,354 | ±60° closed depressions ≥ 1 km (§54.4) |
 | `Landform_ChannelCandidates_auto_60` | Polyline | 969,822 | ±60° routed channels (§54.4) |
 | `Landform_ChannelCandidates_auto_60_o3` | Polyline | 44,704 | its order ≥ 3 segments, with `ValleyKm5` and `ValleyShare5`, A1's measure per segment (§69.50) |
-| `Landform_CraterCandidates_auto_60_smoke`, `Landform_ChannelCandidates_auto_60_smoke` | Point, Polyline | 8,098, 5,305 | X2's smoke run (§53.3); deleting them is open decision D14 |
+| ~~`Landform_CraterCandidates_auto_60_smoke`, `Landform_ChannelCandidates_auto_60_smoke`~~ | Point, Polyline | 8,098, 5,305 | X2's smoke run (§53.3); **deleted 2026-11-03 at the author's yes to D14**, after a row-for-row copy to `.backups\smoke_D14_20261103-014337.gdb` (§69.64); still in the release GeoPackage |
+| `Landform_TrainingSamples_offtharsis_draw` | Polygon | 0 | empty until the author draws off-Tharsis edifice and apron labels into it (§69.63) |
 | `Landform_TrainingSamples_terrain` | Polygon | 512 | **the hand-drawn labels** (§29.2); never overwrite |
 | `Landform_TrainingSamples_terrain_60_train`, `_60_test` | Polygon | 329, 183 | the labels clipped to ±60° and split by 15° blocks (§31.3) |
 | `Landform_TrainingSamples_v2_proposals` | Polygon | 1,086 | the seven-class proposals (§69.2): the 512 copied with an `Action` (474 keep, 12 relabel, 23 check, 1 clip, 1 delete, 1 fix) and 574 new; for the author's review (2b), never a training set until applied |
@@ -6617,3 +6618,52 @@ outflow forms are lava-draped and debated, §69.52), so the paper keeps H2 at st
 
 **Answered 2026-11-03, "No, skip them":** no volcanic channels are drawn; H2 stays at stages 1 and 1b in the paper
 and deck, and `make_t4_channel_h2.py`'s stage 2 keeps reporting "waiting" (0 volcanic Origins).
+
+### 69.64 D14, D16, D23 and D24 answered; the smoke classes deleted; the interim's Viking wording corrected before its report goes in — 2026-11-03, laptop **[V]**
+
+The author's answers (2026-11-03): **D24, yes** (the final deck in the interim's dark `mars_theme`, §69.65); **D16:**
+the interim report goes in **on Thursday 5 November**, the talk stays 10 November; **D14, yes** (delete the smoke
+classes); **D23, not now** (no Zenodo DOI yet: the data statement, block 13, waits).
+
+- **D14 done.** `Landform_CraterCandidates_auto_60_smoke` (8,098 points) and `Landform_ChannelCandidates_auto_60_smoke`
+  (5,305 lines), read by no map layer, were copied to `.backups\smoke_D14_20261103-014337.gdb`, the copies checked row
+  for row (counts and geometry), then deleted from the project gdb, Pro closed. They stay in the release GeoPackage.
+- **The interim's Viking wording, at the author's yes ("Yes, report and deck").** W5's finding (§69.50: MDIM 2.1 is
+  high-pass filtered at ~50 km and its colour an uncalibrated blend) had reached the paper and the final deck (§69.58)
+  but not the interim, which said "Viking albedo" or "visible albedo" in 10 places and described the Viking bands as
+  "not stretched by region, so regional differences are real". `interim.py` now says "Viking colour" in all 10 and
+  the band row reads "Colour and shading: bright dust, dark basalt. High-pass filtered at ~50 km; the colour, an
+  uncalibrated blend, still carries regional differences." The province figure (`make_fig_global60.py`, used by the
+  interim's report and deck and by the final deck) had the same claim in its footnote, now "keeps the regional
+  difference in its colour". Words only: the 26 October data cut, the numbers and every other figure are unchanged
+  (`make_interim_dark.py` redrew all the navy copies from today's logs; compared byte for byte with the committed
+  ones, only `global60_thermal.png` differs). The live files were backed up to `NEXT STUFF\.backup_20261103\`, both
+  rebuilt (32 slides; 21 pages, 21 figures), rendered (PowerPoint and Word COM) and every changed slide and page
+  read; no page of either says "albedo" any more. `verify_interim.py`: all 539 numbers in the record; `verify_all.py`
+  37 of 37. **`NEXT STUFF\Mars Mosaic - Interim Report.pdf`** is the rendered report, for the 5 November submission.
+
+### 69.65 D24: the final deck in the interim's dark design — 2026-11-03, laptop **[V]**
+
+At the author's yes (D24, §69.64), `build\build_final_deck.py` draws the final deck in `mars_theme.py`, as the interim
+has been since 10-27 (§69.11): navy throughout, Cambria titles over a kicker naming the part, a dark divider over the
+Ius mosaic (Viking and night IR in turn) before each of the seven parts, the question and goals as the interim's goal
+cards, the band table and the shaded correlation matrix as the interim draws them, the limits as cards. The words
+are `final.py`'s, unchanged; the KB sections that the old design printed under each slide now go in its speaker
+notes (§69.9: no KB reference on a slide), so every slide has one. Until today it was the Presentation 1 design
+(`le_theme.py`; git holds it).
+
+- **Code:** the interim builder's figure placement, layout tightening (`tight`), legend regrouping (`restack`),
+  `issue_cards`, `mix`, the bands and correlation slides and the title slide were copied from `build_interim_live.py`
+  by a script (line ranges asserted, 15 named substitutions each matched once: the image folders, two messages,
+  `I.` to `F.`, and `side_h` for the Athabasca slide), so the interim builder, two days before its report goes in,
+  is untouched; a diff of the copy against lines 36–325 shows only those substitutions, and `issue_cards` and `mix`
+  are identical. The slide sequence is new.
+- **Figures:** `build\make_final_dark.py` (ArcGIS Python, for `make_fig_channels.py`'s GDAL read) reuses
+  `make_interim_dark.py`'s recolouring unchanged, pointed at `final_img\dark\`: 9 chart scripts and the 10 layouts
+  `final.FIGURES` shows, 41 files. No white original changed (each compared byte for byte with the committed copy;
+  only `pres1_img\global60_thermal.png` differs, by §69.64's footnote).
+- **Read:** 37 slides rendered through PowerPoint and every one read on contact sheets, then the changed ones at full
+  size. Two fixes: "Seven classes from a U-Net" ran its four takeaways into the legend (`points_h=262` in `final.py`,
+  the interim's own option, now fits); the limit cards touched their bottom edge at 12 pt (11 pt now). The live
+  deck (`NEXT STUFF\Final\Mars Global Mosaic - Final Presentation.pptx`, backed up first to
+  `NEXT STUFF\.backup_20261103\`) is rebuilt; `verify_interim.py` on `final.py`: all 235 numbers in the record.

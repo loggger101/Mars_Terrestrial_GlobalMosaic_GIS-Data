@@ -139,7 +139,9 @@ go to the final, not here; slack goes to the final's data work.
 | 26 Oct | the percentages (`PROGRESS`) set toward the final (KB §69.5); rebuilt, slide 5 and report page 2 read |
 | 27 Oct | refined for the talk, the cut kept (the author's choice): T4 and T8 charts at 200 dpi, the U-Net slide's legend clear of its text, the title slide's subtitle, the schedule's 10 Nov; both rebuilt and the changed slides and pages read (KB §69.10) |
 | before 10 Nov | any last change; rebuild both documents; render and read every changed slide and page; `verify_interim.py`; rehearsal |
-| **10 Nov** | the presentation; the report as the course asks |
+| 3 Nov | the Viking wording corrected ("Viking colour"), both rebuilt, every changed slide and page read, the report rendered to PDF (KB §69.64) |
+| **5 Nov** | **the report goes in** (D16, the author, 11-03): `NEXT STUFF\Mars Mosaic - Interim Report.pdf` or the .docx |
+| **10 Nov** | the presentation |
 
 ## 7. Wording traps, all hit before (KB §14.5, §12)
 

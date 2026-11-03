@@ -187,7 +187,7 @@ FIGURES = [
                  "Edifice ×4.15 on edifice units, apron ×5.69 on apron units; fluvial channel over-predicted"],
          source="§69.8, §69.24, §69.26"),
     dict(title="Seven classes from a U-Net",
-         images=[("layout", "17b_unet_v2_provinces")], map_left=True,
+         images=[("layout", "17b_unet_v2_provinces")], map_left=True, points_h=262,
          points=["Held out 69.0%, κ 0.606, against the seven-class SVM's 42.5% and the four-class U-Net's 44.1%",
                  "Ahead by balanced accuracy (56.9% against 41.9%), resolved by block here but not on the 1,652 "
                  "v3 held-out polygons; by accuracy the lead sits on two Tharsis blocks",

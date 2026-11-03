@@ -81,7 +81,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 | 3 | Retests that wait for the review: H2 stage 2 (code ready in `make_t4_channel_h2.py`; needs ≥ 10 fluvial and ≥ 10 volcanic Origins); H1 on traced margins done 11-02 on the agent's 86 (§69.52), rerun `make_flow_margin_test.py --margins` when the author adds or checks margins | agent | §4 | results in the KB, either way |
 | 3b | **The v3 runs** (more and smaller seven-class training polygons, KB §69.49; the fan deposits admitted as apron by D34, §69.56: 10,269 training, 1,652 held out): first `preflight_v3.py` under the ArcGIS Python (reads only, ~5 min; 69 checks passed on the laptop 11-02, KB §69.60), then `powershell -File run_v3.ps1` from `build\`, Pro closed; U-Net then SVM, ~2 days; then the KB section, and the seven-class layouts (04b, 17b) only if the author picks the v3 maps; steps 08 and 13 (the v2 maps on the v3 held-out polygons) are already measured at the same 400 m, A16, §69.57 | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
 | 4 | The paper's analyses that need no author time, in §12.6's order (A1, A2, A3 (b) and (c), A7, A8, A9 and A13 done 11-01/02 on the laptop; A4b, A3 (a), A10, A14 and W10 done 10-31, A15, A5, A6 and A11 11-01, KB §69.34–§69.46) | agent | §12.2, §12.4 | results in the KB, by the **22 Nov** freeze |
-| 5 | The interim: deliver on **10 Nov**; the report's date from the author | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
+| 5 | The interim: **the report goes in on Thu 5 Nov** (D16, 11-03), the talk on **10 Nov**. Both rebuilt and read 11-03 with the Viking wording corrected (KB §69.64); the report as PDF is `NEXT STUFF\Mars Mosaic - Interim Report.pdf` | author (submits) | `INTERIM-PLAN.md` §0, §6 | delivered |
 | 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex` (the settled blocks 8–11, 14 and "Viking colour" went in early, 11-02, §69.58, and into the deck, §69.59; the deck builds and renders on the laptop; left: blocks 12, 13, 15, 16 and the open decisions' clauses); rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
 
 The class revision (§11) is done to the final's text (2a–2c, KB §69.2–§69.27). Deep learning (X5, X5b, X5c) is done
@@ -89,7 +89,7 @@ and scored (§66); further tuning first needs validation blocks of its own (§66
 
 **Where the results are weakest and what would most improve them:** §14 (11-01), ranked.
 
-**Waiting on the author:** items 1 and 5; optionally R1 and R2 on their sheets (`review_sheets\r1\`, `r2\`; ~45 min and ~2–3 h, §12.3), whose answers would replace the agent's (§69.55); D14–D16, D22–D24, D26 and D27 (§2); the check of the 86 traced margins (D33) and the off-Tharsis labels (§14 row 3), both promised 11-03; the interim talk's slot length (§12.5); whether
+**Waiting on the author:** items 1 and 5; optionally R1 and R2 on their sheets (`review_sheets\r1\`, `r2\`; ~45 min and ~2–3 h, §12.3), whose answers would replace the agent's (§69.55); D15, D22, D23 (not now, 11-03), D26 and D27 (§2); the check of the 86 traced margins (D33) and the off-Tharsis labels (§14 row 3), both promised 11-03; the interim talk's slot length (§12.5); whether
 layout 18 or `final_img\tes_block_scale.png` goes into a deliverable (§69.30); whether the interim shows layouts 15–18
 (it shows 13 of the 17 that existed at the cut, `INTERIM-PLAN.md` §3); emptying the Recycle Bins (~21 GB of finished
 scratch, §57.5).
@@ -128,14 +128,14 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 
 | # | decision | recommendation |
 |---|---|---|
-| D14 | the two `_60_smoke` classes, recreated by X2's smoke run (§57.1) | delete (they were deleted once, D9); they are in the release GeoPackage |
 | D15 | a derivatives release with the §54 patch (33 GB upload) | not needed: the catalogue gives the two commands that patch a restore (§57.4) |
-| D16 | the interim's due date: **the presentation is 10 November** (the author, 2026-10-27, KB §69.10); the report's date is still open (the percentages were set 2026-10-26, KB §69.5) | plan the report against 10 November too |
 | D22 | the two blind checks: the rule-screened v2 rows (§12.3 R1, ~45 min) and a probability-sample accuracy check (R2, ~2–3 h) | R1 yes, after the candidate review; R2 if time is free. **Both now scored on the agent's labels at the author's word (§69.55)**; the author's answers, if given, replace them |
-| D23 | a DOI for the data release through Zenodo, and a data statement (§12.4 W7); publishing | yes, with the pre-final release (§7) |
-| D24 | the final deck in the interim's dark `mars_theme` (§12.5) | yes: one look for both talks |
+| D23 | a DOI for the data release through Zenodo, and a data statement (§12.4 W7); publishing | yes, with the pre-final release (§7). **Asked 11-03: "Not now"**; block 13 waits |
 | D26 | the built deck, report and paper PDF committed only once per deadline: since 11-01 `github_sync.py` holds them back unless given `--deliverables` (KB §69.42), the recommendation in force until the author says otherwise; rewriting history to drop the 44 earlier copies of the interim deck and report (1.0 GB of blobs) needs a force push and a re-clone on both machines | yes to committing at milestones; no rewrite |
 | D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | yes |
+D14, D16, D23 and D24 were answered 2026-11-03 (KB §69.64–§69.65). **D14, yes:** the two `_60_smoke` classes
+deleted after a checked copy to `.backups\smoke_D14_20261103-014337.gdb`. **D16:** the interim report goes in on
+Thursday 5 November. **D23: not now.** **D24, yes:** the final deck is drawn in `mars_theme`, done the same day.
 D21, D25, D29 and D33 were answered 2026-11-03 (KB §69.62). **D21:** the paper is retitled "A Co-registered
 Visible, Thermal-Infrared and Elevation Stack of Mars at ±60°: What It Maps and What It Cannot"; the project, the
 repository, the README, `CITATION.cff`, the data release and the deck keep "Mars Global Mosaic". **D25, yes:** the
@@ -542,7 +542,7 @@ in the paper and the final deck. Left for the freeze, each drafted in `NEXT STUF
   questions only if the author wants them on screen: why no calibrated thermal inertia, why the U-Net's 98.9 % is
   not the headline, what a held-out block is, what has changed since the cut (the v2 labels). Before the talk, bring
   the "Next Steps" note's review tally to the day's.
-- **The final deck** (D24): rebuild it in the interim's dark `mars_theme` so the two talks look alike; `final.py`
+- **The final deck** (D24, yes 11-03; **done 11-03**, KB §69.65): rebuilt in the interim's dark `mars_theme` so the two talks look alike; `final.py`
   keeps the words.
 
 ### 12.6 Order of work

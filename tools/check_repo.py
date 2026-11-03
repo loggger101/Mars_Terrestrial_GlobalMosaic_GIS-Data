@@ -14,7 +14,8 @@
 6. Every image and PDF in the tree is linked from docs/figures.md, so the figure index stays
    complete. The interim and final decks' layout crops (build/interim_img/NN_*, build/final_img/NN_*) are
    described there as a group each; the final paper's figures/ folder holds copies of figures listed there;
-   build/interim_img/dark/ holds the deck's navy copies, rebuilt by make_interim_dark.py and git-ignored.
+   build/interim_img/dark/ and build/final_img/dark/ hold the decks' navy copies, rebuilt by make_interim_dark.py
+   and make_final_dark.py and git-ignored.
 7. Every image a page shows inline has alt text and is at most 300 KB: bigger figures are shown as
    their docs/thumbs/ preview and linked in full. Each preview's source still has the SHA-256 that
    docs/thumbs/SOURCES.txt recorded, so a changed layout with a stale preview fails
@@ -99,8 +100,8 @@ def figures():
             continue
         if p.parent.name == "figures" and p.parent.parent.name == "paper":
             continue                              # the final paper's copies of figures listed elsewhere
-        if p.parent.name == "dark" and p.parent.parent.name == "interim_img":
-            continue                              # navy copies for the deck: rebuilt by make_interim_dark.py, not tracked
+        if p.parent.name == "dark" and p.parent.parent.name in ("interim_img", "final_img"):
+            continue                              # navy copies for the decks: rebuilt by make_*_dark.py, not tracked
         if p.resolve() not in linked:
             fails.append(f"not in docs/figures.md: {p.relative_to(ROOT)}")
     return len(files)

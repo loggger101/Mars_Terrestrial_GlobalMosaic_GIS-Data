@@ -73,7 +73,9 @@ from the KB's own §28.10 tables), never retyped. They are the interim deck's fi
 [`build/interim_img/`](../Mars%20Remote%20Sensing%20Project/build/interim_img) (the province chart in
 [`build/pres1_img/`](../Mars%20Remote%20Sensing%20Project/build/pres1_img)). The deck itself shows navy-ground
 copies of these charts and of its layout crops, made by `build/make_interim_dark.py` into `build/interim_img/dark/`
-(not tracked: rerun the script to rebuild them; the report and the paper use the white originals).
+(not tracked: rerun the script to rebuild them; the report and the paper use the white originals). The final
+deck, in the same design since 2026-11-03 (D24), has its own made by `build/make_final_dark.py` into
+`build/final_img/dark/`, also untracked.
 
 | | What it shows | Made by · log |
 |---|---|---|
@@ -208,4 +210,5 @@ figures on this page, put there by `build_final_paper.py` so the `.tex` compiles
 | [`pipeline.svg`](pipeline.svg) | The pipeline diagram on the front page: four sources, one ±60° grid, the products, both rounds of hand-drawn labels, the SVM and the U-Net with their seven-class and four-class scores, and the candidates. KB §69.38. | by hand |
 | [`final_img/pipeline.pdf`](../Mars%20Remote%20Sensing%20Project/build/final_img/pipeline.pdf) · [`pipeline.png`](../Mars%20Remote%20Sensing%20Project/build/final_img/pipeline.png) | The same diagram rendered for the paper, the footnote left to the caption: one vector page and a 2,200 × 892 PNG. In the paper's Methods (`fig:pipeline`). KB §69.38. | `make_fig_pipeline.py` |
 | [`NEXT STUFF/Final/paper/mars_global_mosaic.pdf`](../Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final/paper/mars_global_mosaic.pdf) | The final paper, a draft in AASTeX 7 (14 pages); the machine products presented as candidates while the review is open. KB §69. | `build_final_paper.py` |
+| [`NEXT STUFF/Mars Mosaic - Interim Report.pdf`](../Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Mars%20Mosaic%20-%20Interim%20Report.pdf) | The interim report, for submission on 5 November 2026: 21 pages, 21 figures, the data cut 26 October (D20), its Viking wording corrected 3 November. KB §69.64. | `build_interim_report_live.py`, rendered through Word |
 | [`OLD/ocean first pres LE.pdf`](../Mars%20Remote%20Sensing%20Project/OLD/ocean%20first%20pres%20LE.pdf) | Presentation 1 as delivered (history, not corrected). KB §14.5. | — |
