@@ -6492,4 +6492,4 @@ Left for the freeze, each waiting on someone: block 12 (future work; its R2 sent
 blocks 15 and 16), 13 (the data statement, at the DOI, D23), 15 (T5 on the traced margins and the review tally, D33),
 16 (R1 and R2, replaced if the author answers the sheets); D21 (title), D25 and D29 (the thermal and seven-class
 qualifiers). `verify_interim.py`: all 837 numbers in the `.tex` and all 215 in `final.py` in the record;
-`neutral_voice.py --check` passes. The page count is read from the CI build (below).
+`neutral_voice.py --check` passes. **CI build (run 41575484619): 20 pages (18 before), no overfull box**; the first build showed Table 3 21.9 pt and Table `tab:hyp` 25.6 pt too wide, fixed by shorter labels ("Elevation, latitude only"; H2 "not supported (stand-ins)") and Table 3's column gap 3.5 → 2.6 pt, which also cleared Table 3's earlier 11.9 pt overflow. Pages 6, 12 and 13, which hold the three new figures, rendered and read: each figure sits by its reference.
