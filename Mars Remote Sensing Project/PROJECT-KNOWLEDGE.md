@@ -6493,3 +6493,21 @@ blocks 15 and 16), 13 (the data statement, at the DOI, D23), 15 (T5 on the trace
 16 (R1 and R2, replaced if the author answers the sheets); D21 (title), D25 and D29 (the thermal and seven-class
 qualifiers). `verify_interim.py`: all 837 numbers in the `.tex` and all 215 in `final.py` in the record;
 `neutral_voice.py --check` passes. **CI build (run 41575484619): 20 pages (18 before), no overfull box**; the first build showed Table 3 21.9 pt and Table `tab:hyp` 25.6 pt too wide, fixed by shorter labels ("Elevation, latitude only"; H2 "not supported (stand-ins)") and Table 3's column gap 3.5 → 2.6 pt, which also cleared Table 3's earlier 11.9 pt overflow. Pages 6, 12 and 13, which hold the three new figures, rendered and read: each figure sits by its reference.
+
+### 69.59 The final deck brought level with the paper on the settled results; built and read on the laptop — 2026-11-02, laptop **[V]**
+
+`final.py` trailed the paper on what §69.58 put in. Changed: the H2 row of the hypotheses table (stages 1 and 1b:
+volcanic channels shallower in the window, 1.4 against 10.2 m/km, and on mapped units, 2.4 against 13.9; thermal
+|d| ≤ 0.31; §51.1, §69.50); "Channels across ±60°" (order ≥ 3 meets the mapped valleys no better than chance, A1);
+a new slide after "Where each held-out class lands", **"What beats the SVM: position, not height"**, with
+`final_img\svm_baselines.png` (nearest polygon 83.2 %, elevation and latitude 62.5 %, 3.9 points over one class
+everywhere; the 51 km filter to 82.1 %; seven classes 31.8 / 42.5 / 45.6 %; §69.35, §69.50); Limits (channels meet the
+valleys no more often than a rotated valley map; the geologic map's unit groups no substitute for material labels,
+A8); a Conclusions item on the channels; `STATUS_DATE` 2 November 2026. The paper's Conclusion 4 gains the same
+channel clause. 37 slides (36 before).
+
+**The final deck builds and renders on the laptop**: `build_final_deck.py <out.pptx>` under the system Python, and
+`render.ps1` (PowerPoint COM) to PNG, both into scratch; the committed deck is replaced only at a deadline (D26).
+Every changed slide was read: "Channels across ±60°" overflowed onto its source line twice (four bullets, then a
+wrapped one) and now holds three one-line bullets. `verify_interim.py`: all 228 numbers in `final.py` and all 837 in
+the `.tex` in the record; `neutral_voice.py --check` passes.

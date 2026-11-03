@@ -82,7 +82,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 | 3b | **The v3 runs** (more and smaller seven-class training polygons, KB §69.49; the fan deposits admitted as apron by D34, §69.56: 10,269 training, 1,652 held out): `powershell -File run_v3.ps1` from `build\`, Pro closed; U-Net then SVM, ~2 days; then the KB section, and the seven-class layouts (04b, 17b) only if the author picks the v3 maps; steps 08 and 13 (the v2 maps on the v3 held-out polygons) are already measured at the same 400 m, A16, §69.57 | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
 | 4 | The paper's analyses that need no author time, in §12.6's order (A1, A2, A3 (b) and (c), A7, A8, A9 and A13 done 11-01/02 on the laptop; A4b, A3 (a), A10, A14 and W10 done 10-31, A15, A5, A6 and A11 11-01, KB §69.34–§69.46) | agent | §12.2, §12.4 | results in the KB, by the **22 Nov** freeze |
 | 5 | The interim: deliver on **10 Nov**; the report's date from the author | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
-| 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex` (the settled blocks 8–11, 14 and "Viking colour" went in early, 11-02, §69.58; left: blocks 12, 13, 15, 16 and the open decisions' clauses); rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
+| 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex` (the settled blocks 8–11, 14 and "Viking colour" went in early, 11-02, §69.58, and into the deck, §69.59; the deck builds and renders on the laptop; left: blocks 12, 13, 15, 16 and the open decisions' clauses); rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
 
 The class revision (§11) is done to the final's text (2a–2c, KB §69.2–§69.27). Deep learning (X5, X5b, X5c) is done
 and scored (§66); further tuning first needs validation blocks of its own (§66.5), the author's call.
@@ -471,7 +471,7 @@ in the paper and the final deck. Left for the freeze, each drafted in `NEXT STUF
 | Limits, held-out use | "used once for each model" | the v2 maps are a second use of the 14 blocks; say so |
 | Discussion, after Limits; before the acknowledgments | no future work; no data statement | W6 and W7: `v2_drafts.tex` blocks 12 and 13 (the DOI first, D23) |
 | Results, H1 and `fig:t5`; Discussion, the hypotheses; Table `tab:hyp`; Limits, the review tally; Conclusions; abstract | H1 on the 1:20 M contacts only; "94 channels, 26 crater rims and no lava margins"; the review at 549 | T5 on the 86 CTX-traced margins (KB §69.52; `final_img\t5_traced.png`, `make_fig_t5_traced.py`) and the tally of §69.33: `v2_drafts.tex` block 15, with D33; `Dickson2024` in `references.bib` |
-| the PDF and the final deck | built 2026-10-22/23 | rebuild on the desktop (`build_final_paper.py`, MiKTeX; `build_final_deck.py`) and read every page: Table 3 is wider now, and the pipeline figure (`fig:pipeline`, KB §69.38) is new; note the page count |
+| the PDF and the final deck | built 2026-10-22/23 | rebuild on the desktop (`build_final_paper.py`, MiKTeX; `build_final_deck.py`, which also builds and renders on the laptop, §69.59) and read every page: Table 3 is wider now, and the pipeline figure (`fig:pipeline`, KB §69.38) is new; note the page count |
 
 ### 12.2 Analyses that need no author time
 

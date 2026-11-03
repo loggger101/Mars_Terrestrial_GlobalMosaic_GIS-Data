@@ -14,7 +14,7 @@ from content import DECK_TITLE, COURSE, TITLE                # unchanged since t
 from interim import BANDS, CORRELATION                         # the data slides are the interim's, unchanged
 
 AUTHOR = "Logan M Edwards"                                     # the public name, as the sheets' footers (KB §63)
-STATUS_DATE = "29 October 2026"
+STATUS_DATE = "2 November 2026"
 
 QUESTION = (
     "Athabasca Valles was read as a water-carved outflow channel for decades, then reinterpreted as flood lava. "
@@ -35,8 +35,9 @@ HYPOTHESES = [   # (id, claim, verdict, KB)
      "Not supported at 1:20 M: day IR 21.0%, Viking red 12.3%, chance 10%; the difference's interval includes 0",
      "§47.2"),
     ("H2", "Fluvial and volcanic channels separate on gradient and thermal response",
-     "Not supported at stage 1: the volcanic window's channels are shallower (1.4 against 10.2 m/km); thermal AUC 0.50",
-     "§51.1"),
+     "Not supported at stages 1 and 1b: volcanic channels are shallower (window 1.4 against 10.2 m/km; mapped units "
+     "2.4 against 13.9); thermal |d| ≤ 0.31",
+     "§51.1, §69.50"),
     ("H3", "The composite gives more stable classes than any single input",
      "Not supported: the composites are the least reproducible inputs (ARI 0.40 against 0.61–0.89)", "§47.3"),
     ("H4", "Crater rims from DN gradient recover the large IAU craters",
@@ -112,9 +113,9 @@ FIGURES = [
     dict(title="Channels across ±60°",
          images=[("layout", "12_global60_channels")],
          points=["969,822 routed segments; 60.5% of stream cells discarded as fill artefact",
-                 "89.8% lie on ground under 2°: plateau channels are DEM noise",
-                 "Channel order follows the threshold, about one order per tenfold (T7): a setting, not a measurement"],
-         source="§47.4, §53.6, §54.4"),
+                 "89.8% under 2°; order ≥ 3 meets mapped valleys no better than chance",
+                 "Order follows the threshold (T7): a setting, not a measurement"],
+         source="§47.4, §53.6, §54.4, §69.50"),
     dict(title="Lava flows: the classes against the geologic map (T8)",
          images=[("file", r"interim_img\t8_enrichment.png")],
          points=["'Lava tube' sits on volcano flanks and aprons (×3.30, ×4.29), not on volcanic plains (×0.84)",
@@ -141,6 +142,14 @@ FIGURES = [
                  "feature size (~2 km), not by score",
                  "Halving the cell to 200 m bought no held-out accuracy"],
          source="§32.2, §55.3, §57"),
+    dict(title="What beats the SVM: position, not height",
+         images=[("file", r"final_img\svm_baselines.png")],
+         points=["The nearest training polygon's class scores 83.2%; elevation and latitude alone 62.5%, 3.9 points "
+                 "over one class everywhere",
+                 "A 51 km majority filter lifts the four-class map to 82.1%, still below the nearest polygon",
+                 "Seven classes: elevation and latitude 31.8%, the SVM 42.5%, the nearest polygon 45.6%; "
+                 "filtering leaves the SVM flat"],
+         source="§69.35, §69.50"),
     dict(title="Does thermal infrared improve the classification? (T1)",
          images=[("file", r"interim_img\t1_pro.png")],
          points=["Thermal adds +1.36 pt at 200 m and +1.97 at 400 m, both intervals above 0 (numpy: +1.3)",
@@ -198,7 +207,8 @@ LIMITS = [   # (head, text)
      "The held THEMIS mosaics are 8-bit products stretched region by region: no calibrated thermal inertia, and "
      "against TES only |r| ≈ 0.1 inside 15° blocks. In the classification thermal adds 1.3–2.0 points (§24, §28.10, §43.1, §56)."),
     ("The landform classes are terrain classes",
-     "Slope and relief alone match all seven bands; 'lava tube' marks volcano flanks, not lava plains (§40.1, §43.2)."),
+     "Slope and relief alone match all seven bands; 'lava tube' marks volcano flanks, not lava plains; the geologic "
+     "map's unit groups cannot stand in for material labels either (§40.1, §43.2, §69.50)."),
     ("The seven classes cost the old ones",
      "Five four-class 'Crater' labels were volcanoes (Arsia Mons alone 31% of the held-out Crater area); the "
      "revision fixes that, but both seven-class maps fall below the four-class ones on the original classes and "
@@ -207,7 +217,8 @@ LIMITS = [   # (head, text)
      "Below ~5 km most are not catalogued craters, and breached craters are invisible; Robbins is the crater "
      "reference (§26.3, §53.4)."),
     ("Channels and orders are DEM-limited",
-     "Fill floods closed basins; 89.8% of ±60° channels lie under 2°; the stream order is a setting (§25.1, §47.4, §54.4)."),
+     "Fill floods closed basins; 89.8% of ±60° channels lie under 2° and meet the mapped valleys no more often than "
+     "a rotated valley map; the stream order is a setting (§25.1, §47.4, §54.4, §69.50)."),
     ("The review has only begun",
      "549 of 9,287 candidates reviewed, all at Ius Chasma (precision 54% on steep channels, 7% on depressions); "
      "the digitising classes hold 94 channels, 26 crater rims and no lava margins, so H1 and H2 wait (§69.7)."),
@@ -221,6 +232,7 @@ CONCLUSIONS = [
     "Viking colour, day IR and night IR span about three dimensions, night IR nearly independent of the others, but the THEMIS mosaics carry "
     "local contrast only, and calibrated inertia follows Viking",
     "Craters ≥ 5 km are mostly recovered as closed depressions (63.2% precision); those missed are mostly degraded or breached",
+    "Routed channels follow the elevation model (89.8% under 2°) and meet the mapped valleys no more often than chance",
     "The four-class landform map scores 66.7% balanced (73.8%, κ 0.58 overall) on blocks it never saw, above geography alone by class (61.3%); thermal adds a resolved 1.4–2.0 points",
     "A U-Net reaches 98.9% as a four-class province map and 69.0% with seven classes, which name volcanoes, aprons "
     "and valleys; lava flows still come from the geologic map",
