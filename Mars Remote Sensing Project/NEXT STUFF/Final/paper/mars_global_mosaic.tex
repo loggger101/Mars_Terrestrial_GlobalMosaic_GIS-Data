@@ -460,7 +460,9 @@ H2 was tested at a first stage with the window standing in for origin (Ius fluvi
 window's 3,272 candidates are shallower, not steeper, than Ius's 2,588 (median 1.4 against 10.2~m~km$^{-1}$, difference
 $-8.85$~m~km$^{-1}$, interval $-15.69$ to $-5.76$), and the thermal z-score separates the two no better than chance (AUC
 0.50, against 0.81 for gradient). What separates them is the setting, chasma walls against lava plains, so stage one
-cannot settle H2; stage two waits for reviewed channels with their origin set. %% KB §51.1
+cannot settle H2. Stage two, the origins compared within one window, needs fluvial and volcanic channels in the same
+area, and neither type area holds both: Ius Chasma was chosen for water-cut channels, and the outflow forms of
+Athabasca Valles are draped by lava, their origin debated \citep{Burr2002, Jaeger2007}. %% KB §51.1, §69.63
 
 \subsection{Lava flows}
 
@@ -757,8 +759,9 @@ under the same scorer, producer's (A) and user's (B) accuracy per class on the 2
 Table~\ref{tab:hyp} collects the verdicts. None of the four hypotheses is supported as stated. H3 failed outright: Iso
 Cluster partitions trained on the west and east halves of Ius Chasma agree less for the four-band composite (adjusted
 Rand index 0.40, \citealt{Hubert1985}) than for any single input (0.61 to 0.89), although the composite gives the most
-coherent maps; a one-band clustering is close to a density slice and reproduces easily. H1 and H2 were tested on
-stand-ins (map contacts and windows) and remain open for features digitised on the stack. A second stand-in for H2,
+coherent maps; a one-band clustering is close to a density slice and reproduces easily. H1 was tested on a stand-in
+(the map's contacts) and remains open for margins digitised on the stack; H2 was tested on stand-ins (windows) and
+cannot be taken further in these type areas, neither of which holds both channel origins. A second stand-in for H2,
 origin taken from the valley map and the geologic map over the whole network, gives the same answer: the 155,236
 order-$\ge2$ segments on volcanic units are shallower than the 10,799 on mapped valleys (median 2.4 against
 13.9~m~km$^{-1}$), and the two differ little on the thermal index (Cohen's $d=-0.21$; \citealt{Cohen1988}). %% KB §47.3, §47.5, §69.50 (A7)
@@ -865,8 +868,8 @@ and fluvial channels: the U-Net scores 69.0\%, \kap\,0.606 and the support vecto
 polygons, below the four-class maps on the original classes. The U-Net's lead is resolved by balanced accuracy on
 the v2 held-out polygons (56.9\% against 41.9\%), though not on a larger rule-screened set, and rests, by accuracy, on
 the two Tharsis blocks.
-\item Lava flows are not separable in these bands; the geologic map remains the lava-flow reference, and H1 and H2 await
-digitised margins and channels.
+\item Lava flows are not separable in these bands; the geologic map remains the lava-flow reference; H1 awaits
+digitised margins, and H2 a window that holds both fluvial and volcanic channels.
 \end{enumerate}
 
 \begin{acknowledgments}

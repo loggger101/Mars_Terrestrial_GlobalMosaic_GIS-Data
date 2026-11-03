@@ -223,7 +223,8 @@ LIMITS = [   # (head, text)
      "a rotated valley map; the stream order is a setting (§25.1, §47.4, §54.4, §69.50)."),
     ("The review has only begun",
      "549 of 9,287 candidates reviewed, all at Ius Chasma (precision 54% on steep channels, 7% on depressions); "
-     "the digitising classes hold 94 channels, 26 crater rims and no lava margins, so H1 and H2 wait (§69.7)."),
+     "the digitising classes hold 94 channels, 26 crater rims and no lava margins, so H1 waits; H2 needs both channel "
+     "origins in one area, which neither type area has (§69.7, §69.63)."),
     ("The held-out blocks used twice",
      "Once by the four-class models and once by the seven-class ones; any further tuning needs validation "
      "blocks of its own (§66.5)."),
@@ -242,7 +243,7 @@ CONCLUSIONS = [
 
 NEXT_STEPS = [
     "Review the 9,287 machine candidates at Ius Chasma and Athabasca Valles; draw breached craters and lava margins",
-    "Retest H1 on margins digitised at 100 m and H2 on reviewed channels with their origin set",
+    "Retest H1 on margins digitised at 100 m; test H2 where fluvial and volcanic channels share one area",
     "Seven classes: curb the over-prediction of fluvial channel and volcanic edifice, and win back Crater and hills",
     "Material labels, not landform labels, to price the thermal bands; calibrated THEMIS products where they exist",
     "Validation blocks of their own before any further deep-learning tuning",

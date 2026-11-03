@@ -199,8 +199,9 @@ Four steps would move these results furthest. A probability sample of the publis
 \citep{Olofsson2014}, would give unbiased accuracies and class areas with intervals, free of where the polygons were
 drawn. Material labels from photo interpretation, rather than landforms or the geologic map's unit groups, would test
 what the thermal bands add, and THEMIS-derived inertia \citep{Fergason2006}, where it exists, would replace the
-display mosaics' local contrast. Lava-flow margins and channel origins traced at Athabasca Valles on Context Camera
-images \citep{Malin2007} would test H1 and H2 on the features themselves rather than on stand-ins. The deep-learning
+display mosaics' local contrast. Lava-flow margins traced at Athabasca Valles on Context Camera images
+\citep{Malin2007} would test H1 on the features themselves rather than on the map's contacts; H2 needs a study area
+that holds both fluvial and volcanic channels. The deep-learning
 models need validation blocks of their own before any retraining; the seven-class U-Net's volcanic edifice, mapped
 mostly on the highland units, is the first thing to correct. For the craters, a rim-based diameter or merged nested
 basins would recover the 23\% of missed craters that hold only a smaller closed basin, 72\% of the misses at
@@ -289,11 +290,10 @@ sharper margins halve the interval's width but leave zero inside it. %% KB §69.
 \caption{Test T5 (H1): the share of profiles that each band separates across the geologic map's \lAv\ contacts at
 1:20\,M (open) and across 86 lava-flow margins traced on CTX (filled) at Athabasca Valles, with bootstrap intervals
 over contacts and margins; 10\% is chance by construction. \label{fig:t5}}
-%% (c) Discussion, "The hypotheses": replace "H1 and H2 were tested on stand-ins (map contacts and windows) and remain
-%%     open for features digitised on the stack." (and block 10 (b)'s anchor with it) with:
-H1 was tested on the geologic map's contacts and on margins traced on CTX, and is supported on neither. H2 was
-tested on stand-ins (windows, and origins taken from the valley and geologic maps) and remains open for channels whose
-origin is read on the images.
+%% (c) Discussion, "The hypotheses": replace "H1 was tested on a stand-in (the map's contacts) and remains open for
+%%     margins digitised on the stack;" with the line below. The H2 clause after it is in the .tex since 2026-11-03
+%%     (KB §69.68: no type area holds both channel origins, so H2 stays at stages 1 and 1b) and stays as it is.
+H1 was tested on the geologic map's contacts and on margins traced on CTX, and is supported on neither;
 %% (d) Table tab:hyp, the H1 row:
 %% H1 & Day IR shows flow margins Viking misses & not supported, on map contacts and traced margins & day $-$ Viking $+4.9$ pt, interval $-2.7$ to $+13.1$ \\
 %% (e) Limits: replace from "Finally, the manual review" to the paragraph's end with:
@@ -306,16 +306,17 @@ against the author's 22 and agreed with the author no better than chance ($\kapp
 are each reader's standard, not ground truth. The digitised classes hold 202 channels (199 accepted by the author, 3 by
 the assistant) and 381 crater rims, and the 86 traced lava margins, so the machine products are presented as
 candidates with measured recall and precision. %% KB §69.33, §69.52, §69.55, NEXT-STEPS §6
-%% (f) Conclusions, the last item: replace "and H1 and H2 await digitised margins and channels." with:
-%% and H1 is not supported on 1,476~km of margins traced on CTX either; H2 awaits channels whose origin is read on the images.
+%% (f) Conclusions, the last item: replace "H1 awaits digitised margins, and H2 a window that holds both fluvial and
+%%     volcanic channels." with:
+%% H1 is not supported on 1,476~km of margins traced on CTX either, and H2 awaits a window that holds both fluvial and volcanic channels.
 %% (g) Abstract: replace "No band separates the lava contacts of the 1:20\,M geologic map at Athabasca Valles much
 %%     better than chance" with (two words longer; the abstract is at its budget, cut elsewhere):
 %% No band separates the lava contacts of the 1:20\,M geologic map at Athabasca Valles, or margins traced on CTX, much better than chance
-%% (h) Block 12 (Future work): replace "Lava-flow margins and channel origins traced at Athabasca Valles on Context
-%%     Camera images \citep{Malin2007} would test H1 and H2 on the features themselves rather than on stand-ins." with:
-%% Channel origins read on Context Camera images \citep{Malin2007}, with volcanic channels drawn by hand on the
-%% Athabasca lava, where the routed candidates hold none, would test H2 on the features themselves; the author's check
-%% of the traced lava margins would make H1's test the project's own.
+%% (h) Block 12 (Future work): replace "Lava-flow margins traced at Athabasca Valles on Context Camera images
+%%     \citep{Malin2007} would test H1 on the features themselves rather than on the map's contacts;" with:
+%% The author's check of the lava margins traced on Context Camera images \citep{Malin2007} would make H1's test the
+%% project's own;
+%%     (Rewritten 2026-11-03, KB §69.68: volcanic channels drawn at Athabasca would only repeat H2's stage 1, §69.63.)
 
 %% ---------------------------------------------------------------------------------------------------------
 %% 16. R1 and R2 as the AI assistant labelled them (KB §69.55), drafted 2026-11-02, at the freeze. The author decided

@@ -6731,3 +6731,32 @@ Bold: new entries, seven, each checked on Crossref (Cohen1988, a book, by its ed
 `.bib` holds 56 entries; only Malin2007 and Dickson2024 stay uncited, for CTX, which blocks 15–16 of `v2_drafts.tex`
 cite once D33 is answered (the facilities line then needs MRO, CTX). `verify_interim.py` on the `.tex`: all 845
 numbers in the record.
+
+### 69.68 A quality pass over the scripts and the four deliverables; H2's second stage worded as the record has it — 2026-11-03, laptop **[V]**
+
+- **Scripts:** `ruff` with the bug-class rules only (undefined names, redefinitions, syntax, broken comparisons and
+  format strings) over `build\`, `tools\` and `restore.py`: no undefined name or real error. The 57 findings are all
+  a repeated `import os, sys`, left by the 2026-09-18 repathing shim; harmless, not edited.
+- **Spelling:** every distinct word (1,759) of the interim report, both decks (slides and notes) and the paper run
+  through Word's `Application.CheckSpelling` (en-US). The 51 rejected are British spellings (the house style), proper
+  names (Oudemans, Louros, RetinaNet) and LaTeX column specs: no misspelling. Word's document-level `SpellingErrors`
+  was tried first and returned nothing, on planted typos too, so it is not used; the per-word check flags them.
+- **Mechanics:** doubled words, unbalanced brackets, US spellings beside the British style, space before punctuation,
+  a/an: none in the four (two a/an flags, "a usable" and "a one-band", are correct). A planted text with one of each
+  is caught seven times out of seven.
+- **Alt text:** every picture has one, written from its caption: report 22 of 22, interim deck 34 of 34, final deck
+  38 of 38.
+- **The paper's PDF** is 22 MB, nearly all the layouts' photographic PNGs at ~2,000 px (~290 dpi at full width): the
+  right resolution, so left as it is.
+- **H2's second stage, worded as §69.63 settled it.** The paper said "stage two waits for reviewed channels with
+  their origin set", the Discussion and Conclusions that H1 and H2 "await digitised margins and channels", and blocks
+  12 and 15 of `v2_drafts.tex` that hand-drawn volcanic channels at Athabasca "would test H2". Since the author's
+  "No, skip them" (§69.63) no channels will be drawn, and drawn ones would only repeat stage 1. Now: Results, stage
+  two "needs fluvial and volcanic channels in the same area, and neither type area holds both" (Burr2002, Jaeger2007
+  for the debated Athabasca forms); Discussion, H1 "remains open for margins digitised on the stack", H2 "cannot be
+  taken further in these type areas"; Conclusions, "H1 awaits digitised margins, and H2 a window that holds both".
+  Blocks 12 and 15 (c), (f), (h) are re-anchored to the new text and carry only the H1 change. The final deck's
+  Limits card and What Next say the same (`final.py`); deck rebuilt (backed up first, `NEXT STUFF\.backup_20261103\`),
+  slides 34 and 36 read. The card's review counts (549; 94 channels, 26 rims, no margins) stay level with the paper's
+  Limits until block 15 (e) brings both to the day's tally at the freeze. `verify_interim.py`: all 845 numbers of the
+  paper and 235 of `final.py` in the record.
