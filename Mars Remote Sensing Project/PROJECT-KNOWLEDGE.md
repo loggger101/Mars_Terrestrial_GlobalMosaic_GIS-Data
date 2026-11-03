@@ -6614,3 +6614,6 @@ give exactly that pooled, window-confounded comparison; and stage 2's thermal re
 `ThermIdx` (`SourceID`), which a hand-drawn line has not got. Hours of CTX tracing would buy stage 1 again. A real
 stage 2 needs fluvial and volcanic channels in one window, which neither type area offers on the record (Athabasca's
 outflow forms are lava-draped and debated, §69.52), so the paper keeps H2 at stages 1 and 1b.
+
+**Answered 2026-11-03, "No, skip them":** no volcanic channels are drawn; H2 stays at stages 1 and 1b in the paper
+and deck, and `make_t4_channel_h2.py`'s stage 2 keeps reporting "waiting" (0 volcanic Origins).
