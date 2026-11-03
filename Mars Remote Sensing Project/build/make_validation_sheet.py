@@ -96,7 +96,7 @@ def tally():
             r = dict(t, candidates=sum(t[k] for k in DECISIONS + ("open",)), candidate_class=cand, copied=copied, drawn=drawn,
                      precision_author=a_acc / (a_acc + a_rej) if a_acc + a_rej else None,
                      precision=t["accept"] / judged if judged else None, judged=judged,
-                     recall=copied / mapped if mapped else None, mapped=mapped)
+                     recall=copied / mapped if drawn else None, mapped=mapped)   # 100 % by default with none drawn
             if kind == "depressions":
                 m = dens[key]["detector_vs_robbins"]["1.0"]
                 r["robbins_1km"] = {"recall": m["recall"], "precision": m["precision"], "robbins": m["robbins"]}
@@ -106,6 +106,7 @@ def tally():
                        if xy and in_window(xy, b) and (by or "").lower().startswith("agent"))
         rows["lava margins"] = {"drawn": lava, "by_agent": by_agent}
         res["areas"][key] = {"name": A["name"], "rows": rows}
+    res["lava_total"] = int(arcpy.management.GetCount(os.path.join(GDB, LAVA))[0])   # the windows test centroids
     return res
 
 
@@ -116,7 +117,8 @@ def show(res):
     for key, a in res["areas"].items():
         for kind, r in a["rows"].items():
             if kind == "lava margins":
-                print("%-17s %-12s %s drawn by hand" % (a["name"], kind, r["drawn"])); continue
+                print("%-17s %-12s %s in the window, %d of them traced by the agent" % (
+                    a["name"], kind, r["drawn"], r.get("by_agent", 0))); continue
             f = lambda v: "-" if v is None else "%.0f%%" % (100 * v)
             rb = r.get("robbins_1km")
             print("%-17s %-12s %6d %6d %6d %6d %6d %9s %6d %7s %9s" % (
@@ -234,7 +236,9 @@ def table(res, x0, ytop):
                 els.append(rect(x0, y, xs[-1] + wr - x0, hr, "v_band%d" % k, (244, 244, 242)))
             els.append(cell_text(x0, y, wl, hr, "%s · %s" % (a["name"], kind), fs, "v_l%d" % k, align="Left"))
             if kind == "lava margins":
-                vals = ["–"] * 6 + [str(r["drawn"]), "–", "–"]
+                ag = r.get("by_agent", 0)                 # traced by the agent, not by hand (the note says so)
+                vals = ["–"] * 6 + [("%d (agent)" % ag if ag == r["drawn"] else "%d (%d agent)" % (r["drawn"], ag))
+                                    if ag else str(r["drawn"]), "–", "–"]
             else:
                 rb = r.get("robbins_1km")
                 vals = [str(r["candidates"]), str(r["accept"]), str(r["reject"]), str(r["unsure"]), str(r["open"]),
@@ -252,7 +256,8 @@ def notes(res):
     state = ("No candidate has been reviewed and nothing has been drawn yet: the review columns fill in on the "
              "next run after a review session.\n" if not judged and not mapped else "")
     return (state + "Precision = accepted ÷ (accepted + rejected). Recall = accepted ÷ (accepted + drawn by hand): "
-            "the share of the features mapped by hand that the detector proposed.\nRobbins: a candidate matches a "
+            "the share of the features mapped by hand that the detector proposed; – until one it missed is drawn."
+            "\nRobbins: a candidate matches a "
             "catalogued crater whose centre lies within half its diameter, with a diameter within ×2 (KB §42.3). "
             "The depressions are closed depressions, not a crater count." + agent_note(res))
 
@@ -262,7 +267,10 @@ def agent_note(res):
     decisions are the agent's (KB §69.55), with the author's own precision beside the table's."""
     parts = ["%d of %d at %s" % (a["rows"]["lava margins"].get("by_agent", 0), a["rows"]["lava margins"]["drawn"],
                                  a["name"]) for a in res["areas"].values() if a["rows"]["lava margins"].get("by_agent")]
-    out = ("\nLava margins traced by the agent on CTX, not by the author (KB §69.52): " + "; ".join(parts) + "."
+    inside = sum(a["rows"]["lava margins"]["drawn"] for a in res["areas"].values())
+    outside = res.get("lava_total", inside) - inside
+    out = ("\nLava margins traced by the agent on CTX, not by the author (KB §69.52): " + "; ".join(parts)
+           + ("; %d more lie just outside the windows" % outside if outside else "") + "."
            if parts else "")
     dec = []
     for a in res["areas"].values():

@@ -42,6 +42,12 @@ it changes anything.
   11          the "matching a Robbins crater" table ran to 10.76 in: its columns narrowed to
               make_global60_candidate_sheets.TABLE_W in place (rerunning that builder recomputes
               1.4 million features).
+  (KB §69.69, 2026-11-03, from reading every sheet's text against the record)
+  01, 08, 15, 18  "albedo" for the Viking bands: MDIM 2.1 is high-pass filtered at ~50 km and its colour an
+              uncalibrated blend (W5, KB §69.50), which the paper, both decks and the report already say.
+  06, 09      "The three digitising classes are empty": they hold 202 channels, 381 rims, 86 margins.
+  15          T5 gave only the 1:20 M contacts' reading; it now gives the CTX-traced margins' (KB §69.52).
+  The builders write the new text too (TEXT_FIXES below holds old and new, so a rebuilt sheet is left alone).
 
 Pro must be closed. The .aprx is backed up first. --aprx <copy> rehearses on a copy, which must
 sit BESIDE the real .aprx (it stores relative paths, §31.5). --export <dir> writes every sheet to
@@ -81,6 +87,27 @@ T11_X = 7.98
 LEGEND_TITLE = {"03_classification": "Iso Cluster class (spectral clusters, not named landforms)"}
 NODATA_NOTE_04 = ("Grey streaks: no class. Gaps between THEMIS orbits leave 2.6% of the band "
                   "unclassified, 19% south of 48\u00b0S.")
+DIGITISE = [("class. The three digitising classes are empty and on top, ready to edit.",
+             "class, on top and ready to edit (tally: layout 14)."),
+            ("class. The three digitising classes are on top, ready to edit; layout 14 tallies what they hold.",
+             "class, on top and ready to edit (tally: layout 14).")]   # the second ran off the page (11-03)
+TEXT_FIXES = {                                      # (layout, element): [(old, new)], applied only where old is found
+    ("01_visible", "subtitle"): [("Albedo only:", "Colour and shading, not calibrated albedo:")],
+    ("06_ius_digitising", "subtitle"): DIGITISE,
+    ("09_athabasca_digitising", "subtitle"): DIGITISE,
+    ("08_global60_mosaic", "cA"): [("Real albedo. Bright dust", "Uncalibrated colour. Bright dust")],
+    ("08_global60_mosaic", "notes"): [("signal is carried by Viking albedo.",
+                                       "signal is carried by the Viking colour (uncalibrated).")],
+    ("15_athabasca_type_area", "cA"): [("one dimension of albedo.", "one dimension of colour.")],
+    ("15_athabasca_type_area", "notes"): [(
+        "against 10 % for random lines; day IR leans toward H1, unresolved. At 1:20 M the\ncontacts are generalised "
+        "by kilometres (KB \u00a747.2). Test T2: lAv is the least cratered large unit here, 1,122 Robbins craters \u2265 1 km "
+        "per 10\u2076 km\u00b2 against 1,760 (AHv)\nand 2,183 (HNt)",
+        "against 10 % for random lines (KB \u00a747.2). On the margins the agent traced\non CTX (633 profiles), day IR "
+        "leads Viking red by 4.9 points [\u22122.7, +13.1]: H1 not supported (KB \u00a769.52). Test T2: lAv is the least "
+        "cratered large unit here,\n1,122 Robbins craters \u2265 1 km per 10\u2076 km\u00b2 against 1,760 (AHv) and 2,183 (HNt)")],
+    ("18_t3_tes_blocks", "notes"): [("Viking red, the albedo, is in map", "Viking red is in map")],
+}
 
 assert not any("ArcGISPro" in l for l in os.popen("tasklist").read().splitlines()), "close ArcGIS Pro first"
 
@@ -190,6 +217,11 @@ def main():
         shutil.copy2(APRX, bk); print("backup", bk)
     p = arcpy.mp.ArcGISProject(APRX)
     print("graticule halos         %d layers" % halo_graticules(p))
+    for m in p.listMaps():                          # the classes hold 202 channels, 381 rims, 86 margins (KB §69.69)
+        for l in m.listLayers():
+            if l.isGroupLayer and l.name == "Digitising classes (empty)":
+                l.name = "Digitising classes"
+                print("group renamed           %s" % m.name)
 
     for lyt in sorted(p.listLayouts(), key=lambda l: l.name):
         cim = lyt.getDefinition("V3")
@@ -225,6 +257,15 @@ def main():
             if g is not None and NODATA_NOTE_04 not in g.graphic.text:
                 g.graphic.text = g.graphic.text + "\n" + NODATA_NOTE_04
                 changed.append("no-data note")
+
+        for (name, el), pairs in TEXT_FIXES.items():
+            if name != lyt.name:
+                continue
+            g = graphic(cim, el)
+            for old, new in pairs:
+                if g is not None and old in g.graphic.text:
+                    g.graphic.text = g.graphic.text.replace(old, new)
+                    changed.append("%s text" % el)
 
         if changed:
             lyt.setDefinition(cim)

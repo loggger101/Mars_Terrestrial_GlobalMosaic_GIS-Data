@@ -138,7 +138,7 @@ def main():
              "same 200 m grid of the analysis extent.", 10, "subtitle", colour=grey),
         # top row
         text(xl, yt + fh + 0.08, "A  Visible: Viking MDIM 2.1 colour", head, "hA", bold=True),
-        text(xl, yt - 0.42, "Real albedo. Bright dust (Arabia, Amazonis) against dark, rocky\n"
+        text(xl, yt - 0.42, "Uncalibrated colour. Bright dust (Arabia, Amazonis) against dark, rocky\n"
              "Syrtis Major and Acidalia: 47.7 DN apart in the red band.", cap, "cA", colour=dark),
         text(xr, yt + fh + 0.08, "B  THEMIS Day IR", head, "hB", bold=True),
         text(xr, yt - 0.42, "Bright = warm by day. Dust is bright in visible light and cool by day:\n"
@@ -158,7 +158,7 @@ def main():
              "so visible colour is one dimension; day IR and night IR\nadd two more. Effective dimensionality \u2248 3. "
              "Caveat: both THEMIS mosaics are locally contrast-normalised 8-bit products, so compare brightness\n"
              "within a region, never across the planet (KB \u00a728.10). Across \u00b160\u00b0 the regional material "
-             "signal is carried by Viking albedo.\nEach panel is centred on 0°E, as the other ±60° sheets are. "
+             "signal is carried by the Viking colour (uncalibrated).\nEach panel is centred on 0°E, as the other ±60° sheets are. "
              "Black streaks in the south: no THEMIS cover there; the stack keeps only pixels valid in every band "
              "(97.3 %).", 8.6, "notes", colour=dark),
         text(0.45, 0.40, CREDIT, 7.5, "credit", colour=(90, 90, 90))])

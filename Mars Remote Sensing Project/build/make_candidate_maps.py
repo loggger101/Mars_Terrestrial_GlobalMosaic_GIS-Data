@@ -97,7 +97,7 @@ def digitising(p, key, sr, camera_from=None):
     plateau = count(chan, "SlopeDeg < 2") / float(n_all)
     n_crat = count(crat)
     prec = json.load(open(os.path.join(HERE, "logs", "crater_density.json")))["areas"][key]["detector_vs_robbins"]["1.0"]["precision"]
-    gyou = group(m, "Digitising classes (empty)")
+    gyou = group(m, "Digitising classes")
     l = add(m, os.path.join(GDB, "Landform_ChannelCenterlines"), "Channel centrelines", True, gyou)
     l.definitionQuery = area_rows(A["channels"])
     line_style(l, (0, 92, 230), 2.5)
@@ -141,8 +141,8 @@ def digitising(p, key, sr, camera_from=None):
                 else "Breached craters are missed (KB \u00a726).")
     add_text(lyt, [
         text(0.45, 7.85, "%s: candidates to digitise" % A["name"], 21, "title", bold=True),
-        text(0.45, 7.50, "Machine candidates are prompts: accept one by copying it into the matching digitising class. "
-             "The three digitising classes are empty and on top, ready to edit.", 10.5, "subtitle", colour=(70, 70, 70)),
+        text(0.45, 7.50, "Machine candidates are prompts: accept one by copying it into the matching digitising class, "
+             "on top and ready to edit (tally: layout 14).", 10.5, "subtitle", colour=(70, 70, 70)),
         text(0.45, 0.72, "Cyan: %d of %d channel candidates %s."
              "\nThe other %d stay switched off; %.0f%% of all candidates sit on plateau under 2\u00b0, "
              "where routing follows DEM noise.\nMagenta: %d closed depressions \u2265 1 km; only %.0f%% match a catalogued (Robbins) "

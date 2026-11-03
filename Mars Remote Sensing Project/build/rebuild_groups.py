@@ -22,7 +22,7 @@ APRX = (sys.argv[sys.argv.index("--aprx") + 1] if "--aprx" in sys.argv
         else on_drive(r"Mars Project\Mars Project.aprx"))
 BKDIR = on_drive(r"Mars Project\.backups")
 GROUPS = [("Mars \u00b160\u00b0 Analysis", "Superseded: the 29\u201330 Sep GUI SVMs (KB \u00a730)"),
-          ("Ius Chasma \u2014 digitising", "Digitising classes (empty)")]
+          ("Ius Chasma \u2014 digitising", "Digitising classes")]   # "(empty)" until 11-03 (KB §69.69)
 
 assert not any("ArcGISPro" in l for l in os.popen("tasklist").read().splitlines()), "close ArcGIS Pro first"
 

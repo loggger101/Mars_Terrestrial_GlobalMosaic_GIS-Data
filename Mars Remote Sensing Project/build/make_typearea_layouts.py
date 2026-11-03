@@ -121,7 +121,7 @@ CREDIT = ("Logan M Edwards  \u00b7  OCN 4704 Remote Sensing  \u00b7  Mars Global
 SHEETS = [
  ("01_visible",       "Viking MDIM 2.1 (visible)",
   "Ius Chasma type area: visible mosaic",
-  "Viking MDIM 2.1, 232 m resampled to 100 m. Albedo only: the chasma reads as shadow.",
+  "Viking MDIM 2.1, 232 m resampled to 100 m. Colour and shading, not calibrated albedo: the chasma reads as shadow.",
   False),
  ("02_night_ir",      "THEMIS Night IR",
   "Ius Chasma type area: night-time thermal infrared",

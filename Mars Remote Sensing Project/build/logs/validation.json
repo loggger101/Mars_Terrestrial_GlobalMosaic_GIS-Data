@@ -1,5 +1,5 @@
 {
- "read": "2026-11-02 17:40",
+ "read": "2026-11-03 11:23",
  "areas": {
   "ius": {
    "name": "Ius Chasma",
@@ -19,7 +19,7 @@
      "precision_author": 0.5402298850574713,
      "precision": 0.5402298850574713,
      "judged": 174,
-     "recall": 1.0,
+     "recall": null,
      "mapped": 94
     },
     "depressions": {
@@ -37,7 +37,7 @@
      "precision_author": 0.10218978102189781,
      "precision": 0.10218978102189781,
      "judged": 1644,
-     "recall": 1.0,
+     "recall": null,
      "mapped": 168,
      "robbins_1km": {
       "recall": 0.20748663101604278,
@@ -69,7 +69,7 @@
      "precision_author": 0.5023923444976076,
      "precision": 0.271356783919598,
      "judged": 398,
-     "recall": 1.0,
+     "recall": null,
      "mapped": 108
     },
     "depressions": {
@@ -87,7 +87,7 @@
      "precision_author": 0.12618483412322276,
      "precision": 0.12618483412322276,
      "judged": 1688,
-     "recall": 1.0,
+     "recall": null,
      "mapped": 213,
      "robbins_1km": {
       "recall": 0.3614864864864865,
@@ -101,5 +101,6 @@
     }
    }
   }
- }
+ },
+ "lava_total": 86
 }

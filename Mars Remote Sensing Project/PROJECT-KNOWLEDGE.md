@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-01 (§69.50).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-03 (§69.69).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -27,7 +27,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 |---|---|
 | sources, the three frames, the ±60° grid | §3, §4, §15, §16, §28.1–§28.2; how the Viking and THEMIS mosaics were processed, §69.50 |
 | the ArcGIS project and the gdb | §5, §6 |
-| the map layouts: builders, polish, defects found by reading | §5, §22, §33, §61, §63, §64, §65, §67 |
+| the map layouts: builders, polish, defects found by reading | §5, §22, §33, §61, §63, §64, §65, §67, §69.69 |
 | how scripted work is done, and its traps | §2, §9, §12, §13 |
 | what the THEMIS pair can and cannot do | §24, §28.10, §40.1, §42.4, §43.1 (by block size, §69.29; mapped, §69.30), §56 (on seven classes, §69.50), §62 |
 | classification: type area | §19, §23, §27 |
@@ -180,7 +180,7 @@ environment, `0 ACM599`). A number is as repeatable as the least repeatable run 
 | **the published SVM map (73.8 %), T1 in Pro (+1.36 pt), the seven-class SVM maps** | Pro's SVM, `max_samples_per_class=1000` | Pro's own sample; no seed | **the same**: two trainings on one block give byte-identical `.ecd` files and 0 of 18,160,923 pixels different, and the `randomGenerator` setting changes nothing (§69.50). Tested on the laptop at small scale; the desktop's full-size retrain was not repeated |
 | the type-area Random Trees (62.7 %, superseded) | Pro's Random Trees, 50 trees | Pro's own draw; no seed | **different**: two trainings differ in the `.ecd` and on 5.0 % of the pixels (§69.50); a Random Trees number would need several runs and their spread |
 | **the U-Nets (98.9 %; seven-class 88.8 % rehearsal)** and the RetinaNet detector (X5, X5b) | `TrainDeepLearningModel` (`make_dl_pixels.py`, `make_dl_model.py`) | weight initialisation, chip order and the 10 % validation chips drawn by the tool; no seed; GPU | **not tested**; a retrain is expected to differ **[?]**. The models are kept (`DLModels\`), so a map is re-made from the saved model, not by retraining |
-| his GUI work (the 29 and 30 Sep SVMs, the first segmentation) | the Pro GUI | not recorded | not repeatable by script; superseded (§30) |
+| the author's GUI work (the 29 and 30 Sep SVMs, the first segmentation) | the Pro GUI | not recorded | not repeatable by script; superseded (§30) |
 
 ## 3. The data actually held
 
@@ -302,10 +302,10 @@ the builders' own PNGs are written before `polish_layouts.py` runs, so copy the 
 ## 6. Geodatabase inventory
 
 `Mars Project.gdb`, read with `arcpy` on 2026-10-18 (§58.2); X5's detections added 2026-10-19 (§66.3), the label
-proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal labels the same day (§69.4), the v2 labels 2026-10-27 (§69.8), the v3 labels 2026-11-01 (§69.49). All of
+proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal labels the same day (§69.4), the v2 labels 2026-10-27 (§69.8), the v3 labels 2026-11-01 (§69.49); counted again 2026-11-03, after D14 (§69.64, §69.69). All of
 §6 is **[V]**.
 
-### Feature classes — 43 present
+### Feature classes — 42 present
 
 | Dataset | Geometry | Rows | Made by |
 |---|---|---|---|
@@ -314,7 +314,7 @@ proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal lab
 | `MARS_nomenclature_classicalbedo_March2019` | Point | 303 | IAU gazetteer |
 | `MARS_nomenclature_craters_gt100km_March2019` | Point | **141** | IAU gazetteer |
 | `MARS_nomenclature_albedo_March2019` | Point | 126 | IAU gazetteer |
-| `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines`, `Landform_CraterRims` | Polyline, Polyline, Polygon | **0, 94, 381** | the digitising classes (§19.4, §46); the 475 copied from the review (§69.7, §69.31) |
+| `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines`, `Landform_CraterRims` | Polyline, Polyline, Polygon | **86, 202, 381** | the digitising classes (§19.4, §46): the 86 margins traced by the agent on CTX (§69.52); the channels and rims copied from the review (§69.7, §69.31), 3 of the channels the agent's accepts (§69.55) |
 | `Landform_ChannelCandidates_auto` | Polyline | 2,610 | Ius channel candidates (§25) |
 | `Landform_CraterCandidates_auto` | Polygon | 1,685 | Ius closed depressions ≥ 1 km (§26) |
 | `Landform_ChannelCandidates_auto_ath` | Polyline | 3,283 | Athabasca channel candidates (§42.1) |
@@ -6760,3 +6760,47 @@ numbers in the record.
   slides 34 and 36 read. The card's review counts (549; 94 channels, 26 rims, no margins) stay level with the paper's
   Limits until block 15 (e) brings both to the day's tally at the freeze. `verify_interim.py`: all 845 numbers of the
   paper and 235 of `final.py` in the record.
+
+### 69.69 Every layout's text read against the record: the Viking wording, the digitising classes, layout 14's recall; the paper's four-panel figures compacted — 2026-11-03, laptop **[V]**
+
+A quality pass over the 23 layouts, which no audit had read as text since §67 (10-22) while the record moved on.
+Every text element, legend and map-frame layer was dumped read-only through `arcpy.mp` and read against the record;
+then all 42 maps' layers (0 broken sources).
+
+- **"Albedo" for the Viking bands on four sheets.** W5 (§69.50) reached the paper, both decks and the report
+  (§69.58, §69.64), not the layouts: 01's subtitle ("Albedo only"), 08's caption A ("Real albedo") and notes ("carried
+  by Viking albedo"), 15's caption A ("one dimension of albedo") and 18's notes ("Viking red, the albedo"). Now
+  "Colour and shading, not calibrated albedo", "Uncalibrated colour", "the Viking colour (uncalibrated)", "one
+  dimension of colour" and "Viking red". The interim's and the final's figures never showed this prose (their
+  exports hide it), so only the sheets in Pro and the repository's PNGs carried it.
+- **06 and 09 said "The three digitising classes are empty"**, and both maps' group layer was "Digitising classes
+  (empty)": they hold 202 channels, 381 rims and 86 margins. Subtitle now "…into the matching digitising class, on
+  top and ready to edit (tally: layout 14)" (a first wording ran off the page and was shortened); group "Digitising
+  classes" (`make_candidate_maps.py`, `rebuild_groups.py`).
+- **15's T5 note gave only the 1:20 M contacts' reading** ("day IR leans toward H1, unresolved"); it now adds the
+  traced margins' (§69.52): 633 profiles, day IR − Viking red +4.9 pt [−2.7, +13.1], H1 not supported.
+- **Layout 14 printed recall 100 % in every row** because nothing has been drawn by hand: accepted ÷ (accepted + 0).
+  `make_validation_sheet.py` now gives recall only once a missed feature is drawn ("–" until then, said in the note).
+  Its margin row said "83 drawn by hand" against the class's 86: the window test counts centroids, and 3 margins lie
+  4–9 km south of the Athabasca window (checked by cursor); the cell now reads "83 (agent)" and the note "83 of 83 at
+  Athabasca Valles; 3 more lie just outside the windows". Rerun as after a review session (table read 11:23).
+- **How the fixes went in:** the builders' strings changed (so a rebuild keeps them) and `polish_layouts.py` gained
+  `TEXT_FIXES` (layout, element, old → new, applied only where the old text is found) and the group rename, rather
+  than rerunning five builders that would recreate maps later scripts have edited. Pro closed; each run backed the
+  `.aprx` up to `.backups\` first; a further polish run changed nothing (idempotent). The seven changed sheets were
+  exported at 150 dpi, read at full size, and replace the PNGs in `Global60\layouts\` and `TypeArea\layouts\`.
+- **Not defects, checked:** the off-Tharsis map's "Targets (IAU names)" reads `MARS_nomenclature_classicalbedo_…`,
+  which despite its name holds Nili and Meroe Paterae, Nili and Nia Tholi and Nilosyrtis Mensae; Colles Nili comes
+  from the misc class beside it: all six targets draw.
+- **The paper's four-panel figures (08, 15) compacted.** Their exports hide the captions, which left blank bands: on
+  15 a column 2.2 in wide beside panels A and C, so at `0.92\textwidth` each map printed ~30 % of the figure's width.
+  `make_final_figs.py` (final only; the interim's exporter and images untouched) moves 15's lAv key beside panel B, as
+  the scale bar sits beside D, in memory, and cuts every all-white band wider than 60 px to 60 px: 15 goes from
+  2,029 to 1,678 px wide (the maps 21 % larger on the page), 08 from 921 to 818 px tall. Copied into the paper
+  (`build_final_paper.py --no-compile`; the laptop has no `aastex701.cls`, CI compiles) and the deck's navy copies
+  redrawn; the deck rebuilt (backed up first to `NEXT STUFF\.backup_20261103\`), rendered, slides 4 and 9 read.
+- **§6 was two facts behind:** its heading said 43 feature classes (42 since D14 removed two and §69.63 added one)
+  and its digitising-class row "0, 94, 381" (86, 202, 381). `audit_record.py` caught the first; both corrected in
+  place; it now passes.
+- **The README** still said "visible albedo carries the material signal" (its thermal results); now "the Viking colour
+  (not a calibrated albedo, see Limits)", which its Limits section explains.

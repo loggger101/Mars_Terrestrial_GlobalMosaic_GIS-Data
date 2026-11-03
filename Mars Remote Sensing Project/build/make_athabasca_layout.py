@@ -129,7 +129,7 @@ def main():
              9.5, "subtitle", colour=grey),
         text(xl, yt + fh + 0.08, "A  Visible: Viking MDIM 2.1 colour", head, "hA", bold=True),
         text(cx_l, yt + 0.05, "232 m resampled to 100 m.\nThe three bands correlate\n0.81–0.95 with each "
-             "other:\none dimension of albedo.\n\nAgainst TES thermal inertia\n(~3 km cells): r −0.55 "
+             "other:\none dimension of colour.\n\nAgainst TES thermal inertia\n(~3 km cells): r −0.55 "
              "dayside,\n−0.64 nightside. The only\nlayer here that tracks it\n(KB §42.4).",
              cap, "cA", colour=dark),
         text(xr, yt + fh + 0.08, "B  THEMIS Night IR", head, "hB", bold=True),
@@ -146,10 +146,10 @@ def main():
                                                format(hi, ",").replace("-", "−")),
              cap, "cD", colour=dark),
         text(0.45, 0.58, "Test T5 (H1): across the 10 lAv contacts (905 profiles) each band separates 11–21 % "
-             "against 10 % for random lines; day IR leans toward H1, unresolved. At 1:20 M the\ncontacts are "
-             "generalised by kilometres (KB §47.2). Test T2: lAv is the least cratered large unit here, "
-             "1,122 Robbins craters ≥ 1 km per 10⁶ km² against 1,760 (AHv)\nand 2,183 (HNt) "
-             "(KB §42.2). The diurnal-contrast index is not a panel: here it does not track calibrated "
+             "against 10 % for random lines (KB §47.2). On the margins the agent traced\non CTX (633 profiles), "
+             "day IR leads Viking red by 4.9 points [−2.7, +13.1]: H1 not supported (KB §69.52). Test T2: lAv is "
+             "the least cratered large unit here,\n1,122 Robbins craters ≥ 1 km per 10⁶ km² against 1,760 (AHv) "
+             "and 2,183 (HNt) (KB §42.2). The diurnal-contrast index is not a panel: here it does not track calibrated "
              "inertia (KB §42.4).", 7.8, "notes", colour=dark),
         # the lAv outline's key: a drawn swatch, smaller than a legend element
         rect(cx_l, yt + fh - 0.22, 0.34, 0.16, "lav_swatch", fill=(255, 255, 255), stroke=LAV_RGB, stroke_w=1.4),

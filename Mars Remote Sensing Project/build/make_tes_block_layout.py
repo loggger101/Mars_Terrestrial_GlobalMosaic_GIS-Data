@@ -139,7 +139,7 @@ def sheet(p, ma, mb):
         text(0.45, 0.64, "The 5° blocks show where a weak signal holds; one block's r is noisy (10,000 cells, "
              "strongly autocorrelated), so read the pattern, not a single block. The THEMIS mosaics are\n"
              "contrast-stretched region by region, so a block can only compare places with one another, never "
-             "two blocks. Viking red, the albedo, is in map T3a (off) for comparison (KB §43.1, §69.29).",
+             "two blocks. Viking red is in map T3a (off) for comparison (KB §43.1, §69.29).",
              7.9, "notes", colour=dark),
         text(0.45, 0.40, CREDIT, 7.5, "credit", colour=(90, 90, 90))]
         + legend(7.65, 6.95)
