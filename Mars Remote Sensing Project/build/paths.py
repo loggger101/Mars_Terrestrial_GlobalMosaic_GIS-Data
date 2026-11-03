@@ -60,6 +60,17 @@ def arcgis_python():
     return os.path.join(root, r"bin\Python\envs\arcgispro-py3\python.exe")
 
 
+DESKTOP_HOST = "DESKTOP-PJS73RO"
+
+
+def machine():
+    """This machine's name in log file names and run records: the desktop's host name, or "laptop" for any other
+    (the laptop's host name stays off the public repository, the author's request 2026-11-03)."""
+    import socket
+    host = socket.gethostname()
+    return host if host.upper() == DESKTOP_HOST else "laptop"
+
+
 MARS_PROJECT = on_drive("Mars Project")
 GDB = on_drive(r"Mars Project\Mars Project.gdb")
 APRX = on_drive(r"Mars Project\Mars Project.aprx")

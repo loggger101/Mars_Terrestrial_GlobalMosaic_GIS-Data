@@ -14,16 +14,16 @@ X5  deep learning needs ArcGIS Pro's separately installed "Deep Learning Librari
     CUDA from torch, and that the training-split export (make_global60_dl_export.py --train-only)
     is intact: its marker names the _60_train labels and its chip count matches stats.txt.
 
-Writes build\logs\desktop_check_<hostname>.json. Writes nothing on the drive besides that log.
+Writes build\logs\desktop_check_<machine>.json (paths.machine(): the desktop's host name or "laptop"). Writes nothing on the drive besides that log.
 """
 import os, sys, json, time, socket, tempfile, importlib, re
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from paths import on_drive, DRIVE
+from paths import on_drive, DRIVE, machine
 import arcpy
 
-HOST = socket.gethostname()
+HOST = machine()
 OUT = os.path.join(HERE, "logs", "desktop_check_%s.json" % HOST)
 TRAIN = on_drive(r"Mars Project\LabeledObjects\global60_svm_stack_200m_train")
 NO_GPU = "No compatible GPU device has been detected"

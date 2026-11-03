@@ -47,7 +47,7 @@ import os, sys, json, time, socket, shutil
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from paths import on_drive, GDB
+from paths import on_drive, GDB, machine
 import numpy as np
 import arcpy
 from osgeo import gdal
@@ -106,7 +106,7 @@ def train():
     print(msgs)
     secs = time.time() - t
     open(os.path.join(out, "training_messages.txt"), "w", encoding="utf-8").write(msgs)
-    json.dump(dict(cfg, host=socket.gethostname(), seconds=round(secs), finished=time.strftime("%Y-%m-%d %H:%M"),
+    json.dump(dict(cfg, host=machine(), seconds=round(secs), finished=time.strftime("%Y-%m-%d %H:%M"),
                    script="make_dl_pixels.py"), open(os.path.join(out, "run_config.json"), "w"), indent=1)
     shutil.copytree(out, final)
     print("trained in %.0f s -> %s, copied to %s" % (secs, out, final))

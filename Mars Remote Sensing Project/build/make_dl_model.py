@@ -54,7 +54,7 @@ import xml.etree.ElementTree as ET
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from paths import on_drive, GDB
+from paths import on_drive, GDB, machine
 import arcpy
 import grid60 as G
 import labelsets as L
@@ -63,7 +63,7 @@ STACK = os.path.join(G.OUTDIR, "global60_svm_stack_200m.tif")
 TRAIN = on_drive(r"Mars Project\LabeledObjects\global60_svm_stack_200m_train")
 TEST = os.path.join(GDB, L.TEST)                     # labelsets.py: --labels v2 for make_dl_pixels.py's v2 run
 MODELS = on_drive(r"Mars Project\DLModels")
-CHECK = os.path.join(HERE, "logs", "desktop_check_%s.json" % socket.gethostname())
+CHECK = os.path.join(HERE, "logs", "desktop_check_%s.json" % machine())
 OUT = os.path.join(HERE, "logs", "dl_heldout_score.json")      # X5's; later models get their own (--out)
 NAMES = {1: "Crater", 2: "steep/windy hills", 3: "lava tube", 4: "Normal Ground"}
 MARK = "MADE_BY_make_global60_dl_export.txt"
@@ -228,7 +228,7 @@ def train():
     print(msgs)
     secs = time.time() - t
     open(os.path.join(out, "training_messages.txt"), "w", encoding="utf-8").write(msgs)
-    json.dump(dict(cfg, host=socket.gethostname(), seconds=round(secs), finished=time.strftime("%Y-%m-%d %H:%M"),
+    json.dump(dict(cfg, host=machine(), seconds=round(secs), finished=time.strftime("%Y-%m-%d %H:%M"),
                    script="make_dl_model.py"), open(os.path.join(out, "run_config.json"), "w"), indent=1)
     shutil.copytree(out, final)
     print("trained in %.0f s -> %s, copied to %s" % (secs, out, final))

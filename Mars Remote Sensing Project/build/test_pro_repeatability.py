@@ -25,7 +25,7 @@ import os, sys, json, time, shutil, collections
 import numpy as np
 from osgeo import gdal
 import arcpy
-from paths import on_drive
+from paths import on_drive, machine
 import grid60 as G
 import labelsets as L
 
@@ -108,7 +108,7 @@ def main():
     runs = [("svm_a", "svm", None), ("svm_b", "svm", None), ("svm_r", "svm", "1 ACM599"),
             ("rt_a", "rt", None), ("rt_b", "rt", None)]
     res = dict(script="test_pro_repeatability.py", when=time.strftime("%Y-%m-%d %H:%M"),
-               host=os.environ.get("COMPUTERNAME"), pro=arcpy.GetInstallInfo()["Version"],
+               host=machine(), pro=arcpy.GetInstallInfo()["Version"],
                block="%d_%d" % (bx, by), polygons=len(oids), train_px_per_class=px,
                max_samples_per_class=MAXS, runs={}, compare={})
     maps = {}

@@ -25,7 +25,7 @@ can't take a masked pixel for a class.
 
 Reads Z: only. --repo and --dist as in github_sync.py / github_release_bundle.py.
 """
-import os, sys, shutil, time
+import os, re, sys, shutil, time
 from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import arcpy
@@ -116,6 +116,24 @@ SYSTEM_FIELDS = {"OBJECTID", "FID", "Shape", "SHAPE", "Shape_Length", "Shape_Are
 arcpy.env.overwriteOutput = True
 
 
+def scrub_location(fgdb, fcs):
+    """Drop <itemLocation> from each class's metadata: Pro writes the staging path there as the export machine's UNC
+    share (\\\\<host>\\C$\\...), which would put the laptop's host name in the public repository (KB §69.66). Written
+    through Metadata.xml (importMetadata re-synchronises and writes it back), then compacted, so the old rows go too."""
+    from arcpy import metadata
+    for fc in fcs:
+        m = metadata.Metadata(str(fgdb / fc))
+        x = m.xml or ""
+        new = re.sub(r"<itemLocation>.*?</itemLocation>", "", x, flags=re.S)
+        if new != x:
+            m.xml = new
+            m.save()
+    arcpy.management.ClearWorkspaceCache()
+    arcpy.management.Compact(str(fgdb))
+    left = [f.name for f in fgdb.iterdir() if f.suffix != ".lock" and b"<itemLocation>" in f.read_bytes()]
+    assert not left, "itemLocation still in %s" % left
+
+
 def vectors():
     arcpy.env.workspace = SRC
     fcs = [fc for fc in arcpy.ListFeatureClasses()
@@ -144,6 +162,8 @@ def vectors():
         ok = counts == {n}
         bad += not ok
         print(f"{'ok' if ok else 'MISMATCH'}\t{n:>6}\t{fc}", flush=True)
+    kept = [fc for fc in fcs if fc not in RELEASE_ONLY]
+    scrub_location(fgdb, kept)
     arcpy.management.ClearWorkspaceCache()
     big = [(f.name, f.stat().st_size) for f in fgdb.iterdir() if f.stat().st_size > MAX_FILE]
     assert not big, "files over %d MB would be refused by GitHub; add their class to RELEASE_ONLY: %s" % (
@@ -156,7 +176,6 @@ def vectors():
     for f in fgdb.iterdir():
         if f.suffix != ".lock":
             shutil.copy2(f, dst / f.name)
-    kept = [fc for fc in fcs if fc not in RELEASE_ONLY]
     print(f"{len(kept)} feature classes -> {dst}\n{len(fcs):>2} feature classes -> {gpkg}")
     catalog(dst, kept, {fc: int(arcpy.management.GetCount(str(gpkg / fc))[0]) for fc in fcs if fc in RELEASE_ONLY})
     return bad

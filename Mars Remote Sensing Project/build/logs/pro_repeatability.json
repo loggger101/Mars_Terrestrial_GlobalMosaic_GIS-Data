@@ -1,7 +1,7 @@
 {
  "script": "test_pro_repeatability.py",
  "when": "2026-11-02 00:21",
- "host": "FARTBUTT",
+ "host": "laptop",
  "pro": "3.7",
  "block": "-6_-1",
  "polygons": 57,

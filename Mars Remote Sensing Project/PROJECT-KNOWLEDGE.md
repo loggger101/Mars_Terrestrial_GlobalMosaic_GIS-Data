@@ -4912,7 +4912,7 @@ At the author's request to make sure the repository holds the newest data from t
   rehearsal's products as kept on the drive only; that described the state, not a decision, and the bundle's globs
   take them, so they are in the release, marked as a rehearsal.
 - **The release** (`github_release_bundle.py --upload data-2026-10-29` on the laptop, log
-  `logs\release_data-2026-10-29_FARTBUTT.log`, 14:59–15:24): **13 assets, 10.78 GB**; `global60-classification` is
+  `logs\release_data-2026-10-29_laptop.log`, 14:59–15:24): **13 assets, 10.78 GB**; `global60-classification` is
   now three parts (part 1 still holds the four-class `_mode11` map the quick start names; the six v2 and v2p maps are
   in part 2), `dl-models.zip` 1,631 MB with the five models. `tools/check_remote.py`: **95 release assets, 4 source
   mosaics, all pass**. The README quick start rerun verbatim on the new tag: the map's SHA-256 equals the drive
@@ -5529,7 +5529,7 @@ Every interval in the record resampled whole held-out polygons; the polygons sit
 each block's geology and errors. `build\make_block_bootstrap.py` (ArcGIS Python, ~14 min) scores each held-out
 polygon alone with `svmcheck.training_score` on the 400 m grid, then resamples the 14 blocks and, beside them, the
 polygons (10,000 times each, seed 60, every map on the same draw). Predictions written into the docstring before the
-first run. Log `logs\block_bootstrap_fartbutt.log`, results `logs\block_bootstrap.json`.
+first run. Log `logs\block_bootstrap_laptop.log`, results `logs\block_bootstrap.json`.
 
 - **The route is checked first:** each map's polygons summed reproduce its own log (accuracy and κ within 0.001):
   the published SVM map, the two-pass U-Net, T1's all-band and no-thermal 200 m maps, the nearest-polygon baseline
@@ -5589,7 +5589,7 @@ Described before any recall was computed: the states cover 85.8 % of craters at 
 5–10 km, 99.0 % at ≥ 10 km (203 of 280,944 at 1–3 km); higher is fresher (layered-ejecta craters have `DEG_EJC`
 2–3 in 98.8 % of cases, others in 40.4 %). `build\make_crater_recall_by_state.py` (ArcGIS Python) applies C5's rule
 exactly (§53.4); **route check:** its recall at all seven Dmin equals `global60_candidates_check.json`'s to 10⁻⁹.
-Log `logs\crater_recall_by_state_fartbutt.log`, results `logs\crater_recall_by_state.json`. Predictions written
+Log `logs\crater_recall_by_state_laptop.log`, results `logs\crater_recall_by_state.json`. Predictions written
 first; a diagnostic of the misses and the one-side-cut curve were added after the first run (stated in the
 docstring) and change no verdict.
 
@@ -5624,7 +5624,7 @@ docstring) and change no verdict.
 `build\make_map_agreement.py` (ArcGIS Python, 62 min, most of it the scorer over the seven-class training strips)
 compares each SVM map with its U-Net on the cached 400 m class arrays, cos-latitude weighted, on pixels valid in
 both; the agreement on the polygons is `svmcheck.training_score` run on an agree/disagree array. Predictions written
-first. Log `logs\map_agreement_fartbutt.log`, results `logs\map_agreement.json`; figure `make_fig_map_agreement.py`
+first. Log `logs\map_agreement_laptop.log`, results `logs\map_agreement.json`; figure `make_fig_map_agreement.py`
 (system Python) → `final_img\map_agreement.png` (read: the panels place Olympus Mons, Valles Marineris, Hellas and
 Argyre where they lie; the white stripes near ±60° are the night mosaic's gaps). **Route:** the seven-class maps'
 class shares on this mask equal their own records (U-Net edifice 40.0 %, SVM 12.2 %, §69.39).
@@ -5742,7 +5742,7 @@ author's four classes and codes stay as they are (§68.1).
   catena). Named volcano summits placed 0: the v2 edifice pieces already hold every one.
 - **The split:** a new polygon goes by its centroid's 15° block (the 14 held-out blocks of §31.3), so v3 adds
   held-out polygons too. **The v2 held-out set is untouched and stays the like-for-like score.**
-- **Result (run 3, 650 s on the cached cells; `logs\label_v3.json`, `logs\label_v3_run_fartbutt.log`):**
+- **Result (run 3, 650 s on the cached cells; `logs\label_v3.json`, `logs\label_v3_run_laptop.log`):**
   `Landform_TrainingSamples_v3_proposals` 14,104 rows (every piece and new polygon, accepted or not, with its
   measures, reason and `Review`); `Landform_TrainingSamples_v3` 11,815, **`_v3_60_train` 10,213, `_v3_60_test`
   1,602** (v2: 734 and 237; since D34, §69.56: 14,217 proposals, 11,921 labels, 10,269 / 1,652, apron 1,924 / 356); no overlap between classes or across the split. Per class, training / held out,
@@ -6697,3 +6697,13 @@ notes (§69.9: no KB reference on a slide), so every slide has one. Until today 
 - **The environment page names machines by role:** `docs/environment.md` was headed by the laptop's host name; at the
   author's request (2026-11-03) `github_environment.py` heads each section "laptop" or "desktop" (`ROLES`) and drops
   any section headed by a host name. The desktop's section is still missing: the script has never run there.
+- **The laptop's host name off the files too** (the author's yes, 2026-11-03): the 24 logs named after it are renamed
+  `_laptop` (the record's five references follow), the two JSON records that held it as a value say "laptop", and
+  `desktop_check.py`, `make_dl_model.py`, `make_dl_pixels.py` and `test_pro_repeatability.py` name the machine through
+  `paths.machine()`: the desktop's host name, unchanged (its `desktop_check_DESKTOP-PJS73RO.json` keeps its name), or
+  "laptop". `preflight_v3.py` after the change: 69 checks, 0 failed. Git history keeps the old names.
+  The exported geodatabase held it too: Pro writes each class's staging path into its metadata as the export
+  machine's UNC share (`\\<host>\C$\...`, 30 times in `exports\mars_project_vectors.gdb`). `github_export_gdb.py`
+  now drops `<itemLocation>` from each class's metadata (through `Metadata.xml`; `importMetadata` re-synchronises
+  and wrote it back, 51 times on a test copy) and compacts the gdb; re-exported, all 39 classes match their row
+  counts, only the gdb's system tables changed, and no file in the repository holds the name.
