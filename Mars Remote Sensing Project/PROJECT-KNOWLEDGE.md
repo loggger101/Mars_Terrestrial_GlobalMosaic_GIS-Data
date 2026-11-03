@@ -6872,3 +6872,28 @@ unless each old passage matches exactly once (`git diff` holds the before):
 desktop's, with `run_v3.ps1`; the freeze's blocks 12, 13, 15 and 16 wait on D23 and D33; the reruns wait on the
 author's margin check and off-Tharsis labels; the interim talk's tally note is best written on the day. Layout 19's
 "0°"/"0°E" overlap (§69.70) stays: hiding "0°E" would also drop the edge label of its panel B.
+
+### 69.73 The interim report made ready to submit — 2026-11-03, laptop **[V]**
+
+The author will submit the report (D16, Thursday 5 November) and asked that it be in submittable form.
+`NEXT STUFF\Mars Mosaic - Interim Report.pdf` (and `.docx`) were checked as a submission:
+
+- **Current:** the PDF had been rendered from the `.docx` a minute after its last build, which followed the last change
+  to `interim.py` (§69.64). Its 21 pages carry the template's seven headings in order, then Next Steps.
+- **Text:** no "KB §", section sign, placeholder, broken Word reference, personal pronoun, "agent" or "albedo"; the
+  five uses of "global" are titles, the sources' own extent and the 24–30 Sep composites, which were built at global
+  extent (the dated log row); every font embedded (Times New Roman, Arial, Symbol, subsets).
+- **Read:** all 21 pages rendered at 80 dpi and read: every figure drawn, captioned and legible, no table or
+  figure cut across a page, every claim as at the 26 October cut (D20).
+- **Two gaps fixed.** (1) The PDF's title and author were empty: Word's `ExportAsFixedFormat` leaves the document
+  properties out unless `IncludeDocProps` is set, though the `.docx` has them (`cp.title`, `cp.author`).
+  `render_doc.ps1` now passes it, with heading bookmarks and accessibility tags; the report has no Word heading
+  styles, so no outline results. (2) **No page numbers** on 21 pages: `build_interim_report_live.py` puts a PAGE
+  field, centred, 10 pt, in the footer. The `.docx` rebuilt (backed up first to
+  `NEXT STUFF\.backup_20261103\…before_pagenums.docx`): its 157 paragraphs, every table cell and the 22 images
+  (byte for byte) identical to the earlier build; rendered, 21 pages, and every word of every page at the same
+  position as in the earlier PDF (`…before_props.pdf`) once the footer is set aside; the footers read 1–21.
+- **The name:** the report, like the prospectus and Presentation 1, says "Logan Edwards" (`content.py`, unchanged
+  since the prospectus); the final and the repository use "Logan M Edwards". Left as the course has seen it.
+- **Not pushed:** `github_sync.py --deliverables` would also commit the rebuilt final deck (~29 MB) ahead of its
+  deadline (D26), so the built files stay held back; the files to submit are on the drive.

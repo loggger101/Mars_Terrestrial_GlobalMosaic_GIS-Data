@@ -10,7 +10,9 @@ $job = Start-Job -ScriptBlock {
     $app.DisplayAlerts = 0
     try {
         $d = $app.Documents.Open($Doc, $false, $true)
-        $d.ExportAsFixedFormat($Pdf, 17)   # wdExportFormatPDF
+        # wdExportFormatPDF, for print, the whole document; with its title and author (IncludeDocProps, off by
+        # default, left the PDF's properties empty), heading bookmarks and accessibility tags (KB §69.73)
+        $d.ExportAsFixedFormat($Pdf, 17, $false, 0, 0, 1, 1, 0, $true, $true, 1, $true, $true, $false)
         "pages=$($d.ComputeStatistics(2))"
         $d.Close($false)
     } finally {
