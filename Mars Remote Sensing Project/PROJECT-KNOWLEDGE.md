@@ -225,7 +225,7 @@ Band 1's maximum of **207** is a real clip (a histogram spike).
 **Reference data**, third-party, in `Mars Project\Reference\` (§41): the USGS geologic map SIM 3292, the
 Robbins & Hynek crater database (2020 release), TES thermal inertia (Putzig & Mellon 2007). **Not held
 locally:** CTX and CRISM. CTX is reachable as the hosted Esri service `Global CTX Mosaic of Mars (V01)`
-in `Map2`. **[V]**
+in the map `Mars — CTX web mosaic` (`Map2` until §69.71). **[V]**
 
 **Gone for good, do not re-acquire:** the Jezero HiRISE orthomosaic, the Mercury MESSENGER basemap and the
 Enceladus DEM did not survive the move off `C:`. The maps that referenced them are out of the project
@@ -6829,6 +6829,25 @@ then all 42 maps' layers (0 broken sources).
   `exports\README.md` rewritten with `--catalog-only` (no re-export).
 - **Wording:** `make_candidate_maps.py`'s first docstring line, which `docs/scripts.md` prints, said it puts "the empty
   digitising classes" into the project; now "the three digitising classes".
-- **Seen, not changed:** five maps from the author's own September GUI work keep generic names (`Map2`, `Map3`, two
-  called `Mars`, `Mars High-Resolution Mosaic Viewer`); renaming them is the author's call. Layout 19's top panel
+- **Seen, not changed:** five maps from the author's own September GUI work kept generic names (`Map2`, `Map3`, two
+  called `Mars`, `Mars High-Resolution Mosaic Viewer`); renamed at the author's word, §69.71. Layout 19's top panel
   prints both "0°" (the equator) and "0°E" at its centre, a cosmetic overlap.
+
+### 69.71 The five generically named maps renamed — 2026-11-03, laptop **[V]**
+
+At the author's answer to §69.70 ("Rename them"), `build\rename_generic_maps.py` (Pro closed, `.aprx` backed up to
+`.backups\Mars Project 20261103-123342.aprx`) renamed the five maps of the author's September GUI work. Two were both
+called "Mars", so each map is found by its old name and a layer it holds, and the script refuses unless exactly one
+map matches:
+
+| was | now | holds |
+|---|---|---|
+| `Mars` | `Mars — Viking MDIM web basemap` | the OnMars MDIM service |
+| `Mars` | `Mars — HRSC/MOLA DEM` | the global DEM |
+| `Map2` | `Mars — CTX web mosaic` | the hosted CTX mosaic (§3) |
+| `Map3` | `Mars — sources with gradients (Sep GUI work)` | Viking, THEMIS and the DEM with their gradient rasters |
+| `Mars High-Resolution Mosaic Viewer` | `Mars — sources and composite (Sep GUI work)` | the sources, `CompositeBand`, the 30 Sep classification, the ±60° terrain rasters |
+
+Only names changed: a dump of all 42 maps before and after lists identical layers, 0 broken sources, and the 23
+layouts' map frames all resolve (none of the five is on a layout). A second run renames nothing. No script reads
+these maps by name; `marsfig.py`'s comment and §3's CTX line name the new ones.
