@@ -1,0 +1,238 @@
+{
+ "script": "make_offtharsis_targets.py",
+ "blocks": [
+  {
+   "block": "-11_1",
+   "lon_e": "195-210",
+   "lat": "15 to 30",
+   "units": {
+    "edifice": 0.0,
+    "apron": 0.0126,
+    "volcanic_plains": 0.8895
+   },
+   "named": [],
+   "v2_edifice": 0,
+   "v2_apron": 2,
+   "v3_edifice": 0,
+   "v3_apron": 16
+  },
+  {
+   "block": "-11_2",
+   "lon_e": "195-210",
+   "lat": "30 to 45",
+   "units": {
+    "edifice": 0.0,
+    "apron": 0.0,
+    "volcanic_plains": 0.9469
+   },
+   "named": [],
+   "v2_edifice": 0,
+   "v2_apron": 0,
+   "v3_edifice": 0,
+   "v3_apron": 0
+  },
+  {
+   "block": "-6_1",
+   "lon_e": "270-285",
+   "lat": "15 to 30",
+   "units": {
+    "edifice": 0.0,
+    "apron": 0.0,
+    "volcanic_plains": 0.6439
+   },
+   "named": [],
+   "v2_edifice": 0,
+   "v2_apron": 0,
+   "v3_edifice": 0,
+   "v3_apron": 0
+  },
+  {
+   "block": "-5_-1",
+   "lon_e": "285-300",
+   "lat": "-15 to 0",
+   "units": {
+    "edifice": 0.0,
+    "apron": 0.0,
+    "volcanic_plains": 0.4355
+   },
+   "named": [
+    {
+     "name": "Coprates Montes",
+     "type": "Mons",
+     "diam_km": 350.0,
+     "lon_e": 294.61,
+     "lat": -13.0
+    },
+    {
+     "name": "Nia Tholus",
+     "type": "Tholus",
+     "diam_km": 34.0,
+     "lon_e": 285.05,
+     "lat": -6.59
+    }
+   ],
+   "v2_edifice": 0,
+   "v2_apron": 0,
+   "v3_edifice": 0,
+   "v3_apron": 0
+  },
+  {
+   "block": "-4_-2",
+   "lon_e": "300-315",
+   "lat": "-30 to -15",
+   "units": {
+    "edifice": 0.0066,
+    "apron": 0.0,
+    "volcanic_plains": 0.0176
+   },
+   "named": [],
+   "v2_edifice": 2,
+   "v2_apron": 0,
+   "v3_edifice": 6,
+   "v3_apron": 0
+  },
+  {
+   "block": "-4_-1",
+   "lon_e": "300-315",
+   "lat": "-15 to 0",
+   "units": {
+    "edifice": 0.0,
+    "apron": 0.0,
+    "volcanic_plains": 0.1486
+   },
+   "named": [
+    {
+     "name": "Nectaris Montes",
+     "type": "Mons",
+     "diam_km": 220.0,
+     "lon_e": 305.35,
+     "lat": -14.64
+    }
+   ],
+   "v2_edifice": 0,
+   "v2_apron": 0,
+   "v3_edifice": 0,
+   "v3_apron": 0
+  },
+  {
+   "block": "-3_-1",
+   "lon_e": "315-330",
+   "lat": "-15 to 0",
+   "units": {
+    "edifice": 0.0,
+    "apron": 0.0,
+    "volcanic_plains": 0.0
+   },
+   "named": [],
+   "v2_edifice": 0,
+   "v2_apron": 0,
+   "v3_edifice": 0,
+   "v3_apron": 0
+  },
+  {
+   "block": "0_0",
+   "lon_e": "0-15",
+   "lat": "0 to 15",
+   "units": {
+    "edifice": 0.0,
+    "apron": 0.0,
+    "volcanic_plains": 0.0
+   },
+   "named": [],
+   "v2_edifice": 0,
+   "v2_apron": 0,
+   "v3_edifice": 0,
+   "v3_apron": 0
+  },
+  {
+   "block": "1_0",
+   "lon_e": "15-30",
+   "lat": "0 to 15",
+   "units": {
+    "edifice": 0.0,
+    "apron": 0.0,
+    "volcanic_plains": 0.0
+   },
+   "named": [],
+   "v2_edifice": 0,
+   "v2_apron": 0,
+   "v3_edifice": 0,
+   "v3_apron": 0
+  },
+  {
+   "block": "4_0",
+   "lon_e": "60-75",
+   "lat": "0 to 15",
+   "units": {
+    "edifice": 0.0,
+    "apron": 0.0,
+    "volcanic_plains": 0.9062
+   },
+   "named": [
+    {
+     "name": "Nili Patera",
+     "type": "Patera",
+     "diam_km": 67.5,
+     "lon_e": 67.17,
+     "lat": 8.97
+    },
+    {
+     "name": "Meroe Patera",
+     "type": "Patera",
+     "diam_km": 52.6,
+     "lon_e": 68.77,
+     "lat": 6.98
+    },
+    {
+     "name": "Nili Tholus",
+     "type": "Tholus",
+     "diam_km": 7.0,
+     "lon_e": 67.35,
+     "lat": 9.15
+    }
+   ],
+   "v2_edifice": 0,
+   "v2_apron": 0,
+   "v3_edifice": 0,
+   "v3_apron": 0
+  },
+  {
+   "block": "4_2",
+   "lon_e": "60-75",
+   "lat": "30 to 45",
+   "units": {
+    "edifice": 0.0,
+    "apron": 0.0,
+    "volcanic_plains": 0.0
+   },
+   "named": [],
+   "v2_edifice": 0,
+   "v2_apron": 0,
+   "v3_edifice": 0,
+   "v3_apron": 0
+  },
+  {
+   "block": "5_-2",
+   "lon_e": "75-90",
+   "lat": "-30 to -15",
+   "units": {
+    "edifice": 0.0,
+    "apron": 0.0,
+    "volcanic_plains": 0.0146
+   },
+   "named": [
+    {
+     "name": "Anseris Mons",
+     "type": "Mons",
+     "diam_km": 52.5,
+     "lon_e": 86.65,
+     "lat": -29.81
+    }
+   ],
+   "v2_edifice": 0,
+   "v2_apron": 0,
+   "v3_edifice": 0,
+   "v3_apron": 0
+  }
+ ]
+}

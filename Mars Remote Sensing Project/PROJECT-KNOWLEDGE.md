@@ -257,8 +257,8 @@ stack script's 100 m grid snapped to the day mosaic (§18.1).
 
 ## 5. Project structure
 
-`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-11-01 after layouts 19 and 20 (§69.50) **[V]**: **41 maps, all in
-Mars coordinate systems, and 23 layouts** (the map "Labels v3", §69.49, and layouts 19 and 20 with their maps, §69.50, the newest); 236 non-group layers, 0 broken data sources, none reading through a junction
+`Mars Project\Mars Project.aprx`, read with `arcpy.mp` on 2026-11-03 after the map "Off-Tharsis labels (author)" (§69.63) **[V]**: **42 maps, all in
+Mars coordinate systems, and 23 layouts** (that map, the CTX layer in the two digitising maps, §69.52, the map "Labels v3", §69.49, and layouts 19 and 20 with their maps, §69.50, the newest); 244 non-group layers, 0 broken data sources, none reading through a junction
 (145 non-group layers on 2026-10-18, §58.1; since then layout 15's four maps, X5's and X5c's maps, §66.3, §66.9,
 "Labels v2: proposals", §69.2, the three seven-class maps, §69.26, and T3a / T3b, §69.30); 7 hosted services (Esri
 OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
@@ -6581,3 +6581,36 @@ Checks: `verify_interim.py` on both files (every number in the record); every ch
 laptop and read ("Seven classes lead" overflowed with four bullets and now holds three). One slip on the way: a
 command began with a bare `python -`, which waits on standard input; it was stopped before anything ran, and the
 deck edit was made from a script file instead.
+
+### 69.63 The off-Tharsis labels prepared for the author; volcanic channels by the agent would only repeat H2's stage 1 — 2026-11-03, laptop **[V]**
+
+**The off-Tharsis targets** (`build\make_offtharsis_targets.py`, reads only; `logs\offtharsis_targets.json`,
+`Mars Project\review_sheets\offtharsis\targets.md`). For the 12 held-out blocks outside −9_−1 and −9_0: the share of
+each block on SIM 3292's edifice (group ve) and apron units (ANa, Aa west of 100°W, lAa), from propose_v3_labels.py's
+cached unit-kind grid, and the IAU Mons, Tholus and Patera in it. **Control:** the same code gives the Tharsis blocks
+6.6 % edifice and 22.4 % apron units (−9_−1) and 6.5 % and 12.1 % (−9_0), so the grid is read right. **Result:** 10 of
+the 12 blocks hold no edifice or apron unit; −4_−2 has 0.7 % edifice units (its 2 v2 and 6 v3 held-out edifice
+polygons) and −11_1 1.3 % apron (the Olympus aureole, 16 v3 apron pieces). Named volcanoes: **Nili Patera (68 km),
+Meroe Patera (53 km) and Nili Tholus (7 km), Syrtis Major, block 4_0**; Nia Tholus (34 km, −5_−1, in Valles
+Marineris) is to be checked on CTX. Anseris Mons (5_−2), Coprates Montes (−5_−1) and Nectaris Montes (−4_−1) are
+massifs and chasma-wall relief, not edifices. Lobate debris aprons: **Nilosyrtis Mensae and Colles Nili, block 4_2**
+(SIM 3292 maps no apron unit there; the aprons are below its 1:20 M scale). So each new class would rest on one held-out
+block, two at most: the score can say whether the maps find those features, polygon by polygon, but not give a block
+interval.
+
+**The layer and map** (`build\make_offtharsis_layer.py`, Pro closed, `.aprx` backed up first as `.backups\Mars
+Project 20261103-011547.aprx`): an empty polygon class `Landform_TrainingSamples_offtharsis_draw` (Classvalue,
+Classname, MappedBy defaulting to "author", Notes; Mars 2000 sphere, as the label sets) and the map **"Off-Tharsis
+labels (author)"**: the class, the target names, the v2 and v3 held-out labels (off, for context) and the CTX mosaic,
+with no classification map, so the labels are drawn blind to the maps. 42 maps, 23 layouts, 0 broken sources. The
+guide is `review_sheets\offtharsis\README.md` (targets, what to outline, the one-block limit, how to draw; ~1 h).
+
+**Volcanic channels at Athabasca, by the agent (the author's "do them yourself"): not drawn, a question back to the
+author.** The 202 reviewed channel copies hold Origin fluvial 29, **all at Ius**, and indeterminate 173 (108 at
+Athabasca, 65 at Ius); volcanic 0. `make_t4_channel_h2.py`'s registered stage-2 design compares origins within a
+window holding ≥ 10 of each and falls back to the pooled comparison only when none does, which it says would repeat
+stage 1 (the window, not the origin, decides). Volcanic channels drawn at Athabasca, with every fluvial one at Ius,
+give exactly that pooled, window-confounded comparison; and stage 2's thermal response is the source candidate's
+`ThermIdx` (`SourceID`), which a hand-drawn line has not got. Hours of CTX tracing would buy stage 1 again. A real
+stage 2 needs fluvial and volcanic channels in one window, which neither type area offers on the record (Athabasca's
+outflow forms are lava-draped and debated, §69.52), so the paper keeps H2 at stages 1 and 1b.
