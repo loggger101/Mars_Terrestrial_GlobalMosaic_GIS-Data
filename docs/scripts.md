@@ -109,7 +109,7 @@ All 224 scripts in `Mars Remote Sensing Project/build/`, grouped by what they ma
 | [`fix_night_stretch.py`](../Mars%20Remote%20Sensing%20Project/build/fix_night_stretch.py) | either | Match the THEMIS Night IR display stretch to the Day IR. |
 | [`layoutkit.py`](../Mars%20Remote%20Sensing%20Project/build/layoutkit.py) | ArcGIS | CIM helpers for layouts, extracted verbatim from make_typearea_layouts.py by ast. |
 | [`make_athabasca_layout.py`](../Mars%20Remote%20Sensing%20Project/build/make_athabasca_layout.py) | ArcGIS | Layout 15: the Athabasca Valles type area in its four inputs (KB §63). |
-| [`make_candidate_maps.py`](../Mars%20Remote%20Sensing%20Project/build/make_candidate_maps.py) | ArcGIS | Puts the machine candidates and the empty digitising classes INTO the project (KB §32). |
+| [`make_candidate_maps.py`](../Mars%20Remote%20Sensing%20Project/build/make_candidate_maps.py) | ArcGIS | Puts the machine candidates and the three digitising classes INTO the project (KB §32). |
 | [`make_geomap_sheet.py`](../Mars%20Remote%20Sensing%20Project/build/make_geomap_sheet.py) | ArcGIS | Layout 13: the ±60° landform classes against the USGS geologic map, as a sheet (test T8, KB §43.2). |
 | [`make_global60_maps.py`](../Mars%20Remote%20Sensing%20Project/build/make_global60_maps.py) | ArcGIS | Puts the ±60° work INTO the ArcGIS project, where it shows when the project opens in Pro (KB §31). |
 | [`make_mosaic_layout.py`](../Mars%20Remote%20Sensing%20Project/build/make_mosaic_layout.py) | ArcGIS | The mosaic itself at ±60°, as a layout: visible, day IR, night IR and topography (KB §38). |

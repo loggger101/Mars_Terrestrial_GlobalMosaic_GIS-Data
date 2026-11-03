@@ -84,7 +84,7 @@ ABOUT = {
     "Analysis_Extent_60": "The analysis extent: ±60.0003° latitude, the THEMIS night mosaic's own edge (KB §16, §31.3).",
     "Check_Tiles_4096px_60": "The 4096-pixel processing tiles that the 29 Sep SVM map follows (KB §30.2).",
     "MARS_nomenclature_albedo_March2019": "IAU/USGS Gazetteer of Planetary Nomenclature, March 2019: albedo features.",
-    "MARS_nomenclature_classicalbedo_March2019": "IAU/USGS Gazetteer, March 2019: classical albedo features.",
+    "MARS_nomenclature_classicalbedo_March2019": "IAU/USGS Gazetteer, March 2019: landforms named after classical albedo features (fossae, montes, plana, paterae, mensae, tholi; not albedo features, KB §69.70).",
     "MARS_nomenclature_craters_gt100km_March2019": "IAU/USGS Gazetteer, March 2019: named craters over 100 km.",
     "MARS_nomenclature_craters_lt100km_March2019": "IAU/USGS Gazetteer, March 2019: named craters under 100 km.",
     "MARS_nomenclature_misc_March2019": "IAU/USGS Gazetteer, March 2019: other named features.",

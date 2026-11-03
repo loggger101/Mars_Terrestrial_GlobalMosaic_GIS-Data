@@ -311,7 +311,7 @@ proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal lab
 |---|---|---|---|
 | `MARS_nomenclature_craters_lt100km_March2019` | Point | **972** | IAU gazetteer |
 | `MARS_nomenclature_misc_March2019` | Point | 337 | IAU gazetteer |
-| `MARS_nomenclature_classicalbedo_March2019` | Point | 303 | IAU gazetteer |
+| `MARS_nomenclature_classicalbedo_March2019` | Point | 303 | IAU gazetteer: landforms named after classical albedo features (fossae, montes, plana, paterae, mensae, tholi), not albedo features (§69.70) |
 | `MARS_nomenclature_craters_gt100km_March2019` | Point | **141** | IAU gazetteer |
 | `MARS_nomenclature_albedo_March2019` | Point | 126 | IAU gazetteer |
 | `Landform_LavaFlowMargins`, `Landform_ChannelCenterlines`, `Landform_CraterRims` | Polyline, Polyline, Polygon | **86, 202, 381** | the digitising classes (§19.4, §46): the 86 margins traced by the agent on CTX (§69.52); the channels and rims copied from the review (§69.7, §69.31), 3 of the channels the agent's accepts (§69.55) |
@@ -6810,3 +6810,25 @@ then all 42 maps' layers (0 broken sources).
   before (128) and the maps still ~5 % larger. The KB's
   §2 table row on the 29–30 Sep GUI work named the author by pronoun, the last personal phrasing
   `neutral_voice.py` found in the record; now "the author's GUI work".
+
+### 69.70 A second pass: the charts' baked-in text, every published sheet against the live one, the export catalogue — 2026-11-03, laptop **[V]**
+
+- **Charts.** Text drawn into a PNG escapes every text check of the deliverables, as the layouts' prose did (§69.69).
+  The `make_fig_*.py` scripts searched for "albedo" and for stale review states: `tes_block_scale.png` (linked from the
+  README, waiting on the author for a deliverable, §69.30) labelled its third line "Viking red (albedo)", now
+  "Viking red (colour)", redrawn and read. `ius_fusion.png` ("albedo only") is Presentation 1's, delivered history,
+  left as it is. No chart states a review count or a waiting step.
+- **Every published layout PNG against the live sheet.** All 23 exported at 150 dpi and compared pixel by pixel with
+  `Global60\layouts\` and `TypeArea\layouts\`: 21 identical; 19 and 20 differed inside their map frames, where today's
+  `polish_layouts.py` run (§69.69) gave their graticule labels the dark halo every other sheet has. Their builders
+  (11-01, 11-02) say to run the polish afterwards, which was not done then. The live exports replace the PNGs.
+- **The export catalogue described `MARS_nomenclature_classicalbedo_March2019` as "classical albedo features".** By its
+  `type` field it holds 303 landforms (32 fossae, 30 montes, 26 plana, 19 paterae, 19 mensae, 19 chasmata, 18 tholi, …)
+  named after the classical albedo features, and no albedo feature; the 126 albedo features are
+  `MARS_nomenclature_albedo_March2019`. `github_export_gdb.py`'s description and §6's row say so now;
+  `exports\README.md` rewritten with `--catalog-only` (no re-export).
+- **Wording:** `make_candidate_maps.py`'s first docstring line, which `docs/scripts.md` prints, said it puts "the empty
+  digitising classes" into the project; now "the three digitising classes".
+- **Seen, not changed:** five maps from the author's own September GUI work keep generic names (`Map2`, `Map3`, two
+  called `Mars`, `Mars High-Resolution Mosaic Viewer`); renaming them is the author's call. Layout 19's top panel
+  prints both "0°" (the equator) and "0°E" at its centre, a cosmetic overlap.

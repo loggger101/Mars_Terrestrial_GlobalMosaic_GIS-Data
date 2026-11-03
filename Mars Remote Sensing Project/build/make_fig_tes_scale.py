@@ -19,8 +19,8 @@ OUT = os.path.join(HERE, "final_img", "tes_block_scale.png")
 INK, MUTED, GRID, NULL = "#1A1A1A", "#5A6570", "#D9DEE3", "#9AA3AB"
 SERIES = [("THEMIS night DN", "night IR", +1, "#2a78d6"),
           ("diurnal-contrast index", "diurnal-contrast index", -1, "#eb6834"),
-          ("Viking red", "Viking red (albedo)", -1, "#1baf7a")]
-NUDGE = {"night IR": +0.008, "diurnal-contrast index": -0.006, "Viking red (albedo)": 0.0}   # end labels apart
+          ("Viking red", "Viking red (colour)", -1, "#1baf7a")]
+NUDGE = {"night IR": +0.008, "diurnal-contrast index": -0.006, "Viking red (colour)": 0.0}   # end labels apart
 SIZES = R["sizes_deg"]
 KEYS = ["%g" % s for s in SIZES]
 side = R["nightside"]
