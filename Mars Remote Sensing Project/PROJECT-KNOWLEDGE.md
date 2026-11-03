@@ -6804,3 +6804,7 @@ then all 42 maps' layers (0 broken sources).
   place; it now passes.
 - **The README** still said "visible albedo carries the material signal" (its thermal results); now "the Viking colour
   (not a calibrated albedo, see Limits)", which its Limits section explains.
+- **The page count:** at `0.92\textwidth` the compacted figure 15 stood 21 % taller and pushed the last references onto
+  a 21st page (CI's PDF). At `0.80\textwidth` it is about as tall as before and its maps still ~5 % larger. The KB's
+  §2 table row "his GUI work" was the last personal phrasing `neutral_voice.py` found in the record; now "the
+  author's GUI work".
