@@ -6707,3 +6707,27 @@ notes (§69.9: no KB reference on a slide), so every slide has one. Until today 
   now drops `<itemLocation>` from each class's metadata (through `Metadata.xml`; `importMetadata` re-synchronises
   and wrote it back, 51 times on a test copy) and compacts the gdb; re-exported, all 39 classes match their row
   counts, only the gdb's system tables changed, and no file in the repository holds the name.
+
+### 69.67 Ten citations added to the paper — 2026-11-03, laptop **[V]**
+
+The paper read against `references.bib` at the author's request. Five places stated a sourced fact with no citation,
+and five named a method without one; at the author's yes, all ten are cited (the `.tex` and `.bib` backed up first to
+`NEXT STUFF\.backup_20261103\*_before_citations.*`; ten lines of the `.tex` changed, no number):
+
+| where | what | cited |
+|---|---|---|
+| Data, the Viking paragraph | the high-pass filtering at ~50 km, the slope normalisation and the blended colour, nearly word for word the USGS product page | Archinal2003, **USGS2009Viking** (the Colorized Global Mosaic page, 2009, which states both) |
+| Reference data | the TES instrument behind the inertia map | **Christensen2001** beside Putzig2007 |
+| Co-registration | slope, aspect, hillshade by Horn's method (`make_global_terrain.py`, `alg="Horn"`) | **Horn1981** |
+| Closed depressions and channels | D8 routing | **OCallaghan1984** beside Jenson1988 |
+| The score | balanced accuracy | **Brodersen2010** |
+| Uncertainty | resampling whole blocks | **Kunsch1989** |
+| Thermal results | the object-based classes of Ius (`SegmentMeanShift`, 14/14/30) | Comaniciu2002, in the `.bib` and never cited until now |
+| Thermal results | the seven provinces' "well known" inertia contrast | Mellon2000, Putzig2007 |
+| Landform classification | the crustal dichotomy | Smith2001 |
+| Discussion | Cohen's d | **Cohen1988** |
+
+Bold: new entries, seven, each checked on Crossref (Cohen1988, a book, by its edition) or on the USGS page itself. The
+`.bib` holds 56 entries; only Malin2007 and Dickson2024 stay uncited, for CTX, which blocks 15–16 of `v2_drafts.tex`
+cite once D33 is answered (the facilities line then needs MRO, CTX). `verify_interim.py` on the `.tex`: all 845
+numbers in the record.

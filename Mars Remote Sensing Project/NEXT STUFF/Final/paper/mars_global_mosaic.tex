@@ -91,7 +91,7 @@ with no scaling to radiance or temperature, and the two mosaics were stretched i
 of 35 and 205~DN by day, 58 and 203~DN by night over Ius Chasma). Calibrated thermal inertia cannot be derived from
 them. Viking MDIM~2.1 has every one of its 4.25 billion pixels valid, but it is not calibrated albedo either: its
 images were high-pass filtered at about 50~km to remove regional albedo and normalised so that equal slopes show equal
-contrast, and the colour product is an older colourised mosaic blended over it. The Viking bands therefore carry
+contrast, and the colour product is an older colourised mosaic blended over it \citep{Archinal2003, USGS2009Viking}. The Viking bands therefore carry
 topographic shading and local albedo under an uncalibrated colour, called Viking colour here. The HRSC/MOLA blend
 \citep{Smith2001, Jaumann2007, Fergason2018} is signed 16-bit metres on a geographic grid. %% KB §3, §24.1, §69.50 (W5)
 
@@ -118,7 +118,7 @@ HRSC/MOLA blend DEM v2 & $0.0033741^{\circ}$ & $106{,}694\times53{,}347$ & geogr
 
 Four independent references score the products \citep{Congalton1991}. The USGS Geologic Map of Mars, SIM~3292
 \citep{Tanaka2014}, supplies 1,311 unit polygons and is the lava-flow reference. The Robbins and Hynek database
-\citep{Robbins2012}, 2020 release, holds 385,049 craters $\ge1$~km. TES thermal inertia \citep{Putzig2007}, dayside and
+\citep{Robbins2012}, 2020 release, holds 385,049 craters $\ge1$~km. TES thermal inertia \citep{Christensen2001, Putzig2007}, dayside and
 nightside at 20 pixels per degree, is the only calibrated thermal product. The IAU gazetteer \citep{Gazetteer} names
 141 craters larger than 100~km. Every IAU crater larger than 100~km matches a Robbins crater with a median centre
 offset of 1.0\% of its diameter, and the Athabasca Valles floor falls in unit \lAv\ of the geologic map, as
@@ -186,7 +186,7 @@ exact $2\times2$ aggregation at 200~m (G200, $106{,}694\times35{,}565$). The day
 offset of exactly $+1$ and $+17{,}783$ pixels, so neither THEMIS mosaic is ever resampled. The DEM cell is
 199.99999~m on this sphere, so a nearest-neighbour warp to G200 reproduces 262,144 of 262,144 sampled source pixels
 exactly, where a cubic warp alters 36\% of them by up to 28~m; terrain is therefore computed on G200 and imagery on
-G100. Slope, aspect and hillshade are computed in metres on the projected grid, which removes the vertical-factor
+G100. Slope, aspect and hillshade are computed by Horn's method \citep{Horn1981} in metres on the projected grid, which removes the vertical-factor
 warning of the degree-grid products. %% KB §28.1, §28.2, §20
 
 The DEM's last column proved defective (nodata in 24,335 rows and wrong values elsewhere; the file also ends 0.46
@@ -231,7 +231,7 @@ floor, so filling leaves it empty and the detector cannot see it. \label{fig:cra
 \end{figure*}
 %% KB §26.3, §69.50; build\make_fig_crater_limit.py
 
-Channel centrelines come from D8 flow routing on the filled surface \citep{Jenson1988} with a 5,000-cell (50~km$^2$)
+Channel centrelines come from D8 flow routing on the filled surface \citep{OCallaghan1984, Jenson1988} with a 5,000-cell (50~km$^2$)
 accumulation threshold, ordered after \citet{Strahler1957}. Because \texttt{Fill} turns closed basins into synthetic
 lakes, only stream cells where the fill raised the surface by at most 1~m are kept. %% KB §25.1, §25.2
 
@@ -270,7 +270,7 @@ $0^{\circ}$E. \label{fig:split}}
 
 Accuracy is the area-weighted (by $\cos$ latitude) share of held-out polygon area given its own class, with Cohen's
 \kap\ \citep{Cohen1960} and per-class producer's and user's accuracy \citep{Congalton1991}. Because one class dominates
-the held-out area, each map is also given its balanced accuracy (the mean producer's accuracy), the mean of the
+the held-out area, each map is also given its balanced accuracy (the mean producer's accuracy; \citealt{Brodersen2010}), the mean of the
 per-class F1 scores, and its disagreement split into quantity (the wrong amount of a class) and allocation (the right
 amount in the wrong place) after \citet{Pontius2011}. Five baselines accompany
 the scores: one class everywhere (58.6\% on the held-out set); the class of the nearest training polygon, geography
@@ -299,7 +299,7 @@ the Deep Learning Libraries of ArcGIS Pro, built on PyTorch \citep{Paszke2019}. 
 Intervals are 95\% paired bootstrap intervals \citep{Efron1993} over whole held-out polygons (1,000 resamples), over
 contacts for the flow-margin test and over 50~km cells for the channel test, so that spatially correlated pixels are
 never treated as independent. Polygons in one held-out block share its geology and its errors, so the map scores are
-also given with block intervals, which resample the 14 held-out blocks (10,000 resamples, every map on the same
+also given with block intervals \citep{Kunsch1989}, which resample the 14 held-out blocks (10,000 resamples, every map on the same
 draw). %% KB §69.44
 
 %% ====================================================================================================
@@ -344,12 +344,12 @@ Night IR & & & & & 1 \\
 \subsection{What the thermal pair can and cannot do} \label{sec:thermal}
 
 Inside one area the diurnal-contrast index behaves as a material signal should. On the object-based classes of Ius
-Chasma the steep canyon wall (mean slope $21.5^{\circ}$) and the mantled chasma floor ($17.0^{\circ}$) are the two
+Chasma, built on mean-shift segments \citep{Comaniciu2002}, the steep canyon wall (mean slope $21.5^{\circ}$) and the mantled chasma floor ($17.0^{\circ}$) are the two
 steepest units, yet differ by 0.46 in the index at opposite signs, and fresh crater ejecta come out damped against the
 plateau. %% KB §24.3
 
 Across \pmsixty\ the signal does not survive (Figure~\ref{fig:provinces}). Over seven provinces whose thermal-inertia
-contrast is well known, the dusty group (Arabia Terra, Amazonis, Tharsis) and the rocky group (Syrtis Major, Acidalia,
+contrast is well known \citep{Mellon2000, Putzig2007}, the dusty group (Arabia Terra, Amazonis, Tharsis) and the rocky group (Syrtis Major, Acidalia,
 Hellas floor, Valles Marineris) differ in the index by $-0.0009$, against a scatter of 0.13 to 0.23 inside each
 province. The sources show why: every province reproduces the mosaic-wide THEMIS mean and spread
 ($125.75\pm34.36$~DN by day), so dusty and rocky provinces differ by $-0.19$~DN by day and $+0.02$~DN by night, while
@@ -533,7 +533,7 @@ Resampling the blocks resolves neither gap between the map and this baseline (ov
 balanced $-16.1$ to $+16.9$); the U-Net clears it overall ($+0.9$ to $+32.6$). On the seven-class labels the baseline
 scores 45.6\% and 51.0\% balanced, above the seven-class support vector machine on both. %% KB §69.35, §69.44
 
-Height is a much weaker baseline. A classifier on elevation and latitude alone, the crustal dichotomy and nothing
+Height is a much weaker baseline. A classifier on elevation and latitude alone, the crustal dichotomy \citep{Smith2001} and nothing
 else, scores 62.5\% (38.7\% balanced) on the four-class held-out polygons and 31.8\% (27.0\%) on the seven-class
 ones, 3.9 and 2.3 points above one class everywhere: what the support vector machine adds over one class everywhere
 is not elevation, and what beats it is where the labels lie, not how high (Figure~\ref{fig:baselines}). %% KB §69.50 (A3 (b))
@@ -761,7 +761,7 @@ coherent maps; a one-band clustering is close to a density slice and reproduces 
 stand-ins (map contacts and windows) and remain open for features digitised on the stack. A second stand-in for H2,
 origin taken from the valley map and the geologic map over the whole network, gives the same answer: the 155,236
 order-$\ge2$ segments on volcanic units are shallower than the 10,799 on mapped valleys (median 2.4 against
-13.9~m~km$^{-1}$), and the two differ little on the thermal index (Cohen's $d=-0.21$). %% KB §47.3, §47.5, §69.50 (A7)
+13.9~m~km$^{-1}$), and the two differ little on the thermal index (Cohen's $d=-0.21$; \citealt{Cohen1988}). %% KB §47.3, §47.5, §69.50 (A7)
 
 \begin{table*}[t]
 \centering
