@@ -15,7 +15,7 @@
 
 \begin{document}
 
-\title{Mars Global Mosaic: Mapping Lava Flows, Fluvial Channels, and Impact Craters in Visible and Infrared}
+\title{A Co-registered Visible, Thermal-Infrared and Elevation Stack of Mars at $\pm60^{\circ}$: What It Maps and What It Cannot}
 
 \author{Logan M Edwards}
 \affiliation{Florida Institute of Technology, OCN 4704 Remote Sensing, Melbourne, FL 32901, USA}
@@ -33,7 +33,8 @@ THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking colour
 craters, only 15.3\% at $\ge1$~km, and the catalogued craters missed are mostly degraded or breached. Of 969,822 routed channel
 segments 89.8\% lie on slopes under $2^{\circ}$. A support vector machine trained on 329 of 512 hand-drawn landform polygons and scored on the other 183, in whole $15^{\circ}$
 blocks it never saw, reaches a balanced accuracy of 66.7\% (73.8\%, \kap\,0.58 overall), where the nearest training
-polygon's class alone gives 61.3\% (83.2\% overall); the thermal bands add a resolved 1.4 to 2.0 points. A U-Net reaches 98.9\% on
+polygon's class alone gives 61.3\% (83.2\% overall); the thermal bands add a resolved 1.4 to 2.0 points overall but none
+by balanced accuracy. A U-Net reaches 98.9\% on
 the same blocks as a terrain-province map. Revised to seven classes, a U-Net scores 69.0\% on 237 held-out
 polygons, weaker on the original four but naming volcanoes, aprons and valleys. No band separates the lava
 contacts of the 1:20\,M geologic map at Athabasca Valles much better than chance, so lava flows are taken from
@@ -645,7 +646,10 @@ Cell & Left out & Gain (pt) & 95\% interval \\
 
 On the 237 v2 held-out polygons the seven-class support vector machine map scores 42.5\%, \kap\,0.310, against
 35.7\%, \kap\,0.244 for the four-class map, which cannot name the new classes, and 29.5\% for one class everywhere
-(Figure~\ref{fig:landforms7}, Table~\ref{tab:svm}). By the rule written before the run it would not replace the
+(Figure~\ref{fig:landforms7}, Table~\ref{tab:svm}). The gain is in overall accuracy and macro F1 (38.8\% against
+25.1\%), not in balanced accuracy (41.9\% against 42.0\%): the four-class map's error is mostly the wrong amount of each
+class (quantity disagreement 55.4 points), which naming the new classes removes. %% KB §69.34 (D29)
+By the rule written before the run it would not replace the
 four-class map: (a) on the ground both can name it scores 66.0\% against 79.9\% (\kap\,0.508 against 0.668); (b)
 apron's user's accuracy, 0.190, is below its share of the held-out area, 0.295, while volcanic edifice (0.261 against
 0.194) and fluvial channel (0.346 against 0.065) pass; and (c) Crater loses 25.7 points of producer's accuracy and
@@ -690,8 +694,9 @@ the landform map, with the U-Net map beside it as a province map. %% KB §66.6, 
 
 Retrained on the seven classes (17,444 chips, 6.2~h), the U-Net scores 69.0\%, \kap\,0.606 on the v2 held-out
 polygons, against 44.1\%, \kap\,0.301 for the four-class U-Net and 42.5\% for the seven-class support vector machine
-(Figure~\ref{fig:unet7}). Its lead over the latter is resolved by balanced accuracy on these polygons, 56.9\% against
-41.9\% (block interval $+2.3$ to $+19.5$ points), but not by accuracy ($-9.7$ to $+47.8$): most of the 26.5 points lie
+(Figure~\ref{fig:unet7}). Over the four-class U-Net, as for the support vector machine, the gain is in overall accuracy
+and macro F1 (56.6\% against 37.1\%), not in balanced accuracy (56.9\% against 56.7\%). Its lead over the seven-class
+support vector machine is resolved by balanced accuracy on these polygons, 56.9\% against 41.9\% (block interval $+2.3$ to $+19.5$ points), but not by accuracy ($-9.7$ to $+47.8$): most of the 26.5 points lie
 in the two Tharsis blocks, 47.5\% of the held-out area, where the support vector machine scores 16.0\% and 25.6\% and
 the U-Net 68.6\% and 96.3\%. On the 1,652 held-out polygons of a larger, rule-screened label set in the same blocks (the
 v2 polygons cut into 0.5\textdegree{} pieces, plus polygons placed from reference data), both maps score about 3 points
@@ -770,7 +775,7 @@ H1 & Day IR shows flow margins Viking misses & not supported at 1:20\,M & day $-
 H2 & Fluvial and volcanic channels separate & not supported (stand-ins) & volcanic shallower; thermal $|d|\le0.31$ \\
 H3 & Composite classes are most stable & not supported & ARI 0.40 against 0.61--0.89 \\
 H4 & Large IAU craters recovered & answered by fill depth & 68\% of 117 craters $\ge100$~km \\
-T1 & Thermal IR improves the classification & yes, slightly & $+1.36$ and $+1.97$ pt, intervals above 0 \\
+T1 & Thermal IR improves the classification & slightly, by accuracy only & $+1.36$ and $+1.97$ pt, intervals above 0 \\
 T3 & THEMIS tracks calibrated inertia & weakly, locally & within-block $|r|\approx0.1$; Viking $-0.36$ \\
 T7 & Tributary orders resolved at 100~m & no DEM-supported answer & order follows threshold \\
 \hline
@@ -853,7 +858,8 @@ for the freshest rims to 38.4\% for the most degraded, and breached craters stay
 valleys no more often than a rotated valley map; stream order is a parameter, not a measurement.
 \item The four-class landform map scores a balanced accuracy of 66.7\% (73.8\%, \kap\,0.58 overall) on blocks it never
 saw, where geography alone, the nearest training polygon's class, gives 61.3\% (83.2\% overall); the thermal bands add
-a resolved 1.4 to 2.0 points. A U-Net reaches 98.9\% as a terrain-province map.
+a resolved 1.4 to 2.0 points of overall accuracy and none by balanced accuracy. A U-Net reaches 98.9\% as a
+terrain-province map.
 \item Revised to seven classes, the maps separate impact craters from volcanoes and name volcanic edifices, aprons
 and fluvial channels: the U-Net scores 69.0\%, \kap\,0.606 and the support vector machine 42.5\% on 237 held-out
 polygons, below the four-class maps on the original classes. The U-Net's lead is resolved by balanced accuracy on

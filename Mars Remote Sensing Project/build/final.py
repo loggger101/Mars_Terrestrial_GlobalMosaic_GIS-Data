@@ -43,7 +43,8 @@ HYPOTHESES = [   # (id, claim, verdict, KB)
     ("H4", "Crater rims from DN gradient recover the large IAU craters",
      "Answered by another method: fill depth recovers 68% of 117 craters ≥ 100 km", "§28.11"),
     ("T1", "Thermal IR improves the landform classification",
-     "Yes, a little: +1.3 pt (numpy), +1.36 and +1.97 pt (Pro SVM), every interval above 0", "§40.1, §56"),
+     "Yes, a little, in overall accuracy: +1.3 pt (numpy), +1.36 and +1.97 pt (Pro SVM), every interval above 0; "
+     "none by balanced accuracy", "§40.1, §56, §69.18"),
     ("T3", "The THEMIS pair tracks calibrated thermal inertia",
      "Weakly and only locally (|r| ≈ 0.1 within 15° blocks); Viking colour carries the regional signal (r −0.36)",
      "§43.1"),
@@ -153,6 +154,7 @@ FIGURES = [
     dict(title="Does thermal infrared improve the classification? (T1)",
          images=[("file", r"interim_img\t1_pro.png")],
          points=["Thermal adds +1.36 pt at 200 m and +1.97 at 400 m, both intervals above 0 (numpy: +1.3)",
+                 "By balanced accuracy the gain is gone: 63.1% with the thermal bands, 63.4% without (200 m)",
                  "It helps craters and hills and hurts lava tube",
                  "Terrain alone ties the score but makes a poor crater map: the classes are landform classes"],
          source="§40.1, §56, §56.1"),
@@ -196,16 +198,16 @@ FIGURES = [
          images=[("file", r"final_img\svm_vs_unet_v2.png")],
          points=["A rule set before the run would keep the four-class maps: on classes 1–4 the SVM scores 66.0% "
                  "against 79.9%, and Crater loses 25.7 points of producer's accuracy",
-                 "The seven-class maps are presented all the same: they separate craters from volcanoes and name "
-                 "what four classes cannot",
-                 "The four-class maps stay beside them"],
-         source="§68.4, §69.24–69.26"),
+                 "Presented all the same, the four-class maps beside them: they name what four classes cannot",
+                 "The gain is in overall accuracy and macro F1, not balanced accuracy (SVM 41.9% against 42.0%, "
+                 "U-Net 56.9% against 56.7%)"],
+         source="§68.4, §69.24–69.26, §69.34"),
 ]
 
 LIMITS = [   # (head, text)
     ("The thermal signal is weak where it can be checked",
      "The held THEMIS mosaics are 8-bit products stretched region by region: no calibrated thermal inertia, and "
-     "against TES only |r| ≈ 0.1 inside 15° blocks. In the classification thermal adds 1.3–2.0 points (§24, §28.10, §43.1, §56)."),
+     "against TES only |r| ≈ 0.1 inside 15° blocks. In the classification thermal adds 1.3–2.0 points of overall accuracy and none by balanced accuracy (§24, §28.10, §43.1, §56, §69.18)."),
     ("The landform classes are terrain classes",
      "Slope and relief alone match all seven bands; 'lava tube' marks volcano flanks, not lava plains; the geologic "
      "map's unit groups cannot stand in for material labels either (§40.1, §43.2, §69.50)."),
@@ -233,7 +235,7 @@ CONCLUSIONS = [
     "local contrast only, and calibrated inertia follows Viking",
     "Craters ≥ 5 km are mostly recovered as closed depressions (63.2% precision); those missed are mostly degraded or breached",
     "Routed channels follow the elevation model (89.8% under 2°) and meet the mapped valleys no more often than chance",
-    "The four-class landform map scores 66.7% balanced (73.8%, κ 0.58 overall) on blocks it never saw, above geography alone by class (61.3%); thermal adds a resolved 1.4–2.0 points",
+    "The four-class landform map scores 66.7% balanced (73.8%, κ 0.58 overall) on blocks it never saw, above geography alone by class (61.3%); thermal adds a resolved 1.4–2.0 points overall, none by balanced accuracy",
     "A U-Net reaches 98.9% as a four-class province map and 69.0% with seven classes, which name volcanoes, aprons "
     "and valleys; lava flows still come from the geologic map",
 ]

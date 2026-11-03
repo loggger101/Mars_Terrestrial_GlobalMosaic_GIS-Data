@@ -6551,3 +6551,33 @@ it first on the desktop.
   them: one class everywhere, the nearest training polygon (D30, §69.35), the Gaussian maximum-likelihood classifier on
   elevation and latitude (A3 (b), §69.50), the share of the map elevation bins reproduce, and the named-crater
   inside/ring share.
+
+### 69.62 D21, D25, D29 and D33 answered; what the agent can and cannot do of the author's review list — 2026-11-03, laptop **[V]**
+
+The author, asked each open decision in turn (2026-11-03):
+
+- **D21, the title: "Stack, can and cannot".** The paper's `\title` is now "A Co-registered Visible, Thermal-Infrared
+  and Elevation Stack of Mars at ±60°: What It Maps and What It Cannot". D21 was the paper's title only: the
+  project, the repository, the README, `CITATION.cff`, the data release (`Edwards2026data`) and the deck keep "Mars
+  Global Mosaic" and its long title; the running head stays "Mars Global Mosaic".
+- **D25, yes:** the thermal gain is "1.4 to 2.0 points overall but none by balanced accuracy" in the abstract and
+  Conclusion 5; Table `tab:hyp`'s T1 verdict reads "slightly, by accuracy only"; the deck's hypotheses row, T1 slide
+  (a new bullet: 63.1 % with the thermal bands, 63.4 % without, at 200 m, §69.18), Limits and Conclusions say the
+  same. The README's T1 section already did.
+- **D29, yes:** the paper's seven-class SVM paragraph ("The gain is in overall accuracy and macro F1 (38.8 % against
+  25.1 %), not in balanced accuracy (41.9 % against 42.0 %)", with the four-class map's quantity disagreement of 55.4
+  points) and U-Net paragraph (macro F1 56.6 % against 37.1 %, balanced 56.9 % against 56.7 %), the deck's "Seven
+  classes lead, at a measured cost" slide and the README's class-scheme row (§69.34's table).
+- **D33: "I'll check them first"** — the author checks the 86 CTX-traced margins in Pro before the freeze; T5 is then
+  rerun and block 15 (a)'s clause dropped. Without the check by the freeze, block 15 goes in as drafted.
+- **§14 row 3, the off-Tharsis labels: "Yes, I'll draw them"**; the agent prepares the target blocks and a guide.
+- **The review list** (check the margins, draw volcanic channels, the R1 and R2 sheets): "if you are able to do these
+  yourself, then do them". What that covers: **R1 and R2** were answered by the agent on 11-02 at the author's word
+  (§69.55), so a second pass would only repeat its own reading; **the margin check** cannot be the agent's, since it
+  traced them (a self-check is not a check), so D33 stays the author's; **volcanic channels at Athabasca** the agent
+  can draw on CTX, marked as its own (§69.55's standing rule), which is what H2 stage 2 lacks (0 volcanic Origins).
+
+Checks: `verify_interim.py` on both files (every number in the record); every changed slide built and rendered on the
+laptop and read ("Seven classes lead" overflowed with four bullets and now holds three). One slip on the way: a
+command began with a bare `python -`, which waits on standard input; it was stopped before anything ran, and the
+deck edit was made from a script file instead.

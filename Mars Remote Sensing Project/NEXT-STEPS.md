@@ -89,7 +89,7 @@ and scored (§66); further tuning first needs validation blocks of its own (§66
 
 **Where the results are weakest and what would most improve them:** §14 (11-01), ranked.
 
-**Waiting on the author:** items 1 and 5; optionally R1 and R2 on their sheets (`review_sheets\r1\`, `r2\`; ~45 min and ~2–3 h, §12.3), whose answers would replace the agent's (§69.55); D14–D16, D21–D27, D29 and D33 (§2); the interim talk's slot length (§12.5); whether
+**Waiting on the author:** items 1 and 5; optionally R1 and R2 on their sheets (`review_sheets\r1\`, `r2\`; ~45 min and ~2–3 h, §12.3), whose answers would replace the agent's (§69.55); D14–D16, D22–D24, D26 and D27 (§2); the check of the 86 traced margins (D33) and the off-Tharsis labels (§14 row 3), both promised 11-03; the interim talk's slot length (§12.5); whether
 layout 18 or `final_img\tes_block_scale.png` goes into a deliverable (§69.30); whether the interim shows layouts 15–18
 (it shows 13 of the 17 that existed at the cut, `INTERIM-PLAN.md` §3); emptying the Recycle Bins (~21 GB of finished
 scratch, §57.5).
@@ -131,15 +131,22 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D14 | the two `_60_smoke` classes, recreated by X2's smoke run (§57.1) | delete (they were deleted once, D9); they are in the release GeoPackage |
 | D15 | a derivatives release with the §54 patch (33 GB upload) | not needed: the catalogue gives the two commands that patch a restore (§57.4) |
 | D16 | the interim's due date: **the presentation is 10 November** (the author, 2026-10-27, KB §69.10); the report's date is still open (the percentages were set 2026-10-26, KB §69.5) | plan the report against 10 November too |
-| D21 | the paper's title, which promises "Mapping Lava Flows" though they come from the geologic map (§12.4 W2) | retitle around the stack and what it can and cannot map |
 | D22 | the two blind checks: the rule-screened v2 rows (§12.3 R1, ~45 min) and a probability-sample accuracy check (R2, ~2–3 h) | R1 yes, after the candidate review; R2 if time is free. **Both now scored on the agent's labels at the author's word (§69.55)**; the author's answers, if given, replace them |
 | D23 | a DOI for the data release through Zenodo, and a data statement (§12.4 W7); publishing | yes, with the pre-final release (§7) |
 | D24 | the final deck in the interim's dark `mars_theme` (§12.5) | yes: one look for both talks |
-| D25 | the abstract's and conclusions' thermal gain: qualify it with the balanced-accuracy result (§12.4 W9); also the README (the interim: done, the author's yes, KB §69.21) | yes: one clause, "in overall accuracy; none by balanced accuracy" |
 | D26 | the built deck, report and paper PDF committed only once per deadline: since 11-01 `github_sync.py` holds them back unless given `--deliverables` (KB §69.42), the recommendation in force until the author says otherwise; rewriting history to drop the 44 earlier copies of the interim deck and report (1.0 GB of blobs) needs a force push and a re-clone on both machines | yes to committing at milestones; no rewrite |
 | D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | yes |
-| D29 | the seven-class maps' gain (D28) by balanced accuracy: none (SVM −0.15 pt, U-Net +0.20 pt on the v2 held-out polygons); the gain is in macro F1 and in quantity disagreement (KB §69.34). Say so in the paper's Table 3 and text, the deck and the README? | yes, as for D25: one clause, "in overall accuracy and macro F1; not in balanced accuracy"; D28's lead stands |
-| D33 | how the final paper names who traced the 86 Athabasca lava margins T5 now runs on (the AI assistant, on CTX; unchecked by the author, KB §69.52); drafted as `v2_drafts.tex` block 15 (a) | say it plainly, as drafted; drop the clause only once the author has checked or redrawn the margins (then rerun T5) |
+D21, D25, D29 and D33 were answered 2026-11-03 (KB §69.62). **D21:** the paper is retitled "A Co-registered
+Visible, Thermal-Infrared and Elevation Stack of Mars at ±60°: What It Maps and What It Cannot"; the project, the
+repository, the README, `CITATION.cff`, the data release and the deck keep "Mars Global Mosaic". **D25, yes:** the
+abstract, Conclusion 5, Table `tab:hyp`'s T1 row and the deck (T1 slide and row, Limits, Conclusions) give the thermal
+gain in overall accuracy and none by balanced accuracy; the README's T1 section already did. **D29, yes:** the
+paper's seven-class SVM and U-Net paragraphs, the deck's "Seven classes lead" slide and the README's class-scheme
+row say the gain is in overall accuracy and macro F1, not in balanced accuracy. **D33: the author checks the 86
+traced margins first** (in Pro, before the 22 Nov freeze); then T5 is rerun and block 15 (a)'s clause drops. If the
+check has not happened by the freeze, block 15 goes in with the clause as drafted, saying who traced them.
+The same day the author asked for the off-Tharsis labels (§14 row 3: "Yes, I'll draw them"; the agent prepares the
+target blocks and a guide first) and for the review items the agent can do itself to be done by it (§69.62).
 D30 was answered 2026-11-01, yes: the baseline is a Table 3 row in each half and a paragraph, and the published
 map's score leads with balanced accuracy in the `.tex` and `final.py` (KB §69.48).
 D34 was answered 2026-11-02, "Yes, fix it for v3": the flat Tharsis fan-shaped deposits (SIM 3292 `lAa`) skip the
