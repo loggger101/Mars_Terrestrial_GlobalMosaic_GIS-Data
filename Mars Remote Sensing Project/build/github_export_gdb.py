@@ -66,6 +66,8 @@ ABOUT = {
     "Landform_TrainingSamples_v3_60_train": "The v3 labels, training half, in the same 15° blocks as every split (10,269; "
         "KB §69.49).",
     "Landform_TrainingSamples_v3_60_test": "The v3 labels, held out in the same 14 blocks (1,652; KB §69.49, §69.56).",
+    "Landform_TrainingSamples_offtharsis_draw": "Empty until the author draws into it: volcanic edifice and apron "
+        "polygons in held-out blocks outside Tharsis, drawn blind to the maps (KB §69.63).",
     "TrainingSamples_202609290009589587982": "The first hand-drawn training set, saved from Pro on 29 Sep (455 polygons, KB §29.2).",
     "Landform_ChannelCenterlines": "Digitising target, task 11: channel centrelines accepted in review from the "
         "machine candidates (`accept_reviewed.py`), and any drawn by hand (KB §69.7). MappedBy says who accepted each; "

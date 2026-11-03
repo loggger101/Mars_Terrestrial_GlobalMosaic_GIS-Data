@@ -57,7 +57,7 @@ the labels and nomenclature are in geographic `Mars_2000_(Sphere)`.
 | `Landform_TrainingSamples_v3` | Polygon | 11,921 | Mars_2000_(Sphere) | The v3 labels: the accepted v3 proposals, 11,921 rows in the seven classes, by written rule, not review (KB §69.49; fan deposits by D34, §69.56). For the v3 runs; the v2 labels stay the final's until those are scored. | `Classcode`, `Classname`, `Classvalue`, `RED`, `GREEN`, `BLUE`, `Subtype`, `ProposalOID`, `OldOID`, `MappedBy`, `Split`, `Block` |
 | `Landform_TrainingSamples_v3_60_train` | Polygon | 10,269 | Mars_2000_(Sphere) | The v3 labels, training half, in the same 15° blocks as every split (10,269; KB §69.49). | `Classcode`, `Classname`, `Classvalue`, `RED`, `GREEN`, `BLUE`, `Subtype`, `ProposalOID`, `OldOID`, `MappedBy`, `Split`, `Block` |
 | `Landform_TrainingSamples_v3_60_test` | Polygon | 1,652 | Mars_2000_(Sphere) | The v3 labels, held out in the same 14 blocks (1,652; KB §69.49, §69.56). | `Classcode`, `Classname`, `Classvalue`, `RED`, `GREEN`, `BLUE`, `Subtype`, `ProposalOID`, `OldOID`, `MappedBy`, `Split`, `Block` |
-| `Landform_TrainingSamples_offtharsis_draw` | Polygon | 0 | Mars_2000_(Sphere) |  | `Classvalue`, `Classname`, `MappedBy`, `Notes` |
+| `Landform_TrainingSamples_offtharsis_draw` | Polygon | 0 | Mars_2000_(Sphere) | Empty until the author draws into it: volcanic edifice and apron polygons in held-out blocks outside Tharsis, drawn blind to the maps (KB §69.63). | `Classvalue`, `Classname`, `MappedBy`, `Notes` |
 
 **In the release GeoPackage only** (too big for git: GitHub refuses files over 100 MB): `mars_project_vectors.gpkg.zip` in [`data-2026-10-29`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-29):
 
