@@ -6808,5 +6808,5 @@ then all 42 maps' layers (0 broken sources).
   since §69.67's citations; "20 pages" in NEXT-STEPS predates them, corrected). At `0.92\textwidth` the compacted
   figure 15 stood 21 % taller and moved more onto that page (530 characters); at `0.80\textwidth` the PDF is as
   before (128) and the maps still ~5 % larger. The KB's
-  §2 table row "his GUI work" was the last personal phrasing `neutral_voice.py` found in the record; now "the
-  author's GUI work".
+  §2 table row on the 29–30 Sep GUI work named the author by pronoun, the last personal phrasing
+  `neutral_voice.py` found in the record; now "the author's GUI work".
