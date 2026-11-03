@@ -26,7 +26,8 @@ Two parts:
                               landslide units: volcanic and highland plains alike
             5 volcanic edifice  the summit of each named mons, tholus or patera on SIM 3292 edifice units, and
                               4 x 4 cells of sloping edifice-unit ground
-            6 apron           4 x 4 cells of sloping, crater-free apron-unit ground (ANa, lAa, the aureole's Aa)
+            6 apron           4 x 4 cells of sloping, crater-free apron-unit ground (ANa, lAa, the aureole's Aa);
+                              on lAa, the Tharsis fan-shaped deposits, no slope test (D34, below)
             7 fluvial channel 20 km strips, 2.4 km wide, along every second segment of the Alemanno & Orofino
                               (2017) valleys, kept if they sit on a floor (the §69.8 rule)
 The split: new polygons go by the 15° block of their centroid (the 14 held-out blocks of
@@ -43,6 +44,26 @@ Landform_TrainingSamples_v3, _v3_60_train and _v3_60_test (accepted rows only; M
 
   python propose_v3_labels.py --dry-run     everything but the writes; logs\label_v3_dryrun.json
   python propose_v3_labels.py [--map]       logs\label_v3.json
+
+Amendment D34 (the author's yes, 2026-11-02, KB §69.56), fixed before the rerun: R1 on the agent's answers (§69.55)
+found that the apron slope test rejects the Tharsis fan-shaped deposits, which the class key names as apron: they are
+flat (median slope 0.58-0.92° on the five R1 rows, all wholly on SIM 3292's lAa). lAa cells are now their own kind,
+"fan", counted as apron ground everywhere apron ground is counted, and neither a piece mostly on lAa nor a new square's
+lAa cells must pass P_APRON_SLOPE / AP_SMED. Every other test, and every other class, is unchanged. Prediction: only
+class 6 changes, by +20 to +150 accepted rows, all on lAa (a change in the classes placed after apron, through the
+seeded draw, would be reported, not hidden). The unit-kind cache is rebuilt under a new name; the old one is kept.
+Result of that dry run: +11 (3 pieces, 8 new squares), all on lAa: the prediction NOT held, because v3's pieces come
+from the v2 labels, and §69.8's rule had already rejected the fan pieces as flat, so they never reached v2.
+Amendment D34b (same day, before the second dry run): the v2 apron proposals §69.8 rejected as flat
+(Landform_TrainingSamples_v2_proposals, ReviewNote "... flat ...") are cut into pieces like any large v2 polygon,
+keeping their split and block; a piece is kept only if it is mostly lAa and passes the apron screen; action "fan";
+a piece that touches any other label is dropped, as a new polygon is. Prediction: +100 to +400 accepted apron pieces,
+all on lAa, part of them in held-out block -9_-1; no other class changes.
+Result (second dry run, then the write, logs\label_v3.json; compare_v3_d34.py ... --d34b): HELD. Only class 6
+changed, +106 accepted (2,174 -> 2,280): 122 fan pieces (68 training in -8_0, 54 held out in -9_-1; 10 rejected in
+-9_0), 3 v2 pieces flipped to accept, all mostly lAa; new apron squares 45 -> 26 (the 19 lost were in the fan blocks -8_0, -9_-1, -9_0 and -6_3, ground
+the fan pieces now hold, so they are not placed).
+v3: 14,217 proposals, 11,921 labels, 10,269 training, 1,652 held out.
 """
 import os, sys, json, math, time, shutil, collections
 sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
@@ -68,6 +89,7 @@ CACHE = r"C:\MarsScratch\label_v3"
 DEM60 = os.path.join(G.OUTDIR, "global60_dem.tif")
 VALLEYS = on_drive(r"Mars Project\Reference\Alemanno2017_valleys\Giulia Valleys.shp")
 V2 = {"train": "Landform_TrainingSamples_v2_60_train", "test": "Landform_TrainingSamples_v2_60_test"}
+V2_PROPOSALS = "Landform_TrainingSamples_v2_proposals"         # read only, for D34b
 TEST4 = "Landform_TrainingSamples_terrain_60_test"
 OUT = "Landform_TrainingSamples_v3_proposals"
 V3 = ("Landform_TrainingSamples_v3", "Landform_TrainingSamples_v3_60_train", "Landform_TrainingSamples_v3_60_test")
@@ -88,7 +110,8 @@ DC, DF = DP * CELL, DP * FINE
 NFC, NFR = NC * CELL // FINE, NR * CELL // FINE
 BLOCK, LAT_MAX = 15.0, 60.0
 GRID_NAMES = {"DRY", "R_KM", "KM_DEG", "DP", "NX", "NY", "LAT0", "CELL", "FINE", "NC", "NR", "DC", "DF", "NFC", "NFR"}
-KIND = {"volc": 1, "ve": 2, "apron": 3, "slide": 4, "highland": 5, "other": 6}
+KIND = {"volc": 1, "ve": 2, "apron": 3, "slide": 4, "highland": 5, "other": 6, "fan": 7}   # fan: lAa (D34)
+APRON_KINDS = (KIND["apron"], KIND["fan"])
 
 # ---------------------------------------------------------------------------- the rules (fixed before the run)
 SPLIT_KM2, SPLIT_DEG, PIECE_DEG, MIN_PIECE_KM2 = 1500.0, 1.0, 0.5, 25.0
@@ -374,6 +397,12 @@ def read_v2():
             for oid, cv, sub, old, blk, g in c:
                 rows.append(dict(v2oid=oid, split=split, cls=int(cv), sub=sub or "", old=old, block=blk,
                                  geom=plain(g)))
+    # D34b: the apron proposals §69.8's rule rejected as flat; only their fan (lAa) ground can enter, as pieces
+    with arcpy.da.SearchCursor(os.path.join(GDB, V2_PROPOSALS), ["OID@", "Split", "Block", "SHAPE@"],
+                               "ProposedClass = 6 AND Review = 'reject' AND ReviewNote LIKE '%flat%'") as c:
+        for oid, split, blk, g in c:
+            rows.append(dict(v2oid=None, prop=oid, split=split, cls=6, sub="", old=None, block=blk, geom=plain(g),
+                             fan_reject=True))
     sr = arcpy.Describe(os.path.join(GDB, V2["train"])).spatialReference
     with arcpy.da.SearchCursor(os.path.join(GDB, TEST4), ["Block"]) as c:
         held = sorted(set(r[0] for r in c))
@@ -395,7 +424,9 @@ def unit_kind(u, grp, x):
         return "volc"
     if grp == "ve":
         return "ve"
-    if u in ("ANa", "lAa") or (u == "Aa" and x < -100):
+    if u == "lAa":
+        return "fan"                                          # the Tharsis fan-shaped deposits: apron, and flat (D34)
+    if u == "ANa" or (u == "Aa" and x < -100):
         return "apron"
     if u == "Aa":
         return "slide"                                        # Valles Marineris landslides: not an ice apron
@@ -405,7 +436,7 @@ def unit_kind(u, grp, x):
 
 
 def unit_cells(sr):
-    path = os.path.join(CACHE, "unit_kinds_3200m.npy")
+    path = os.path.join(CACHE, "unit_kinds_3200m_d34.npy")    # lAa its own kind; unit_kinds_3200m.npy is the pre-D34 one
     if os.path.exists(path):
         return np.load(path)
     src = mem_vector()
@@ -464,15 +495,15 @@ def measures(ctx, g):
     rr, cc = cells_of(g)
     if rr.size == 0:
         return None
-    kinds = np.bincount(ctx.kind[rr, cc], minlength=7) / rr.size
+    kinds = np.bincount(ctx.kind[rr, cc], minlength=8) / rr.size
     f = lambda a, fn=np.nanmedian: float(fn(a[rr, cc])) if np.isfinite(a[rr, cc]).any() else float("nan")
     return dict(cells=int(rr.size), slope=f(ctx.T["smed"]), rough=f(ctx.T["sp90"]),
                 relief=float(np.nanmax(ctx.T["z95"][rr, cc]) - np.nanmin(ctx.T["z05"][rr, cc]))
                 if np.isfinite(ctx.T["z95"][rr, cc]).any() else float("nan"),
                 rim4=float(ctx.rim4[rr, cc].mean()), cov4=float(ctx.cov4[rr, cc].mean()),
                 cov10=float(ctx.cov10[rr, cc].mean()),
-                volc=float(kinds[1]), ve=float(kinds[2]), apron=float(kinds[3]), slide=float(kinds[4]),
-                highland=float(kinds[5]))
+                volc=float(kinds[1]), ve=float(kinds[2]), apron=float(kinds[3] + kinds[7]), slide=float(kinds[4]),
+                highland=float(kinds[5]), fan=float(kinds[7]))
 
 
 def ev_text(m):
@@ -554,10 +585,12 @@ def screen_piece(ctx, cls, g, m, sr):
             m["ve"], ", in %s at %.2f R" % nv if nv else "", m["slope"], P_VE_SLOPE, m["cov10"]), g
     if cls == 6:
         rough_ok = m["rough"] <= P_APRON_ROUGH or abs(g.centroid.Y) < P_APRON_ROUGH_LAT
-        ok = (m["apron"] >= 0.5 and m["slope"] >= P_APRON_SLOPE and rough_ok and
+        fan = m["fan"] >= 0.5                                 # mostly on lAa: no slope test (D34)
+        ok = (m["apron"] >= 0.5 and (fan or m["slope"] >= P_APRON_SLOPE) and rough_ok and
               m["cov10"] <= P_CRATER10)
-        return ok, "apron units %.2f, slope %.1f° (>= %.1f) p90 %.1f° (<= %.0f above 30°), craters>=10km %.2f" % (
-            m["apron"], m["slope"], P_APRON_SLOPE, m["rough"], P_APRON_ROUGH, m["cov10"]), g
+        return ok, "apron units %.2f (fan %.2f), slope %.1f° (>= %.1f%s) p90 %.1f° (<= %.0f above 30°), craters>=10km %.2f" % (
+            m["apron"], m["fan"], m["slope"], P_APRON_SLOPE, ", not on fans" if fan else "", m["rough"], P_APRON_ROUGH,
+            m["cov10"]), g
     if cls == 7:
         d = floor_depth(ctx, g, sr)
         m["floor"] = d
@@ -573,6 +606,17 @@ def pieces_of_v2(ctx, v2, sr):
     for n, r in enumerate(v2):
         g, e = r["geom"], r["geom"].extent
         base = dict(cls=r["cls"], split=r["split"], block=r["block"], v2oid=r["v2oid"], old=r["old"], sub=r["sub"])
+        if r.get("fan_reject"):                               # D34b: always cut and screened; fan ground only
+            ps = grid_pieces(g, sr)
+            for k, p in enumerate(ps):
+                m = measures(ctx, p)
+                ok, why, pg = screen_piece(ctx, 6, p, m, sr)
+                if ok and m["fan"] < 0.5:
+                    ok, why = False, "not mostly lAa (fan %.2f): D34b takes fan ground only; " % m["fan"] + why
+                rows.append(dict(base, geom=pg if pg is not None else p, action="fan", ok=bool(ok), why=why, m=m,
+                                 src="v2 rejected apron proposal %s OID %d, piece %d of %d" % (r["split"], r["prop"],
+                                                                                              k + 1, len(ps))))
+            continue
         if r["cls"] == 3 or (km2(g) <= SPLIT_KM2 and max(e.XMax - e.XMin, e.YMax - e.YMin) <= SPLIT_DEG):
             rows.append(dict(base, geom=g, action="keep", ok=True, why="v2 polygon kept whole (%.0f km²)" % km2(g),
                              m=measures(ctx, g), src="v2 %s OID %d" % (r["split"], r["v2oid"])))
@@ -921,7 +965,7 @@ def write(rows, sr):
             note = "%s: %s" % (STAMP, r["why"])
             r["pid"] = cur.insertRow([r["geom"], r["action"], r["cls"], CLASSES[r["cls"]][0], r.get("sub", "")[:24],
                                       "accept" if r["ok"] else "reject", note[:120], r["src"][:80], ev_text(r.get("m")),
-                                      r.get("v2split") or (r["split"] if r["action"] != "new" else None),
+                                      r.get("v2split") or (r["split"] if r["action"] not in ("new", "fan") else None),
                                       r.get("v2oid"), r.get("old"), r["split"], r["block"], round(km2(r["geom"]), 2),
                                       num(m.get("slope")), num(m.get("rough")), num(m.get("relief")),
                                       num(m.get("cov4")), num(m.get("floor")), MARKER])
@@ -985,8 +1029,10 @@ def main():
     arcpy.env.workspace = GDB
     rng = np.random.default_rng(SEED)
     sr, v2, held = read_v2()
-    say("v2 labels %d (train %d, held out %d); held-out blocks %s" % (
-        len(v2), sum(r["split"] == "train" for r in v2), sum(r["split"] == "test" for r in v2), " ".join(held)))
+    lab = [r for r in v2 if not r.get("fan_reject")]
+    say("v2 labels %d (train %d, held out %d); held-out blocks %s; D34b rejected fan proposals %d" % (
+        len(lab), sum(r["split"] == "train" for r in lab), sum(r["split"] == "test" for r in lab), " ".join(held),
+        len(v2) - len(lab)))
     ctx = Ctx()
     ctx.T = terrain_cells()
     say("terrain cells %d x %d (%.0f s)" % (NC, NR, time.time() - t0))
@@ -1019,7 +1065,7 @@ def main():
 
     # part 2
     T, kind = ctx.T, ctx.kind
-    off = np.isin(kind, (KIND["ve"], KIND["apron"], KIND["slide"])) | (kind == 0)
+    off = np.isin(kind, (KIND["ve"], KIND["slide"]) + APRON_KINDS) | (kind == 0)
     new = []
     new += new_volcano_summits(ctx, sr)
     say("  volcano summits: %d" % len(new))
@@ -1040,10 +1086,11 @@ def main():
                        "4x4 cells (12.8 km) of SIM 3292 edifice units, every cell slope >= %.0f°, no crater >= 10 km "
                        "within 1.3 R" % VE_SMED)
     lat_rows = (LAT0 - (np.arange(NR) + 0.5) * DC)[:, None]
-    ok = (kind == KIND["apron"]) & (T["smed"] >= AP_SMED) & ((T["sp90"] <= AP_SP90) | (np.abs(lat_rows) < P_APRON_ROUGH_LAT)) \
-        & (ctx.cov10 == 0)
+    ok = (((kind == KIND["apron"]) & (T["smed"] >= AP_SMED)) | (kind == KIND["fan"])) \
+        & ((T["sp90"] <= AP_SP90) | (np.abs(lat_rows) < P_APRON_ROUGH_LAT)) & (ctx.cov10 == 0)    # fans: no slope test (D34)
     new += new_squares(ctx, 6, ok, AP_K, AP_MIN, AP_CAP, sr, rng,
-                       "4x4 cells (12.8 km), >= %d of 16 on SIM 3292 apron units with slope >= %.1f° and p90 <= %.0f° above 30°,"
+                       "4x4 cells (12.8 km), >= %d of 16 on SIM 3292 apron units with slope >= %.1f° (none on the lAa fans) "
+                       "and p90 <= %.0f° above 30°,"
                        " no crater >= 10 km within 1.3 R" % (AP_MIN, AP_SMED, AP_SP90))
     for r in new:
         r["split"] = "test" if r["block"] in held else "train"
@@ -1060,7 +1107,7 @@ def main():
         for c in clash + cross:
             i, k = c[0], c[1]
             for z in (k, i):
-                if acc[z]["action"] == "new":
+                if acc[z]["action"] in ("new", "fan"):         # a D34b fan piece gives way like a new polygon
                     bad.add(id(acc[z])); break
             else:
                 sys.exit("v2 rows overlap across classes or the split: %s %s" % (acc[i]["src"], acc[k]["src"]))
@@ -1082,7 +1129,7 @@ def main():
             blocks[(r["cls"], r["split"])].add(r["block"])
             area[(r["cls"], r["split"])] += km2(r["geom"])
     v2a = collections.defaultdict(float)
-    for r in v2:
+    for r in lab:
         v2a[(r["cls"], r["split"])] += km2(r["geom"])
     print("\nrows by class and action (split accept/reject):")
     for k in sorted(per):
@@ -1094,7 +1141,7 @@ def main():
         for s in ("train", "test"):
             n = sum(1 for r in acc if r["cls"] == c and r["split"] == s)
             d[s] = dict(polygons=n, blocks=len(blocks[(c, s)]), km2=round(area[(c, s)]), v2_km2=round(v2a[(c, s)]),
-                        v2_polygons=sum(1 for r in v2 if r["cls"] == c and r["split"] == s))
+                        v2_polygons=sum(1 for r in lab if r["cls"] == c and r["split"] == s))
         summ[CLASSES[c][0]] = d
         print("   %d %-18s train %5d (%3d) %9.0f km² [v2 %4d, %9.0f]   held out %5d (%3d) %9.0f km² [v2 %4d, %9.0f]" % (
             c, CLASSES[c][0], d["train"]["polygons"], d["train"]["blocks"], d["train"]["km2"],

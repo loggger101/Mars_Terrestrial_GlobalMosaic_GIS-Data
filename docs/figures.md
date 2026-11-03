@@ -47,7 +47,7 @@ exports every sheet; the PNGs here are the polished exports.
 | <a href="../Mars%20Project/Global60/layouts/16_x5_detections.png"><img src="thumbs/16_x5_detections.jpg" width="300" alt="Layout 16: A deep-learning detector, scored on held-out ground (X5)"></a> | **16 · A deep-learning detector, scored on held-out ground (X5).** RetinaNet on the 7-band stack, 1,838 boxes round the 183 held-out polygons; per polygon, Crater recall 41.9 % and precision 87.6 % against 71.1 % for always naming Crater; the two rare classes never named. Not comparable with 04's per-pixel score. KB §66. | `make_dl_map.py` |
 | <a href="../Mars%20Project/Global60/layouts/17_x5c_unet_provinces.png"><img src="thumbs/17_x5c_unet_provinces.jpg" width="300" alt="Layout 17: Terrain provinces from a U-Net (X5c), beside the published SVM map"></a> | **17 · Terrain provinces from a U-Net (X5c), beside the published SVM map.** The two-pass U-Net over ±60° and over a held-out block with three classes; under the same scorer, 98.9 %, κ 0.980 held out against the SVM map's 73.8 %, κ 0.583, lava tube user's 77 % against 2 %; 'Crater' covers 83 % of the ring round named craters, so it maps cratered terrain, not craters. The SVM map stays the published one. KB §66.7–66.9. | `make_unet_map.py` |
 | <a href="../Mars%20Project/Global60/layouts/17b_unet_v2_provinces.png"><img src="thumbs/17b_unet_v2_provinces.jpg" width="300" alt="Layout 17b: Seven classes from a U-Net, beside the seven-class SVM"></a> | **17b · Seven classes from a U-Net, beside the seven-class SVM.** The two-pass U-Net on the reviewed labels over ±60° and a held-out block; 69.0 %, κ 0.606 held out against the seven-class SVM's 42.5 % and the four-class U-Net's 44.1 % on the same polygons; volcanic edifice covers 40 % of ±60°. KB §69.25, §69.26. | `make_v2_sheets.py` |
-| <a href="../Mars%20Project/Global60/layouts/20_labels_v3.png"><img src="thumbs/20_labels_v3.jpg" width="300" alt="Layout 20: The v3 seven-class labels"></a> | **20 · The v3 seven-class labels.** 10,213 training and 1,602 held-out polygons by written rule, in the same 14 held-out blocks, over ±60° and Tharsis; per class beside v2. The v3 maps wait for the desktop. KB §69.49, §69.50. | `make_v3_label_layout.py` |
+| <a href="../Mars%20Project/Global60/layouts/20_labels_v3.png"><img src="thumbs/20_labels_v3.jpg" width="300" alt="Layout 20: The v3 seven-class labels"></a> | **20 · The v3 seven-class labels.** 10,269 training and 1,652 held-out polygons by written rule, in the same 14 held-out blocks, over ±60° and Tharsis; per class beside v2. The v3 maps wait for the desktop. KB §69.49, §69.50, §69.56. | `make_v3_label_layout.py` |
 
 ### Craters and channels
 
@@ -132,7 +132,7 @@ in this project. `180E_col53346_after_fix` shows the 180° column after its patc
 
 [`build/logs/v3_label_sheets/`](../Mars%20Remote%20Sensing%20Project/build/logs/v3_label_sheets): per seven-class class,
 eight accepted and four rejected rows of `propose_v3_labels.py` (solid accepted, dashed rejected) over DEM hillshade,
-the read by eye behind the 11,815 v3 labels. The rows are accepted by a written rule, not reviewed. KB §69.49.
+the read by eye behind the v3 labels. The rows are accepted by a written rule, not reviewed. KB §69.49.
 
 | | | |
 |---|---|---|

@@ -77,7 +77,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 | 1 | **Review:** `Origin` on the 199 channel copies (H2 stage 2 needs ≥ 10 fluvial and ≥ 10 volcanic); the other 200 rock-floored Athabasca channels, then the rest; the Athabasca lava margins (H1) and breached craters, by hand | author, on the sheets (`Mars Project\review_sheets\README.md`, §69.51) or in Pro; margins in Pro. The agent's CTX decisions on the 200 and on `Origin` are in (§69.55) and any answer of the author's replaces them; the 5,296 candidates outside the review prompts are not reviewed | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims` / `Landform_LavaFlowMargins`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
 | 3 | Retests that wait for the review: H2 stage 2 (code ready in `make_t4_channel_h2.py`; needs ≥ 10 fluvial and ≥ 10 volcanic Origins); H1 on traced margins done 11-02 on the agent's 86 (§69.52), rerun `make_flow_margin_test.py --margins` when the author adds or checks margins | agent | §4 | results in the KB, either way |
-| 3b | **The v3 runs** (more and smaller seven-class training polygons, KB §69.49): `powershell -File run_v3.ps1` from `build\`, Pro closed; U-Net then SVM, ~2 days; then the KB section, and the seven-class layouts (04b, 17b) only if the author picks the v3 maps | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
+| 3b | **The v3 runs** (more and smaller seven-class training polygons, KB §69.49; the fan deposits admitted as apron by D34, §69.56: 10,269 training, 1,652 held out): `powershell -File run_v3.ps1` from `build\`, Pro closed; U-Net then SVM, ~2 days; then the KB section, and the seven-class layouts (04b, 17b) only if the author picks the v3 maps | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
 | 4 | The paper's analyses that need no author time, in §12.6's order (A1, A2, A3 (b) and (c), A7, A8, A9 and A13 done 11-01/02 on the laptop; A4b, A3 (a), A10, A14 and W10 done 10-31, A15, A5, A6 and A11 11-01, KB §69.34–§69.46) | agent | §12.2, §12.4 | results in the KB, by the **22 Nov** freeze |
 | 5 | The interim: deliver on **10 Nov**; the report's date from the author | author + agent | `INTERIM-PLAN.md` §0, §6 | delivered |
 | 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex`; rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
@@ -87,7 +87,7 @@ and scored (§66); further tuning first needs validation blocks of its own (§66
 
 **Where the results are weakest and what would most improve them:** §14 (11-01), ranked.
 
-**Waiting on the author:** items 1 and 5; optionally R1 and R2 on their sheets (`review_sheets\r1\`, `r2\`; ~45 min and ~2–3 h, §12.3), whose answers would replace the agent's (§69.55); D14–D16, D21–D27, D29, D33 and D34 (§2); the interim talk's slot length (§12.5); whether
+**Waiting on the author:** items 1 and 5; optionally R1 and R2 on their sheets (`review_sheets\r1\`, `r2\`; ~45 min and ~2–3 h, §12.3), whose answers would replace the agent's (§69.55); D14–D16, D21–D27, D29 and D33 (§2); the interim talk's slot length (§12.5); whether
 layout 18 or `final_img\tes_block_scale.png` goes into a deliverable (§69.30); whether the interim shows layouts 15–18
 (it shows 13 of the 17 that existed at the cut, `INTERIM-PLAN.md` §3); emptying the Recycle Bins (~21 GB of finished
 scratch, §57.5).
@@ -137,10 +137,12 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D26 | the built deck, report and paper PDF committed only once per deadline: since 11-01 `github_sync.py` holds them back unless given `--deliverables` (KB §69.42), the recommendation in force until the author says otherwise; rewriting history to drop the 44 earlier copies of the interim deck and report (1.0 GB of blobs) needs a force push and a re-clone on both machines | yes to committing at milestones; no rewrite |
 | D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | yes |
 | D29 | the seven-class maps' gain (D28) by balanced accuracy: none (SVM −0.15 pt, U-Net +0.20 pt on the v2 held-out polygons); the gain is in macro F1 and in quantity disagreement (KB §69.34). Say so in the paper's Table 3 and text, the deck and the README? | yes, as for D25: one clause, "in overall accuracy and macro F1; not in balanced accuracy"; D28's lead stands |
-| D34 | the apron screen's slope test: R1 on the agent's answers (§69.55) found it rejects the flat Tharsis fan-shaped deposits, which the key names as apron; v3's apron screen also needs slope ≥ 0.7° (§69.49) | before `run_v3.ps1`: drop the slope test for pieces on SIM 3292's fan-shaped deposit unit, or accept the limit and state it |
 | D33 | how the final paper names who traced the 86 Athabasca lava margins T5 now runs on (the AI assistant, on CTX; unchecked by the author, KB §69.52); drafted as `v2_drafts.tex` block 15 (a) | say it plainly, as drafted; drop the clause only once the author has checked or redrawn the margins (then rerun T5) |
 D30 was answered 2026-11-01, yes: the baseline is a Table 3 row in each half and a paragraph, and the published
 map's score leads with balanced accuracy in the `.tex` and `final.py` (KB §69.48).
+D34 was answered 2026-11-02, "Yes, fix it for v3": the flat Tharsis fan-shaped deposits (SIM 3292 `lAa`) skip the
+apron slope test, and the v2 apron proposals rejected as flat are cut and screened again on that ground; +106 apron
+labels, all on `lAa`, the registered prediction held; v3 is now 11,921 labels, 10,269 / 1,652 (KB §69.56).
 D31 and D32 were answered 2026-11-01, yes to both: the block intervals and the seven-class lead by balanced
 accuracy, and the crater curve with each set cut only where it is scored, are in the `.tex` and `final.py` (KB
 §69.47).

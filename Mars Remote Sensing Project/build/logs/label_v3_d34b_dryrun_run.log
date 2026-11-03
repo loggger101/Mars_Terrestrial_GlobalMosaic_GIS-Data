@@ -1,0 +1,50 @@
+[19:31:27] v2 labels 971 (train 734, held out 237); held-out blocks -11_1 -11_2 -3_-1 -4_-1 -4_-2 -5_-1 -6_1 -9_-1 -9_0 0_0 1_0 4_0 4_2 5_-2; D34b rejected fan proposals 11
+[19:31:28] terrain cells 6668 x 2222 (4 s)
+[19:31:40] Robbins 385049; named volcanoes 44 of 101; named catenae 16 (17 s)
+[19:31:52]   v2 polygons 300 of 982, 997 rows (12 s)
+[19:46:06]   v2 polygons 400 of 982, 4563 rows (866 s)
+[19:46:36]   v2 polygons 500 of 982, 5296 rows (896 s)
+[19:46:49]   v2 polygons 600 of 982, 6593 rows (909 s)
+[19:47:02]   v2 polygons 700 of 982, 8357 rows (922 s)
+[19:47:59] v2 pieces done: 10519 rows (995 s)
+[19:48:05]   volcano summits: 0
+[19:48:40]   craters: 693 placed of 1049 measured
+[19:48:51]   lava: 16 named catenae, 592 troughs, 119 placed
+[19:51:27]   fluvial: 17735 segments, 1269 measured, 589 placed
+[19:51:49] new candidates 3698 (1226 s)
+[19:51:55] overlaps between classes 0, across the split 0 (1232 s)
+
+rows by class and action (split accept/reject):
+   1 Crater             keep   {'test accept': 93, 'train accept': 143}
+   1 Crater             new    {'test accept': 48, 'train accept': 645}
+   1 Crater             piece  {'test accept': 164, 'test reject': 86, 'train accept': 161, 'train reject': 75}
+   2 steep/windy hills  keep   {'test accept': 8, 'train accept': 21}
+   2 steep/windy hills  new    {'test accept': 43, 'train accept': 569}
+   2 steep/windy hills  piece  {'test accept': 70, 'train accept': 41}
+   3 lava tube          keep   {'test accept': 18, 'train accept': 20}
+   3 lava tube          new    {'test accept': 33, 'train accept': 86}
+   4 Normal Ground      keep   {'test accept': 16, 'train accept': 75}
+   4 Normal Ground      new    {'test accept': 70, 'train accept': 890}
+   4 Normal Ground      piece  {'test accept': 233, 'test reject': 3, 'train accept': 1116, 'train reject': 44}
+   5 volcanic edifice   keep   {'test accept': 1, 'train accept': 6}
+   5 volcanic edifice   new    {'train accept': 19}
+   5 volcanic edifice   piece  {'test accept': 206, 'test reject': 20, 'train accept': 1612, 'train reject': 325}
+   6 apron              fan    {'test accept': 54, 'test reject': 10, 'train accept': 68}
+   6 apron              keep   {'train accept': 22}
+   6 apron              new    {'train accept': 26}
+   6 apron              piece  {'test accept': 302, 'test reject': 9, 'train accept': 1808, 'train reject': 134}
+   7 fluvial channel    keep   {'test accept': 7, 'train accept': 16}
+   7 fluvial channel    new    {'test accept': 24, 'test reject': 38, 'train accept': 565, 'train reject': 642}
+   7 fluvial channel    piece  {'test accept': 262, 'test reject': 74, 'train accept': 2360, 'train reject': 836}
+
+accepted per class: polygons (blocks), km²; v2 km² beside
+   1 Crater             train   949 (178)    849961 km² [v2  170,    141138]   held out   305 ( 14)    200906 km² [v2  121,    155345]
+   2 steep/windy hills  train   631 (150)     63607 km² [v2   28,     19433]   held out   121 ( 11)     31302 km² [v2   16,     27588]
+   3 lava tube          train   106 ( 11)     37096 km² [v2   20,     19291]   held out    51 (  5)      6154 km² [v2   18,      1064]
+   4 Normal Ground      train  2081 (178)    687532 km² [v2   99,    591910]   held out   319 ( 14)    149097 km² [v2   22,    139633]
+   5 volcanic edifice   train  1637 ( 23)    976716 km² [v2  112,   1137925]   held out   207 (  3)    132614 km² [v2   12,    140688]
+   6 apron              train  1924 ( 21)   1092105 km² [v2  139,   1105288]   held out   356 (  3)    243717 km² [v2   16,    214449]
+   7 fluvial channel    train  2941 (111)    324276 km² [v2  166,    390137]   held out   293 (  8)     31436 km² [v2   32,     38213]
+   all: train 10269, held out 1652
+[19:53:12] log Z:\Mars Remote Sensing Project\build\logs\label_v3_dryrun.json
+[19:53:12] dry run: nothing written (1309 s)

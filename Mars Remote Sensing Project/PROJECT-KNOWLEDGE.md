@@ -329,8 +329,8 @@ proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal lab
 | `Landform_TrainingSamples_v2_proposals` | Polygon | 1,086 | the seven-class proposals (§69.2): the 512 copied with an `Action` (474 keep, 12 relabel, 23 check, 1 clip, 1 delete, 1 fix) and 574 new; for the author's review (2b), never a training set until applied |
 | `Landform_TrainingSamples_v2p`, `_v2p_60_train`, `_v2p_60_test` | Polygon | 1,085, 827, 258 | the rehearsal labels (§69.4): every proposal taken as proposed, **not the author's review**; for `--labels v2p` only |
 | `Landform_TrainingSamples_v2`, `_v2_60_train`, `_v2_60_test` | Polygon | 971, 734, 237 | the seven-class labels from the review (§69.8; apron and fluvial rows by the agent's rule at the author's word); for `--labels v2` |
-| `Landform_TrainingSamples_v3_proposals` | Polygon | 14,104 | every v2 piece and new polygon of `propose_v3_labels.py` with its measures, reason and `Review` set by the written rule (§69.49) |
-| `Landform_TrainingSamples_v3`, `_v3_60_train`, `_v3_60_test` | Polygon | 11,815, 10,213, 1,602 | the v3 labels (§69.49): the v2 polygons cut and screened plus new polygons from reference data, accepted by rule, not review; for `--labels v3` |
+| `Landform_TrainingSamples_v3_proposals` | Polygon | 14,217 | every v2 piece and new polygon of `propose_v3_labels.py` with its measures, reason and `Review` set by the written rule (§69.49; D34 fan amendment §69.56) |
+| `Landform_TrainingSamples_v3`, `_v3_60_train`, `_v3_60_test` | Polygon | 11,921, 10,269, 1,652 | the v3 labels (§69.49, flat Tharsis fan deposits admitted as apron by D34, §69.56): the v2 polygons cut and screened plus new polygons from reference data, accepted by rule, not review; for `--labels v3` |
 | `DL_Detections_heldout_20261019` | Polygon | 1,838 | X5's RetinaNet boxes around the held-out labels (§66.2); stack SR, XY domain widened 400 km (§66.3) |
 | `DL_UNet_Heldout_Scores_20261020` | Polygon | 183 | the held-out labels with each one's own-class share and majority class under the U-Net (two passes) and the published SVM map, at 400 m (§66.9) |
 | `TrainingSamples_202609290009589587982` | Polygon | 455 | manual (GUI), 29 Sep (§29.2) |
@@ -5744,7 +5744,7 @@ author's four classes and codes stay as they are (§68.1).
 - **Result (run 3, 650 s on the cached cells; `logs\label_v3.json`, `logs\label_v3_run_fartbutt.log`):**
   `Landform_TrainingSamples_v3_proposals` 14,104 rows (every piece and new polygon, accepted or not, with its
   measures, reason and `Review`); `Landform_TrainingSamples_v3` 11,815, **`_v3_60_train` 10,213, `_v3_60_test`
-  1,602** (v2: 734 and 237); no overlap between classes or across the split. Per class, training / held out,
+  1,602** (v2: 734 and 237; since D34, §69.56: 14,217 proposals, 11,921 labels, 10,269 / 1,652, apron 1,924 / 356); no overlap between classes or across the split. Per class, training / held out,
   polygons (blocks), against v2's polygons:
 
   | class | training | held out | v2 training / held out |
@@ -6385,3 +6385,32 @@ R1's precisions as the assistant's reading. **Left for the author:** nothing is 
 (`r1`, `r2`, `ctx_*`, `1_`–`3_`) replaces the agent's, then the after-review steps (NEXT-STEPS §3). Not done: the
 5,296 candidates outside the review prompts (2,874 Athabasca, 2,422 Ius channels): about 880 sheets at the CTX
 renderer's pace, days of rendering, and at the agent's κ with the author they would add rejections, not precision.
+
+### 69.56 D34: the Tharsis fan-shaped deposits admitted as apron in v3 — 2026-11-02, laptop **[V]**
+
+The author's answer to D34: **"Yes, fix it for v3"**. R1 on the agent's answers (§69.55) had found that the apron
+screen's slope test throws out SIM 3292's `lAa`, the fan-shaped deposits on the west flanks of Arsia, Pavonis,
+Ascraeus and Olympus Mons (four polygons), which the class key names as apron: they are flat (median slope 0.58–0.92° on the five R1 rows, all
+wholly on `lAa`). The fix is in `propose_v3_labels.py` (docstring amendments D34 and D34b), each registered with a
+prediction before its dry run; `compare_v3_d34.py` matches the rows before and after by class, action, source and area.
+- **D34:** `lAa` cells are their own unit kind, "fan", counted as apron ground wherever apron ground is counted; a piece
+  mostly on `lAa`, and a new square's `lAa` cells, skip the slope test (`P_APRON_SLOPE`, `AP_SMED`). Nothing else
+  changed. Prediction: only class 6 changes, +20 to +150 accepted, all on `lAa`. **Dry run: +11, NOT held**: v3's
+  pieces come from the v2 labels, and §69.8's rule had already rejected the fan proposals as flat, so the fan ground
+  never reached v2 (`logs\label_v3_dryrun_d34a.json`).
+- **D34b:** the v2 apron proposals §69.8 rejected as flat (`Landform_TrainingSamples_v2_proposals`, 11 rows, read
+  only) are cut into pieces like any large v2 polygon, keeping their split and block; a piece is kept only if mostly
+  `lAa` and through the rest of the apron screen; one touching any other label is dropped. Prediction: +100 to +400,
+  all on `lAa`, some held out in block −9_−1, no other class changing. **Dry run and the write: HELD.** Only class 6
+  changed, **+106** (2,174 → 2,280 accepted): 122 fan pieces (68 training in −8_0, 54 held out in −9_−1; 10 rejected in
+  −9_0), 3 v2 pieces flipped to accepted, every one mostly `lAa`; new apron squares 45 → 26 (the 19 lost lay in the fan
+  blocks, ground the fan pieces now hold).
+- **Written** (`propose_v3_labels.py --map`, 2,568 s; `logs\label_v3.json`, `logs\label_v3_d34_run.log`, the pre-D34
+  log kept as `logs\label_v3_pre_d34.json`, .aprx backed up first): `_v3_proposals` **14,217**, `Landform_TrainingSamples_v3`
+  **11,921**, **`_v3_60_train` 10,269, `_v3_60_test` 1,652**; apron 1,924 training (21 blocks), 356 held out (3).
+  The rows replaced are rule output, rebuilt by any run of the script; the unit-kind cache is new
+  (`unit_kinds_3200m_d34.npy`), the old one kept.
+- Layout 20 rebuilt (`make_v3_label_layout.py`, then `polish_layouts.py`), exported and read: panel B shows the fan
+  pieces on Arsia and Pavonis. The counts updated in §6's table, §69.49's result, the gdb export's descriptions, the
+  repo's README and figure index. `run_v3.ps1` reads `Landform_TrainingSamples_v3`, so the v3 runs use the amended
+  labels. The v2 labels and v2's held-out score are unchanged: D34 touches v3 only.
