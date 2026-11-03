@@ -6851,3 +6851,24 @@ map matches:
 Only names changed: a dump of all 42 maps before and after lists identical layers, 0 broken sources, and the 23
 layouts' map frames all resolve (none of the five is on a layout). A second run renames nothing. No script reads
 these maps by name; `marsfig.py`'s comment and §3's CTX line name the new ones.
+
+### 69.72 NEXT-STEPS brought level with the record; what is left for the laptop — 2026-11-03, laptop **[V]**
+
+NEXT-STEPS was read whole against §69.50–§69.71, and 19 stale passages were replaced by a script that refuses
+unless each old passage matches exactly once (`git diff` holds the before):
+
+- **§1, the project against its goal**, still read as of mid-October: manual digitising "empty" (202 channels, 381
+  rims, 86 agent-traced margins), the ±60° channels "not scored" (A1, §69.50), the classification row without the
+  seven-class maps that lead (D28) or the baseline (§69.35), "visible albedo carries the material signal" (the Viking
+  colour, §69.50), the thermal gain without D25's qualifier, H1 "rerun on digitised margins" (run on the 86 CTX
+  margins, §69.52) and H2 "stage 2 on reviewed channels" (skipped, §69.63).
+- **"Resume here"**, retitled 2026-11-03: the review bullet's 199 channels and "H2's stage 2 waits"; row 1 now leads
+  with the author's two promised items (the margin check, D33; the off-Tharsis labels); row 3 with the reruns they
+  unlock; row 4 (the analyses) marked done; row 5 adds §12.5's tally note before the talk.
+- **§12–§13:** W2 and W9 marked answered (D21, D25); W4's and §12.1's page counts (21, CI); §12.1's PDF row (CI
+  compiles the paper; the deck builds on either machine); the README's thermal wording (qualified since §69.62).
+
+**Left for the laptop: nothing that needs no one.** §12.2 and §13's laptop rows are done; P7 and P8 are the
+desktop's, with `run_v3.ps1`; the freeze's blocks 12, 13, 15 and 16 wait on D23 and D33; the reruns wait on the
+author's margin check and off-Tharsis labels; the interim talk's tally note is best written on the day. Layout 19's
+"0°"/"0°E" overlap (§69.70) stays: hiding "0°E" would also drop the edge label of its panel B.

@@ -16,7 +16,7 @@ checklist, is `HANDOFF-DESKTOP.md`.
 
 ---
 
-## Resume here — 2026-11-02
+## Resume here — 2026-11-03
 
 Only the state, what waits on whom and the next step; the history behind each line is the KB section it cites
 (condensed 2026-10-31, §13.1 P10: the dated paragraphs since 10-18 are in git history and KB §58–§69.34).
@@ -49,9 +49,8 @@ Only the state, what waits on whom and the next step; the history behind each li
   §69.50), on SIM 3292's unit groups, cannot price it: the stack predicts them no better than the commonest group; T3, the
   THEMIS pair against TES inertia peaks in 2–5° blocks at r ≈ 0.12 (§69.29; layout 18, §69.30).
 - **The review, the critical path** (§69.33): **3,791 of 9,287 candidates**: every closed depression at both type
-  areas, the 188 steep Ius channels, 209 of the 409 rock-floored Athabasca channels. The digitising classes hold 199
-  channels, 381 crater rims, none drawn by hand, and 86 lava margins the agent traced on CTX (below); `Origin` is set on no channel, so H2's stage 2
-  waits. **The agent cannot stand in** (§69.51, 11-02): blind on 48 of the author's calls it agreed at chance
+  areas, the 188 steep Ius channels, 209 of the 409 rock-floored Athabasca channels. The digitising classes hold 202
+  channels, 381 crater rims, none drawn by hand, and 86 lava margins the agent traced on CTX (below). **The agent cannot stand in** (§69.51, 11-02): blind on 48 of the author's calls it agreed at chance
   (46.5 %, κ 0.08), so the review stays the author's, now **without Pro**: contact sheets and a guide in
   `Mars Project\review_sheets\`, answered as letters in `answers.txt`, written in by `apply_sheet_review.py`.
   **On CTX (§69.52, 11-02)** the agent traced **86 Athabasca lava margins (1,476 km, all 126 plates)** into
@@ -60,8 +59,8 @@ Only the state, what waits on whom and the next step; the history behind each li
   channel review (3 accepts of 200) and its Origin (29 fluvial, 0 volcanic of 199) both **failed their repeat gates**;
   **at the author's word (11-02, §69.55) they are written in all the same, marked as the agent's** (ReviewNote /
   Notes "agent CTX (KB 69.55)"; any answer of the author's replaces them): the channel class now holds 202 (3 the
-  agent's), Athabasca channel precision 27 % combined, the author's own 50 %. H2 stage 2 still waits: 0 volcanic;
-  volcanic channels would have to be drawn by hand. R1 and R2 are scored on the agent's labels too (§69.55).
+  agent's), Athabasca channel precision 27 % combined, the author's own 50 %. H2's stage 2 cannot run in these type
+  areas: all 29 fluvial Origins are at Ius, and the author said skip drawing volcanic ones (§69.63). R1 and R2 are scored on the agent's labels too (§69.55).
 - **The project and the deliverables:** 42 maps and 23 layouts, no broken source (§5; the 42nd, "Off-Tharsis labels (author)", 11-03, §69.63); every sheet's text read against the record and seven corrected 11-03, layout 14's recall now "–" until a feature is drawn by hand (§69.69). The interim at its 26 October
   cut (D20): 32 slides and a 21-page report, rebuilt 10-31 for layout 11's corrected citation (§69.34); speaker
   notes on every slide since 11-01, the slides unchanged (§69.41). The final
@@ -76,12 +75,12 @@ Only the state, what waits on whom and the next step; the history behind each li
 
 | # | what | who | how | done when |
 |---|---|---|---|---|
-| 1 | **Review:** `Origin` on the 199 channel copies (H2 stage 2 needs ≥ 10 fluvial and ≥ 10 volcanic); the other 200 rock-floored Athabasca channels, then the rest; the Athabasca lava margins (H1) and breached craters, by hand | author, on the sheets (`Mars Project\review_sheets\README.md`, §69.51) or in Pro; margins in Pro. The agent's CTX decisions on the 200 and on `Origin` are in (§69.55) and any answer of the author's replaces them; the 5,296 candidates outside the review prompts are not reviewed | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims` / `Landform_LavaFlowMargins`; the tally printed |
+| 1 | **The author's promised items (11-03):** check the 86 CTX-traced Athabasca margins in Pro (D33, before the freeze); draw the off-Tharsis edifice and apron labels (§14 row 3, map "Off-Tharsis labels (author)", ~1 h). Then, optionally: the other 200 rock-floored Athabasca channels, the rest, breached craters by hand | author, on the sheets (`Mars Project\review_sheets\README.md`, §69.51) or in Pro; margins in Pro. The agent's CTX decisions on the 200 and on `Origin` are in (§69.55) and any answer of the author's replaces them; the 5,296 candidates outside the review prompts are not reviewed | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims` / `Landform_LavaFlowMargins`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
-| 3 | Retests that wait for the review: H2 stage 2 (code ready in `make_t4_channel_h2.py`; needs ≥ 10 fluvial and ≥ 10 volcanic Origins); H1 on traced margins done 11-02 on the agent's 86 (§69.52), rerun `make_flow_margin_test.py --margins` when the author adds or checks margins | agent | §4 | results in the KB, either way |
+| 3 | Retests on the author's work: rerun `make_flow_margin_test.py --margins` (T5, H1) once the author has checked the margins (D33); rescore on the off-Tharsis labels once drawn (§14 row 3, ~15 min on the laptop). H2's stage 2 stays skipped (§69.63) | agent | §4 | results in the KB, either way |
 | 3b | **The v3 runs** (more and smaller seven-class training polygons, KB §69.49; the fan deposits admitted as apron by D34, §69.56: 10,269 training, 1,652 held out): first `preflight_v3.py` under the ArcGIS Python (reads only, ~5 min; 69 checks passed on the laptop 11-02, KB §69.60), then `powershell -File run_v3.ps1` from `build\`, Pro closed; U-Net then SVM, ~2 days; then the KB section, and the seven-class layouts (04b, 17b) only if the author picks the v3 maps; steps 08 and 13 (the v2 maps on the v3 held-out polygons) are already measured at the same 400 m, A16, §69.57 | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
-| 4 | The paper's analyses that need no author time, in §12.6's order (A1, A2, A3 (b) and (c), A7, A8, A9 and A13 done 11-01/02 on the laptop; A4b, A3 (a), A10, A14 and W10 done 10-31, A15, A5, A6 and A11 11-01, KB §69.34–§69.46) | agent | §12.2, §12.4 | results in the KB, by the **22 Nov** freeze |
-| 5 | The interim: **the report goes in on Thu 5 Nov** (D16, 11-03), the talk on **10 Nov**. Both rebuilt and read 11-03 with the Viking wording corrected (KB §69.64); the report as PDF is `NEXT STUFF\Mars Mosaic - Interim Report.pdf` | author (submits) | `INTERIM-PLAN.md` §0, §6 | delivered |
+| 4 | ~~The paper's analyses that need no author time~~: all done (A1–A16, KB §69.34–§69.57); nothing in §12.2 is left | agent | §12.2 | done |
+| 5 | The interim: **the report goes in on Thu 5 Nov** (D16, 11-03), the talk on **10 Nov**. Both rebuilt and read 11-03 with the Viking wording corrected (KB §69.64); the report as PDF is `NEXT STUFF\Mars Mosaic - Interim Report.pdf`. Before the talk: the "Next Steps" slide's speaker note brought to the day's review tally (§12.5) | author (submits) | `INTERIM-PLAN.md` §0, §6 | delivered |
 | 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex` (the settled blocks 8–11, 14 and "Viking colour" went in early, 11-02, §69.58, and into the deck, §69.59; the deck builds and renders on the laptop; left: blocks 12, 13, 15, 16 and the open decisions' clauses); rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
 
 The class revision (§11) is done to the final's text (2a–2c, KB §69.2–§69.27). Deep learning (X5, X5b, X5c) is done
@@ -105,18 +104,19 @@ fluvial channels, impact craters — from a co-registered visible + thermal-IR m
 |---|---|---|
 | **Co-registered mosaic** | done, 100 m (§18, §42.1) | done: one 100 m / 200 m grid, 7-band stack, layout 08 (§28, §31.2, §38) |
 | **Craters** | closed depressions ≥ 1 km in both windows, 11–13 % catalogued craters (§26, §42.3) | 465,354 closed depressions ≥ 1 km: 15.3 % catalogued at ≥ 1 km, 62.2 % at ≥ 5 km (§53.4, §54.4); layout 11 |
-| **Channels** | 2,610 candidates at Ius, 188 steep and rock-floored (§25); 3,283 at Athabasca | 969,822 routed segments, not scored (no reference), layout 12 (§53.6) |
+| **Channels** | 2,610 candidates at Ius, 188 steep and rock-floored (§25); 3,283 at Athabasca | 969,822 routed segments, layout 12 (§53.6): against the mapped valleys no better than a rotated valley map (A1, layout 19, §69.50), so the DEM's drainage paths, not a channel map |
 | **Lava flows** | the geologic map's `lAv` unit at Athabasca is the reference (§42) | SIM 3292 volcanic units, layout 10 (§44); the classifier cannot separate volcanic plains (§43.2–43.3) |
-| **Manual digitising** | **empty**; review fields ready (§46) | — |
-| **Classification** | Iso Cluster and supervised on terrain labels (§19, §27) | SVM on the 512 hand-drawn labels, 200 m 11 × 11: 73.8 %, κ 0.58 held out (§57) |
+| **Manual digitising** | 202 channels and 381 crater rims copied from the review (3,791 of 9,287 candidates, §69.33, §69.55), 86 lava margins traced by the agent on CTX (§69.52); none drawn by hand | — |
+| **Classification** | Iso Cluster and supervised on terrain labels (§19, §27) | **seven classes lead** (D28): U-Net 69.0 %, κ 0.606 and SVM 42.5 %, κ 0.310 on 237 held-out polygons (§69.24–§69.27); four classes: SVM 73.8 %, κ 0.58 (§57), U-Net 98.9 % (§66.8); nearest-training-polygon baseline 83.2 % (§69.35) |
 
 **The central claim, measured:** the thermal bands add a small, resolved amount to the classification
-(+1.3 to +2.0 pt with two classifiers, §40.1, §56), from crater and hill terrain; against calibrated TES
-thermal inertia the THEMIS mosaics keep only a weak local signal and visible albedo carries the material
-signal (§42.4, §43.1). The hand-drawn classes are landform classes (§40.1, §56.1).
+(+1.3 to +2.0 pt with two classifiers, §40.1, §56), from crater and hill terrain, in overall accuracy and none by
+balanced accuracy (D25, §69.18); against calibrated TES thermal inertia the THEMIS mosaics keep only a weak local
+signal and the Viking colour, not a calibrated albedo, carries the regional signal (§42.4, §43.1, §69.50). The hand-drawn classes are landform classes (§40.1, §56.1).
 
 **Hypotheses** (status table in `INTERIM-PLAN.md` §5): H1 not supported at the geologic map's 1:20 M
-(rerun on digitised margins); H2 not supported at stage 1 (stage 2 on reviewed channels); H3 not supported;
+nor on the 86 CTX-traced margins (§69.52; rerun after the author's check, D33); H2 not supported at stages 1 and
+1b, stage 2 cannot run in these type areas (§69.63); H3 not supported;
 H4 answered by another method. Q1, Q2, Q4, Q5 answered; Q3 overtaken; Q6 unexamined.
 
 ---
@@ -478,7 +478,7 @@ in the paper and the final deck. Left for the freeze, each drafted in `NEXT STUF
 | Limits, held-out use | "used once for each model" | the v2 maps are a second use of the 14 blocks; say so |
 | Discussion, after Limits; before the acknowledgments | no future work; no data statement | W6 and W7: `v2_drafts.tex` blocks 12 and 13 (the DOI first, D23) |
 | Results, H1 and `fig:t5`; Discussion, the hypotheses; Table `tab:hyp`; Limits, the review tally; Conclusions; abstract | H1 on the 1:20 M contacts only; "94 channels, 26 crater rims and no lava margins"; the review at 549 | T5 on the 86 CTX-traced margins (KB §69.52; `final_img\t5_traced.png`, `make_fig_t5_traced.py`) and the tally of §69.33: `v2_drafts.tex` block 15, with D33; `Dickson2024` in `references.bib` |
-| the PDF and the final deck | built 2026-10-22/23 | rebuild on the desktop (`build_final_paper.py`, MiKTeX; `build_final_deck.py`, which also builds and renders on the laptop, §69.59) and read every page: Table 3 is wider now, and the pipeline figure (`fig:pipeline`, KB §69.38) is new; note the page count |
+| the PDF and the final deck | the paper compiled by CI on every push (21 pages, §69.69); the deck rebuilt 11-03 (§69.65, §69.69) | after the freeze's edits: push (CI compiles the paper; or `build_final_paper.py` with MiKTeX on the desktop), `build_final_deck.py` on either machine, and read every page; note the page count |
 
 ### 12.2 Analyses that need no author time
 
@@ -496,14 +496,14 @@ in the paper and the final deck. Left for the freeze, each drafted in `NEXT STUF
 
 ### 12.4 The paper's text and figures
 
-- **W2, the title** (D21): it promises "Mapping Lava Flows" though the lava flows come from the geologic map; a
+- **W2, the title** (D21, **answered 11-03**: retitled, KB §69.62): it promised "Mapping Lava Flows" though the lava flows come from the geologic map; a
   title that names the stack and what it can and cannot map would match the results.
 - **W3, prior work**: the introduction cites the data but no earlier automated mapping, and the discussion compares
   with none. The six candidates are checked by DOI and in `references.bib` (DeLatte2019, Silburt2019, Bue2006,
   Luo2009, Wilhelm2020, Olofsson2014; KB §69.40), and cited since 11-01 by a prior-work paragraph in the
   introduction and a Limits sentence on polygon bias. The Discussion's comparison with prior work is drafted (11-01,
   `v2_drafts.tex` block 9, KB §69.50): a subsection "Against earlier automated mapping", in the paper since 11-02 (KB §69.58).
-- **W4, figures** (**17 pages** since these, compiled in CI 11-01, KB §69.42; 16 at the last desktop build):
+- **W4, figures** (17 pages when these went in, 11-01; **21** since the citations of 11-03, KB §69.67, §69.69):
   ~~the pipeline in Methods~~ (in since 10-31, `fig:pipeline`, KB §69.38; page 5, read); ~~the block split~~ (in since
   11-01, `fig:split`, `final_img\block_split.png`, KB §69.41; page 6, read); ~~a type-area zoom of the published map against the imagery at full resolution; Perrotin found and Oudemans breached, the detector's limit in one panel~~ (made 11-02, `final_img\typearea_zoom.png` and `crater_limit.png`, with A3's `svm_baselines.png`, in the paper since 11-02, KB §69.58); after v2, the seven-class map and its confusion; A6's `final_img\map_agreement.png` (KB §69.46) and A10's `final_img\crater_sfd.png` (KB §69.35).
 - **W5, limits to add**: one labeller; the rule-screened v2 rows; hills short; THEMIS strips differ in local time,
@@ -524,9 +524,9 @@ in the paper and the final deck. Left for the freeze, each drafted in `NEXT STUF
   `Edwards2026data`, and a data statement as AAS asks. Publishing: the author's yes (D23: with the pre-final
   release). **The statement is drafted 11-02** (`v2_drafts.tex` block 13, KB §69.50); at the release, add the DOI
   and version to `Edwards2026data`.
-- **W9, the thermal claim** (D25): by balanced accuracy the thermal gain vanishes (−0.3 and +0.1 points, KB
+- **W9, the thermal claim** (D25, **answered 11-03, yes**: qualified everywhere, KB §69.62): by balanced accuracy the thermal gain vanishes (−0.3 and +0.1 points, KB
   §69.18); the paper says so in Results, but the abstract and conclusions still give "a resolved 1.4 to 2.0
-  points" alone. Whether they should carry the qualifier is the author's call.
+  points" alone. Since D25 they carry the qualifier.
 - **W11, the values Methods leaves out**: the detector's, the router's and the SVM's thresholds are already in the
   prose (read 10-31), so a parameter table would repeat them on a tight page budget. Missing: the review rule's
   thresholds (fluvial, floor ≥ 20 m below a 4.8 km flank ring and `ShareVolc` < 0.5; apron, `SlopeMed` ≥ 1° and
@@ -575,10 +575,10 @@ review (§6) or the v2 scoring (§11.5); most of it is laptop work that fills th
 | P12 | **Closing the project, after 8 Dec** (D27): a tag `final-2026-12-08` and a final release (the deck, the paper's PDF, the maps); `CITATION.cff` given `version`, the DOI (D23), a `preferred-citation` for the paper and its date; the README's "Where it stands" turned into what was found; this plan closed with a header saying so; the memory and "Resume here" retired; D14's smoke classes settled | the repository reads as finished work, not a project paused mid-term | laptop, ~1 h, 9–12 Dec | after |
 | P13 | **The maps viewable without ArcGIS, after 8 Dec and only if the project continues**: the two seven-class maps as cloud-optimised GeoTIFFs (`gdal_translate -of COG` under the ArcGIS Python, which has GDAL) in a release, and a simple web map of them on the project page | a reader can pan the maps in a browser instead of downloading 106,694 × 35,565-pixel rasters | laptop, ~2 h | after |
 
-**The thermal wording beyond the paper** (D25, widened): the README's T1 section ("Yes, a little") and the interim
-talk give the overall-accuracy gain alone. The interim's content is cut at 26 October (D20), but this result is a
+**The thermal wording beyond the paper** (D25, widened): the README's T1 section is qualified (§69.62); the interim
+talk gives the overall-accuracy gain alone. The interim's content is cut at 26 October (D20), but this result is a
 reanalysis of logs that existed at the cut; one backup slide for "does thermal really help?" would answer the
-question without changing the cut. The README follows whatever the paper says.
+question without changing the cut, if the author wants it on screen (§12.5).
 
 ### 13.2 Order of work
 
