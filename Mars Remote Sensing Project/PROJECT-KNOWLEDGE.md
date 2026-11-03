@@ -6456,3 +6456,8 @@ needs). Two caveats: the v3 pieces keep the classes of the v2 polygons they were
 ground; so this is a second reading of the same blocks rather than an independent test, and the v2 score stays the
 like-for-like one. The paper's "firm by balanced accuracy" needs a qualifier or the v3 interval beside it: **D35**,
 the author's (NEXT-STEPS §2), drafted as `v2_drafts.tex` block 17.
+
+**D35 answered the same evening, "Yes, qualify it":** block 17 applied. The paper's Results now say the lead is
+resolved by balanced accuracy on the v2 held-out polygons, then give the v3 scores and interval (52.9 % against
+40.4 %, −3.7 to +16.3); the Conclusions add "though not on a larger rule-screened set"; `final.py`'s U-Net slide
+says the same. `verify_interim.py` on both: every number in the record (215 in `final.py`, 781 in the `.tex`).

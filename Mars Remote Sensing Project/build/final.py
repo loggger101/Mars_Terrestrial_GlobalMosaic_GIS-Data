@@ -178,10 +178,11 @@ FIGURES = [
     dict(title="Seven classes from a U-Net",
          images=[("layout", "17b_unet_v2_provinces")], map_left=True,
          points=["Held out 69.0%, κ 0.606, against the seven-class SVM's 42.5% and the four-class U-Net's 44.1%",
-                 "Firm by balanced accuracy (56.9% against 41.9%); by accuracy the lead sits on two Tharsis blocks",
+                 "Ahead by balanced accuracy (56.9% against 41.9%), resolved by block here but not on the 1,652 "
+                 "v3 held-out polygons; by accuracy the lead sits on two Tharsis blocks",
                  "Every new class above its share of the labels: user's edifice 0.487, apron 0.798, fluvial 0.702",
                  "Volcanic edifice spreads over 40.0% of ±60°; on the four original classes 61.9% against 98.9%"],
-         source="§69.25, §69.44"),
+         source="§69.25, §69.44, §69.57"),
     dict(title="Seven classes lead, at a measured cost",
          images=[("file", r"final_img\svm_vs_unet_v2.png")],
          points=["A rule set before the run would keep the four-class maps: on classes 1–4 the SVM scores 66.0% "

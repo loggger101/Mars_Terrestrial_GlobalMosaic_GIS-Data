@@ -639,10 +639,14 @@ the landform map, with the U-Net map beside it as a province map. %% KB §66.6, 
 
 Retrained on the seven classes (17,444 chips, 6.2~h), the U-Net scores 69.0\%, \kap\,0.606 on the v2 held-out
 polygons, against 44.1\%, \kap\,0.301 for the four-class U-Net and 42.5\% for the seven-class support vector machine
-(Figure~\ref{fig:unet7}). Its lead over the latter is firm by balanced accuracy, 56.9\% against 41.9\% (block interval
-$+2.3$ to $+19.5$ points), but not by accuracy ($-9.7$ to $+47.8$): most of the 26.5 points lie in the two Tharsis
-blocks, 47.5\% of the held-out area, where the support vector machine scores 16.0\% and 25.6\% and the U-Net 68.6\% and
-96.3\%. The four-class U-Net's lead over the support vector machine map holds by block ($+11.1$ to $+41.0$).
+(Figure~\ref{fig:unet7}). Its lead over the latter is resolved by balanced accuracy on these polygons, 56.9\% against
+41.9\% (block interval $+2.3$ to $+19.5$ points), but not by accuracy ($-9.7$ to $+47.8$): most of the 26.5 points lie
+in the two Tharsis blocks, 47.5\% of the held-out area, where the support vector machine scores 16.0\% and 25.6\% and
+the U-Net 68.6\% and 96.3\%. On the 1,652 held-out polygons of a larger, rule-screened label set in the same blocks (the
+v2 polygons cut into 0.5\textdegree{} pieces, plus polygons placed from reference data), both maps score about 3 points
+lower (65.8\% and 39.8\%) and the order holds, but the balanced-accuracy lead, 52.9\% against 40.4\%, is no longer
+resolved by block ($-3.7$ to $+16.3$ points): the lead is clear by polygon and rests on a few blocks. %% KB §69.57, D35
+The four-class U-Net's lead over the support vector machine map holds by block ($+11.1$ to $+41.0$).
 Each new class has a user's accuracy above its share of the held-out area: volcanic %% KB §69.44
 edifice 0.487, apron 0.798 and fluvial channel 0.702. By the same rule it would not replace the four-class U-Net: on
 classes 1--4 it scores 61.9\% against 98.9\%, and Crater, hills and Normal Ground lose 41.3, 52.6 and 28.8 points of
@@ -779,8 +783,9 @@ saw, where geography alone, the nearest training polygon's class, gives 61.3\% (
 a resolved 1.4 to 2.0 points. A U-Net reaches 98.9\% as a terrain-province map.
 \item Revised to seven classes, the maps separate impact craters from volcanoes and name volcanic edifices, aprons
 and fluvial channels: the U-Net scores 69.0\%, \kap\,0.606 and the support vector machine 42.5\% on 237 held-out
-polygons, below the four-class maps on the original classes. The U-Net's lead is firm by balanced accuracy (56.9\%
-against 41.9\%) and rests, by accuracy, on the two Tharsis blocks.
+polygons, below the four-class maps on the original classes. The U-Net's lead is resolved by balanced accuracy on
+the v2 held-out polygons (56.9\% against 41.9\%), though not on a larger rule-screened set, and rests, by accuracy, on
+the two Tharsis blocks.
 \item Lava flows are not separable in these bands; the geologic map remains the lava-flow reference, and H1 and H2 await
 digitised margins and channels.
 \end{enumerate}
