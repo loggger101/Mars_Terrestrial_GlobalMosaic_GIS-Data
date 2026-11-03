@@ -21,7 +21,8 @@ What goes to the repo, mirrored under the same folder names as on the drive:
   Mars Remote Sensing Project\  everything except .npy caches and __pycache__
   Mars Project\                 the .aprx, models, logs, metadata sidecars, layouts: every file
                                 except raster payloads (.tif/.ovr), the gdb and DL chips; not .backups
-                                (the .aprx snapshots; git versions the .aprx itself, KB §57.6)
+                                (the .aprx snapshots; git versions the .aprx itself, KB §57.6); of
+                                review_sheets\ only the guides and answer files, not the sheets
   <drive root>\  -> drive-root\ sidecars of the four globals (not "new training.*", KB §57.6)
 Any single file over 95 MB is skipped and reported (GitHub refuses files over 100 MB).
 
@@ -81,9 +82,11 @@ SKIP_DIR_PREFIX = (".backup_", ".py_backup_")
 # History, not current work, kept on the drive and in git history only (KB §57.6): the .aprx snapshots (git
 # versions Mars Project.aprx itself), a stale unpacked copy of the .aprx, Presentation 1's figure folders.
 SKIP_DIRS |= {".backups", "aprx_live", "le_img"}
-# Mars Project\review_sheets: the review contact sheets, ~120 MB of PNG redrawn by make_review_chips.py (KB §69.51);
-# their index.json files and the answers applied are logged in build\logs\ instead
-SKIP_DIRS |= {"review_sheets"}
+# Mars Project\review_sheets: the review contact sheets, ~120 MB of PNG redrawn by make_review_chips.py (KB §69.51),
+# their index.json files and the CTX tile cache stay on the drive (the answers applied are logged in build\logs\);
+# the guides (.md) and the author's answer files (.txt) are mirrored by keep_mp: they cannot be redrawn
+SKIP_DIRS |= {"ctx_cache"}
+REVIEW_KEEP = {".md", ".txt"}
 SKIP_FILES = {"neutral_voice.py",
               "ocean first pres LE.pptx"}     # Presentation 1, delivered; its PDF stays in OLD\
 RASTER = {".tif", ".tiff", ".ovr", ".img", ".jp2"}
@@ -112,6 +115,8 @@ def keep_rsp(p):   # Mars Remote Sensing Project
 
 
 def keep_mp(p):    # Mars Project
+    if "review_sheets" in p.relative_to(DRIVE).parts:
+        return p.suffix.lower() in REVIEW_KEEP
     return p.suffix.lower() not in RASTER
 
 

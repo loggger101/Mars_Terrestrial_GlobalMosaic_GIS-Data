@@ -23,7 +23,7 @@ This repository is the project page and an off-drive backup of the project. The 
 
 The four sources sit in three coordinate frames. Everything is put on one grid read from the night mosaic, so the day–night pair is never resampled and the DEM lands on its native 200 m. Elevation is kept out of the classification stack on purpose: in raw metres it would swamp the 8-bit bands, and an earlier map that included it turned out to be mostly an elevation map. The machine candidates are prompts for a person to accept or reject, not results.
 
-## Where it stands (2026-11-01)
+## Where it stands (2026-11-03)
 
 The interim report goes in on **5 November 2026**, the interim presentation is on **10 November** and the final deliverable **8 December 2026**. Presentation 1 and the prospectus are delivered. The interim deck and report are generated from one source; their data cut is **26 October** (decision D20): they cover what is measured by then, and later work goes to the final ([`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF)); so are drafts of the final paper (AASTeX) and deck ([`NEXT STUFF/Final/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final)). The working plan is [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); how to work on the project is [`HANDOFF-DESKTOP.md`](Mars%20Remote%20Sensing%20Project/HANDOFF-DESKTOP.md).
 
@@ -45,11 +45,11 @@ The interim report goes in on **5 November 2026**, the interim presentation is o
 
 The full list, with who does what, is the "Resume here" section of [`NEXT-STEPS.md`](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md); open questions are numbered in the [knowledge base, §11](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md#11-open-questions).
 
-1. **Review the machine candidates and digitise the three landform layers** (the critical path). Each candidate's `Review` field (accept / reject / unsure) is set in the attribute table; `build/accept_reviewed.py` copies only the accepted ones into `Landform_ChannelCenterlines` and `Landform_CraterRims` (199 and 381 so far; `Landform_LavaFlowMargins` is empty). Every closed depression at both type areas is judged. Open: the remaining Athabasca channels (200 of the 409 rock-floored first), and the channels' fluvial or volcanic `Origin`, which H2's second stage needs; what the candidates miss (breached craters, lava margins at Athabasca) is drawn by hand. Layout 14 turns each session into the detector's precision and recall. This work is for the final: the layers were empty at the interim's data cut, so the interim presents every machine product as candidates with its measured recall, not as a landform map.
+1. **Review the machine candidates and digitise the three landform layers** (the critical path). Each candidate's `Review` field (accept / reject / unsure) is set in the attribute table; `build/accept_reviewed.py` copies only the accepted ones into `Landform_ChannelCenterlines` and `Landform_CraterRims` (202 and 381 so far); `Landform_LavaFlowMargins` holds the 86 Athabasca margins the agent traced on CTX, which the author checks before the freeze (D33, KB §69.52). Every closed depression at both type areas is judged. Open: the author's own calls on the other 200 rock-floored Athabasca channels and on each channel's `Origin`, which replace the agent's (written in at the author's decision and marked as the agent's, KB §69.55); what the candidates miss (breached craters) is drawn by hand. The review is answered on contact sheets, without Pro ([the guide](Mars%20Project/review_sheets/README.md), KB §69.51). Layout 14 turns each session into the detector's precision and recall. This work is for the final: the layers were empty at the interim's data cut, so the interim presents every machine product as candidates with its measured recall, not as a landform map.
 2. **The seven-class labels**: `propose_label_changes.py` has proposed a class for each of the 512 labels and new polygons for the three new classes (KB §69.2); reviewed and applied on 2026-10-27 (KB §69.8: the author's own rows, the apron and fluvial rows by a written rule at the author's request); the SVM is run and scored on them ([`run_v2.ps1`](Mars%20Remote%20Sensing%20Project/build/run_v2.ps1)), and so is the U-Net (69.0 %, κ 0.606); both fail D18's rule, judged on classes 1–4 (D19, KB §69.4, §69.24–69.25), but the author leads with them as the more detailed maps (D28, KB §69.26; layouts 04b, 13b, 17b). **More and smaller seven-class labels (v3, KB §69.49)**: built on 2026-11-01 by [`propose_v3_labels.py`](Mars%20Remote%20Sensing%20Project/build/propose_v3_labels.py) at the author's request; the SVM and U-Net retrained on them by [`run_v3.ps1`](Mars%20Remote%20Sensing%20Project/build/run_v3.ps1) on the desktop, scored on both the v3 and the v2 held-out polygons. The final shows the four-class and seven-class maps side by side; the interim describes the scheme as proposed ([`NEXT-STEPS.md` §11](Mars%20Remote%20Sensing%20Project/NEXT-STEPS.md#11-the-class-revision-d17-for-the-final)).
 3. **Deep learning**: trained and scored ([below](#deep-learning-x5)). Any further tuning first needs validation blocks of its own, apart from the held-out test blocks (KB §66.5).
-4. **The retests that wait for the review**, for the final: volcanic against fluvial channels by origin (H2, stage 2), and flow margins in IR against Viking on lava margins digitised at Athabasca (H1).
-5. **The interim**: its content is set at the 26 October cut and both documents are rebuilt to it, the percent-complete column included, and the deck carries a speaker note on every slide; the presentation is on 10 November. **The final report and presentation** follow, from the layouts and the results below (data freeze 22 November).
+4. **The retests that wait for the review**, for the final: flow margins in IR against Viking (H1, T5) has run on the agent's 86 traced margins and finds H1 not supported; it is rerun once the author has checked them (D33). Volcanic against fluvial channels by origin (H2, stage 2) is not drawn, at the author's word: no window holds both origins, so H2 stays at stages 1 and 1b (KB §69.63). **Off-Tharsis labels**: the author draws edifice and apron polygons in two held-out blocks outside Tharsis (Syrtis Major's paterae, the Nilosyrtis aprons), then the seven-class maps are rescored on them (map "Off-Tharsis labels (author)", [guide](Mars%20Project/review_sheets/offtharsis/README.md), KB §69.63).
+5. **The interim**: its content is set at the 26 October cut and both documents are rebuilt to it, the percent-complete column included, and the deck carries a speaker note on every slide. The report goes in on 5 November (as PDF, `NEXT STUFF/Mars Mosaic - Interim Report.pdf`) and the presentation is on 10 November. **The final report and presentation** follow, from the layouts and the results below (data freeze 22 November).
 
 ## Results so far
 
@@ -266,16 +266,18 @@ Mars Remote Sensing Project/
   NEXT STUFF/              interim report and presentation; Final/: the AASTeX paper and the final deck (drafts)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 41 maps, all Mars, and 23 layouts
+  Mars Project.aprx        the ArcGIS Pro project: 42 maps, all Mars, and 23 layouts
   Global60/, TypeArea/,    metadata sidecars, models (.ecd), raster attribute tables, layouts;
   Athabasca/               Global60/checks/ holds the DEM step chips
   DLModels/                the five deep-learning models' metadata and training plots (the
                            weight files, 137-165 MB, are in the release's dl-models.zip)
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs
+  review_sheets/           the guides to the candidate review on contact sheets and to the off-Tharsis
+                           labels, and the author's answer files (the sheets stay on the drive)
 exports/
   mars_project_vectors.gdb every feature class in Mars Project.gdb, including the 512 hand-drawn
-                           training polygons, the candidate layers and the empty digitising classes
+                           training polygons, the candidate layers and the digitised landforms
   README.md                the layer catalogue: rows, CRS, fields and what each layer is
 docs/
   rasters.md               every backed-up raster: grid, type, NoData, what it is, which release

@@ -10,7 +10,8 @@
 3. No file is over GitHub's 100 MB limit.
 4. CITATION.cff names the same title and repository URL as the README.
 5. The counts the project page states match the tree: build scripts (README and docs/scripts.md)
-   and layouts. Numbers typed into a page go stale silently; this catches it.
+   and layouts, and the maps and layouts the .aprx lists. Numbers typed into a page go stale silently; this
+   catches it.
 6. Every image and PDF in the tree is linked from docs/figures.md, so the figure index stays
    complete. The interim and final decks' layout crops (build/interim_img/NN_*, build/final_img/NN_*) are
    described there as a group each; the final paper's figures/ folder holds copies of figures listed there;
@@ -31,7 +32,7 @@
 
 Exit code 1 and a list of failures if anything is wrong. Stdlib only.
 """
-import ast, hashlib, json, os, re, subprocess, sys, tempfile, urllib.parse
+import ast, hashlib, json, os, re, subprocess, sys, tempfile, urllib.parse, zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -178,6 +179,13 @@ def citation():
         fails.append("CITATION.cff title does not name the Mars Global Mosaic")
 
 
+def aprx_items(kind):
+    """How many project items of one type ("Map", "Layout") the .aprx lists: it is a zip, GISProject.json its manifest."""
+    with zipfile.ZipFile(ROOT / "Mars Project" / "Mars Project.aprx") as z:
+        items = json.loads(z.read("GISProject.json"))["projectItems"]
+    return sum(i.get("itemType") == kind for i in items)
+
+
 def counts():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     index = (ROOT / "docs" / "scripts.md").read_text(encoding="utf-8")
@@ -190,6 +198,9 @@ def counts():
         ("build scripts", index, r"All (\d+) scripts", scripts),
         ("rows in the script index", index, None, scripts),
         ("layouts", readme, r"Mars Project\.aprx\s+.*?(\d+) layouts", len(list(mp.glob("*/layouts/*.png")))),
+        ("layouts", readme, r"The (\d+) map sheets", len(list(mp.glob("*/layouts/*.png")))),
+        ("maps in the .aprx", readme, r"Mars Project\.aprx\s+.*?(\d+) maps", aprx_items("Map")),
+        ("layouts in the .aprx", readme, r"Mars Project\.aprx\s+.*?(\d+) layouts", aprx_items("Layout")),
     ]
     for what, text, pattern, actual in stated:
         if pattern is None:

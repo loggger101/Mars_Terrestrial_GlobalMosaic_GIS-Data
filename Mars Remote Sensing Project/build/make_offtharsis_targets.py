@@ -91,6 +91,14 @@ def named(blocks):
     return out
 
 
+PLURAL = {"Mons": "Montes", "Tholus": "Tholi", "Patera": "Paterae"}
+
+
+def label(d):
+    """A feature's name, with its type only where the name does not already say it ("Nili Patera", not "Nili Patera Patera")."""
+    return d["name"] if d["name"].split()[-1] in (d["type"], PLURAL[d["type"]]) else "%s %s" % (d["name"], d["type"])
+
+
 def main():
     v2, v3 = held_out("Landform_TrainingSamples_v2_60_test"), held_out("Landform_TrainingSamples_v3_60_test")
     blocks = sorted({b for b, _ in v2} - THARSIS, key=lambda s: tuple(map(int, s.split("_"))))
@@ -112,7 +120,7 @@ def main():
         print("%-6s %-9s %-10s edifice units %5.1f %%, apron units %5.1f %%; held out v2 %d/%d, v3 %d/%d; named: %s"
               % (r["block"], r["lon_e"], r["lat"], 100 * r["units"]["edifice"], 100 * r["units"]["apron"],
                  r["v2_edifice"], r["v2_apron"], r["v3_edifice"], r["v3_apron"],
-                 ", ".join("%s %s (%.0f km)" % (d["name"], d["type"], d["diam_km"]) for d in r["named"]) or "none"))
+                 ", ".join("%s (%.0f km)" % (label(d), d["diam_km"]) for d in r["named"]) or "none"))
     json.dump(dict(script="make_offtharsis_targets.py", blocks=rows), open(OUT, "w", encoding="utf-8"), indent=1)
     os.makedirs(os.path.dirname(SHEET), exist_ok=True)
     with open(SHEET, "w", encoding="utf-8") as f:
@@ -122,7 +130,7 @@ def main():
             f.write("| %s | %s | %s | %.1f %% | %.1f %% | %d / %d; %d / %d | %s |\n" % (
                 r["block"], r["lon_e"], r["lat"], 100 * r["units"]["edifice"], 100 * r["units"]["apron"],
                 r["v2_edifice"], r["v2_apron"], r["v3_edifice"], r["v3_apron"],
-                ", ".join("%s %s, %.0f km (%.1f°E, %.1f°)" % (d["name"], d["type"], d["diam_km"], d["lon_e"], d["lat"])
+                ", ".join("%s, %.0f km (%.1f°E, %.1f°)" % (label(d), d["diam_km"], d["lon_e"], d["lat"])
                           for d in r["named"]) or "none"))
     print("wrote", OUT, "and", SHEET)
 

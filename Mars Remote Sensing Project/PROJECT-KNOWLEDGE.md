@@ -6667,3 +6667,20 @@ notes (§69.9: no KB reference on a slide), so every slide has one. Until today 
   the interim's own option, now fits); the limit cards touched their bottom edge at 12 pt (11 pt now). The live
   deck (`NEXT STUFF\Final\Mars Global Mosaic - Final Presentation.pptx`, backed up first to
   `NEXT STUFF\.backup_20261103\`) is rebuilt; `verify_interim.py` on `final.py`: all 235 numbers in the record.
+
+### 69.66 The repository brought level with the record; the review guides backed up — 2026-11-03, laptop **[V]**
+
+- **Stale facts on the project page:** the README still said the `.aprx` holds 41 maps (42 since §69.63), that
+  `Landform_LavaFlowMargins` is empty (86 margins since §69.52) and the channel layer 199 (202), listed H2's stage 2
+  and H1 as waiting for the review (H1 has run on the agent's margins, D33; stage 2 is skipped, §69.63) and left out
+  the off-Tharsis labels and the 5 November report. All corrected; "Where it stands" is dated 2026-11-03.
+- **A check for the next one:** `tools/check_repo.py` now reads the maps and layouts the `.aprx` lists from its manifest
+  (`GISProject.json` inside the zip; 42 maps, 23 layouts) and fails when the README's count differs. Run before the
+  README fix, it failed on the 41 ("page says 41 maps in the .aprx, the tree has 42"); after, all checks pass.
+- **The review guides were on the drive only:** `github_sync.py` skipped `Mars Project\review_sheets\` whole, guides
+  included, and the author's `answers.txt` files would have been skipped too. It now mirrors that folder's `.md` and
+  `.txt` files only; the sheets (PNG), their `index.json` and the CTX tile cache (`ctx_cache\`, 6,000+ files) stay on
+  the drive. Three guides are now in the repository, linked from the README.
+- **`targets.md` doubled each feature's type** ("Nili Patera Patera", "Coprates Montes Mons"): the IAU `clean_name`
+  already carries it. `make_offtharsis_targets.py` now adds the type only where the name lacks it; rerun, the sheet
+  differs in the names alone.
