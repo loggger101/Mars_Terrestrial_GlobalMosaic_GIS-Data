@@ -6538,3 +6538,16 @@ has 20 steps, not 14. **Planted** (`--plant`, step 11's raster renamed `_mode13`
 2 failed, exit 1. What it cannot check: the desktop's own paths (`D:\ArcGISPro`, free space on `C:`), the export's
 chip count, or anything a step does once it runs. `NEXT-STEPS.md` row 3b and `run_v3.ps1`'s header now say to run
 it first on the desktop.
+
+### 69.61 The off-Tharsis test the v3 labels cannot give; the paper's Methods names all five baselines — 2026-11-02, laptop **[V]**
+
+- **§14 row 3, a firmer test of the seven-class lead off Tharsis:** the v3 held-out set does not supply it. Counted
+  by block and class (read only): outside the Tharsis blocks −9_−1 and −9_0, the 1,652 v3 held-out polygons hold
+  **6 volcanic edifice polygons, all in block −4_−2, and 16 apron polygons, all in −11_1** (Tharsis: 201 edifice,
+  340 apron). The v2 held-out set holds 2 and 2 there. So an off-Tharsis score of the two new volcanic classes rests
+  on one block each in either set; the test still needs edifice and apron labels drawn in held-out blocks outside
+  Tharsis (Elysium, Syrtis, Hesperia), the author's ~1 h, as §14 row 3 says. No score was run.
+- **The paper's Methods** said "Three baselines accompany every score" though Results now gives five; it now names
+  them: one class everywhere, the nearest training polygon (D30, §69.35), the Gaussian maximum-likelihood classifier on
+  elevation and latitude (A3 (b), §69.50), the share of the map elevation bins reproduce, and the named-crater
+  inside/ring share.

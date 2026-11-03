@@ -271,12 +271,13 @@ Accuracy is the area-weighted (by $\cos$ latitude) share of held-out polygon are
 \kap\ \citep{Cohen1960} and per-class producer's and user's accuracy \citep{Congalton1991}. Because one class dominates
 the held-out area, each map is also given its balanced accuracy (the mean producer's accuracy), the mean of the
 per-class F1 scores, and its disagreement split into quantity (the wrong amount of a class) and allocation (the right
-amount in the wrong place) after \citet{Pontius2011}. Three baselines accompany
-every score: one class everywhere (58.6\% on the held-out set), the share of the map that elevation alone reproduces
-(each 500~m bin given its majority class), and the share of named craters $\ge5$~km labelled Crater inside $0.7R$
-against a ring at $1.5$--$2.5R$. A majority filter removes speckle; its window was set from the resolving rule (about
+amount in the wrong place) after \citet{Pontius2011}. Five baselines accompany
+the scores: one class everywhere (58.6\% on the held-out set); the class of the nearest training polygon, geography
+alone; a Gaussian maximum-likelihood classifier on elevation and latitude alone, trained on the same polygons; the
+share of the map that elevation alone reproduces (each 500~m bin given its majority class); and the share of named
+craters $\ge5$~km labelled Crater inside $0.7R$ against a ring at $1.5$--$2.5R$. A majority filter removes speckle; its window was set from the resolving rule (about
 2~km) rather than from the score, because every score rises with every window when the labelled polygons are large.
-%% KB §31.3, §30.1, §32.2, §57
+%% KB §31.3, §30.1, §32.2, §57, §69.35, §69.50 (A3 (b))
 
 \subsection{Deep learning}
 
