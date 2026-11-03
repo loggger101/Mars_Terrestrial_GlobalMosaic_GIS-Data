@@ -6684,3 +6684,13 @@ notes (§69.9: no KB reference on a slide), so every slide has one. Until today 
 - **`targets.md` doubled each feature's type** ("Nili Patera Patera", "Coprates Montes Mons"): the IAU `clean_name`
   already carries it. `make_offtharsis_targets.py` now adds the type only where the name lacks it; rerun, the sheet
   differs in the names alone.
+- **CI pinned for the run to the deadline:** every workflow ran on actions that target the retired Node 20, on a
+  floating `ubuntu-latest`, and the paper on a floating `texlive/texlive:latest`. Now `actions/checkout`,
+  `setup-python` and `upload-artifact` at v7 (Node 24), `ubuntu-26.04` (what the runs already used), and the TeX Live
+  image pinned by the digest that compiled the 20-page paper on 2026-11-03, so no image update can change the paper
+  before 8 Dec. `tools/check_remote.py`, last run 10-08, run again: 95 release assets match their checksums and the four
+  source mosaics are served at the drive's sizes.
+- **The seven-class maps on the project page:** "Using the data" named only the four-class map; it now names both
+  seven-class maps (D28) and the release zip that holds them (`global60-classification-part2.zip`, read from the zip's
+  own directory), with codes 5–7. The layer catalogue's class-code note named only `*_v2*` as seven-class; it now names
+  `*_v3*` and `*_offtharsis_draw` too (`github_export_gdb.py`'s header, so the next export keeps it).

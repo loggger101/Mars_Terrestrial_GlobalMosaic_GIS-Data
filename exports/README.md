@@ -9,7 +9,7 @@ were checked against the source.
 The same layers are in the release as a GeoPackage (`mars_project_vectors.gpkg.zip`).
 
 **Class codes in the training layers:** 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground; the
-seven-class labels (`*_v2*`) add 5 volcanic edifice, 6 apron, 7 fluvial channel. Every labelled file and model
+seven-class labels (`*_v2*`, `*_v3*`, `*_offtharsis_draw`) add 5 volcanic edifice, 6 apron, 7 fluvial channel. Every labelled file and model
 uses these, and they are the project's schema (decided 2026-10-09, KB §11 q23; the seven classes 2026-10-22,
 KB §68.1); a code is never renumbered. The class schema file `Composite Object Classes.ecs` swaps 2 and 3 and is superseded: don't draw
 new samples under it (KB §29.2).
