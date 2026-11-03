@@ -566,14 +566,14 @@ by feature size. \label{fig:accuracy}}
 \centering
 \caption{Held-out scores of the landform maps \label{tab:svm}}
 \small
-\setlength{\tabcolsep}{3.5pt}
+\setlength{\tabcolsep}{2.6pt}
 \begin{tabular}{lcccccc}
 \hline\hline
 Map & Acc. & $\kappa$ & Bal. & F1 & Q & A \\
 \hline
 One class everywhere & 58.6 & -- & -- & -- & -- & -- \\
 Nearest training polygon & 83.2 & 0.658 & 61.3 & 64.2 & 14.5 & 2.2 \\
-Elevation and latitude only & 62.5 & 0.236 & 38.7 & -- & -- & -- \\
+Elevation, latitude only & 62.5 & 0.236 & 38.7 & -- & -- & -- \\
 SVM 400 m, raw & 70.5 & 0.540 & 63.5 & 53.4 & 23.6 & 5.9 \\
 SVM 200 m, raw & 69.9 & 0.532 & 63.1 & 52.8 & 24.2 & 5.9 \\
 SVM 200 m, $5\times5$ & 72.0 & 0.560 & 65.1 & 54.4 & 22.2 & 5.8 \\
@@ -583,7 +583,7 @@ U-Net, two passes & 98.9 & 0.980 & 94.8 & 93.9 & 0.5 & 0.6 \\
 \multicolumn{7}{l}{\textit{On the 237 v2 held-out polygons}} \\
 One class everywhere & 29.5 & -- & -- & -- & -- & -- \\
 Nearest training polygon & 45.6 & 0.318 & 51.0 & 47.1 & 28.0 & 26.4 \\
-Elevation and latitude only & 31.8 & 0.160 & 27.0 & -- & -- & -- \\
+Elevation, latitude only & 31.8 & 0.160 & 27.0 & -- & -- & -- \\
 SVM four-class$^{a}$ & 35.7 & 0.244 & 42.0 & 25.1 & 55.4 & 8.9 \\
 SVM seven-class$^{b}$ & 42.5 & 0.310 & 41.9 & 38.8 & 29.1 & 28.3 \\
 U-Net four-class & 44.1 & 0.301 & 56.7 & 37.1 & 55.4 & 0.5 \\
@@ -594,7 +594,7 @@ U-Net seven-class & 69.0 & 0.606 & 56.9 & 56.6 & 14.7 & 16.3 \\
 Bal., balanced accuracy; F1, mean per-class F1; Q and A, quantity and allocation disagreement ($\mathrm{Q}+\mathrm{A}=
 100-\mathrm{Acc.}$, to rounding). Area-weighted by $\cos$ latitude, scored at 400~m. The first eight rows are on the
 183 four-class held-out polygons, the last seven on the 237 seven-class ones; the two sets are not comparable. Nearest
-training polygon: each pixel given the class of the closest training polygon, geography alone. Elevation and
+training polygon: each pixel given the class of the closest training polygon, geography alone. Elevation,
 latitude only: a classifier on those two values, F1, Q and A not computed. Block
 intervals on accuracy (95\%, the 14 held-out blocks resampled): SVM $11\times11$ 57.5--87.8, U-Net two passes
 97.3--99.6, SVM seven-class 23.8--71.5, U-Net seven-class 50.5--80.2.
@@ -766,7 +766,7 @@ order-$\ge2$ segments on volcanic units are shallower than the 10,799 on mapped 
  & Claim & Verdict & Decisive number \\
 \hline
 H1 & Day IR shows flow margins Viking misses & not supported at 1:20\,M & day $-$ Viking $+8.7$ pt, interval $-1.7$ to $+18.1$ \\
-H2 & Fluvial and volcanic channels separate & not supported at stages 1 and 1b & volcanic shallower; thermal $|d|\le0.31$ \\
+H2 & Fluvial and volcanic channels separate & not supported (stand-ins) & volcanic shallower; thermal $|d|\le0.31$ \\
 H3 & Composite classes are most stable & not supported & ARI 0.40 against 0.61--0.89 \\
 H4 & Large IAU craters recovered & answered by fill depth & 68\% of 117 craters $\ge100$~km \\
 T1 & Thermal IR improves the classification & yes, slightly & $+1.36$ and $+1.97$ pt, intervals above 0 \\

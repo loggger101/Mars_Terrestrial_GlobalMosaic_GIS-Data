@@ -6475,7 +6475,7 @@ freeze only the blocks that wait on someone. Each value was re-read from its sou
 - **Block 9 (W3):** the Discussion subsection "Against earlier automated mapping", between the hypotheses and Limits.
 - **Block 10 (A1, A7):** the channel paragraph scores the routed network against the valley map (replacing "The
   network is not scored here"); the hypotheses add the second stand-in for H2; Table `tab:hyp`'s H2 row reads "not
-  supported at stages 1 and 1b", thermal |d| ≤ 0.31.
+  supported (stand-ins)", thermal |d| ≤ 0.31 (the draft's "at stages 1 and 1b" overflowed the table).
 - **Block 11 (A3 (b), A8):** a paragraph on the elevation-and-latitude baseline, a row for it in each half of
   Table `tab:svm` (the note now says eight rows and seven), and the Limits sentence on SIM 3292's unit groups.
 - **Block 14 (W4):** `fig:craterlimit` (Methods), `fig:zoom` and `fig:baselines` (Results); the three added to
