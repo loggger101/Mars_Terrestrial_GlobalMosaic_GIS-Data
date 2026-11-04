@@ -7,8 +7,9 @@ r"""Mirrors the project's small, irreplaceable files into the GitHub repo clone 
     python github_sync.py --to-drive <commit> [--dry-run]
                                         the other way: files the clone changed since <commit>, onto the drive
     python github_sync.py --force       copy and remove even where the guard below refuses
-    python github_sync.py --deliverables
-                                        also copy the built decks, report and paper PDF: once per deadline
+    python github_sync.py --hold-deliverables
+                                        leave the built decks, report and paper PDF out this once
+                                        (--deliverables, the old opt-in, is still accepted and does nothing)
     --drive <path>                      the drive's root, for running the clone's copy of this script
 
 Repo: loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data, cloned by default at
@@ -28,8 +29,9 @@ Any single file over 95 MB is skipped and reported (GitHub refuses files over 10
 
 The built deliverables (NEXT-STEPS §13.1 P4, D26): every .pptx, .docx and .pdf under NEXT STUFF\ outside a figures\
 folder is rebuilt from source on the drive, and each commit of one adds 15-25 MB to the history for good (nearly all
-of the .git, KB §69.19). A new or changed one is held back and listed unless --deliverables is given, used once per
-deadline; the mirror keeps the copy last committed, never deletes it for being held back.
+of the .git, KB §69.19). They are mirrored like everything else (D26, answered 2026-11-03: everything goes in the
+repo, nothing held back; KB §69.74). --hold-deliverables leaves a new or changed one out and lists it; the mirror then
+keeps the copy last committed, never deletes it for being held back.
 
 What does not, and where it goes instead:
   Mars Project.gdb vectors      github_export_gdb.py writes them to exports\ in the repo
@@ -68,7 +70,7 @@ REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
 assert DRIVE.resolve() != REPO.resolve(), f"the drive and the clone are one folder ({DRIVE}): pass --drive <drive>"
 DRY = "--dry-run" in sys.argv
 FORCE = "--force" in sys.argv
-DELIVERABLES = "--deliverables" in sys.argv
+HOLD_DELIVERABLES = "--hold-deliverables" in sys.argv
 TO_DRIVE = sys.argv[sys.argv.index("--to-drive") + 1] if "--to-drive" in sys.argv else None
 MAX = 95 * 1000 * 1000
 
@@ -406,7 +408,7 @@ def main():
             if same(p, out):
                 unchanged += 1
                 continue
-            if deliverable(p) and not DELIVERABLES:
+            if deliverable(p) and HOLD_DELIVERABLES:
                 held.append(out.relative_to(REPO))
                 continue
             copies.append((p, out))
@@ -440,7 +442,7 @@ def main():
     for p, s in too_big:
         print(f"  SKIPPED (> 95 MB, {s / 1e6:.0f} MB): {p}")
     for h in held:
-        print(f"  HELD BACK (a built deliverable; --deliverables at a deadline): {h}")
+        print(f"  HELD BACK (a built deliverable; --hold-deliverables given): {h}")
     if not DRY and write_script_index():
         print("  docs\\scripts.md regenerated")
 

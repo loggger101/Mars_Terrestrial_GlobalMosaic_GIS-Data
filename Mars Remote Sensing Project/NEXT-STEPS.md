@@ -88,7 +88,7 @@ and scored (§66); further tuning first needs validation blocks of its own (§66
 
 **Where the results are weakest and what would most improve them:** §14 (11-01), ranked.
 
-**Waiting on the author:** items 1 and 5; optionally R1 and R2 on their sheets (`review_sheets\r1\`, `r2\`; ~45 min and ~2–3 h, §12.3), whose answers would replace the agent's (§69.55); D15, D22, D23 (not now, 11-03), D26 and D27 (§2); the check of the 86 traced margins (D33) and the off-Tharsis labels (§14 row 3), both promised 11-03; the interim talk's slot length (§12.5); whether
+**Waiting on the author:** items 1 and 5; optionally R1 and R2 on their sheets (`review_sheets\r1\`, `r2\`; ~45 min and ~2–3 h, §12.3), whose answers would replace the agent's (§69.55); D15, D22, D23 (not now, 11-03) and D27 (§2); the check of the 86 traced margins (D33) and the off-Tharsis labels (§14 row 3), both promised 11-03; the interim talk's slot length (§12.5); whether
 layout 18 or `final_img\tes_block_scale.png` goes into a deliverable (§69.30); whether the interim shows layouts 15–18
 (it shows 13 of the 17 that existed at the cut, `INTERIM-PLAN.md` §3); emptying the Recycle Bins (~21 GB of finished
 scratch, §57.5).
@@ -131,7 +131,7 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 | D15 | a derivatives release with the §54 patch (33 GB upload) | not needed: the catalogue gives the two commands that patch a restore (§57.4) |
 | D22 | the two blind checks: the rule-screened v2 rows (§12.3 R1, ~45 min) and a probability-sample accuracy check (R2, ~2–3 h) | R1 yes, after the candidate review; R2 if time is free. **Both now scored on the agent's labels at the author's word (§69.55)**; the author's answers, if given, replace them |
 | D23 | a DOI for the data release through Zenodo, and a data statement (§12.4 W7); publishing | yes, with the pre-final release (§7). **Asked 11-03: "Not now"**; block 13 waits |
-| D26 | the built deck, report and paper PDF committed only once per deadline: since 11-01 `github_sync.py` holds them back unless given `--deliverables` (KB §69.42), the recommendation in force until the author says otherwise; rewriting history to drop the 44 earlier copies of the interim deck and report (1.0 GB of blobs) needs a force push and a re-clone on both machines | yes to committing at milestones; no rewrite |
+| D26 | **Answered 11-03 (KB §69.74):** "everything should be in the repo, there's no point in holding back on anything". `github_sync.py` now mirrors the built deck, report and paper PDF like every other file (`--hold-deliverables` leaves them out for one run); the 44 earlier copies stay in the history (no rewrite was asked for) | done |
 | D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | yes |
 D14, D16, D23 and D24 were answered 2026-11-03 (KB §69.64–§69.65). **D14, yes:** the two `_60_smoke` classes
 deleted after a checked copy to `.backups\smoke_D14_20261103-014337.gdb`. **D16:** the interim report goes in on

@@ -121,8 +121,8 @@ plans. When they disagree, the KB wins and the plan is fixed.
    `verify_all.py`, and `verify_interim.py` if `interim.py` or the KB moved (with `final.py` and the paper's `.tex`
    as its argument for the final, KB §69.3).
 3. `github_sync.py` (no `--commit`; if it refuses, exit 3, the clone holds work the drive lacks: run the
-   `--to-drive <commit>` it names first, KB §69.20; it holds a rebuilt deck, report or paper PDF back unless given
-   `--deliverables`, once per deadline, KB §69.42), then in the clone `python tools/check_repo.py`; update the README's counts
+   `--to-drive <commit>` it names first, KB §69.20; since 11-03 it mirrors the built deck, report and paper PDF
+   too, D26, KB §69.74), then in the clone `python tools/check_repo.py`; update the README's counts
    it flags and its "Where it stands", next steps and results, **current state only**. When a layout or figure
    changed, first `py -3 tools/make_thumbs.py` in the clone (on the laptop `python`: its `py` launcher names a removed
   interpreter, KB §69.34): the pages show its 800 px previews, and

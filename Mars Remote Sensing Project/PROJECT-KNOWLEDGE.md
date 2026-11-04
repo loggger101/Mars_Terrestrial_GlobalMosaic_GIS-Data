@@ -6898,4 +6898,20 @@ The author will submit the report (D16, Thursday 5 November) and asked that it b
 - **Pushed alone (repo 2e5ef36):** `github_sync.py --deliverables` would also commit the rebuilt final deck (~26 MB)
   ahead of its deadline (D26), so on the author's "push whatever you can" the sync was run without `--commit`, the
   final deck restored to its committed copy in the clone, and only the report's `.docx` and `.pdf` committed, as
-  the 5 Nov deadline commit (byte-identical to the drive). The final deck stays held back.
+  the 5 Nov deadline commit (byte-identical to the drive). The final deck followed the same day (§69.74).
+
+### 69.74 D26 answered: every built deliverable goes in the repo — 2026-11-03, laptop **[V]**
+
+The author, on the held-back final deck: "everything should be in the repo, there's no point in holding back on
+anything if it's going in the repo anyway." D26 (§69.42) is closed that way.
+
+- **`github_sync.py`:** the built `.pptx`, `.docx` and `.pdf` under `NEXT STUFF\` are mirrored like every other file.
+  The old opt-in `--deliverables` is accepted and does nothing; `--hold-deliverables` leaves a new or changed one out
+  for a single run. Dry runs: without the flag, would copy 2 (the script and the final deck), held back 0; with it,
+  would copy 1, held back 1.
+- **Pushed:** the final deck (`NEXT STUFF\Final\Mars Global Mosaic - Final Presentation.pptx`, 26.3 MB, built
+  11-03 11:30). Each rebuilt deliverable adds 15–30 MB to the history; no history rewrite was asked for.
+- **Not in git, but in the repo's releases:** the ten DL weight files over 95 MB (`.pth`, `.dlpk`, 137–165 MB;
+  GitHub refuses files over 100 MB) are in `dl-models.zip` (1.63 GB) of release `data-2026-10-29`; all five models
+  predate that release (last one built 10-28).
+- `HANDOFF-DESKTOP.md` step 3 and NEXT-STEPS D26 now read this way.
