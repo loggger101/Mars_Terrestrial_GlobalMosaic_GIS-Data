@@ -1,7 +1,7 @@
 # Working on the Mars Global Mosaic: the operating guide
 
 How to pick the project up on either machine: the first ten minutes, where everything is, the working rules, and the
-end of a session. Current to 2026-10-31.
+end of a session. Current to 2026-11-05.
 
 **Read this file first, then `NEXT-STEPS.md` "Resume here" (the state, the dates and every open task), then
 `PROJECT-KNOWLEDGE.md` as needed.** The record (`PROJECT-KNOWLEDGE.md`, "KB" below; § numbers point into it, and its
@@ -34,10 +34,10 @@ plans. When they disagree, the KB wins and the plan is fixed.
 | the record | `Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (§1–§16 reference, §17 on the dated log; §11 open questions; tags `[V]` verified, `[E]` earlier, `[?]` open) |
 | the plan | `Mars Remote Sensing Project\NEXT-STEPS.md` ("Resume here"; standing §1; decisions §2; after-review steps §3; tests §4; desktop jobs §5; the review §6; figures and the final §7; schedule §8; risks §9; ruled out §10) |
 | the interim plan | `Mars Remote Sensing Project\INTERIM-PLAN.md` (the living build and its commands §0; progress facts §3; hypotheses §5; timeline §6; wording traps §7) |
-| scripts | `Mars Remote Sensing Project\build\` (175 `.py` / `.ps1`; catalogue in the repo's `docs/scripts.md`); logs and test results in `build\logs\` |
+| scripts | `Mars Remote Sensing Project\build\` (227 `.py` / `.ps1`; catalogue in the repo's `docs/scripts.md`); logs and test results in `build\logs\` |
 | interim deck and report | `Mars Remote Sensing Project\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx` (32 slides) and `Mars Mosaic - Interim Report.docx` (21 pages), built from `build\interim.py` |
-| ArcGIS project | `Mars Project\Mars Project.aprx` (38 maps, 21 layouts, KB §5); `Mars Project\Mars Project.gdb` (KB §6); `.aprx` backups in `Mars Project\.backups\` (one per write; drive only) |
-| layout PNGs | `Mars Project\Global60\layouts\` (04–18) and `Mars Project\TypeArea\layouts\` (01–03) |
+| ArcGIS project | `Mars Project\Mars Project.aprx` (42 maps, 23 layouts, KB §5); `Mars Project\Mars Project.gdb` (KB §6); `.aprx` backups in `Mars Project\.backups\` (one per write; drive only) |
+| layout PNGs | `Mars Project\Global60\layouts\` (04–20, with 04b, 13b, 17b) and `Mars Project\TypeArea\layouts\` (01–03) |
 | ±60° products | `Mars Project\Global60\` (its `README.md` lists them): `global60_svm_stack_200m.tif` (the 7-band stack), **`global60_landforms_svm_200m_mode11.tif` (the published map)**; `build\grid60.py` defines the grid |
 | type areas | `Mars Project\TypeArea\` (`ius_*`) and `Mars Project\Athabasca\` (`ath_*`); windows in `build\areas.py` |
 | reference data | `Mars Project\Reference\` (USGS SIM 3292, Robbins craters, TES thermal inertia; third-party, never mirrored) |

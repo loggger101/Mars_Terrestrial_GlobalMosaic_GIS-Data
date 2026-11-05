@@ -1,0 +1,50 @@
+svm_v2   on v2 held out: accuracy 0.4252 kappa 0.3103; its log (0.425, 0.31) -> ok
+svm_v2   on v3 held out: accuracy 0.3976 kappa 0.2810; its log (0.3976, 0.281) -> ok
+  (69 s)
+unet_v2  on v2 held out: accuracy 0.6901 kappa 0.6063; its log (0.69, 0.606) -> ok
+unet_v2  on v3 held out: accuracy 0.6578 kappa 0.5649; its log (0.6578, 0.5649) -> ok
+  (126 s)
+svm_v3   on v2 held out: accuracy 0.4252 kappa 0.3103; its log (0.425, 0.31) -> ok
+svm_v3   on v3 held out: accuracy 0.3976 kappa 0.2810; its log (0.3976, 0.281) -> ok
+  (182 s)
+unet_v3  on v2 held out: accuracy 0.6901 kappa 0.6063; its log (0.69, 0.606) -> ok
+unet_v3  on v3 held out: accuracy 0.6578 kappa 0.5649; its log (0.6578, 0.5649) -> ok
+  (239 s)
+near_v2  on v2 held out: accuracy 0.4559 kappa 0.3177; its log (0.456, 0.318) -> ok
+near_v2  on v3 held out: accuracy 0.4129 kappa 0.2759 (no log to check)
+  (568 s)
+near_v3  on v2 held out: accuracy 0.4579 kappa 0.3221 (no log to check)
+near_v3  on v3 held out: accuracy 0.4308 kappa 0.2962 (no log to check)
+  (868 s)
+F:\Mars Remote Sensing Project\build\svmcheck.py:21: RuntimeWarning: invalid value encountered in scalar divide
+  return po, (po - pe) / (1 - pe)
+v2 held out, 237 polygons (0 without pixels on some map), 14 blocks  (871 s)
+  svm_v2   accuracy 0.4252 kappa 0.3103 balanced 0.4187
+  unet_v2  accuracy 0.6901 kappa 0.6063 balanced 0.5692
+  svm_v3   accuracy 0.4252 kappa 0.3103 balanced 0.4187
+  unet_v3  accuracy 0.6901 kappa 0.6063 balanced 0.5692
+  near_v2  accuracy 0.4559 kappa 0.3177 balanced 0.5105
+  near_v3  accuracy 0.4579 kappa 0.3221 balanced 0.4202
+  unet_v3 - unet_v2 block 95 %: accuracy [0.0, 0.0], balanced [0.0, 0.0]
+  svm_v3 - svm_v2 block 95 %: accuracy [0.0, 0.0], balanced [0.0, 0.0]
+  unet_v3 - svm_v3 block 95 %: accuracy [-0.0966, 0.4784], balanced [0.0228, 0.1948]
+  svm_v3 - near_v3 block 95 %: accuracy [-0.2251, 0.2624], balanced [-0.1824, 0.1308]
+  unet_v3 - near_v3 block 95 %: accuracy [0.0084, 0.3323], balanced [-0.0924, 0.2888]
+v3 held out, 1652 polygons (0 without pixels on some map), 14 blocks  (874 s)
+  svm_v2   accuracy 0.3976 kappa 0.2810 balanced 0.4043
+  unet_v2  accuracy 0.6578 kappa 0.5649 balanced 0.5290
+  svm_v3   accuracy 0.3976 kappa 0.2810 balanced 0.4043
+  unet_v3  accuracy 0.6578 kappa 0.5649 balanced 0.5290
+  near_v2  accuracy 0.4129 kappa 0.2759 balanced 0.4121
+  near_v3  accuracy 0.4308 kappa 0.2962 balanced 0.4345
+  unet_v3 - unet_v2 block 95 %: accuracy [0.0, 0.0], balanced [0.0, 0.0]
+  svm_v3 - svm_v2 block 95 %: accuracy [0.0, 0.0], balanced [0.0, 0.0]
+  unet_v3 - svm_v3 block 95 %: accuracy [-0.0766, 0.4546], balanced [-0.0365, 0.163]
+  svm_v3 - near_v3 block 95 %: accuracy [-0.1973, 0.2358], balanced [-0.2119, 0.0683]
+  unet_v3 - near_v3 block 95 %: accuracy [0.0185, 0.3168], balanced [-0.1823, 0.2065]
+the rule: equal inputs pass; (a), (b), (c), (d) each fail on a fabricated worse input
+rehearsal: every v3-minus-v2 difference is 0, as stand-ins must be; verdicts below mean nothing
+recommendation: {'svm': True, 'unet': True}
+predictions: {'P1': 'NOT held', 'P2': 'held', 'P3': 'held', 'P4': 'NOT held', 'P5': 'NOT held', 'P6': 'held', 'P7': 'held', 'P8': 'held', 'P9': 'NOT held'}
+wrote F:\Mars Remote Sensing Project\build\logs\v3_maps_rehearsal.json  (874 s)
+rehearsal exit 0 

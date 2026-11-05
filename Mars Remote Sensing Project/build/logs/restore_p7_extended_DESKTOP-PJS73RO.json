@@ -1,0 +1,10 @@
+{
+ "when": "2026-11-05",
+ "rejoin": {"release": "derivatives-2026-10-06", "file": "global60_dem.tif", "parts": 2, "gb": 3.2, "seconds_download_and_join": 87,
+  "sha256_restored": "98d78f3f8a6f117d523501fac85ea91da74932d2bc0a60c93847df6860f723aa", "matches_SHA256SUMS": true,
+  "sha256_drive": "0dd7f8cd4819a16e3b27b3f6253066220244b250eadc4527c98f1d170f59ac3a", "matches_drive": false,
+  "pixels_differing_from_drive": 35370, "columns_differing": [53346], "same_grid_and_nodata": true,
+  "why": "the release predates the KB 54.2 patch of column 53346"},
+ "tree": {"files": 1509, "identical_to_clone": 1509, "gb": 0.39, "seconds": 367},
+ "not_run": "make_global_terrain.py --meridian-only and make_global60_svm_stack.py --patch-cols: they write the drive's own rasters in place"
+}

@@ -38,7 +38,11 @@ Checks that the check can fail:
   --self-test    scores the IAU craters >= 5 km with this script's ring function and the scorer's exclusion boxes
                  and requires svmcheck.crater_score's numbers exactly, on both maps.
 
-  "<ArcGIS Pro Python>" make_named_feature_check.py [--shift 180] [--self-test]
+  --labels v3    the v3 maps in place of the v2 ones, and the names free of v3's labels (run_v3.ps1 must have scored
+                 them); writes named_feature_check_v3.json. The predictions above are for the v2 maps; a v3 run
+                 reports the same tables with no new prediction.
+
+  "<ArcGIS Pro Python>" make_named_feature_check.py [--labels v3] [--shift 180] [--self-test]
 Reads the cached 400 m class arrays verify_global60_classification.py wrote (refuses one older than its raster) and
 the gdb. Writes logs\named_feature_check_v2.json. Read-only on the drive's data.
 """
@@ -53,22 +57,23 @@ sys.path.insert(0, HERE)
 from paths import on_drive, GDB
 import grid60 as G
 from svmcheck import KPD, crater_score
-from labelsets import SEVEN
+from labelsets import SEVEN, TAG
 
 MARS = arcpy.SpatialReference(104905)
 GAZ = "MARS_nomenclature_misc_March2019"
 VALLEYS = on_drive(r"Mars Project\Reference\Alemanno2017_valleys\Giulia Valleys.shp")
-LABELS = ["Landform_TrainingSamples_v2_60_train", "Landform_TrainingSamples_v2_60_test"]
-MAPS = [("svm_v2", "global60_landforms_v2_200m_mode11_ov400.npy",
-         r"Mars Project\Global60\global60_landforms_svm_v2_200m_mode11.tif"),
-        ("unet_v2", "global60_landforms_global60_landforms_unet_v2_200m_seamfix_ov400.npy",
-         r"Mars Project\Global60\global60_landforms_unet_v2_200m_seamfix.tif")]
+SET = "v3" if TAG == "_v3" else "v2"                         # --labels v3: the v3 maps, names free of v3's labels
+LABELS = ["Landform_TrainingSamples_%s_60_train" % SET, "Landform_TrainingSamples_%s_60_test" % SET]
+MAPS = [("svm_" + SET, "global60_landforms_%s_200m_mode11_ov400.npy" % SET,
+         r"Mars Project\Global60\global60_landforms_svm_%s_200m_mode11.tif" % SET),
+        ("unet_" + SET, "global60_landforms_global60_landforms_unet_%s_200m_seamfix_ov400.npy" % SET,
+         r"Mars Project\Global60\global60_landforms_unet_%s_200m_seamfix.tif" % SET)]
 EDIFICE, APRON, FLUVIAL, TUBE = (SEVEN.index(n) for n in ("volcanic edifice", "apron", "fluvial channel",
                                                           "lava tube"))
 NEAR_KM, BAND_KM = 2.0, (10.0, 20.0)
 MIN_PX = 9
 SHIFT = float(sys.argv[sys.argv.index("--shift") + 1]) if "--shift" in sys.argv else 0.0
-OUT = os.path.join(HERE, "logs", "named_feature_check_v2%s.json" % ("_shift%g" % SHIFT if SHIFT else ""))
+OUT = os.path.join(HERE, "logs", "named_feature_check_%s%s.json" % (SET, "_shift%g" % SHIFT if SHIFT else ""))
 
 
 def load(npy, tif):
@@ -281,7 +286,7 @@ def self_test(polys_all):
 def main():
     t0 = time.time()
     polys_all = label_polygons()
-    print("%d v2 label polygons" % len(polys_all))
+    print("%d %s label polygons" % (len(polys_all), SET))
     if "--self-test" in sys.argv:
         self_test(polys_all)
         return

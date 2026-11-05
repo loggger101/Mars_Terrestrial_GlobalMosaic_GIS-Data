@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-05 (§69.75).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-05 (§69.76).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -6930,13 +6930,55 @@ and Pro was closed.
   2,923, apron 3,581, fluvial 10,958; hills and lava tube stay the rarest. **The estimate moves:** training scales with
   chips (§69.49), so ~12 h, not v2's 6.2 h; with the passes ~12.5 h and the scores ~1 h the U-Net chain ends about
   05:00 on 6 Nov, and the SVM chain, ~22 h by v2's times, about 7 Nov. Whatever the SVM's own sample size does to that
-  is not known until it runs. Nothing from v3 is scored yet.
+  is not known until it runs. **Measured:** epoch 0 took 31 min 13 s and the epochs from 5 on ~22.7 min, so 30 epochs is
+  ~12.3 h, the first figure; a projection from epoch 0 alone (~15.6 h) was too long. Nothing from v3 is scored yet.
 - **P7, a real restore.** `restore.py --only athabasca` into scratch from release `data-2026-10-29`: `athabasca.zip`,
   0.92 GB, 89 s, checked against GitHub's SHA-256 and unzipped. **All 145 files, 1.18 GB, match the drive by SHA-256**
   (`logs\restore_p7_athabasca_DESKTOP-PJS73RO.json`); a wrong hash planted on one file was reported as 1 differing, so
-  the comparison can fail. Until now `restore.py` had only been dry-run (§67.4). **Not exercised:** the tree copy, the
-  rejoining of split `.tif.part` files (none is in this group), and the steps `docs/backup.md` leaves to the hand. The
-  restored copy is deleted; the drive remains the only full copy (§9).
+  the comparison can fail. Until now `restore.py` had only been dry-run (§67.4). The tree copy and the rejoining of split
+  files were run the same day (§69.76). The drive remains the only full copy (§9).
 - **P8.** `github_environment.py` on the desktop wrote the desktop's section of `docs/environment.md`: RTX 2080 Ti,
   driver 617.42, Deep Learning Libraries 3.7, torch 2.9.1, CUDA 12.9, MiKTeX 25.12, `aastex701.cls` 7.0.1.
   `docs/requirements-system.txt` now pins this machine's system Python, as the page says it does for the last run.
+
+### 69.76 The v3 verdict registered before any score; the restore's two gaps closed — 2026-11-05, desktop **[V]**
+
+While U-Net training ran, the agent worked through what needed no author, GPU, `.aprx` or gdb write.
+
+- **`build\score_v3_maps.py`, written with no v3 map in existence and no held-out v3 score read.** `run_v3.ps1` scores
+  each map once with no interval and no verdict, and nothing had registered what v3 was expected to do, against
+  §47 and §51. The script scores svm_v2, unet_v2, svm_v3, unet_v3, near_v2 and near_v3 polygon by polygon on both
+  held-out sets and resamples the 14 blocks (10,000, seed 60). It holds **a recommendation rule and nine predictions**:
+  the rule (per model, the v3 map only if on both sets its balanced accuracy and κ are at least the v2 map's, no class
+  falls ≥ 5 pt of producer's accuracy on the v2 polygons, and for the U-Net edifice covers no more than 40.0 % of
+  ±60°) is the agent's, for the author, who picks (row 3b; D28). Overall accuracy and the block intervals are reported
+  beside it. **The only v3 numbers seen when it was written:** the training run's validation table, chips from the
+  training blocks, accuracy ~0.87.
+- **Rehearsed end to end on the v2 arrays standing in for the v3 maps** (`--rehearse`, 874 s,
+  `logs\v3_maps_rehearsal.log`, `.json`): each map reproduces its logged score (svm 0.3976 / 0.2810 and unet
+  0.6578 / 0.5649 on the v3 polygons, A16's), every v3-minus-v2 block interval is exactly 0, and each of the rule's
+  four clauses fails on a fabricated worse input. **The check can fail:** `--plant` rolled the stand-in unet_v3 half a
+  planet: accuracy 0.1066, refused, exit 2 (`logs\v3_maps_plant.log`). **It also found a real fault:** the first
+  rehearsal completed every number and crashed writing the JSON (a `numpy.bool_` from the rule), which on the real run
+  would have lost the result; fixed and rerun, exit 0. The rehearsal's verdicts mean nothing and are not results.
+- **One new measurement, the v3 labels' own baseline:** near_v3, the nearest v3 training polygon, scores 43.1 %, κ
+  0.296, balanced 43.5 % on the v3 polygons (near_v2 41.3 %, 0.276, 41.2 %) and 45.8 %, κ 0.322, balanced 42.0 % on
+  the v2 polygons (near_v2 45.6 %, 0.318, 51.0 %). Geography alone gains under 2 points of accuracy from 14 times the
+  training polygons, and loses 9 of balanced accuracy on the v2 polygons.
+- **`make_named_feature_check.py --labels v3`** runs A15 on the v3 maps, among the names free of v3's labels; the
+  default still means the v2 maps. Both modes resolve the right labels, arrays and output name; the v3 mode cannot run
+  until the arrays exist. `make_geomap_check.py --labels v3 --raster <U-Net map>` already works; step 14 covers only the SVM.
+- **The training's validation loss is not smooth** (§69.75's run): epochs 19, 21, 22, 25 and 26 read 1.60, 1.28, 7.75,
+  23.25 and 10.31 against 0.46 at epoch 18, while training loss falls and validation accuracy holds at 0.86–0.88; v2's
+  curve had no such spikes. The likely cause, rare class-weighted chips, is **not** verified. It matters for the model
+  kept: X5 kept its best epoch by validation loss (§66.1), so v3 may keep an early epoch. Which one is read from
+  the finished model before the passes' result is reported.
+- **The restore's two gaps closed** (`logs\restore_p7_extended_DESKTOP-PJS73RO.json`). **Rejoining:** `--only
+  global60_dem` from `derivatives-2026-10-06`: 2 parts, 3.2 GB, 87 s; an independent hash of the result equals its
+  SHA256SUMS entry (`restore.py`'s own check runs only when its parser finds that line, which it does: 7 entries).
+  **The result is not the drive's file, by design:** a pixel comparison finds 35,370 differing pixels, all in column
+  53346, the column §54.2 patched, with the same grid and nodata; so the rest of the DEM is proven restored. **Tree
+  copy:** `restore.main()` with no release: 1,509 files, 0.39 GB, 367 s, every one identical to the clone. **Still not
+  run:** `make_global_terrain.py --meridian-only` and `make_global60_svm_stack.py --patch-cols` after a restore, because
+  both write the drive's own rasters in place; and the steps `docs/backup.md` leaves to the hand.
+- **`HANDOFF-DESKTOP.md`** brought to 42 maps, 23 layouts, 227 scripts; it still said 38, 21 and 175.
