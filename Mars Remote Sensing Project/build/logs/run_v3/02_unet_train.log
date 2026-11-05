@@ -1,0 +1,10 @@
+training {"in_folder": ["C:\\MarsScratch\\x5c_v3\\export_tiles"], "out_folder": "C:\\MarsScratch\\x5c_v3\\models\\global60_unet_x5c_v3_20261105", "max_epochs": 30, "model_type": "UNET", "batch_size": 8, "arguments": "class_balancing True;ignore_classes [0]", "backbone_model": "RESNET34", "validation_percentage": 10, "stop_training": "CONTINUE_TRAINING", "freeze": "UNFREEZE_MODEL", "chip_size": 256, "monitor": "VALID_LOSS"}
+Finding optimum learning rate.
+█epoch     train_loss  valid_loss  time    
+█0         26.827974   #na#        01:14     
+LR Finder is complete, type {learner_name}.recorder.plot() to see the graph.
+[2K[2K█epoch     train_loss  valid_loss  accuracy  dice      time    
+Learning Rate - slice(3.0199517204020168e-05, 0.0003019951720402017, None)
+Training model...
+epoch      training loss        validation loss      accuracy             Dice                 time                
+█

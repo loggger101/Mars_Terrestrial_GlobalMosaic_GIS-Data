@@ -16,7 +16,7 @@ checklist, is `HANDOFF-DESKTOP.md`.
 
 ---
 
-## Resume here — 2026-11-03
+## Resume here — 2026-11-05
 
 Only the state, what waits on whom and the next step; the history behind each line is the KB section it cites
 (condensed 2026-10-31, §13.1 P10: the dated paragraphs since 10-18 are in git history and KB §58–§69.34).
@@ -67,8 +67,9 @@ Only the state, what waits on whom and the next step; the history behind each li
   paper (21 pages since the citations of 11-03, §69.67, compiled by the repository's CI on every push that touches it, §69.42) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
   freeze (§12.1). Backup: release `data-2026-10-29` (§69.28).
 - **The machines:** the drive-root junctions point at `F:` and are broken on the laptop (§58); the drive and the
-  clone agree, and `github_sync.py` refuses if the clone ever holds work the drive lacks (§69.20). Nothing is
-  running. The laptop runs scorer work from the cached 400 m class arrays (`build\*_ov400.npy`) in minutes; run
+  clone agree, and `github_sync.py` refuses if the clone ever holds work the drive lacks (§69.20). **`run_v3.ps1` is running on the
+  desktop since 11-05 02:18 (§69.75): the drive stays on the desktop and Pro stays closed until it ends, about 7 Nov.**
+  The laptop runs scorer work from the cached 400 m class arrays (`build\*_ov400.npy`) in minutes; run
   one such job at a time: two together ran out of memory on 11-01 (§69.44).
 
 **Next, in this order:**
@@ -78,7 +79,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 | 1 | **The author's promised items (11-03):** check the 86 CTX-traced Athabasca margins in Pro (D33, before the freeze); draw the off-Tharsis edifice and apron labels (§14 row 3, map "Off-Tharsis labels (author)", ~1 h). Then, optionally: the other 200 rock-floored Athabasca channels, the rest, breached craters by hand | author, on the sheets (`Mars Project\review_sheets\README.md`, §69.51) or in Pro; margins in Pro. The agent's CTX decisions on the 200 and on `Origin` are in (§69.55) and any answer of the author's replaces them; the 5,296 candidates outside the review prompts are not reviewed | §6 | rows in `Landform_ChannelCenterlines` / `Landform_CraterRims` / `Landform_LavaFlowMargins`; the tally printed |
 | 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
 | 3 | Retests on the author's work: rerun `make_flow_margin_test.py --margins` (T5, H1) once the author has checked the margins (D33); rescore on the off-Tharsis labels once drawn (§14 row 3, ~15 min on the laptop). H2's stage 2 stays skipped (§69.63) | agent | §4 | results in the KB, either way |
-| 3b | **The v3 runs** (more and smaller seven-class training polygons, KB §69.49; the fan deposits admitted as apron by D34, §69.56: 10,269 training, 1,652 held out): first `preflight_v3.py` under the ArcGIS Python (reads only, ~5 min; 69 checks passed on the laptop 11-02, KB §69.60), then `powershell -File run_v3.ps1` from `build\`, Pro closed; U-Net then SVM, ~2 days; then the KB section, and the seven-class layouts (04b, 17b) only if the author picks the v3 maps; steps 08 and 13 (the v2 maps on the v3 held-out polygons) are already measured at the same 400 m, A16, §69.57 | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
+| 3b | **The v3 runs** (more and smaller seven-class training polygons, KB §69.49; the fan deposits admitted as apron by D34, §69.56: 10,269 training, 1,652 held out): **running since 11-05 02:18** (preflight 69 of 69 on the desktop; export 34,841 chips, 2.0 × v2's, so training ~12 h; U-Net chain to ~6 Nov 05:00, SVM chain to ~7 Nov; KB §69.75); log `build\logs\run_v3\queue.log`, resume with `powershell -File run_v3.ps1 -From <step>` (`-ClassifyOnly` for step 09 on a trained `.ecd`), Pro closed; then the KB section, and the seven-class layouts (04b, 17b) only if the author picks the v3 maps; steps 08 and 13 (the v2 maps on the v3 held-out polygons) are already measured at the same 400 m, A16, §69.57 | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
 | 4 | ~~The paper's analyses that need no author time~~: all done (A1–A16, KB §69.34–§69.57); nothing in §12.2 is left | agent | §12.2 | done |
 | 5 | The interim: **the report goes in on Thu 5 Nov** (D16, 11-03), the talk on **10 Nov**. Both rebuilt and read 11-03 with the Viking wording corrected (KB §69.64); the report as PDF is `NEXT STUFF\Mars Mosaic - Interim Report.pdf`. Before the talk: the "Next Steps" slide's speaker note brought to the day's review tally (§12.5) | author (submits) | `INTERIM-PLAN.md` §0, §6 | delivered |
 | 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex` (the settled blocks 8–11, 14 and "Viking colour" went in early, 11-02, §69.58, and into the deck, §69.59; the deck builds and renders on the laptop; left: blocks 12, 13, 15, 16 and the open decisions' clauses); rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
@@ -569,8 +570,6 @@ review (§6) or the v2 scoring (§11.5); most of it is laptop work that fills th
 
 | # | what | adds | where | pri |
 |---|---|---|---|---|
-| P7 | **A real restore**: `restore.py` has only ever been dry-run (KB §67.4). Restore one small release group into scratch on the desktop and compare every file with the drive by hash | the drive is the only full copy (§9); a backup is proven only by a restore | desktop, ~1 h | B |
-| P8 | **The environment on the project page**: `build\github_environment.py` (11-01, KB §69.50) writes `docs/environment.md`, one section per machine read from the machine (OS, CPU, memory, GPU and driver; Pro, its extensions, both Pythons and their packages; the Deep Learning Libraries; MiKTeX and `aastex701.cls`), and `docs/requirements-system.txt`; the laptop's section is written. **Left: run it once on the desktop** (`python github_environment.py`, then sync) for the 2080 Ti, the Deep Learning Libraries and MiKTeX | a reader can tell what reproduces their run; the paper's data statement (W7) can point at it | desktop, a minute | B |
 | P11 | ~~**Which runs repeat exactly**~~ **done 11-02** (KB §2.6, §69.50): every random draw in the scripts is seeded; none of Pro's training tools takes a seed, but Pro's SVM repeats byte for byte (two trainings on one block, 0 pixels differ) while Random Trees differs on 5.0 % of pixels; the U-Nets were not tested and are re-made from their saved models | the paper's methods can say what is deterministic | done | C |
 | P12 | **Closing the project, after 8 Dec** (D27): a tag `final-2026-12-08` and a final release (the deck, the paper's PDF, the maps); `CITATION.cff` given `version`, the DOI (D23), a `preferred-citation` for the paper and its date; the README's "Where it stands" turned into what was found; this plan closed with a header saying so; the memory and "Resume here" retired; D14's smoke classes settled | the repository reads as finished work, not a project paused mid-term | laptop, ~1 h, 9–12 Dec | after |
 | P13 | **The maps viewable without ArcGIS, after 8 Dec and only if the project continues**: the two seven-class maps as cloud-optimised GeoTIFFs (`gdal_translate -of COG` under the ArcGIS Python, which has GDAL) in a release, and a simple web map of them on the project page | a reader can pan the maps in a browser instead of downloading 106,694 × 35,565-pixel rasters | laptop, ~2 h | after |
@@ -584,7 +583,7 @@ question without changing the cut, if the author wants it on screen (§12.5).
 
 1. **Laptop:** nothing left. P1–P3 done 10-27 (KB §69.20), P2's first real use 10-28 (§69.23); P9 and P10 done
    10-31 (§69.34); P4 and P6 done 11-01 (§69.42).
-2. **Desktop:** P7, P8.
+2. **Desktop:** nothing left. P7 and P8 done 11-05 (KB §69.75).
 3. **After 8 Dec:** P12; P13 if the project goes on.
 
 ---
@@ -606,4 +605,4 @@ claim. "Cost" is who and how long; nothing here goes ahead of the review (§6) o
 | 8 | **The thermal gain is small** (+1.36 pt, resolved by block; none by balanced accuracy) | §56, §69.18, §69.44 | Nothing to fix: A2 (done 11-01, KB §69.50) found +1.1 pt on seven classes, not concentrated in the new classes; A8 (done 11-02, KB §69.50): SIM 3292's unit groups are not predictable from the stack above the commonest group, with or without thermal, so the mapped units are not the material labels a thermal test needs; that test waits on photo-interpreted labels (W6) | done |
 
 **Order for the agent:** D31 and D32 done 11-01 (KB §69.47), and §12.6 step 2's list (A1–A3, A7–A9, A13; KB
-§69.50); what is left is the desktop's (`run_v3.ps1`, P8) and the freeze. **For the author:** nothing required since §69.55; volcanic channels drawn by hand would unblock H2 stage 2, and any answer on the sheets replaces the agent's.
+§69.50); what is left is `run_v3.ps1`, running since 11-05 (KB §69.75), and the freeze. **For the author:** nothing required since §69.55; volcanic channels drawn by hand would unblock H2 stage 2, and any answer on the sheets replaces the agent's.

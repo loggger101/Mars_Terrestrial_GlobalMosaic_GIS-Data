@@ -87,6 +87,8 @@ python restore.py --dest E:\
 
 It copies the repository's folders into place, downloads the newest data release and the derivatives release (about 80 GB; `--all-releases` adds the older ones), checks every download against GitHub's SHA-256, unzips each bundle where it belongs, rejoins the split rasters into `Mars Project/Global60/` and checks each against its whole-file hash. Downloads resume if interrupted, and it never overwrites an existing file unless given `--force`. `--only <text>` restores just the assets whose names contain that text. The two Pro-GUI SVM maps, the segmentation and the GeoPackage go to `Mars Project/restored_from_gdb/`.
 
+**Tested 2026-11-05 on one group:** `--only athabasca` from `data-2026-10-29` restored 145 files, 1.18 GB, each identical to the drive's copy by SHA-256 (KB §69.75). The tree copy and the rejoining of split rasters have not been run for real.
+
 Then, by hand:
 
 1. Download the four source rasters ([links](../README.md#source-data)) to the drive root.

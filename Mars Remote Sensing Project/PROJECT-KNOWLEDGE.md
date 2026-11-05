@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-03 (§69.69).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-05 (§69.75).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -6915,3 +6915,28 @@ anything if it's going in the repo anyway." D26 (§69.42) is closed that way.
   GitHub refuses files over 100 MB) are in `dl-models.zip` (1.63 GB) of release `data-2026-10-29`; all five models
   predate that release (last one built 10-28).
 - `HANDOFF-DESKTOP.md` step 3 and NEXT-STEPS D26 now read this way.
+
+### 69.75 The desktop's share: `run_v3.ps1` started, a real restore (P7), the environment page (P8) — 2026-11-05, desktop **[V]**
+
+The clone stood at origin (`0694009`, CI passing), the drive's plans, record and v3 scripts matched it byte for byte,
+and Pro was closed.
+
+- **The preflight on the desktop** (`logs\preflight_v3_DESKTOP-PJS73RO.log`): 69 checks, 0 failed, 3 min 21 s. The two
+  things §69.60 could not check from the laptop were measured by hand: `D:\ArcGISPro` is in place, and `C:` held
+  41.4 GB, against 8.3 GB for all of `C:\MarsScratch\x5c_v2`.
+- **`run_v3.ps1` started 02:18:59** (detached, no `-From`; `logs\run_v3\`). Step 01 ended 03:00:23, exit 0: 2,475 s,
+  **34,841 chips of 7 bands, 2.0 × v2's 17,444**, 15 GB in `C:\MarsScratch\x5c_v3\export_tiles` (`C:` then 29 GB free).
+  Chips per class, in the export's own count: Crater 8,237, hills 2,867, lava tube 694, Normal Ground 7,005, edifice
+  2,923, apron 3,581, fluvial 10,958; hills and lava tube stay the rarest. **The estimate moves:** training scales with
+  chips (§69.49), so ~12 h, not v2's 6.2 h; with the passes ~12.5 h and the scores ~1 h the U-Net chain ends about
+  05:00 on 6 Nov, and the SVM chain, ~22 h by v2's times, about 7 Nov. Whatever the SVM's own sample size does to that
+  is not known until it runs. Nothing from v3 is scored yet.
+- **P7, a real restore.** `restore.py --only athabasca` into scratch from release `data-2026-10-29`: `athabasca.zip`,
+  0.92 GB, 89 s, checked against GitHub's SHA-256 and unzipped. **All 145 files, 1.18 GB, match the drive by SHA-256**
+  (`logs\restore_p7_athabasca_DESKTOP-PJS73RO.json`); a wrong hash planted on one file was reported as 1 differing, so
+  the comparison can fail. Until now `restore.py` had only been dry-run (§67.4). **Not exercised:** the tree copy, the
+  rejoining of split `.tif.part` files (none is in this group), and the steps `docs/backup.md` leaves to the hand. The
+  restored copy is deleted; the drive remains the only full copy (§9).
+- **P8.** `github_environment.py` on the desktop wrote the desktop's section of `docs/environment.md`: RTX 2080 Ti,
+  driver 617.42, Deep Learning Libraries 3.7, torch 2.9.1, CUDA 12.9, MiKTeX 25.12, `aastex701.cls` 7.0.1.
+  `docs/requirements-system.txt` now pins this machine's system Python, as the page says it does for the last run.

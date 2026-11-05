@@ -1,0 +1,3 @@
+2026-11-05 02:19:00  start 01_unet_export: make_dl_pixels.py --export --labels v3
+2026-11-05 03:00:23  end   01_unet_export: exit 0, 41.4 min
+2026-11-05 03:00:23  start 02_unet_train: make_dl_pixels.py --train --labels v3
