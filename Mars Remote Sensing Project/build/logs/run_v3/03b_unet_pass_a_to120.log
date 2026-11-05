@@ -23,3 +23,4 @@ pass A tile  82/120 row 12288 col      0:   85 s; 38 to go, ~0.9 h
 pass A tile  83/120 row 12288 col   4096:   85 s; 37 to go, ~0.9 h
 pass A tile  84/120 row 12288 col   8192:   88 s; 36 to go, ~0.9 h
 pass A tile  85/120 row 12288 col  12288:   92 s; 35 to go, ~0.9 h
+pass A tile  86/120 row 12288 col  16384:   90 s; 34 to go, ~0.8 h

@@ -7036,3 +7036,14 @@ the only v3 numbers seen are the training run's validation table (§69.76).
   `tools/check_remote.py` all pass (95 release assets, 4 source mosaics); CI green. C: stays above ~17 GB by the
   v2 runs' pagefile peak (14.8 GB, §69.4) and tile sizes (0.5 GB over both passes); the SVM's scratch was not measured,
   so a watcher reports at 8 GB free.
+- **A sanity read of the v3 tiles, after those predictions were pushed (`6bce524`, 17:14), not a score:** 82 of pass A's 243 tiles, the
+  northern rows only, one pass, every 8th pixel, not area-weighted, against the same v2 tiles. All seven classes
+  appear and no tile is degenerate (the largest class's share of a tile: median 0.68, highest 0.98). Shares, v3 / v2:
+  Normal Ground 61.2 / 43.7 %, Crater 13.1 / 3.4 %, edifice 12.9 / 28.5 %, apron 6.2 / 18.8 %, lava tube 3.1 / 2.7 %,
+  fluvial 2.7 / 2.8 %, hills 0.8 / 0.1 %; the two agree on 62.8 % of pixels. So epoch 18's model is producing a map, and
+  the validation table's low Normal Ground F1 (§69.76) does not mean little Normal Ground is mapped. Whole-map shares
+  and every held-out score wait for the mosaic.
+- **A `github_sync.py` fault found:** while a U-Net tile runs, Pro keeps `global60_svm_s_ClassifyPixel1.*` beside the
+  stack, sidecars and `.autolock` among them, and the sync stopped on the locked file; `keep_mp` now leaves out
+  `s_ClassifyPixel<digit>` names. `v3`'s model figures are in `docs/figures.md`, and its "reported as a test" for the
+  v2 U-Net now says current (D28).
