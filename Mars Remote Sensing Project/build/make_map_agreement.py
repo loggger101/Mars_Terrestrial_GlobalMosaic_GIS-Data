@@ -20,7 +20,18 @@ Predictions, written before the first run:
       where a class is clear: NEXT-STEPS §12.3 R2's premise).
 Each is reported as held or not held; none is adjusted after the run.
 
+--labels v3: the same for the v3 pair alone (the SVM and the U-Net of run_v3.ps1, KB §69.49, on the v3 polygons), for
+the author's pick between the v2 and v3 maps (NEXT-STEPS row 3b). Written 2026-11-05 with the U-Net's first pass running:
+no v3 map exists. Predictions (only the training run's validation table has been read):
+  P4  the v3 pair agrees on more of ±60° than the v2 pair's 39.7 %: both learn from the same denser labels.
+  P5  it still agrees on less than 50 %: one sees a pixel, the other 51 km.
+  P6  it agrees more on the v3 held-out polygons than on ±60° as a whole, as P3.
+--rehearse (with --labels v3) stands the v2 arrays and polygons in for the v3 ones, must reproduce the v2 entry of
+logs\map_agreement.json exactly, and writes only logs\map_agreement_rehearsal.json; --plant (with --rehearse) rolls the
+stand-in U-Net half a planet, and that comparison must refuse.
+
   "<ArcGIS Pro Python>" make_map_agreement.py   -> logs\map_agreement.json, map_agreement_<pair>_3200m.npy; read-only
+  "<ArcGIS Pro Python>" make_map_agreement.py --labels v3 [--rehearse [--plant]]   -> logs\map_agreement_v3.json, the same
 """
 import os, sys, json, time
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -32,11 +43,16 @@ sys.path.insert(0, HERE)
 from paths import on_drive, GDB
 import grid60 as G
 from svmcheck import training_score
-from labelsets import FOUR, SEVEN
+from labelsets import FOUR, SEVEN, TAG
 
 MARS = arcpy.SpatialReference(104905)
 G60 = r"Mars Project\Global60\%s.tif"
+REHEARSE, PLANT = "--rehearse" in sys.argv, "--plant" in sys.argv
+V3 = TAG == "_v3"
 OUT = os.path.join(HERE, "logs", "map_agreement.json")
+LOGGED = OUT
+if V3:
+    OUT = os.path.join(HERE, "logs", "map_agreement_rehearsal.json" if REHEARSE else "map_agreement_v3.json")
 STEP = 8                                                    # 400 m -> 3.2 km for the figure
 PAIRS = [("four", FOUR, ("global60_landforms_200m_mode11_on_v2_labels_ov400.npy", "global60_landforms_svm_200m_mode11"),
           ("global60_landforms_global60_landforms_unet_200m_seamfix_ov400.npy", "global60_landforms_unet_200m_seamfix"),
@@ -44,6 +60,10 @@ PAIRS = [("four", FOUR, ("global60_landforms_200m_mode11_on_v2_labels_ov400.npy"
          ("v2", SEVEN, ("global60_landforms_v2_200m_mode11_ov400.npy", "global60_landforms_svm_v2_200m_mode11"),
           ("global60_landforms_global60_landforms_unet_v2_200m_seamfix_ov400.npy", "global60_landforms_unet_v2_200m_seamfix"),
           "Landform_TrainingSamples_v2_60_train", "Landform_TrainingSamples_v2_60_test")]
+PAIR_V3 = ("v3", SEVEN, ("global60_landforms_v3_200m_mode11_ov400.npy", "global60_landforms_svm_v3_200m_mode11"),
+           ("global60_landforms_global60_landforms_unet_v3_200m_seamfix_ov400.npy", "global60_landforms_unet_v3_200m_seamfix"),
+           "Landform_TrainingSamples_v3_60_train", "Landform_TrainingSamples_v3_60_test")
+RUN = PAIRS if not V3 else [("v3",) + PAIRS[1][1:]] if REHEARSE else [PAIR_V3]
 
 
 def load(npy, tif):
@@ -64,8 +84,10 @@ def polys(fc):
 def main():
     t0 = time.time()
     res = dict(script="make_map_agreement.py", when=time.strftime("%Y-%m-%d %H:%M"))
-    for key, names, (na, ta), (nb, tb), train, test in PAIRS:
+    for key, names, (na, ta), (nb, tb), train, test in RUN:
         a, b = load(na, ta), load(nb, tb)
+        if PLANT:
+            b = np.roll(np.asarray(b), b.shape[1] // 2, axis=1)
         assert a.shape == b.shape
         H, W = a.shape; K = len(names)
         g = dict(dpx=360.0 / W, dpy=2 * G.G100.lat_of(G.G100.oy) / H,
@@ -109,7 +131,8 @@ def main():
                         largest_disagreement=dict(svm=names[i], unet=names[j], share=round(float(off[i, j] / tot), 4)),
                         by_latitude_band={"%d to %d" % (60 - 10 * k, 50 - 10 * k): round(float(band[k, 0] / band[k, 1]), 4)
                                           for k in range(12) if band[k, 1]})
-        np.save(os.path.join(HERE, "map_agreement_%s_3200m.npy" % key), small)
+        if not REHEARSE:
+            np.save(os.path.join(HERE, "map_agreement_%s_3200m.npy" % key), small)
         print("%s: agree on %.1f %% of ±60°; held-out polygons %.1f %%, training %.1f %%; largest disagreement: "
               "SVM %s / U-Net %s, %.1f %% (%.0f s)" % (key, 100 * res[key]["agreement"], 100 * on["held_out"],
               100 * on["training"], names[i], names[j], 100 * off[i, j] / tot, time.time() - t0))
@@ -118,6 +141,24 @@ def main():
                   100 * d["unet_share"], 100 * d["both_share"], d["iou"]))
         print("   by latitude:", res[key]["by_latitude_band"])
         del a, b, agree, m
+    if V3 and REHEARSE:
+        want = json.load(open(LOGGED, encoding="utf-8"))["v2"]
+        same = all(res["v3"][k] == want[k] for k in ("agreement", "on_polygons", "crosstab_rows_svm_cols_unet", "classes",
+                                                     "largest_disagreement", "by_latitude_band"))
+        print("rehearsal: the stand-ins reproduce the v2 entry of map_agreement.json:", same)
+        if not same:
+            sys.exit(2)
+    if V3:
+        v3, ag = res["v3"], res["v3"]["agreement"]
+        res["predictions"] = {
+            "P4": dict(agreement=ag, v2=0.3971, held=bool(ag > 0.3971)),
+            "P5": dict(agreement=ag, held=bool(ag < 0.50)),
+            "P6": dict(held_out=v3["on_polygons"]["held_out"], whole=ag, held=bool(v3["on_polygons"]["held_out"] > ag))}
+        for p, d in res["predictions"].items():
+            print(p, "held" if d["held"] else "NOT held", {k: x for k, x in d.items() if k != "held"})
+        json.dump(res, open(OUT, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+        print("wrote %s  (%.0f s)" % (OUT, time.time() - t0))
+        return
     f, v = res["four"], res["v2"]
     res["predictions"] = {
         "P1": dict(agreement=f["agreement"], held=bool(f["agreement"] < 0.75)),

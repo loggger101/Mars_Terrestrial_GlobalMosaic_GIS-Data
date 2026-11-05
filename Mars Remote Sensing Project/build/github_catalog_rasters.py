@@ -83,6 +83,12 @@ G60 = {
         + V2_VALUES + ".",
     "global60_landforms_unet_v2p_200m_seamfix.tif": "**A rehearsal, never a result** (KB §69.4): the U-Net on the "
         "label proposals as proposed: 88.8 %, κ 0.856 on the 258 held-out rehearsal polygons. " + V2_VALUES + ".",
+    "global60_landforms_svm_v3_200m.tif": "The seven-class SVM at 200 m on the v3 labels (KB §69.49): 10,269 training "
+        "polygons, the same 14 held-out blocks. " + V2_VALUES + ".",
+    "global60_landforms_svm_v3_200m_mode11.tif": "The same, 11 × 11 majority filter: the v3 counterpart of the "
+        "seven-class SVM map above (scores: `logs\v3_maps.json`).",
+    "global60_landforms_unet_v3_200m_seamfix.tif": "The U-Net on the v3 labels (KB §69.49), two passes as `_seamfix` "
+        "above: the v3 counterpart of the seven-class U-Net map (scores: `logs\v3_maps.json`). " + V2_VALUES + ".",
     "global60_svm_s_ClassifyPixel.tif": "Not a product: a single 4,608 × 4,608 tile of zeros left by a "
         "`ClassifyPixelsUsingDeepLearning` run on 2026-10-26, during the v2p rehearsal's U-Net passes (KB §69.4).",
     "global60_svm_stack_200m_nothermal.tif": "Bands 1–3, 6, 7 of the classification stack, copied exactly (T1, KB §56).",

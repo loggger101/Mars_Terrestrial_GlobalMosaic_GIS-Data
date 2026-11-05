@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-05 (§69.76).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-05 (§69.77).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -6971,8 +6971,13 @@ While U-Net training ran, the agent worked through what needed no author, GPU, `
 - **The training's validation loss is not smooth** (§69.75's run): epochs 19, 21, 22, 25 and 26 read 1.60, 1.28, 7.75,
   23.25 and 10.31 against 0.46 at epoch 18, while training loss falls and validation accuracy holds at 0.86–0.88; v2's
   curve had no such spikes. The likely cause, rare class-weighted chips, is **not** verified. It matters for the model
-  kept: X5 kept its best epoch by validation loss (§66.1), so v3 may keep an early epoch. Which one is read from
-  the finished model before the passes' result is reported.
+  kept: X5 kept its best epoch by validation loss (§66.1). **Read from the finished model (step 02, exit 0, 15:07:50,
+  727.5 min, 34,841 chips): v3 kept epoch 18 of 0–29**, the minimum validation loss, 0.4625: the `.emd`'s accuracy
+  0.84983 is that epoch's 0.849829, not the last epoch's 0.8815; v2 kept its last epoch, also its minimum (`.emd` 0.84234, epoch 29). The model
+  has no later epoch to fall back on. Its per-class validation F1 against v2's, not a like-for-like score (each on its
+  own validation chips, none held out): Crater 0.24 / 0.14, hills 0.09 / 0.27, lava tube 0.14 / 0.23, Normal Ground
+  0.21 / 0.63, edifice 0.32 / 0.38, apron 0.67 / 0.66, fluvial 0.15 / 0.23. `score_v3_maps.py`'s predictions were
+  written before these were read and are not changed.
 - **The restore's two gaps closed** (`logs\restore_p7_extended_DESKTOP-PJS73RO.json`). **Rejoining:** `--only
   global60_dem` from `derivatives-2026-10-06`: 2 parts, 3.2 GB, 87 s; an independent hash of the result equals its
   SHA256SUMS entry (`restore.py`'s own check runs only when its parser finds that line, which it does: 7 entries).
@@ -6982,3 +6987,52 @@ While U-Net training ran, the agent worked through what needed no author, GPU, `
   run:** `make_global_terrain.py --meridian-only` and `make_global60_svm_stack.py --patch-cols` after a restore, because
   both write the drive's own rasters in place; and the steps `docs/backup.md` leaves to the hand.
 - **`HANDOFF-DESKTOP.md`** brought to 42 maps, 23 layouts, 227 scripts; it still said 38, 21 and 175.
+
+### 69.77 What a pick of the v3 maps would need; the v3 maps' other checks registered; R2's paired gap — 2026-11-05, desktop **[V]**
+
+While pass A of the U-Net ran (03a, exit 0, 87.9 min, 60 tiles), the agent audited what depends on the v2 maps, so that
+neither the author's pick nor the freeze waits on code. Every prediction below was written with no v3 map in existence;
+the only v3 numbers seen are the training run's validation table (§69.76).
+
+- **The audit.** `score_v3_maps.py`'s names for the v3 logs and arrays match what `verify_global60_classification.py`
+  will write at steps 06–08 and 11–13 (its rehearsal stood v2 arrays in, so these were unexercised), and step 14's and
+  `make_named_feature_check.py --labels v3`'s match too. **Hard-coded to v2, and each now takes `--labels v3` or
+  draws v3 when its logs exist:** `make_map_agreement.py`, `make_mode_curve.py`, `make_fig_map_agreement.py`,
+  `make_fig_final.py` (`final_img\svm_vs_unet_v3.png`, the v3 maps on the 237 v2 polygons). **Left hard-coded on purpose:**
+  `make_v2_sheets.py`, whose sheet text states the v2 results (fluvial over-predicted, D18's clause), so v3 sheets are
+  written from the v3 results, and they need `score_metrics.py` run on the v3 check logs; and `make_block_bootstrap.py`,
+  whose v3 intervals `score_v3_maps.py` already gives. `github_release_bundle.py`'s globs take the v3 maps and model
+  unchanged. `github_catalog_rasters.py` has the three v3 maps' descriptions, without scores. In the deliverables, a
+  pick of v3 reaches three figures in the paper, three images in `final.py` and the v2 map numbers (e.g. 69.0 in 4 and 2
+  lines, 42.5 in 5 and 3).
+- **`score_r2_v3.py` (new): the v3 maps on R2's probability sample.** R2's points were drawn on 11-02 and its estimator
+  is unbiased for any map (`score_r2.py`), so the v3 maps can be read at the same points with the same labels and
+  weights, each v3-minus-v2 difference on the same rows. It stands beside `score_v3_maps.py`'s recommendation, not in
+  it. **Predictions:** unet_v3 above unet_v2's 21.7 %; svm_v3 in 34.9–44.9 %; unet_v3 − unet_v2 above 0; svm_v3 − svm_v2
+  includes 0; unet_v3 stays below svm_v3. **Rehearsed** on stand-ins (`--rehearse`, 1 s): of 420 stored map classes (210
+  slots, two maps) 0 differ from `r2_key.json`, both logged estimates reproduce, every v3-minus-v2 difference is exactly
+  0. `--plant` rolled unet_v2's array: 160 classes differ, refused, exit 2. `score_r2.py`'s answers reader moved into
+  `read_labels` for it: its rehearsal 8 / 8, and its result on the agent's labels byte-identical.
+- **A new measurement from that rehearsal, on the agent's labels (gate waived, §69.55):** on the probability sample the
+  seven-class U-Net minus the seven-class SVM is **−18.3 pt (−26.7 to −9.9)**, the reverse of its 26.5-point lead on the
+  polygons (§69.44). The labeller's lean to Normal Ground favours the SVM (33.3 % of its map Normal Ground, the U-Net's
+  20.2 %), so the same is estimated on the rows not read as Normal Ground. **Registered before that was computed: the
+  interval includes 0; held.** On those 57 rows SVM 32.7 % (14.3–51.2), U-Net 28.7 % (10.9–46.5), difference **−4.1 pt
+  (−27.9 to +19.8)**. So the whole deficit sits on the Normal Ground rows and the sample does not rank the two maps;
+  `v2_drafts.tex` block 18 (d) has the sentence for block 16.
+- **`make_map_agreement.py --labels v3`** (A6 on the v3 pair). **Predictions:** agreement above the v2 pair's 39.7 %,
+  below 50 %, and higher on the v3 held-out polygons than on ±60°. **Rehearsed** (`--rehearse`, 1,375 s): the v2 arrays
+  and polygons through the v3 route reproduce the v2 entry of `logs\map_agreement.json` exactly, cross-table included,
+  and no figure array is written. **The check can fail:** `--plant` rolled the stand-in U-Net half a planet: agreement 18.7 %, refused, exit 2, nothing written. `PAIRS` stays two rows, which `make_r2_points.py` unpacks.
+- **`make_mode_curve.py --labels v3`** (A3 (c) on the v3 SVM, 1,652 polygons). **Predictions:** the curve rises from raw
+  to 13 px; at 127 px it stays over 10 points below the v3 U-Net's own score there. **Rehearsed** (`--rehearse`, 5 min):
+  the v2 map through the v3 route reproduces `logs\mode_curve.json` at 1 and 3 px and the array check's confusion
+  exactly; the run took 1,128 s in full (§69.50). No plant: the comparison is exact equality on the logged rows.
+- **`v2_drafts.tex` block 18:** the v3 runs in Methods, Results and Limits (the blocks' third use, the labels asked for
+  after the v2 scores were read), with `\VV` placeholders, to go in whichever maps the author picks: the runs were
+  made, so they are reported either way.
+- **Checked and unchanged:** the interim's "Next Steps" note already gives 3,791 of 9,287; `verify_interim.py` passes
+  on `interim.py` (539 numbers), `final.py` (235) and the `.tex` (845); the report PDF postdates `interim.py`;
+  `tools/check_remote.py` all pass (95 release assets, 4 source mosaics); CI green. C: stays above ~17 GB by the
+  v2 runs' pagefile peak (14.8 GB, §69.4) and tile sizes (0.5 GB over both passes); the SVM's scratch was not measured,
+  so a watcher reports at 8 GB free.

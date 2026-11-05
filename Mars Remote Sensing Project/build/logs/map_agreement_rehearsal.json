@@ -1,0 +1,164 @@
+{
+ "script": "make_map_agreement.py",
+ "when": "2026-11-05 16:27",
+ "v3": {
+  "svm": "global60_landforms_svm_v2_200m_mode11",
+  "unet": "global60_landforms_unet_v2_200m_seamfix",
+  "grid_400m": {
+   "dpx": 0.006748270755618873,
+   "dpy": 0.006748052204677138,
+   "lat_top": 60.00030617788678,
+   "lon_left": 0.0007685268254817856
+  },
+  "figure_step": 8,
+  "agreement": 0.3971,
+  "on_polygons": {
+   "held_out": 0.4322,
+   "training": 0.5464
+  },
+  "crosstab_rows_svm_cols_unet": [
+   [
+    0.05906,
+    0.00073,
+    0.00161,
+    0.00536,
+    0.01837,
+    0.02293,
+    0.01003
+   ],
+   [
+    0.00484,
+    0.00343,
+    0.00031,
+    1e-05,
+    0.0006,
+    0.00238,
+    0.0
+   ],
+   [
+    0.00292,
+    0.00026,
+    0.00293,
+    0.00029,
+    0.00906,
+    0.00513,
+    0.00014
+   ],
+   [
+    0.00582,
+    0.0,
+    0.00221,
+    0.15923,
+    0.1354,
+    0.02632,
+    0.00414
+   ],
+   [
+    0.00281,
+    0.00014,
+    0.00582,
+    0.00718,
+    0.08108,
+    0.02396,
+    0.00148
+   ],
+   [
+    0.01119,
+    0.00073,
+    0.00347,
+    0.00069,
+    0.02184,
+    0.02421,
+    0.00239
+   ],
+   [
+    0.05344,
+    9e-05,
+    0.00287,
+    0.02879,
+    0.13325,
+    0.04389,
+    0.06719
+   ]
+  ],
+  "classes": {
+   "Crater": {
+    "svm_share": 0.1181,
+    "unet_share": 0.1401,
+    "both_share": 0.0591,
+    "iou": 0.2966
+   },
+   "steep/windy hills": {
+    "svm_share": 0.0116,
+    "unet_share": 0.0054,
+    "both_share": 0.0034,
+    "iou": 0.2539
+   },
+   "lava tube": {
+    "svm_share": 0.0207,
+    "unet_share": 0.0192,
+    "both_share": 0.0029,
+    "iou": 0.0791
+   },
+   "Normal Ground": {
+    "svm_share": 0.3331,
+    "unet_share": 0.2015,
+    "both_share": 0.1592,
+    "iou": 0.4241
+   },
+   "volcanic edifice": {
+    "svm_share": 0.1225,
+    "unet_share": 0.3996,
+    "both_share": 0.0811,
+    "iou": 0.1839
+   },
+   "apron": {
+    "svm_share": 0.0645,
+    "unet_share": 0.1488,
+    "both_share": 0.0242,
+    "iou": 0.128
+   },
+   "fluvial channel": {
+    "svm_share": 0.3295,
+    "unet_share": 0.0854,
+    "both_share": 0.0672,
+    "iou": 0.1933
+   }
+  },
+  "largest_disagreement": {
+   "svm": "Normal Ground",
+   "unet": "volcanic edifice",
+   "share": 0.1354
+  },
+  "by_latitude_band": {
+   "60 to 50": 0.6782,
+   "50 to 40": 0.523,
+   "40 to 30": 0.4251,
+   "30 to 20": 0.3883,
+   "20 to 10": 0.4003,
+   "10 to 0": 0.4064,
+   "0 to -10": 0.4076,
+   "-10 to -20": 0.3847,
+   "-20 to -30": 0.3364,
+   "-30 to -40": 0.3095,
+   "-40 to -50": 0.2805,
+   "-50 to -60": 0.2536
+  }
+ },
+ "predictions": {
+  "P4": {
+   "agreement": 0.3971,
+   "v2": 0.3971,
+   "held": false
+  },
+  "P5": {
+   "agreement": 0.3971,
+   "held": true
+  },
+  "P6": {
+   "held_out": 0.4322,
+   "whole": 0.3971,
+   "held": true
+  }
+ }
+}

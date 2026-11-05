@@ -119,18 +119,22 @@ def rehearse():
     return all(ok for _, ok in checks)
 
 
+def read_labels(path):
+    if path.lower().endswith(".txt"):                         # answers.txt: "A1 n" per line, # comments
+        lab = {}
+        for line in open(path, encoding="utf-8"):
+            parts = line.split("#")[0].split()
+            if len(parts) == 2:
+                lab[parts[0].upper()] = parts[1].lower()
+        return lab
+    return json.load(open(path, encoding="utf-8"))
+
+
 def main():
     if "--rehearse" in sys.argv:
         sys.exit(0 if rehearse() else 1)
     key = json.load(open(KEY, encoding="utf-8"))
-    if sys.argv[1].lower().endswith(".txt"):                  # answers.txt: "A1 n" per line, # comments
-        lab = {}
-        for line in open(sys.argv[1], encoding="utf-8"):
-            parts = line.split("#")[0].split()
-            if len(parts) == 2:
-                lab[parts[0].upper()] = parts[1].lower()
-    else:
-        lab = json.load(open(sys.argv[1], encoding="utf-8"))
+    lab = read_labels(sys.argv[1])
     lab = {s: v for s, v in lab.items() if s in key["slots"]}
     bad = {s: v for s, v in lab.items() if v not in LETTERS + "u"}
     if bad or set(lab) != set(key["slots"]):

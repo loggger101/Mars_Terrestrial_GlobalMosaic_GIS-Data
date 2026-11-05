@@ -19,7 +19,15 @@ Predictions, written before the first run (each reported as held or not held):
   P2  the four-class SVM at 127 px (51 km) stays more than 10 points below the four-class U-Net's 98.9 % (< 88.9 %);
   P3  the seven-class SVM at 127 px stays more than 10 points below the seven-class U-Net's 69.0 % (< 59.0 %).
 
+--labels v3: the same curve for the v3 SVM (run_v3.ps1, KB §69.49) on the 1,652 v3 held-out polygons, for the author's
+pick (NEXT-STEPS row 3b). Written 2026-11-05 with the U-Net's first pass running: no v3 map exists. Predictions:
+  P4  the curve rises from the raw map to the 13-pixel (5 km) window, as P1;
+  P5  at 127 px it stays more than 10 points below the v3 U-Net's own score on those polygons, as P3.
+--rehearse (with --labels v3) runs the seven-class v2 map through the v3 route at 1 and 3 pixels, must reproduce those
+rows of logs\mode_curve.json exactly, and writes nothing.
+
   "<ArcGIS Pro Python>" make_mode_curve.py        -> logs\mode_curve.json   (reads the drive only; ~1 GB RAM a map)
+  "<ArcGIS Pro Python>" make_mode_curve.py --labels v3 [--rehearse]        -> logs\mode_curve_v3.json
 """
 import os, sys, json, time
 sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
@@ -33,9 +41,11 @@ sys.path.insert(0, HERE)
 from paths import GDB
 import grid60 as G
 from svmcheck import kappa, training_score
+from labelsets import TAG
 
 gdal.UseExceptions()
-OUT = os.path.join(HERE, "logs", "mode_curve.json")
+REHEARSE, V3 = "--rehearse" in sys.argv, TAG == "_v3"
+OUT = os.path.join(HERE, "logs", "mode_curve_v3.json" if V3 else "mode_curve.json")
 MARS = arcpy.SpatialReference(104905)
 SIZES = (1, 3, 5, 13, 37, 127)
 STRIP = 512
@@ -45,6 +55,13 @@ MAPS = [  # name, raster, held-out class, classes, the check (array, log), the U
     ("svm7", "global60_landforms_svm_v2_200m.tif", "Landform_TrainingSamples_v2_60_test", 7,
      ("global60_landforms_v2_200m_mode11_ov400.npy", "global60_classification_check_v2_200m_mode11.json"), 0.690),
 ]
+UNET_V3 = "global60_classification_check_global60_landforms_unet_v3_200m_seamfix.json"
+if V3 and REHEARSE:
+    MAPS, SIZES = MAPS[1:], (1, 3)
+elif V3:
+    MAPS = [("svm7", "global60_landforms_svm_v3_200m.tif", "Landform_TrainingSamples_v3_60_test", 7,
+             ("global60_landforms_v3_200m_mode11_ov400.npy", "global60_classification_check_v3_200m_mode11.json"),
+             json.load(open(os.path.join(HERE, "logs", UNET_V3), encoding="utf-8"))["held_out"]["accuracy"])]
 
 
 def polys(fc):
@@ -133,6 +150,21 @@ def main():
             del m
         res["maps"][name] = dict(raster=tif, held_out=test, unet_accuracy=unet, by_size=rows)
         del a
+    if V3:
+        s7, unet = res["maps"]["svm7"]["by_size"], res["maps"]["svm7"]["unet_accuracy"]
+        if REHEARSE:
+            want = json.load(open(os.path.join(HERE, "logs", "mode_curve.json"), encoding="utf-8"))["maps"]["svm7"]["by_size"]
+            same = all(s7[n][k] == want[str(n)][k] for n in SIZES for k in ("accuracy", "kappa", "balanced"))
+            print("rehearsal: the v2 map through the v3 route reproduces mode_curve.json at 1 and 3 px:", same)
+            sys.exit(0 if same else 2)
+        res["predictions"] = {k: bool(v) for k, v in {
+            "P4 rises raw -> 13 px": s7[13]["accuracy"] > s7[1]["accuracy"],
+            "P5 at 127 px < the v3 U-Net less 10 pt": s7[127]["accuracy"] < unet - 0.10}.items()}
+        print("predictions:", res["predictions"])
+        res["seconds"] = round(time.time() - t0)
+        json.dump(res, open(OUT, "w", encoding="utf-8"), indent=1)
+        print("->", OUT)
+        return
     s4, s7 = res["maps"]["svm4"]["by_size"], res["maps"]["svm7"]["by_size"]
     res["predictions"] = {k: bool(v) for k, v in {
         "P1 both rise raw -> 13 px": s4[13]["accuracy"] > s4[1]["accuracy"] and s7[13]["accuracy"] > s7[1]["accuracy"],

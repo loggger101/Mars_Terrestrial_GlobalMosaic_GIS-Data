@@ -362,3 +362,44 @@ On the 1,652 held-out polygons of a larger, rule-screened label set in the same 
 ($-3.7$ to $+16.3$ points). The lead is clear by polygon and rests on a few blocks. %% KB §69.57
 %% (c) Conclusions, "The U-Net's lead is firm by balanced accuracy (56.9\%": read "resolved by balanced accuracy on the
 %%     v2 held-out polygons (56.9\%" and add "though not on a larger rule-screened set".
+
+%% 18. The v3 runs (KB §69.49, §69.76, §69.77), drafted 2026-11-05 with the v3 U-Net's first pass running: no v3 map
+%%     exists, and the wording below must not be read as a forecast. At the freeze, whichever maps the author picks,
+%%     (a), (b) and (c) go in: the runs were made, so they are reported either way. (d) adds to block 16 (a). Replace
+%%     every \VV{log}{key}; a bracketed {either | or} is picked by the numbers; put each number into the KB first.
+%%     V3M  logs\v3_maps.json (score_v3_maps.py); keys under v2_polygons / v3_polygons: full.<map>, block_bootstrap
+%%     R2V  logs\r2\r2_v3_result.json (score_r2_v3.py)
+%%     AGV  logs\map_agreement_v3.json (make_map_agreement.py --labels v3)
+%%     If the author picks a v3 map, the seven-class paragraphs, Table tab:svm, the three figures (NEXT-STEPS row 3b)
+%%     and the abstract change as well; those are written from the numbers, not here.
+%% ---------------------------------------------------------------------------------------------------------
+%% (a) Methods, after the seven-class labels:
+A third label set tests whether more and smaller training polygons help. Every seven-class polygon over
+1,500~km$^2$ or wider than 1\textdegree{} was cut on a 0.5\textdegree{} grid, each piece kept only if it passed a
+written screen for its class, and polygons were added from the crater catalogue, the geologic map and the elevation
+model, by rule and not by eye, giving 10,269 training and 1,652 held-out polygons in the same 14 blocks. The models
+were retrained on them; the U-Net's validation loss was unsteady, and the epoch with the lowest, the 19th of 30, was kept.
+Each new map is scored on the 237 held-out polygons, the like-for-like comparison, and on the 1,652. %% KB §69.49, §69.76
+%% (b) Results, after the U-Net's seven-class paragraph:
+On the 237 polygons the U-Net on the third label set scores \VV{V3M}{v2\_polygons.full.unet\_v3.accuracy},
+\kap\,\VV{V3M}{v2\_polygons.full.unet\_v3.kappa}, balanced accuracy \VV{V3M}{v2\_polygons.full.unet\_v3.balanced},
+against 69.0\%, 0.606 and 56.9\%; the support vector machine scores \VV{V3M}{v2\_polygons.full.svm\_v3.accuracy},
+\kap\,\VV{V3M}{v2\_polygons.full.svm\_v3.kappa}, balanced accuracy \VV{V3M}{v2\_polygons.full.svm\_v3.balanced},
+against 42.5\%, 0.310 and 41.9\%. By block the U-Net's difference runs from
+\VV{V3M}{v2\_polygons.block\_bootstrap.unet\_v3-unet\_v2.balanced\_ci95} points of balanced accuracy, {which is resolved
+| which is not resolved}. On the 1,652 polygons they score \VV{V3M}{v3\_polygons.full.unet\_v3.accuracy} and
+\VV{V3M}{v3\_polygons.full.svm\_v3.accuracy}, against 65.8\% and 39.8\%. Volcanic edifice covers
+\VV{V3M}{edifice\_share.unet\_v3} of \pmsixty{} on the new U-Net map, against 40.0\%, and the two new maps agree on
+\VV{AGV}{v3.agreement} of \pmsixty, against 39.7\%. On the probability sample below they score
+\VV{R2V}{overall.unet\_v3.est} and \VV{R2V}{overall.svm\_v3.est}. %% KB §69.77, and the section with the results
+%% (c) Limits, for "The held-out blocks have now been used twice, once by the four-class models and once by the
+%%     seven-class ones.":
+The held-out blocks have now been used three times, by the four-class models, the seven-class ones and those on the
+third label set. That set was requested after the seven-class scores were read, so any gain on it is not a fresh test,
+and its held-out crater discs come from the catalogue the crater results are checked against, so that class partly
+measures agreement with it. %% KB §69.49, score_v3_maps.py
+%% (d) Block 16 (a), after "each below its score on the held-out polygons.":
+On the same points the seven-class U-Net minus the seven-class support vector machine is $-18.3$ points ($-26.7$ to
+$-9.9$), the reverse of its lead on the polygons, but the labeller's lean to Normal Ground favours the support vector
+machine, which maps more of it. On the 57 points not read as Normal Ground the difference is $-4.1$ points ($-27.9$ to
+$+19.8$), so the sample does not rank the two maps. %% KB §69.77

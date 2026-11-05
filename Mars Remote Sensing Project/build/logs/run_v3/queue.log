@@ -1,3 +1,7 @@
 2026-11-05 02:19:00  start 01_unet_export: make_dl_pixels.py --export --labels v3
 2026-11-05 03:00:23  end   01_unet_export: exit 0, 41.4 min
 2026-11-05 03:00:23  start 02_unet_train: make_dl_pixels.py --train --labels v3
+2026-11-05 15:07:50  end   02_unet_train: exit 0, 727.5 min
+2026-11-05 15:07:51  start 03a_unet_pass_a_to60: make_dl_pixels.py --classify-global --labels v3 --tiles 60 --emd C:\MarsScratch\x5c_v3\models\global60_unet_x5c_v3_20261105\global60_unet_x5c_v3_20261105.emd
+2026-11-05 16:35:47  end   03a_unet_pass_a_to60: exit 0, 87.9 min
+2026-11-05 16:35:48  start 03b_unet_pass_a_to120: make_dl_pixels.py --classify-global --labels v3 --tiles 120 --emd C:\MarsScratch\x5c_v3\models\global60_unet_x5c_v3_20261105\global60_unet_x5c_v3_20261105.emd

@@ -181,13 +181,24 @@ v2 pipeline, never a result (KB §69.4). Validation chips from the training spli
 ### The seven-class U-Net on the reviewed labels (2026-10-28)
 
 Trained on the reviewed v2 labels (KB §69.8) in
-[`global60_unet_x5c_v2_20261028/`](../Mars%20Project/DLModels/global60_unet_x5c_v2_20261028): 69.0 %, κ 0.606 on the 237 held-out polygons, reported as a test
-beside the four-class U-Net (KB §69.25). Validation chips from the training split, not the held-out score.
+[`global60_unet_x5c_v2_20261028/`](../Mars%20Project/DLModels/global60_unet_x5c_v2_20261028): 69.0 %, κ 0.606 on the 237 held-out polygons, the current
+seven-class U-Net, beside the four-class one (KB §69.25, §69.26). Validation chips from the training split, not the held-out score.
 
 | | What it shows | Made by |
 |---|---|---|
 | <a href="../Mars%20Project/DLModels/global60_unet_x5c_v2_20261028/ModelCharacteristics/loss_graph.png"><img src="../Mars%20Project/DLModels/global60_unet_x5c_v2_20261028/ModelCharacteristics/loss_graph.png" width="300" alt="v2 U-Net loss"></a> | **v2 U-Net loss**, seven classes, 30 epochs over 17,444 chips (6.2 h); validation loss from 0.90 to 0.30. | `make_dl_pixels.py --train --labels v2` |
 | <a href="../Mars%20Project/DLModels/global60_unet_x5c_v2_20261028/ModelCharacteristics/show_results.png"><img src="thumbs/global60_unet_x5c_v2_20261028_show_results.jpg" width="300" alt="v2 U-Net labels against predictions"></a> | **v2 U-Net labels against predictions** on five validation chips: a branching valley network is called apron and fluvial channel across the whole chip, with Crater on the crater beside it; a chip with two channel strips is called volcanic edifice throughout and the strips are missed; two chips labelled Normal Ground in part are called Normal Ground throughout; a chip with volcanic edifice in one corner is called volcanic edifice throughout, with Crater on its small crater. | `make_dl_pixels.py --train --labels v2` |
+
+### The seven-class U-Net on the v3 labels (2026-11-05)
+
+Trained on the v3 labels (KB §69.49) in
+[`global60_unet_x5c_v3_20261105/`](../Mars%20Project/DLModels/global60_unet_x5c_v3_20261105); the epoch of lowest validation loss, 18 of 0–29, is the
+model kept (KB §69.76). Its map is still being made: no held-out score yet. Validation chips from the training split.
+
+| | What it shows | Made by |
+|---|---|---|
+| <a href="../Mars%20Project/DLModels/global60_unet_x5c_v3_20261105/ModelCharacteristics/loss_graph.png"><img src="../Mars%20Project/DLModels/global60_unet_x5c_v3_20261105/ModelCharacteristics/loss_graph.png" width="300" alt="v3 U-Net loss"></a> | **v3 U-Net loss**, seven classes, 30 epochs over 34,841 chips (12.1 h); validation loss falls to 0.46 at epoch 18, then spikes as high as 23, cause not verified. | `make_dl_pixels.py --train --labels v3` |
+| <a href="../Mars%20Project/DLModels/global60_unet_x5c_v3_20261105/ModelCharacteristics/show_results.png"><img src="thumbs/global60_unet_x5c_v3_20261105_show_results.jpg" width="300" alt="v3 U-Net labels against predictions"></a> | **v3 U-Net labels against predictions** on five validation chips: most of each chip is unlabelled, the polygons cut square by the 0.5° grid. A sliver of Normal Ground is called Normal Ground throughout; apron is called apron; straight-edged edifice pieces are called as patchy edifice and Normal Ground; a Crater disc is called Crater, the crater beside it too, with fluvial channel and edifice on the unlabelled plain around it. | `make_dl_pixels.py --train --labels v3` |
 
 ## Interim crops
 

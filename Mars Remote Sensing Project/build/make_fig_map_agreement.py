@@ -6,7 +6,8 @@ map against the two-pass U-Net) and the seven-class pair. Where both maps give t
 (labelsets.COLOURS); where they differ, light grey. Each panel's title gives the share of ±60° in agreement; the
 legend gives each class's intersection over union. Light ground, Arial, as make_fig_block_split.py.
 Reads logs\map_agreement.json and map_agreement_<pair>_3200m.npy (make_map_agreement.py); writes
-build\final_img\map_agreement.png. System Python.
+build\final_img\map_agreement.png. --labels v3: the seven-class v2 pair above the v3 pair, also reading
+logs\map_agreement_v3.json, to build\final_img\map_agreement_v3.png. System Python.
 """
 import os, sys, json
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -18,13 +19,18 @@ from matplotlib.patches import Patch
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from labelsets import FOUR, SEVEN, COLOURS
+from labelsets import FOUR, SEVEN, COLOURS, TAG
 
 R = json.load(open(os.path.join(HERE, "logs", "map_agreement.json"), encoding="utf-8"))
 OUT = os.path.join(HERE, "final_img", "map_agreement.png")
 INK, MUTED, DIFFER = "#1A1A1A", "#5A6570", "#D9DEE3"
 PANELS = [("four", FOUR, "Four classes: published SVM map against the two-pass U-Net"),
           ("v2", SEVEN, "Seven classes: SVM against U-Net")]
+if TAG == "_v3":
+    R.update(json.load(open(os.path.join(HERE, "logs", "map_agreement_v3.json"), encoding="utf-8")))
+    OUT = os.path.join(HERE, "final_img", "map_agreement_v3.png")
+    PANELS = [("v2", SEVEN, "Seven classes, v2 labels: SVM against U-Net"),
+              ("v3", SEVEN, "Seven classes, v3 labels: SVM against U-Net")]
 
 plt.rcParams.update({"font.family": "Arial", "font.size": 10})
 fig, axes = plt.subplots(2, 1, figsize=(10, 7.6), dpi=200)

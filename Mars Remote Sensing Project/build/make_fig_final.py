@@ -97,19 +97,21 @@ def svm_unet():
     print("wrote", p)
 
 
-def svm_unet_v2():
-    """svm_unet() for the seven-class maps on the 237 v2 held-out polygons (KB §69.24, §69.25)."""
-    svm = log("global60_classification_check_v2_200m_mode11.json")["held_out"]
-    unet = log("global60_classification_check_global60_landforms_unet_v2_200m_seamfix.json")["held_out"]
+def svm_unet_v2(tag="v2", checks=("v2_200m_mode11", "global60_landforms_unet_v2_200m_seamfix")):
+    """svm_unet() for the seven-class maps on the 237 v2 held-out polygons (KB §69.24, §69.25); tag v3 draws the v3 maps
+    on the same polygons, the like-for-like set (KB §69.49)."""
+    svm = log("global60_classification_check_%s.json" % checks[0])["held_out"]
+    unet = log("global60_classification_check_%s.json" % checks[1])["held_out"]
     seven = CLASSES + ["volcanic edifice", "apron", "fluvial channel"]
     fig, axes = plt.subplots(1, 2, figsize=(10, 3.9), dpi=200, sharey=True)
     w = 0.38
     for ax, what, title in ((axes[0], "producers", "A  Producer's accuracy (held-out area found)"),
                             (axes[1], "users", "B  User's accuracy (map class right)")):
-        for j, (h, colour, label) in enumerate(((svm, ORANGE, "SVM, seven classes: %.1f %%, κ %.2f"
-                                                 % (100 * svm["accuracy"], svm["kappa"])),
-                                                (unet, BLUE, "U-Net, seven classes, two passes: %.1f %%, κ %.2f"
-                                                 % (100 * unet["accuracy"], unet["kappa"])))):
+        which = "seven classes" if tag == "v2" else "seven classes, v3 labels"
+        for j, (h, colour, label) in enumerate(((svm, ORANGE, "SVM, %s: %.1f %%, κ %.2f"
+                                                 % (which, 100 * svm["accuracy"], svm["kappa"])),
+                                                (unet, BLUE, "U-Net, %s, two passes: %.1f %%, κ %.2f"
+                                                 % (which, 100 * unet["accuracy"], unet["kappa"])))):
             v = [100 * h[what][c] for c in seven]
             xs = [i + (j - 0.5) * w for i in range(len(seven))]
             ax.bar(xs, v, w, color=colour, zorder=3, label=label)
@@ -124,7 +126,7 @@ def svm_unet_v2():
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, frameon=False, loc="lower center", ncol=2, fontsize=9)
     fig.tight_layout(rect=(0, 0.09, 1, 1))
-    p = os.path.join(OUT, "svm_vs_unet_v2.png")
+    p = os.path.join(OUT, "svm_vs_unet_%s.png" % tag)
     fig.savefig(p, facecolor="white"); plt.close(fig)
     print("wrote", p)
 
@@ -135,3 +137,6 @@ if __name__ == "__main__":
     depressions()
     svm_unet()
     svm_unet_v2()
+    v3 = ("v3_200m_mode11_on_v2_labels", "global60_landforms_unet_v3_200m_seamfix_on_v2_labels")
+    if all(os.path.exists(os.path.join(HERE, "logs", "global60_classification_check_%s.json" % c)) for c in v3):
+        svm_unet_v2("v3", v3)

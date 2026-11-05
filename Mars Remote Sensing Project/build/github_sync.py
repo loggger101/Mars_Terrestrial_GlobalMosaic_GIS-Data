@@ -117,6 +117,8 @@ def keep_rsp(p):   # Mars Remote Sensing Project
 
 
 def keep_mp(p):    # Mars Project
+    if re.search(r"s_ClassifyPixel\d", p.name):   # a running U-Net tile's scratch beside the stack, locked while it runs (KB §69.77)
+        return False
     if "review_sheets" in p.relative_to(DRIVE).parts:
         return p.suffix.lower() in REVIEW_KEEP
     return p.suffix.lower() not in RASTER
