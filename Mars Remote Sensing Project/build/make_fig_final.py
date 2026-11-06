@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Three charts the final paper and deck need that the interim never drew; all read from the logs, never retyped.
+r"""Charts the final paper and deck need that the interim never drew; all read from the logs, never retyped.
 
   final_img\depressions_vs_robbins.png   the ±60° closed depressions against Robbins by minimum diameter (KB §53.4,
                                          §69.45; logs\crater_recall_by_state.json, make_crater_recall_by_state.py):
@@ -11,6 +11,8 @@ r"""Three charts the final paper and deck need that the interim never drew; all 
                                          ..._global60_landforms_unet_200m_seamfix.json): producer's and user's per class
   final_img\svm_vs_unet_v2.png           the same for the seven-class SVM and U-Net on the 237 v2 held-out polygons
                                          (KB §69.24, §69.25)
+  final_img2_vs_polygons.png           the four maps' held-out scores beside their estimates on the probability sample,
+                                         the AI assistant's labels, its gate waived (KB §69.55, §69.79; the final deck only)
 
 Light ground, the palette of the interim charts (accuracy_200m.png). System Python:  py -3.13 make_fig_final.py
 """
@@ -131,12 +133,46 @@ def svm_unet_v2(tag="v2", checks=("v2_200m_mode11", "global60_landforms_unet_v2_
     print("wrote", p)
 
 
+def r2_sample():
+    """Each map's score on its held-out polygons beside its estimate on the probability sample (KB §69.55, §69.79)."""
+    r = log(os.path.join("r2", "r2_agent_waived_result.json"))
+    rows = [("Four-class SVM", "svm4", "200m_mode11"),
+            ("Four-class U-Net", "unet4", "global60_landforms_unet_200m_seamfix"),
+            ("Seven-class SVM", "svm7", "v2_200m_mode11"),
+            ("Seven-class U-Net", "unet7", "global60_landforms_unet_v2_200m_seamfix")]
+    fig, ax = plt.subplots(figsize=(10, 3.5), dpi=200)
+    for y, (name, key, check) in enumerate(rows):
+        h = 100 * log("global60_classification_check_%s.json" % check)["held_out"]["accuracy"]
+        s = {k: 100 * v for k, v in r["overall"][key].items()}
+        ax.plot([s["est"], h], [y, y], color=GRID, lw=1.2, zorder=1)
+        ax.plot([s["lo"], s["hi"]], [y, y], color=ORANGE, lw=2, solid_capstyle="round", zorder=2)
+        ax.plot(s["est"], y, "o", color=ORANGE, ms=8, zorder=3, label="probability sample, 95 % interval" if y == 0 else None)
+        ax.plot(h, y, "o", mfc="white", mec=BLUE, mew=2, ms=8, zorder=3, label="held-out polygons" if y == 0 else None)
+        near = h - s["est"] < 8                    # the two labels would touch
+        ax.text(s["est"], y - 0.27, "%.1f" % s["est"], ha="right" if near else "center", color=INK, fontsize=9)
+        ax.text(h, y - 0.27, "%.1f" % h, ha="left" if near else "center", color=INK, fontsize=9)
+    ax.set_yticks(range(len(rows))); ax.set_yticklabels([x[0] for x in rows], color=INK)
+    ax.set_ylim(len(rows) - 0.5, -0.65); ax.set_xlim(0, 100); ax.set_xlabel("overall accuracy (%)", color=MUTED)
+    clean(ax)
+    ax.grid(False); ax.grid(axis="x", color=GRID, lw=0.8, zorder=0)
+    ax.spines["left"].set_visible(False)
+    ax.legend(frameon=False, loc="upper left", fontsize=9)
+    fig.text(0.01, 0.01, "Sample: %d of 175 points decided by the AI assistant, whose agreement on the hidden check points was "
+             "%.1f %% against a 70 %% bar.\nPolygons: 183 for the four-class maps, 237 for the seven-class maps."
+             % (r["rows"], 100 * r["gate"]["agreement"]), color=MUTED, fontsize=8.5)
+    fig.tight_layout(rect=(0, 0.11, 1, 1))
+    p = os.path.join(OUT, "r2_vs_polygons.png")
+    fig.savefig(p, facecolor="white"); plt.close(fig)
+    print("wrote", p)
+
+
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     plt.rcParams.update({"font.family": "Arial", "font.size": 10})
     depressions()
     svm_unet()
     svm_unet_v2()
+    r2_sample()
     v3 = ("v3_200m_mode11_on_v2_labels", "global60_landforms_unet_v3_200m_seamfix_on_v2_labels")
     if all(os.path.exists(os.path.join(HERE, "logs", "global60_classification_check_%s.json" % c)) for c in v3):
         svm_unet_v2("v3", v3)

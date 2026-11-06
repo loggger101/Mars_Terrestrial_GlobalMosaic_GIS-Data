@@ -285,7 +285,7 @@ that showed CTX alone, by a rule written before any plate was viewed. The margin
 wrote the project's scripts, and the author has not checked them. Across 633 profiles on 78 of them, day infrared
 separates 19.7\% (13.1--27.2\%), Viking red 14.8\%, night infrared 14.5\% and the index 10.0\%. Day infrared leads
 Viking red by $+4.9$ points, interval $-2.7$ to $+13.1$, so H1 is again not supported (Figure~\ref{fig:t5}): the
-sharper margins halve the interval's width but leave zero inside it. %% KB §69.52
+traced margins narrow the interval, 15.8 points wide against 19.8, but leave zero inside it. %% KB §69.52, §69.79
 %% (b) The figure fig:t5: \includegraphics{figures/t5_traced.png} in place of t5_margins.png, this caption, and add
 %%     (r"final_img\t5_traced.png", "t5_traced.png") to build_final_paper.py's FIGURES (make_fig_t5_traced.py).
 \caption{Test T5 (H1): the share of profiles that each band separates across the geologic map's \lAv\ contacts at
@@ -412,3 +412,50 @@ On the same points the seven-class U-Net minus the seven-class support vector ma
 $-9.9$), the reverse of its lead on the polygons, but the labeller's lean to Normal Ground favours the support vector
 machine, which maps more of it. On the 57 points not read as Normal Ground the difference is $-4.1$ points ($-27.9$ to
 $+19.8$), so the sample does not rank the two maps. %% KB §69.77
+
+%% ---------------------------------------------------------------------------------------------------------
+%% 19. The final deck's share of the freeze (final.py), drafted 2026-11-05 (KB §69.79): what blocks 12, 15, 16 and 18 say
+%%     in the paper, in the deck's words, since final.py's header has the two agree. Each line below is one string of
+%%     final.py, % written \% so verify_interim.py reads the whole line. The same conditions apply: D33's clause leaves
+%%     (b) if the author has checked the margins; the "assistant" wording leaves (f) if the author answers R2's
+%%     sheets; (e) goes in whichever maps the author picks, and if a v3 map is picked the seven-class slides are
+%%     rewritten from its numbers as well. STATUS_DATE becomes the freeze's date; DATA changes only with a new release.
+%% ---------------------------------------------------------------------------------------------------------
+%% (a) HYPOTHESES, H1: this verdict, its KB "§47.2, §69.52":
+Not supported on the map's contacts or on margins traced on CTX: day IR 19.7\%, Viking red 14.8\%, chance 10\%; the difference's interval includes 0
+%% (b) FIGURES, the H1 slide: the image ("file", r"final_img\t5_traced.png"), source "§47.2, §69.52", these points:
+633 profiles on 78 margins traced on CTX at Athabasca, 905 on 10 lAv contacts at 1:20 M, each against a random-line null (10\%)
+Traced margins: day IR 19.7\%, Viking red 14.8\%; the difference +4.9 pt, interval −2.7 to +13.1
+Map contacts: 21.0\% against 12.3\%; +8.7 pt, interval −1.7 to +18.1: the lean persists, zero inside both
+The AI assistant traced the 86 margins (1,476 km); the author has not checked them
+%% (c) LIMITS, for "The review has only begun", this head and text:
+The review is partial
+3,791 of 9,287 candidates reviewed (precision 54\% on steep Ius channels, 50\% on rock-floored Athabasca channels, 10\% and 13\% on depressions); the digitising classes hold 202 channels, 381 crater rims and 86 traced lava margins; H2 needs both channel origins in one area, which neither type area has (§69.33, §69.52, §69.55, §69.63).
+%% (d) LIMITS, for "The held-out blocks used twice", this head and text:
+The held-out blocks used three times
+By the four-class models, the seven-class ones and those on a third label set, asked for after the seven-class scores were read, so a gain there is not a fresh test; further tuning needs validation blocks of its own (§66.5, §69.49).
+%% (e) FIGURES, a slide after "Seven classes lead, at a measured cost": the image ("file", r"final_img\svm_vs_unet_v3.png"),
+%%     source "§69.49, §69.76, §69.77" and the section with the results; \VV as in block 18, this title and these points:
+A third label set: more and smaller polygons
+10,269 training and 1,652 held-out polygons in the same 14 blocks: seven-class polygons cut at 0.5° and screened, others added by rule
+On the 237 polygons: U-Net \VV{V3M}{v2\_polygons.full.unet\_v3.accuracy}, κ \VV{V3M}{v2\_polygons.full.unet\_v3.kappa} (before 69.0\%, 0.606); SVM \VV{V3M}{v2\_polygons.full.svm\_v3.accuracy}, κ \VV{V3M}{v2\_polygons.full.svm\_v3.kappa} (before 42.5\%, 0.310)
+Volcanic edifice covers \VV{V3M}{edifice\_share.unet\_v3} of ±60° on the new U-Net map, against 40.0\%
+Asked for after the seven-class scores were read, so a gain here is not a fresh test
+%% (f) FIGURES, the next slide: the image ("file", r"final_img\r2_vs_polygons.png", make_fig_final.py), source
+%%     "§69.53, §69.55, §69.77", this title and these points; block 18 (b)'s R2V numbers join the second point:
+A probability sample, on the AI assistant's labels
+25 points per class of the seven-class SVM map, labelled blind on CTX and shaded relief; 142 of the 175 decided
+Each map scores below its held-out polygons, the U-Nets furthest: 44.4\% against 98.9\%, 21.7\% against 69.0\%
+The labeller's check failed (66.7\% on 27 hidden points, the bar 70\%), and it read 79.8\% of the ground as Normal Ground
+Off Normal Ground the seven-class U-Net minus SVM is −4.1 pt, interval −27.9 to +19.8: the sample does not rank the two
+%% (g) CONCLUSIONS, a last item:
+H1 is not supported on 1,476 km of margins traced on CTX either, and H2 awaits a window that holds both channel origins
+%% (h) NEXT_STEPS, all five (block 12's steps, the sample's labels from block 16 (d)):
+Finish the review at both type areas; the author's check of the traced margins makes H1's test the project's own
+Have the probability sample labelled by an analyst who passes its check: unbiased accuracies and class areas
+Material labels, not landform labels, to price the thermal bands; THEMIS-derived inertia where it exists
+Validation blocks of their own before any retraining; the U-Net's volcanic edifice is the first thing to correct
+Rim-based diameters or merged nested basins for the 23\% of missed craters that hold only a smaller closed basin
+%% (i) LIMITS, a last card, block 16 (d) in the deck's words (the eighth, which fills the slide's grid), this head and text:
+The polygons flatter each map
+Every polygon score sits where a class is clear; the probability sample shows by how much, but on the AI assistant's labels, which failed their check, so unbiased accuracies need an analyst who passes it (§69.53, §69.55).

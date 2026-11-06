@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-05 (§69.78).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-05 (§69.79).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7078,3 +7078,12 @@ the only v3 numbers seen are the training run's validation table (§69.76).
   put that source back to its earlier pixels, so the crop came out byte for byte the version of e11642d, and `github_sync.py` refused, reading
   the drive as behind. Checked before overriding: the drive's file equals the crop of the current source, the clone's was the crop of the
   10-27 source, the clone held no uncommitted work beyond `paper.yml`, and a dry run listed 14 copies and no removals. Then `--force`.
+
+### 69.79 The interim report in; the final deck's freeze edits drafted and tried; a fault in block 15 — 2026-11-05, desktop **[V]**
+
+- **The interim report was submitted on 11-05, the author's word in chat.** Which file went in (the PDF or the .docx) is not recorded. The talk on 10 Nov is what remains of row 5.
+- **The deck had no drafts.** §12.1 lists `final.py` among what the freeze changes, and its header says the paper and deck must not disagree, but every draft was for the `.tex`. `final.py` still had the review at 549 with no lava margins, H1 waiting on digitised margins, the blocks used twice, and no probability sample. **`v2_drafts.tex` block 19** holds the deck's share, one string per line: H1's verdict and slide, two limits rewritten and an eighth added (block 16 (d): the polygons flatter each map, the one limit of the paper's the deck lacked), a v3 slide with `\VV` placeholders, a probability-sample slide, a conclusion on H1, and What Next rewritten to block 12's steps. The conditions of blocks 15, 16 and 18 carry over.
+- **Tried on a scratch copy**, a throwaway script in the session's scratchpad, as for §69.78: block 19 read out of the drafts and applied to a copy of `final.py`, the `\VV` numbers as placeholders and the v2 chart standing in for `svm_vs_unet_v3.png`. It built at **39 slides** (37 today) and `verify_interim.py` passed on the copy (295 numbers); rendered through PowerPoint, and the seven changed slides read at full size with nothing overflowing. The committed deck is not rebuilt: it changes at the freeze.
+- **`make_fig_final.py`'s new `final_img\r2_vs_polygons.png`**: the four maps' held-out scores beside their estimates on the sample, read from the logs, the deck's only so far. Drawn alone, so the other charts were not rewritten. The trial's first render showed it and `t5_traced.png` as white panels on the navy deck, having no dark copies; `make_final_dark.py` now lists `make_fig_t5_traced.py`, `make_fig_final.py` carries the other, and both navy copies were drawn, with the white originals byte-identical after.
+- **A fault in block 15 (a), found writing the H1 slide, and fixed:** it said the traced margins "halve the interval's width". The difference's interval goes from 19.8 points wide (−1.7 to +18.1, 10 contacts) to 15.8 (−2.7 to +13.1, 78 margins), a fifth narrower. What more than halved is the 40-plate run's 37.7 (§69.52) and day IR's own interval, 35.1 to 14.1, neither of which the sentence names. The draft now gives 15.8 against 19.8. It had not reached the `.tex`, and `verify_interim.py` could not have caught it: it tests that a number is in the record, not what is said of it. **The other comparisons in blocks 15, 16 and 18 were read against their logs for the same reason** (R1's and R2's counts, shares and accuracies, the epoch, the polygon rule, the review tally and κ): no other fault.
+- **Checked and unchanged:** `make_geomap_check.py --labels v3 --raster` needs a ~1.6 km overview, which the mosaic step builds (`make_dl_pixels.py`, overviews to 64); the interim's "Next Steps" note already holds 3,791, the current tally.
