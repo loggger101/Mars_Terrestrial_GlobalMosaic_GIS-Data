@@ -1,0 +1,15 @@
+  Landform_TrainingSamples_v3_60_train: 10269 polygons
+  Landform_TrainingSamples_v3_60_test: 1652 polygons
+3. train SVM
+  trained in 6333 s -> F:\Mars Project\Global60\global60_landforms_svm_v3.ecd
+4. classify ±60° at 200 m
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v3_200m_tiles\t_r00_c00.tif  in 5514 s
+   tile  1/21  r0 c0  01:31:54 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v3_200m_tiles\t_r00_c01.tif  in 5867 s
+   tile  2/21  r0 c1  03:09:41 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v3_200m_tiles\t_r00_c02.tif  in 5707 s
+   tile  3/21  r0 c2  04:44:48 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v3_200m_tiles\t_r00_c03.tif  in 5522 s
+   tile  4/21  r0 c3  06:16:50 elapsed
+  classified -> C:\Users\Owner\AppData\Local\Temp\mars_scratch\cls_v3_200m_tiles\t_r00_c04.tif  in 5570 s
+   tile  5/21  r0 c4  07:49:39 elapsed

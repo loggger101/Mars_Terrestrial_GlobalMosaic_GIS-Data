@@ -46,3 +46,16 @@ pass B tile  45/60 row  4096 col  69632:  115 s; 15 to go, ~0.5 h
 pass B tile  46/60 row  4096 col  73728:  114 s; 14 to go, ~0.4 h
 pass B tile  47/60 row  4096 col  77824:  114 s; 13 to go, ~0.4 h
 pass B tile  48/60 row  4096 col  81920:  115 s; 12 to go, ~0.4 h
+pass B tile  49/60 row  4096 col  86016:  118 s; 11 to go, ~0.3 h
+pass B tile  50/60 row  4096 col  90112:  110 s; 10 to go, ~0.3 h
+pass B tile  51/60 row  4096 col  94208:  109 s; 9 to go, ~0.3 h
+pass B tile  52/60 row  4096 col  98304:  105 s; 8 to go, ~0.2 h
+pass B tile  53/60 row  4096 col 102400:   98 s; 7 to go, ~0.2 h
+pass B tile  54/60 row  4096 col 106496:   77 s; 6 to go, ~0.2 h
+pass B tile  55/60 row  8192 col      0:  101 s; 5 to go, ~0.2 h
+pass B tile  56/60 row  8192 col   4096:   98 s; 4 to go, ~0.1 h
+pass B tile  57/60 row  8192 col   8192:  104 s; 3 to go, ~0.1 h
+pass B tile  58/60 row  8192 col  12288:  102 s; 2 to go, ~0.1 h
+pass B tile  59/60 row  8192 col  16384:  102 s; 1 to go, ~0.0 h
+pass B tile  60/60 row  8192 col  20480:  106 s; 0 to go, ~0.0 h
+classified -> C:\MarsScratch\x5c_v3\global\tiles_b

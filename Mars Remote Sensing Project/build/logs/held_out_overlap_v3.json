@@ -1,0 +1,54 @@
+{
+ "script": "check_held_out_overlap.py",
+ "training": "v3_60_train",
+ "polygons": 10269,
+ "sets": {
+  "v2_60_test": {
+   "polygons": 237,
+   "unreadable": [],
+   "touching": 3,
+   "share_covered": 1.919881474914403e-18,
+   "by_class": {
+    "Crater": 0.0,
+    "steep/windy hills": 0.0,
+    "lava tube": 0.0,
+    "Normal Ground": 0.0,
+    "volcanic edifice": 5.078433783919345e-18,
+    "apron": 0.0,
+    "fluvial channel": 1.7333567621298933e-17
+   }
+  },
+  "v3_60_test": {
+   "polygons": 1652,
+   "unreadable": [],
+   "touching": 16,
+   "share_covered": 2.183401934915999e-19,
+   "by_class": {
+    "Crater": 0.0,
+    "steep/windy hills": 0.0,
+    "lava tube": 0.0,
+    "Normal Ground": 0.0,
+    "volcanic edifice": 1.3092928365776297e-18,
+    "apron": 0.0,
+    "fluvial channel": 0.0
+   }
+  },
+  "v2_60_train": {
+   "polygons": 733,
+   "unreadable": [
+    323
+   ],
+   "touching": 732,
+   "share_covered": 0.8924190752061814,
+   "by_class": {
+    "Crater": 0.8714700176385043,
+    "steep/windy hills": 0.994457425402706,
+    "lava tube": 1.0000000000000053,
+    "Normal Ground": 0.9586962748900719,
+    "volcanic edifice": 0.856473219860885,
+    "apron": 0.9451801990733886,
+    "fluvial channel": 0.7442612338880314
+   }
+  }
+ }
+}

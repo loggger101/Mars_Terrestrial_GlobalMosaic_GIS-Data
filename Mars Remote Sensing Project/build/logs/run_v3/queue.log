@@ -11,3 +11,19 @@
 2026-11-05 19:27:22  start 03d_unet_pass_a_to243: make_dl_pixels.py --classify-global --labels v3 --tiles 243 --emd C:\MarsScratch\x5c_v3\models\global60_unet_x5c_v3_20261105\global60_unet_x5c_v3_20261105.emd
 2026-11-05 21:03:46  end   03d_unet_pass_a_to243: exit 0, 96.4 min
 2026-11-05 21:03:46  start 04a_unet_pass_b_to60: make_dl_pixels.py --classify-global --labels v3 --pass B --tiles 60 --emd C:\MarsScratch\x5c_v3\models\global60_unet_x5c_v3_20261105\global60_unet_x5c_v3_20261105.emd
+2026-11-05 22:52:44  end   04a_unet_pass_b_to60: exit 0, 109.0 min
+2026-11-05 22:52:44  start 04b_unet_pass_b_to120: make_dl_pixels.py --classify-global --labels v3 --pass B --tiles 120 --emd C:\MarsScratch\x5c_v3\models\global60_unet_x5c_v3_20261105\global60_unet_x5c_v3_20261105.emd
+2026-11-06 00:32:09  end   04b_unet_pass_b_to120: exit 0, 99.4 min
+2026-11-06 00:32:09  start 04c_unet_pass_b_to180: make_dl_pixels.py --classify-global --labels v3 --pass B --tiles 180 --emd C:\MarsScratch\x5c_v3\models\global60_unet_x5c_v3_20261105\global60_unet_x5c_v3_20261105.emd
+2026-11-06 02:04:36  end   04c_unet_pass_b_to180: exit 0, 92.5 min
+2026-11-06 02:04:36  start 04d_unet_pass_b_to243: make_dl_pixels.py --classify-global --labels v3 --pass B --tiles 243 --emd C:\MarsScratch\x5c_v3\models\global60_unet_x5c_v3_20261105\global60_unet_x5c_v3_20261105.emd
+2026-11-06 03:34:18  end   04d_unet_pass_b_to243: exit 0, 89.7 min
+2026-11-06 03:34:18  start 05_unet_mosaic: make_dl_pixels.py --mosaic --two-pass --labels v3
+2026-11-06 03:38:49  end   05_unet_mosaic: exit 0, 4.5 min
+2026-11-06 03:38:49  start 06_score_unet_v3: verify_global60_classification.py --cell 200 --labels v3 --raster "F:\Mars Project\Global60\global60_landforms_unet_v3_200m_seamfix.tif"
+2026-11-06 03:42:15  end   06_score_unet_v3: exit 0, 3.4 min
+2026-11-06 03:42:15  start 07_score_unet_v3_on_v2: verify_global60_classification.py --cell 200 --labels v2 --raster "F:\Mars Project\Global60\global60_landforms_unet_v3_200m_seamfix.tif"
+2026-11-06 04:02:51  end   07_score_unet_v3_on_v2: exit 0, 20.6 min
+2026-11-06 04:02:51  start 08_score_unet_v2_on_v3: verify_global60_classification.py --cell 200 --labels v3 --raster "F:\Mars Project\Global60\global60_landforms_unet_v2_200m_seamfix.tif"
+2026-11-06 04:06:05  end   08_score_unet_v2_on_v3: exit 0, 3.2 min
+2026-11-06 04:06:05  start 09_svm_train_classify: make_global60_classification.py --cell 200 --labels v3
