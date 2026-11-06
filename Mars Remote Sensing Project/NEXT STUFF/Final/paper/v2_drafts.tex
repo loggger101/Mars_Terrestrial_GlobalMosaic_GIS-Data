@@ -190,7 +190,8 @@ predicted no better than by their commonest group, with or without the thermal b
 %% ---------------------------------------------------------------------------------------------------------
 %% 12. W6 (NEXT-STEPS §12.4), drafted 2026-11-02: a "Future work" subsection, the outline's item 10, at the end of
 %%     the Discussion (after Limits). Malin2007 is in references.bib (DOI checked on Crossref 2026-11-02). If R2 is
-%%     done by the freeze, drop its sentence and say what it found in Results instead. Every number is in the KB:
+%%     done by the freeze, drop its sentence, say what it found in Results instead, and read "Three steps" for "Four
+%%     steps" (block 16 (a) puts it in Results, so this applies unless the author withdraws R2). Every number is in the KB:
 %%     §69.44 (blocks), §69.45 (crater misses), §69.25/§69.37 (edifice), §69.50 (T9).
 %% ---------------------------------------------------------------------------------------------------------
 \subsection{Future work}
@@ -279,7 +280,7 @@ Crater, lava tube and Normal Ground. Shares are of this window. \label{fig:zoom}
 %% (a) Results, the H1 paragraph: replace "A map at 1:20\,M generalises contacts by kilometres, and ten contacts
 %%     cannot settle the question; H1 needs margins digitised on the 100~m stack." with:
 A map at 1:20\,M generalises contacts by kilometres, so the test was repeated on lava-flow margins traced on the
-Context Camera mosaic \citep{Malin2007,Dickson2024}: 86 margins (1,476~km) along the \lAv\ boundaries, on 126 plates
+Context Camera (CTX) mosaic \citep{Malin2007,Dickson2024}: 86 margins (1,476~km) along the \lAv\ boundaries, on 126 plates
 that showed CTX alone, by a rule written before any plate was viewed. The margins were traced by the AI assistant that
 wrote the project's scripts, and the author has not checked them. Across 633 profiles on 78 of them, day infrared
 separates 19.7\% (13.1--27.2\%), Viking red 14.8\%, night infrared 14.5\% and the index 10.0\%. Day infrared leads
@@ -310,8 +311,8 @@ candidates with measured recall and precision. %% KB §69.33, §69.52, §69.55, 
 %%     volcanic channels." with:
 %% H1 is not supported on 1,476~km of margins traced on CTX either, and H2 awaits a window that holds both fluvial and volcanic channels.
 %% (g) Abstract: replace "No band separates the lava contacts of the 1:20\,M geologic map at Athabasca Valles much
-%%     better than chance" with (two words longer; the abstract is at its budget, cut elsewhere):
-%% No band separates the lava contacts of the 1:20\,M geologic map at Athabasca Valles, or margins traced on CTX, much better than chance
+%%     better than chance" with (the abstract has ~217 words against 250, so this fits; CTX is not defined that early):
+%% No band separates the lava contacts of the 1:20\,M geologic map at Athabasca Valles, or margins traced on Context Camera images, much better than chance
 %% (h) Block 12 (Future work): replace "Lava-flow margins traced at Athabasca Valles on Context Camera images
 %%     \citep{Malin2007} would test H1 on the features themselves rather than on the map's contacts;" with:
 %% The author's check of the lava margins traced on Context Camera images \citep{Malin2007} would make H1's test the
@@ -325,7 +326,8 @@ candidates with measured recall and precision. %% KB §69.33, §69.52, §69.55, 
 %%     (score_r1.py, score_r2.py --author) and drop every "assistant" clause. Numbers: logs\r1\r1_agent_result.json,
 %%     logs\r2\r2_agent_waived_result.json. With (a), drop block 12's R2 sentence.
 %% ---------------------------------------------------------------------------------------------------------
-%% (a) Results, a paragraph after the held-out scores (before "Deep learning"):
+%% (a) Results, a new subsection "A probability sample" after "Deep learning", ending the section: the text compares
+%%     maps that subsection introduces, and block 18 (b)'s "below" points here.
 A probability sample \citep{Olofsson2014} gives scores free of where the polygons were drawn. Twenty-five points were
 drawn in each class of the seven-class support vector machine map, with probability proportional to area, and 35
 more inside the author's held-out polygons were hidden among them as a check on the labeller; the AI assistant
@@ -338,8 +340,9 @@ scores 56.9\% (48.8--65.0\%), the four-class U-Net 44.4\% (35.8--52.9\%), the se
 Normal Ground covers 79.8\% of the sampled ground (73.4--86.3\%) against 33.3\% of the seven-class map, and fluvial
 channel, a third of the map, 3.3\% (a user's accuracy of 4.8\%). The labeller named none of the 175 sample points apron, its
 weakest class on the check, so the apron share is not measured. %% KB §69.53, §69.55
-%% (b) Methods, labels: after "347 apron and fluvial rows accepted by a written rule, not by eye" (block 1 / §12.1):
-On 80 of those rows, 30 the rule accepted and 10 it rejected in each class, shown on Context Camera images without the
+%% (b) Methods, "Supervised classification and its score": after "the apron and fluvial-strip proposals were screened by
+%%     a rule written before it ran.":
+On 80 of those proposals, 30 the rule accepted and 10 it rejected in each class, shown on Context Camera images without the
 rule's verdict, the AI assistant accepted all 27 rule-accepted fluvial strips it decided and 20 of 26 apron pieces
 (77\%, 58--89\%), and accepted 4 of 6 and 6 of 8 of the rule's rejects: the screen erred toward strictness. Five
 of the apron rejects it accepted are the flat fan-shaped deposits of Arsia and Pavonis Montes, which a slope test
@@ -347,6 +350,11 @@ cannot keep; the v3 labels admit them by unit, not slope, a net 106 more apron l
 %% KB §69.55, §69.56 (D34)
 %% (c) Table tab:svm: a column or a note, "sample (assistant-labelled)": 56.9, 44.4, 39.9 and 21.7 for the four
 %%     rows of the same maps. Decide at the freeze whether the table has room; otherwise (a) alone.
+%% (d) Limits: with (a) in, the sentence that says a sample is needed no longer holds. Replace "so each flatters its
+%%     map; an unbiased accuracy, and class areas with intervals, need a probability sample of the map labelled blind
+%%     \citep{Olofsson2014}." with:
+so each flatters its map. The probability sample shows the size of that, but on the AI assistant's labels, which
+failed their check; unbiased accuracies and class areas need the same points labelled by an analyst who passes it.
 
 %% 17. A16 (KB §69.57), drafted 2026-11-02; APPLIED 2026-11-02 at the author's yes to D35: (a)-(c) are in the .tex and
 %%     final.py's U-Net slide says the same. Kept here as the record of the wording. On the 1,652 v3 held-out
@@ -398,7 +406,8 @@ The held-out blocks have now been used three times, by the four-class models, th
 third label set. That set was requested after the seven-class scores were read, so any gain on it is not a fresh test,
 and its held-out crater discs come from the catalogue the crater results are checked against, so that class partly
 measures agreement with it. %% KB §69.49, score_v3_maps.py
-%% (d) Block 16 (a), after "each below its score on the held-out polygons.":
+%% (d) Block 16 (a), after "each below its score on the held-out polygons." ("Its lead" is then the Deep-learning
+%%     subsection's, which comes first):
 On the same points the seven-class U-Net minus the seven-class support vector machine is $-18.3$ points ($-26.7$ to
 $-9.9$), the reverse of its lead on the polygons, but the labeller's lean to Normal Ground favours the support vector
 machine, which maps more of it. On the 57 points not read as Normal Ground the difference is $-4.1$ points ($-27.9$ to

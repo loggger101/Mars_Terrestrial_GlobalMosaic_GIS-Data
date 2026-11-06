@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-05 (§69.77).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-05 (§69.78).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7047,3 +7047,34 @@ the only v3 numbers seen are the training run's validation table (§69.76).
   stack, sidecars and `.autolock` among them, and the sync stopped on the locked file; `keep_mp` now leaves out
   `s_ClassifyPixel<digit>` names. `v3`'s model figures are in `docs/figures.md`, and its "reported as a test" for the
   v2 U-Net now says current (D28).
+
+### 69.78 The freeze's edits tried on a scratch copy; the committed paper PDF brought current — 2026-11-05, desktop **[V]**
+
+`run_v3.ps1` running (step 03d). Nothing here touches the gdb, the `.aprx` or the scratch of the run; no score changed.
+
+- **A trial of the freeze, on a copy.** Blocks 12, 13, 15, 16 and 18 of `v2_drafts.tex` were applied to a scratch copy
+  of the paper by a throwaway script in the session's scratchpad, each by its anchor, block 18's `\VV` numbers as
+  fixed-width placeholders and block 13 in although D23 says not now, so this is the longest case. It compiled under MiKTeX with no package
+  fetched and no undefined citation or reference: **22 pages**, against 21 today. `verify_interim.py` passed on the merged
+  text (937 numbers) and on `v2_drafts.tex` itself (195). The abstract comes to about 219 words of its 250, so block 15 (g)'s
+  note that it sits at its budget was out of date.
+- **What the trial found in the drafts, all fixed there:** (1) block 16 (b)'s anchor, "347 apron and fluvial rows accepted
+  by a written rule", is not in the paper, whose Methods says the proposals "were screened by a rule"; it now names that
+  sentence. (2) Block 16 (a) sat before "Deep learning" though it compares the U-Nets that subsection introduces, and
+  block 18 (d)'s "its lead on the polygons" would have read forward, while block 18 (b) says "the probability sample
+  below": 16 (a) is now a subsection after "Deep learning", which makes all three read in order. (3) With 16 (a) in, Limits would still
+  say an unbiased accuracy needs a probability sample: new block 16 (d) replaces that sentence. (4) Block 12's "Four steps" is three
+  once R2's sentence leaves it. (5) "CTX" reached the abstract and Results undefined: 15 (a) defines it and 15 (g)
+  spells it out.
+- **`NEXT-STEPS.md` §12.1:** the rows "Methods, labels" and "Limits, held-out use" described text the D28 rewrite had already
+  replaced (§69.27); removed, with rows for blocks 16 and 18 in their place.
+- **A stale deliverable.** The paper PDF on the drive and in the repository was the 16-page build of 10-29, a week and every
+  decision since D30 behind its `.tex`: CI compiles on each push but keeps its PDF only as a run artifact, and the
+  laptop's TeX cannot build the class. D26 (§69.74) wanted the built paper in the repo, and `docs/figures.md` links it. `build_final_paper.py`
+  rebuilt it on the desktop: **21 pages**, the count CI gives, all pages looked over as a montage, none blank. `github_sync.py` now prints a
+  STALE line when that PDF is older than its `.tex`; the line has not yet had a stale case to fire on. `paper.yml`'s comment "the committed PDF
+  is replaced only at a deadline" is corrected.
+- **The sync's guard, a false alarm.** The rebuild re-cropped `figures\global60_thermal.png` from its current source; 959800b (11-03) had
+  put that source back to its earlier pixels, so the crop came out byte for byte the version of e11642d, and `github_sync.py` refused, reading
+  the drive as behind. Checked before overriding: the drive's file equals the crop of the current source, the clone's was the crop of the
+  10-27 source, the clone held no uncommitted work beyond `paper.yml`, and a dry run listed 14 copies and no removals. Then `--force`.

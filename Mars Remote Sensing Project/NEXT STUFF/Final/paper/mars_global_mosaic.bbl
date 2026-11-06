@@ -27,6 +27,20 @@
   \bibinfo{title}{Mars Digital Image Model (MDIM) 2.1 Control Network,} in
   Lunar and Planetary Science Conference XXXIV, abstract 1485
 
+% type= inproceedings
+\bibitem[{K.~H. {Brodersen} {et~al.}(2010){Brodersen}, {Ong}, {Stephan}, \&
+  {Buhmann}}]{Brodersen2010}
+{Brodersen}, K.~H., {Ong}, C.~S., {Stephan}, K.~E., \& {Buhmann}, J.~M. 2010,
+  \bibinfo{title}{The balanced accuracy and its posterior distribution,} in
+  Proceedings of the 20th International Conference on Pattern Recognition,
+  3121--3124, \dodoi{10.1109/ICPR.2010.764}
+
+% type= article
+\bibitem[{B.~D. {Bue} \& T.~F. {Stepinski}(2006){Bue} \& {Stepinski}}]{Bue2006}
+{Bue}, B.~D., \& {Stepinski}, T.~F. 2006, \bibinfo{title}{Automated
+  classification of landforms on Mars,} Computers \& Geosciences, 32, 604,
+  \dodoi{10.1016/j.cageo.2005.09.004}
+
 % type= article
 \bibitem[{D.~M. {Burr} {et~al.}(2002){Burr}, {Grier}, {McEwen}, \&
   {Keszthelyi}}]{Burr2002}
@@ -34,6 +48,14 @@
   \bibinfo{title}{Repeated aqueous flooding from the Cerberus Fossae: Evidence
   for very recently extant, deep groundwater on Mars,} Icarus, 159, 53,
   \dodoi{10.1006/icar.2002.6921}
+
+% type= article
+\bibitem[{P.~R. {Christensen} {et~al.}(2001){Christensen}, {Bandfield},
+  {Hamilton}, {Ruff}, {Kieffer}, {Titus}, {et~al.}}]{Christensen2001}
+{Christensen}, P.~R., {Bandfield}, J.~L., {Hamilton}, V.~E., {et~al.} 2001,
+  \bibinfo{title}{Mars Global Surveyor Thermal Emission Spectrometer
+  experiment: Investigation description and surface science results,} Journal
+  of Geophysical Research, 106, 23823, \dodoi{10.1029/2000JE001370}
 
 % type= article
 \bibitem[{P.~R. {Christensen} {et~al.}(2004){Christensen}, {Jakosky},
@@ -50,6 +72,18 @@
   scales,} Educational and Psychological Measurement, 20, 37,
   \dodoi{10.1177/001316446002000104}
 
+% type= book
+\bibitem[{J. {Cohen}(1988){Cohen}}]{Cohen1988}
+{Cohen}, J. 1988, Statistical Power Analysis for the Behavioral Sciences, 2nd
+  edn. (Hillsdale, NJ: Lawrence Erlbaum)
+
+% type= article
+\bibitem[{D. {Comaniciu} \& P. {Meer}(2002){Comaniciu} \&
+  {Meer}}]{Comaniciu2002}
+{Comaniciu}, D., \& {Meer}, P. 2002, \bibinfo{title}{Mean shift: a robust
+  approach toward feature space analysis,} IEEE Transactions on Pattern
+  Analysis and Machine Intelligence, 24, 603, \dodoi{10.1109/34.1000236}
+
 % type= article
 \bibitem[{R.~G. {Congalton}(1991){Congalton}}]{Congalton1991}
 {Congalton}, R.~G. 1991, \bibinfo{title}{A review of assessing the accuracy of
@@ -60,6 +94,14 @@
 \bibitem[{C. {Cortes} \& V. {Vapnik}(1995){Cortes} \& {Vapnik}}]{Cortes1995}
 {Cortes}, C., \& {Vapnik}, V. 1995, \bibinfo{title}{Support-vector networks,}
   Machine Learning, 20, 273, \dodoi{10.1007/BF00994018}
+
+% type= article
+\bibitem[{D.~M. {DeLatte} {et~al.}(2019){DeLatte}, {Crites}, {Guttenberg}, \&
+  {Yairi}}]{DeLatte2019}
+{DeLatte}, D.~M., {Crites}, S.~T., {Guttenberg}, N., \& {Yairi}, T. 2019,
+  \bibinfo{title}{Automated crater detection algorithms from a machine learning
+  perspective in the convolutional neural network era,} Advances in Space
+  Research, 64, 1615, \dodoi{10.1016/j.asr.2019.07.017}
 
 % type= article
 \bibitem[{C.~S. {Edwards} {et~al.}(2011){Edwards}, {Nowicki}, {Christensen},
@@ -74,7 +116,7 @@
 \bibitem[{L.~M. {Edwards}(2026){Edwards}}]{Edwards2026data}
 {Edwards}, L.~M. 2026, Mars Global Mosaic: Mapping Lava Flows, Fluvial
   Channels, and Impact Craters in Visible and Infrared (maps, data, models and
-  scripts), release data-2026-10-21 GitHub.
+  scripts), release data-2026-10-29 GitHub.
 \newblock
   \url{https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data}
 
@@ -128,6 +170,11 @@
 {He}, K., {Zhang}, X., {Ren}, S., \& {Sun}, J. 2016, \bibinfo{title}{Deep
   residual learning for image recognition,} in Proceedings of the IEEE
   Conference on Computer Vision and Pattern Recognition (CVPR), 770--778
+
+% type= article
+\bibitem[{B.~K.~P. {Horn}(1981){Horn}}]{Horn1981}
+{Horn}, B.~K.~P. 1981, \bibinfo{title}{Hill shading and the reflectance map,}
+  Proceedings of the IEEE, 69, 14, \dodoi{10.1109/PROC.1981.11918}
 
 % type= article
 \bibitem[{L. {Hubert} \& P. {Arabie}(1985){Hubert} \& {Arabie}}]{Hubert1985}
@@ -184,6 +231,12 @@
   system analysis,} Photogrammetric Engineering and Remote Sensing, 54, 1593
 
 % type= article
+\bibitem[{H.~R. {K{\"u}nsch}(1989){K{\"u}nsch}}]{Kunsch1989}
+{K{\"u}nsch}, H.~R. 1989, \bibinfo{title}{The jackknife and the bootstrap for
+  general stationary observations,} The Annals of Statistics, 17, 1217,
+  \dodoi{10.1214/aos/1176347265}
+
+% type= article
 \bibitem[{C. {Lee}(2019){Lee}}]{Lee2019}
 {Lee}, C. 2019, \bibinfo{title}{Automated crater detection on Mars using deep
   learning,} Planetary and Space Science, 170, 16,
@@ -197,12 +250,33 @@
   IEEE International Conference on Computer Vision (ICCV), 2980--2988
 
 % type= article
+\bibitem[{W. {Luo} \& T.~F. {Stepinski}(2009){Luo} \& {Stepinski}}]{Luo2009}
+{Luo}, W., \& {Stepinski}, T.~F. 2009, \bibinfo{title}{Computer-generated
+  global map of valley networks on Mars,} Journal of Geophysical Research
+  (Planets), 114, E11010, \dodoi{10.1029/2009JE003357}
+
+% type= article
 \bibitem[{M.~T. {Mellon} {et~al.}(2000){Mellon}, {Jakosky}, {Kieffer}, \&
   {Christensen}}]{Mellon2000}
 {Mellon}, M.~T., {Jakosky}, B.~M., {Kieffer}, H.~H., \& {Christensen}, P.~R.
   2000, \bibinfo{title}{High-resolution thermal inertia mapping from the Mars
   Global Surveyor Thermal Emission Spectrometer,} Icarus, 148, 437,
   \dodoi{10.1006/icar.2000.6503}
+
+% type= article
+\bibitem[{J.~F. {O'Callaghan} \& D.~M. {Mark}(1984){O'Callaghan} \&
+  {Mark}}]{OCallaghan1984}
+{O'Callaghan}, J.~F., \& {Mark}, D.~M. 1984, \bibinfo{title}{The extraction of
+  drainage networks from digital elevation data,} Computer Vision, Graphics,
+  and Image Processing, 28, 323, \dodoi{10.1016/S0734-189X(84)80011-0}
+
+% type= article
+\bibitem[{P. {Olofsson} {et~al.}(2014){Olofsson}, {Foody}, {Herold}, {Stehman},
+  {Woodcock}, \& {Wulder}}]{Olofsson2014}
+{Olofsson}, P., {Foody}, G.~M., {Herold}, M., {et~al.} 2014,
+  \bibinfo{title}{Good practices for estimating area and assessing accuracy of
+  land change,} Remote Sensing of Environment, 148, 42,
+  \dodoi{10.1016/j.rse.2014.02.015}
 
 % type= inproceedings
 \bibitem[{A. {Paszke} {et~al.}(2019){Paszke}, {Gross}, {Massa},
@@ -264,6 +338,13 @@
   (Planets), 107, 5127, \dodoi{10.1029/2001JE001580}
 
 % type= article
+\bibitem[{A. {Silburt} {et~al.}(2019){Silburt}, {Ali-Dib}, {Zhu}, {Jackson},
+  {Valencia}, {Kissin}, {Tamayo}, \& {Menou}}]{Silburt2019}
+{Silburt}, A., {Ali-Dib}, M., {Zhu}, C., {et~al.} 2019, \bibinfo{title}{Lunar
+  crater identification via deep learning,} Icarus, 317, 27,
+  \dodoi{10.1016/j.icarus.2018.06.022}
+
+% type= article
 \bibitem[{D.~E. {Smith} {et~al.}(2001){Smith}, {Zuber}, {Frey},
   {et~al.}}]{Smith2001}
 {Smith}, D.~E., {Zuber}, M.~T., {Frey}, H.~V., {et~al.} 2001,
@@ -283,5 +364,21 @@
 {Tanaka}, K.~L., {Skinner}, Jr., J.~A., {Dohm}, J.~M., {et~al.} 2014, Geologic
   Map of Mars, Scientific Investigations Map 3292, scale 1:20,000,000, U.S.
   Geological Survey, \dodoi{10.3133/sim3292}
+
+% type= misc
+\bibitem[{ {USGS Astrogeology Science Center}(2009){USGS Astrogeology Science
+  Center}}]{USGS2009Viking}
+{USGS Astrogeology Science Center}. 2009, Mars Viking Colorized Global Mosaic
+  232m, U.S. Geological Survey Astrogeology Science Center.
+\newblock
+  \url{https://astrogeology.usgs.gov/search/map/mars_viking_colorized_global_mosaic_232m}
+
+% type= article
+\bibitem[{T. {Wilhelm} {et~al.}(2020){Wilhelm}, {Geis}, {P{\"u}ttschneider},
+  {Sievernich}, {Weber}, {Wohlfarth}, \& {W{\"o}hler}}]{Wilhelm2020}
+{Wilhelm}, T., {Geis}, M., {P{\"u}ttschneider}, J., {et~al.} 2020,
+  \bibinfo{title}{{DoMars16k}: A diverse dataset for weakly supervised
+  geomorphologic analysis on Mars,} Remote Sensing, 12, 3981,
+  \dodoi{10.3390/rs12233981}
 
 \end{thebibliography}

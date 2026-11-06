@@ -129,7 +129,8 @@ plans. When they disagree, the KB wins and the plan is fixed.
    `check_repo.py` fails on a preview older than its source (KB §67.1).
 4. Commit by hand with a descriptive message and the attribution trailer, push (standing approval after the
    checks pass), and check CI (`gh run list --limit 2`): `check` on every push, and `paper` on a push that touches the
-   paper or its figures, which compiles it in TeX Live and keeps the PDF as the run's artifact (KB §69.42).
+   paper or its figures, which compiles it in TeX Live and keeps the PDF as the run's artifact (KB §69.42). That PDF is
+   not committed: after a change to the `.tex`, `build_final_paper.py` on the desktop refreshes the committed one (KB §69.78).
 5. **The clone sits in OneDrive, shared by both machines:** fetch and compare with `origin/main` first (the clone
    can lag, KB §58); let OneDrive finish syncing before git work; never commit from both machines at once;
    `git status` can show phantom changes (confirm with `git diff`); never `git stash`; files named

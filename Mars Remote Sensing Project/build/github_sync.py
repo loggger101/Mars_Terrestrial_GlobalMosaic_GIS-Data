@@ -445,6 +445,9 @@ def main():
         print(f"  SKIPPED (> 95 MB, {s / 1e6:.0f} MB): {p}")
     for h in held:
         print(f"  HELD BACK (a built deliverable; --hold-deliverables given): {h}")
+    paper = DRIVE / "Mars Remote Sensing Project" / "NEXT STUFF" / "Final" / "paper" / "mars_global_mosaic"
+    if paper.with_suffix(".pdf").stat().st_mtime < paper.with_suffix(".tex").stat().st_mtime:   # CI's PDF is only an artifact (KB §69.78)
+        print("  STALE: the paper's PDF is older than its .tex; run build_final_paper.py on the desktop (MiKTeX)")
     if not DRY and write_script_index():
         print("  docs\\scripts.md regenerated")
 

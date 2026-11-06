@@ -4,7 +4,7 @@ name: paper
 # laptop's TinyTeX has no aastex701.cls, so without this a session there edits the paper uncompiled. The figures are
 # gathered by build_final_paper.py --no-compile (as on the desktop), then pdflatex, bibtex, pdflatex twice in TeX
 # Live, which carries AASTeX 7.0.1. Fails on a LaTeX error or an undefined citation or reference; the log names the
-# page count, and the PDF is kept as the run's artifact (the committed PDF is replaced only at a deadline, D26).
+# page count, and the PDF is kept as the run's artifact (the committed PDF is the desktop's build, KB 69.78).
 # The TeX Live image is pinned by digest to the one that compiled the paper on 2026-11-03 (20 pages), and the runner
 # to Ubuntu 26.04, so a new TeX Live or runner image cannot change or break the paper before the deadline; move the
 # pin on purpose, and compare the page count, when a newer AASTeX is wanted.
