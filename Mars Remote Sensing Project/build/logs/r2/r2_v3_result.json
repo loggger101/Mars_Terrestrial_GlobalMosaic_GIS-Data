@@ -1,0 +1,262 @@
+{
+ "script": "score_r2_v3.py",
+ "labels": "agent_labels.json",
+ "rehearsal": false,
+ "labeller": "agent, gate waived by the author (KB 69.55)",
+ "rows": 142,
+ "rows_without_a_map_class": {
+  "svm7": 0,
+  "unet7": 0,
+  "svm_v3": 0,
+  "unet_v3": 0
+ },
+ "overall": {
+  "svm7": {
+   "est": 0.3992,
+   "lo": 0.3561,
+   "hi": 0.4422
+  },
+  "unet7": {
+   "est": 0.2166,
+   "lo": 0.1367,
+   "hi": 0.2966
+  },
+  "svm_v3": {
+   "est": 0.4018,
+   "lo": 0.3431,
+   "hi": 0.4605
+  },
+  "unet_v3": {
+   "est": 0.4963,
+   "lo": 0.4076,
+   "hi": 0.585
+  }
+ },
+ "differences": {
+  "unet_v3-unet7": {
+   "est": 0.2796,
+   "lo": 0.175,
+   "hi": 0.3843
+  },
+  "svm_v3-svm7": {
+   "est": 0.0026,
+   "lo": -0.054,
+   "hi": 0.0593
+  },
+  "unet_v3-svm_v3": {
+   "est": 0.0945,
+   "lo": -0.0068,
+   "hi": 0.1958
+  },
+  "unet7-svm7": {
+   "est": -0.1825,
+   "lo": -0.2666,
+   "hi": -0.0985
+  }
+ },
+ "users": {
+  "svm7": {
+   "Crater": {
+    "est": 0.2778,
+    "lo": 0.0649,
+    "hi": 0.4907
+   },
+   "steep/windy hills": {
+    "est": 0.4583,
+    "lo": 0.2547,
+    "hi": 0.662
+   },
+   "lava tube": {
+    "est": 0.0,
+    "lo": 0.0,
+    "hi": 0.0
+   },
+   "Normal Ground": {
+    "est": 1.0,
+    "lo": 1.0,
+    "hi": 1.0
+   },
+   "volcanic edifice": {
+    "est": 0.1,
+    "lo": -0.0349,
+    "hi": 0.2349
+   },
+   "apron": {
+    "est": 0.0,
+    "lo": 0.0,
+    "hi": 0.0
+   },
+   "fluvial channel": {
+    "est": 0.0476,
+    "lo": -0.0457,
+    "hi": 0.141
+   }
+  },
+  "unet7": {
+   "Crater": {
+    "est": 0.2658,
+    "lo": 0.0434,
+    "hi": 0.4882
+   },
+   "steep/windy hills": {
+    "est": 0.8182,
+    "lo": 0.5853,
+    "hi": 1.051
+   },
+   "lava tube": {
+    "est": 0.0,
+    "lo": 0.0,
+    "hi": 0.0
+   },
+   "Normal Ground": {
+    "est": 1.0,
+    "lo": 1.0,
+    "hi": 1.0
+   },
+   "volcanic edifice": {
+    "est": 0.0289,
+    "lo": -0.0073,
+    "hi": 0.0651
+   },
+   "apron": {
+    "est": 0.0,
+    "lo": 0.0,
+    "hi": 0.0
+   },
+   "fluvial channel": {
+    "est": 0.0,
+    "lo": 0.0,
+    "hi": 0.0
+   }
+  },
+  "svm_v3": {
+   "Crater": {
+    "est": 0.0844,
+    "lo": -0.0829,
+    "hi": 0.2518
+   },
+   "steep/windy hills": {
+    "est": 0.2205,
+    "lo": -0.0195,
+    "hi": 0.4606
+   },
+   "lava tube": {
+    "est": 0.0,
+    "lo": 0.0,
+    "hi": 0.0
+   },
+   "Normal Ground": {
+    "est": 1.0,
+    "lo": 1.0,
+    "hi": 1.0
+   },
+   "volcanic edifice": {
+    "est": 0.1213,
+    "lo": -0.0262,
+    "hi": 0.2688
+   },
+   "apron": {
+    "est": 0.0,
+    "lo": 0.0,
+    "hi": 0.0
+   },
+   "fluvial channel": {
+    "est": 0.0435,
+    "lo": -0.0417,
+    "hi": 0.1287
+   }
+  },
+  "unet_v3": {
+   "Crater": {
+    "est": 0.3177,
+    "lo": 0.1404,
+    "hi": 0.495
+   },
+   "steep/windy hills": {
+    "est": 0.9135,
+    "lo": 0.7977,
+    "hi": 1.0292
+   },
+   "lava tube": {
+    "est": 0.0,
+    "lo": 0.0,
+    "hi": 0.0
+   },
+   "Normal Ground": {
+    "est": 1.0,
+    "lo": 1.0,
+    "hi": 1.0
+   },
+   "volcanic edifice": {
+    "est": 0.0662,
+    "lo": -0.0175,
+    "hi": 0.15
+   },
+   "apron": {
+    "est": 0.0,
+    "lo": 0.0,
+    "hi": 0.0
+   },
+   "fluvial channel": {
+    "est": 0.0565,
+    "lo": -0.0469,
+    "hi": 0.1599
+   }
+  }
+ },
+ "not_normal_ground": {
+  "rows": 57,
+  "overall": {
+   "svm7": {
+    "est": 0.3274,
+    "lo": 0.1427,
+    "hi": 0.5121
+   },
+   "unet7": {
+    "est": 0.2867,
+    "lo": 0.1087,
+    "hi": 0.4646
+   },
+   "svm_v3": {
+    "est": 0.2195,
+    "lo": 0.0521,
+    "hi": 0.3868
+   },
+   "unet_v3": {
+    "est": 0.5635,
+    "lo": 0.3675,
+    "hi": 0.7594
+   }
+  },
+  "differences": {
+   "unet_v3-unet7": {
+    "est": 0.2768,
+    "lo": 0.1226,
+    "hi": 0.4311
+   },
+   "svm_v3-svm7": {
+    "est": -0.108,
+    "lo": -0.2611,
+    "hi": 0.0452
+   },
+   "unet_v3-svm_v3": {
+    "est": 0.344,
+    "lo": 0.0513,
+    "hi": 0.6368
+   },
+   "unet7-svm7": {
+    "est": -0.0408,
+    "lo": -0.2792,
+    "hi": 0.1977
+   }
+  }
+ },
+ "predictions": {
+  "P1": "held",
+  "P2": "held",
+  "P3": "held",
+  "P4": "held",
+  "P5": "NOT held",
+  "P6": "held"
+ }
+}

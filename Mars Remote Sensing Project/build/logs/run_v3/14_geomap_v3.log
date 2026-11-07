@@ -1,0 +1,26 @@
+classification read at 1600 m: 13337 x 4446; 97.3% of pixels have both a class and a unit
+
+  group    area %   Crater               steep/windy hills    lava tube            Normal Ground        volcanic edifice     apron                fluvial channel   
+  a          1.3%     3.1% (x0.57)          10.6% (x2.06)           7.0% (x3.41)           9.0% (x0.23)          34.8% (x2.72)          25.4% (x7.15)          10.2% (x0.32)      
+  h         41.1%     7.3% (x1.34)           5.9% (x1.15)           1.6% (x0.77)          22.6% (x0.58)          12.8% (x1.00)           4.4% (x1.24)          45.5% (x1.43)      
+  hm         2.8%    13.2% (x2.43)          17.1% (x3.33)           4.1% (x2.03)           9.9% (x0.25)          14.8% (x1.16)           4.7% (x1.31)          36.3% (x1.14)      
+  hu         2.1%     7.3% (x1.35)          16.0% (x3.12)           3.3% (x1.62)          20.2% (x0.52)          14.2% (x1.11)           6.2% (x1.73)          32.8% (x1.03)      
+  i          5.5%     7.9% (x1.46)           8.6% (x1.67)           2.0% (x0.98)          21.3% (x0.54)          12.7% (x1.00)           5.0% (x1.41)          42.4% (x1.33)      
+  l          9.2%     2.8% (x0.52)           0.3% (x0.06)           0.1% (x0.03)          78.8% (x2.01)           1.0% (x0.08)           0.1% (x0.02)          16.9% (x0.53)      
+  p          0.0%     3.7% (x0.68)           0.2% (x0.03)           0.0% (x0.00)          69.1% (x1.76)           1.3% (x0.10)           0.0% (x0.00)          25.7% (x0.81)      
+  t          7.9%     6.6% (x1.22)           9.4% (x1.83)           0.9% (x0.44)          38.0% (x0.97)           7.6% (x0.60)           3.1% (x0.87)          34.4% (x1.08)      
+  tu         2.4%     3.6% (x0.65)           3.6% (x0.69)           1.0% (x0.50)          35.3% (x0.90)          29.5% (x2.31)           5.2% (x1.45)          22.0% (x0.69)      
+  v         22.8%     1.8% (x0.34)           1.3% (x0.26)           1.6% (x0.80)          65.4% (x1.67)          13.8% (x1.08)           1.2% (x0.34)          14.8% (x0.47)      
+  ve         1.1%     2.4% (x0.44)           4.0% (x0.79)          10.6% (x5.20)          13.0% (x0.33)          51.6% (x4.04)           6.4% (x1.81)          11.9% (x0.37)      
+  vf         0.6%     0.6% (x0.11)           1.2% (x0.22)           3.0% (x1.46)          67.1% (x1.71)          24.1% (x1.89)           1.6% (x0.44)           2.6% (x0.08)      
+
+volcanic groups (v, ve, vf): 24.5% of the area with a unit
+  Crater             on volcanic groups   8.2%   largest: h 55.0%, t 9.7%, i 8.0%, v 7.7%
+  steep/windy hills  on volcanic groups   6.9%   largest: h 47.3%, t 14.4%, hm 9.4%, i 9.1%
+  lava tube          on volcanic groups  24.9%   largest: h 31.5%, b 19.0%, v 18.2%, ve 5.8%
+  Normal Ground      on volcanic groups  39.4%   largest: v 38.0%, h 23.7%, l 18.4%, t 7.6%
+  volcanic edifice   on volcanic groups  30.4%   largest: h 41.2%, v 24.7%, tu 5.5%, i 5.4%
+  apron              on volcanic groups  10.1%   largest: h 50.9%, a 9.6%, v 7.8%, i 7.7%
+  fluvial channel    on volcanic groups  11.1%   largest: h 58.8%, v 10.6%, t 8.5%, i 7.3%
+
+wrote F:\Mars Remote Sensing Project\build\logs\geomap_check_v3.json

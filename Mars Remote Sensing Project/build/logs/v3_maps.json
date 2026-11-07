@@ -1,0 +1,954 @@
+{
+ "script": "score_v3_maps.py",
+ "when": "2026-11-07 07:07",
+ "rehearsal": false,
+ "boot": 10000,
+ "seed": 60,
+ "classes": [
+  "Crater",
+  "steep/windy hills",
+  "lava tube",
+  "Normal Ground",
+  "volcanic edifice",
+  "apron",
+  "fluvial channel"
+ ],
+ "edifice_share": {
+  "svm_v3": 0.128,
+  "unet_v3": 0.18,
+  "svm_v2": 0.122,
+  "unet_v2": 0.4
+ },
+ "v2_polygons": {
+  "polygons": 237,
+  "polygons_without_pixels": 0,
+  "blocks": [
+   "-11_1",
+   "-11_2",
+   "-3_-1",
+   "-4_-1",
+   "-4_-2",
+   "-5_-1",
+   "-6_1",
+   "-9_-1",
+   "-9_0",
+   "0_0",
+   "1_0",
+   "4_0",
+   "4_2",
+   "5_-2"
+  ],
+  "full": {
+   "svm_v2": {
+    "accuracy": 0.4252,
+    "kappa": 0.3103,
+    "balanced": 0.4187,
+    "producers": {
+     "Crater": 0.4003,
+     "steep/windy hills": 0.5034,
+     "lava tube": 0.063,
+     "Normal Ground": 0.9851,
+     "volcanic edifice": 0.4184,
+     "apron": 0.0572,
+     "fluvial channel": 0.5036
+    }
+   },
+   "unet_v2": {
+    "accuracy": 0.6901,
+    "kappa": 0.6063,
+    "balanced": 0.5692,
+    "producers": {
+     "Crater": 0.5777,
+     "steep/windy hills": 0.4681,
+     "lava tube": 0.2245,
+     "Normal Ground": 0.6969,
+     "volcanic edifice": 0.8132,
+     "apron": 0.7743,
+     "fluvial channel": 0.4296
+    }
+   },
+   "svm_v3": {
+    "accuracy": 0.3907,
+    "kappa": 0.2876,
+    "balanced": 0.4559,
+    "producers": {
+     "Crater": 0.1823,
+     "steep/windy hills": 0.8867,
+     "lava tube": 0.0769,
+     "Normal Ground": 0.9865,
+     "volcanic edifice": 0.3881,
+     "apron": 0.0401,
+     "fluvial channel": 0.6307
+    }
+   },
+   "unet_v3": {
+    "accuracy": 0.8762,
+    "kappa": 0.8435,
+    "balanced": 0.8452,
+    "producers": {
+     "Crater": 0.9773,
+     "steep/windy hills": 0.851,
+     "lava tube": 0.8961,
+     "Normal Ground": 0.9866,
+     "volcanic edifice": 0.7672,
+     "apron": 0.8737,
+     "fluvial channel": 0.5648
+    }
+   },
+   "near_v2": {
+    "accuracy": 0.4559,
+    "kappa": 0.3177,
+    "balanced": 0.5105,
+    "producers": {
+     "Crater": 0.5782,
+     "steep/windy hills": 0.3746,
+     "lava tube": 0.6895,
+     "Normal Ground": 0.236,
+     "volcanic edifice": 0.8076,
+     "apron": 0.249,
+     "fluvial channel": 0.6385
+    }
+   },
+   "near_v3": {
+    "accuracy": 0.4579,
+    "kappa": 0.3221,
+    "balanced": 0.4202,
+    "producers": {
+     "Crater": 0.5342,
+     "steep/windy hills": 0.2504,
+     "lava tube": 0.4546,
+     "Normal Ground": 0.4982,
+     "volcanic edifice": 0.8076,
+     "apron": 0.2397,
+     "fluvial channel": 0.1568
+    }
+   }
+  },
+  "block_bootstrap": {
+   "svm_v2": {
+    "accuracy_ci95": [
+     0.2383,
+     0.715
+    ],
+    "kappa_ci95": [
+     0.0291,
+     0.5643
+    ],
+    "balanced_ci95": [
+     0.2952,
+     0.5313
+    ],
+    "accuracy_width": 0.4768
+   },
+   "unet_v2": {
+    "accuracy_ci95": [
+     0.5048,
+     0.8019
+    ],
+    "kappa_ci95": [
+     0.3408,
+     0.7309
+    ],
+    "balanced_ci95": [
+     0.4128,
+     0.6824
+    ],
+    "accuracy_width": 0.297
+   },
+   "svm_v3": {
+    "accuracy_ci95": [
+     0.2128,
+     0.6889
+    ],
+    "kappa_ci95": [
+     0.0395,
+     0.5345
+    ],
+    "balanced_ci95": [
+     0.344,
+     0.5388
+    ],
+    "accuracy_width": 0.4761
+   },
+   "unet_v3": {
+    "accuracy_ci95": [
+     0.8052,
+     0.951
+    ],
+    "kappa_ci95": [
+     0.7272,
+     0.9288
+    ],
+    "balanced_ci95": [
+     0.6836,
+     0.8951
+    ],
+    "accuracy_width": 0.1458
+   },
+   "near_v2": {
+    "accuracy_ci95": [
+     0.304,
+     0.6408
+    ],
+    "kappa_ci95": [
+     0.1225,
+     0.5286
+    ],
+    "balanced_ci95": [
+     0.3795,
+     0.6844
+    ],
+    "accuracy_width": 0.3368
+   },
+   "near_v3": {
+    "accuracy_ci95": [
+     0.3781,
+     0.577
+    ],
+    "kappa_ci95": [
+     0.1675,
+     0.4454
+    ],
+    "balanced_ci95": [
+     0.3317,
+     0.5821
+    ],
+    "accuracy_width": 0.1988
+   },
+   "unet_v3-unet_v2": {
+    "accuracy_ci95": [
+     0.097,
+     0.3774
+    ],
+    "balanced_ci95": [
+     0.1295,
+     0.3867
+    ],
+    "kappa_ci95": [
+     0.1426,
+     0.4763
+    ],
+    "share_above_0_accuracy": 1.0,
+    "share_above_0_balanced": 1.0
+   },
+   "svm_v3-svm_v2": {
+    "accuracy_ci95": [
+     -0.0971,
+     0.0227
+    ],
+    "balanced_ci95": [
+     -0.0272,
+     0.0871
+    ],
+    "kappa_ci95": [
+     -0.0726,
+     0.0478
+    ],
+    "share_above_0_accuracy": 0.1013,
+    "share_above_0_balanced": 0.8239
+   },
+   "unet_v3-svm_v3": {
+    "accuracy_ci95": [
+     0.2399,
+     0.6243
+    ],
+    "balanced_ci95": [
+     0.1841,
+     0.4711
+    ],
+    "kappa_ci95": [
+     0.3482,
+     0.7242
+    ],
+    "share_above_0_accuracy": 1.0,
+    "share_above_0_balanced": 1.0
+   },
+   "svm_v3-near_v3": {
+    "accuracy_ci95": [
+     -0.2493,
+     0.2427
+    ],
+    "balanced_ci95": [
+     -0.1266,
+     0.1328
+    ],
+    "kappa_ci95": [
+     -0.229,
+     0.2773
+    ],
+    "share_above_0_accuracy": 0.2957,
+    "share_above_0_balanced": 0.599
+   },
+   "unet_v3-near_v3": {
+    "accuracy_ci95": [
+     0.3128,
+     0.518
+    ],
+    "balanced_ci95": [
+     0.1322,
+     0.5026
+    ],
+    "kappa_ci95": [
+     0.3953,
+     0.6751
+    ],
+    "share_above_0_accuracy": 1.0,
+    "share_above_0_balanced": 0.9991
+   }
+  },
+  "by_block": {
+   "-11_1": {
+    "svm_v2": 0.9609,
+    "unet_v2": 0.7771,
+    "svm_v3": 0.9487,
+    "unet_v3": 0.9991,
+    "near_v2": 0.0633,
+    "near_v3": 0.393
+   },
+   "-11_2": {
+    "svm_v2": 0.9988,
+    "unet_v2": 0.5427,
+    "svm_v3": 0.9995,
+    "unet_v3": 1.0,
+    "near_v2": 0.998,
+    "near_v3": 0.998
+   },
+   "-3_-1": {
+    "svm_v2": 0.4185,
+    "unet_v2": 0.7374,
+    "svm_v3": 0.2101,
+    "unet_v3": 0.9371,
+    "near_v2": 0.9307,
+    "near_v3": 0.8726
+   },
+   "-4_-1": {
+    "svm_v2": 0.2748,
+    "unet_v2": 0.3923,
+    "svm_v3": 0.6051,
+    "unet_v3": 0.8296,
+    "near_v2": 0.3821,
+    "near_v3": 0.4299
+   },
+   "-4_-2": {
+    "svm_v2": 0.334,
+    "unet_v2": 0.3182,
+    "svm_v3": 0.5695,
+    "unet_v3": 0.453,
+    "near_v2": 0.5783,
+    "near_v3": 0.7901
+   },
+   "-5_-1": {
+    "svm_v2": 0.9114,
+    "unet_v2": 0.8968,
+    "svm_v3": 0.909,
+    "unet_v3": 0.9832,
+    "near_v2": 1.0,
+    "near_v3": 0.1267
+   },
+   "-6_1": {
+    "svm_v2": 0.5557,
+    "unet_v2": 0.1056,
+    "svm_v3": 0.5959,
+    "unet_v3": 0.5641,
+    "near_v2": 0.0774,
+    "near_v3": 0.0774
+   },
+   "-9_-1": {
+    "svm_v2": 0.16,
+    "unet_v2": 0.686,
+    "svm_v3": 0.1308,
+    "unet_v3": 0.7717,
+    "near_v2": 0.405,
+    "near_v3": 0.405
+   },
+   "-9_0": {
+    "svm_v2": 0.2556,
+    "unet_v2": 0.9631,
+    "svm_v3": 0.2509,
+    "unet_v3": 0.9458,
+    "near_v2": 0.5369,
+    "near_v3": 0.5196
+   },
+   "0_0": {
+    "svm_v2": 0.2095,
+    "unet_v2": 0.1388,
+    "svm_v3": 0.1646,
+    "unet_v3": 0.987,
+    "near_v2": 0.0242,
+    "near_v3": 0.492
+   },
+   "1_0": {
+    "svm_v2": 0.2393,
+    "unet_v2": 0.1467,
+    "svm_v3": 0.2641,
+    "unet_v3": 0.7884,
+    "near_v2": 0.5184,
+    "near_v3": 0.0412
+   },
+   "4_0": {
+    "svm_v2": 0.6153,
+    "unet_v2": 0.667,
+    "svm_v3": 0.1429,
+    "unet_v3": 0.8901,
+    "near_v2": 0.0,
+    "near_v3": 0.0
+   },
+   "4_2": {
+    "svm_v2": 0.3212,
+    "unet_v2": 0.1194,
+    "svm_v3": 0.2225,
+    "unet_v3": 0.4633,
+    "near_v2": 0.8393,
+    "near_v3": 0.4068
+   },
+   "5_-2": {
+    "svm_v2": 0.5561,
+    "unet_v2": 0.7424,
+    "svm_v3": 0.3583,
+    "unet_v3": 0.8914,
+    "near_v2": 0.6147,
+    "near_v3": 0.4049
+   }
+  }
+ },
+ "v3_polygons": {
+  "polygons": 1652,
+  "polygons_without_pixels": 0,
+  "blocks": [
+   "-11_1",
+   "-11_2",
+   "-3_-1",
+   "-4_-1",
+   "-4_-2",
+   "-5_-1",
+   "-6_1",
+   "-9_-1",
+   "-9_0",
+   "0_0",
+   "1_0",
+   "4_0",
+   "4_2",
+   "5_-2"
+  ],
+  "full": {
+   "svm_v2": {
+    "accuracy": 0.3976,
+    "kappa": 0.281,
+    "balanced": 0.4043,
+    "producers": {
+     "Crater": 0.3539,
+     "steep/windy hills": 0.4652,
+     "lava tube": 0.0336,
+     "Normal Ground": 0.9684,
+     "volcanic edifice": 0.4294,
+     "apron": 0.0508,
+     "fluvial channel": 0.5289
+    }
+   },
+   "unet_v2": {
+    "accuracy": 0.6578,
+    "kappa": 0.5649,
+    "balanced": 0.529,
+    "producers": {
+     "Crater": 0.5255,
+     "steep/windy hills": 0.4243,
+     "lava tube": 0.0485,
+     "Normal Ground": 0.6687,
+     "volcanic edifice": 0.828,
+     "apron": 0.7379,
+     "fluvial channel": 0.4698
+    }
+   },
+   "svm_v3": {
+    "accuracy": 0.3647,
+    "kappa": 0.263,
+    "balanced": 0.4437,
+    "producers": {
+     "Crater": 0.1749,
+     "steep/windy hills": 0.8351,
+     "lava tube": 0.0527,
+     "Normal Ground": 0.9831,
+     "volcanic edifice": 0.4015,
+     "apron": 0.0376,
+     "fluvial channel": 0.621
+    }
+   },
+   "unet_v3": {
+    "accuracy": 0.8647,
+    "kappa": 0.8276,
+    "balanced": 0.7726,
+    "producers": {
+     "Crater": 0.944,
+     "steep/windy hills": 0.7914,
+     "lava tube": 0.4553,
+     "Normal Ground": 0.9771,
+     "volcanic edifice": 0.7945,
+     "apron": 0.8195,
+     "fluvial channel": 0.6262
+    }
+   },
+   "near_v2": {
+    "accuracy": 0.4129,
+    "kappa": 0.2759,
+    "balanced": 0.4121,
+    "producers": {
+     "Crater": 0.4902,
+     "steep/windy hills": 0.3321,
+     "lava tube": 0.1156,
+     "Normal Ground": 0.2312,
+     "volcanic edifice": 0.8336,
+     "apron": 0.2171,
+     "fluvial channel": 0.6651
+    }
+   },
+   "near_v3": {
+    "accuracy": 0.4308,
+    "kappa": 0.2962,
+    "balanced": 0.4345,
+    "producers": {
+     "Crater": 0.4491,
+     "steep/windy hills": 0.2593,
+     "lava tube": 0.594,
+     "Normal Ground": 0.4853,
+     "volcanic edifice": 0.8336,
+     "apron": 0.2089,
+     "fluvial channel": 0.2116
+    }
+   }
+  },
+  "block_bootstrap": {
+   "svm_v2": {
+    "accuracy_ci95": [
+     0.2224,
+     0.6731
+    ],
+    "kappa_ci95": [
+     0.0398,
+     0.5202
+    ],
+    "balanced_ci95": [
+     0.3207,
+     0.4879
+    ],
+    "accuracy_width": 0.4507
+   },
+   "unet_v2": {
+    "accuracy_ci95": [
+     0.4798,
+     0.7694
+    ],
+    "kappa_ci95": [
+     0.2979,
+     0.6929
+    ],
+    "balanced_ci95": [
+     0.3659,
+     0.626
+    ],
+    "accuracy_width": 0.2896
+   },
+   "svm_v3": {
+    "accuracy_ci95": [
+     0.1976,
+     0.6434
+    ],
+    "kappa_ci95": [
+     0.051,
+     0.4881
+    ],
+    "balanced_ci95": [
+     0.3725,
+     0.5103
+    ],
+    "accuracy_width": 0.4459
+   },
+   "unet_v3": {
+    "accuracy_ci95": [
+     0.7843,
+     0.9529
+    ],
+    "kappa_ci95": [
+     0.7009,
+     0.9324
+    ],
+    "balanced_ci95": [
+     0.6262,
+     0.8394
+    ],
+    "accuracy_width": 0.1687
+   },
+   "near_v2": {
+    "accuracy_ci95": [
+     0.2733,
+     0.5867
+    ],
+    "kappa_ci95": [
+     0.1068,
+     0.4656
+    ],
+    "balanced_ci95": [
+     0.3353,
+     0.5627
+    ],
+    "accuracy_width": 0.3133
+   },
+   "near_v3": {
+    "accuracy_ci95": [
+     0.3558,
+     0.5461
+    ],
+    "kappa_ci95": [
+     0.1645,
+     0.4158
+    ],
+    "balanced_ci95": [
+     0.3674,
+     0.5945
+    ],
+    "accuracy_width": 0.1904
+   },
+   "unet_v3-unet_v2": {
+    "accuracy_ci95": [
+     0.1153,
+     0.4098
+    ],
+    "balanced_ci95": [
+     0.1646,
+     0.3477
+    ],
+    "kappa_ci95": [
+     0.1692,
+     0.5127
+    ],
+    "share_above_0_accuracy": 1.0,
+    "share_above_0_balanced": 1.0
+   },
+   "svm_v3-svm_v2": {
+    "accuracy_ci95": [
+     -0.0905,
+     0.0109
+    ],
+    "balanced_ci95": [
+     -0.012,
+     0.0911
+    ],
+    "kappa_ci95": [
+     -0.0634,
+     0.0401
+    ],
+    "share_above_0_accuracy": 0.0672,
+    "share_above_0_balanced": 0.9149
+   },
+   "unet_v3-svm_v3": {
+    "accuracy_ci95": [
+     0.2879,
+     0.6262
+    ],
+    "balanced_ci95": [
+     0.1686,
+     0.4039
+    ],
+    "kappa_ci95": [
+     0.398,
+     0.6987
+    ],
+    "share_above_0_accuracy": 1.0,
+    "share_above_0_balanced": 1.0
+   },
+   "svm_v3-near_v3": {
+    "accuracy_ci95": [
+     -0.2174,
+     0.2027
+    ],
+    "balanced_ci95": [
+     -0.1554,
+     0.0855
+    ],
+    "kappa_ci95": [
+     -0.1927,
+     0.2328
+    ],
+    "share_above_0_accuracy": 0.2738,
+    "share_above_0_balanced": 0.4467
+   },
+   "unet_v3-near_v3": {
+    "accuracy_ci95": [
+     0.3477,
+     0.5297
+    ],
+    "balanced_ci95": [
+     0.054,
+     0.4269
+    ],
+    "kappa_ci95": [
+     0.4244,
+     0.6788
+    ],
+    "share_above_0_accuracy": 1.0,
+    "share_above_0_balanced": 0.9873
+   }
+  },
+  "by_block": {
+   "-11_1": {
+    "svm_v2": 0.9527,
+    "unet_v2": 0.777,
+    "svm_v3": 0.9405,
+    "unet_v3": 0.9983,
+    "near_v2": 0.0717,
+    "near_v3": 0.3945
+   },
+   "-11_2": {
+    "svm_v2": 0.9911,
+    "unet_v2": 0.5449,
+    "svm_v3": 0.9918,
+    "unet_v3": 0.9968,
+    "near_v2": 0.9908,
+    "near_v3": 0.9969
+   },
+   "-3_-1": {
+    "svm_v2": 0.3876,
+    "unet_v2": 0.7256,
+    "svm_v3": 0.2098,
+    "unet_v3": 0.9243,
+    "near_v2": 0.9149,
+    "near_v3": 0.7306
+   },
+   "-4_-1": {
+    "svm_v2": 0.2832,
+    "unet_v2": 0.4336,
+    "svm_v3": 0.4552,
+    "unet_v3": 0.7617,
+    "near_v2": 0.4741,
+    "near_v3": 0.5582
+   },
+   "-4_-2": {
+    "svm_v2": 0.3534,
+    "unet_v2": 0.4824,
+    "svm_v3": 0.4646,
+    "unet_v3": 0.7148,
+    "near_v2": 0.2163,
+    "near_v3": 0.3914
+   },
+   "-5_-1": {
+    "svm_v2": 0.5899,
+    "unet_v2": 0.5512,
+    "svm_v3": 0.6014,
+    "unet_v3": 0.7653,
+    "near_v2": 0.5902,
+    "near_v3": 0.2468
+   },
+   "-6_1": {
+    "svm_v2": 0.2412,
+    "unet_v2": 0.0641,
+    "svm_v3": 0.2402,
+    "unet_v3": 0.8387,
+    "near_v2": 0.3293,
+    "near_v3": 0.3267
+   },
+   "-9_-1": {
+    "svm_v2": 0.1409,
+    "unet_v2": 0.6619,
+    "svm_v3": 0.1185,
+    "unet_v3": 0.7331,
+    "near_v2": 0.3465,
+    "near_v3": 0.348
+   },
+   "-9_0": {
+    "svm_v2": 0.2656,
+    "unet_v2": 0.967,
+    "svm_v3": 0.2635,
+    "unet_v3": 0.9667,
+    "near_v2": 0.5637,
+    "near_v3": 0.5464
+   },
+   "0_0": {
+    "svm_v2": 0.2127,
+    "unet_v2": 0.1496,
+    "svm_v3": 0.1946,
+    "unet_v3": 0.957,
+    "near_v2": 0.0187,
+    "near_v3": 0.3953
+   },
+   "1_0": {
+    "svm_v2": 0.2112,
+    "unet_v2": 0.165,
+    "svm_v3": 0.1811,
+    "unet_v3": 0.8935,
+    "near_v2": 0.2928,
+    "near_v3": 0.0775
+   },
+   "4_0": {
+    "svm_v2": 0.5542,
+    "unet_v2": 0.5544,
+    "svm_v3": 0.3414,
+    "unet_v3": 0.8496,
+    "near_v2": 0.0,
+    "near_v3": 0.0951
+   },
+   "4_2": {
+    "svm_v2": 0.3527,
+    "unet_v2": 0.1441,
+    "svm_v3": 0.2577,
+    "unet_v3": 0.6748,
+    "near_v2": 0.5364,
+    "near_v3": 0.2723
+   },
+   "5_-2": {
+    "svm_v2": 0.5595,
+    "unet_v2": 0.7386,
+    "svm_v3": 0.3525,
+    "unet_v3": 0.9243,
+    "near_v2": 0.6031,
+    "near_v3": 0.3943
+   }
+  },
+  "by_origin": {
+   "v2 pieces": {
+    "polygons": 1380,
+    "svm_v2": {
+     "accuracy": 0.4283,
+     "kappa": 0.312,
+     "balanced": 0.4237
+    },
+    "unet_v2": {
+     "accuracy": 0.7009,
+     "kappa": 0.6171,
+     "balanced": 0.5766
+    },
+    "svm_v3": {
+     "accuracy": 0.3946,
+     "kappa": 0.2889,
+     "balanced": 0.4574
+    },
+    "unet_v3": {
+     "accuracy": 0.8898,
+     "kappa": 0.8598,
+     "balanced": 0.8577
+    },
+    "near_v2": {
+     "accuracy": 0.4487,
+     "kappa": 0.3059,
+     "balanced": 0.5159
+    },
+    "near_v3": {
+     "accuracy": 0.4671,
+     "kappa": 0.331,
+     "balanced": 0.4304
+    }
+   },
+   "new": {
+    "polygons": 218,
+    "svm_v2": {
+     "accuracy": 0.3029,
+     "kappa": 0.1206,
+     "balanced": 0.3651
+    },
+    "unet_v2": {
+     "accuracy": 0.3615,
+     "kappa": 0.0998,
+     "balanced": 0.2407
+    },
+    "svm_v3": {
+     "accuracy": 0.2585,
+     "kappa": 0.1482,
+     "balanced": 0.46
+    },
+    "unet_v3": {
+     "accuracy": 0.8111,
+     "kappa": 0.596,
+     "balanced": 0.6109
+    },
+    "near_v2": {
+     "accuracy": 0.2852,
+     "kappa": 0.0684,
+     "balanced": 0.2245
+    },
+    "near_v3": {
+     "accuracy": 0.3057,
+     "kappa": 0.0779,
+     "balanced": 0.3583
+    }
+   },
+   "fan": {
+    "polygons": 54,
+    "svm_v2": {
+     "accuracy": 0.0038,
+     "kappa": -0.0,
+     "balanced": 0.0038
+    },
+    "unet_v2": {
+     "accuracy": 0.5248,
+     "kappa": 0.0,
+     "balanced": 0.5248
+    },
+    "svm_v3": {
+     "accuracy": 0.0177,
+     "kappa": 0.0,
+     "balanced": 0.0177
+    },
+    "unet_v3": {
+     "accuracy": 0.4813,
+     "kappa": 0.0,
+     "balanced": 0.4813
+    },
+    "near_v2": {
+     "accuracy": 0.0,
+     "kappa": 0.0,
+     "balanced": 0.0
+    },
+    "near_v3": {
+     "accuracy": 0.0,
+     "kappa": 0.0,
+     "balanced": 0.0
+    }
+   }
+  }
+ },
+ "recommendation": {
+  "svm": {
+   "a_on_v2_polygons": false,
+   "b_on_v3_polygons": false,
+   "c_falls": {
+    "Crater": 0.218,
+    "steep/windy hills": -0.3833,
+    "lava tube": -0.0139,
+    "Normal Ground": -0.0014,
+    "volcanic edifice": 0.0303,
+    "apron": 0.0171,
+    "fluvial channel": -0.1271
+   },
+   "c_no_class_falls_5pt": false,
+   "d_edifice_share": null,
+   "d_ok": true,
+   "recommended": false
+  },
+  "unet": {
+   "a_on_v2_polygons": true,
+   "b_on_v3_polygons": true,
+   "c_falls": {
+    "Crater": -0.3996,
+    "steep/windy hills": -0.3829,
+    "lava tube": -0.6716,
+    "Normal Ground": -0.2897,
+    "volcanic edifice": 0.046,
+    "apron": -0.0994,
+    "fluvial channel": -0.1352
+   },
+   "c_no_class_falls_5pt": true,
+   "d_edifice_share": 0.18,
+   "d_ok": true,
+   "recommended": true
+  }
+ },
+ "predictions": {
+  "P1": "held",
+  "P2": "NOT held",
+  "P3": "held",
+  "P4": "held",
+  "P5": "held",
+  "P6": "NOT held",
+  "P7": "held",
+  "P8": "NOT held",
+  "P9": "NOT held"
+ }
+}

@@ -27,3 +27,15 @@
 2026-11-06 04:02:51  start 08_score_unet_v2_on_v3: verify_global60_classification.py --cell 200 --labels v3 --raster "F:\Mars Project\Global60\global60_landforms_unet_v2_200m_seamfix.tif"
 2026-11-06 04:06:05  end   08_score_unet_v2_on_v3: exit 0, 3.2 min
 2026-11-06 04:06:05  start 09_svm_train_classify: make_global60_classification.py --cell 200 --labels v3
+2026-11-07 06:06:29  end   09_svm_train_classify: exit 0, 1,560.4 min
+2026-11-07 06:06:29  start 10_svm_mode11: make_global60_landforms_clean.py --cell 200 --size 11 --labels v3
+2026-11-07 06:16:24  end   10_svm_mode11: exit 0, 9.9 min
+2026-11-07 06:16:24  start 11_score_svm_v3: verify_global60_classification.py --cell 200 --labels v3 --raster "F:\Mars Project\Global60\global60_landforms_svm_v3_200m_mode11.tif"
+2026-11-07 06:19:38  end   11_score_svm_v3: exit 0, 3.2 min
+2026-11-07 06:19:38  start 12_score_svm_v3_on_v2: verify_global60_classification.py --cell 200 --labels v2 --raster "F:\Mars Project\Global60\global60_landforms_svm_v3_200m_mode11.tif"
+2026-11-07 06:40:20  end   12_score_svm_v3_on_v2: exit 0, 20.7 min
+2026-11-07 06:40:20  start 13_score_svm_v2_on_v3: verify_global60_classification.py --cell 200 --labels v3 --raster "F:\Mars Project\Global60\global60_landforms_svm_v2_200m_mode11.tif"
+2026-11-07 06:43:32  end   13_score_svm_v2_on_v3: exit 0, 3.2 min
+2026-11-07 06:43:32  start 14_geomap_v3: make_geomap_check.py --labels v3
+2026-11-07 06:44:22  end   14_geomap_v3: exit 0, 0.8 min
+2026-11-07 06:44:22  queue done

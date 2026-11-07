@@ -1,0 +1,2716 @@
+{
+ "shift_deg": 0.0,
+ "near_km": 2.0,
+ "band_km": [
+  10.0,
+  20.0
+ ],
+ "counts": {
+  "edifice_montes": {
+   "within_60": 10,
+   "no_label_at_centre": 8
+  },
+  "fluvial": {
+   "within_60": 146,
+   "no_label_at_centre": 112
+  },
+  "lava_tube": {
+   "within_60": 8,
+   "no_label_at_centre": 5
+  },
+  "edifice": {
+   "within_60": 22,
+   "no_label_at_centre": 11
+  }
+ },
+ "svm_v3": {
+  "map": "Mars Project\\Global60\\global60_landforms_svm_v3_200m_mode11.tif",
+  "area_share": {
+   "Crater": 0.0544,
+   "steep/windy hills": 0.0513,
+   "lava tube": 0.0204,
+   "Normal Ground": 0.3922,
+   "volcanic edifice": 0.1276,
+   "apron": 0.0356,
+   "fluvial channel": 0.3185
+  },
+  "edifice": {
+   "n": 10,
+   "inside_mean": 0.25,
+   "outside_mean": 0.325,
+   "pct_inside_gt_outside": 30.0,
+   "held": false,
+   "skipped": {
+    "label_at_centre": 11,
+    "no_line": 0,
+    "edge_or_small": 1
+   },
+   "features": [
+    {
+     "name": "Apollinaris Tholus",
+     "lat": -17.64,
+     "lon": 175.75,
+     "diameter_km": 32.4,
+     "inside": 0.0,
+     "outside": 0.2161,
+     "px_inside": 2650,
+     "px_outside": 21616,
+     "unit": "mNh",
+     "unit_group": "h",
+     "inside_classes": {
+      "Crater": 0.005,
+      "steep/windy hills": 0.99,
+      "lava tube": 0.0,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.0,
+      "apron": 0.005,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Dionysus Patera",
+     "lat": 17.96,
+     "lon": 226.77,
+     "diameter_km": 23.0,
+     "inside": 0.5743,
+     "outside": 0.6919,
+     "px_inside": 1339,
+     "px_outside": 10930,
+     "unit": "Ave",
+     "unit_group": "ve",
+     "inside_classes": {
+      "Crater": 0.0,
+      "steep/windy hills": 0.0,
+      "lava tube": 0.426,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.574,
+      "apron": 0.0,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Euripus Mons",
+     "lat": -44.82,
+     "lon": 105.18,
+     "diameter_km": 88.9,
+     "inside": 0.3047,
+     "outside": 0.3064,
+     "px_inside": 25648,
+     "px_outside": 206873,
+     "unit": "ANa",
+     "unit_group": "a",
+     "inside_classes": {
+      "Crater": 0.067,
+      "steep/windy hills": 0.351,
+      "lava tube": 0.107,
+      "Normal Ground": 0.003,
+      "volcanic edifice": 0.305,
+      "apron": 0.086,
+      "fluvial channel": 0.081
+     }
+    },
+    {
+     "name": "Gonnus Mons",
+     "lat": 41.21,
+     "lon": 269.12,
+     "diameter_km": 49.4,
+     "inside": 0.1926,
+     "outside": 0.4314,
+     "px_inside": 7798,
+     "px_outside": 63670,
+     "unit": "HNt",
+     "unit_group": "t",
+     "inside_classes": {
+      "Crater": 0.016,
+      "steep/windy hills": 0.344,
+      "lava tube": 0.358,
+      "Normal Ground": 0.026,
+      "volcanic edifice": 0.193,
+      "apron": 0.063,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Labeatis Mons",
+     "lat": 37.48,
+     "lon": 284.14,
+     "diameter_km": 42.8,
+     "inside": 0.3814,
+     "outside": 0.7831,
+     "px_inside": 5540,
+     "px_outside": 45291,
+     "unit": "eHv",
+     "unit_group": "v",
+     "inside_classes": {
+      "Crater": 0.007,
+      "steep/windy hills": 0.0,
+      "lava tube": 0.433,
+      "Normal Ground": 0.043,
+      "volcanic edifice": 0.381,
+      "apron": 0.135,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Oceanidum Mons",
+     "lat": -54.93,
+     "lon": 318.77,
+     "diameter_km": 33.4,
+     "inside": 0.1484,
+     "outside": 0.0169,
+     "px_inside": 4664,
+     "px_outside": 38100,
+     "unit": "HNb",
+     "unit_group": "b",
+     "inside_classes": {
+      "Crater": 0.113,
+      "steep/windy hills": 0.366,
+      "lava tube": 0.168,
+      "Normal Ground": 0.029,
+      "volcanic edifice": 0.148,
+      "apron": 0.121,
+      "fluvial channel": 0.055
+     }
+    },
+    {
+     "name": "Octantis Mons",
+     "lat": -55.26,
+     "lon": 317.15,
+     "diameter_km": 19.1,
+     "inside": 0.1788,
+     "outside": 0.0441,
+     "px_inside": 1538,
+     "px_outside": 12559,
+     "unit": "HNb",
+     "unit_group": "b",
+     "inside_classes": {
+      "Crater": 0.085,
+      "steep/windy hills": 0.331,
+      "lava tube": 0.135,
+      "Normal Ground": 0.053,
+      "volcanic edifice": 0.179,
+      "apron": 0.129,
+      "fluvial channel": 0.088
+     }
+    },
+    {
+     "name": "Peraea Mons",
+     "lat": -31.08,
+     "lon": 86.11,
+     "diameter_km": 14.9,
+     "inside": 0.0032,
+     "outside": 0.1276,
+     "px_inside": 624,
+     "px_outside": 5117,
+     "unit": "mNh",
+     "unit_group": "h",
+     "inside_classes": {
+      "Crater": 0.021,
+      "steep/windy hills": 0.971,
+      "lava tube": 0.0,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.003,
+      "apron": 0.0,
+      "fluvial channel": 0.005
+     }
+    },
+    {
+     "name": "Pindus Mons",
+     "lat": 39.47,
+     "lon": 271.48,
+     "diameter_km": 16.3,
+     "inside": 0.6884,
+     "outside": 0.3764,
+     "px_inside": 828,
+     "px_outside": 6767,
+     "unit": "lHvf",
+     "unit_group": "vf",
+     "inside_classes": {
+      "Crater": 0.01,
+      "steep/windy hills": 0.012,
+      "lava tube": 0.111,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.688,
+      "apron": 0.179,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Zephyria Tholus",
+     "lat": -19.75,
+     "lon": 172.92,
+     "diameter_km": 35.9,
+     "inside": 0.0318,
+     "outside": 0.2534,
+     "px_inside": 3305,
+     "px_outside": 26967,
+     "unit": "eNh",
+     "unit_group": "h",
+     "inside_classes": {
+      "Crater": 0.063,
+      "steep/windy hills": 0.763,
+      "lava tube": 0.0,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.032,
+      "apron": 0.095,
+      "fluvial channel": 0.047
+     }
+    }
+   ]
+  },
+  "edifice_montes": {
+   "n": 8,
+   "inside_mean": 0.168,
+   "outside_mean": 0.156,
+   "pct_inside_gt_outside": 75.0,
+   "held": true,
+   "skipped": {
+    "label_at_centre": 2,
+    "no_line": 0,
+    "edge_or_small": 0
+   },
+   "features": [
+    {
+     "name": "Ausonia Montes",
+     "lat": -25.42,
+     "lon": 99.04,
+     "diameter_km": 333.1,
+     "inside": 0.0077,
+     "outside": 0.0151,
+     "px_inside": 295597,
+     "px_outside": 2421408,
+     "unit": "eHv",
+     "unit_group": "v",
+     "inside_classes": {
+      "Crater": 0.094,
+      "steep/windy hills": 0.146,
+      "lava tube": 0.005,
+      "Normal Ground": 0.171,
+      "volcanic edifice": 0.008,
+      "apron": 0.0,
+      "fluvial channel": 0.576
+     }
+    },
+    {
+     "name": "Chalce Montes",
+     "lat": -53.72,
+     "lon": 322.35,
+     "diameter_km": 100.0,
+     "inside": 0.0608,
+     "outside": 0.0507,
+     "px_inside": 34642,
+     "px_outside": 217584,
+     "unit": "HNb",
+     "unit_group": "b",
+     "inside_classes": {
+      "Crater": 0.057,
+      "steep/windy hills": 0.057,
+      "lava tube": 0.015,
+      "Normal Ground": 0.506,
+      "volcanic edifice": 0.061,
+      "apron": 0.025,
+      "fluvial channel": 0.278
+     }
+    },
+    {
+     "name": "Coprates Montes",
+     "lat": -13.0,
+     "lon": 294.61,
+     "diameter_km": 350.0,
+     "inside": 0.0999,
+     "outside": 0.0944,
+     "px_inside": 302458,
+     "px_outside": 2476388,
+     "unit": "Nhu",
+     "unit_group": "hu",
+     "inside_classes": {
+      "Crater": 0.042,
+      "steep/windy hills": 0.58,
+      "lava tube": 0.026,
+      "Normal Ground": 0.019,
+      "volcanic edifice": 0.1,
+      "apron": 0.059,
+      "fluvial channel": 0.174
+     }
+    },
+    {
+     "name": "Coronae Montes",
+     "lat": -34.31,
+     "lon": 86.11,
+     "diameter_km": 247.4,
+     "inside": 0.5435,
+     "outside": 0.4919,
+     "px_inside": 178241,
+     "px_outside": 1458860,
+     "unit": "eNhm",
+     "unit_group": "hm",
+     "inside_classes": {
+      "Crater": 0.086,
+      "steep/windy hills": 0.127,
+      "lava tube": 0.029,
+      "Normal Ground": 0.07,
+      "volcanic edifice": 0.544,
+      "apron": 0.047,
+      "fluvial channel": 0.097
+     }
+    },
+    {
+     "name": "Echus Montes",
+     "lat": 7.81,
+     "lon": 282.05,
+     "diameter_km": 397.1,
+     "inside": 0.3651,
+     "outside": 0.2968,
+     "px_inside": 382860,
+     "px_outside": 3136376,
+     "unit": "Ht",
+     "unit_group": "t",
+     "inside_classes": {
+      "Crater": 0.001,
+      "steep/windy hills": 0.005,
+      "lava tube": 0.078,
+      "Normal Ground": 0.549,
+      "volcanic edifice": 0.365,
+      "apron": 0.0,
+      "fluvial channel": 0.002
+     }
+    },
+    {
+     "name": "Erebus Montes",
+     "lat": 35.66,
+     "lon": 185.02,
+     "diameter_km": 811.7,
+     "inside": 0.0254,
+     "outside": 0.0203,
+     "px_inside": 1953840,
+     "px_outside": 16263055,
+     "unit": "lAv",
+     "unit_group": "v",
+     "inside_classes": {
+      "Crater": 0.046,
+      "steep/windy hills": 0.02,
+      "lava tube": 0.002,
+      "Normal Ground": 0.642,
+      "volcanic edifice": 0.025,
+      "apron": 0.004,
+      "fluvial channel": 0.261
+     }
+    },
+    {
+     "name": "Hellas Montes",
+     "lat": -37.63,
+     "lon": 97.61,
+     "diameter_km": 159.6,
+     "inside": 0.1848,
+     "outside": 0.2751,
+     "px_inside": 77419,
+     "px_outside": 632736,
+     "unit": "eNhm",
+     "unit_group": "hm",
+     "inside_classes": {
+      "Crater": 0.112,
+      "steep/windy hills": 0.317,
+      "lava tube": 0.067,
+      "Normal Ground": 0.011,
+      "volcanic edifice": 0.185,
+      "apron": 0.044,
+      "fluvial channel": 0.266
+     }
+    },
+    {
+     "name": "Hibes Montes",
+     "lat": 3.79,
+     "lon": 171.34,
+     "diameter_km": 140.0,
+     "inside": 0.0533,
+     "outside": 0.0006,
+     "px_inside": 47249,
+     "px_outside": 385896,
+     "unit": "lAv",
+     "unit_group": "v",
+     "inside_classes": {
+      "Crater": 0.049,
+      "steep/windy hills": 0.081,
+      "lava tube": 0.009,
+      "Normal Ground": 0.714,
+      "volcanic edifice": 0.053,
+      "apron": 0.011,
+      "fluvial channel": 0.081
+     }
+    }
+   ]
+  },
+  "fluvial": {
+   "n": 85,
+   "inside_mean": 0.444,
+   "outside_mean": 0.385,
+   "pct_inside_gt_outside": 68.2,
+   "held": true,
+   "skipped": {
+    "label_at_centre": 34,
+    "no_line": 25,
+    "edge_or_small": 2
+   },
+   "features": [
+    {
+     "name": "Abus Vallis",
+     "lat": -5.49,
+     "lon": 212.8,
+     "diameter_km": 61.0,
+     "inside": 0.0,
+     "outside": 0.0131,
+     "px_inside": 1277,
+     "px_outside": 13354
+    },
+    {
+     "name": "Al Qahira Vallis",
+     "lat": -18.23,
+     "lon": 162.41,
+     "diameter_km": 600.0,
+     "inside": 0.6247,
+     "outside": 0.5928,
+     "px_inside": 120308,
+     "px_outside": 263470
+    },
+    {
+     "name": "Allegheny Vallis",
+     "lat": -9.01,
+     "lon": 306.1,
+     "diameter_km": 171.1,
+     "inside": 0.9076,
+     "outside": 0.6029,
+     "px_inside": 4785,
+     "px_outside": 26488
+    },
+    {
+     "name": "Anio Valles",
+     "lat": 37.75,
+     "lon": 55.89,
+     "diameter_km": 54.0,
+     "inside": 0.2901,
+     "outside": 0.3034,
+     "px_inside": 2989,
+     "px_outside": 14674
+    },
+    {
+     "name": "Arda Valles",
+     "lat": -20.4,
+     "lon": 327.69,
+     "diameter_km": 173.7,
+     "inside": 0.8295,
+     "outside": 0.7554,
+     "px_inside": 41761,
+     "px_outside": 41996
+    },
+    {
+     "name": "Ares Vallis",
+     "lat": 10.29,
+     "lon": 334.39,
+     "diameter_km": 1757.7,
+     "inside": 0.5052,
+     "outside": 0.498,
+     "px_inside": 43934,
+     "px_outside": 202839
+    },
+    {
+     "name": "Arnus Vallis",
+     "lat": 13.97,
+     "lon": 70.61,
+     "diameter_km": 311.6,
+     "inside": 0.6947,
+     "outside": 0.4159,
+     "px_inside": 10720,
+     "px_outside": 50220
+    },
+    {
+     "name": "Axius Valles",
+     "lat": -54.53,
+     "lon": 70.72,
+     "diameter_km": 435.9,
+     "inside": 0.1453,
+     "outside": 0.0695,
+     "px_inside": 184305,
+     "px_outside": 248225
+    },
+    {
+     "name": "Bashkaus Valles",
+     "lat": -25.68,
+     "lon": 356.74,
+     "diameter_km": 246.9,
+     "inside": 0.7689,
+     "outside": 0.5513,
+     "px_inside": 80743,
+     "px_outside": 83677
+    },
+    {
+     "name": "Brazos Valles",
+     "lat": -6.08,
+     "lon": 18.7,
+     "diameter_km": 387.5,
+     "inside": 0.7746,
+     "outside": 0.6032,
+     "px_inside": 45368,
+     "px_outside": 114494
+    },
+    {
+     "name": "Clanis Valles",
+     "lat": 33.24,
+     "lon": 58.47,
+     "diameter_km": 58.0,
+     "inside": 0.5488,
+     "outside": 0.5228,
+     "px_inside": 3065,
+     "px_outside": 18196
+    },
+    {
+     "name": "Columbia Valles",
+     "lat": -9.44,
+     "lon": 317.1,
+     "diameter_km": 84.8,
+     "inside": 0.3458,
+     "outside": 0.6515,
+     "px_inside": 4425,
+     "px_outside": 15672
+    },
+    {
+     "name": "Coogoon Valles",
+     "lat": 17.19,
+     "lon": 338.26,
+     "diameter_km": 300.0,
+     "inside": 0.6482,
+     "outside": 0.5066,
+     "px_inside": 16460,
+     "px_outside": 70407
+    },
+    {
+     "name": "Cusus Valles",
+     "lat": 14.05,
+     "lon": 50.37,
+     "diameter_km": 250.2,
+     "inside": 0.3823,
+     "outside": 0.3605,
+     "px_inside": 108274,
+     "px_outside": 112526
+    },
+    {
+     "name": "Dao Vallis",
+     "lat": -37.61,
+     "lon": 88.89,
+     "diameter_km": 794.0,
+     "inside": 0.165,
+     "outside": 0.1053,
+     "px_inside": 212637,
+     "px_outside": 488654
+    },
+    {
+     "name": "Deva Vallis",
+     "lat": -7.67,
+     "lon": 203.13,
+     "diameter_km": 53.7,
+     "inside": 0.1307,
+     "outside": 0.4472,
+     "px_inside": 1546,
+     "px_outside": 12776
+    },
+    {
+     "name": "Dittaino Valles",
+     "lat": -1.43,
+     "lon": 293.14,
+     "diameter_km": 157.4,
+     "inside": 0.0019,
+     "outside": 0.0149,
+     "px_inside": 4831,
+     "px_outside": 24580
+    },
+    {
+     "name": "Drava Valles",
+     "lat": -48.86,
+     "lon": 165.99,
+     "diameter_km": 159.0,
+     "inside": 0.8378,
+     "outside": 0.6255,
+     "px_inside": 45657,
+     "px_outside": 61149
+    },
+    {
+     "name": "Enipeus Vallis",
+     "lat": 36.8,
+     "lon": 267.2,
+     "diameter_km": 527.1,
+     "inside": 0.0058,
+     "outside": 0.0144,
+     "px_inside": 17653,
+     "px_outside": 65852
+    },
+    {
+     "name": "Evros Vallis",
+     "lat": -12.65,
+     "lon": 13.83,
+     "diameter_km": 358.0,
+     "inside": 0.7196,
+     "outside": 0.63,
+     "px_inside": 38979,
+     "px_outside": 50855
+    },
+    {
+     "name": "Farah Vallis",
+     "lat": -6.03,
+     "lon": 136.8,
+     "diameter_km": 76.4,
+     "inside": 0.2587,
+     "outside": 0.474,
+     "px_inside": 1848,
+     "px_outside": 14440
+    },
+    {
+     "name": "Granicus Valles",
+     "lat": 30.58,
+     "lon": 129.97,
+     "diameter_km": 777.8,
+     "inside": 0.6753,
+     "outside": 0.6289,
+     "px_inside": 76331,
+     "px_outside": 207042
+    },
+    {
+     "name": "Harmakhis Vallis",
+     "lat": -40.98,
+     "lon": 90.06,
+     "diameter_km": 526.7,
+     "inside": 0.0305,
+     "outside": 0.0247,
+     "px_inside": 69752,
+     "px_outside": 266151
+    },
+    {
+     "name": "Havel Vallis",
+     "lat": 0.77,
+     "lon": 302.54,
+     "diameter_km": 240.2,
+     "inside": 0.7932,
+     "outside": 0.4893,
+     "px_inside": 1678,
+     "px_outside": 17976
+    },
+    {
+     "name": "Her Desher Vallis",
+     "lat": -25.08,
+     "lon": 312.07,
+     "diameter_km": 117.3,
+     "inside": 0.2464,
+     "outside": 0.4074,
+     "px_inside": 3218,
+     "px_outside": 21321
+    },
+    {
+     "name": "Hermus Vallis",
+     "lat": -5.32,
+     "lon": 212.19,
+     "diameter_km": 53.3,
+     "inside": 0.0268,
+     "outside": 0.0027,
+     "px_inside": 934,
+     "px_outside": 12004
+    },
+    {
+     "name": "Hrad Vallis",
+     "lat": 38.17,
+     "lon": 135.91,
+     "diameter_km": 974.4,
+     "inside": 0.6048,
+     "outside": 0.2503,
+     "px_inside": 32351,
+     "px_outside": 144566
+    },
+    {
+     "name": "Huallaga Vallis",
+     "lat": -26.67,
+     "lon": 79.07,
+     "diameter_km": 92.5,
+     "inside": 0.7741,
+     "outside": 0.6725,
+     "px_inside": 2470,
+     "px_outside": 14960
+    },
+    {
+     "name": "Hypsas Vallis",
+     "lat": 33.63,
+     "lon": 57.99,
+     "diameter_km": 36.5,
+     "inside": 0.5387,
+     "outside": 0.4841,
+     "px_inside": 1110,
+     "px_outside": 11721
+    },
+    {
+     "name": "Iberus Vallis",
+     "lat": 21.25,
+     "lon": 152.07,
+     "diameter_km": 87.3,
+     "inside": 0.4278,
+     "outside": 0.1811,
+     "px_inside": 4254,
+     "px_outside": 16846
+    },
+    {
+     "name": "Ituxi Vallis",
+     "lat": 25.45,
+     "lon": 153.32,
+     "diameter_km": 123.1,
+     "inside": 0.3509,
+     "outside": 0.2476,
+     "px_inside": 4474,
+     "px_outside": 23824
+    },
+    {
+     "name": "Kasei Valles",
+     "lat": 25.14,
+     "lon": 297.12,
+     "diameter_km": 1580.0,
+     "inside": 0.2319,
+     "outside": 0.2834,
+     "px_inside": 41161,
+     "px_outside": 121396
+    },
+    {
+     "name": "Labou Vallis",
+     "lat": -8.63,
+     "lon": 205.58,
+     "diameter_km": 257.8,
+     "inside": 0.2983,
+     "outside": 0.2767,
+     "px_inside": 13308,
+     "px_outside": 36713
+    },
+    {
+     "name": "Licus Vallis",
+     "lat": -3.05,
+     "lon": 126.35,
+     "diameter_km": 240.0,
+     "inside": 0.7062,
+     "outside": 0.7315,
+     "px_inside": 45925,
+     "px_outside": 51120
+    },
+    {
+     "name": "Liris Valles",
+     "lat": -10.5,
+     "lon": 58.25,
+     "diameter_km": 596.2,
+     "inside": 0.9045,
+     "outside": 0.5968,
+     "px_inside": 116568,
+     "px_outside": 157457
+    },
+    {
+     "name": "Louros Valles",
+     "lat": -8.41,
+     "lon": 278.23,
+     "diameter_km": 516.1,
+     "inside": 0.0023,
+     "outside": 0.1792,
+     "px_inside": 42946,
+     "px_outside": 102126
+    },
+    {
+     "name": "Ma adim Vallis",
+     "lat": -21.98,
+     "lon": 177.5,
+     "diameter_km": 913.1,
+     "inside": 0.3461,
+     "outside": 0.3679,
+     "px_inside": 115287,
+     "px_outside": 194479
+    },
+    {
+     "name": "Maja Valles",
+     "lat": 10.23,
+     "lon": 301.62,
+     "diameter_km": 1515.0,
+     "inside": 0.3306,
+     "outside": 0.2807,
+     "px_inside": 84443,
+     "px_outside": 306047
+    },
+    {
+     "name": "Mangala Valles",
+     "lat": -11.32,
+     "lon": 208.61,
+     "diameter_km": 900.0,
+     "inside": 0.1269,
+     "outside": 0.124,
+     "px_inside": 16438,
+     "px_outside": 64551
+    },
+    {
+     "name": "Matrona Vallis",
+     "lat": -7.66,
+     "lon": 176.19,
+     "diameter_km": 61.3,
+     "inside": 0.1191,
+     "outside": 0.1373,
+     "px_inside": 1629,
+     "px_outside": 13165
+    },
+    {
+     "name": "Maumee Valles",
+     "lat": 19.51,
+     "lon": 307.15,
+     "diameter_km": 390.0,
+     "inside": 0.3277,
+     "outside": 0.2831,
+     "px_inside": 20719,
+     "px_outside": 36165
+    },
+    {
+     "name": "Mawrth Vallis",
+     "lat": 22.43,
+     "lon": 343.03,
+     "diameter_km": 634.6,
+     "inside": 0.6991,
+     "outside": 0.7992,
+     "px_inside": 37431,
+     "px_outside": 155886
+    },
+    {
+     "name": "Minio Vallis",
+     "lat": -4.38,
+     "lon": 208.33,
+     "diameter_km": 90.0,
+     "inside": 0.1779,
+     "outside": 0.2496,
+     "px_inside": 4659,
+     "px_outside": 17118
+    },
+    {
+     "name": "Moa Valles",
+     "lat": 35.62,
+     "lon": 305.3,
+     "diameter_km": 265.0,
+     "inside": 0.6037,
+     "outside": 0.6995,
+     "px_inside": 10073,
+     "px_outside": 48684
+    },
+    {
+     "name": "Morava Valles",
+     "lat": -13.57,
+     "lon": 335.8,
+     "diameter_km": 364.1,
+     "inside": 0.8723,
+     "outside": 0.8291,
+     "px_inside": 16924,
+     "px_outside": 58158
+    },
+    {
+     "name": "Nanedi Valles",
+     "lat": 5.05,
+     "lon": 311.38,
+     "diameter_km": 550.0,
+     "inside": 0.0949,
+     "outside": 0.2865,
+     "px_inside": 39150,
+     "px_outside": 127449
+    },
+    {
+     "name": "Navua Valles",
+     "lat": -33.94,
+     "lon": 82.68,
+     "diameter_km": 500.0,
+     "inside": 0.0909,
+     "outside": 0.1034,
+     "px_inside": 70702,
+     "px_outside": 241167
+    },
+    {
+     "name": "Nia Vallis",
+     "lat": -53.53,
+     "lon": 325.19,
+     "diameter_km": 140.0,
+     "inside": 0.4431,
+     "outside": 0.3838,
+     "px_inside": 4884,
+     "px_outside": 36030
+    },
+    {
+     "name": "Niger Vallis",
+     "lat": -34.96,
+     "lon": 92.57,
+     "diameter_km": 360.0,
+     "inside": 0.571,
+     "outside": 0.3257,
+     "px_inside": 84695,
+     "px_outside": 166476
+    },
+    {
+     "name": "Ochus Valles",
+     "lat": 7.07,
+     "lon": 314.96,
+     "diameter_km": 127.0,
+     "inside": 0.2697,
+     "outside": 0.2507,
+     "px_inside": 5083,
+     "px_outside": 20592
+    },
+    {
+     "name": "Okavango Valles",
+     "lat": 38.1,
+     "lon": 8.97,
+     "diameter_km": 285.1,
+     "inside": 0.9469,
+     "outside": 0.8285,
+     "px_inside": 7799,
+     "px_outside": 41091
+    },
+    {
+     "name": "Oltis Valles",
+     "lat": -23.5,
+     "lon": 338.35,
+     "diameter_km": 169.3,
+     "inside": 0.8529,
+     "outside": 0.5545,
+     "px_inside": 32286,
+     "px_outside": 37577
+    },
+    {
+     "name": "Pallacopas Vallis",
+     "lat": -54.73,
+     "lon": 339.52,
+     "diameter_km": 134.8,
+     "inside": 0.5651,
+     "outside": 0.4723,
+     "px_inside": 56118,
+     "px_outside": 206645
+    },
+    {
+     "name": "Parana Valles",
+     "lat": -23.19,
+     "lon": 350.2,
+     "diameter_km": 329.1,
+     "inside": 0.8668,
+     "outside": 0.4366,
+     "px_inside": 107834,
+     "px_outside": 109709
+    },
+    {
+     "name": "Patapsco Vallis",
+     "lat": 23.7,
+     "lon": 152.51,
+     "diameter_km": 172.9,
+     "inside": 0.3676,
+     "outside": 0.0913,
+     "px_inside": 4839,
+     "px_outside": 27940
+    },
+    {
+     "name": "Protva Valles",
+     "lat": -29.11,
+     "lon": 299.42,
+     "diameter_km": 259.7,
+     "inside": 0.8347,
+     "outside": 0.7817,
+     "px_inside": 86958,
+     "px_outside": 109505
+    },
+    {
+     "name": "Ravius Valles",
+     "lat": 46.12,
+     "lon": 249.83,
+     "diameter_km": 388.2,
+     "inside": 0.0168,
+     "outside": 0.0379,
+     "px_inside": 234511,
+     "px_outside": 155614
+    },
+    {
+     "name": "Reull Vallis",
+     "lat": -42.14,
+     "lon": 104.95,
+     "diameter_km": 1051.9,
+     "inside": 0.2643,
+     "outside": 0.2005,
+     "px_inside": 107756,
+     "px_outside": 396810
+    },
+    {
+     "name": "Rubicon Valles",
+     "lat": 44.41,
+     "lon": 242.48,
+     "diameter_km": 308.2,
+     "inside": 0.0167,
+     "outside": 0.0646,
+     "px_inside": 162572,
+     "px_outside": 153681
+    },
+    {
+     "name": "Runa Vallis",
+     "lat": -28.34,
+     "lon": 323.29,
+     "diameter_km": 36.0,
+     "inside": 0.9536,
+     "outside": 0.7701,
+     "px_inside": 1185,
+     "px_outside": 11977
+    },
+    {
+     "name": "Sabis Vallis",
+     "lat": -5.01,
+     "lon": 207.49,
+     "diameter_km": 212.9,
+     "inside": 0.2513,
+     "outside": 0.2263,
+     "px_inside": 11391,
+     "px_outside": 34665
+    },
+    {
+     "name": "Sabrina Vallis",
+     "lat": 10.99,
+     "lon": 310.96,
+     "diameter_km": 280.0,
+     "inside": 0.5077,
+     "outside": 0.4758,
+     "px_inside": 8887,
+     "px_outside": 39321
+    },
+    {
+     "name": "Senus Vallis",
+     "lat": -5.23,
+     "lon": 213.04,
+     "diameter_km": 22.2,
+     "inside": 0.0037,
+     "outside": 0.0179,
+     "px_inside": 1085,
+     "px_outside": 9697
+    },
+    {
+     "name": "Shalbatana Vallis",
+     "lat": 7.33,
+     "lon": 317.91,
+     "diameter_km": 1029.0,
+     "inside": 0.4024,
+     "outside": 0.269,
+     "px_inside": 28662,
+     "px_outside": 153073
+    },
+    {
+     "name": "Sungari Vallis",
+     "lat": -40.33,
+     "lon": 88.5,
+     "diameter_km": 344.8,
+     "inside": 0.0203,
+     "outside": 0.0142,
+     "px_inside": 27489,
+     "px_outside": 126848
+    },
+    {
+     "name": "Tagus Valles",
+     "lat": -6.68,
+     "lon": 114.54,
+     "diameter_km": 144.6,
+     "inside": 0.908,
+     "outside": 0.6414,
+     "px_inside": 15236,
+     "px_outside": 31989
+    },
+    {
+     "name": "Tana Vallis",
+     "lat": 4.78,
+     "lon": 332.11,
+     "diameter_km": 56.5,
+     "inside": 0.0,
+     "outside": 0.0078,
+     "px_inside": 1430,
+     "px_outside": 12468
+    },
+    {
+     "name": "Termes Vallis",
+     "lat": -11.11,
+     "lon": 202.99,
+     "diameter_km": 55.6,
+     "inside": 0.3282,
+     "outside": 0.3428,
+     "px_inside": 2416,
+     "px_outside": 12776
+    },
+    {
+     "name": "Teviot Vallis",
+     "lat": -43.37,
+     "lon": 102.26,
+     "diameter_km": 143.9,
+     "inside": 0.1371,
+     "outside": 0.0442,
+     "px_inside": 5032,
+     "px_outside": 34941
+    },
+    {
+     "name": "Tigre Valles",
+     "lat": -12.02,
+     "lon": 322.91,
+     "diameter_km": 102.8,
+     "inside": 0.8856,
+     "outside": 0.6434,
+     "px_inside": 17691,
+     "px_outside": 29454
+    },
+    {
+     "name": "Tinia Valles",
+     "lat": -4.61,
+     "lon": 211.12,
+     "diameter_km": 17.8,
+     "inside": 0.0,
+     "outside": 0.0001,
+     "px_inside": 846,
+     "px_outside": 8826
+    },
+    {
+     "name": "Tinjar Valles",
+     "lat": 37.54,
+     "lon": 124.27,
+     "diameter_km": 400.6,
+     "inside": 0.4194,
+     "outside": 0.3494,
+     "px_inside": 12011,
+     "px_outside": 64155
+    },
+    {
+     "name": "Tinto Vallis",
+     "lat": -3.97,
+     "lon": 111.5,
+     "diameter_km": 192.0,
+     "inside": 0.2041,
+     "outside": 0.6162,
+     "px_inside": 5866,
+     "px_outside": 29027
+    },
+    {
+     "name": "Tisia Valles",
+     "lat": -10.75,
+     "lon": 46.72,
+     "diameter_km": 384.0,
+     "inside": 0.4098,
+     "outside": 0.2263,
+     "px_inside": 76291,
+     "px_outside": 161488
+    },
+    {
+     "name": "Tiu Valles",
+     "lat": 16.23,
+     "lon": 325.14,
+     "diameter_km": 1720.0,
+     "inside": 0.1602,
+     "outside": 0.4182,
+     "px_inside": 999,
+     "px_outside": 10198
+    },
+    {
+     "name": "Uzboi Vallis",
+     "lat": -29.46,
+     "lon": 323.02,
+     "diameter_km": 353.5,
+     "inside": 0.7325,
+     "outside": 0.7041,
+     "px_inside": 32037,
+     "px_outside": 100327
+    },
+    {
+     "name": "Valles Marineris",
+     "lat": -14.01,
+     "lon": 301.41,
+     "diameter_km": 3761.3,
+     "inside": 0.5606,
+     "outside": 0.4916,
+     "px_inside": 233346,
+     "px_outside": 605580
+    },
+    {
+     "name": "Varus Valles",
+     "lat": -8.57,
+     "lon": 204.01,
+     "diameter_km": 90.1,
+     "inside": 0.5974,
+     "outside": 0.3384,
+     "px_inside": 6764,
+     "px_outside": 23117
+    },
+    {
+     "name": "Vedra Valles",
+     "lat": 19.12,
+     "lon": 304.52,
+     "diameter_km": 118.0,
+     "inside": 0.4152,
+     "outside": 0.5309,
+     "px_inside": 5805,
+     "px_outside": 21960
+    },
+    {
+     "name": "Verde Vallis",
+     "lat": -0.5,
+     "lon": 29.88,
+     "diameter_km": 133.0,
+     "inside": 0.5698,
+     "outside": 0.3547,
+     "px_inside": 12671,
+     "px_outside": 24940
+    },
+    {
+     "name": "Vichada Valles",
+     "lat": -19.87,
+     "lon": 88.13,
+     "diameter_km": 438.3,
+     "inside": 0.9103,
+     "outside": 0.6166,
+     "px_inside": 152538,
+     "px_outside": 242324
+    },
+    {
+     "name": "Vistula Valles",
+     "lat": 13.41,
+     "lon": 308.03,
+     "diameter_km": 193.0,
+     "inside": 0.5504,
+     "outside": 0.424,
+     "px_inside": 23834,
+     "px_outside": 61301
+    },
+    {
+     "name": "Waikato Vallis",
+     "lat": -33.33,
+     "lon": 113.78,
+     "diameter_km": 228.0,
+     "inside": 0.3954,
+     "outside": 0.3633,
+     "px_inside": 7944,
+     "px_outside": 31158
+    },
+    {
+     "name": "Warrego Valles",
+     "lat": -41.84,
+     "lon": 267.85,
+     "diameter_km": 205.1,
+     "inside": 0.7186,
+     "outside": 0.5206,
+     "px_inside": 128277,
+     "px_outside": 80315
+    },
+    {
+     "name": "Zarqa Valles",
+     "lat": 0.32,
+     "lon": 80.59,
+     "diameter_km": 21.4,
+     "inside": 0.7307,
+     "outside": 0.5537,
+     "px_inside": 36374,
+     "px_outside": 138201
+    }
+   ]
+  },
+  "lava_tube": {
+   "n": 5,
+   "inside_mean": 0.081,
+   "outside_mean": 0.06,
+   "pct_inside_gt_outside": 80.0,
+   "skipped": {
+    "label_at_centre": 3,
+    "no_line": 0,
+    "edge_or_small": 0
+   },
+   "features": [
+    {
+     "name": "Acheron Catena",
+     "lat": 37.47,
+     "lon": 259.2,
+     "diameter_km": 421.8,
+     "inside": 0.0487,
+     "outside": 0.0439,
+     "px_inside": 788424,
+     "px_outside": 3140090
+    },
+    {
+     "name": "Baphyras Catena",
+     "lat": 38.83,
+     "lon": 275.84,
+     "diameter_km": 95.5,
+     "inside": 0.1479,
+     "outside": 0.1678,
+     "px_inside": 30058,
+     "px_outside": 119910
+    },
+    {
+     "name": "Ceraunius Catena",
+     "lat": 37.1,
+     "lon": 251.91,
+     "diameter_km": 50.5,
+     "inside": 0.1126,
+     "outside": 0.0375,
+     "px_inside": 6490,
+     "px_outside": 25542
+    },
+    {
+     "name": "Elysium Catena",
+     "lat": 17.69,
+     "lon": 149.73,
+     "diameter_km": 48.5,
+     "inside": 0.0008,
+     "outside": 0.0007,
+     "px_inside": 7372,
+     "px_outside": 29792
+    },
+    {
+     "name": "Phlegethon Catena",
+     "lat": 38.83,
+     "lon": 256.72,
+     "diameter_km": 399.7,
+     "inside": 0.0963,
+     "outside": 0.051,
+     "px_inside": 528034,
+     "px_outside": 2111822
+    }
+   ]
+  }
+ },
+ "unet_v3": {
+  "map": "Mars Project\\Global60\\global60_landforms_unet_v3_200m_seamfix.tif",
+  "area_share": {
+   "Crater": 0.2775,
+   "steep/windy hills": 0.0154,
+   "lava tube": 0.0188,
+   "Normal Ground": 0.379,
+   "volcanic edifice": 0.1803,
+   "apron": 0.0414,
+   "fluvial channel": 0.0877
+  },
+  "edifice": {
+   "n": 10,
+   "inside_mean": 0.051,
+   "outside_mean": 0.335,
+   "pct_inside_gt_outside": 0.0,
+   "held": false,
+   "skipped": {
+    "label_at_centre": 11,
+    "no_line": 0,
+    "edge_or_small": 1
+   },
+   "features": [
+    {
+     "name": "Apollinaris Tholus",
+     "lat": -17.64,
+     "lon": 175.75,
+     "diameter_km": 32.4,
+     "inside": 0.0,
+     "outside": 0.0391,
+     "px_inside": 2650,
+     "px_outside": 21616,
+     "unit": "mNh",
+     "unit_group": "h",
+     "inside_classes": {
+      "Crater": 0.424,
+      "steep/windy hills": 0.576,
+      "lava tube": 0.0,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.0,
+      "apron": 0.0,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Dionysus Patera",
+     "lat": 17.96,
+     "lon": 226.77,
+     "diameter_km": 23.0,
+     "inside": 0.242,
+     "outside": 0.5772,
+     "px_inside": 1339,
+     "px_outside": 10930,
+     "unit": "Ave",
+     "unit_group": "ve",
+     "inside_classes": {
+      "Crater": 0.0,
+      "steep/windy hills": 0.002,
+      "lava tube": 0.756,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.242,
+      "apron": 0.0,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Euripus Mons",
+     "lat": -44.82,
+     "lon": 105.18,
+     "diameter_km": 88.9,
+     "inside": 0.0033,
+     "outside": 0.2677,
+     "px_inside": 25648,
+     "px_outside": 206873,
+     "unit": "ANa",
+     "unit_group": "a",
+     "inside_classes": {
+      "Crater": 0.038,
+      "steep/windy hills": 0.416,
+      "lava tube": 0.0,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.003,
+      "apron": 0.542,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Gonnus Mons",
+     "lat": 41.21,
+     "lon": 269.12,
+     "diameter_km": 49.4,
+     "inside": 0.0,
+     "outside": 0.3837,
+     "px_inside": 7798,
+     "px_outside": 63670,
+     "unit": "HNt",
+     "unit_group": "t",
+     "inside_classes": {
+      "Crater": 0.028,
+      "steep/windy hills": 0.568,
+      "lava tube": 0.0,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.0,
+      "apron": 0.404,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Labeatis Mons",
+     "lat": 37.48,
+     "lon": 284.14,
+     "diameter_km": 42.8,
+     "inside": 0.2599,
+     "outside": 0.8544,
+     "px_inside": 5540,
+     "px_outside": 45291,
+     "unit": "eHv",
+     "unit_group": "v",
+     "inside_classes": {
+      "Crater": 0.734,
+      "steep/windy hills": 0.001,
+      "lava tube": 0.0,
+      "Normal Ground": 0.001,
+      "volcanic edifice": 0.26,
+      "apron": 0.0,
+      "fluvial channel": 0.004
+     }
+    },
+    {
+     "name": "Oceanidum Mons",
+     "lat": -54.93,
+     "lon": 318.77,
+     "diameter_km": 33.4,
+     "inside": 0.0,
+     "outside": 0.2364,
+     "px_inside": 4664,
+     "px_outside": 38100,
+     "unit": "HNb",
+     "unit_group": "b",
+     "inside_classes": {
+      "Crater": 0.827,
+      "steep/windy hills": 0.113,
+      "lava tube": 0.0,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.0,
+      "apron": 0.06,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Octantis Mons",
+     "lat": -55.26,
+     "lon": 317.15,
+     "diameter_km": 19.1,
+     "inside": 0.0,
+     "outside": 0.3518,
+     "px_inside": 1538,
+     "px_outside": 12559,
+     "unit": "HNb",
+     "unit_group": "b",
+     "inside_classes": {
+      "Crater": 0.524,
+      "steep/windy hills": 0.338,
+      "lava tube": 0.003,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.0,
+      "apron": 0.128,
+      "fluvial channel": 0.007
+     }
+    },
+    {
+     "name": "Peraea Mons",
+     "lat": -31.08,
+     "lon": 86.11,
+     "diameter_km": 14.9,
+     "inside": 0.0,
+     "outside": 0.1898,
+     "px_inside": 624,
+     "px_outside": 5117,
+     "unit": "mNh",
+     "unit_group": "h",
+     "inside_classes": {
+      "Crater": 0.154,
+      "steep/windy hills": 0.846,
+      "lava tube": 0.0,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.0,
+      "apron": 0.0,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Pindus Mons",
+     "lat": 39.47,
+     "lon": 271.48,
+     "diameter_km": 16.3,
+     "inside": 0.0,
+     "outside": 0.4492,
+     "px_inside": 828,
+     "px_outside": 6767,
+     "unit": "lHvf",
+     "unit_group": "vf",
+     "inside_classes": {
+      "Crater": 1.0,
+      "steep/windy hills": 0.0,
+      "lava tube": 0.0,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.0,
+      "apron": 0.0,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Zephyria Tholus",
+     "lat": -19.75,
+     "lon": 172.92,
+     "diameter_km": 35.9,
+     "inside": 0.0,
+     "outside": 0.0004,
+     "px_inside": 3305,
+     "px_outside": 26967,
+     "unit": "eNh",
+     "unit_group": "h",
+     "inside_classes": {
+      "Crater": 0.626,
+      "steep/windy hills": 0.374,
+      "lava tube": 0.0,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.0,
+      "apron": 0.0,
+      "fluvial channel": 0.0
+     }
+    }
+   ]
+  },
+  "edifice_montes": {
+   "n": 8,
+   "inside_mean": 0.089,
+   "outside_mean": 0.212,
+   "pct_inside_gt_outside": 12.5,
+   "held": false,
+   "skipped": {
+    "label_at_centre": 2,
+    "no_line": 0,
+    "edge_or_small": 0
+   },
+   "features": [
+    {
+     "name": "Ausonia Montes",
+     "lat": -25.42,
+     "lon": 99.04,
+     "diameter_km": 333.1,
+     "inside": 0.0794,
+     "outside": 0.2588,
+     "px_inside": 295597,
+     "px_outside": 2421408,
+     "unit": "eHv",
+     "unit_group": "v",
+     "inside_classes": {
+      "Crater": 0.42,
+      "steep/windy hills": 0.056,
+      "lava tube": 0.0,
+      "Normal Ground": 0.343,
+      "volcanic edifice": 0.079,
+      "apron": 0.0,
+      "fluvial channel": 0.102
+     }
+    },
+    {
+     "name": "Chalce Montes",
+     "lat": -53.72,
+     "lon": 322.35,
+     "diameter_km": 100.0,
+     "inside": 0.0943,
+     "outside": 0.1582,
+     "px_inside": 34642,
+     "px_outside": 217584,
+     "unit": "HNb",
+     "unit_group": "b",
+     "inside_classes": {
+      "Crater": 0.608,
+      "steep/windy hills": 0.003,
+      "lava tube": 0.0,
+      "Normal Ground": 0.291,
+      "volcanic edifice": 0.094,
+      "apron": 0.0,
+      "fluvial channel": 0.004
+     }
+    },
+    {
+     "name": "Coprates Montes",
+     "lat": -13.0,
+     "lon": 294.61,
+     "diameter_km": 350.0,
+     "inside": 0.0603,
+     "outside": 0.2317,
+     "px_inside": 302458,
+     "px_outside": 2476388,
+     "unit": "Nhu",
+     "unit_group": "hu",
+     "inside_classes": {
+      "Crater": 0.116,
+      "steep/windy hills": 0.485,
+      "lava tube": 0.183,
+      "Normal Ground": 0.002,
+      "volcanic edifice": 0.06,
+      "apron": 0.153,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Coronae Montes",
+     "lat": -34.31,
+     "lon": 86.11,
+     "diameter_km": 247.4,
+     "inside": 0.1407,
+     "outside": 0.5373,
+     "px_inside": 178241,
+     "px_outside": 1458860,
+     "unit": "eNhm",
+     "unit_group": "hm",
+     "inside_classes": {
+      "Crater": 0.699,
+      "steep/windy hills": 0.042,
+      "lava tube": 0.0,
+      "Normal Ground": 0.009,
+      "volcanic edifice": 0.141,
+      "apron": 0.103,
+      "fluvial channel": 0.006
+     }
+    },
+    {
+     "name": "Echus Montes",
+     "lat": 7.81,
+     "lon": 282.05,
+     "diameter_km": 397.1,
+     "inside": 0.3076,
+     "outside": 0.2121,
+     "px_inside": 382860,
+     "px_outside": 3136376,
+     "unit": "Ht",
+     "unit_group": "t",
+     "inside_classes": {
+      "Crater": 0.027,
+      "steep/windy hills": 0.019,
+      "lava tube": 0.049,
+      "Normal Ground": 0.45,
+      "volcanic edifice": 0.308,
+      "apron": 0.117,
+      "fluvial channel": 0.031
+     }
+    },
+    {
+     "name": "Erebus Montes",
+     "lat": 35.66,
+     "lon": 185.02,
+     "diameter_km": 811.7,
+     "inside": 0.0235,
+     "outside": 0.0443,
+     "px_inside": 1953840,
+     "px_outside": 16263055,
+     "unit": "lAv",
+     "unit_group": "v",
+     "inside_classes": {
+      "Crater": 0.129,
+      "steep/windy hills": 0.023,
+      "lava tube": 0.001,
+      "Normal Ground": 0.727,
+      "volcanic edifice": 0.023,
+      "apron": 0.075,
+      "fluvial channel": 0.022
+     }
+    },
+    {
+     "name": "Hellas Montes",
+     "lat": -37.63,
+     "lon": 97.61,
+     "diameter_km": 159.6,
+     "inside": 0.0001,
+     "outside": 0.2445,
+     "px_inside": 77419,
+     "px_outside": 632736,
+     "unit": "eNhm",
+     "unit_group": "hm",
+     "inside_classes": {
+      "Crater": 0.452,
+      "steep/windy hills": 0.216,
+      "lava tube": 0.0,
+      "Normal Ground": 0.0,
+      "volcanic edifice": 0.0,
+      "apron": 0.332,
+      "fluvial channel": 0.0
+     }
+    },
+    {
+     "name": "Hibes Montes",
+     "lat": 3.79,
+     "lon": 171.34,
+     "diameter_km": 140.0,
+     "inside": 0.0033,
+     "outside": 0.0061,
+     "px_inside": 47249,
+     "px_outside": 385896,
+     "unit": "lAv",
+     "unit_group": "v",
+     "inside_classes": {
+      "Crater": 0.175,
+      "steep/windy hills": 0.065,
+      "lava tube": 0.0,
+      "Normal Ground": 0.642,
+      "volcanic edifice": 0.003,
+      "apron": 0.114,
+      "fluvial channel": 0.0
+     }
+    }
+   ]
+  },
+  "fluvial": {
+   "n": 85,
+   "inside_mean": 0.418,
+   "outside_mean": 0.15,
+   "pct_inside_gt_outside": 94.1,
+   "held": true,
+   "skipped": {
+    "label_at_centre": 34,
+    "no_line": 25,
+    "edge_or_small": 2
+   },
+   "features": [
+    {
+     "name": "Abus Vallis",
+     "lat": -5.49,
+     "lon": 212.8,
+     "diameter_km": 61.0,
+     "inside": 0.2905,
+     "outside": 0.1164,
+     "px_inside": 1277,
+     "px_outside": 13354
+    },
+    {
+     "name": "Al Qahira Vallis",
+     "lat": -18.23,
+     "lon": 162.41,
+     "diameter_km": 600.0,
+     "inside": 0.5356,
+     "outside": 0.2362,
+     "px_inside": 120308,
+     "px_outside": 263470
+    },
+    {
+     "name": "Allegheny Vallis",
+     "lat": -9.01,
+     "lon": 306.1,
+     "diameter_km": 171.1,
+     "inside": 0.9452,
+     "outside": 0.3068,
+     "px_inside": 4785,
+     "px_outside": 26488
+    },
+    {
+     "name": "Anio Valles",
+     "lat": 37.75,
+     "lon": 55.89,
+     "diameter_km": 54.0,
+     "inside": 0.2325,
+     "outside": 0.0352,
+     "px_inside": 2989,
+     "px_outside": 14674
+    },
+    {
+     "name": "Arda Valles",
+     "lat": -20.4,
+     "lon": 327.69,
+     "diameter_km": 173.7,
+     "inside": 0.9073,
+     "outside": 0.262,
+     "px_inside": 41761,
+     "px_outside": 41996
+    },
+    {
+     "name": "Ares Vallis",
+     "lat": 10.29,
+     "lon": 334.39,
+     "diameter_km": 1757.7,
+     "inside": 0.4829,
+     "outside": 0.1511,
+     "px_inside": 43934,
+     "px_outside": 202839
+    },
+    {
+     "name": "Arnus Vallis",
+     "lat": 13.97,
+     "lon": 70.61,
+     "diameter_km": 311.6,
+     "inside": 0.3604,
+     "outside": 0.1299,
+     "px_inside": 10720,
+     "px_outside": 50220
+    },
+    {
+     "name": "Axius Valles",
+     "lat": -54.53,
+     "lon": 70.72,
+     "diameter_km": 435.9,
+     "inside": 0.0141,
+     "outside": 0.003,
+     "px_inside": 184305,
+     "px_outside": 248225
+    },
+    {
+     "name": "Bashkaus Valles",
+     "lat": -25.68,
+     "lon": 356.74,
+     "diameter_km": 246.9,
+     "inside": 0.7294,
+     "outside": 0.3816,
+     "px_inside": 80743,
+     "px_outside": 83677
+    },
+    {
+     "name": "Brazos Valles",
+     "lat": -6.08,
+     "lon": 18.7,
+     "diameter_km": 387.5,
+     "inside": 0.7326,
+     "outside": 0.3969,
+     "px_inside": 45368,
+     "px_outside": 114494
+    },
+    {
+     "name": "Clanis Valles",
+     "lat": 33.24,
+     "lon": 58.47,
+     "diameter_km": 58.0,
+     "inside": 0.8388,
+     "outside": 0.1326,
+     "px_inside": 3065,
+     "px_outside": 18196
+    },
+    {
+     "name": "Columbia Valles",
+     "lat": -9.44,
+     "lon": 317.1,
+     "diameter_km": 84.8,
+     "inside": 0.459,
+     "outside": 0.0993,
+     "px_inside": 4425,
+     "px_outside": 15672
+    },
+    {
+     "name": "Coogoon Valles",
+     "lat": 17.19,
+     "lon": 338.26,
+     "diameter_km": 300.0,
+     "inside": 0.39,
+     "outside": 0.0647,
+     "px_inside": 16460,
+     "px_outside": 70407
+    },
+    {
+     "name": "Cusus Valles",
+     "lat": 14.05,
+     "lon": 50.37,
+     "diameter_km": 250.2,
+     "inside": 0.7178,
+     "outside": 0.1634,
+     "px_inside": 108274,
+     "px_outside": 112526
+    },
+    {
+     "name": "Dao Vallis",
+     "lat": -37.61,
+     "lon": 88.89,
+     "diameter_km": 794.0,
+     "inside": 0.0792,
+     "outside": 0.0269,
+     "px_inside": 212637,
+     "px_outside": 488654
+    },
+    {
+     "name": "Deva Vallis",
+     "lat": -7.67,
+     "lon": 203.13,
+     "diameter_km": 53.7,
+     "inside": 0.4424,
+     "outside": 0.1735,
+     "px_inside": 1546,
+     "px_outside": 12776
+    },
+    {
+     "name": "Dittaino Valles",
+     "lat": -1.43,
+     "lon": 293.14,
+     "diameter_km": 157.4,
+     "inside": 0.2693,
+     "outside": 0.0105,
+     "px_inside": 4831,
+     "px_outside": 24580
+    },
+    {
+     "name": "Drava Valles",
+     "lat": -48.86,
+     "lon": 165.99,
+     "diameter_km": 159.0,
+     "inside": 0.2746,
+     "outside": 0.0836,
+     "px_inside": 45657,
+     "px_outside": 61149
+    },
+    {
+     "name": "Enipeus Vallis",
+     "lat": 36.8,
+     "lon": 267.2,
+     "diameter_km": 527.1,
+     "inside": 0.0364,
+     "outside": 0.0003,
+     "px_inside": 17653,
+     "px_outside": 65852
+    },
+    {
+     "name": "Evros Vallis",
+     "lat": -12.65,
+     "lon": 13.83,
+     "diameter_km": 358.0,
+     "inside": 0.4041,
+     "outside": 0.1655,
+     "px_inside": 38979,
+     "px_outside": 50855
+    },
+    {
+     "name": "Farah Vallis",
+     "lat": -6.03,
+     "lon": 136.8,
+     "diameter_km": 76.4,
+     "inside": 0.0319,
+     "outside": 0.2143,
+     "px_inside": 1848,
+     "px_outside": 14440
+    },
+    {
+     "name": "Granicus Valles",
+     "lat": 30.58,
+     "lon": 129.97,
+     "diameter_km": 777.8,
+     "inside": 0.2097,
+     "outside": 0.0268,
+     "px_inside": 76331,
+     "px_outside": 207042
+    },
+    {
+     "name": "Harmakhis Vallis",
+     "lat": -40.98,
+     "lon": 90.06,
+     "diameter_km": 526.7,
+     "inside": 0.0897,
+     "outside": 0.0283,
+     "px_inside": 69752,
+     "px_outside": 266151
+    },
+    {
+     "name": "Havel Vallis",
+     "lat": 0.77,
+     "lon": 302.54,
+     "diameter_km": 240.2,
+     "inside": 0.6752,
+     "outside": 0.0673,
+     "px_inside": 1678,
+     "px_outside": 17976
+    },
+    {
+     "name": "Her Desher Vallis",
+     "lat": -25.08,
+     "lon": 312.07,
+     "diameter_km": 117.3,
+     "inside": 0.5687,
+     "outside": 0.1559,
+     "px_inside": 3218,
+     "px_outside": 21321
+    },
+    {
+     "name": "Hermus Vallis",
+     "lat": -5.32,
+     "lon": 212.19,
+     "diameter_km": 53.3,
+     "inside": 0.2645,
+     "outside": 0.2537,
+     "px_inside": 934,
+     "px_outside": 12004
+    },
+    {
+     "name": "Hrad Vallis",
+     "lat": 38.17,
+     "lon": 135.91,
+     "diameter_km": 974.4,
+     "inside": 0.2524,
+     "outside": 0.0461,
+     "px_inside": 32351,
+     "px_outside": 144566
+    },
+    {
+     "name": "Huallaga Vallis",
+     "lat": -26.67,
+     "lon": 79.07,
+     "diameter_km": 92.5,
+     "inside": 0.4364,
+     "outside": 0.2519,
+     "px_inside": 2470,
+     "px_outside": 14960
+    },
+    {
+     "name": "Hypsas Vallis",
+     "lat": 33.63,
+     "lon": 57.99,
+     "diameter_km": 36.5,
+     "inside": 0.7973,
+     "outside": 0.2183,
+     "px_inside": 1110,
+     "px_outside": 11721
+    },
+    {
+     "name": "Iberus Vallis",
+     "lat": 21.25,
+     "lon": 152.07,
+     "diameter_km": 87.3,
+     "inside": 0.0,
+     "outside": 0.0,
+     "px_inside": 4254,
+     "px_outside": 16846
+    },
+    {
+     "name": "Ituxi Vallis",
+     "lat": 25.45,
+     "lon": 153.32,
+     "diameter_km": 123.1,
+     "inside": 0.0034,
+     "outside": 0.0,
+     "px_inside": 4474,
+     "px_outside": 23824
+    },
+    {
+     "name": "Kasei Valles",
+     "lat": 25.14,
+     "lon": 297.12,
+     "diameter_km": 1580.0,
+     "inside": 0.4289,
+     "outside": 0.1885,
+     "px_inside": 41161,
+     "px_outside": 121396
+    },
+    {
+     "name": "Labou Vallis",
+     "lat": -8.63,
+     "lon": 205.58,
+     "diameter_km": 257.8,
+     "inside": 0.4372,
+     "outside": 0.3531,
+     "px_inside": 13308,
+     "px_outside": 36713
+    },
+    {
+     "name": "Licus Vallis",
+     "lat": -3.05,
+     "lon": 126.35,
+     "diameter_km": 240.0,
+     "inside": 0.6763,
+     "outside": 0.2611,
+     "px_inside": 45925,
+     "px_outside": 51120
+    },
+    {
+     "name": "Liris Valles",
+     "lat": -10.5,
+     "lon": 58.25,
+     "diameter_km": 596.2,
+     "inside": 0.5189,
+     "outside": 0.1931,
+     "px_inside": 116568,
+     "px_outside": 157457
+    },
+    {
+     "name": "Louros Valles",
+     "lat": -8.41,
+     "lon": 278.23,
+     "diameter_km": 516.1,
+     "inside": 0.0009,
+     "outside": 0.0112,
+     "px_inside": 42946,
+     "px_outside": 102126
+    },
+    {
+     "name": "Ma adim Vallis",
+     "lat": -21.98,
+     "lon": 177.5,
+     "diameter_km": 913.1,
+     "inside": 0.4579,
+     "outside": 0.1888,
+     "px_inside": 115287,
+     "px_outside": 194479
+    },
+    {
+     "name": "Maja Valles",
+     "lat": 10.23,
+     "lon": 301.62,
+     "diameter_km": 1515.0,
+     "inside": 0.413,
+     "outside": 0.111,
+     "px_inside": 84443,
+     "px_outside": 306047
+    },
+    {
+     "name": "Mangala Valles",
+     "lat": -11.32,
+     "lon": 208.61,
+     "diameter_km": 900.0,
+     "inside": 0.4128,
+     "outside": 0.2327,
+     "px_inside": 16438,
+     "px_outside": 64551
+    },
+    {
+     "name": "Matrona Vallis",
+     "lat": -7.66,
+     "lon": 176.19,
+     "diameter_km": 61.3,
+     "inside": 0.2075,
+     "outside": 0.0032,
+     "px_inside": 1629,
+     "px_outside": 13165
+    },
+    {
+     "name": "Maumee Valles",
+     "lat": 19.51,
+     "lon": 307.15,
+     "diameter_km": 390.0,
+     "inside": 0.3332,
+     "outside": 0.0855,
+     "px_inside": 20719,
+     "px_outside": 36165
+    },
+    {
+     "name": "Mawrth Vallis",
+     "lat": 22.43,
+     "lon": 343.03,
+     "diameter_km": 634.6,
+     "inside": 0.6345,
+     "outside": 0.3731,
+     "px_inside": 37431,
+     "px_outside": 155886
+    },
+    {
+     "name": "Minio Vallis",
+     "lat": -4.38,
+     "lon": 208.33,
+     "diameter_km": 90.0,
+     "inside": 0.3651,
+     "outside": 0.3212,
+     "px_inside": 4659,
+     "px_outside": 17118
+    },
+    {
+     "name": "Moa Valles",
+     "lat": 35.62,
+     "lon": 305.3,
+     "diameter_km": 265.0,
+     "inside": 0.656,
+     "outside": 0.3523,
+     "px_inside": 10073,
+     "px_outside": 48684
+    },
+    {
+     "name": "Morava Valles",
+     "lat": -13.57,
+     "lon": 335.8,
+     "diameter_km": 364.1,
+     "inside": 0.7963,
+     "outside": 0.2563,
+     "px_inside": 16924,
+     "px_outside": 58158
+    },
+    {
+     "name": "Nanedi Valles",
+     "lat": 5.05,
+     "lon": 311.38,
+     "diameter_km": 550.0,
+     "inside": 0.8239,
+     "outside": 0.0919,
+     "px_inside": 39150,
+     "px_outside": 127449
+    },
+    {
+     "name": "Navua Valles",
+     "lat": -33.94,
+     "lon": 82.68,
+     "diameter_km": 500.0,
+     "inside": 0.1094,
+     "outside": 0.0511,
+     "px_inside": 70702,
+     "px_outside": 241167
+    },
+    {
+     "name": "Nia Vallis",
+     "lat": -53.53,
+     "lon": 325.19,
+     "diameter_km": 140.0,
+     "inside": 0.1005,
+     "outside": 0.0366,
+     "px_inside": 4884,
+     "px_outside": 36030
+    },
+    {
+     "name": "Niger Vallis",
+     "lat": -34.96,
+     "lon": 92.57,
+     "diameter_km": 360.0,
+     "inside": 0.083,
+     "outside": 0.0525,
+     "px_inside": 84695,
+     "px_outside": 166476
+    },
+    {
+     "name": "Ochus Valles",
+     "lat": 7.07,
+     "lon": 314.96,
+     "diameter_km": 127.0,
+     "inside": 0.545,
+     "outside": 0.0886,
+     "px_inside": 5083,
+     "px_outside": 20592
+    },
+    {
+     "name": "Okavango Valles",
+     "lat": 38.1,
+     "lon": 8.97,
+     "diameter_km": 285.1,
+     "inside": 0.4506,
+     "outside": 0.0647,
+     "px_inside": 7799,
+     "px_outside": 41091
+    },
+    {
+     "name": "Oltis Valles",
+     "lat": -23.5,
+     "lon": 338.35,
+     "diameter_km": 169.3,
+     "inside": 0.7919,
+     "outside": 0.2472,
+     "px_inside": 32286,
+     "px_outside": 37577
+    },
+    {
+     "name": "Pallacopas Vallis",
+     "lat": -54.73,
+     "lon": 339.52,
+     "diameter_km": 134.8,
+     "inside": 0.109,
+     "outside": 0.0352,
+     "px_inside": 56118,
+     "px_outside": 206645
+    },
+    {
+     "name": "Parana Valles",
+     "lat": -23.19,
+     "lon": 350.2,
+     "diameter_km": 329.1,
+     "inside": 0.6567,
+     "outside": 0.2196,
+     "px_inside": 107834,
+     "px_outside": 109709
+    },
+    {
+     "name": "Patapsco Vallis",
+     "lat": 23.7,
+     "lon": 152.51,
+     "diameter_km": 172.9,
+     "inside": 0.0041,
+     "outside": 0.0087,
+     "px_inside": 4839,
+     "px_outside": 27940
+    },
+    {
+     "name": "Protva Valles",
+     "lat": -29.11,
+     "lon": 299.42,
+     "diameter_km": 259.7,
+     "inside": 0.7529,
+     "outside": 0.4973,
+     "px_inside": 86958,
+     "px_outside": 109505
+    },
+    {
+     "name": "Ravius Valles",
+     "lat": 46.12,
+     "lon": 249.83,
+     "diameter_km": 388.2,
+     "inside": 0.0032,
+     "outside": 0.0016,
+     "px_inside": 234511,
+     "px_outside": 155614
+    },
+    {
+     "name": "Reull Vallis",
+     "lat": -42.14,
+     "lon": 104.95,
+     "diameter_km": 1051.9,
+     "inside": 0.0728,
+     "outside": 0.0559,
+     "px_inside": 107756,
+     "px_outside": 396810
+    },
+    {
+     "name": "Rubicon Valles",
+     "lat": 44.41,
+     "lon": 242.48,
+     "diameter_km": 308.2,
+     "inside": 0.0017,
+     "outside": 0.0009,
+     "px_inside": 162572,
+     "px_outside": 153681
+    },
+    {
+     "name": "Runa Vallis",
+     "lat": -28.34,
+     "lon": 323.29,
+     "diameter_km": 36.0,
+     "inside": 0.9046,
+     "outside": 0.2457,
+     "px_inside": 1185,
+     "px_outside": 11977
+    },
+    {
+     "name": "Sabis Vallis",
+     "lat": -5.01,
+     "lon": 207.49,
+     "diameter_km": 212.9,
+     "inside": 0.2584,
+     "outside": 0.1531,
+     "px_inside": 11391,
+     "px_outside": 34665
+    },
+    {
+     "name": "Sabrina Vallis",
+     "lat": 10.99,
+     "lon": 310.96,
+     "diameter_km": 280.0,
+     "inside": 0.5247,
+     "outside": 0.133,
+     "px_inside": 8887,
+     "px_outside": 39321
+    },
+    {
+     "name": "Senus Vallis",
+     "lat": -5.23,
+     "lon": 213.04,
+     "diameter_km": 22.2,
+     "inside": 0.6129,
+     "outside": 0.0021,
+     "px_inside": 1085,
+     "px_outside": 9697
+    },
+    {
+     "name": "Shalbatana Vallis",
+     "lat": 7.33,
+     "lon": 317.91,
+     "diameter_km": 1029.0,
+     "inside": 0.1088,
+     "outside": 0.0359,
+     "px_inside": 28662,
+     "px_outside": 153073
+    },
+    {
+     "name": "Sungari Vallis",
+     "lat": -40.33,
+     "lon": 88.5,
+     "diameter_km": 344.8,
+     "inside": 0.124,
+     "outside": 0.013,
+     "px_inside": 27489,
+     "px_outside": 126848
+    },
+    {
+     "name": "Tagus Valles",
+     "lat": -6.68,
+     "lon": 114.54,
+     "diameter_km": 144.6,
+     "inside": 0.8391,
+     "outside": 0.3228,
+     "px_inside": 15236,
+     "px_outside": 31989
+    },
+    {
+     "name": "Tana Vallis",
+     "lat": 4.78,
+     "lon": 332.11,
+     "diameter_km": 56.5,
+     "inside": 0.0,
+     "outside": 0.0055,
+     "px_inside": 1430,
+     "px_outside": 12468
+    },
+    {
+     "name": "Termes Vallis",
+     "lat": -11.11,
+     "lon": 202.99,
+     "diameter_km": 55.6,
+     "inside": 0.8965,
+     "outside": 0.4159,
+     "px_inside": 2416,
+     "px_outside": 12776
+    },
+    {
+     "name": "Teviot Vallis",
+     "lat": -43.37,
+     "lon": 102.26,
+     "diameter_km": 143.9,
+     "inside": 0.0702,
+     "outside": 0.0066,
+     "px_inside": 5032,
+     "px_outside": 34941
+    },
+    {
+     "name": "Tigre Valles",
+     "lat": -12.02,
+     "lon": 322.91,
+     "diameter_km": 102.8,
+     "inside": 0.4935,
+     "outside": 0.0955,
+     "px_inside": 17691,
+     "px_outside": 29454
+    },
+    {
+     "name": "Tinia Valles",
+     "lat": -4.61,
+     "lon": 211.12,
+     "diameter_km": 17.8,
+     "inside": 0.2045,
+     "outside": 0.008,
+     "px_inside": 846,
+     "px_outside": 8826
+    },
+    {
+     "name": "Tinjar Valles",
+     "lat": 37.54,
+     "lon": 124.27,
+     "diameter_km": 400.6,
+     "inside": 0.1298,
+     "outside": 0.0176,
+     "px_inside": 12011,
+     "px_outside": 64155
+    },
+    {
+     "name": "Tinto Vallis",
+     "lat": -3.97,
+     "lon": 111.5,
+     "diameter_km": 192.0,
+     "inside": 0.7439,
+     "outside": 0.3802,
+     "px_inside": 5866,
+     "px_outside": 29027
+    },
+    {
+     "name": "Tisia Valles",
+     "lat": -10.75,
+     "lon": 46.72,
+     "diameter_km": 384.0,
+     "inside": 0.3976,
+     "outside": 0.0627,
+     "px_inside": 76291,
+     "px_outside": 161488
+    },
+    {
+     "name": "Tiu Valles",
+     "lat": 16.23,
+     "lon": 325.14,
+     "diameter_km": 1720.0,
+     "inside": 0.7237,
+     "outside": 0.3729,
+     "px_inside": 999,
+     "px_outside": 10198
+    },
+    {
+     "name": "Uzboi Vallis",
+     "lat": -29.46,
+     "lon": 323.02,
+     "diameter_km": 353.5,
+     "inside": 0.4629,
+     "outside": 0.2735,
+     "px_inside": 32037,
+     "px_outside": 100327
+    },
+    {
+     "name": "Valles Marineris",
+     "lat": -14.01,
+     "lon": 301.41,
+     "diameter_km": 3761.3,
+     "inside": 0.3952,
+     "outside": 0.165,
+     "px_inside": 233346,
+     "px_outside": 605580
+    },
+    {
+     "name": "Varus Valles",
+     "lat": -8.57,
+     "lon": 204.01,
+     "diameter_km": 90.1,
+     "inside": 0.7368,
+     "outside": 0.3575,
+     "px_inside": 6764,
+     "px_outside": 23117
+    },
+    {
+     "name": "Vedra Valles",
+     "lat": 19.12,
+     "lon": 304.52,
+     "diameter_km": 118.0,
+     "inside": 0.7254,
+     "outside": 0.1206,
+     "px_inside": 5805,
+     "px_outside": 21960
+    },
+    {
+     "name": "Verde Vallis",
+     "lat": -0.5,
+     "lon": 29.88,
+     "diameter_km": 133.0,
+     "inside": 0.6227,
+     "outside": 0.2265,
+     "px_inside": 12671,
+     "px_outside": 24940
+    },
+    {
+     "name": "Vichada Valles",
+     "lat": -19.87,
+     "lon": 88.13,
+     "diameter_km": 438.3,
+     "inside": 0.6411,
+     "outside": 0.2014,
+     "px_inside": 152538,
+     "px_outside": 242324
+    },
+    {
+     "name": "Vistula Valles",
+     "lat": 13.41,
+     "lon": 308.03,
+     "diameter_km": 193.0,
+     "inside": 0.4206,
+     "outside": 0.0846,
+     "px_inside": 23834,
+     "px_outside": 61301
+    },
+    {
+     "name": "Waikato Vallis",
+     "lat": -33.33,
+     "lon": 113.78,
+     "diameter_km": 228.0,
+     "inside": 0.1517,
+     "outside": 0.0899,
+     "px_inside": 7944,
+     "px_outside": 31158
+    },
+    {
+     "name": "Warrego Valles",
+     "lat": -41.84,
+     "lon": 267.85,
+     "diameter_km": 205.1,
+     "inside": 0.5395,
+     "outside": 0.2359,
+     "px_inside": 128277,
+     "px_outside": 80315
+    },
+    {
+     "name": "Zarqa Valles",
+     "lat": 0.32,
+     "lon": 80.59,
+     "diameter_km": 21.4,
+     "inside": 0.4501,
+     "outside": 0.1669,
+     "px_inside": 36374,
+     "px_outside": 138201
+    }
+   ]
+  },
+  "lava_tube": {
+   "n": 5,
+   "inside_mean": 0.5,
+   "outside_mean": 0.331,
+   "pct_inside_gt_outside": 100.0,
+   "skipped": {
+    "label_at_centre": 3,
+    "no_line": 0,
+    "edge_or_small": 0
+   },
+   "features": [
+    {
+     "name": "Acheron Catena",
+     "lat": 37.47,
+     "lon": 259.2,
+     "diameter_km": 421.8,
+     "inside": 0.4629,
+     "outside": 0.3395,
+     "px_inside": 788424,
+     "px_outside": 3140090
+    },
+    {
+     "name": "Baphyras Catena",
+     "lat": 38.83,
+     "lon": 275.84,
+     "diameter_km": 95.5,
+     "inside": 0.3959,
+     "outside": 0.3892,
+     "px_inside": 30058,
+     "px_outside": 119910
+    },
+    {
+     "name": "Ceraunius Catena",
+     "lat": 37.1,
+     "lon": 251.91,
+     "diameter_km": 50.5,
+     "inside": 0.635,
+     "outside": 0.4299,
+     "px_inside": 6490,
+     "px_outside": 25542
+    },
+    {
+     "name": "Elysium Catena",
+     "lat": 17.69,
+     "lon": 149.73,
+     "diameter_km": 48.5,
+     "inside": 0.1626,
+     "outside": 0.0617,
+     "px_inside": 7372,
+     "px_outside": 29792
+    },
+    {
+     "name": "Phlegethon Catena",
+     "lat": 38.83,
+     "lon": 256.72,
+     "diameter_km": 399.7,
+     "inside": 0.8412,
+     "outside": 0.4324,
+     "px_inside": 528034,
+     "px_outside": 2111822
+    }
+   ]
+  }
+ }
+}
