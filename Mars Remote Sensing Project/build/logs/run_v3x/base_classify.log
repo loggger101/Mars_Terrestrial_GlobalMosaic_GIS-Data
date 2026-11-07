@@ -8,3 +8,17 @@ block  7/23 lon -135 lat    0: 96 s
 block  8/23 lon -120 lat  -15: 73 s
 block  9/23 lon  -90 lat   15: 103 s
 block 10/23 lon  -75 lat  -15: 96 s
+block 11/23 lon  -60 lat  -30: 109 s
+block 12/23 lon  -60 lat  -15: 99 s
+block 13/23 lon  -45 lat  -30: 68 s
+block 14/23 lon  -45 lat  -15: 86 s
+block 15/23 lon    0 lat    0: 88 s
+block 16/23 lon   15 lat  -15: 65 s
+block 17/23 lon   15 lat    0: 90 s
+block 18/23 lon   45 lat   30: 66 s
+block 19/23 lon   60 lat    0: 85 s
+block 20/23 lon   60 lat   15: 71 s
+block 21/23 lon   60 lat   30: 98 s
+block 22/23 lon   75 lat  -30: 93 s
+block 23/23 lon   90 lat  -30: 65 s
+windows -> C:\MarsScratch\x5c_v3x\classified\base copied -> F:\Mars Project\Global60\v3_extras\base

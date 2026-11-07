@@ -1,1 +1,7 @@
 2026-11-07 14:47:07  start base_classify
+2026-11-07 15:25:34  end   base_classify: exit , 38.4 min
+2026-11-07 15:25:34  chain stopped: base
+2026-11-07 15:25:34  start fresh_export
+2026-11-07 15:30:50  waiting for process 35864
+2026-11-07 15:50:18  process 35864 gone (its exit code is not known here; read its log)
+2026-11-07 15:50:19  start fresh_train

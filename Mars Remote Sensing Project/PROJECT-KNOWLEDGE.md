@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-07 (§69.82).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-07 (§69.83).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7131,3 +7131,24 @@ the only v3 numbers seen are the training run's validation table (§69.76).
 - **Chart:** `r2_vs_polygons.png` now has six rows, the two v3 maps above the others. **Polygons flatter five of the six maps, not all:** svm_v3 scores 40.2 % on the sample and 39.1 % on the 237 polygons, level within the interval, so the first drafts of the text ("every map", "both stay far below") were wrong and were corrected before any commit.
 - **Extra runs (D36), `build\make_v3_extras.py`, `run_v3x.ps1`, started 14:47.** Registered before any run, in the script: **fresh, fresh2** answer the 14 blocks' third use: 14 other blocks drawn at random (seeds 60, 61; 899 and 1,603 polygons) leave training, and U-Net and SVM are retrained without them; **noth** gives the first thermal ablation of a U-Net, on the existing 5-band stack; **cut** and **add** (7,401 polygons; 3,602) split v3's gain into cutting and adding. **base** classifies the same windows with the finished model. Nothing replaces a map. The splits sit in a scratch gdb built from the seeds, so the project's gdb is not written. The route refuses unless the published arrays reproduce their logs and base matches the published U-Net.
 - **Chips on D:.** C: has 29 GB free, and a second chip set beside its pagefile would leave too little. A delete of the old v2p rehearsal chips on C: was refused by the session's permission check and was not done, so the exports go to `D:\MarsScratch\x5c_v3x` (a hard disk); training may be slower than on C:.
+
+### 69.83 The extra runs' first checkpoint: the queue's blank exit codes, and base's pixel gate — 2026-11-07, desktop **[V]**
+
+- **base done:** `base_classify` ran 38.4 min, 14:47–15:25, with no error text. Its queue line read `exit ,` with no code, then "chain stopped: base".
+- **The queue's fault, found before it cost anything.** `Start-Process -PassThru` leaves `ExitCode` empty unless the process handle is read before the wait, and an empty code compares unequal to 0, so `run_v3x.ps1` took every step for a failure and would have run each chain's first step and no other: five exports, no training. Fixed with `$null = $p.Handle`. **Shown on a throwaway process:** exit 0 reads 0 and does not stop the chain, exit 3 reads 3 and does, and the old form reads empty and stops. The old queue was stopped at 15:30 and `fresh_export`, five minutes in, left running; a new queue, `-From fresh_train -AfterPid 35864` (a new parameter), starts when that process ends. **`fresh_export`'s exit code is therefore not recorded;** read its log and its chips. `run_v3.ps1` is not affected: it uses `Start-Process -Wait`, and its log shows real codes; `run_v3x.ps1` left that form for `WaitForExit`, which is where the fault came in.
+- **base's registered pixel gate was missed:** 0.8946 of 77,134,682 pixels against 0.90, and `--report` refused. Measured before changing it:
+
+| on the same 76,978,778 pixels | agree |
+|---|---|
+| base – published mosaic | 0.8946 |
+| base – pass a / pass b | 0.8925 / 0.8904 |
+| pass a – pass b | 0.9531 |
+| mosaic – pass a / pass b | 0.9618 / 0.9622 |
+
+| | base | published U-Net |
+|---|---|---|
+| 237 v2 polygons: accuracy, κ, balanced | 87.54 %, 0.8426, 84.74 % | 87.62 %, 0.8435, 84.52 % |
+| 1,652 v3 polygons: accuracy, κ, balanced | 86.37 %, 0.8265, 77.48 % | 86.47 %, 0.8276, 77.26 % |
+
+  Class shares in the windows agree within 0.3 points. So the model and the route are right and the gap is single pixels: base differs from a pixel on which both passes agree on 8.3 % of them. The settings match (`padding 64; batch_size 8`), so the likely cause is the chip grid's phase, the windows starting elsewhere than the 4,096-pixel tiles; that is not measured, and neither is why the two passes agree more with each other than with base. **The gate changed:** 90 % was a guess made before any window ran. It is now accuracy and κ within 0.005 of the published map on both polygon sets, plus 85 % of pixels to catch a misplaced array. This is a check of the route, not one of the predictions F1–F6, T1, T2 or C1–C4, none of which has a result yet; all of them compare window maps with window maps, so a route difference of this size does not reach them.
+- **It does touch how far a U-Net map can be read pixel by pixel:** the same model on a shifted grid changes about one pixel in ten, no overall score by more than 0.25 points on these polygons, and a class's producer's accuracy by up to 1.5 points (hills).
