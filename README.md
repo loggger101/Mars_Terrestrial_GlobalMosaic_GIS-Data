@@ -12,7 +12,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 430 GB with all derived rasters, measured 2026-10-22). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in two [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 228, by purpose) · [software environment](docs/environment.md) (each machine's versions, read from the machine) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 231, by purpose) · [software environment](docs/environment.md) (each machine's versions, read from the machine) · [backup and restore](docs/backup.md)
 
 [![Mars ±60° landform classification, seven classes](docs/thumbs/04b_global60_landforms_v2.jpg)](Mars%20Project/Global60/layouts/04b_global60_landforms_v2.png)
 *The landform map in seven classes over ±60°, scored on reviewed polygons the classifier never saw (layout 04b; the four-class map is layout 04).*
@@ -74,7 +74,7 @@ Yes, a little. With ArcGIS Pro's SVM over the whole ±60°, leaving the thermal 
 
 ### Deep learning (X5)
 
-Two deep-learning models, trained on the desktop GPU on the same training blocks as the SVM and scored on the same held-out polygons. A RetinaNet detector on 7-band chips finds Crater polygons with 41.9% recall and 87.6% precision, against 71.1% for naming every polygon Crater, and never names the two rare classes (layout 16); retrained with its backbone unfrozen it names the hills but loses the plains (Normal Ground recall 4.5%). A U-Net pixel classifier over all of ±60° scores **98.9%, κ 0.980** held out, against the published map's 73.8%, κ 0.583 under the same scorer, and raises lava tube's user's accuracy from 2% to 77%. It paints terrain provinces rather than single landforms: its 'Crater' class covers 83% of the ring around named craters as well as the craters themselves. A second pass on a grid offset by 128 px removes the seams of the tool's 256 px tiles. The SVM map stays the published one; the U-Net map sits beside it as the province map (KB §66). On the reviewed seven-class labels a second U-Net scores 69.0%, κ 0.606 against the seven-class SVM's 42.5%, though volcanic edifice spreads over 40% of ±60° (layout 17b, KB §69.25). Against named features, its fluvial channel gathers on the named valleys (within 2 km of their valley lines more than 10–20 km away for 83% of 83 valles), but its edifice is less common inside each of the 10 smaller named Mons, Tholus and Patera scored than around them; the large volcanoes carry labels and can't be checked this way (KB §69.39). Resampling whole held-out blocks, the four-class U-Net's lead over the SVM map holds (+11 to +41 points), but the seven-class U-Net's 26.5-point lead in accuracy does not (−10 to +48; by balanced accuracy it does, +2 to +20): it rests on the two Tharsis blocks. The SVM and U-Net maps agree on 61.4% of ±60° with four classes and 39.7% with seven (KB §69.44, §69.46).
+Two deep-learning models, trained on the desktop GPU on the same training blocks as the SVM and scored on the same held-out polygons. A RetinaNet detector on 7-band chips finds Crater polygons with 41.9% recall and 87.6% precision, against 71.1% for naming every polygon Crater, and never names the two rare classes (layout 16); retrained with its backbone unfrozen it names the hills but loses the plains (Normal Ground recall 4.5%). A U-Net pixel classifier over all of ±60° scores **98.9%, κ 0.980** held out, against the published map's 73.8%, κ 0.583 under the same scorer, and raises lava tube's user's accuracy from 2% to 77%. It paints terrain provinces rather than single landforms: its 'Crater' class covers 83% of the ring around named craters as well as the craters themselves. A second pass on a grid offset by 128 px removes the seams of the tool's 256 px tiles. The SVM map stays the published one; the U-Net map sits beside it as the province map (KB §66). On the reviewed seven-class labels a second U-Net scores 69.0%, κ 0.606 against the seven-class SVM's 42.5%, though volcanic edifice spreads over 40% of ±60° (layout 17b, KB §69.25). Against named features, its fluvial channel gathers on the named valleys (within 2 km of their valley lines more than 10–20 km away for 83% of 83 valles), but its edifice is less common inside each of the 10 smaller named Mons, Tholus and Patera scored than around them; the large volcanoes carry labels and can't be checked this way (KB §69.39). Resampling whole held-out blocks, the four-class U-Net's lead over the SVM map holds (+11 to +41 points), but the seven-class U-Net's 26.5-point lead in accuracy does not (−10 to +48; by balanced accuracy it does, +2 to +20): it rests on the two Tharsis blocks. The SVM and U-Net maps agree on 61.4% of ±60° with four classes and 39.7% with seven (KB §69.44, §69.46). On a third label set of 10,269 training polygons, seven classes, a U-Net scores 87.6 %, κ 0.844 on the 237 held-out polygons and 49.6 % on a probability sample; the SVM there scores 39.1 %, κ 0.288, and fails the rule set for it. Both lead the final, the author's choice ([KB §69.82](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md)).
 
 [<img src="docs/thumbs/17_x5c_unet_provinces.jpg" width="640" alt="Layout 17: the U-Net terrain-province map over ±60°, one held-out block, and its scores beside the SVM map's">](Mars%20Project/Global60/layouts/17_x5c_unet_provinces.png)
 
@@ -159,7 +159,7 @@ Made in the Pro GUI: one follows its 4096-pixel processing tiles and scores belo
 
 ## Layouts
 
-The 23 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets, 08 included, are centred on 0°E; the type-area sheets are drawn on the mosaics' own grid, central meridian 180°.
+The 26 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets, 08 included, are centred on 0°E; the type-area sheets are drawn on the mosaics' own grid, central meridian 180°.
 
 **The data at ±60°**
 
@@ -262,12 +262,12 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   228 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   231 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
   NEXT STUFF/              interim report and presentation; Final/: the AASTeX paper and the final deck (drafts)
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 42 maps, all Mars, and 23 layouts
+  Mars Project.aprx        the ArcGIS Pro project: 45 maps, all Mars, and 26 layouts
   Global60/, TypeArea/,    metadata sidecars, models (.ecd), raster attribute tables, layouts;
   Athabasca/               Global60/checks/ holds the DEM step chips
   DLModels/                the five deep-learning models' metadata and training plots (the

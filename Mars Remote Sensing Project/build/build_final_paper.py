@@ -44,6 +44,9 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"final_img\svm_vs_unet.png", "svm_vs_unet.png"),
     (r"final_img\04b_global60_landforms_v2.png", "04b_global60_landforms_v2.png"),     # the seven classes (KB §69.26)
     (r"final_img\17b_unet_v2_provinces.png", "17b_unet_v2_provinces.png"),
+    (r"final_img\04c_global60_landforms_v3.png", "04c_global60_landforms_v3.png"),    # the lead maps (D36, KB §69.82)
+    (r"final_img\17c_unet_v3_provinces.png", "17c_unet_v3_provinces.png"),
+    (r"final_img\svm_vs_unet_v3.png", "svm_vs_unet_v3.png"),
     (r"final_img\svm_vs_unet_v2.png", "svm_vs_unet_v2.png"),
 ]
 # Two deck charts carry slide furniture a paper caption replaces: a title strip naming the gdb class and the KB

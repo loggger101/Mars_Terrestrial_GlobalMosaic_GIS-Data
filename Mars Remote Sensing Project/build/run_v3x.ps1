@@ -1,0 +1,46 @@
+# The extra v3 runs (make_v3_extras.py; D36, KB §69.82): the finished v3 model on the windows, then fresh blocks (U-Net and
+# SVM), no thermal, cut only, added only, and a second draw of fresh blocks. One process per step; a chain stops at its
+# first failure and the next still runs. Each step's output goes to logs\run_v3x\<step>.log, one line per step to queue.log.
+# Desktop only. First: make_v3_extras.py --plan. Then, from build\:  powershell -File run_v3x.ps1 [-From <step>]
+param([string]$From = "")
+$ErrorActionPreference = "Stop"
+$py = "D:\ArcGISPro\bin\Python\envs\arcgispro-py3\python.exe"
+$here = Split-Path -Parent $MyInvocation.MyCommand.Path
+$logs = Join-Path $here "logs\run_v3x"
+New-Item -ItemType Directory -Force $logs | Out-Null
+$queue = Join-Path $logs "queue.log"
+
+function Log([string]$line) {   # a reader holding queue.log open must not end the queue (it did, 2026-10-25)
+    for ($i = 0; $i -lt 30; $i++) {
+        try { [IO.File]::AppendAllText($queue, $line + "`r`n"); return } catch { Start-Sleep -Seconds 2 }
+    }
+}
+
+$chains = @(
+    @("base", @("classify")),
+    @("fresh", @("export", "train", "classify", "svm-train", "svm-classify")),
+    @("noth", @("export", "train", "classify")),
+    @("cut", @("export", "train", "classify")),
+    @("add", @("export", "train", "classify")),
+    @("fresh2", @("export", "train", "classify", "svm-train", "svm-classify"))
+)
+
+$env:PYTHONDONTWRITEBYTECODE = "1"
+$started = $From -eq ""
+foreach ($c in $chains) {
+    $run = $c[0]
+    foreach ($step in $c[1]) {
+        $name = "$($run)_$step"
+        if (-not $started) { if ($name -eq $From) { $started = $true } else { continue } }
+        $stamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        Log "$stamp  start $name"
+        $t = Get-Date
+        $p = Start-Process -FilePath $py -ArgumentList @("make_v3_extras.py", "--run", $run, "--step", $step) -WorkingDirectory $here `
+            -RedirectStandardOutput (Join-Path $logs "$name.log") -RedirectStandardError (Join-Path $logs "$name.err.log") -NoNewWindow -PassThru
+        $p.WaitForExit()
+        $stamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        Log ("$stamp  end   $name" + ": exit $($p.ExitCode), " + ("{0:N1}" -f ((Get-Date) - $t).TotalMinutes) + " min")
+        if ($p.ExitCode -ne 0) { Log "$stamp  chain stopped: $run"; break }
+    }
+}
+Log "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')  queue done"

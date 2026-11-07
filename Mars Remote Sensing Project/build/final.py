@@ -14,7 +14,7 @@ from content import DECK_TITLE, COURSE, TITLE                # unchanged since t
 from interim import BANDS, CORRELATION                         # the data slides are the interim's, unchanged
 
 AUTHOR = "Logan M Edwards"                                     # the public name, as the sheets' footers (KB §63)
-STATUS_DATE = "2 November 2026"
+STATUS_DATE = "7 November 2026"
 
 QUESTION = (
     "Athabasca Valles was read as a water-carved outflow channel for decades, then reinterpreted as flood lava. "
@@ -202,6 +202,36 @@ FIGURES = [
                  "The gain is in overall accuracy and macro F1, not balanced accuracy (SVM 41.9% against 42.0%, "
                  "U-Net 56.9% against 56.7%)"],
          source="§68.4, §69.24–69.26, §69.34"),
+    dict(title="A third label set: more and smaller polygons",
+         images=[("file", r"final_img\svm_vs_unet_v3.png")],
+         points=["10,269 training and 1,652 held-out polygons in the same 14 blocks: seven-class polygons cut at 0.5° and "
+                 "screened, others added by rule",
+                 "On the 237 polygons: U-Net 87.6%, κ 0.844 (before 69.0%, 0.606); SVM 39.1%, κ 0.288 (before 42.5%, 0.310)",
+                 "Volcanic edifice covers 18.0% of ±60° on the new U-Net map, against 40.0%",
+                 "Asked for after the seven-class scores were read, so a gain here is not a fresh test"],
+         source="§69.49, §69.76, §69.77, §69.81"),
+    dict(title="The lead maps: the U-Net",
+         images=[("layout", "17c_unet_v3_provinces")], map_left=True, points_h=262,
+         points=["Above its registered range (60–78%), so a leak was sought first: no held-out polygon shares area with "
+                 "a training polygon",
+                 "13 of 14 blocks rise; Crater gives 8.6 of the 18.6 points, Normal Ground 5.6",
+                 "'Crater' 93.5% inside 469 named craters, 53.0% in the ring around them",
+                 "Still wrong: edifice denser inside none of 10 small named edifices; lava tube's user's 8.0%"],
+         source="§69.80, §69.81, §69.82"),
+    dict(title="The lead maps: the SVM, against its rule",
+         images=[("layout", "04c_global60_landforms_v3")],
+         points=["The rule set before the run keeps the v2 map: κ falls, and Crater falls from 40.0% to 18.2% of producer's",
+                 "Hills rise 38.3 points and fluvial channel 12.7, but fluvial channel covers 31.9% of ±60°",
+                 "No better than the nearest training polygon (−24.9 to +24.3 points)",
+                 "Presented beside the U-Net all the same, on one label set"],
+         source="§69.81, §69.82"),
+    dict(title="A probability sample, on the AI assistant's labels",
+         images=[("file", r"final_img\r2_vs_polygons.png")],
+         points=["25 points per class of the seven-class SVM map, labelled blind on CTX and shaded relief; 142 of the 175 decided",
+                 "U-Net 49.6% against 21.7% on the earlier labels, interval +17.5 to +38.4; SVM 40.2% against 39.9%",
+                 "The labeller's check failed (66.7% on 27 hidden points, the bar 70%), and it read 79.8% of the ground as Normal Ground",
+                 "Off Normal Ground the U-Net leads the SVM by 34.4 pt, interval +5.1 to +63.7"],
+         source="§69.53, §69.55, §69.77, §69.81"),
 ]
 
 LIMITS = [   # (head, text)
@@ -213,8 +243,8 @@ LIMITS = [   # (head, text)
      "map's unit groups cannot stand in for material labels either (§40.1, §43.2, §69.50)."),
     ("The seven classes cost the old ones",
      "Five four-class 'Crater' labels were volcanoes (Arsia Mons alone 31% of the held-out Crater area); the "
-     "revision fixes that, but both seven-class maps fall below the four-class ones on the original classes and "
-     "over-predict fluvial channel (SVM) or volcanic edifice (U-Net) (§68.2, §69.24, §69.25)."),
+     "revision fixes that, but both seven-class maps fall below the four-class ones on the original classes. On the "
+     "third label set the U-Net's edifice falls to 18.0% of ±60°; the SVM keeps fluvial channel over 31.9% (§68.2, §69.24, §69.25, §69.81)."),
     ("Closed depressions are not a crater count",
      "Below ~5 km most are not catalogued craters, and breached craters are invisible; Robbins is the crater "
      "reference (§26.3, §53.4)."),
@@ -225,9 +255,12 @@ LIMITS = [   # (head, text)
      "549 of 9,287 candidates reviewed, all at Ius Chasma (precision 54% on steep channels, 7% on depressions); "
      "the digitising classes hold 94 channels, 26 crater rims and no lava margins, so H1 waits; H2 needs both channel "
      "origins in one area, which neither type area has (§69.7, §69.63)."),
-    ("The held-out blocks used twice",
-     "Once by the four-class models and once by the seven-class ones; any further tuning needs validation "
-     "blocks of its own (§66.5)."),
+    ("The held-out blocks used three times",
+     "By the four-class models, the seven-class ones and those on a third label set, asked for after the seven-class scores were read, "
+     "so a gain there is not a fresh test; further tuning needs validation blocks of its own (§66.5, §69.49)."),
+    ("The polygons flatter five of six maps",
+     "Polygon scores sit where a class is clear; the sample shows by how much, but on the AI assistant's labels, which failed their "
+     "check, and only the SVM on the third label set scores level, so unbiased accuracies need an analyst who passes it (§69.53, §69.55, §69.82)."),
 ]
 
 CONCLUSIONS = [
@@ -237,14 +270,14 @@ CONCLUSIONS = [
     "Craters ≥ 5 km are mostly recovered as closed depressions (63.2% precision); those missed are mostly degraded or breached",
     "Routed channels follow the elevation model (89.8% under 2°) and meet the mapped valleys no more often than chance",
     "The four-class landform map scores 66.7% balanced (73.8%, κ 0.58 overall) on blocks it never saw, above geography alone by class (61.3%); thermal adds a resolved 1.4–2.0 points overall, none by balanced accuracy",
-    "A U-Net reaches 98.9% as a four-class province map and 69.0% with seven classes, which name volcanoes, aprons "
-    "and valleys; lava flows still come from the geologic map",
+    "A U-Net reaches 98.9% as a four-class province map and, with seven classes on a third label set, 87.6% on polygons and "
+    "49.6% on a probability sample; the SVM there fails its rule (39.1%); both lead; lava flows still come from the geologic map",
 ]
 
 NEXT_STEPS = [
     "Review the 9,287 machine candidates at Ius Chasma and Athabasca Valles; draw breached craters and lava margins",
     "Retest H1 on margins digitised at 100 m; test H2 where fluvial and volcanic channels share one area",
-    "Seven classes: curb the over-prediction of fluvial channel and volcanic edifice, and win back Crater and hills",
+    "Seven classes: curb the SVM's fluvial channel and win back its Crater; correct the U-Net's small edifices and lava tube",
     "Material labels, not landform labels, to price the thermal bands; calibrated THEMIS products where they exist",
     "Validation blocks of their own before any further deep-learning tuning",
 ]

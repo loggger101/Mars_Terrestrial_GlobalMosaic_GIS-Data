@@ -136,11 +136,14 @@ def svm_unet_v2(tag="v2", checks=("v2_200m_mode11", "global60_landforms_unet_v2_
 def r2_sample():
     """Each map's score on its held-out polygons beside its estimate on the probability sample (KB §69.55, §69.79)."""
     r = log(os.path.join("r2", "r2_agent_waived_result.json"))
-    rows = [("Four-class SVM", "svm4", "200m_mode11"),
+    r["overall"].update({k: v for k, v in log(os.path.join("r2", "r2_v3_result.json"))["overall"].items() if k.endswith("_v3")})
+    rows = [("Lead: U-Net, v3 labels", "unet_v3", "global60_landforms_unet_v3_200m_seamfix_on_v2_labels"),
+            ("Lead: SVM, v3 labels", "svm_v3", "v3_200m_mode11_on_v2_labels"),
+            ("Four-class SVM", "svm4", "200m_mode11"),
             ("Four-class U-Net", "unet4", "global60_landforms_unet_200m_seamfix"),
             ("Seven-class SVM", "svm7", "v2_200m_mode11"),
             ("Seven-class U-Net", "unet7", "global60_landforms_unet_v2_200m_seamfix")]
-    fig, ax = plt.subplots(figsize=(10, 3.5), dpi=200)
+    fig, ax = plt.subplots(figsize=(10, 4.4), dpi=200)
     for y, (name, key, check) in enumerate(rows):
         h = 100 * log("global60_classification_check_%s.json" % check)["held_out"]["accuracy"]
         s = {k: 100 * v for k, v in r["overall"][key].items()}
@@ -149,8 +152,8 @@ def r2_sample():
         ax.plot(s["est"], y, "o", color=ORANGE, ms=8, zorder=3, label="probability sample, 95 % interval" if y == 0 else None)
         ax.plot(h, y, "o", mfc="white", mec=BLUE, mew=2, ms=8, zorder=3, label="held-out polygons" if y == 0 else None)
         near = h - s["est"] < 8                    # the two labels would touch
-        ax.text(s["est"], y - 0.27, "%.1f" % s["est"], ha="right" if near else "center", color=INK, fontsize=9)
-        ax.text(h, y - 0.27, "%.1f" % h, ha="left" if near else "center", color=INK, fontsize=9)
+        ax.text(s["est"], y - 0.27, "%.1f" % s["est"], ha=("right" if s["est"] < h else "left") if near else "center", color=INK, fontsize=9)
+        ax.text(h, y - 0.27, "%.1f" % h, ha=("left" if s["est"] < h else "right") if near else "center", color=INK, fontsize=9)
     ax.set_yticks(range(len(rows))); ax.set_yticklabels([x[0] for x in rows], color=INK)
     ax.set_ylim(len(rows) - 0.5, -0.65); ax.set_xlim(0, 100); ax.set_xlabel("overall accuracy (%)", color=MUTED)
     clean(ax)
@@ -158,7 +161,7 @@ def r2_sample():
     ax.spines["left"].set_visible(False)
     ax.legend(frameon=False, loc="upper left", fontsize=9)
     fig.text(0.01, 0.01, "Sample: %d of 175 points decided by the AI assistant, whose agreement on the hidden check points was "
-             "%.1f %% against a 70 %% bar.\nPolygons: 183 for the four-class maps, 237 for the seven-class maps."
+             "%.1f %% against a 70 %% bar.\nPolygons: 183 for the four-class maps, 237 for the others."
              % (r["rows"], 100 * r["gate"]["agreement"]), color=MUTED, fontsize=8.5)
     fig.tight_layout(rect=(0, 0.11, 1, 1))
     p = os.path.join(OUT, "r2_vs_polygons.png")

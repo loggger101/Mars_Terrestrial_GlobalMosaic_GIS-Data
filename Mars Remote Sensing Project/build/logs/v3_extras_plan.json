@@ -1,0 +1,83 @@
+{
+ "script": "make_v3_extras.py",
+ "when": "2026-11-07 14:42",
+ "training_polygons": 10269,
+ "fresh": {
+  "seed": 60,
+  "blocks": [
+   "-10_2",
+   "-11_-2",
+   "-1_-3",
+   "-4_1",
+   "-6_2",
+   "-7_1",
+   "-7_3",
+   "-9_2",
+   "10_1",
+   "11_1",
+   "3_1",
+   "6_-3",
+   "7_-4",
+   "9_-3"
+  ],
+  "tries": 15,
+  "held_out": 899,
+  "held_out_by_class": {
+   "Crater": 67,
+   "steep/windy hills": 52,
+   "lava tube": 35,
+   "Normal Ground": 134,
+   "volcanic edifice": 197,
+   "apron": 267,
+   "fluvial channel": 147
+  },
+  "training": 9366,
+  "dropped_touching": 4
+ },
+ "fresh2": {
+  "seed": 61,
+  "blocks": [
+   "-10_-3",
+   "-10_1",
+   "-12_0",
+   "-1_-3",
+   "-2_0",
+   "-3_1",
+   "-6_-1",
+   "-6_0",
+   "-7_2",
+   "1_-4",
+   "1_3",
+   "2_-2",
+   "3_0",
+   "4_3"
+  ],
+  "tries": 6,
+  "held_out": 1603,
+  "held_out_by_class": {
+   "Crater": 72,
+   "steep/windy hills": 106,
+   "lava tube": 44,
+   "Normal Ground": 427,
+   "volcanic edifice": 135,
+   "apron": 698,
+   "fluvial channel": 121
+  },
+  "training": 8655,
+  "dropped_touching": 11
+ },
+ "actions": {
+  "keep": 303,
+  "piece": 7098,
+  "fan": 68,
+  "new": 2800
+ },
+ "cut": {
+  "training": 7401
+ },
+ "add": {
+  "training": 3602,
+  "v2": 734,
+  "added": 2868
+ }
+}
