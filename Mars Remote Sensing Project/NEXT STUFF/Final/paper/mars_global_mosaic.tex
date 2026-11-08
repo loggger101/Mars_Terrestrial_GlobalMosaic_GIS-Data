@@ -931,6 +931,9 @@ Every polygon score in this paper is taken where a class is clear, which flatter
 the support vector machine on the third label set. The probability sample shows the size of that, but on the AI
 assistant's labels, which failed their check; unbiased accuracies and class areas
 need the same points labelled by an analyst who passes it. %% KB §69.40, §69.55
+The U-Net maps are firmer as scores than as pixels: the third label set's model, run again over the held-out windows
+on chips placed differently, scores 87.54\% against 87.62\% on the 237 polygons, yet about one pixel in ten changes
+class, so a single pixel of a U-Net map should not be read alone. %% KB §69.83
 
 The held-out blocks have now been used three times, by the four-class models, the seven-class ones and those on the
 third label set. That set was requested after the seven-class scores were read, so any gain on it is not a fresh test,

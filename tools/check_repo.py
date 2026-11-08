@@ -186,6 +186,22 @@ def aprx_items(kind):
     return sum(i.get("itemType") == kind for i in items)
 
 
+UNITS = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen " \
+        "seventeen eighteen nineteen".split()
+TENS = {"twenty": 20, "thirty": 30, "forty": 40, "fifty": 50}
+
+
+def number(word):
+    """'26', 'twenty-six' or 'Twenty six' as 26; the README writes some counts in words."""
+    w = word.lower().replace(" ", "-")
+    if w.isdigit():
+        return int(w)
+    if w in UNITS:
+        return UNITS.index(w)
+    head, _, tail = w.partition("-")
+    return TENS[head] + (UNITS.index(tail) if tail else 0)
+
+
 def counts():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     index = (ROOT / "docs" / "scripts.md").read_text(encoding="utf-8")
@@ -199,6 +215,7 @@ def counts():
         ("rows in the script index", index, None, scripts),
         ("layouts", readme, r"Mars Project\.aprx\s+.*?(\d+) layouts", len(list(mp.glob("*/layouts/*.png")))),
         ("layouts", readme, r"The (\d+) map sheets", len(list(mp.glob("*/layouts/*.png")))),
+        ("layouts", readme, r"\| Map layouts \| ([a-z]+(?:-[a-z]+)?|\d+)\b", len(list(mp.glob("*/layouts/*.png")))),   # missed once, KB §69.83
         ("maps in the .aprx", readme, r"Mars Project\.aprx\s+.*?(\d+) maps", aprx_items("Map")),
         ("layouts in the .aprx", readme, r"Mars Project\.aprx\s+.*?(\d+) layouts", aprx_items("Layout")),
     ]
@@ -210,7 +227,7 @@ def counts():
             if not m:
                 fails.append(f"count of {what} not found on its page (pattern {pattern})")
                 continue
-            n = int(m.group(1))
+            n = number(m.group(1))
         if n != actual:
             fails.append(f"page says {n} {what}, the tree has {actual}")
     return len(stated)

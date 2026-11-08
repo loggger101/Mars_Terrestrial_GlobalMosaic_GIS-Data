@@ -414,7 +414,7 @@ machine, which maps more of it. On the 57 points not read as Normal Ground the d
 $+19.8$), so the sample does not rank the two maps. %% KB §69.77
 
 %% ---------------------------------------------------------------------------------------------------------
-%% 19. The final deck's share of the freeze (final.py), drafted 2026-11-05 (KB §69.79); (d), (e), (f), (i) APPLIED 2026-11-07 (KB §69.82): what blocks 12, 15, 16 and 18 say
+%% 19. The final deck's share of the freeze (final.py), drafted 2026-11-05 (KB §69.79); (d), (e), (f), (i) APPLIED 2026-11-07 (KB §69.82), (f)'s second point dropped and (i) reworded because svm_v3 scores level on the sample: what blocks 12, 15, 16 and 18 say
 %%     in the paper, in the deck's words, since final.py's header has the two agree. Each line below is one string of
 %%     final.py, % written \% so verify_interim.py reads the whole line. The same conditions apply: D33's clause leaves
 %%     (b) if the author has checked the margins; the "assistant" wording leaves (f) if the author answers R2's
@@ -459,3 +459,54 @@ Rim-based diameters or merged nested basins for the 23\% of missed craters that 
 %% (i) LIMITS, a last card, block 16 (d) in the deck's words (the eighth, which fills the slide's grid), this head and text:
 The polygons flatter each map
 Every polygon score sits where a class is clear; the probability sample shows by how much, but on the AI assistant's labels, which failed their check, so unbiased accuracies need an analyst who passes it (§69.53, §69.55).
+
+%% =========================================================================================================
+%% 20. The extra runs (make_v3_extras.py, run_v3x.ps1; KB §69.82, §69.83), drafted 2026-11-07 while fresh_train runs:
+%%     no result exists yet. Predictions F1-F6, T1, T2, C1-C4 are in the script's docstring, written before any run.
+%%     Each paragraph goes in only once its runs are scored and the numbers are in the KB; pick the branch the
+%%     log's "predictions" give, and drop a paragraph whose runs failed, saying so in the Limits.
+%%     EX   logs\v3_extras.json (make_v3_extras.py --report); keys: fresh.full.<unet|svm|near>,
+%%          fresh.block_bootstrap.<unet-svm|unet-near|svm-near>.accuracy_ci95, the same under fresh2;
+%%          v2_polygons / v3_polygons .full.<base|noth|cut|add|unet_v2>, .block_bootstrap.<base-noth|base-cut|...>
+%%     All of base, noth, cut and add are window maps from one route, so they are compared with base, not with the
+%%     published map (base 87.54 % against its 87.62 %, §69.83).
+%% ---------------------------------------------------------------------------------------------------------
+%% (a) RESULTS, Section~\ref{sec:v3}, after the paragraph on the leak and the gain ("Why the U-Net rose ... is not
+%%     measured here." becomes the lead-in below and is cut there):
+Three further runs, set out before they ran, test what the scores rest on. %% KB §69.82
+%% (a1) the fresh blocks, F1-F5; if F1 and F5 held:
+The same 14 held-out blocks have scored every model in this paper. Fourteen other blocks drawn at random
+(\VV{EX}{plan.fresh.held\_out} polygons) were held out instead and both models retrained without them: the U-Net
+scores \VV{EX}{fresh.full.unet.accuracy}, \kap\,\VV{EX}{fresh.full.unet.kappa}, balanced accuracy
+\VV{EX}{fresh.full.unet.balanced}, and the support vector machine \VV{EX}{fresh.full.svm.accuracy}; the U-Net leads the
+nearest training polygon by \VV{EX}{fresh.block\_bootstrap.unet-near.accuracy\_ci95} points, the support vector machine
+\VV{EX}{fresh.block\_bootstrap.svm-near.accuracy\_ci95}. A second draw gives \VV{EX}{fresh2.full.unet.accuracy} and
+\VV{EX}{fresh2.full.svm.accuracy}. So the U-Net's score is not a property of the first 14 blocks.
+%% (a1') if F1 or F5 did not hold: the same numbers, and in place of the last sentence:
+%%     On blocks it was not tuned against the U-Net scores less, so the 87.6\% is partly a property of the first 14 blocks.
+%% (a2) thermal, T1 and T2; if both held:
+Without the two thermal bands the U-Net scores \VV{EX}{v2\_polygons.full.noth.accuracy} on the 237 polygons against
+\VV{EX}{v2\_polygons.full.base.accuracy} with them (difference \VV{EX}{v2\_polygons.block\_bootstrap.base-noth.accuracy\_ci95}),
+as small a contribution as the support vector machine's 1.1 points: here too the thermal mosaics add little.
+%% (a2') if T2 did not hold (the interval excludes 0): "... the difference is resolved: the U-Net draws on the thermal
+%%     bands where the support vector machine barely did." and the Limits' first paragraph gains that sentence.
+%% (a3) cutting and adding, C1-C4:
+Trained on the cut pieces alone (7,401 polygons) the U-Net reaches a balanced accuracy of
+\VV{EX}{v2\_polygons.full.cut.balanced}, and on the second label set plus the added polygons alone (3,602)
+\VV{EX}{v2\_polygons.full.add.balanced}, against \VV{EX}{v2\_polygons.full.base.balanced} with both and 56.9\% with
+neither. %% then one sentence by the branch: C4 held -> "Each half gives part of the gain and the two together most."
+%% C3 not held -> "Cutting the polygons gives more than adding them." Neither C1 nor C2 held -> "Neither half alone
+%% beats the second label set; the gain comes from the two together."
+%% ---------------------------------------------------------------------------------------------------------
+%% (b) LIMITS, the held-out paragraph, after "... measures agreement with it.":
+The fresh blocks answer the third use only for the third label set's models; the four- and seven-class scores rest
+on the original 14.
+%% (c) CONCLUSIONS, item 7 (the third label set), a last clause by (a1)'s branch: "; on 14 other blocks it scores
+%%     \VV{EX}{fresh.full.unet.accuracy}."
+%% (d) DECK (final.py), the slide "The lead maps: the U-Net": a fifth point, in the deck's words:
+On 14 other blocks, drawn at random and held out from a retrained model: \VV{EX}{fresh.full.unet.accuracy}
+%%     and "The lead maps: the SVM, against its rule": "On 14 other blocks: \VV{EX}{fresh.full.svm.accuracy}"
+%% (e) DECK, LIMITS card "The held-out blocks used three times": its text ends "... a fresh test; 14 other blocks,
+%%     drawn at random, give \VV{EX}{fresh.full.unet.accuracy} for a retrained U-Net (§69.82, §69.8x)."
+%% (f) ALSO, from §69.83, LIMITS after the polygon paragraph (not waiting on any run):
+%%     see the paper: applied 2026-11-07.
