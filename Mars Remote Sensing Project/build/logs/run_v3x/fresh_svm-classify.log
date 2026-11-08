@@ -1,0 +1,17 @@
+block  1/16 lon -165 lat  -30: 720 s
+block  2/16 lon -150 lat   30: 916 s
+block  3/16 lon -135 lat   30: 921 s
+block  4/16 lon -105 lat   15: 659 s
+block  5/16 lon -105 lat   45: 1205 s
+block  6/16 lon  -90 lat   30: 1571 s
+block  7/16 lon  -60 lat   15: 511 s
+block  8/16 lon  -15 lat  -60: 36 s
+block  9/16 lon  -15 lat  -45: 10114 s
+block 10/16 lon   45 lat   15: 1122 s
+block 11/16 lon   90 lat  -45: 749 s
+block 12/16 lon  105 lat  -60: 1792 s
+block 13/16 lon  105 lat  -45: 312 s
+block 14/16 lon  135 lat  -45: 1828 s
+block 15/16 lon  150 lat   15: 959 s
+block 16/16 lon  165 lat   15: 700 s
+windows -> C:\MarsScratch\x5c_v3x\classified\fresh_svm

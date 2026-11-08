@@ -1,6 +1,6 @@
 {
  "script": "make_v3_extras.py",
- "when": "2026-11-07 15:53",
+ "when": "2026-11-08 11:22",
  "boot": 10000,
  "seed": 60,
  "plan": {
@@ -453,5 +453,242 @@
    }
   }
  },
- "predictions": {}
+ "fresh": {
+  "polygons": 895,
+  "polygons_without_pixels": 4,
+  "blocks": [
+   "-10_2",
+   "-11_-2",
+   "-1_-3",
+   "-4_1",
+   "-6_2",
+   "-7_1",
+   "-7_3",
+   "-9_2",
+   "10_1",
+   "11_1",
+   "3_1",
+   "6_-3",
+   "7_-4",
+   "9_-3"
+  ],
+  "full": {
+   "unet": {
+    "accuracy": 0.8664,
+    "kappa": 0.8149,
+    "balanced": 0.7224,
+    "producers": {
+     "Crater": 0.9711,
+     "steep/windy hills": 0.1827,
+     "lava tube": 0.9365,
+     "Normal Ground": 0.8571,
+     "volcanic edifice": 0.8409,
+     "apron": 0.8944,
+     "fluvial channel": 0.374
+    }
+   },
+   "svm": {
+    "accuracy": 0.3786,
+    "kappa": 0.2187,
+    "balanced": 0.4794,
+    "producers": {
+     "Crater": 0.2099,
+     "steep/windy hills": 0.4021,
+     "lava tube": 0.6778,
+     "Normal Ground": 0.9702,
+     "volcanic edifice": 0.4065,
+     "apron": 0.3421,
+     "fluvial channel": 0.3471
+    }
+   },
+   "near": {
+    "accuracy": 0.6551,
+    "kappa": 0.5351,
+    "balanced": 0.4921,
+    "producers": {
+     "Crater": 0.3509,
+     "steep/windy hills": 0.4518,
+     "lava tube": 0.6004,
+     "Normal Ground": 0.1298,
+     "volcanic edifice": 0.6182,
+     "apron": 0.8987,
+     "fluvial channel": 0.3951
+    }
+   }
+  },
+  "block_bootstrap": {
+   "unet": {
+    "accuracy_ci95": [
+     0.7476,
+     0.9459
+    ],
+    "kappa_ci95": [
+     0.6414,
+     0.9042
+    ],
+    "balanced_ci95": [
+     0.6327,
+     0.782
+    ],
+    "accuracy_width": 0.1983
+   },
+   "svm": {
+    "accuracy_ci95": [
+     0.1916,
+     0.5399
+    ],
+    "kappa_ci95": [
+     0.0443,
+     0.3734
+    ],
+    "balanced_ci95": [
+     0.3411,
+     0.5652
+    ],
+    "accuracy_width": 0.3483
+   },
+   "near": {
+    "accuracy_ci95": [
+     0.3675,
+     0.8341
+    ],
+    "kappa_ci95": [
+     0.2264,
+     0.6886
+    ],
+    "balanced_ci95": [
+     0.3974,
+     0.5283
+    ],
+    "accuracy_width": 0.4666
+   },
+   "unet-svm": {
+    "accuracy_ci95": [
+     0.3408,
+     0.5834
+    ],
+    "balanced_ci95": [
+     0.1889,
+     0.3616
+    ],
+    "kappa_ci95": [
+     0.4541,
+     0.6957
+    ],
+    "share_above_0_accuracy": 1.0,
+    "share_above_0_balanced": 1.0
+   },
+   "unet-near": {
+    "accuracy_ci95": [
+     0.05,
+     0.4972
+    ],
+    "balanced_ci95": [
+     0.1591,
+     0.3242
+    ],
+    "kappa_ci95": [
+     0.0842,
+     0.5682
+    ],
+    "share_above_0_accuracy": 0.9999,
+    "share_above_0_balanced": 0.9999
+   },
+   "svm-near": {
+    "accuracy_ci95": [
+     -0.5108,
+     0.1459
+    ],
+    "balanced_ci95": [
+     -0.126,
+     0.1092
+    ],
+    "kappa_ci95": [
+     -0.5665,
+     0.1094
+    ],
+    "share_above_0_accuracy": 0.0818,
+    "share_above_0_balanced": 0.4461
+   }
+  },
+  "by_block": {
+   "-10_2": {
+    "unet": 0.9793,
+    "svm": 0.4424,
+    "near": 0.9136
+   },
+   "-11_-2": {
+    "unet": 0.7811,
+    "svm": 0.3482,
+    "near": 0.7496
+   },
+   "-1_-3": {
+    "unet": 0.8323,
+    "svm": 0.5135,
+    "near": 0.189
+   },
+   "-4_1": {
+    "unet": 0.8534,
+    "svm": 0.2614,
+    "near": 0.1492
+   },
+   "-6_2": {
+    "unet": 0.5506,
+    "svm": 0.1627,
+    "near": 0.6519
+   },
+   "-7_1": {
+    "unet": 0.8964,
+    "svm": 0.7347,
+    "near": 0.1664
+   },
+   "-7_3": {
+    "unet": 0.883,
+    "svm": 0.6163,
+    "near": 0.8585
+   },
+   "-9_2": {
+    "unet": 0.9553,
+    "svm": 0.2301,
+    "near": 0.9144
+   },
+   "10_1": {
+    "unet": 0.8885,
+    "svm": 0.3793,
+    "near": 0.7583
+   },
+   "11_1": {
+    "unet": 0.8587,
+    "svm": 0.508,
+    "near": 0.268
+   },
+   "3_1": {
+    "unet": 0.9259,
+    "svm": 0.2651,
+    "near": 0.8519
+   },
+   "6_-3": {
+    "unet": 0.6754,
+    "svm": 0.1097,
+    "near": 0.6929
+   },
+   "7_-4": {
+    "unet": 0.8068,
+    "svm": 0.1281,
+    "near": 0.7809
+   },
+   "9_-3": {
+    "unet": 0.9339,
+    "svm": 0.305,
+    "near": 0.2001
+   }
+  }
+ },
+ "predictions": {
+  "F1": "held",
+  "F2": "held",
+  "F3": "held",
+  "F4": "held",
+  "F5": "held"
+ }
 }

@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-07 (§69.83).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-08 (§69.84).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7153,3 +7153,19 @@ the only v3 numbers seen are the training run's validation table (§69.76).
   Class shares in the windows agree within 0.3 points. So the model and the route are right and the gap is single pixels: base differs from a pixel on which both passes agree on 8.3 % of them. The settings match (`padding 64; batch_size 8`), so the likely cause is the chip grid's phase, the windows starting elsewhere than the 4,096-pixel tiles; that is not measured, and neither is why the two passes agree more with each other than with base. **The gate changed:** 90 % was a guess made before any window ran. It is now accuracy and κ within 0.005 of the published map on both polygon sets, plus 85 % of pixels to catch a misplaced array. This is a check of the route, not one of the predictions F1–F6, T1, T2 or C1–C4, none of which has a result yet; all of them compare window maps with window maps, so a route difference of this size does not reach them.
 - **It does touch how far a U-Net map can be read pixel by pixel:** the same model on a shifted grid changes about one pixel in ten, no overall score by more than 0.25 points on these polygons, and a class's producer's accuracy by up to 1.5 points (hills).
 - **Written while fresh_train runs (11-07 evening):** the paper's Limits gained the pixel caveat above (§69.83's two scores, "about one pixel in ten"); `v2_drafts.tex` block 20 holds the extra runs' text for the paper and deck, with a branch for each prediction's outcome and every number a `\VV{EX}{…}` key of `logs\v3_extras.json`, none filled; the README's status rows name the v3 maps as the lead and count 26 layouts (the "twenty-three" row had been missed by `check_repo.py`, which reads only the tree line).
+
+### 69.84 The fresh blocks: F1–F5 held; the U-Net's score is not a property of the first 14 blocks — 2026-11-08, desktop **[V]**
+
+- **Ran:** `fresh_train` 648.2 min (exit 0, the first step with a real exit code after §69.83's fix), `fresh_classify` 32.8 min, `fresh_svm-train` 81.1 min, `fresh_svm-classify` 402.1 min, ending 11:14 on 11-08; `noth_export` follows. `make_v3_extras.py --report` exit 0, `logs\v3_extras.json`.
+- **The split:** 14 blocks drawn at random with seed 60 (`-10_2, -11_-2, -1_-3, -4_1, -6_2, -7_1, -7_3, -9_2, 10_1, 11_1, 3_1, 6_-3, 7_-4, 9_-3`), 899 polygons of the third label set held out, 895 of them with pixels in the windows; the U-Net and the SVM retrained on the other 9,366.
+
+| on the 895 fresh polygons | accuracy | κ | balanced | block interval, accuracy |
+|---|---|---|---|---|
+| U-Net (v3f) | **86.6 %** | 0.815 | 72.2 % | 74.8–94.6 |
+| SVM | 37.9 % | 0.219 | 47.9 % | 19.2–54.0 |
+| nearest training polygon | 65.5 % | 0.535 | 49.2 % | 36.8–83.4 |
+
+- **Differences, block bootstrap, accuracy:** U-Net − SVM **+34.1 to +58.3**; U-Net − nearest polygon **+5.0 to +49.7**; SVM − nearest polygon **−51.1 to +14.6**.
+- **Predictions, all five held:** F1 accuracy in 70–92 % (86.6); F2 balanced in 60–85 % (72.2); F3 U-Net − SVM above 0; F4 SVM − nearest polygon includes 0; F5 U-Net − nearest polygon above 0. F6 waits for fresh2.
+- **Read:** on blocks never used to score anything, the retrained U-Net scores as the published one does on the third label set's 1,652 polygons (86.5 %), so the 87.6 % is not a property of the first 14 blocks; it is a score on rule-made labels, as before. The balanced accuracy is lower, 72.2 % against 77.3 %, because two classes are weaker here: hills' producer's accuracy is **18.3 %** (published model on the 1,652: 79.1 %) and fluvial channel's **37.4 %** (62.6 %), while lava tube reads 93.7 %. The SVM again does not beat the nearest training polygon. Nothing replaces a map.
+- **The model kept:** epoch 22 of 0–29, the lowest validation loss, 0.451 (the `.emd`'s accuracy 0.86283 is that epoch's); 31,960 chips. **The validation-loss spikes recur on this split** (11.9 at epoch 25, 5.01 at epoch 29), as in §69.80's run, so they belong to the v3 labels or the training, not to the first 14 blocks; cause still not verified. Model and charts in `DLModels\global60_unet_x5c_v3f_20261107` (the `.pth` and `.dlpk` stay off GitHub by size).

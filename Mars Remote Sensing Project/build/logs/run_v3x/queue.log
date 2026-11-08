@@ -5,3 +5,11 @@
 2026-11-07 15:30:50  waiting for process 35864
 2026-11-07 15:50:18  process 35864 gone (its exit code is not known here; read its log)
 2026-11-07 15:50:19  start fresh_train
+2026-11-08 02:38:31  end   fresh_train: exit 0, 648.2 min
+2026-11-08 02:38:32  start fresh_classify
+2026-11-08 03:11:19  end   fresh_classify: exit 0, 32.8 min
+2026-11-08 03:11:20  start fresh_svm-train
+2026-11-08 04:32:28  end   fresh_svm-train: exit 0, 81.1 min
+2026-11-08 04:32:28  start fresh_svm-classify
+2026-11-08 11:14:35  end   fresh_svm-classify: exit 0, 402.1 min
+2026-11-08 11:14:35  start noth_export
