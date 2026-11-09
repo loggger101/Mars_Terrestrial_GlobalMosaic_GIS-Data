@@ -1,6 +1,6 @@
 {
  "script": "make_v3_extras.py",
- "when": "2026-11-08 11:22",
+ "when": "2026-11-09 00:14",
  "boot": 10000,
  "seed": 60,
  "plan": {
@@ -148,6 +148,20 @@
      "apron": 0.7743,
      "fluvial channel": 0.4296
     }
+   },
+   "noth": {
+    "accuracy": 0.8117,
+    "kappa": 0.7627,
+    "balanced": 0.7816,
+    "producers": {
+     "Crater": 0.9833,
+     "steep/windy hills": 0.6206,
+     "lava tube": 0.8314,
+     "Normal Ground": 0.9894,
+     "volcanic edifice": 0.8708,
+     "apron": 0.6113,
+     "fluvial channel": 0.5643
+    }
    }
   },
   "block_bootstrap": {
@@ -195,78 +209,123 @@
      0.6824
     ],
     "accuracy_width": 0.297
+   },
+   "noth": {
+    "accuracy_ci95": [
+     0.661,
+     0.9524
+    ],
+    "kappa_ci95": [
+     0.5394,
+     0.9326
+    ],
+    "balanced_ci95": [
+     0.6543,
+     0.8618
+    ],
+    "accuracy_width": 0.2915
+   },
+   "base-noth": {
+    "accuracy_ci95": [
+     -0.0135,
+     0.1475
+    ],
+    "balanced_ci95": [
+     -0.0192,
+     0.1163
+    ],
+    "kappa_ci95": [
+     -0.0182,
+     0.1956
+    ],
+    "share_above_0_accuracy": 0.855,
+    "share_above_0_balanced": 0.9321
    }
   },
   "by_block": {
    "-11_1": {
     "base": 0.9989,
     "unet_v3": 0.9991,
-    "unet_v2": 0.7771
+    "unet_v2": 0.7771,
+    "noth": 0.9997
    },
    "-11_2": {
     "base": 1.0,
     "unet_v3": 1.0,
-    "unet_v2": 0.5427
+    "unet_v2": 0.5427,
+    "noth": 1.0
    },
    "-3_-1": {
     "base": 0.9376,
     "unet_v3": 0.9371,
-    "unet_v2": 0.7374
+    "unet_v2": 0.7374,
+    "noth": 0.9351
    },
    "-4_-1": {
     "base": 0.8486,
     "unet_v3": 0.8296,
-    "unet_v2": 0.3923
+    "unet_v2": 0.3923,
+    "noth": 0.7943
    },
    "-4_-2": {
     "base": 0.4542,
     "unet_v3": 0.453,
-    "unet_v2": 0.3182
+    "unet_v2": 0.3182,
+    "noth": 0.3597
    },
    "-5_-1": {
     "base": 0.9672,
     "unet_v3": 0.9832,
-    "unet_v2": 0.8968
+    "unet_v2": 0.8968,
+    "noth": 0.5262
    },
    "-6_1": {
     "base": 0.5674,
     "unet_v3": 0.5641,
-    "unet_v2": 0.1056
+    "unet_v2": 0.1056,
+    "noth": 0.7977
    },
    "-9_-1": {
     "base": 0.7696,
     "unet_v3": 0.7717,
-    "unet_v2": 0.686
+    "unet_v2": 0.686,
+    "noth": 0.5625
    },
    "-9_0": {
     "base": 0.9467,
     "unet_v3": 0.9458,
-    "unet_v2": 0.9631
+    "unet_v2": 0.9631,
+    "noth": 0.969
    },
    "0_0": {
     "base": 0.9832,
     "unet_v3": 0.987,
-    "unet_v2": 0.1388
+    "unet_v2": 0.1388,
+    "noth": 0.9921
    },
    "1_0": {
     "base": 0.7752,
     "unet_v3": 0.7884,
-    "unet_v2": 0.1467
+    "unet_v2": 0.1467,
+    "noth": 0.7236
    },
    "4_0": {
     "base": 0.8825,
     "unet_v3": 0.8901,
-    "unet_v2": 0.667
+    "unet_v2": 0.667,
+    "noth": 0.9401
    },
    "4_2": {
     "base": 0.4716,
     "unet_v3": 0.4633,
-    "unet_v2": 0.1194
+    "unet_v2": 0.1194,
+    "noth": 0.3504
    },
    "5_-2": {
     "base": 0.891,
     "unet_v3": 0.8914,
-    "unet_v2": 0.7424
+    "unet_v2": 0.7424,
+    "noth": 0.9321
    }
   }
  },
@@ -331,6 +390,20 @@
      "apron": 0.7379,
      "fluvial channel": 0.4698
     }
+   },
+   "noth": {
+    "accuracy": 0.7874,
+    "kappa": 0.7314,
+    "balanced": 0.6733,
+    "producers": {
+     "Crater": 0.9424,
+     "steep/windy hills": 0.5895,
+     "lava tube": 0.1501,
+     "Normal Ground": 0.9801,
+     "volcanic edifice": 0.8973,
+     "apron": 0.5471,
+     "fluvial channel": 0.6064
+    }
    }
   },
   "block_bootstrap": {
@@ -378,78 +451,123 @@
      0.626
     ],
     "accuracy_width": 0.2896
+   },
+   "noth": {
+    "accuracy_ci95": [
+     0.6265,
+     0.9525
+    ],
+    "kappa_ci95": [
+     0.5058,
+     0.9329
+    ],
+    "balanced_ci95": [
+     0.5602,
+     0.8185
+    ],
+    "accuracy_width": 0.3259
+   },
+   "base-noth": {
+    "accuracy_ci95": [
+     -0.0067,
+     0.1575
+    ],
+    "balanced_ci95": [
+     0.0003,
+     0.1471
+    ],
+    "kappa_ci95": [
+     -0.009,
+     0.1983
+    ],
+    "share_above_0_accuracy": 0.925,
+    "share_above_0_balanced": 0.9757
    }
   },
   "by_block": {
    "-11_1": {
     "base": 0.9984,
     "unet_v3": 0.9983,
-    "unet_v2": 0.777
+    "unet_v2": 0.777,
+    "noth": 0.9998
    },
    "-11_2": {
     "base": 0.9926,
     "unet_v3": 0.9968,
-    "unet_v2": 0.5449
+    "unet_v2": 0.5449,
+    "noth": 0.9999
    },
    "-3_-1": {
     "base": 0.9196,
     "unet_v3": 0.9243,
-    "unet_v2": 0.7256
+    "unet_v2": 0.7256,
+    "noth": 0.8909
    },
    "-4_-1": {
     "base": 0.7803,
     "unet_v3": 0.7617,
-    "unet_v2": 0.4336
+    "unet_v2": 0.4336,
+    "noth": 0.7225
    },
    "-4_-2": {
     "base": 0.6857,
     "unet_v3": 0.7148,
-    "unet_v2": 0.4824
+    "unet_v2": 0.4824,
+    "noth": 0.6287
    },
    "-5_-1": {
     "base": 0.7678,
     "unet_v3": 0.7653,
-    "unet_v2": 0.5512
+    "unet_v2": 0.5512,
+    "noth": 0.4017
    },
    "-6_1": {
     "base": 0.8567,
     "unet_v3": 0.8387,
-    "unet_v2": 0.0641
+    "unet_v2": 0.0641,
+    "noth": 0.9127
    },
    "-9_-1": {
     "base": 0.7313,
     "unet_v3": 0.7331,
-    "unet_v2": 0.6619
+    "unet_v2": 0.6619,
+    "noth": 0.5128
    },
    "-9_0": {
     "base": 0.9666,
     "unet_v3": 0.9667,
-    "unet_v2": 0.967
+    "unet_v2": 0.967,
+    "noth": 0.9826
    },
    "0_0": {
     "base": 0.957,
     "unet_v3": 0.957,
-    "unet_v2": 0.1496
+    "unet_v2": 0.1496,
+    "noth": 0.9633
    },
    "1_0": {
     "base": 0.8783,
     "unet_v3": 0.8935,
-    "unet_v2": 0.165
+    "unet_v2": 0.165,
+    "noth": 0.8392
    },
    "4_0": {
     "base": 0.87,
     "unet_v3": 0.8496,
-    "unet_v2": 0.5544
+    "unet_v2": 0.5544,
+    "noth": 0.9053
    },
    "4_2": {
     "base": 0.6783,
     "unet_v3": 0.6748,
-    "unet_v2": 0.1441
+    "unet_v2": 0.1441,
+    "noth": 0.6131
    },
    "5_-2": {
     "base": 0.9241,
     "unet_v3": 0.9243,
-    "unet_v2": 0.7386
+    "unet_v2": 0.7386,
+    "noth": 0.9571
    }
   }
  },
@@ -689,6 +807,8 @@
   "F2": "held",
   "F3": "held",
   "F4": "held",
-  "F5": "held"
+  "F5": "held",
+  "T1": "NOT held",
+  "T2": "held"
  }
 }

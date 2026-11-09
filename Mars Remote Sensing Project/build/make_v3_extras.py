@@ -234,8 +234,18 @@ def svm_classify(run):
 
 def mode11(a):
     """The published SVM map's 11 x 11 majority filter (make_global60_landforms_clean.py), inside one window."""
-    votes = np.stack([ndimage.uniform_filter((a == k).astype(np.float32), size=11, mode="nearest") for k in range(len(SEVEN))])
-    return np.where(a == 255, 255, votes.argmax(0)).astype(np.uint8)
+    # one class at a time with a running maximum, not a 7-deep stack and an int64 argmax: the stack ran out of memory
+    # on 11-09 beside an export (KB §69.86). Strict ">" keeps the first class on a tie, as argmax does: same map.
+    best = np.full(a.shape, -1.0, np.float32)
+    out = np.zeros(a.shape, np.uint8)
+    for k in range(len(SEVEN)):
+        v = ndimage.uniform_filter((a == k).astype(np.float32), size=11, mode="nearest")
+        up = v > best
+        best[up] = v[up]
+        out[up] = k
+        del v, up
+    out[a == 255] = 255
+    return out
 
 
 def window_array(folder, shape, mode=False):

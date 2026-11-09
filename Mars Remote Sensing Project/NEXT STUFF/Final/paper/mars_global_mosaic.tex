@@ -269,6 +269,7 @@ A third label set tests whether more and smaller training polygons help. Every s
 written screen for its class, and polygons were added from the crater catalogue, the geologic map and the elevation
 model, by rule and not by eye, giving 10,269 training and 1,652 held-out polygons in the same 14 blocks. The models
 were retrained on them; the U-Net's validation loss was unsteady, and the epoch with the lowest, the 19th of 30, was kept.
+The loss rose the same way late in each of the three later retrainings, and each kept an epoch from before the rise. %% KB §69.84, §69.86
 Each new map is scored on the 237 held-out polygons, the like-for-like comparison, and on the 1,652. A rule written
 before the runs recommends a new map over its predecessor only if on both sets its balanced accuracy and \kap\ are at
 least as high, no class loses 5 points or more of producer's accuracy on the 237 polygons and, for the U-Net, volcanic
@@ -637,6 +638,14 @@ bands and 63.4\% without at 200~m, 63.5\% and 63.4\% at 400~m, because Crater an
 area. Terrain alone ties the score but makes a poor crater map (34 of 124 crater polygons won, against 103). The
 hand-drawn classes are landform classes, a terrain property, and cannot price a material signal. %% KB §40.1, §56, §56.1, §69.18
 
+The seven-class U-Net was retrained once without the two thermal bands, on the third label set, with the prediction
+written first that it would score within 3 points. It scores 81.2\% on the 237 polygons against 87.5\% with them, and
+78.7\% against 86.4\% on the 1,652, so the prediction does not hold: the drop is about five times the support vector
+machine's gain. It is not resolved when the blocks are resampled ($-1.4$ to $+14.8$ and $-0.7$ to $+15.8$ points): two
+blocks carry most of it and one goes the other way, and apron, hills and lava tube lose while volcanic edifice gains
+10.7 points. Each model was trained once, so the bands' share is not separated from the difference between one
+training and another. %% KB §69.86
+
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/thermal_ablation.png}
@@ -901,8 +910,9 @@ of fifteen landforms; the classes here rest on 971 polygons at 200~m, which is w
 geography-only baseline and why the U-Net's lead reads as a province map. Unsupervised classes from topographic
 attributes \citep{Bue2006} need no labels but name nothing; the supervised maps here name their classes and are scored
 on blocks they never saw. What the stack adds is the one grid: the three families are mapped from co-registered
-visible, thermal and elevation data, and the thermal bands' share is measured rather than assumed, small (1.4 to 2.0
-points on four classes) and, by balanced accuracy, absent. %% KB §69.40, §69.50 (W3)
+visible, thermal and elevation data, and the thermal bands' share is measured rather than assumed: for the support
+vector machine small (1.4 to 2.0 points on four classes) and, by balanced accuracy, absent; for the seven-class U-Net,
+trained once each way, larger (6.4 to 7.6 points) but not resolved by block. %% KB §69.40, §69.50 (W3), §69.86
 
 \subsection{Limits}
 
@@ -972,7 +982,8 @@ for the freshest rims to 38.4\% for the most degraded, and breached craters stay
 valleys no more often than a rotated valley map; stream order is a parameter, not a measurement.
 \item The four-class landform map scores a balanced accuracy of 66.7\% (73.8\%, \kap\,0.58 overall) on blocks it never
 saw, where geography alone, the nearest training polygon's class, gives 61.3\% (83.2\% overall); the thermal bands add
-a resolved 1.4 to 2.0 points of overall accuracy and none by balanced accuracy. A U-Net reaches 98.9\% as a
+a resolved 1.4 to 2.0 points of overall accuracy and none by balanced accuracy. A seven-class U-Net trained once
+without them scores 6.4 to 7.6 points lower, a difference not resolved by block. A U-Net reaches 98.9\% as a
 terrain-province map.
 \item Revised to seven classes, the maps separate impact craters from volcanoes and name volcanic edifices, aprons
 and fluvial channels: the U-Net scored 69.0\%, \kap\,0.606 and the support vector machine 42.5\% on 237 held-out

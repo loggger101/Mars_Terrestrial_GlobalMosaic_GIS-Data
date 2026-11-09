@@ -44,7 +44,8 @@ HYPOTHESES = [   # (id, claim, verdict, KB)
      "Answered by another method: fill depth recovers 68% of 117 craters ≥ 100 km", "§28.11"),
     ("T1", "Thermal IR improves the landform classification",
      "Yes, a little, in overall accuracy: +1.3 pt (numpy), +1.36 and +1.97 pt (Pro SVM), every interval above 0; "
-     "none by balanced accuracy", "§40.1, §56, §69.18"),
+     "none by balanced accuracy; the seven-class U-Net loses 6.4–7.6 pt without it, not resolved by block",
+     "§40.1, §56, §69.18, §69.86"),
     ("T3", "The THEMIS pair tracks calibrated thermal inertia",
      "Weakly and only locally (|r| ≈ 0.1 within 15° blocks); Viking colour carries the regional signal (r −0.36)",
      "§43.1"),
@@ -156,8 +157,9 @@ FIGURES = [
          points=["Thermal adds +1.36 pt at 200 m and +1.97 at 400 m, both intervals above 0 (numpy: +1.3)",
                  "By balanced accuracy the gain is gone: 63.1% with the thermal bands, 63.4% without (200 m)",
                  "It helps craters and hills and hurts lava tube",
-                 "Terrain alone ties the score but makes a poor crater map: the classes are landform classes"],
-         source="§40.1, §56, §56.1"),
+                 "Terrain alone ties the score but makes a poor crater map: the classes are landform classes",
+                 "The seven-class U-Net, retrained once without it: 81.2% against 87.5%, a drop not resolved by block"],
+         source="§40.1, §56, §56.1, §69.86"),
     dict(title="Deep learning, 1: a box detector",
          images=[("layout", "16_x5_detections")], map_left=True,
          points=["RetinaNet on the 7-band stack, trained on the training blocks only",
@@ -239,7 +241,7 @@ FIGURES = [
 LIMITS = [   # (head, text)
     ("The thermal signal is weak where it can be checked",
      "The held THEMIS mosaics are 8-bit products stretched region by region: no calibrated thermal inertia, and "
-     "against TES only |r| ≈ 0.1 inside 15° blocks. In the classification thermal adds 1.3–2.0 points of overall accuracy and none by balanced accuracy (§24, §28.10, §43.1, §56, §69.18)."),
+     "against TES only |r| ≈ 0.1 inside 15° blocks. In the classification thermal adds 1.3–2.0 points of overall accuracy and none by balanced accuracy; without it, the seven-class U-Net, trained once, loses 6.4–7.6, not resolved by block (§24, §28.10, §43.1, §56, §69.18, §69.86)."),
     ("The landform classes are terrain classes",
      "Slope and relief alone match all seven bands; 'lava tube' marks volcano flanks, not lava plains; the geologic "
      "map's unit groups cannot stand in for material labels either (§40.1, §43.2, §69.50)."),

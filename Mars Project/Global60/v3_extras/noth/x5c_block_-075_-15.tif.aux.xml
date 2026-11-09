@@ -1,0 +1,27 @@
+<PAMDataset>
+  <PAMRasterBand band="1">
+    <Description>viking_red</Description>
+    <Histograms>
+      <HistItem>
+        <HistMin>-0.5</HistMin>
+        <HistMax>7.5</HistMax>
+        <BucketCount>8</BucketCount>
+        <IncludeOutOfRange>1</IncludeOutOfRange>
+        <Approximate>0</Approximate>
+        <HistCounts>0|7667000|3814315|744371|1910621|8849591|431024|637838</HistCounts>
+      </HistItem>
+    </Histograms>
+    <Metadata>
+      <MDI key="STATISTICS_MINIMUM">1</MDI>
+      <MDI key="STATISTICS_MAXIMUM">7</MDI>
+      <MDI key="STATISTICS_MEAN">3.1790045712362</MDI>
+      <MDI key="STATISTICS_STDDEV">1.8809506691283</MDI>
+      <MDI key="STATISTICS_MEDIAN">3.000000</MDI>
+      <MDI key="STATISTICS_COUNT">24054760.000000</MDI>
+      <MDI key="STATISTICS_SKIPFACTORX">1</MDI>
+      <MDI key="STATISTICS_SKIPFACTORY">1</MDI>
+      <MDI key="STATISTICS_EXCLUDEDVALUES"></MDI>
+      <MDI key="STATISTICS_COVARIANCES">3.537975419694221</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>

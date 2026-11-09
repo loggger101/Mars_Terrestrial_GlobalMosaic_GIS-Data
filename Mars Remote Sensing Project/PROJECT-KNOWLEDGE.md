@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-08 (§69.85).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.86).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7188,3 +7188,20 @@ the only v3 numbers seen are the training run's validation table (§69.76).
 - **Hills: mostly which hills are scored.** Every hills polygon in the fresh blocks is one the rule placed (4 in each of 13 blocks; −7_3 has none); the first 14 blocks' hills are mostly pieces of the author's v2 polygons, which the U-Net finds, while it reads the rule's squares (≥ 7 of 9 cells at p90 slope ≥ 10°, relief ≥ 1,000 m) more often as Crater than as hills there too. So the rule's hills are not the author's hills to the model, on either split; 18.3 % against 35.2 % is the part left to the blocks (5 of the 13 at ≤ 5 %, −4_1 at 63.0 %).
 - **Fluvial: one block.** The rule's valley strips score alike on both splits; the pieces of v2 polygons fall to 30.7 %, and block 6_−3 holds 66 of the 147 fluvial polygons at **10.9 %** (the other six blocks 25.9–87.9 %).
 - **What it changes:** the fresh accuracy, 86.6 %, stands; the lower balanced accuracy is read as above, and §69.84's "two classes are weaker here" is narrowed to this. The hills class that scores well is the author's; the rule's hills are a weaker label set or a different landform, which this does not settle.
+
+### 69.86 The U-Net without the thermal bands: T1 not held, T2 held; a large drop, not resolved by block — 2026-11-09, desktop **[V]**
+
+- **Ran:** `noth_export` 25.4 min, `noth_train` 703.1 min, `noth_classify` 31.9 min, all exit 0, ending 23:54 on 11-08; `cut_export` follows. The model, `DLModels\global60_unet_x5c_v3nt_20261108`, reads the five bands of `global60_svm_stack_200m_nothermal.tif` (`ExtractBands` 0–4), v3's training polygons, the v3 run's settings. `make_v3_extras.py --report` exit 0 on its second try: the first ran out of memory in `mode11` (a 7-deep float stack and an int64 argmax over a 4,423 × 106,694 window) beside `cut_export`, after scoring noth and before writing. `mode11` now takes one class at a time with a running maximum; a strict ">" keeps the first class on a tie, as argmax does. **The check can fail:** on six 700 × 900 test arrays, ties and no-data included, the new map equals the old one pixel for pixel, and a planted one-pixel change is caught (`test_mode11.py`, scratch). The route and base gates passed again (base 0.8946 of pixels, scores within 0.005).
+
+| U-Net, window maps | 237 v2 polygons | 1,652 v3 polygons |
+|---|---|---|
+| base, all seven bands | 87.5 %, κ 0.843, balanced 84.7 % | 86.4 %, κ 0.827, balanced 77.5 % |
+| noth, no thermal | **81.2 %**, κ 0.763, balanced 78.2 % | **78.7 %**, κ 0.731, balanced 67.3 % |
+| base − noth, block bootstrap, accuracy | **−1.4 to +14.8** (85.5 % of draws above 0) | **−0.7 to +15.8** (92.5 %) |
+| the same, balanced accuracy | −1.9 to +11.6 (93.2 %) | +0.03 to +14.7 (97.6 %) |
+
+- **Predictions:** **T1 not held** (within 3 points of base on each set: 6.4 and 7.6 points lower); **T2 held** (the accuracy interval includes 0 on each set). On the v3 polygons the balanced-accuracy interval just clears 0.
+- **Where it goes:** by block (accuracy, base − noth) on the v2 polygons, −5_−1 **+44.1**, −9_−1 **+20.7**, 4_2 +12.1, −4_−2 +9.4, and the other way −6_1 **−23.0**, 4_0 −5.8; on the v3 polygons −5_−1 +36.6, −9_−1 +21.8, −6_1 −5.6; the other blocks within 6.5 points. By class (producer's, noth − base, v2 / v3 polygons): apron −26.3 / −27.3, hills −24.5 / −21.6, lava tube −7.3 / −31.7, edifice **+10.7** / +10.7, Crater, Normal Ground and fluvial channel within 1.7.
+- **Training, one run each:** noth kept epoch 21 of 0–29 (validation loss 0.502, validation-chip accuracy 0.840), base epoch 18 (0.462, 0.850): one point apart on the chips, 6–8 points apart on the held-out polygons. noth's validation loss then rises to **892.0** at epoch 28 (base's highest 23.2, fresh's 11.9): **the late spikes recur in all three v3 runs**, so they belong to the labels or the training settings. The kept epochs come before them.
+- **Read:** without the thermal bands the seven-class U-Net scores 6.4 and 7.6 points lower, about five times the support vector machine's thermal gain (+1.36 at 200 m on four classes, §56; +1.1 on seven, §69.50), but the difference rests on a few blocks and is not resolved when they are resampled; by class it is apron, hills and lava tube that lose, edifice that gains. **Each model was trained once**, so how much of the 6–8 points is the bands and how much is one training against another is not measured; a second noth training, or a second base, would price that. Not a recommendation to the author either way. The fresh-block results of §69.84–§69.85 are unchanged by the rerun.
+- **The draft's branch did not fit:** block 20 (a2) was written for T1 and T2 both held ("here too the thermal mosaics add little") and (a2') for T2 not held; with T1 not held and T2 held neither is true, so a new sentence goes in (below). `fill_b20.py` (scratch) checked T2 only; it now refuses (a2) unless T1 holds too.
