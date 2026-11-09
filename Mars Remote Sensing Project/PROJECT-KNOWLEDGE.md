@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-08 (§69.84).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-08 (§69.85).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7169,3 +7169,22 @@ the only v3 numbers seen are the training run's validation table (§69.76).
 - **Predictions, all five held:** F1 accuracy in 70–92 % (86.6); F2 balanced in 60–85 % (72.2); F3 U-Net − SVM above 0; F4 SVM − nearest polygon includes 0; F5 U-Net − nearest polygon above 0. F6 waits for fresh2.
 - **Read:** on blocks never used to score anything, the retrained U-Net scores as the published one does on the third label set's 1,652 polygons (86.5 %), so the 87.6 % is not a property of the first 14 blocks; it is a score on rule-made labels, as before. The balanced accuracy is lower, 72.2 % against 77.3 %, because two classes are weaker here: hills' producer's accuracy is **18.3 %** (published model on the 1,652: 79.1 %) and fluvial channel's **37.4 %** (62.6 %), while lava tube reads 93.7 %. The SVM again does not beat the nearest training polygon. Nothing replaces a map.
 - **The model kept:** epoch 22 of 0–29, the lowest validation loss, 0.451 (the `.emd`'s accuracy 0.86283 is that epoch's); 31,960 chips. **The validation-loss spikes recur on this split** (11.9 at epoch 25, 5.01 at epoch 29), as in §69.80's run, so they belong to the v3 labels or the training, not to the first 14 blocks; cause still not verified. Model and charts in `DLModels\global60_unet_x5c_v3f_20261107` (the `.pth` and `.dlpk` stay off GitHub by size).
+
+### 69.85 Why hills and fluvial channel are weaker on the fresh blocks: which hills are scored, and one block — 2026-11-08, desktop **[V]**
+
+- **Ran:** `build\check_v3_fresh_classes.py` (new; reads only), `logs\v3_fresh_classes.json`, exit 0, while `noth_train` runs. Written after §69.84's scores were read: a diagnosis, not a test. It scores hills and fluvial channel by how the third label set made each polygon (`Action`: **keep**, a small v2 polygon kept whole; **piece**, a 0.5° piece of a large v2 polygon that passed its screen; **new**, placed by `propose_v3_labels.py`'s rule, §69.49), the published U-Net v3 on its 1,652 held-out polygons and the fresh U-Net on the 895 fresh ones.
+
+| producer's accuracy, by kind | published U-Net, first 14 blocks | fresh U-Net, fresh blocks |
+|---|---|---|
+| hills, keep | 98.2 % (8 polygons) | — (0) |
+| hills, piece | 81.8 % (70) | — (0) |
+| hills, new | **35.2 %** (43); 39.6 % read as Crater, 11.0 % lava tube | **18.3 %** (52); 46.6 % Crater, 26.2 % lava tube |
+| hills, all | 79.1 % (121) | 18.3 % (52) |
+| fluvial, keep | 51.7 % (7) | 90.8 % (1) |
+| fluvial, piece | 63.2 % (262) | **30.7 %** (111); 40.6 % Crater, 13.9 % lava tube |
+| fluvial, new (valley strips) | 61.0 % (24) | 61.8 % (35) |
+| fluvial, all | 62.6 % (293) | 37.4 % (147) |
+
+- **Hills: mostly which hills are scored.** Every hills polygon in the fresh blocks is one the rule placed (4 in each of 13 blocks; −7_3 has none); the first 14 blocks' hills are mostly pieces of the author's v2 polygons, which the U-Net finds, while it reads the rule's squares (≥ 7 of 9 cells at p90 slope ≥ 10°, relief ≥ 1,000 m) more often as Crater than as hills there too. So the rule's hills are not the author's hills to the model, on either split; 18.3 % against 35.2 % is the part left to the blocks (5 of the 13 at ≤ 5 %, −4_1 at 63.0 %).
+- **Fluvial: one block.** The rule's valley strips score alike on both splits; the pieces of v2 polygons fall to 30.7 %, and block 6_−3 holds 66 of the 147 fluvial polygons at **10.9 %** (the other six blocks 25.9–87.9 %).
+- **What it changes:** the fresh accuracy, 86.6 %, stands; the lower balanced accuracy is read as above, and §69.84's "two classes are weaker here" is narrowed to this. The hills class that scores well is the author's; the rule's hills are a weaker label set or a different landform, which this does not settle.

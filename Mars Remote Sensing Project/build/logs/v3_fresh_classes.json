@@ -1,0 +1,657 @@
+{
+ "script": "check_v3_fresh_classes.py",
+ "published_on_v3_test": {
+  "steep/windy hills": {
+   "all": {
+    "polygons": 121,
+    "pixels": 195650,
+    "producers": 0.7914,
+    "to": {
+     "Crater": 0.1687,
+     "steep/windy hills": 0.7914,
+     "lava tube": 0.0158,
+     "Normal Ground": 0.0014,
+     "volcanic edifice": 0.0015,
+     "apron": 0.0178,
+     "fluvial channel": 0.0035
+    }
+   },
+   "by_kind": {
+    "keep": {
+     "polygons": 8,
+     "pixels": 35174,
+     "producers": 0.9823,
+     "to": {
+      "Crater": 0.0096,
+      "steep/windy hills": 0.9823,
+      "lava tube": 0.0072,
+      "apron": 0.0009
+     }
+    },
+    "new": {
+     "polygons": 43,
+     "pixels": 23648,
+     "producers": 0.3515,
+     "to": {
+      "Crater": 0.396,
+      "steep/windy hills": 0.3515,
+      "lava tube": 0.1101,
+      "Normal Ground": 0.0112,
+      "volcanic edifice": 0.0118,
+      "apron": 0.0929,
+      "fluvial channel": 0.0264
+     }
+    },
+    "piece": {
+     "polygons": 70,
+     "pixels": 136827,
+     "producers": 0.8183,
+     "to": {
+      "Crater": 0.1702,
+      "steep/windy hills": 0.8183,
+      "lava tube": 0.0017,
+      "volcanic edifice": 0.0,
+      "apron": 0.0091,
+      "fluvial channel": 0.0005
+     }
+    }
+   },
+   "by_block": {
+    "-3_-1": {
+     "polygons": 4,
+     "pixels": 2289,
+     "producers": 0.4562,
+     "to": {
+      "Crater": 0.5385,
+      "steep/windy hills": 0.4562,
+      "apron": 0.0026,
+      "fluvial channel": 0.0026
+     }
+    },
+    "-4_-1": {
+     "polygons": 45,
+     "pixels": 88330,
+     "producers": 0.7962,
+     "to": {
+      "Crater": 0.1908,
+      "steep/windy hills": 0.7962,
+      "lava tube": 0.0001,
+      "apron": 0.0127,
+      "fluvial channel": 0.0002
+     }
+    },
+    "-4_-2": {
+     "polygons": 16,
+     "pixels": 23742,
+     "producers": 0.6222,
+     "to": {
+      "Crater": 0.3659,
+      "steep/windy hills": 0.6222,
+      "Normal Ground": 0.0094,
+      "apron": 0.0005,
+      "fluvial channel": 0.002
+     }
+    },
+    "-5_-1": {
+     "polygons": 29,
+     "pixels": 66678,
+     "producers": 0.9711,
+     "to": {
+      "Crater": 0.0189,
+      "steep/windy hills": 0.9711,
+      "lava tube": 0.0072,
+      "volcanic edifice": 0.0005,
+      "apron": 0.0023
+     }
+    },
+    "-6_1": {
+     "polygons": 4,
+     "pixels": 2085,
+     "producers": 0.4951,
+     "to": {
+      "Crater": 0.0018,
+      "steep/windy hills": 0.4951,
+      "lava tube": 0.1514,
+      "volcanic edifice": 0.0045,
+      "apron": 0.3472
+     }
+    },
+    "-9_-1": {
+     "polygons": 3,
+     "pixels": 1720,
+     "producers": 0.2066,
+     "to": {
+      "steep/windy hills": 0.2066,
+      "lava tube": 0.6028,
+      "volcanic edifice": 0.1249,
+      "apron": 0.0656
+     }
+    },
+    "-9_0": {
+     "polygons": 4,
+     "pixels": 2293,
+     "producers": 0.3557,
+     "to": {
+      "Crater": 0.0057,
+      "steep/windy hills": 0.3557,
+      "lava tube": 0.545,
+      "apron": 0.0936
+     }
+    },
+    "1_0": {
+     "polygons": 4,
+     "pixels": 2267,
+     "producers": 0.0763,
+     "to": {
+      "Crater": 0.9173,
+      "steep/windy hills": 0.0763,
+      "fluvial channel": 0.0065
+     }
+    },
+    "4_0": {
+     "polygons": 4,
+     "pixels": 2278,
+     "producers": 0.0096,
+     "to": {
+      "Crater": 0.7584,
+      "steep/windy hills": 0.0096,
+      "fluvial channel": 0.232
+     }
+    },
+    "4_2": {
+     "polygons": 4,
+     "pixels": 1914,
+     "producers": 0.4071,
+     "to": {
+      "Crater": 0.0004,
+      "steep/windy hills": 0.4071,
+      "apron": 0.5925
+     }
+    },
+    "5_-2": {
+     "polygons": 4,
+     "pixels": 2048,
+     "producers": 0.3727,
+     "to": {
+      "Crater": 0.5569,
+      "steep/windy hills": 0.3727,
+      "Normal Ground": 0.0204,
+      "volcanic edifice": 0.0132,
+      "fluvial channel": 0.0368
+     }
+    }
+   }
+  },
+  "fluvial channel": {
+   "all": {
+    "polygons": 293,
+    "pixels": 195971,
+    "producers": 0.6262,
+    "to": {
+     "Crater": 0.0898,
+     "steep/windy hills": 0.0526,
+     "lava tube": 0.0014,
+     "Normal Ground": 0.059,
+     "volcanic edifice": 0.1612,
+     "apron": 0.0099,
+     "fluvial channel": 0.6262
+    }
+   },
+   "by_kind": {
+    "keep": {
+     "polygons": 7,
+     "pixels": 8606,
+     "producers": 0.5166,
+     "to": {
+      "Crater": 0.0959,
+      "steep/windy hills": 0.2329,
+      "lava tube": 0.0117,
+      "volcanic edifice": 0.0578,
+      "apron": 0.0852,
+      "fluvial channel": 0.5166
+     }
+    },
+    "new": {
+     "polygons": 24,
+     "pixels": 9574,
+     "producers": 0.61,
+     "to": {
+      "Crater": 0.0989,
+      "steep/windy hills": 0.0114,
+      "lava tube": 0.0013,
+      "Normal Ground": 0.0693,
+      "volcanic edifice": 0.2091,
+      "fluvial channel": 0.61
+     }
+    },
+    "piece": {
+     "polygons": 262,
+     "pixels": 177789,
+     "producers": 0.6323,
+     "to": {
+      "Crater": 0.089,
+      "steep/windy hills": 0.0461,
+      "lava tube": 0.0009,
+      "Normal Ground": 0.0613,
+      "volcanic edifice": 0.1636,
+      "apron": 0.0068,
+      "fluvial channel": 0.6323
+     }
+    }
+   },
+   "by_block": {
+    "-3_-1": {
+     "polygons": 29,
+     "pixels": 20894,
+     "producers": 0.5675,
+     "to": {
+      "Crater": 0.1874,
+      "steep/windy hills": 0.0552,
+      "lava tube": 0.0012,
+      "Normal Ground": 0.0139,
+      "volcanic edifice": 0.1748,
+      "fluvial channel": 0.5675
+     }
+    },
+    "-4_-1": {
+     "polygons": 17,
+     "pixels": 10439,
+     "producers": 0.3767,
+     "to": {
+      "Crater": 0.4848,
+      "steep/windy hills": 0.1287,
+      "Normal Ground": 0.0013,
+      "volcanic edifice": 0.0069,
+      "apron": 0.0015,
+      "fluvial channel": 0.3767
+     }
+    },
+    "-4_-2": {
+     "polygons": 27,
+     "pixels": 16148,
+     "producers": 0.8017,
+     "to": {
+      "Crater": 0.0074,
+      "steep/windy hills": 0.0022,
+      "lava tube": 0.0049,
+      "Normal Ground": 0.1378,
+      "volcanic edifice": 0.0459,
+      "fluvial channel": 0.8017
+     }
+    },
+    "-9_-1": {
+     "polygons": 2,
+     "pixels": 1091,
+     "producers": 0.0656,
+     "to": {
+      "Crater": 0.031,
+      "steep/windy hills": 0.1504,
+      "lava tube": 0.0921,
+      "volcanic edifice": 0.0036,
+      "apron": 0.6573,
+      "fluvial channel": 0.0656
+     }
+    },
+    "0_0": {
+     "polygons": 7,
+     "pixels": 3942,
+     "producers": 0.7856,
+     "to": {
+      "Crater": 0.0068,
+      "volcanic edifice": 0.2076,
+      "fluvial channel": 0.7856
+     }
+    },
+    "1_0": {
+     "polygons": 74,
+     "pixels": 58017,
+     "producers": 0.705,
+     "to": {
+      "Crater": 0.0449,
+      "steep/windy hills": 0.0,
+      "lava tube": 0.0001,
+      "Normal Ground": 0.01,
+      "volcanic edifice": 0.2399,
+      "fluvial channel": 0.705
+     }
+    },
+    "4_2": {
+     "polygons": 55,
+     "pixels": 28234,
+     "producers": 0.4871,
+     "to": {
+      "Crater": 0.1654,
+      "steep/windy hills": 0.2695,
+      "lava tube": 0.0003,
+      "Normal Ground": 0.0002,
+      "volcanic edifice": 0.0349,
+      "apron": 0.0426,
+      "fluvial channel": 0.4871
+     }
+    },
+    "5_-2": {
+     "polygons": 82,
+     "pixels": 57202,
+     "producers": 0.632,
+     "to": {
+      "Crater": 0.0203,
+      "steep/windy hills": 0.0001,
+      "lava tube": 0.0009,
+      "Normal Ground": 0.1477,
+      "volcanic edifice": 0.1991,
+      "fluvial channel": 0.632
+     }
+    }
+   }
+  }
+ },
+ "fresh_on_fresh_test": {
+  "steep/windy hills": {
+   "all": {
+    "polygons": 52,
+    "pixels": 24135,
+    "producers": 0.1827,
+    "to": {
+     "Crater": 0.4662,
+     "steep/windy hills": 0.1827,
+     "lava tube": 0.2616,
+     "Normal Ground": 0.0002,
+     "volcanic edifice": 0.0244,
+     "apron": 0.0432,
+     "fluvial channel": 0.0218
+    }
+   },
+   "by_kind": {
+    "new": {
+     "polygons": 52,
+     "pixels": 24135,
+     "producers": 0.1827,
+     "to": {
+      "Crater": 0.4662,
+      "steep/windy hills": 0.1827,
+      "lava tube": 0.2616,
+      "Normal Ground": 0.0002,
+      "volcanic edifice": 0.0244,
+      "apron": 0.0432,
+      "fluvial channel": 0.0218
+     }
+    }
+   },
+   "by_block": {
+    "-10_2": {
+     "polygons": 4,
+     "pixels": 1803,
+     "producers": 0.1176,
+     "to": {
+      "Crater": 0.5144,
+      "steep/windy hills": 0.1176,
+      "lava tube": 0.2561,
+      "apron": 0.0004,
+      "fluvial channel": 0.1114
+     }
+    },
+    "-11_-2": {
+     "polygons": 4,
+     "pixels": 2112,
+     "producers": 0.0004,
+     "to": {
+      "Crater": 0.9961,
+      "steep/windy hills": 0.0004,
+      "fluvial channel": 0.0035
+     }
+    },
+    "-1_-3": {
+     "polygons": 4,
+     "pixels": 1853,
+     "producers": 0.0004,
+     "to": {
+      "Crater": 0.9996,
+      "steep/windy hills": 0.0004
+     }
+    },
+    "-4_1": {
+     "polygons": 4,
+     "pixels": 2092,
+     "producers": 0.6299,
+     "to": {
+      "Crater": 0.1811,
+      "steep/windy hills": 0.6299,
+      "lava tube": 0.1811,
+      "volcanic edifice": 0.0004,
+      "apron": 0.0004,
+      "fluvial channel": 0.0069
+     }
+    },
+    "-6_2": {
+     "polygons": 4,
+     "pixels": 1749,
+     "producers": 0.0488,
+     "to": {
+      "Crater": 0.2263,
+      "steep/windy hills": 0.0488,
+      "lava tube": 0.7248
+     }
+    },
+    "-7_1": {
+     "polygons": 4,
+     "pixels": 2088,
+     "producers": 0.0026,
+     "to": {
+      "steep/windy hills": 0.0026,
+      "lava tube": 0.7493,
+      "volcanic edifice": 0.248
+     }
+    },
+    "-9_2": {
+     "polygons": 4,
+     "pixels": 1832,
+     "producers": 0.117,
+     "to": {
+      "steep/windy hills": 0.117,
+      "lava tube": 0.883
+     }
+    },
+    "10_1": {
+     "polygons": 4,
+     "pixels": 2151,
+     "producers": 0.4358,
+     "to": {
+      "Crater": 0.4194,
+      "steep/windy hills": 0.4358,
+      "lava tube": 0.0004,
+      "Normal Ground": 0.0013,
+      "volcanic edifice": 0.0052,
+      "fluvial channel": 0.1378
+     }
+    },
+    "11_1": {
+     "polygons": 4,
+     "pixels": 2153,
+     "producers": 0.2222,
+     "to": {
+      "Crater": 0.0107,
+      "steep/windy hills": 0.2222,
+      "lava tube": 0.4734,
+      "volcanic edifice": 0.0268,
+      "apron": 0.2669
+     }
+    },
+    "3_1": {
+     "polygons": 4,
+     "pixels": 2086,
+     "producers": 0.0009,
+     "to": {
+      "Crater": 0.9983,
+      "steep/windy hills": 0.0009,
+      "fluvial channel": 0.0009
+     }
+    },
+    "6_-3": {
+     "polygons": 4,
+     "pixels": 1802,
+     "producers": 0.4494,
+     "to": {
+      "Crater": 0.2883,
+      "steep/windy hills": 0.4494,
+      "apron": 0.2589,
+      "fluvial channel": 0.0034
+     }
+    },
+    "7_-4": {
+     "polygons": 4,
+     "pixels": 1120,
+     "producers": 0.2425,
+     "to": {
+      "Crater": 0.7575,
+      "steep/windy hills": 0.2425
+     }
+    },
+    "9_-3": {
+     "polygons": 4,
+     "pixels": 1288,
+     "producers": 0.0567,
+     "to": {
+      "Crater": 0.9427,
+      "steep/windy hills": 0.0567,
+      "Normal Ground": 0.0006
+     }
+    }
+   }
+  },
+  "fluvial channel": {
+   "all": {
+    "polygons": 147,
+    "pixels": 69993,
+    "producers": 0.374,
+    "to": {
+     "Crater": 0.3632,
+     "steep/windy hills": 0.0063,
+     "lava tube": 0.1122,
+     "Normal Ground": 0.0122,
+     "volcanic edifice": 0.0928,
+     "apron": 0.0393,
+     "fluvial channel": 0.374
+    }
+   },
+   "by_kind": {
+    "keep": {
+     "polygons": 1,
+     "pixels": 1540,
+     "producers": 0.9076,
+     "to": {
+      "Crater": 0.0924,
+      "fluvial channel": 0.9076
+     }
+    },
+    "new": {
+     "polygons": 35,
+     "pixels": 12069,
+     "producers": 0.6185,
+     "to": {
+      "Crater": 0.1974,
+      "steep/windy hills": 0.0021,
+      "Normal Ground": 0.0093,
+      "volcanic edifice": 0.1728,
+      "fluvial channel": 0.6185
+     }
+    },
+    "piece": {
+     "polygons": 111,
+     "pixels": 56383,
+     "producers": 0.3071,
+     "to": {
+      "Crater": 0.4061,
+      "steep/windy hills": 0.0074,
+      "lava tube": 0.1393,
+      "Normal Ground": 0.0131,
+      "volcanic edifice": 0.0782,
+      "apron": 0.0488,
+      "fluvial channel": 0.3071
+     }
+    }
+   },
+   "by_block": {
+    "-11_-2": {
+     "polygons": 7,
+     "pixels": 3816,
+     "producers": 0.8618,
+     "to": {
+      "Crater": 0.0649,
+      "volcanic edifice": 0.0733,
+      "fluvial channel": 0.8618
+     }
+    },
+    "-1_-3": {
+     "polygons": 20,
+     "pixels": 7736,
+     "producers": 0.5724,
+     "to": {
+      "Crater": 0.0219,
+      "Normal Ground": 0.0957,
+      "volcanic edifice": 0.3099,
+      "fluvial channel": 0.5724
+     }
+    },
+    "-4_1": {
+     "polygons": 26,
+     "pixels": 15870,
+     "producers": 0.3246,
+     "to": {
+      "Crater": 0.2805,
+      "steep/windy hills": 0.0187,
+      "lava tube": 0.366,
+      "volcanic edifice": 0.0101,
+      "fluvial channel": 0.3246
+     }
+    },
+    "3_1": {
+     "polygons": 5,
+     "pixels": 1753,
+     "producers": 0.6451,
+     "to": {
+      "Crater": 0.1663,
+      "Normal Ground": 0.0197,
+      "volcanic edifice": 0.1689,
+      "fluvial channel": 0.6451
+     }
+    },
+    "6_-3": {
+     "polygons": 66,
+     "pixels": 28813,
+     "producers": 0.1089,
+     "to": {
+      "Crater": 0.6714,
+      "steep/windy hills": 0.005,
+      "lava tube": 0.0576,
+      "volcanic edifice": 0.0615,
+      "apron": 0.0955,
+      "fluvial channel": 0.1089
+     }
+    },
+    "7_-4": {
+     "polygons": 9,
+     "pixels": 2440,
+     "producers": 0.2585,
+     "to": {
+      "Crater": 0.1632,
+      "lava tube": 0.1584,
+      "Normal Ground": 0.0005,
+      "volcanic edifice": 0.4193,
+      "fluvial channel": 0.2585
+     }
+    },
+    "9_-3": {
+     "polygons": 14,
+     "pixels": 9561,
+     "producers": 0.8791,
+     "to": {
+      "Crater": 0.0539,
+      "Normal Ground": 0.008,
+      "volcanic edifice": 0.0591,
+      "fluvial channel": 0.8791
+     }
+    }
+   }
+  }
+ }
+}

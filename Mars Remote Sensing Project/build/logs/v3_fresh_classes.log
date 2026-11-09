@@ -1,0 +1,15 @@
+published_on_v3_test steep/windy hills all 121 0.7914
+    keep 8 0.9823 {'Crater': 0.0096, 'steep/windy hills': 0.9823, 'lava tube': 0.0072, 'apron': 0.0009}
+    new 43 0.3515 {'Crater': 0.396, 'steep/windy hills': 0.3515, 'lava tube': 0.1101, 'Normal Ground': 0.0112, 'volcanic edifice': 0.0118, 'apron': 0.0929, 'fluvial channel': 0.0264}
+    piece 70 0.8183 {'Crater': 0.1702, 'steep/windy hills': 0.8183, 'lava tube': 0.0017, 'volcanic edifice': 0.0, 'apron': 0.0091, 'fluvial channel': 0.0005}
+published_on_v3_test fluvial channel all 293 0.6262
+    keep 7 0.5166 {'Crater': 0.0959, 'steep/windy hills': 0.2329, 'lava tube': 0.0117, 'volcanic edifice': 0.0578, 'apron': 0.0852, 'fluvial channel': 0.5166}
+    new 24 0.61 {'Crater': 0.0989, 'steep/windy hills': 0.0114, 'lava tube': 0.0013, 'Normal Ground': 0.0693, 'volcanic edifice': 0.2091, 'fluvial channel': 0.61}
+    piece 262 0.6323 {'Crater': 0.089, 'steep/windy hills': 0.0461, 'lava tube': 0.0009, 'Normal Ground': 0.0613, 'volcanic edifice': 0.1636, 'apron': 0.0068, 'fluvial channel': 0.6323}
+fresh_on_fresh_test steep/windy hills all 52 0.1827
+    new 52 0.1827 {'Crater': 0.4662, 'steep/windy hills': 0.1827, 'lava tube': 0.2616, 'Normal Ground': 0.0002, 'volcanic edifice': 0.0244, 'apron': 0.0432, 'fluvial channel': 0.0218}
+fresh_on_fresh_test fluvial channel all 147 0.374
+    keep 1 0.9076 {'Crater': 0.0924, 'fluvial channel': 0.9076}
+    new 35 0.6185 {'Crater': 0.1974, 'steep/windy hills': 0.0021, 'Normal Ground': 0.0093, 'volcanic edifice': 0.1728, 'fluvial channel': 0.6185}
+    piece 111 0.3071 {'Crater': 0.4061, 'steep/windy hills': 0.0074, 'lava tube': 0.1393, 'Normal Ground': 0.0131, 'volcanic edifice': 0.0782, 'apron': 0.0488, 'fluvial channel': 0.3071}
+-> F:\Mars Remote Sensing Project\build\logs\v3_fresh_classes.json
