@@ -36,6 +36,21 @@ Written 2026-11-07 before any of these runs. Nothing below is adjusted after the
   C3  add's is above cut's: hills and lava tube train in 150 and 11 blocks only because of the added polygons (§69.76).
   C4  each stays below base's: the two together do more than either.
 
+  rep            Added 2026-11-09 at the author's yes ("Yes, queue it"), after noth was scored (KB §69.86, §69.87): the
+                 v3 U-Net trained a second time exactly as the published one (all seven bands, v3's training polygons, the
+                 same chips and settings), so that only the training's own randomness differs. It prices how far one
+                 training differs from another, which noth's drop cannot be separated from. Classified on the windows like
+                 noth and compared with base.
+Predictions for rep, written 2026-11-09 before rep_export runs, while add_export runs and nothing of rep exists:
+  R1  rep's accuracy on each polygon set is within 3 points of base's (so one training differs from another by less than
+      noth's 6.4 and 7.6 points).
+  R2  rep's map differs from base's on less of the windows' ground than noth's does, 28.1 % area-weighted
+      (check_v3_noth_changes.py --run rep).
+  R3  rep's validation loss rises above 5 at some epoch after the 15th, as base's did (23.2): the late spikes repeat with
+      the same labels (read from its training log, not by --report).
+  Reading rule: R1 and R2 held -> noth's drop is larger than one training against another, so the thermal bands carry
+  part of it; R1 not held (rep as far from base as noth) -> noth's drop cannot be given to the thermal bands.
+
 Route, or --report writes nothing: the published unet_v3 and svm_v3 400 m arrays, scored here, must give their logged
 accuracy and kappa within 0.001 on both held-out sets, and base must be the same model read the same way: its accuracy and kappa within 0.005 of the published U-Net on both held-out sets,
 and its array matching the published one on at least 85 % of valid pixels. The first gate here, 90 %, was a guess made before
@@ -78,11 +93,12 @@ BASE_EMD = r"C:\MarsScratch\x5c_v3\models\global60_unet_x5c_v3_20261105"
 STACK5 = os.path.join(G.OUTDIR, "global60_svm_stack_200m_nothermal.tif")
 BLOCKS, NEED, SIZE = 14, 30, (800, 2500)      # a draw: 14 blocks, >= 30 polygons of each class on each side, this many
 SEEDS = {"fresh": 60, "fresh2": 61}
-TAGS = {"fresh": "v3f", "fresh2": "v3g", "noth": "v3nt", "cut": "v3c", "add": "v3a", "base": None}
+TAGS = {"fresh": "v3f", "fresh2": "v3g", "noth": "v3nt", "cut": "v3c", "add": "v3a", "rep": "v3r", "base": None}
 ARR = "global60_landforms_global60_landforms_unet_%s_200m_seamfix_ov400.npy"
 SVM_ARR = "global60_landforms_%s_200m_mode11_ov400.npy"
 PAIRS_F = [("unet", "svm"), ("unet", "near"), ("svm", "near")]
-PAIRS_B = [("base", "noth"), ("base", "cut"), ("base", "add"), ("add", "cut"), ("cut", "unet_v2"), ("add", "unet_v2")]
+PAIRS_B = [("base", "noth"), ("base", "cut"), ("base", "add"), ("add", "cut"), ("cut", "unet_v2"), ("add", "unet_v2"),
+           ("base", "rep"), ("rep", "noth")]
 
 
 def fc(run, side):
@@ -160,8 +176,8 @@ def wire(run):
     if tag:
         L.TAG = "_" + tag
         L.TRAIN = PREFIX % (tag, "train")
-        D.LABELS = V3_TRAIN if run == "noth" else fc(run, "train")
-        if run == "noth":
+        D.LABELS = V3_TRAIN if run in ("noth", "rep") else fc(run, "train")
+        if run in ("noth", "rep"):                           # rep: the published v3 run again, its labels and stack
             L.TRAIN = PREFIX % ("v3", "train")
 
 
@@ -331,7 +347,7 @@ def report():
         if res["base_agrees_with_published"] < 0.85:
             sys.exit(2)
         maps = {"base": pack(base), "unet_v3": published(ARR % "v3"), "unet_v2": published(ARR % "v2")}
-        for run in ("noth", "cut", "add"):
+        for run in ("noth", "cut", "add", "rep"):
             if have(os.path.join(WORK, "classified", run)):
                 maps[run] = pack(win(run))
         pairs = [p for p in PAIRS_B if p[0] in maps and p[1] in maps]
@@ -383,6 +399,8 @@ def judge(res):
         if "cut" in f and "add" in f:
             v["C3"] = f["add"]["balanced"] > f["cut"]["balanced"]
             v["C4"] = max(f["add"]["balanced"], f["cut"]["balanced"]) < f["base"]["balanced"]
+        if "rep" in s2["full"]:
+            v["R1"] = all(abs(s["full"]["rep"]["accuracy"] - s["full"]["base"]["accuracy"]) <= 0.03 for s in (s2, s3))
     return {p: "held" if x else "NOT held" for p, x in v.items()}
 
 

@@ -1,0 +1,16 @@
+exported in 1715 s -> D:\MarsScratch\x5c_v3x\export_tiles
+images = 35909 *7*256*256
+
+Class feature statistics:
+features = 57068
+features per image = [min = 1, mean = 1.59, max = 45]
+classes = 7
+cls name                                  cls value     images   features    min size   mean size    max size
+Crater                                            1       8268       8865        3.38   474232126.59   2621440000.00
+steep/windy hills                                 2       2868       3368     3930.57   85520531.51   1686244302.45
+lava tube                                         3        694       1227       16.11   134367650.29   2621440000.00
+Normal Ground                                     4       7037       7957        7.23   456993123.23   2621440000.17
+volcanic edifice                                  5       3154       6163      207.76   838794555.33   2621440000.00
+apron                                             6       3625       5816       89.74   923137563.42   2621440000.00
+fluvial channel                                   7      11825      23672        6.83   81929249.26   1558966316.30
+

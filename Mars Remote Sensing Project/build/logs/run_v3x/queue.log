@@ -25,3 +25,6 @@
 2026-11-09 06:49:54  start cut_classify
 2026-11-09 07:22:35  end   cut_classify: exit 0, 32.7 min
 2026-11-09 07:22:35  start add_export
+2026-11-09 07:51:46  end   add_export: exit 0, 29.2 min
+2026-11-09 07:51:46  start add_train
+2026-11-09 08:42:07  waiting for process 7288

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 r"""Where the U-Net without thermal (make_v3_extras.py, run noth) maps differently from the same model with it (base).
+With --run rep (2026-11-09): the same for the v3 U-Net trained a second time, prediction R2 (make_v3_extras.py).
 
 KB §69.86: noth scores 6.4 and 7.6 points below base on the held-out polygons, a drop not resolved by block. The
 polygons sample a small part of each window, so this reads the whole of both window maps (the 14 held-out blocks with
@@ -12,12 +13,14 @@ Written 2026-11-09 after the noth scores were read: a description of the two map
 expected to sit on material contrasts, such as lava plains and aprons, more than on relief; a difference from one
 training to another has no such reason to sit anywhere. Reads only; writes logs\v3_noth_changes.json.
 
-  "<ArcGIS Pro Python>" check_v3_noth_changes.py
+  "<ArcGIS Pro Python>" check_v3_noth_changes.py [--run rep]          -> logs\v3_<run>_changes.json
 """
 import os, sys, json, collections
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+RUN = sys.argv[sys.argv.index("--run") + 1] if "--run" in sys.argv else "noth"
+assert RUN in ("noth", "rep"), RUN
 sys.argv += ["--labels", "v3"]
 import make_v3_extras as X
 import numpy as np
@@ -32,7 +35,7 @@ def main():
     shape = a3.shape
     g = B.grid(shape)
     base = X.window_array(os.path.join(X.WORK, "classified", "base"), shape)
-    noth = X.window_array(os.path.join(X.WORK, "classified", "noth"), shape)
+    noth = X.window_array(os.path.join(X.WORK, "classified", RUN), shape)   # "noth" below: the run compared
     units, names = M.unit_raster()
     volc = np.array([names.get(k) in VOLCANIC for k in range(256)])
     H, W = shape
@@ -75,7 +78,7 @@ def main():
                     top_changes=[dict(base=a, noth=b2, share=round(float(s), 4)) for s, a, b2 in top])
 
     grand = T["all"].sum()
-    res = dict(script="check_v3_noth_changes.py", lattice=list(shape))
+    res = dict(script="check_v3_noth_changes.py", run=RUN, lattice=list(shape))
     for k, t in T.items():
         res[k] = summary(t)
         if res[k]:
@@ -88,7 +91,10 @@ def main():
             for c in res[k]["top_changes"]:
                 print("    %-18s -> %-18s %.4f" % (c["base"], c["noth"], c["share"]))
     print("by block:", {b: v["changed"] for b, v in res["by_block"].items()})
-    p = os.path.join(HERE, "logs", "v3_noth_changes.json")
+    if RUN == "rep":                                     # R2, make_v3_extras.py: below noth's 28.1 %
+        res["R2"] = "held" if res["all"]["changed"] < 0.281 else "NOT held"
+        print("R2", res["R2"])
+    p = os.path.join(HERE, "logs", "v3_%s_changes.json" % RUN)
     json.dump(res, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     print("->", p)
 

@@ -25,7 +25,8 @@ $chains = @(
     @("noth", @("export", "train", "classify")),
     @("cut", @("export", "train", "classify")),
     @("add", @("export", "train", "classify")),
-    @("fresh2", @("export", "train", "classify", "svm-train", "svm-classify"))
+    @("fresh2", @("export", "train", "classify", "svm-train", "svm-classify")),
+    @("rep", @("export", "train", "classify"))           # added 2026-11-09 (KB §69.89); queued as -From rep_export -AfterPid
 )
 
 $env:PYTHONDONTWRITEBYTECODE = "1"
