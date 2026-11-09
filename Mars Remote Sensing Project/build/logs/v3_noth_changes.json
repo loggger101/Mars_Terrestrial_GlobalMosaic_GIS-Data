@@ -1,0 +1,264 @@
+{
+ "script": "check_v3_noth_changes.py",
+ "lattice": [
+  17783,
+  53347
+ ],
+ "all": {
+  "area_share_of_windows": 1.0,
+  "changed": 0.2806,
+  "base_area": {
+   "Crater": 0.2709,
+   "steep/windy hills": 0.0415,
+   "lava tube": 0.0255,
+   "Normal Ground": 0.3569,
+   "volcanic edifice": 0.1629,
+   "apron": 0.0615,
+   "fluvial channel": 0.0807
+  },
+  "noth_area": {
+   "Crater": 0.2678,
+   "steep/windy hills": 0.0327,
+   "lava tube": 0.016,
+   "Normal Ground": 0.3555,
+   "volcanic edifice": 0.1966,
+   "apron": 0.056,
+   "fluvial channel": 0.0755
+  },
+  "top_changes": [
+   {
+    "base": "Crater",
+    "noth": "volcanic edifice",
+    "share": 0.0257
+   },
+   {
+    "base": "Normal Ground",
+    "noth": "volcanic edifice",
+    "share": 0.0243
+   },
+   {
+    "base": "volcanic edifice",
+    "noth": "Normal Ground",
+    "share": 0.023
+   },
+   {
+    "base": "fluvial channel",
+    "noth": "Crater",
+    "share": 0.018
+   },
+   {
+    "base": "fluvial channel",
+    "noth": "volcanic edifice",
+    "share": 0.0139
+   },
+   {
+    "base": "volcanic edifice",
+    "noth": "fluvial channel",
+    "share": 0.0132
+   }
+  ]
+ },
+ "volcanic": {
+  "area_share_of_windows": 0.3616,
+  "changed": 0.1905,
+  "base_area": {
+   "Crater": 0.062,
+   "steep/windy hills": 0.0086,
+   "lava tube": 0.0505,
+   "Normal Ground": 0.628,
+   "volcanic edifice": 0.1967,
+   "apron": 0.0261,
+   "fluvial channel": 0.0281
+  },
+  "noth_area": {
+   "Crater": 0.0578,
+   "steep/windy hills": 0.0064,
+   "lava tube": 0.0257,
+   "Normal Ground": 0.6334,
+   "volcanic edifice": 0.2318,
+   "apron": 0.0132,
+   "fluvial channel": 0.0318
+  },
+  "top_changes": [
+   {
+    "base": "Normal Ground",
+    "noth": "volcanic edifice",
+    "share": 0.0296
+   },
+   {
+    "base": "volcanic edifice",
+    "noth": "Normal Ground",
+    "share": 0.0295
+   },
+   {
+    "base": "lava tube",
+    "noth": "volcanic edifice",
+    "share": 0.0243
+   },
+   {
+    "base": "Crater",
+    "noth": "volcanic edifice",
+    "share": 0.0147
+   },
+   {
+    "base": "Normal Ground",
+    "noth": "fluvial channel",
+    "share": 0.0101
+   },
+   {
+    "base": "apron",
+    "noth": "Normal Ground",
+    "share": 0.0085
+   }
+  ]
+ },
+ "other": {
+  "area_share_of_windows": 0.6384,
+  "changed": 0.3317,
+  "base_area": {
+   "Crater": 0.3892,
+   "steep/windy hills": 0.0602,
+   "lava tube": 0.0114,
+   "Normal Ground": 0.2034,
+   "volcanic edifice": 0.1437,
+   "apron": 0.0816,
+   "fluvial channel": 0.1105
+  },
+  "noth_area": {
+   "Crater": 0.3868,
+   "steep/windy hills": 0.0477,
+   "lava tube": 0.0105,
+   "Normal Ground": 0.198,
+   "volcanic edifice": 0.1766,
+   "apron": 0.0802,
+   "fluvial channel": 0.1002
+  },
+  "top_changes": [
+   {
+    "base": "Crater",
+    "noth": "volcanic edifice",
+    "share": 0.0319
+   },
+   {
+    "base": "fluvial channel",
+    "noth": "Crater",
+    "share": 0.0251
+   },
+   {
+    "base": "Normal Ground",
+    "noth": "volcanic edifice",
+    "share": 0.0213
+   },
+   {
+    "base": "volcanic edifice",
+    "noth": "Normal Ground",
+    "share": 0.0193
+   },
+   {
+    "base": "fluvial channel",
+    "noth": "volcanic edifice",
+    "share": 0.019
+   },
+   {
+    "base": "steep/windy hills",
+    "noth": "Crater",
+    "share": 0.0187
+   }
+  ]
+ },
+ "no_unit": null,
+ "by_block": {
+  "-10_2": {
+   "share_of_windows": 0.0073,
+   "changed": 0.0711
+  },
+  "-11_0": {
+   "share_of_windows": 0.0068,
+   "changed": 0.0551
+  },
+  "-11_1": {
+   "share_of_windows": 0.0627,
+   "changed": 0.042
+  },
+  "-11_2": {
+   "share_of_windows": 0.0489,
+   "changed": 0.0409
+  },
+  "-3_-1": {
+   "share_of_windows": 0.0673,
+   "changed": 0.3328
+  },
+  "-3_-2": {
+   "share_of_windows": 0.0069,
+   "changed": 0.2807
+  },
+  "-4_-1": {
+   "share_of_windows": 0.0673,
+   "changed": 0.3651
+  },
+  "-4_-2": {
+   "share_of_windows": 0.0595,
+   "changed": 0.2854
+  },
+  "-4_0": {
+   "share_of_windows": 0.0058,
+   "changed": 0.4448
+  },
+  "-5_-1": {
+   "share_of_windows": 0.0673,
+   "changed": 0.4314
+  },
+  "-5_-2": {
+   "share_of_windows": 0.0058,
+   "changed": 0.4848
+  },
+  "-6_1": {
+   "share_of_windows": 0.0582,
+   "changed": 0.2531
+  },
+  "-8_-1": {
+   "share_of_windows": 0.0102,
+   "changed": 0.1869
+  },
+  "-9_-1": {
+   "share_of_windows": 0.0587,
+   "changed": 0.3744
+  },
+  "-9_0": {
+   "share_of_windows": 0.0628,
+   "changed": 0.2634
+  },
+  "0_0": {
+   "share_of_windows": 0.0673,
+   "changed": 0.3103
+  },
+  "1_-1": {
+   "share_of_windows": 0.013,
+   "changed": 0.2869
+  },
+  "1_0": {
+   "share_of_windows": 0.065,
+   "changed": 0.315
+  },
+  "4_0": {
+   "share_of_windows": 0.0644,
+   "changed": 0.1574
+  },
+  "4_1": {
+   "share_of_windows": 0.0239,
+   "changed": 0.3113
+  },
+  "4_2": {
+   "share_of_windows": 0.0539,
+   "changed": 0.4345
+  },
+  "5_-2": {
+   "share_of_windows": 0.0627,
+   "changed": 0.2843
+  },
+  "6_-2": {
+   "share_of_windows": 0.0078,
+   "changed": 0.3118
+  }
+ }
+}

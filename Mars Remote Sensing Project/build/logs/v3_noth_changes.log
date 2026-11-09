@@ -1,0 +1,23 @@
+all share 1.0 changed 0.2806
+    Crater             -> volcanic edifice   0.0257
+    Normal Ground      -> volcanic edifice   0.0243
+    volcanic edifice   -> Normal Ground      0.0230
+    fluvial channel    -> Crater             0.0180
+    fluvial channel    -> volcanic edifice   0.0139
+    volcanic edifice   -> fluvial channel    0.0132
+volcanic share 0.3616 changed 0.1905
+    Normal Ground      -> volcanic edifice   0.0296
+    volcanic edifice   -> Normal Ground      0.0295
+    lava tube          -> volcanic edifice   0.0243
+    Crater             -> volcanic edifice   0.0147
+    Normal Ground      -> fluvial channel    0.0101
+    apron              -> Normal Ground      0.0085
+other share 0.6384 changed 0.3317
+    Crater             -> volcanic edifice   0.0319
+    fluvial channel    -> Crater             0.0251
+    Normal Ground      -> volcanic edifice   0.0213
+    volcanic edifice   -> Normal Ground      0.0193
+    fluvial channel    -> volcanic edifice   0.0190
+    steep/windy hills  -> Crater             0.0187
+by block: {'-10_2': 0.0711, '-11_0': 0.0551, '-11_1': 0.042, '-11_2': 0.0409, '-3_-1': 0.3328, '-3_-2': 0.2807, '-4_-1': 0.3651, '-4_-2': 0.2854, '-4_0': 0.4448, '-5_-1': 0.4314, '-5_-2': 0.4848, '-6_1': 0.2531, '-8_-1': 0.1869, '-9_-1': 0.3744, '-9_0': 0.2634, '0_0': 0.3103, '1_-1': 0.2869, '1_0': 0.315, '4_0': 0.1574, '4_1': 0.3113, '4_2': 0.4345, '5_-2': 0.2843, '6_-2': 0.3118}
+-> F:\Mars Remote Sensing Project\build\logs\v3_noth_changes.json

@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.86).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.87).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7205,3 +7205,31 @@ the only v3 numbers seen are the training run's validation table (§69.76).
 - **Training, one run each:** noth kept epoch 21 of 0–29 (validation loss 0.502, validation-chip accuracy 0.840), base epoch 18 (0.462, 0.850): one point apart on the chips, 6–8 points apart on the held-out polygons. noth's validation loss then rises to **892.0** at epoch 28 (base's highest 23.2, fresh's 11.9): **the late spikes recur in all three v3 runs**, so they belong to the labels or the training settings. The kept epochs come before them.
 - **Read:** without the thermal bands the seven-class U-Net scores 6.4 and 7.6 points lower, about five times the support vector machine's thermal gain (+1.36 at 200 m on four classes, §56; +1.1 on seven, §69.50), but the difference rests on a few blocks and is not resolved when they are resampled; by class it is apron, hills and lava tube that lose, edifice that gains. **Each model was trained once**, so how much of the 6–8 points is the bands and how much is one training against another is not measured; a second noth training, or a second base, would price that. Not a recommendation to the author either way. The fresh-block results of §69.84–§69.85 are unchanged by the rerun.
 - **The draft's branch did not fit:** block 20 (a2) was written for T1 and T2 both held ("here too the thermal mosaics add little") and (a2') for T2 not held; with T1 not held and T2 held neither is true, so a new sentence goes in (below). `fill_b20.py` (scratch) checked T2 only; it now refuses (a2) unless T1 holds too.
+
+### 69.87 Two diagnoses: the rule's hills sit on large craters' flanks; the no-thermal map differs off the volcanic units more than on them — 2026-11-09, desktop **[V]**
+
+Both written after §69.85 and §69.86 were read: descriptions, not tests. Both read only; run while `cut_train` trains.
+
+**(a) The rule's hills and the craters** (`build\check_v3_hills_craters.py`, `logs\v3_hills_craters.json`, exit 0). For every hills polygon of the third label set, from Robbins & Hynek (2020): `r_norm`, the centroid's distance to the nearest crater ≥ 10 km in that crater's radii; `dens`, craters ≥ 1 km per 1,000 km² within 25 km; for the held-out ones, the share of the polygon each map reads as Crater.
+
+| hills polygons | n | r_norm, median | within 2 R | dens, median | read as Crater, mean |
+|---|---|---|---|---|---|
+| training, the author's (piece, keep) | 62 | 5.09 | 6.5 % | 0.5 | — |
+| training, the rule's (new) | 569 | **2.0** | **49.7 %** | 2.0 | — |
+| held out, the author's, published U-Net | 78 | 4.78 | 16.7 % | 0.5 | 14.5 % |
+| held out, the rule's, published U-Net | 43 | 4.14 | 20.9 % | 1.5 | 38.9 % |
+| fresh, the rule's, fresh U-Net | 52 | 2.57 | 40.4 % | 2.0 | 48.5 % |
+
+- **Closeness predicts the Crater reading on the rule's hills:** Spearman between Crater share and `r_norm` **−0.576** (43 polygons, p = 5.4e-05) on the first 14 blocks and **−0.710** (51 with pixels, p = 5.4e-09) on the fresh ones; the rule's hills within 2 R are read as Crater **79.4 %** (9) and **81.3 %** (20), those beyond it 28.2 % (34) and 27.3 % (31). On the author's hills there is no such tie (0.048).
+- **Read:** the rule's exclusion, no crater ≥ 10 km within 1.3 R, lets half its training hills sit on large craters' rim flanks, steep and high because they are rims; the model reads that ground as Crater. So the hills class is two labels: the author's ridges and knobs, which the U-Net finds, and the rule's crater flanks. The fresh blocks' hills sit closer to craters than the first 14's (40.4 % within 2 R against 20.9 %), which is most of why they score 18.3 % against 35.2 % (§69.85). **Not changed:** the labels, the maps and the scores; a wider exclusion in `propose_v3_labels.py` would be a fourth label set, the author's call, not proposed before the freeze.
+
+**(b) Where the no-thermal map differs** (`build\check_v3_noth_changes.py`, `logs\v3_noth_changes.json`, exit 0). The whole of both window maps (the 14 held-out blocks and their margins, on the 400 m lattice, area-weighted by cos latitude), against SIM 3292's unit groups (`make_geomap_check.unit_raster`):
+
+| | share of the windows | changes class, base → noth |
+|---|---|---|
+| all | 100 % | **28.1 %** |
+| on the volcanic groups (v, ve, vf) | 36.2 % | **19.1 %** |
+| off them | 63.8 % | **33.2 %** |
+
+- Class areas barely move except edifice, **16.3 % → 19.7 %** (on the volcanic groups 19.7 → 23.2 %, off them 14.4 → 17.7 %); lava tube 2.5 → 1.6 %, hills 4.2 → 3.3 %. The largest changes are the U-Net's known confusions: Crater → edifice 2.6 % of the area, Normal Ground → edifice 2.4 %, edifice → Normal Ground 2.3 %, fluvial channel → Crater 1.8 %. By 15° block the change runs from 4.1–7.1 % (−11_1, −11_2, −11_0, −10_2) to 43.1–48.5 % (−5_−1, 4_2, −4_0, −5_−2).
+- **Read:** without the thermal bands the map changes on more than a quarter of the ground, more off the volcanic units than on them, by swaps that leave most class areas where they were. A material signal would be expected on the volcanic ground first; this pattern is what two trainings settling differently would also give. It does not separate the two; a second training of either model would.

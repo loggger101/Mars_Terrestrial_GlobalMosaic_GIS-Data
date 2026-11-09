@@ -1,0 +1,6 @@
+v3_train author {'polygons': 62, 'r_norm_median': 5.09, 'within_2R': 0.065, 'dens_median': 0.5}
+v3_train new {'polygons': 569, 'r_norm_median': 2.0, 'within_2R': 0.497, 'dens_median': 2.0}
+v3_test author {'polygons': 78, 'r_norm_median': 4.78, 'within_2R': 0.167, 'dens_median': 0.5, 'crater_share_mean': 0.145, 'spearman_crater_share_r_norm': 0.048, 'spearman_crater_share_dens': -0.234}
+v3_test new {'polygons': 43, 'r_norm_median': 4.14, 'within_2R': 0.209, 'dens_median': 1.5, 'crater_share_mean': 0.389, 'spearman_crater_share_r_norm': -0.576, 'spearman_crater_share_dens': 0.326}
+fresh_test new {'polygons': 52, 'r_norm_median': 2.57, 'within_2R': 0.404, 'dens_median': 2.0, 'crater_share_mean': 0.485, 'spearman_crater_share_r_norm': -0.71, 'spearman_crater_share_dens': 0.274}
+-> F:\Mars Remote Sensing Project\build\logs\v3_hills_craters.json

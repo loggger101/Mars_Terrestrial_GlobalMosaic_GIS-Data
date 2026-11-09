@@ -7,4 +7,6 @@ LR Finder is complete, type {learner_name}.recorder.plot() to see the graph.
 Training model...
 epoch      training loss        validation loss      accuracy             Dice                 time                
 epoch     train_loss  valid_loss  accuracy  dice      time    
+██0          1.1182929277420044   0.908596932888031    0.6643751263618469   0.2536030411720276   00:17:54             
+0         1.118293    0.908597    0.664375  0.253603  17:54     
 █
