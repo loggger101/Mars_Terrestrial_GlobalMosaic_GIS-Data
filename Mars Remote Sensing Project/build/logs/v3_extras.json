@@ -1,6 +1,6 @@
 {
  "script": "make_v3_extras.py",
- "when": "2026-11-09 00:14",
+ "when": "2026-11-09 07:30",
  "boot": 10000,
  "seed": 60,
  "plan": {
@@ -162,6 +162,20 @@
      "apron": 0.6113,
      "fluvial channel": 0.5643
     }
+   },
+   "cut": {
+    "accuracy": 0.8691,
+    "kappa": 0.8337,
+    "balanced": 0.7813,
+    "producers": {
+     "Crater": 0.8039,
+     "steep/windy hills": 0.7658,
+     "lava tube": 0.4475,
+     "Normal Ground": 0.9749,
+     "volcanic edifice": 0.9464,
+     "apron": 0.8543,
+     "fluvial channel": 0.676
+    }
    }
   },
   "block_bootstrap": {
@@ -225,6 +239,21 @@
     ],
     "accuracy_width": 0.2915
    },
+   "cut": {
+    "accuracy_ci95": [
+     0.7552,
+     0.9358
+    ],
+    "kappa_ci95": [
+     0.6612,
+     0.9118
+    ],
+    "balanced_ci95": [
+     0.632,
+     0.857
+    ],
+    "accuracy_width": 0.1806
+   },
    "base-noth": {
     "accuracy_ci95": [
      -0.0135,
@@ -240,6 +269,38 @@
     ],
     "share_above_0_accuracy": 0.855,
     "share_above_0_balanced": 0.9321
+   },
+   "base-cut": {
+    "accuracy_ci95": [
+     -0.0417,
+     0.1212
+    ],
+    "balanced_ci95": [
+     -0.0512,
+     0.1574
+    ],
+    "kappa_ci95": [
+     -0.052,
+     0.1593
+    ],
+    "share_above_0_accuracy": 0.5794,
+    "share_above_0_balanced": 0.7753
+   },
+   "cut-unet_v2": {
+    "accuracy_ci95": [
+     0.1122,
+     0.2749
+    ],
+    "balanced_ci95": [
+     0.1357,
+     0.2838
+    ],
+    "kappa_ci95": [
+     0.1572,
+     0.343
+    ],
+    "share_above_0_accuracy": 1.0,
+    "share_above_0_balanced": 1.0
    }
   },
   "by_block": {
@@ -247,85 +308,99 @@
     "base": 0.9989,
     "unet_v3": 0.9991,
     "unet_v2": 0.7771,
-    "noth": 0.9997
+    "noth": 0.9997,
+    "cut": 0.9915
    },
    "-11_2": {
     "base": 1.0,
     "unet_v3": 1.0,
     "unet_v2": 0.5427,
-    "noth": 1.0
+    "noth": 1.0,
+    "cut": 0.9937
    },
    "-3_-1": {
     "base": 0.9376,
     "unet_v3": 0.9371,
     "unet_v2": 0.7374,
-    "noth": 0.9351
+    "noth": 0.9351,
+    "cut": 0.9172
    },
    "-4_-1": {
     "base": 0.8486,
     "unet_v3": 0.8296,
     "unet_v2": 0.3923,
-    "noth": 0.7943
+    "noth": 0.7943,
+    "cut": 0.7602
    },
    "-4_-2": {
     "base": 0.4542,
     "unet_v3": 0.453,
     "unet_v2": 0.3182,
-    "noth": 0.3597
+    "noth": 0.3597,
+    "cut": 0.446
    },
    "-5_-1": {
     "base": 0.9672,
     "unet_v3": 0.9832,
     "unet_v2": 0.8968,
-    "noth": 0.5262
+    "noth": 0.5262,
+    "cut": 0.9524
    },
    "-6_1": {
     "base": 0.5674,
     "unet_v3": 0.5641,
     "unet_v2": 0.1056,
-    "noth": 0.7977
+    "noth": 0.7977,
+    "cut": 0.5074
    },
    "-9_-1": {
     "base": 0.7696,
     "unet_v3": 0.7717,
     "unet_v2": 0.686,
-    "noth": 0.5625
+    "noth": 0.5625,
+    "cut": 0.8461
    },
    "-9_0": {
     "base": 0.9467,
     "unet_v3": 0.9458,
     "unet_v2": 0.9631,
-    "noth": 0.969
+    "noth": 0.969,
+    "cut": 0.9779
    },
    "0_0": {
     "base": 0.9832,
     "unet_v3": 0.987,
     "unet_v2": 0.1388,
-    "noth": 0.9921
+    "noth": 0.9921,
+    "cut": 0.3655
    },
    "1_0": {
     "base": 0.7752,
     "unet_v3": 0.7884,
     "unet_v2": 0.1467,
-    "noth": 0.7236
+    "noth": 0.7236,
+    "cut": 0.5867
    },
    "4_0": {
     "base": 0.8825,
     "unet_v3": 0.8901,
     "unet_v2": 0.667,
-    "noth": 0.9401
+    "noth": 0.9401,
+    "cut": 0.9994
    },
    "4_2": {
     "base": 0.4716,
     "unet_v3": 0.4633,
     "unet_v2": 0.1194,
-    "noth": 0.3504
+    "noth": 0.3504,
+    "cut": 0.278
    },
    "5_-2": {
     "base": 0.891,
     "unet_v3": 0.8914,
     "unet_v2": 0.7424,
-    "noth": 0.9321
+    "noth": 0.9321,
+    "cut": 0.9136
    }
   }
  },
@@ -404,6 +479,20 @@
      "apron": 0.5471,
      "fluvial channel": 0.6064
     }
+   },
+   "cut": {
+    "accuracy": 0.8231,
+    "kappa": 0.7744,
+    "balanced": 0.6945,
+    "producers": {
+     "Crater": 0.725,
+     "steep/windy hills": 0.6858,
+     "lava tube": 0.0757,
+     "Normal Ground": 0.9359,
+     "volcanic edifice": 0.9679,
+     "apron": 0.8149,
+     "fluvial channel": 0.6564
+    }
    }
   },
   "block_bootstrap": {
@@ -467,6 +556,21 @@
     ],
     "accuracy_width": 0.3259
    },
+   "cut": {
+    "accuracy_ci95": [
+     0.691,
+     0.9055
+    ],
+    "kappa_ci95": [
+     0.5628,
+     0.8714
+    ],
+    "balanced_ci95": [
+     0.53,
+     0.7523
+    ],
+    "accuracy_width": 0.2145
+   },
    "base-noth": {
     "accuracy_ci95": [
      -0.0067,
@@ -482,6 +586,38 @@
     ],
     "share_above_0_accuracy": 0.925,
     "share_above_0_balanced": 0.9757
+   },
+   "base-cut": {
+    "accuracy_ci95": [
+     -0.0231,
+     0.1912
+    ],
+    "balanced_ci95": [
+     0.0118,
+     0.1698
+    ],
+    "kappa_ci95": [
+     -0.0252,
+     0.2503
+    ],
+    "share_above_0_accuracy": 0.8642,
+    "share_above_0_balanced": 0.9899
+   },
+   "cut-unet_v2": {
+    "accuracy_ci95": [
+     0.1117,
+     0.2392
+    ],
+    "balanced_ci95": [
+     0.1013,
+     0.2224
+    ],
+    "kappa_ci95": [
+     0.1534,
+     0.2918
+    ],
+    "share_above_0_accuracy": 1.0,
+    "share_above_0_balanced": 1.0
    }
   },
   "by_block": {
@@ -489,85 +625,99 @@
     "base": 0.9984,
     "unet_v3": 0.9983,
     "unet_v2": 0.777,
-    "noth": 0.9998
+    "noth": 0.9998,
+    "cut": 0.988
    },
    "-11_2": {
     "base": 0.9926,
     "unet_v3": 0.9968,
     "unet_v2": 0.5449,
-    "noth": 0.9999
+    "noth": 0.9999,
+    "cut": 0.9863
    },
    "-3_-1": {
     "base": 0.9196,
     "unet_v3": 0.9243,
     "unet_v2": 0.7256,
-    "noth": 0.8909
+    "noth": 0.8909,
+    "cut": 0.8515
    },
    "-4_-1": {
     "base": 0.7803,
     "unet_v3": 0.7617,
     "unet_v2": 0.4336,
-    "noth": 0.7225
+    "noth": 0.7225,
+    "cut": 0.6498
    },
    "-4_-2": {
     "base": 0.6857,
     "unet_v3": 0.7148,
     "unet_v2": 0.4824,
-    "noth": 0.6287
+    "noth": 0.6287,
+    "cut": 0.6584
    },
    "-5_-1": {
     "base": 0.7678,
     "unet_v3": 0.7653,
     "unet_v2": 0.5512,
-    "noth": 0.4017
+    "noth": 0.4017,
+    "cut": 0.5938
    },
    "-6_1": {
     "base": 0.8567,
     "unet_v3": 0.8387,
     "unet_v2": 0.0641,
-    "noth": 0.9127
+    "noth": 0.9127,
+    "cut": 0.4167
    },
    "-9_-1": {
     "base": 0.7313,
     "unet_v3": 0.7331,
     "unet_v2": 0.6619,
-    "noth": 0.5128
+    "noth": 0.5128,
+    "cut": 0.8047
    },
    "-9_0": {
     "base": 0.9666,
     "unet_v3": 0.9667,
     "unet_v2": 0.967,
-    "noth": 0.9826
+    "noth": 0.9826,
+    "cut": 0.9836
    },
    "0_0": {
     "base": 0.957,
     "unet_v3": 0.957,
     "unet_v2": 0.1496,
-    "noth": 0.9633
+    "noth": 0.9633,
+    "cut": 0.3787
    },
    "1_0": {
     "base": 0.8783,
     "unet_v3": 0.8935,
     "unet_v2": 0.165,
-    "noth": 0.8392
+    "noth": 0.8392,
+    "cut": 0.4699
    },
    "4_0": {
     "base": 0.87,
     "unet_v3": 0.8496,
     "unet_v2": 0.5544,
-    "noth": 0.9053
+    "noth": 0.9053,
+    "cut": 0.8147
    },
    "4_2": {
     "base": 0.6783,
     "unet_v3": 0.6748,
     "unet_v2": 0.1441,
-    "noth": 0.6131
+    "noth": 0.6131,
+    "cut": 0.3318
    },
    "5_-2": {
     "base": 0.9241,
     "unet_v3": 0.9243,
     "unet_v2": 0.7386,
-    "noth": 0.9571
+    "noth": 0.9571,
+    "cut": 0.9245
    }
   }
  },
@@ -809,6 +959,7 @@
   "F4": "held",
   "F5": "held",
   "T1": "NOT held",
-  "T2": "held"
+  "T2": "held",
+  "C1": "held"
  }
 }

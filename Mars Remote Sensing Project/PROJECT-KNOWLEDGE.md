@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.87).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.88).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7233,3 +7233,21 @@ Both written after §69.85 and §69.86 were read: descriptions, not tests. Both 
 
 - Class areas barely move except edifice, **16.3 % → 19.7 %** (on the volcanic groups 19.7 → 23.2 %, off them 14.4 → 17.7 %); lava tube 2.5 → 1.6 %, hills 4.2 → 3.3 %. The largest changes are the U-Net's known confusions: Crater → edifice 2.6 % of the area, Normal Ground → edifice 2.4 %, edifice → Normal Ground 2.3 %, fluvial channel → Crater 1.8 %. By 15° block the change runs from 4.1–7.1 % (−11_1, −11_2, −11_0, −10_2) to 43.1–48.5 % (−5_−1, 4_2, −4_0, −5_−2).
 - **Read:** without the thermal bands the map changes on more than a quarter of the ground, more off the volcanic units than on them, by swaps that leave most class areas where they were. A material signal would be expected on the volcanic ground first; this pattern is what two trainings settling differently would also give. It does not separate the two; a second training of either model would.
+
+### 69.88 Cutting alone: C1 held; and no loss spikes without the added polygons, a prediction registered for add — 2026-11-09, desktop **[V]**
+
+- **Ran:** `cut_export` 15.7 min, `cut_train` 399.3 min, `cut_classify` 32.7 min, all exit 0, ending 07:22 on 11-09; `add_export` follows. The model, `DLModels\global60_unet_x5c_v3c_20261109`, trains on the v2 polygons' screened pieces alone (Action piece or keep, 7,401 polygons), all seven bands, the v3 run's settings. `make_v3_extras.py --report` exit 0, route and base gates passed.
+
+| U-Net, window maps | 237 v2 polygons | 1,652 v3 polygons |
+|---|---|---|
+| base (cut and added) | 87.5 %, κ 0.843, balanced 84.7 % | 86.4 %, κ 0.827, balanced 77.5 % |
+| **cut** (cut, nothing added) | **86.9 %**, κ 0.834, balanced **78.1 %** | 82.3 %, κ 0.774, balanced 69.5 % |
+| unet_v2 (neither) | 69.0 %, κ 0.606, balanced 56.9 % | 65.8 %, κ 0.565, balanced 52.9 % |
+| cut − unet_v2, block bootstrap | accuracy **+11.2 to +27.5**, balanced **+13.6 to +28.4** | accuracy +11.2 to +23.9, balanced +10.1 to +22.2 |
+| base − cut | accuracy −4.2 to +12.1, balanced −5.1 to +15.7 | accuracy −2.3 to +19.1, balanced **+1.2 to +17.0** |
+
+- **C1 held:** cut's balanced accuracy on the v2 polygons, 78.1 %, is above unet_v2's 56.9 %, and the difference is resolved by block. C2–C4 wait for add.
+- **By class** (producer's, cut − base, v2 / v3 polygons): lava tube **−45.7 / −39.1**, Crater −17.0 / −21.6, hills −10.0 / −12.0, edifice **+18.3 / +17.7**, fluvial channel +11.2 / +3.3, Normal Ground and apron within 4.1. Without the added polygons lava tube (the troughs of the 16 catenae) and Crater (the Robbins discs) are what is lost.
+- **Read, so far:** cutting the v2 polygons into screened pieces, adding nothing, takes the U-Net from 56.9 % to 78.1 % balanced on the like-for-like set, most of the way to base's 84.7 %; whether the remainder is the added polygons waits on add.
+- **Training: no spikes.** cut kept epoch 21 (validation loss **0.235**, validation-chip accuracy 0.911), and its validation loss never rose above **1.32** in 30 epochs. Every earlier v3 training rose far above that late on: base to 23.2 (first above 2 at epoch 22), fresh to 11.9 (epoch 24), noth to 892.0 (epoch 23). All three trained on the added polygons; cut does not. (Validation chips differ between runs, so the losses are compared by their shape, not their level.)
+- **Prediction S1, registered 2026-11-09 07:45 while `add_export` runs and before `add_train` starts, nothing of add yet read:** add trains on the v2 polygons plus the added ones (3,602; 2,868 of them added). If the spikes belong to the added polygons, **add's validation loss rises above 5 at some epoch after the 15th**; if it stays below 2 throughout, as cut's did, the added polygons are not the cause by themselves; between 2 and 5 it is not decided. Either way it is reported.

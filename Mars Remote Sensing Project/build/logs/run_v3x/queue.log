@@ -21,3 +21,7 @@
 2026-11-08 23:54:59  start cut_export
 2026-11-09 00:10:39  end   cut_export: exit 0, 15.7 min
 2026-11-09 00:10:39  start cut_train
+2026-11-09 06:49:54  end   cut_train: exit 0, 399.3 min
+2026-11-09 06:49:54  start cut_classify
+2026-11-09 07:22:35  end   cut_classify: exit 0, 32.7 min
+2026-11-09 07:22:35  start add_export
