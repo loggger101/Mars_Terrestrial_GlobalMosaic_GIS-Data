@@ -269,7 +269,8 @@ A third label set tests whether more and smaller training polygons help. Every s
 written screen for its class, and polygons were added from the crater catalogue, the geologic map and the elevation
 model, by rule and not by eye, giving 10,269 training and 1,652 held-out polygons in the same 14 blocks. The models
 were retrained on them; the U-Net's validation loss was unsteady, and the epoch with the lowest, the 19th of 30, was kept.
-The loss rose the same way late in each of the three later retrainings, and each kept an epoch from before the rise. %% KB §69.84, §69.86
+The loss rose the same way late in each later retraining that kept the added polygons, and each kept an epoch from
+before the rise; trained on the cut pieces alone, like every earlier U-Net, it did not rise. %% KB §69.84, §69.86, §69.88, §69.90
 Each new map is scored on the 237 held-out polygons, the like-for-like comparison, and on the 1,652. A rule written
 before the runs recommends a new map over its predecessor only if on both sets its balanced accuracy and \kap\ are at
 least as high, no class loses 5 points or more of producer's accuracy on the 237 polygons and, for the U-Net, volcanic

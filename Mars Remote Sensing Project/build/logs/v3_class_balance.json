@@ -1,0 +1,241 @@
+{
+ "script": "check_v3_class_balance.py",
+ "runs": {
+  "v2 (unet_v2)": {
+   "polygons": {
+    "Crater": 170,
+    "steep/windy hills": 28,
+    "lava tube": 20,
+    "Normal Ground": 99,
+    "volcanic edifice": 112,
+    "apron": 139,
+    "fluvial channel": 166
+   },
+   "area_km2": {
+    "Crater": 141138,
+    "steep/windy hills": 19433,
+    "lava tube": 19291,
+    "Normal Ground": 591910,
+    "volcanic edifice": 1137912,
+    "apron": 1105282,
+    "fluvial channel": 390137
+   },
+   "share": {
+    "Crater": 0.0414,
+    "steep/windy hills": 0.0057,
+    "lava tube": 0.0057,
+    "Normal Ground": 0.1738,
+    "volcanic edifice": 0.3342,
+    "apron": 0.3246,
+    "fluvial channel": 0.1146
+   },
+   "weight_vs_largest": {
+    "Crater": 8.1,
+    "steep/windy hills": 58.6,
+    "lava tube": 59.0,
+    "Normal Ground": 1.9,
+    "volcanic edifice": 1.0,
+    "apron": 1.0,
+    "fluvial channel": 2.9
+   }
+  },
+  "base / noth (v3)": {
+   "polygons": {
+    "Crater": 949,
+    "steep/windy hills": 631,
+    "lava tube": 106,
+    "Normal Ground": 2081,
+    "volcanic edifice": 1637,
+    "apron": 1924,
+    "fluvial channel": 2941
+   },
+   "area_km2": {
+    "Crater": 849961,
+    "steep/windy hills": 63607,
+    "lava tube": 37096,
+    "Normal Ground": 687532,
+    "volcanic edifice": 976716,
+    "apron": 1092105,
+    "fluvial channel": 324276
+   },
+   "share": {
+    "Crater": 0.2108,
+    "steep/windy hills": 0.0158,
+    "lava tube": 0.0092,
+    "Normal Ground": 0.1705,
+    "volcanic edifice": 0.2423,
+    "apron": 0.2709,
+    "fluvial channel": 0.0804
+   },
+   "weight_vs_largest": {
+    "Crater": 1.3,
+    "steep/windy hills": 17.2,
+    "lava tube": 29.4,
+    "Normal Ground": 1.6,
+    "volcanic edifice": 1.1,
+    "apron": 1.0,
+    "fluvial channel": 3.4
+   }
+  },
+  "fresh": {
+   "polygons": {
+    "Crater": 882,
+    "steep/windy hills": 579,
+    "lava tube": 71,
+    "Normal Ground": 1947,
+    "volcanic edifice": 1440,
+    "apron": 1657,
+    "fluvial channel": 2790
+   },
+   "area_km2": {
+    "Crater": 786757,
+    "steep/windy hills": 59618,
+    "lava tube": 28722,
+    "Normal Ground": 669579,
+    "volcanic edifice": 861324,
+    "apron": 942121,
+    "fluvial channel": 312646
+   },
+   "share": {
+    "Crater": 0.2149,
+    "steep/windy hills": 0.0163,
+    "lava tube": 0.0078,
+    "Normal Ground": 0.1829,
+    "volcanic edifice": 0.2353,
+    "apron": 0.2574,
+    "fluvial channel": 0.0854
+   },
+   "weight_vs_largest": {
+    "Crater": 1.2,
+    "steep/windy hills": 15.8,
+    "lava tube": 32.8,
+    "Normal Ground": 1.4,
+    "volcanic edifice": 1.1,
+    "apron": 1.0,
+    "fluvial channel": 3.0
+   }
+  },
+  "cut": {
+   "polygons": {
+    "Crater": 304,
+    "steep/windy hills": 62,
+    "lava tube": 20,
+    "Normal Ground": 1191,
+    "volcanic edifice": 1618,
+    "apron": 1830,
+    "fluvial channel": 2376
+   },
+   "area_km2": {
+    "Crater": 122935,
+    "steep/windy hills": 19326,
+    "lava tube": 19291,
+    "Normal Ground": 568315,
+    "volcanic edifice": 974668,
+    "apron": 1044654,
+    "fluvial channel": 290363
+   },
+   "share": {
+    "Crater": 0.0404,
+    "steep/windy hills": 0.0064,
+    "lava tube": 0.0063,
+    "Normal Ground": 0.187,
+    "volcanic edifice": 0.3207,
+    "apron": 0.3437,
+    "fluvial channel": 0.0955
+   },
+   "weight_vs_largest": {
+    "Crater": 8.5,
+    "steep/windy hills": 54.1,
+    "lava tube": 54.2,
+    "Normal Ground": 1.8,
+    "volcanic edifice": 1.1,
+    "apron": 1.0,
+    "fluvial channel": 3.6
+   }
+  },
+  "add": {
+   "polygons": {
+    "Crater": 815,
+    "steep/windy hills": 597,
+    "lava tube": 106,
+    "Normal Ground": 989,
+    "volcanic edifice": 131,
+    "apron": 233,
+    "fluvial channel": 731
+   },
+   "area_km2": {
+    "Crater": 868164,
+    "steep/windy hills": 63714,
+    "lava tube": 37096,
+    "Normal Ground": 711126,
+    "volcanic edifice": 1139960,
+    "apron": 1152733,
+    "fluvial channel": 424051
+   },
+   "share": {
+    "Crater": 0.1975,
+    "steep/windy hills": 0.0145,
+    "lava tube": 0.0084,
+    "Normal Ground": 0.1617,
+    "volcanic edifice": 0.2593,
+    "apron": 0.2622,
+    "fluvial channel": 0.0964
+   },
+   "weight_vs_largest": {
+    "Crater": 1.3,
+    "steep/windy hills": 18.1,
+    "lava tube": 31.1,
+    "Normal Ground": 1.6,
+    "volcanic edifice": 1.0,
+    "apron": 1.0,
+    "fluvial channel": 2.7
+   }
+  }
+ },
+ "chips": {
+  "base": {
+   "labels": "labels: F:\\Mars Project\\Mars Project.gdb\\Landform_TrainingSamples_v3_60_train",
+   "chips_per_class": {
+    "Crater": 8237,
+    "steep/windy hills": 2867,
+    "lava tube": 694,
+    "Normal Ground": 7005,
+    "volcanic edifice": 2923,
+    "apron": 3581,
+    "fluvial channel": 10958
+   },
+   "chips": 34841,
+   "features_per_class": {
+    "Crater": 9702,
+    "steep/windy hills": 3590,
+    "lava tube": 1227,
+    "Normal Ground": 15917,
+    "volcanic edifice": 17420,
+    "apron": 17636,
+    "fluvial channel": 37863
+   }
+  },
+  "add": {
+   "labels": "labels: C:\\MarsScratch\\x5c_v3x\\extras.gdb\\Landform_TrainingSamples_v3a_60_train",
+   "chips_per_class": {
+    "Crater": 8268,
+    "steep/windy hills": 2868,
+    "lava tube": 694,
+    "Normal Ground": 7037,
+    "volcanic edifice": 3154,
+    "apron": 3625,
+    "fluvial channel": 11825
+   },
+   "chips": 35909,
+   "features_per_class": {
+    "Crater": 8865,
+    "steep/windy hills": 3368,
+    "lava tube": 1227,
+    "Normal Ground": 7957,
+    "volcanic edifice": 6163,
+    "apron": 5816,
+    "fluvial channel": 23672
+   }
+  }
+ }
+}

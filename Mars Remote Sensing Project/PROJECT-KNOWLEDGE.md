@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.89).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.90).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7259,3 +7259,33 @@ Both written after §69.85 and §69.86 were read: descriptions, not tests. Both 
 - **Predictions R1–R3, in the script's docstring, written 09:00 before `rep_export` runs:** R1 rep's accuracy within 3 points of base's on each polygon set; R2 rep's map differs from base's on less of the windows than noth's 28.1 %; R3 rep's validation loss rises above 5 after epoch 15, as base's did. Reading rule: R1 and R2 held, noth's drop is larger than one training against another; R1 not held, it cannot be given to the thermal bands.
 - **The wiring checked before any run** (`test_rep_wire.py`, scratch): rep reads `V3_TRAIN` like noth and the published run, the seven-band `global60_svm_stack_200m.tif` (noth the five-band one), tag `_v3r`, the same windows; the train step's guard accepts its own export's marker and refuses cut's; no `.emd` is found for rep before it trains. Its chips overwrite the shared export folder on D: in `rep_export`, so `rep_train` cannot read fresh2's (the guard refuses them; noth's would pass the guard by label, but `rep_export` runs first and a failed step stops the chain).
 - **Queued:** `run_v3x.ps1` gains the chain `rep: export, train, classify`; a second queue (PID 64600, `-From rep_export -AfterPid 7288`) waits for the running one to end after fresh2, so nothing running was stopped. `add_train` started 07:51, after S1 was pushed (07:45, §69.88). Expected end of everything: about late Tuesday 10 November (add ~14:30 11-09, fresh2 ~20 h, rep ~13 h).
+
+### 69.90 The loss spikes: only on the added polygons, not from class weights — 2026-11-09, desktop **[V]**
+
+Written while `add_train` runs, after S1 (§69.88) and before any of add was read: descriptions, not tests.
+
+- **Every U-Net trained** (`build\check_v3_loss_spikes.py`, new, standard library only; `logs\v3_loss_spikes.json`; from each model's `training_messages.txt`):
+
+| model | best epoch, validation loss | highest validation loss | first epoch above 2 |
+|---|---|---|---|
+| four-class X5c (10-20) | 28, 0.029 | 1.40 | never |
+| v2p (10-25) | 29, 0.242 | 0.95 | never |
+| v2 (10-28) | 29, 0.305 | 1.36 | never |
+| **cut** (v2 pieces only) | 21, 0.235 | **1.32** | never |
+| base v3 | 18, 0.463 | 23.25 | 22 |
+| fresh | 22, 0.451 | 11.85 | 24 |
+| noth | 21, 0.502 | **892.00** | 23 |
+
+  Only the three trainings with the added polygons rise, all from epoch 22–24, and they also bottom out higher (0.45–0.50 against 0.24–0.31). Their training loss in the last five epochs stays 0.55–0.62 and their validation-chip accuracy about 0.83 while the validation loss rises, so a few validation chips take extreme losses rather than the model failing broadly; the saved model of each run is its best epoch, so the late states that would show which chips are not kept. The script judges S1 and R3 by the rules as registered (late rise above 5 after epoch 15 "held"; below 2 throughout "NOT held"; otherwise "not decided"); on synthetic logs it gives held, NOT held, not decided for a mid-height rise and not decided for an early-only rise. Both read "waiting" now.
+- **Not the class weights** (`build\check_v3_class_balance.py`, new; `logs\v3_class_balance.json`). Training runs with class balancing, each class weighted by the inverse of its pixel share. Per training set, area share and the inverse-share weight against the largest class:
+
+| training set | hills | lava tube | Crater | the largest weight |
+|---|---|---|---|---|
+| v2 (stable) | 0.6 %, 58.6 | 0.6 %, 59.0 | 4.1 %, 8.1 | 59.0 |
+| **cut** (stable) | 0.6 %, 54.1 | 0.6 %, 54.2 | 4.0 %, 8.5 | 54.2 |
+| base / noth (spiked) | 1.6 %, 17.2 | 0.9 %, 29.4 | 21.1 %, 1.3 | 29.4 |
+| fresh (spiked) | 1.6 %, 15.8 | 0.8 %, 32.8 | 21.5 %, 1.2 | 32.8 |
+| add (training now) | 1.5 %, 18.1 | 0.8 %, 31.1 | 19.8 %, 1.3 | 31.1 |
+
+  The stable trainings carry the largest weights, so large class weights alone do not make the loss rise. What the spiking sets share and the stable ones lack is the added polygons: the Robbins discs (Crater 4 % → 20 %), the rule's hills on crater flanks (§69.87), the catena troughs. The chips agree: base's and add's chip sets have the same lava-tube chips (694 chips, 1,227 features) and nearly the same hills chips (2,867 and 2,868); the v3 chips are still at `C:\MarsScratch\x5c_v3\export_tiles`.
+- **Read:** the instability goes with the added polygons, as S1 will test on add; which of them, and why only the validation loss, is not established. The maps are not affected (each keeps a best epoch before the rise), and the paper's training sentence now says the rise came only with the added polygons (it said "each of the three later retrainings", which cut, the fourth, made untrue).
