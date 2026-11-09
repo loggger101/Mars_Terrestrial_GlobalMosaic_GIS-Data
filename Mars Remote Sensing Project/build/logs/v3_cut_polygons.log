@@ -1,0 +1,25 @@
+v2_polygons {'polygons': 237, 'net_points': -0.63, 'top10_points': 0.51, 'largest_polygon_share': 0.1418}
+   class x block, points of the set's pixels, most lost first: [(-2.19, 'Crater', '0_0'), (-1.27, 'Crater', '1_0'), (-0.68, 'apron', '-9_-1'), (-0.25, 'steep/windy hills', '-4_-1'), (-0.22, 'Crater', '5_-2'), (-0.12, 'fluvial channel', '4_2')] most gained: [(0.5, 'fluvial channel', '5_-2'), (0.55, 'volcanic edifice', '-9_0'), (2.95, 'volcanic edifice', '-9_-1')]
+   volcanic edifice   -9_-1    462109 px  base 0.725  cut 0.988  reads {'apron': 0.006}
+   Crater             1_0       65687 px  base 0.964  cut 0.252  reads {'apron': 0.372, 'volcanic edifice': 0.317}
+   Crater             0_0       33456 px  base 1.000  cut 0.093  reads {'apron': 0.562, 'steep/windy hills': 0.198}
+   Crater             0_0       30540 px  base 0.952  cut 0.127  reads {'apron': 0.595, 'fluvial channel': 0.159}
+   Crater             0_0       26625 px  base 1.000  cut 0.276  reads {'apron': 0.589}
+   fluvial channel    1_0       69592 px  base 0.598  cut 0.857  reads {'apron': 0.06}
+   fluvial channel    5_-2      48070 px  base 0.569  cut 0.905  reads {'Crater': 0.07}
+   volcanic edifice   -9_0      70581 px  base 0.631  cut 0.859  reads {'lava tube': 0.079}
+   apron              -9_-1     53496 px  base 0.500  cut 0.219  reads {'volcanic edifice': 0.771}
+   Crater             0_0       29161 px  base 0.995  cut 0.588  reads {'apron': 0.212}
+v3_polygons {'polygons': 1652, 'net_points': -4.06, 'top10_points': -2.2, 'largest_polygon_share': 0.0133}
+   class x block, points of the set's pixels, most lost first: [(-2.36, 'Crater', '0_0'), (-1.64, 'Crater', '1_0'), (-0.52, 'Crater', '-6_1'), (-0.25, 'Crater', '4_2'), (-0.25, 'lava tube', '-5_-1'), (-0.24, 'steep/windy hills', '-4_-1')] most gained: [(0.23, 'fluvial channel', '5_-2'), (0.28, 'volcanic edifice', '-9_0'), (2.64, 'volcanic edifice', '-9_-1')]
+   Crater             -6_1      37373 px  base 0.997  cut 0.355  reads {'volcanic edifice': 0.519}
+   Crater             1_0       30559 px  base 0.970  cut 0.198  reads {'volcanic edifice': 0.299, 'fluvial channel': 0.273}
+   Crater             0_0       46994 px  base 1.000  cut 0.499  reads {'apron': 0.202}
+   Crater             -4_-1     65852 px  base 0.640  cut 0.469  reads {'steep/windy hills': 0.287}
+   Crater             4_2       15189 px  base 1.000  cut 0.458  reads {'apron': 0.426}
+   lava tube          -5_-1     15556 px  base 0.485  cut 0.002  reads {'steep/windy hills': 0.766, 'Crater': 0.115}
+   Crater             -3_-1     21116 px  base 0.982  cut 0.707  reads {'steep/windy hills': 0.169}
+   Crater             1_0        5425 px  base 1.000  cut 0.000  reads {'volcanic edifice': 0.512, 'apron': 0.407}
+   Crater             1_0        5419 px  base 1.000  cut 0.000  reads {'volcanic edifice': 0.931, 'apron': 0.049}
+   volcanic edifice   -9_-1      5404 px  base 0.003  cut 0.998  reads {'fluvial channel': 0.002}
+-> F:\Mars Remote Sensing Project\build\logs\v3_cut_polygons.json

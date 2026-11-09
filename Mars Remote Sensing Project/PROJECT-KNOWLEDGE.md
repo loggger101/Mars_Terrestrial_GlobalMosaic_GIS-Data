@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.91).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.92).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7305,3 +7305,16 @@ Written while `add_train` runs, after S1 (§69.88) and before any of add was rea
 
 - **Read:** the drop is almost all one confusion in one place. Without the thermal bands the U-Net reads the apron polygons on the Tharsis block as volcanic edifice (the largest: 75.3 % correct → 9.4 %, 84.3 → 22.6 %, 97.3 → 51.4 %, each now mostly edifice), and gains a little edifice there. On the v2 set 10 polygons carry −6.06 of the −6.37 points (the largest polygon is 14.2 % of the set's pixels); on the v3 set the same apron ground is cut into many small pieces, so no 10 carry much (−0.91), but by class and block it is the same place.
 - **This corrects §69.87 (b)'s read and the paper's sentence built on it.** Over the whole windows the map changes more off the volcanic units than on them, but the scored drop is on volcanic ground: the apron–edifice boundary of the Tharsis block, where a material difference could plausibly show. So "a material signal would be expected on the volcanic ground first" does not argue against the thermal bands here, and is cut from the paper. Whether the apron–edifice boundary there depends on the thermal bands or on one training is what rep (R1, §69.89) prices; this result makes the comparison sharper: on rep, the apron in −9_−1 is the place to look.
+
+### 69.92 Where cut falls short of base: Crater, which the added discs bring; edifice on Tharsis goes the other way — 2026-11-09, desktop **[V]**
+
+- **Ran:** `check_v3_run_polygons.py --run cut` (`logs\v3_cut_polygons.json`, exit 0), as §69.91. A description, not a test.
+
+| change in correct pixels, cut − base, points, by class | 237 v2 polygons | 1,652 v3 polygons |
+|---|---|---|
+| all | −0.63 | −4.06 |
+| Crater | **−3.64** (0_0 −2.19, 1_0 −1.27) | **−5.45** (0_0 −2.36, 1_0 −1.64, −6_1 −0.52) |
+| volcanic edifice | **+3.55** | **+2.94** |
+| every other class | within 0.60 | within 0.76 |
+
+- **Read:** trained without the added polygons, the U-Net loses Crater: whole held-out craters in blocks 0_0 and 1_0 go to apron and edifice (one 33,456-pixel crater 100 % correct → 9.3 %, another 96.4 → 25.2 %), the ground the Robbins discs teach. It gains edifice, most of it one polygon, the largest edifice polygon in the Tharsis block (462,109 pixels, 72.5 % correct on base → 98.8 % on cut). By pixels the two nearly cancel on the v2 set (−0.63), which is why cut's accuracy (86.9 %) is near base's while its balanced accuracy (78.1 % against 84.7 %) is not: balanced accuracy weights lava tube (producer's −45.7) and Crater (−17.0) as classes, not by area. Add (training now) will show whether the added polygons alone bring Crater back.
