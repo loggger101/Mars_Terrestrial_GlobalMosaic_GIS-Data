@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.90).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.91).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7289,3 +7289,19 @@ Written while `add_train` runs, after S1 (§69.88) and before any of add was rea
 
   The stable trainings carry the largest weights, so large class weights alone do not make the loss rise. What the spiking sets share and the stable ones lack is the added polygons: the Robbins discs (Crater 4 % → 20 %), the rule's hills on crater flanks (§69.87), the catena troughs. The chips agree: base's and add's chip sets have the same lava-tube chips (694 chips, 1,227 features) and nearly the same hills chips (2,867 and 2,868); the v3 chips are still at `C:\MarsScratch\x5c_v3\export_tiles`.
 - **Read:** the instability goes with the added polygons, as S1 will test on add; which of them, and why only the validation loss, is not established. The maps are not affected (each keeps a best epoch before the rise), and the paper's training sentence now says the rise came only with the added polygons (it said "each of the three later retrainings", which cut, the fourth, made untrue).
+
+### 69.91 Noth's drop is one class in one block: apron on the Tharsis block, read as edifice — 2026-11-09, desktop **[V]**
+
+- **Ran:** `build\check_v3_run_polygons.py --run noth` (new; reads only; `logs\v3_noth_polygons.json`, exit 0). Every held-out polygon scored on both window maps; the change in correct pixels per polygon, summed by class and block, as points of each set's pixels. Written after §69.86 was read: a description, not a test. It takes `--run cut | add | rep` too.
+
+| change in correct pixels, noth − base, points | 237 v2 polygons | 1,652 v3 polygons |
+|---|---|---|
+| all | **−6.37** | **−7.63** |
+| apron in −9_−1, the Tharsis block | **−7.75** | **−8.34** |
+| volcanic edifice in −9_−1 | +1.60 | +1.49 |
+| the whole of −9_−1 | −6.15 | −6.85 |
+| hills in −5_−1 | −0.63 | −0.58 |
+| every other class and block, each | within 0.43 | within 0.26 |
+
+- **Read:** the drop is almost all one confusion in one place. Without the thermal bands the U-Net reads the apron polygons on the Tharsis block as volcanic edifice (the largest: 75.3 % correct → 9.4 %, 84.3 → 22.6 %, 97.3 → 51.4 %, each now mostly edifice), and gains a little edifice there. On the v2 set 10 polygons carry −6.06 of the −6.37 points (the largest polygon is 14.2 % of the set's pixels); on the v3 set the same apron ground is cut into many small pieces, so no 10 carry much (−0.91), but by class and block it is the same place.
+- **This corrects §69.87 (b)'s read and the paper's sentence built on it.** Over the whole windows the map changes more off the volcanic units than on them, but the scored drop is on volcanic ground: the apron–edifice boundary of the Tharsis block, where a material difference could plausibly show. So "a material signal would be expected on the volcanic ground first" does not argue against the thermal bands here, and is cut from the paper. Whether the apron–edifice boundary there depends on the thermal bands or on one training is what rep (R1, §69.89) prices; this result makes the comparison sharper: on rep, the apron in −9_−1 is the place to look.
