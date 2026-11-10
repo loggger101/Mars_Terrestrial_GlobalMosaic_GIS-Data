@@ -11,12 +11,15 @@ r"""Charts the final paper and deck need that the interim never drew; all read f
                                          ..._global60_landforms_unet_200m_seamfix.json): producer's and user's per class
   final_img\svm_vs_unet_v2.png           the same for the seven-class SVM and U-Net on the 237 v2 held-out polygons
                                          (KB §69.24, §69.25)
-  final_img2_vs_polygons.png           the four maps' held-out scores beside their estimates on the probability sample,
+  final_img\r2_vs_polygons.png         the four maps' held-out scores beside their estimates on the probability sample,
                                          the AI assistant's labels, its gate waived (KB §69.55, §69.79; the final deck only)
   final_img\extra_runs.png               the U-Net's window maps of the extra runs (make_v3_extras.py; KB §69.86, §69.88,
                                          §69.93): neither, cut only, added only, both, both without thermal (and rep, the
                                          second training, once scored), accuracy and balanced accuracy on both held-out sets
                                          with their block-bootstrap 95 % intervals; logs\v3_extras.json
+  final_img\svm_windows.png              the SVM stand-in on one pixel, with windows to 20 km and to 51 km, on each
+                                         label set, beside the U-Net at the same points (KB §69.95, §69.97, §69.98);
+                                         logs\svm_label_cap_wide.json
 
 Light ground, the palette of the interim charts (accuracy_200m.png). System Python:  py -3.13 make_fig_final.py
 """
@@ -207,6 +210,41 @@ def extra_runs():
     print("wrote", p)
 
 
+def svm_windows():
+    """The SVM stand-in by how much ground it sees, on each label set, beside the U-Net (KB §69.98)."""
+    r = log("svm_label_cap_wide.json")
+    rows = [("pixel", "One pixel"), ("context", "Windows to 20 km"), ("wide", "Windows to 51 km"), (None, "U-Net, third label set")]
+    sets = [("v2", "SVM stand-in, second label set", BLUE, -0.14), ("v3", "SVM stand-in, third label set", ORANGE, 0.14)]
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.9), dpi=200, sharey=True)
+    for ax, ts, title in zip(axes, ("v2", "v3"), ("A  237 v2 held-out polygons", "B  1,652 v3 held-out polygons")):
+        sc = r["test"][ts]["scores"]
+        for y, (k, _) in enumerate(rows):
+            if k is None:
+                v = 100 * sc["pro_unet_v3"]["accuracy"]
+                ax.plot(v, y, "s", color=INK, ms=7, mec="white", mew=1.2, zorder=3, label="U-Net v3" if ts == "v2" else None)
+                ax.text(v + 1.5, y, "%.1f" % v, va="center", color=INK, fontsize=8.5)
+                continue
+            for ls, lab, col, dy in sets:
+                v = 100 * sc["sk_%s_%s" % (ls, k)]["accuracy"]
+                ax.plot(v, y + dy, "o", color=col, ms=7, mec="white", mew=1.2, zorder=3, label=lab if (ts == "v2" and y == 0) else None)
+                ax.text(v + 1.5, y + dy, "%.1f" % v, va="center", color=INK, fontsize=8.5)
+        ax.set_title(title, loc="left", color=INK, fontsize=11)
+        ax.set_xlim(30, 100); ax.set_xlabel("Accuracy at the test points (%)", color=MUTED, fontsize=8.5)
+        clean(ax)
+        ax.grid(False); ax.grid(axis="x", color=GRID, lw=0.8, zorder=0)
+        ax.spines["left"].set_visible(False)
+    axes[0].set_yticks(range(len(rows))); axes[0].set_yticklabels([n for _, n in rows], color=INK)
+    axes[0].set_ylim(len(rows) - 0.5, -0.6)
+    h, l = axes[0].get_legend_handles_labels()
+    fig.legend(h, l, frameon=False, loc="upper right", ncol=3, fontsize=9)
+    fig.text(0.01, 0.01, "Stand-in: scikit-learn SVM (RBF) on the 200 m stack, 2,000 training points a class, each trained once; "
+             "windows add each band's mean and spread. 14,993 and 14,996 test points.", color=MUTED, fontsize=7.5)
+    fig.tight_layout(rect=(0, 0.05, 1, 0.92))
+    p = os.path.join(OUT, "svm_windows.png")
+    fig.savefig(p, facecolor="white"); plt.close(fig)
+    print("wrote", p)
+
+
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     plt.rcParams.update({"font.family": "Arial", "font.size": 10})
@@ -215,6 +253,7 @@ if __name__ == "__main__":
     svm_unet_v2()
     r2_sample()
     extra_runs()
+    svm_windows()
     v3 = ("v3_200m_mode11_on_v2_labels", "global60_landforms_unet_v3_200m_seamfix_on_v2_labels")
     if all(os.path.exists(os.path.join(HERE, "logs", "global60_classification_check_%s.json" % c)) for c in v3):
         svm_unet_v2("v3", v3)

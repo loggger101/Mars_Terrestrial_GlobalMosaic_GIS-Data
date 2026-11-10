@@ -809,7 +809,7 @@ part of the gain, about equally (their difference, $-7.8$ to $+5.8$ points, is n
 together most. By pixel accuracy the added polygons alone score highest, 89.3\%, but lose hills ($-37.4$ points) and
 lava tube ($-38.6$): most of their hills are the rule's. %% KB §69.88, §69.93
 
-The support vector machine's flat score has another cause. A stand-in, a scikit-learn support vector machine on the
+The support vector machine's flat score has another cause (Figure~\ref{fig:svmwindows}). A stand-in, a scikit-learn support vector machine on the
 same seven bands scored at 30,000 points in the 237 polygons, repeats its direction: 39.3\% trained on the second
 label set, 38.8\% on the third, at 1,000 pixels a class. Ten times the 1,000 pixels a class that Pro draws changes its
 accuracy by $-0.6$ to $+1.0$ points, and the third label set does not raise it ($-7.5$ to $+3.1$): what holds the
@@ -875,6 +875,14 @@ polygons. \label{fig:unet8}}
 settings, scored on the 237 v2 and the 1,652 v3 held-out polygons; the first row is the published map on the second
 label set. Dots are scores, lines 95\% intervals with the 14 blocks resampled. A: accuracy; B: balanced accuracy.
 \label{fig:extraruns}}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/svm_windows.png}
+\caption{The support vector machine by how much ground it sees: a scikit-learn stand-in on the same stack, trained once
+on each label set, on one pixel, with each band's mean and spread over windows to 20~km, and to 51~km, the U-Net's
+view; the published U-Net map read at the same 14,993 (A) and 14,996 (B) test points. \label{fig:svmwindows}}
 \end{figure*}
 
 \subsection{A probability sample} \label{sec:sample}
