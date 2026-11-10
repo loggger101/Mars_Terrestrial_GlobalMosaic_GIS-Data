@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.96).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.97).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7369,5 +7369,22 @@ On the 1,652 v3 polygons the same pattern: Pro 40.4 / 38.0 %, the stand-in 36.0�
 
 ### 69.96 fresh2 (F6): the second draw of 14 other blocks, trained — 2026-11-10, desktop **[V]** (scores to follow)
 
-- **Queue:** fresh2_export 22.6 min (31,229 chips) from 20:28 on 11-09; fresh2_train **672.9 min** (11.2 h), ended 08:04 on 11-10; fresh2_classify 33.5 min; fresh2_svm-train from 08:37, still running at 11:07 (fresh's took 81.1 min; `check_svm_label_cap.py` shared the CPU 10:13–10:48, §69.95).
+- **Queue:** fresh2_export 22.6 min (31,229 chips) from 20:28 on 11-09; fresh2_train **672.9 min** (11.2 h), ended 08:04 on 11-10; fresh2_classify 33.5 min; fresh2_svm-train from 08:37, **162.2 min**, ended 11:19:48; fresh2_svm-classify from 11:19:48 (fresh's took 81.1 min; `check_svm_label_cap.py` shared the CPU 10:13–10:48, §69.95).
 - **Training (`check_v3_loss_spikes.py`):** model `global60_unet_x5c_v3g_20261109`, 30 epochs; the epoch of lowest validation loss, **16 (0.571)**, is the one kept, earlier and higher than fresh's 22 (0.451); validation loss above 2 from epoch 18, peaking at **943.74**. fresh2 trains on the added polygons too, so the late spikes appear again with them, as §69.90 found for every run that has them.
+
+### 69.97 Surroundings lift the SVM stand-in; the third label set still does not — 2026-11-10, desktop **[V]**
+
+§69.95 found one pixel's seven bands hold the SVM. `check_svm_label_cap.py --context` (added and its predictions X1, X2 written at 11:30, after §69.95 was read and before this ran; 438 s; `logs\svm_label_cap_context.json`): from §69.95's points, 2,000 training points a class of each label set (13,840 and 13,791 of 14,000 kept) and 15,000 test points of each held-out set (14,993 and 14,996 kept), windows of the 200 m stack read with GDAL; features: the pixel's seven bands plus each band's mean and standard deviation over 5 × 5, 25 × 25 and 101 × 101 pixels (1, 5 and 20 km). The same stand-in SVM, pixel only against pixel plus surroundings; the published U-Net v3 raw map read at the same points. **The check can fail and did not:** the window's centre pixel equals the Sample tool's value at 1.0000 of the points on both sets (it stops below 0.99); a 600-point dry run passed it too.
+
+| at the points | 237 v2 polygons: accuracy, balanced | 1,652 v3 polygons: accuracy, balanced |
+|---|---|---|
+| stand-in, v2 labels, one pixel | 39.9 %, 40.9 % | 37.6 %, 40.6 % |
+| stand-in, v2 labels, with surroundings | **60.9 %**, 63.0 % | 56.9 %, 57.2 % |
+| stand-in, v3 labels, one pixel | 39.2 %, 44.6 % | 36.3 %, 42.8 % |
+| stand-in, v3 labels, with surroundings | **57.1 %**, 59.1 % | 54.1 %, 57.2 % |
+| U-Net v3 (published, raw) | 88.2 %, 84.5 % | 86.6 %, 76.7 % |
+
+- **X1 held:** on the v3 labels surroundings add **+9.7 to +28.2** points of accuracy on the 237 polygons (v3 set +10.7 to +26.3); on the v2 labels +11.8 to +32.0 (+11.3 to +28.3).
+- **X2 not held:** with surroundings the v3 labels score **below** the v2 labels on the 237 polygons, **−9.6 to −0.2** (resolved), and not resolved on the 1,652 (−8.3 to +0.4); balanced −10.6 to +1.2 and −1.8 to +4.6.
+- **The U-Net still leads** the stand-in with surroundings on the v3 labels by +12.0 to +42.9 points on the 237 polygons (v3 set +16.5 to +42.7).
+- **Reading (the rule as registered):** one pixel's bands were the limit, and surroundings summarised to 20 km lift a support vector machine by 18 to 21 points (39.2 → 57.1 %, 39.9 → 60.9 %); but the third label set does not help it even then, and on the 237 polygons it does worse, as the add-only U-Net lost hills (§69.93): the rule's hills on crater flanks teach a classifier of band statistics to call crater ground hills. What the U-Net takes from the third set needs more than band statistics over 20 km: learned spatial patterns and its 51 km view. Each stand-in trained once; a stand-in, not Pro's SVM (§69.95).

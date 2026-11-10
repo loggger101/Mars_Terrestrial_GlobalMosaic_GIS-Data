@@ -816,7 +816,10 @@ support vector machine is one pixel's seven bands, not its sample or its labels.
 between Crater and hills. The rule's hills, half of them on crater flanks, are harder to tell from Crater by those
 bands (two-class accuracy 0.722 against 0.877), and Pro's map on that set reads 21.0\% of the held-out Crater as
 hills, against 4.9\%: Crater, the larger class, loses what hills gains, so accuracy falls while balanced accuracy
-rises. %% KB §69.95
+rises. Given each pixel's surroundings as well, each band's mean and spread over 1, 5 and 20~km, the stand-in rises
+from 39.2\% to 57.1\% on the third label set ($+9.7$ to $+28.2$ points) and to 60.9\% on the second, so the third
+set still does not help it ($-9.6$ to $-0.2$); the U-Net, at 88.2\% on the same points, leads it by $+12.0$ to
+$+42.9$. What the U-Net draws from the third label set takes more than band statistics over 20~km. %% KB §69.95, §69.97
 
 The same 14 held-out blocks have scored every model in this paper. In a run set out before it ran, 14 other blocks
 drawn at random, holding 895 polygons of the third label set, were held out instead and both models retrained on the

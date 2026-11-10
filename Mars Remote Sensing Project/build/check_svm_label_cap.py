@@ -41,6 +41,21 @@ Writes C:\MarsScratch\svm_cap\pts.gdb (points and samples; the project gdb is re
 wrote, how well each pair of classes is told apart by one pixel's seven bands under each label set: 2,000 pixels a
 class, a k-nearest-neighbour classifier (k = 15, bands standardised), 5-fold cross-validated two-class accuracy, 0.5
 being no separation. Writes logs\svm_label_cap_pairs.json.
+
+--context (added 2026-11-10 11:30 after Q0-Q3 were read, §69.95; written before it ran): if one pixel's seven bands are
+what hold the SVM, the pixel's surroundings should lift the same stand-in. From the main run's points (2,000 a class of
+each label set's training points; 15,000 of each held-out set's test points), windows of the 200 m stack are read with
+GDAL around each point; features: the pixel's seven bands, plus the mean and standard deviation of each band over
+5 x 5 (1 km), 25 x 25 (5 km) and 101 x 101 pixels (20 km), NoData left out. The same SVM (RBF, standardised), pixel only
+against pixel plus context, on each label set; Pro's U-Net v3 raw map read at the same points for reference. Checked
+first: the window's centre pixel must equal the Sample tool's value at the point for at least 99 % of test points.
+  X1  On the v3 labels, context raises the stand-in's accuracy on the 237 v2 polygons by at least 5 points, and the
+      block interval of the difference lies above 0.
+  X2  With context, the v3 labels score above the v2 labels on the 237 polygons, the block interval above 0: once the
+      classifier sees surroundings the third label set helps it, as it helped the U-Net.
+  Reading: X1 held -> one pixel's bands were the limit and surroundings lift a support vector machine too; X1 and X2
+  held -> the third label set helps a classifier that sees context, the way the U-Net used it. X1 not held -> windows of
+  up to 20 km do not carry what the U-Net uses (its view is 51 km). Writes logs\svm_label_cap_context.json.
 """
 import os, sys, json, time
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -66,6 +81,7 @@ PER_CLASS = 10000
 N_TEST = 30000
 SIZES = [(1000, 0), (1000, 1), (1000, 2), (3000, 0), (10000, 0)]
 SEVEN = 7
+CTX_TRAIN, CTX_TEST = 2000, 15000                # --context: training points a class, test points a set
 FC = lambda ls, part: os.path.join(PROJECT_GDB, "Landform_TrainingSamples_%s_60_%s" % (ls, part))
 arcpy.env.overwriteOutput = True
 arcpy.env.randomGenerator = "61 ACM599"            # CreateRandomPoints repeatable from run to run
@@ -238,5 +254,92 @@ def pairs():
     print("->", out)
 
 
+def context():
+    from osgeo import gdal
+    t0 = time.time()
+    ds = gdal.Open(STACK)
+    un = gdal.Open(os.path.join(G.OUTDIR, "global60_landforms_unet_v3_200m_seamfix.tif"))
+    gt = ds.GetGeoTransform()
+    assert un.GetGeoTransform() == gt and (un.RasterXSize, un.RasterYSize) == (ds.RasterXSize, ds.RasterYSize)
+    sr = arcpy.Describe(STACK).spatialReference
+    W, H, HALF = ds.RasterXSize, ds.RasterYSize, 50
+
+    def feats(pts):
+        """pts: [(x, y)] in the stack's CRS -> (centre bands, features, U-Net class) per point."""
+        C, F, U = [], [], []
+        for x, y in pts:
+            c, r = int((x - gt[0]) / gt[1]), int((y - gt[3]) / gt[5])
+            c0, r0 = max(0, c - HALF), max(0, r - HALF)
+            c1, r1 = min(W, c + HALF + 1), min(H, r + HALF + 1)
+            a = ds.ReadAsArray(c0, r0, c1 - c0, r1 - r0).astype(np.float32)
+            a[a == 0] = np.nan
+            cy, cx = r - r0, c - c0
+            row = [a[:, cy, cx]]
+            for h in (2, 12, 50):
+                w = a[:, max(0, cy - h):cy + h + 1, max(0, cx - h):cx + h + 1].reshape(7, -1)
+                row += [np.nanmean(w, 1), np.nanstd(w, 1)]
+            C.append(a[:, cy, cx]); F.append(np.concatenate(row))
+            U.append(int(un.ReadAsArray(c, r, 1, 1)[0, 0]))
+        return np.array(C), np.array(F), np.array(U)
+
+    import warnings
+    warnings.simplefilter("ignore", RuntimeWarning)          # all-NaN windows: dropped below
+    res = dict(script="check_svm_label_cap.py --context", per_class=2000, n_test=15000, windows_px=[5, 25, 101])
+    rng = np.random.default_rng(11)
+    Xtr = {}
+    for ls in ("v2", "v3"):
+        cls = {o: v for o, v in arcpy.da.SearchCursor(os.path.join(GDB, "train_%s_dis" % ls), ["OID@", "Classvalue"])}
+        rows = [(cls[c], xy) for _, c, xy in arcpy.da.SearchCursor(os.path.join(GDB, "train_%s_pts" % ls),
+                                                                   ["OID@", "CID", "SHAPE@XY"], spatial_reference=sr)]
+        y = np.array([r[0] for r in rows])
+        pick = np.concatenate([rng.choice(np.where(y == k)[0], CTX_TRAIN, replace=False) for k in range(1, SEVEN + 1)])
+        cen, f, _ = feats([rows[i][1] for i in pick])
+        ok = np.isfinite(f).all(1)
+        Xtr[ls] = (cen[ok], f[ok], y[pick][ok])
+        print(ls, "training", int(ok.sum()), "of", len(pick), "%.0f s" % (time.time() - t0), flush=True)
+    res["test"] = {}
+    for ts in ("v2", "v3"):
+        meta = {o: (v, b) for o, v, b in arcpy.da.SearchCursor(os.path.join(GDB, "test_%s" % ts), ["OID@", "Classvalue", "Block"])}
+        pts = list(arcpy.da.SearchCursor(os.path.join(GDB, "test_%s_pts" % ts), ["OID@", "CID", "SHAPE@XY"], spatial_reference=sr))
+        t = os.path.join(GDB, "test_%s_s" % ts)
+        fl = [x.name for x in arcpy.ListFields(t)]
+        bands = [x for x in fl[2:] if "svm_stack" in x]
+        smp = {r[0]: r[1:] for r in arcpy.da.SearchCursor(t, [fl[1]] + bands)}
+        pick = rng.choice(len(pts), min(CTX_TEST, len(pts)), replace=False)
+        cen, f, u = feats([pts[i][2] for i in pick])
+        same = np.array([np.allclose(cen[j], smp[pts[i][0]], equal_nan=False) if all(v is not None for v in smp[pts[i][0]])
+                         else True for j, i in enumerate(pick)])
+        res["test"][ts] = dict(centre_matches_sample=round(float(same.mean()), 4))
+        print(ts, "centre pixel equals the Sample value at %.4f of points" % same.mean(), flush=True)
+        assert same.mean() >= 0.99, "window centre does not match the Sample tool: coordinates are wrong"
+        y = np.array([meta[pts[i][1]][0] for i in pick]); blocks = np.array([meta[pts[i][1]][1] for i in pick])
+        ok = np.isfinite(f).all(1) & (u >= 1) & (u <= SEVEN)
+        y, blocks, cen, f, u = y[ok], blocks[ok], cen[ok], f[ok], u[ok]
+        preds = {"pro_unet_v3": u}
+        for ls in ("v2", "v3"):
+            c_tr, f_tr, y_tr = Xtr[ls]
+            for kind, a_tr, a_te in (("pixel", c_tr, cen), ("context", f_tr, f)):
+                m = make_pipeline(StandardScaler(), SVC(kernel="rbf", C=1.0, gamma="scale", cache_size=2000))
+                m.fit(a_tr, y_tr)
+                preds["sk_%s_%s" % (ls, kind)] = m.predict(a_te).astype(int)
+        r = res["test"][ts]
+        r.update(points=int(ok.sum()), scores={k: dict(zip(("accuracy", "balanced"), [round(v, 4) for v in scores(y, p_)]))
+                                               for k, p_ in preds.items()})
+        r["block_bootstrap"] = block_ci(y, preds, blocks, [("sk_v3_context", "sk_v3_pixel"), ("sk_v2_context", "sk_v2_pixel"),
+                                                          ("sk_v3_context", "sk_v2_context"), ("pro_unet_v3", "sk_v3_context")])
+        for k, s_ in r["scores"].items():
+            print("  %s %-16s %s" % (ts, k, s_), flush=True)
+    s2, bb = res["test"]["v2"]["scores"], res["test"]["v2"]["block_bootstrap"]
+    v = dict(X1=s2["sk_v3_context"]["accuracy"] - s2["sk_v3_pixel"]["accuracy"] >= 0.05
+             and bb["sk_v3_context - sk_v3_pixel"]["accuracy_ci95"][0] > 0,
+             X2=bb["sk_v3_context - sk_v2_context"]["accuracy_ci95"][0] > 0)
+    res["predictions"] = {k: "held" if x else "NOT held" for k, x in v.items()}
+    res["seconds"] = round(time.time() - t0)
+    print(res["predictions"])
+    out = os.path.join(HERE, "logs", "svm_label_cap_context.json")
+    json.dump(res, open(out, "w", encoding="utf-8"), indent=1)
+    print("->", out)
+
+
 if __name__ == "__main__":
-    pairs() if "--pairs" in sys.argv else main()
+    pairs() if "--pairs" in sys.argv else context() if "--context" in sys.argv else main()

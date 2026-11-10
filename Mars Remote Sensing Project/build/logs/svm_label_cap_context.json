@@ -1,0 +1,153 @@
+{
+ "script": "check_svm_label_cap.py --context",
+ "per_class": 2000,
+ "n_test": 15000,
+ "windows_px": [
+  5,
+  25,
+  101
+ ],
+ "test": {
+  "v2": {
+   "centre_matches_sample": 1.0,
+   "points": 14993,
+   "scores": {
+    "pro_unet_v3": {
+     "accuracy": 0.8817,
+     "balanced": 0.8451
+    },
+    "sk_v2_pixel": {
+     "accuracy": 0.3986,
+     "balanced": 0.409
+    },
+    "sk_v2_context": {
+     "accuracy": 0.609,
+     "balanced": 0.6299
+    },
+    "sk_v3_pixel": {
+     "accuracy": 0.3918,
+     "balanced": 0.4464
+    },
+    "sk_v3_context": {
+     "accuracy": 0.5713,
+     "balanced": 0.5912
+    }
+   },
+   "block_bootstrap": {
+    "sk_v3_context - sk_v3_pixel": {
+     "accuracy_ci95": [
+      0.0973,
+      0.2821
+     ],
+     "balanced_ci95": [
+      0.0827,
+      0.1881
+     ]
+    },
+    "sk_v2_context - sk_v2_pixel": {
+     "accuracy_ci95": [
+      0.1182,
+      0.32
+     ],
+     "balanced_ci95": [
+      0.1775,
+      0.2805
+     ]
+    },
+    "sk_v3_context - sk_v2_context": {
+     "accuracy_ci95": [
+      -0.0959,
+      -0.0017
+     ],
+     "balanced_ci95": [
+      -0.1063,
+      0.012
+     ]
+    },
+    "pro_unet_v3 - sk_v3_context": {
+     "accuracy_ci95": [
+      0.12,
+      0.4287
+     ],
+     "balanced_ci95": [
+      0.0696,
+      0.3382
+     ]
+    }
+   }
+  },
+  "v3": {
+   "centre_matches_sample": 1.0,
+   "points": 14996,
+   "scores": {
+    "pro_unet_v3": {
+     "accuracy": 0.8662,
+     "balanced": 0.7666
+    },
+    "sk_v2_pixel": {
+     "accuracy": 0.3762,
+     "balanced": 0.4062
+    },
+    "sk_v2_context": {
+     "accuracy": 0.569,
+     "balanced": 0.5724
+    },
+    "sk_v3_pixel": {
+     "accuracy": 0.3626,
+     "balanced": 0.4276
+    },
+    "sk_v3_context": {
+     "accuracy": 0.5414,
+     "balanced": 0.5718
+    }
+   },
+   "block_bootstrap": {
+    "sk_v3_context - sk_v3_pixel": {
+     "accuracy_ci95": [
+      0.1067,
+      0.2628
+     ],
+     "balanced_ci95": [
+      0.1068,
+      0.1887
+     ]
+    },
+    "sk_v2_context - sk_v2_pixel": {
+     "accuracy_ci95": [
+      0.113,
+      0.2829
+     ],
+     "balanced_ci95": [
+      0.1185,
+      0.2048
+     ]
+    },
+    "sk_v3_context - sk_v2_context": {
+     "accuracy_ci95": [
+      -0.0832,
+      0.0044
+     ],
+     "balanced_ci95": [
+      -0.018,
+      0.0459
+     ]
+    },
+    "pro_unet_v3 - sk_v3_context": {
+     "accuracy_ci95": [
+      0.1645,
+      0.4268
+     ],
+     "balanced_ci95": [
+      0.0573,
+      0.2574
+     ]
+    }
+   }
+  }
+ },
+ "predictions": {
+  "X1": "held",
+  "X2": "NOT held"
+ },
+ "seconds": 438
+}
