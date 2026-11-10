@@ -68,6 +68,19 @@ as much ground as the U-Net does. Models on the v3 and v2 labels: windows to 20 
       interval's lower end at or below 0).
   Reading: W1-W3 held -> what the U-Net takes from the third label set is learnt spatial pattern, not band statistics
   over its view. W1 not held -> the width of the view carries much of it. Writes logs\svm_label_cap_wide.json.
+
+--context --wide --nothermal (added 2026-11-10 13:00 after W1-W3 were read, §69.98; written before it ran): the U-Net
+without the two thermal bands lost 6.4 and 7.6 points, not resolved by block, nearly all apron in the Tharsis block read
+as edifice (§69.86, §69.91); per pixel the SVM's thermal gain was 1.4-2.0 points on four classes (§69.50). Does a
+support vector machine that sees 51 km draw more from them? The same points and windows; models also fitted without the
+night and day infrared (their pixel values and window statistics).
+  N1  With windows to 51 km on the v3 labels, removing the two thermal bands changes the stand-in's accuracy on the 237
+      v2 polygons by less than 3 points.
+  N2  The block interval of with minus without the thermal bands includes 0 on both held-out sets.
+  Reading: N1 and N2 held -> with surroundings too, a support vector machine draws little from the thermal bands, and
+  the U-Net's larger drop is its own use of them or one training against another (rep prices that). N1 not held -> the
+  thermal bands carry more once surroundings are seen. Apron's producer's accuracy with and without is reported, a
+  description. Writes logs\svm_label_cap_wide_noth.json.
 """
 import os, sys, json, time
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -269,6 +282,7 @@ def pairs():
 def context():
     from osgeo import gdal
     WIDE = "--wide" in sys.argv
+    NOTH = WIDE and "--nothermal" in sys.argv
     HS = (2, 12, 50, 127) if WIDE else (2, 12, 50)
     NARROW = 7 + 14 * 3                                     # the pixel and the windows to 20 km: the --context features
     t0 = time.time()
@@ -337,6 +351,9 @@ def context():
             kinds = (("pixel", c_tr, cen), ("context", f_tr[:, :NARROW], f[:, :NARROW]))
             if WIDE:
                 kinds += (("wide", f_tr, f),)
+            if NOTH:                                        # night_ir, day_ir are bands 4 and 5 of every 7-column group
+                keep_c = np.array([j % 7 not in (3, 4) for j in range(f.shape[1])])
+                kinds += (("wide_noth", f_tr[:, keep_c], f[:, keep_c]),)
             for kind, a_tr, a_te in kinds:
                 m = make_pipeline(StandardScaler(), SVC(kernel="rbf", C=1.0, gamma="scale", cache_size=2000))
                 m.fit(a_tr, y_tr)
@@ -353,6 +370,8 @@ def context():
         if WIDE:
             pairs_ += [("sk_v3_wide", "sk_v3_context"), ("sk_v2_wide", "sk_v2_context"), ("pro_unet_v3", "sk_v3_wide"),
                        ("sk_v3_wide", "sk_v2_wide")]
+        if NOTH:
+            pairs_ += [("sk_v3_wide", "sk_v3_wide_noth"), ("sk_v2_wide", "sk_v2_wide_noth")]
         r["block_bootstrap"] = block_ci(y, preds, blocks, pairs_)
         for k, s_ in r["scores"].items():
             print("  %s %-16s %s" % (ts, k, s_), flush=True)
@@ -361,6 +380,10 @@ def context():
         v = dict(W1=s2["sk_v3_wide"]["accuracy"] - s2["sk_v3_context"]["accuracy"] < 0.05,
                  W2=bb["pro_unet_v3 - sk_v3_wide"]["accuracy_ci95"][0] > 0,
                  W3=bb["sk_v3_wide - sk_v2_wide"]["accuracy_ci95"][0] <= 0)
+        if NOTH:
+            v["N1"] = abs(s2["sk_v3_wide"]["accuracy"] - s2["sk_v3_wide_noth"]["accuracy"]) < 0.03
+            v["N2"] = all((lambda c: c[0] <= 0 <= c[1])(res["test"][t]["block_bootstrap"]["sk_v3_wide - sk_v3_wide_noth"]["accuracy_ci95"])
+                          for t in ("v2", "v3"))
     else:
         v = dict(X1=s2["sk_v3_context"]["accuracy"] - s2["sk_v3_pixel"]["accuracy"] >= 0.05
                  and bb["sk_v3_context - sk_v3_pixel"]["accuracy_ci95"][0] > 0,
@@ -368,7 +391,7 @@ def context():
     res["predictions"] = {k: "held" if x else "NOT held" for k, x in v.items()}
     res["seconds"] = round(time.time() - t0)
     print(res["predictions"])
-    out = os.path.join(HERE, "logs", "svm_label_cap_%s.json" % ("wide" if WIDE else "context"))
+    out = os.path.join(HERE, "logs", "svm_label_cap_%s.json" % ("wide_noth" if NOTH else "wide" if WIDE else "context"))
     json.dump(res, open(out, "w", encoding="utf-8"), indent=1)
     print("->", out)
 

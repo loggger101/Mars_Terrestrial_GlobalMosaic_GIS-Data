@@ -641,15 +641,21 @@ area. Terrain alone ties the score but makes a poor crater map (34 of 124 crater
 hand-drawn classes are landform classes, a terrain property, and cannot price a material signal. %% KB §40.1, §56, §56.1, §69.18
 
 The seven-class U-Net was retrained once without the two thermal bands, on the third label set, with the prediction
-written first that it would score within 3 points. It scores 81.2\% on the 237 polygons against 87.5\% with them (Figure~
-ef{fig:extraruns}), and
+written first that it would score within 3 points. It scores 81.2\% on the 237 polygons against 87.5\% with them (Figure~\ref{fig:extraruns}), and
 78.7\% against 86.4\% on the 1,652, so the prediction does not hold: the drop is about five times the support vector
 machine's gain. It is not resolved when the blocks are resampled ($-1.4$ to $+14.8$ and $-0.7$ to $+15.8$ points): two
 blocks carry most of it and one goes the other way, and apron, hills and lava tube lose while volcanic edifice gains
 10.7 points. The drop is almost all one confusion in one place: apron polygons in the Tharsis block, read as volcanic
 edifice without the thermal bands, cost 7.75 and 8.34 points. Across the whole of the 14 blocks the two maps differ
 on 28.1\% of the ground, mostly by swaps that leave the class areas where they were. Each model was trained once, so
-the bands' share is not separated from the difference between one training and another. %% KB §69.86, §69.87, §69.91
+the bands' share is not separated from the difference between one training and another. A second classifier narrows
+this: the scikit-learn stand-in of Section~\ref{sec:v3}, given each band's mean and spread over windows to 51~km, was
+fitted again without the two thermal bands, with the prediction written first that it would move by under 3 points. It
+falls 8.0 points on both sets (62.0 to 54.0\% on the 237 polygons, 59.0 to 51.0\% on the 1,652), and the drop
+is resolved by block ($+0.91$ to $+11.99$ and $+1.66$ to $+11.48$ points). Apron again loses most (producer's 36.15 to
+19.74\%, 4.79 of the 8.02 points), then volcanic edifice (1.93) and Crater (0.87). Per pixel the thermal bands add under
+2 points; seen with their surroundings they carry as much for a support vector machine as for the U-Net, though
+window statistics of mosaics stretched region by region may carry place as much as material. %% KB §69.86, §69.87, §69.91, §69.99
 
 \begin{figure}[t]
 \centering
@@ -801,8 +807,7 @@ the third's. The gain is broad: 13 of the 14 blocks rise and 183 polygons gain a
 points Crater gives 8.6 and Normal Ground 5.6, as the earlier model's calling Crater edifice or apron, and Normal Ground
 edifice, nearly stops. The Tharsis block with 29.7\% of the pixels gains least and reads 77.2\%. %% KB §69.80
 
-Two retrainings set out before they ran split the U-Net's gain (Figure~
-ef{fig:extraruns}). Trained on the cut pieces alone (7,401 polygons),
+Two retrainings set out before they ran split the U-Net's gain (Figure~\ref{fig:extraruns}). Trained on the cut pieces alone (7,401 polygons),
 adding nothing, it reaches a balanced accuracy of 78.1\% on the 237 polygons; on the second label set plus the added
 polygons alone (3,602), cutting nothing, 77.6\%; against 84.7\% with both and 56.9\% with neither. Each half gives
 part of the gain, about equally (their difference, $-7.8$ to $+5.8$ points, is not resolved by block), and the two
@@ -962,7 +967,9 @@ attributes \citep{Bue2006} need no labels but name nothing; the supervised maps 
 on blocks they never saw. What the stack adds is the one grid: the three families are mapped from co-registered
 visible, thermal and elevation data, and the thermal bands' share is measured rather than assumed: for the support
 vector machine small (1.4 to 2.0 points on four classes) and, by balanced accuracy, absent; for the seven-class U-Net,
-trained once each way, larger (6.4 to 7.6 points) but not resolved by block. %% KB §69.40, §69.50 (W3), §69.86
+trained once each way, larger (6.4 to 7.6 points) but not resolved by block; and for a support vector machine given
+the U-Net's 51~km of surroundings, 8.0 points and resolved, so the share grows with the ground a classifier sees.
+%% KB §69.40, §69.50 (W3), §69.86, §69.99
 
 \subsection{Limits}
 
@@ -1033,7 +1040,8 @@ valleys no more often than a rotated valley map; stream order is a parameter, no
 \item The four-class landform map scores a balanced accuracy of 66.7\% (73.8\%, \kap\,0.58 overall) on blocks it never
 saw, where geography alone, the nearest training polygon's class, gives 61.3\% (83.2\% overall); the thermal bands add
 a resolved 1.4 to 2.0 points of overall accuracy and none by balanced accuracy. A seven-class U-Net trained once
-without them scores 6.4 to 7.6 points lower, a difference not resolved by block. A U-Net reaches 98.9\% as a
+without them scores 6.4 to 7.6 points lower, a difference not resolved by block; a support vector machine given 51~km
+of surroundings loses 8.0 points without them, a resolved difference. A U-Net reaches 98.9\% as a
 terrain-province map.
 \item Revised to seven classes, the maps separate impact craters from volcanoes and name volcanic edifices, aprons
 and fluvial channels: the U-Net scored 69.0\%, \kap\,0.606 and the support vector machine 42.5\% on 237 held-out
