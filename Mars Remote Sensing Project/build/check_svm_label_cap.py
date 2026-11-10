@@ -81,6 +81,19 @@ night and day infrared (their pixel values and window statistics).
   the U-Net's larger drop is its own use of them or one training against another (rep prices that). N1 not held -> the
   thermal bands carry more once surroundings are seen. Apron's producer's accuracy with and without is reported, a
   description. Writes logs\svm_label_cap_wide_noth.json.
+
+--context --wide --nothermal --thermsplit (added 2026-11-10 12:55 after N1 and N2 were read, §69.99; written before it
+ran): without the thermal bands the 51 km stand-in on the v3 labels lost 8.02 points on the 237 polygons, resolved,
+mostly apron. Two questions about where that lies. The same points and windows; models also fitted (a) with the two
+thermal bands' pixel values but not their window statistics, (b) without the thermal bands but with the point's map
+coordinates (x, y of the stack's grid, standardised like every feature), (c) all 63 features and the coordinates.
+  S1  (a) scores within 2 points of the model without the thermal bands on the 237 polygons: the thermal value lies in
+      the window statistics, not in the pixel.
+  S2  (b) recovers less than half of the 8.02 points on the 237 polygons: the thermal window statistics are not only a
+      stand-in for where a point lies.
+  Reading: S1 held -> the bands matter over a region, not per pixel, as the per-pixel SVM's small gain suggested. S2 not
+  held -> where a point lies does most of the thermal statistics' work in held-out blocks, so they need not carry
+  material. (c) against the 51 km model is reported, a description. Writes logs\svm_label_cap_thermsplit.json.
 """
 import os, sys, json, time
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -283,6 +296,7 @@ def context():
     from osgeo import gdal
     WIDE = "--wide" in sys.argv
     NOTH = WIDE and "--nothermal" in sys.argv
+    SPLIT = NOTH and "--thermsplit" in sys.argv
     HS = (2, 12, 50, 127) if WIDE else (2, 12, 50)
     NARROW = 7 + 14 * 3                                     # the pixel and the windows to 20 km: the --context features
     t0 = time.time()
@@ -316,7 +330,7 @@ def context():
     res = dict(script="check_svm_label_cap.py --context" + (" --wide" if WIDE else ""), per_class=CTX_TRAIN,
                n_test=CTX_TEST, windows_px=[2 * h + 1 for h in HS])
     rng = np.random.default_rng(11)
-    Xtr = {}
+    Xtr, XYtr = {}, {}
     for ls in ("v2", "v3"):
         cls = {o: v for o, v in arcpy.da.SearchCursor(os.path.join(GDB, "train_%s_dis" % ls), ["OID@", "Classvalue"])}
         rows = [(cls[c], xy) for _, c, xy in arcpy.da.SearchCursor(os.path.join(GDB, "train_%s_pts" % ls),
@@ -326,6 +340,7 @@ def context():
         cen, f, _ = feats([rows[i][1] for i in pick])
         ok = np.isfinite(f).all(1)
         Xtr[ls] = (cen[ok], f[ok], y[pick][ok])
+        XYtr[ls] = np.array([rows[i][1] for i in pick], dtype=float)[ok]
         print(ls, "training", int(ok.sum()), "of", len(pick), "%.0f s" % (time.time() - t0), flush=True)
     res["test"] = {}
     for ts in ("v2", "v3"):
@@ -337,6 +352,7 @@ def context():
         smp = {r[0]: r[1:] for r in arcpy.da.SearchCursor(t, [fl[1]] + bands)}
         pick = rng.choice(len(pts), min(CTX_TEST, len(pts)), replace=False)
         cen, f, u = feats([pts[i][2] for i in pick])
+        xy = np.array([pts[i][2] for i in pick], dtype=float)
         same = np.array([np.allclose(cen[j], smp[pts[i][0]], equal_nan=False) if all(v is not None for v in smp[pts[i][0]])
                          else True for j, i in enumerate(pick)])
         res["test"][ts] = dict(centre_matches_sample=round(float(same.mean()), 4))
@@ -344,7 +360,7 @@ def context():
         assert same.mean() >= 0.99, "window centre does not match the Sample tool: coordinates are wrong"
         y = np.array([meta[pts[i][1]][0] for i in pick]); blocks = np.array([meta[pts[i][1]][1] for i in pick])
         ok = np.isfinite(f).all(1) & (u >= 1) & (u <= SEVEN)
-        y, blocks, cen, f, u = y[ok], blocks[ok], cen[ok], f[ok], u[ok]
+        y, blocks, cen, f, u, xy = y[ok], blocks[ok], cen[ok], f[ok], u[ok], xy[ok]
         preds = {"pro_unet_v3": u}
         for ls in ("v2", "v3"):
             c_tr, f_tr, y_tr = Xtr[ls]
@@ -354,6 +370,12 @@ def context():
             if NOTH:                                        # night_ir, day_ir are bands 4 and 5 of every 7-column group
                 keep_c = np.array([j % 7 not in (3, 4) for j in range(f.shape[1])])
                 kinds += (("wide_noth", f_tr[:, keep_c], f[:, keep_c]),)
+            if SPLIT:                                       # (a) thermal pixel kept, thermal window statistics dropped
+                keep_p = np.array([j < 7 or j % 7 not in (3, 4) for j in range(f.shape[1])])
+                xy_tr = XYtr[ls]
+                kinds += (("wide_thpix", f_tr[:, keep_p], f[:, keep_p]),
+                          ("wide_noth_xy", np.hstack([f_tr[:, keep_c], xy_tr]), np.hstack([f[:, keep_c], xy])),
+                          ("wide_xy", np.hstack([f_tr, xy_tr]), np.hstack([f, xy])))
             for kind, a_tr, a_te in kinds:
                 m = make_pipeline(StandardScaler(), SVC(kernel="rbf", C=1.0, gamma="scale", cache_size=2000))
                 m.fit(a_tr, y_tr)
@@ -372,6 +394,9 @@ def context():
                        ("sk_v3_wide", "sk_v2_wide")]
         if NOTH:
             pairs_ += [("sk_v3_wide", "sk_v3_wide_noth"), ("sk_v2_wide", "sk_v2_wide_noth")]
+        if SPLIT:
+            pairs_ += [("sk_v3_wide_thpix", "sk_v3_wide_noth"), ("sk_v3_wide_noth_xy", "sk_v3_wide_noth"),
+                       ("sk_v3_wide_xy", "sk_v3_wide")]
         r["block_bootstrap"] = block_ci(y, preds, blocks, pairs_)
         for k, s_ in r["scores"].items():
             print("  %s %-16s %s" % (ts, k, s_), flush=True)
@@ -384,6 +409,10 @@ def context():
             v["N1"] = abs(s2["sk_v3_wide"]["accuracy"] - s2["sk_v3_wide_noth"]["accuracy"]) < 0.03
             v["N2"] = all((lambda c: c[0] <= 0 <= c[1])(res["test"][t]["block_bootstrap"]["sk_v3_wide - sk_v3_wide_noth"]["accuracy_ci95"])
                           for t in ("v2", "v3"))
+        if SPLIT:
+            loss = s2["sk_v3_wide"]["accuracy"] - s2["sk_v3_wide_noth"]["accuracy"]
+            v["S1"] = abs(s2["sk_v3_wide_thpix"]["accuracy"] - s2["sk_v3_wide_noth"]["accuracy"]) < 0.02
+            v["S2"] = s2["sk_v3_wide_noth_xy"]["accuracy"] - s2["sk_v3_wide_noth"]["accuracy"] < loss / 2
     else:
         v = dict(X1=s2["sk_v3_context"]["accuracy"] - s2["sk_v3_pixel"]["accuracy"] >= 0.05
                  and bb["sk_v3_context - sk_v3_pixel"]["accuracy_ci95"][0] > 0,
@@ -391,7 +420,7 @@ def context():
     res["predictions"] = {k: "held" if x else "NOT held" for k, x in v.items()}
     res["seconds"] = round(time.time() - t0)
     print(res["predictions"])
-    out = os.path.join(HERE, "logs", "svm_label_cap_%s.json" % ("wide_noth" if NOTH else "wide" if WIDE else "context"))
+    out = os.path.join(HERE, "logs", "svm_label_cap_%s.json" % ("thermsplit" if SPLIT else "wide_noth" if NOTH else "wide" if WIDE else "context"))
     json.dump(res, open(out, "w", encoding="utf-8"), indent=1)
     print("->", out)
 

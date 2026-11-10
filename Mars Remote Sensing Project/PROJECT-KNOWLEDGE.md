@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.99).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.100).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7422,4 +7422,25 @@ On the 1,652 v3 polygons the same pattern: Pro 40.4 / 38.0 %, the stand-in 36.0�
 - **N2 not held:** with the 14 blocks resampled, with minus without is **+0.91 to +11.99** points (v3 set +1.66 to +11.48); balanced +2.97 to +10.85 and +3.33 to +7.58. On the v2 labels the loss is smaller, 4.26 and 3.98 points (+0.28 to +6.29 and +0.00 to +5.97).
 - **Where it lies (a description):** each class's share of the 237-polygon points times its loss of producer's accuracy sums, from the four-decimal values in the log, to 8.01 of the 8.02 points: **apron 4.79** (36.15 → 19.74 %), volcanic edifice 1.93 (54.88 → 44.88 %), Crater 0.87 (57.67 → 53.63 %), the rest 0.43; no class gains. On the 1,652: apron 34.60 → 19.28 %, edifice 58.34 → 47.63 %, Crater 51.61 → 46.30 %. Apron loses most, as for the U-Net; unlike the U-Net (edifice +10.7, §69.91), edifice loses too.
 - **Reading (as registered):** the thermal bands carry more once surroundings are seen. A second classifier with the U-Net's view loses about as much without them as the U-Net did (8.0 points against 6.4 and 7.6), mostly apron, and here the loss is resolved by block; the U-Net's drop is not an oddity of one training, and the bands' small share per pixel (1.4–2.0 points) understates what they hold over a region. What they hold is not shown to be material: the mosaics are stretched region by region (§24), so window statistics of the thermal bands can carry regional contrast and place as much as surface properties. Each stand-in was fitted once, on one draw of points.
-- **Placed:** paper: three sentences after the U-Net's thermal retraining (Section 4), a clause in the discussion's thermal sentence and in conclusion item 4; deck: the thermal Limits card (slide 40), shortened to fit. The paper is now 25 pages (the references run onto a 25th). **A fault found on the way:** two `Figure~ef{fig:extraruns}` in the tex (the thermal retraining and the U-Net's gain, both written for §69.94) had lost their `` to a line break in a shell edit, and the committed PDF printed "Figure effig:extraruns"; both restored, and the tex, `v2_drafts.tex`, `final.py` and this file hold no other control characters or command stubs at a line start.
+- **Placed:** paper: three sentences after the U-Net's thermal retraining (Section 4), a clause in the discussion's thermal sentence and in conclusion item 4; deck: the thermal Limits card (slide 40), shortened to fit. The paper is now 25 pages (the references run onto a 25th). **A fault found on the way:** two `Figure~
+ef{fig:extraruns}` in the tex (the thermal retraining and the U-Net's gain, both written for §69.94) had lost their `
+` to a line break in a shell edit, and the committed PDF printed "Figure effig:extraruns"; both restored, and the tex, `v2_drafts.tex`, `final.py` and this file hold no other control characters or command stubs at a line start.
+
+### 69.100 Where the thermal bands' share lies: the window statistics, and place — 2026-11-10, desktop **[V]**
+
+`check_svm_label_cap.py --context --wide --nothermal --thermsplit` (predictions S1, S2 written into the docstring after §69.99 was read and before this ran; 1844 s; `logs\svm_label_cap_thermsplit.json`): §69.99's points, windows and models again (every score of `svm_label_cap_wide_noth.json` reproduced exactly), and three more fits on each label set: (a) the thermal bands' pixel values kept but not their window statistics; (b) no thermal bands, but the point's map coordinates (x and y on the stack's grid, standardised like every feature); (c) all 63 features and the coordinates. The test points lie in held-out 15° blocks, so the coordinates give a model only what it learnt in the blocks around, as the nearest-polygon baseline does (§69.35).
+
+| v3 labels, at the points | 237 v2 polygons: accuracy, balanced | 1,652 v3 polygons: accuracy, balanced |
+|---|---|---|
+| windows to 51 km (§69.98) | 62.0 %, 65.2 % | 59.0 %, 60.9 % |
+| without the thermal bands (§69.99) | 54.0 %, 56.7 % | 51.0 %, 54.6 % |
+| (a) with the thermal pixel values only | 54.1 %, 57.3 % | 51.1 %, 55.0 % |
+| (b) without the thermal bands, with coordinates | 62.7 %, 61.8 % | 58.7 %, 59.3 % |
+| (c) all bands and coordinates | 69.2 %, 68.3 % | 65.1 %, 65.0 % |
+| U-Net v3 (published, raw) | 88.2 %, 84.5 % | 86.6 %, 76.7 % |
+
+- **S1 held:** the thermal pixel values add **+0.14 points** to the model without the thermal bands on the 237 polygons (−0.79 to +0.81; v3 set +0.10, −0.59 to +0.56): the bands' share lies in their statistics over the surroundings, none in the pixel.
+- **S2 not held:** the coordinates, in place of the thermal bands, recover **8.67 points** of the 8.02 lost (54.00 → 62.67 %; +2.28 to +13.77), on the 1,652 7.71 of 8.00 (+1.69 to +12.29); balanced 5.03 of 8.45. Apron, the class the thermal bands carried, returns from 19.74 to 39.90 % (36.15 % with the thermal bands), edifice 44.88 → 51.05 %; lava tube does not (10.34 → 6.90 %, 31.03 % with the thermal bands; 29 points of a 0.19 % class).
+- **(c), a description:** with the thermal bands and the coordinates the stand-in reaches **69.15 %** (+7.13 points on the 51 km model, +2.24 to +10.71; v3 set 65.11 %, +6.10, +1.72 to +9.42), apron 53.84 %; the U-Net still leads it by 19.02 points. The two overlap but neither holds all of the other: each alone gives about 62 %, both 69 %.
+- **Reading (as registered):** S1 held: the thermal bands matter over a region, not per pixel, which is why the per-pixel SVM drew 1.4–2.0 points from them and a classifier with 51 km drew 8.0. S2 not held: in blocks never seen, where a point lies does all of the thermal statistics' work, so the 8.0 points need not be material. The THEMIS mosaics are stretched region by region (§24), and regional thermal statistics can carry which stretch a point fell in. The U-Net's 6.4–7.6-point drop, nearly all apron in Tharsis (§69.91), fits the same reading but is not tested by it: the U-Net sees no coordinates. Each stand-in was fitted once, on one draw of points.
+- **Placed:** paper: the thermal paragraph's last sentence replaced by two on (a) and (b); the discussion's thermal clause and conclusion item 4 say the 8.0 points are made up by the coordinates; the SVM paragraph in the third-label-set section gains (c) and the U-Net's 19.0-point lead over it. Deck: the thermal Limits card (slide 40). The paper stays 25 pages. A first build failed on a Unicode minus in the tex; the signed numbers there are in math mode, as elsewhere.

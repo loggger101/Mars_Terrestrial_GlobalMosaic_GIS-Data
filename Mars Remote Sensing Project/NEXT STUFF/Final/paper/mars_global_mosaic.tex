@@ -654,8 +654,12 @@ fitted again without the two thermal bands, with the prediction written first th
 falls 8.0 points on both sets (62.0 to 54.0\% on the 237 polygons, 59.0 to 51.0\% on the 1,652), and the drop
 is resolved by block ($+0.91$ to $+11.99$ and $+1.66$ to $+11.48$ points). Apron again loses most (producer's 36.15 to
 19.74\%, 4.79 of the 8.02 points), then volcanic edifice (1.93) and Crater (0.87). Per pixel the thermal bands add under
-2 points; seen with their surroundings they carry as much for a support vector machine as for the U-Net, though
-window statistics of mosaics stretched region by region may carry place as much as material. %% KB §69.86, §69.87, §69.91, §69.99
+2 points; seen with their surroundings they carry as much for a support vector machine as for the U-Net. Two more
+fits, predicted first, place it: their pixel values alone add $+0.14$ points ($-0.79$ to $+0.81$), so
+the share lies in their statistics over the surroundings; and the point's map coordinates, given in their place,
+make up all 8.02 points and more (8.67, $+2.28$ to $+13.77$), apron returning to 39.90\%. In blocks never seen, where a
+point lies does the thermal statistics' work, as a contrast stretch set region by region would; the share is not
+shown to be material. %% KB §69.86, §69.87, §69.91, §69.99, §69.100
 
 \begin{figure}[t]
 \centering
@@ -829,7 +833,8 @@ $+42.9$. Over 51~km, the U-Net's own view, the stand-in reaches 62.0\% ($+1.85$ 
 U-Net still leads by $+9.7$ to $+37.1$, while the third label set still does not help it: what the U-Net draws
 from that set is learnt spatial pattern, not band statistics over its view. Of its 26.2-point lead at those points,
 apron gives 14.85 and Crater 8.48, classes defined by where they lie, around an edifice or inside a rim; the
-stand-in does better on hills and fluvial channel. %% KB §69.95, §69.97, §69.98
+stand-in does better on hills and fluvial channel. Given the point's map coordinates as well it reaches 69.2\%,
+and the U-Net still leads by 19.0 points. %% KB §69.95, §69.97, §69.98, §69.100
 
 The same 14 held-out blocks have scored every model in this paper. In a run set out before it ran, 14 other blocks
 drawn at random, holding 895 polygons of the third label set, were held out instead and both models retrained on the
@@ -968,8 +973,8 @@ on blocks they never saw. What the stack adds is the one grid: the three familie
 visible, thermal and elevation data, and the thermal bands' share is measured rather than assumed: for the support
 vector machine small (1.4 to 2.0 points on four classes) and, by balanced accuracy, absent; for the seven-class U-Net,
 trained once each way, larger (6.4 to 7.6 points) but not resolved by block; and for a support vector machine given
-the U-Net's 51~km of surroundings, 8.0 points and resolved, so the share grows with the ground a classifier sees.
-%% KB §69.40, §69.50 (W3), §69.86, §69.99
+the U-Net's 51~km of surroundings, 8.0 points and resolved, all of it in the surroundings and all of it recovered
+by the point's map coordinates instead, so it is not shown to be material. %% KB §69.40, §69.50 (W3), §69.86, §69.99, §69.100
 
 \subsection{Limits}
 
@@ -1041,7 +1046,7 @@ valleys no more often than a rotated valley map; stream order is a parameter, no
 saw, where geography alone, the nearest training polygon's class, gives 61.3\% (83.2\% overall); the thermal bands add
 a resolved 1.4 to 2.0 points of overall accuracy and none by balanced accuracy. A seven-class U-Net trained once
 without them scores 6.4 to 7.6 points lower, a difference not resolved by block; a support vector machine given 51~km
-of surroundings loses 8.0 points without them, a resolved difference. A U-Net reaches 98.9\% as a
+of surroundings loses 8.0 points without them, a resolved difference that the point's map coordinates make up. A U-Net reaches 98.9\% as a
 terrain-province map.
 \item Revised to seven classes, the maps separate impact craters from volcanoes and name volcanic edifices, aprons
 and fluvial channels: the U-Net scored 69.0\%, \kap\,0.606 and the support vector machine 42.5\% on 237 held-out

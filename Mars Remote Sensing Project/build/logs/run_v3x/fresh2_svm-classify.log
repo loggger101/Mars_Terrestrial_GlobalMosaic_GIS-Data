@@ -4,3 +4,7 @@ block  3/16 lon -150 lat   15: 1075 s
 block  4/16 lon -105 lat    0: 248 s
 block  5/16 lon -105 lat   30: 1165 s
 block  6/16 lon  -90 lat  -15: 574 s
+block  7/16 lon  -90 lat    0: 644 s
+block  8/16 lon  -45 lat   15: 495 s
+block  9/16 lon  -30 lat    0: 498 s
+block 10/16 lon  -15 lat  -60: 38 s
