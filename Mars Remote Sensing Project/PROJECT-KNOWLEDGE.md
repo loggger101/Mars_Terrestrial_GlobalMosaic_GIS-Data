@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.101).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.96 scored, §69.101).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7367,10 +7367,24 @@ On the 1,652 v3 polygons the same pattern: Pro 40.4 / 38.0 %, the stand-in 36.0�
 - **Why it moved (`--pairs`, a description, not a test; `logs\svm_label_cap_pairs.json`):** two-class accuracy of a 15-nearest-neighbour classifier on 2,000 training pixels a class, 5-fold, 0.5 being no separation. Under the v3 labels hills is much harder to tell by one pixel from Crater (**0.722 against 0.877**), lava tube (0.737 against 0.907), apron (0.746 against 0.881) and edifice (0.834 against 0.927); Normal Ground stays apart from every class (0.864–0.962). The third set's hills are mostly the rule's, half of them on large craters' flanks (§69.87), so their pixels look like crater pixels. Training pixels from the same polygons share folds, so these accuracies are high in absolute terms; the v2–v3 differences are the reading.
 - **Placed:** the paper's sentence that why the SVM did not rise "is not measured here" is replaced by a paragraph in sec:v3 (the stand-in, the cap, the labels, the Crater–hills boundary), and Conclusions item 7 says what holds it. Deck slide 34 (the SVM lead map): the two nearest-polygon points merged, a fifth point gives the cause. Paper 24 pages, deck 42 slides; slide 34 rendered and read.
 
-### 69.96 fresh2 (F6): the second draw of 14 other blocks, trained — 2026-11-10, desktop **[V]** (scores to follow)
+### 69.96 fresh2 (F6): the second draw of 14 other blocks — the U-Net repeats, its lead over the nearest polygon does not (F6.5 not held) — 2026-11-10, desktop **[V]**
 
 - **Queue:** fresh2_export 22.6 min (31,229 chips) from 20:28 on 11-09; fresh2_train **672.9 min** (11.2 h), ended 08:04 on 11-10; fresh2_classify 33.5 min; fresh2_svm-train from 08:37, **162.2 min**, ended 11:19:48; fresh2_svm-classify from 11:19:48 (fresh's took 81.1 min; `check_svm_label_cap.py` shared the CPU 10:13–10:48, §69.95).
 - **Training (`check_v3_loss_spikes.py`):** model `global60_unet_x5c_v3g_20261109`, 30 epochs; the epoch of lowest validation loss, **16 (0.571)**, is the one kept, earlier and higher than fresh's 22 (0.451); validation loss above 2 from epoch 18, peaking at **943.74**. fresh2 trains on the added polygons too, so the late spikes appear again with them, as §69.90 found for every run that has them.
+- **Scored** (11-10): fresh2_svm-classify **371.6 min**, ended 17:31:26, exit 0; the queue then started `rep_export` (second queue, §69.89). `make_v3_extras.py --report` exit 0 (24.7 min, while rep_export ran; `logs\v3_extras_report_fresh2.log`); `logs\v3_extras.json` gains `fresh2`, every earlier key unchanged but `when` and `predictions`.
+- **The split:** seed 61, 14 blocks (`-10_-3, -10_1, -12_0, -1_-3, -2_0, -3_1, -6_-1, -6_0, -7_2, 1_-4, 1_3, 2_-2, 3_0, 4_3`), one of them, −1_−3, also in fresh's draw; 1,603 polygons of the third label set held out, 1,602 with pixels in the windows; the U-Net and the SVM retrained on the other 8,655. By class the held-out polygons lean to apron, 698 of 1,603 (43.5 %), against 267 of 899 (29.7 %) on fresh.
+
+| on the 1,602 fresh2 polygons | accuracy | κ | balanced | block interval, accuracy |
+|---|---|---|---|---|
+| U-Net (v3g) | **85.4 %** | 0.781 | 69.2 % | 77.0–87.8 |
+| SVM | 45.6 % | 0.342 | 46.9 % | 25.6–74.5 |
+| nearest training polygon | 80.6 % | 0.710 | 63.1 % | 52.0–90.0 |
+
+- **Differences, block bootstrap, accuracy:** U-Net − SVM **+7.3 to +56.4**; U-Net − nearest polygon **−2.5 to +26.7** (above 0 in 86.2 % of resamples; balanced accuracy +3.8 to +16.7); SVM − nearest polygon **−56.6 to +11.3** (balanced −23.9 to −0.3).
+- **F6, fresh2 repeating F1–F5:** F6.1 held (85.4 in 70–92); F6.2 held (69.2 in 60–85); F6.3 held; F6.4 held; **F6.5 not held**: the U-Net's lead over the nearest training polygon is not resolved by accuracy on this draw.
+- **Producer's accuracy:** U-Net Crater 86.8, steep/windy hills 64.5, lava tube 48.0, Normal Ground 84.2, volcanic edifice 75.7, apron 91.1, fluvial channel 34.4; nearest polygon Crater 40.6, steep/windy hills 47.3, lava tube 31.4, Normal Ground 65.1, volcanic edifice 97.7, apron 92.7, fluvial channel 67.0.
+- **Read:** the U-Net's score repeats, 85.4 % against fresh's 86.6 % and the published model's 86.5 % on the 1,652 polygons, so §69.84's reading stands on two draws: the score is not a property of the first 14 blocks. What does not repeat is the baseline: the nearest training polygon scores 80.6 % here against 65.5 % on fresh, and apron, which it gets right 92.7 % of the time, is 43.5 % of these polygons; the U-Net beats it in 13 of the 14 blocks (not in −10_1, 88.2 % against 92.9 %) and by balanced accuracy, but on accuracy the interval reaches below 0. So on rule-made labels near training polygons, the U-Net's accuracy lead over a map-by-neighbour baseline depends on the draw; its lead by class does not. Hills score 64.5 % here, against 18.3 % on fresh, consistent with §69.85 and §69.87 (which hills are held out decides it); fluvial channel stays weak, 34.4 %. The SVM again does not beat the baseline on accuracy and falls below it by balanced accuracy.
+- **Placed:** the paper's fresh-block paragraph (a second-draw sentence; "there its hills" now "on the first draw"), the Limits ("a second draw 85.4%") and the conclusion item on the third label set ("two draws"); the deck's U-Net and SVM lead slides and its Limits card "The held-out blocks used three times". v2_drafts.tex block 20's header marks fresh2 applied.
 
 ### 69.97 Surroundings lift the SVM stand-in; the third label set still does not — 2026-11-10, desktop **[V]**
 

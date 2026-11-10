@@ -40,3 +40,9 @@
 2026-11-10 08:37:35  start fresh2_svm-train
 2026-11-10 11:19:48  end   fresh2_svm-train: exit 0, 162.2 min
 2026-11-10 11:19:48  start fresh2_svm-classify
+2026-11-10 17:31:26  end   fresh2_svm-classify: exit 0, 371.6 min
+2026-11-10 17:31:26  queue done
+2026-11-10 17:31:26  process 7288 gone (its exit code is not known here; read its log)
+2026-11-10 17:31:26  start rep_export
+2026-11-10 17:57:16  end   rep_export: exit 0, 25.8 min
+2026-11-10 17:57:16  start rep_train

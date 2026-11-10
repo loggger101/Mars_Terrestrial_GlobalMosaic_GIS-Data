@@ -8,3 +8,10 @@ block  7/16 lon  -90 lat    0: 644 s
 block  8/16 lon  -45 lat   15: 495 s
 block  9/16 lon  -30 lat    0: 498 s
 block 10/16 lon  -15 lat  -60: 38 s
+block 11/16 lon  -15 lat  -45: 10491 s
+block 12/16 lon   15 lat  -60: 1684 s
+block 13/16 lon   15 lat   45: 1595 s
+block 14/16 lon   30 lat  -30: 505 s
+block 15/16 lon   45 lat    0: 648 s
+block 16/16 lon   60 lat   45: 887 s
+windows -> C:\MarsScratch\x5c_v3x\classified\fresh2_svm

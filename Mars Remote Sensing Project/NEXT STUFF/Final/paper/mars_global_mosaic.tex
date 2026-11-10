@@ -841,14 +841,19 @@ The same 14 held-out blocks have scored every model in this paper. In a run set 
 drawn at random, holding 895 polygons of the third label set, were held out instead and both models retrained on the
 other 9,366 polygons. The U-Net scores 86.6\%, \kap\,0.815, balanced accuracy 72.2\% (block interval 74.8--94.6\%),
 as the published model does on the 1,652 polygons, and leads the nearest training polygon by $+5.0$ to $+49.7$ points;
-the support vector machine scores 37.9\% and does not separate from that baseline ($-51.1$ to $+14.6$). So the U-Net's
-score is not a property of the first 14 blocks, though there its hills (18.3\% producer's accuracy) and fluvial channel
-(37.4\%) are weaker. Every hills polygon there is one the rule placed, and on the first 14 blocks such polygons
+the support vector machine scores 37.9\% and does not separate from that baseline ($-51.1$ to $+14.6$). A second draw,
+14 blocks holding 1,602 polygons and sharing one block with the first, gives the U-Net 85.4\%, \kap\,0.781, balanced
+accuracy 69.2\%, and the support vector machine 45.6\%, again not separated from the baseline; but there the nearest
+training polygon scores 80.6\%, since 43.5\% of those polygons are apron, which it gets right 92.7\% of the time, and
+the U-Net's lead over it is resolved by balanced accuracy ($+3.8$ to $+16.7$) and not by accuracy ($-2.5$ to $+26.7$),
+though it leads in 13 of the 14 blocks. So the U-Net's score is not a property of the first 14 blocks; its lead over a
+map by nearest neighbour is by class more than by area. On the first draw its hills (18.3\% producer's accuracy, 64.5\%
+on the second) and fluvial channel (37.4\%, 34.4\%) are weaker. Every hills polygon there is one the rule placed, and on the first 14 blocks such polygons
 score 35.2\% against 81.8\% for pieces of the author's, so the model has learnt the author's hills more than the
 rule's. The rule kept its hills clear of craters of 10~km or more only by 1.3 radii, and half of its training hills
 lie within two radii of one, against 6.5\% of the author's; those the model reads as Crater (79.4\% and 81.3\% of the
 held-out ones within two radii, 28.2\% and 27.3\% beyond), and more of the fresh blocks' hills lie that close.
-Fluvial channel falls in one block, 6\_$-$3, which holds 66 of its 147 polygons at 10.9\%. %% KB §69.84, §69.85, §69.87
+Fluvial channel falls in one block, 6\_$-$3, which holds 66 of its 147 polygons at 10.9\%. %% KB §69.84, §69.85, §69.87, §69.96
 
 By the rule written before the runs the U-Net map replaces its predecessor. The support vector machine map does not:
 its \kap\ falls on both sets and Crater loses 21.8 points of producer's accuracy (40.0\% to 18.2\%), while hills gain 38.3
@@ -1022,8 +1027,10 @@ class, so a single pixel of a U-Net map should not be read alone. %% KB §69.83
 The held-out blocks have now been used three times, by the four-class models, the seven-class ones and those on the
 third label set. That set was requested after the seven-class scores were read, so any gain on it is not a fresh test,
 and its held-out crater discs come from the catalogue the crater results are checked against, so that class partly
-measures agreement with it. Fourteen other blocks, drawn at random, give a retrained U-Net 86.6\%, so its score is not
-tied to the first 14; the four- and seven-class scores still rest on them. %% KB §69.84 Any further tuning, of the deep-learning models above all, would
+measures agreement with it. Fourteen other blocks, drawn at random, give a retrained U-Net 86.6\%, and a second draw 85.4\%,
+so its score is not tied to the first 14, though on the second its lead over the nearest training polygon is resolved
+only by balanced accuracy; the four- and seven-class scores still rest on the first 14. %% KB §69.84, §69.96
+Any further tuning, of the deep-learning models above all, would
 turn the 14 held-out blocks into a validation set; a next round needs validation blocks of its own. Finally, the manual
 review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709 depressions) has reached 549, all
 at Ius Chasma, with a precision (accepts over accepts and rejects) of 54\% on the 188 steep, rock-floored channels and
@@ -1055,8 +1062,8 @@ and fluvial channels: the U-Net scored 69.0\%, \kap\,0.606 and the support vecto
 polygons, below the four-class maps on the original classes.
 \item On a third label set of more and smaller polygons the U-Net scores 87.6\%, \kap\,0.844 on the same polygons and
 49.6\% against 21.7\% on a probability sample, a resolved gain on both, though the sample's labels failed their check and
-the set was asked for after the earlier scores were read; on 14 other blocks, held out from a retrained model, it
-scores 86.6\%, and its gain over the second label set comes about equally from cutting the polygons and from adding
+the set was asked for after the earlier scores were read; on two draws of 14 other blocks, held out from retrained models,
+it scores 86.6\% and 85.4\%, and its gain over the second label set comes about equally from cutting the polygons and from adding
 new ones. The support vector machine gains nothing resolved (39.1\%,
 \kap\,0.288; 40.2\% on the sample) and fails the rule set for it, held by one pixel's seven bands rather than by its
 sample of 1,000 pixels a class or by its labels; both lead this paper.
