@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.97).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.98).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7388,3 +7388,19 @@ On the 1,652 v3 polygons the same pattern: Pro 40.4 / 38.0 %, the stand-in 36.0�
 - **X2 not held:** with surroundings the v3 labels score **below** the v2 labels on the 237 polygons, **−9.6 to −0.2** (resolved), and not resolved on the 1,652 (−8.3 to +0.4); balanced −10.6 to +1.2 and −1.8 to +4.6.
 - **The U-Net still leads** the stand-in with surroundings on the v3 labels by +12.0 to +42.9 points on the 237 polygons (v3 set +16.5 to +42.7).
 - **Reading (the rule as registered):** one pixel's bands were the limit, and surroundings summarised to 20 km lift a support vector machine by 18 to 21 points (39.2 → 57.1 %, 39.9 → 60.9 %); but the third label set does not help it even then, and on the 237 polygons it does worse, as the add-only U-Net lost hills (§69.93): the rule's hills on crater flanks teach a classifier of band statistics to call crater ground hills. What the U-Net takes from the third set needs more than band statistics over 20 km: learned spatial patterns and its 51 km view. Each stand-in trained once; a stand-in, not Pro's SVM (§69.95).
+
+### 69.98 Band statistics over the U-Net's own view: 4.9 points more, the U-Net still far ahead; a consistency read — 2026-11-10, desktop **[V]**
+
+`check_svm_label_cap.py --context --wide` (predictions W1–W3 written after §69.97 was read and before this ran; 835 s; `logs\svm_label_cap_wide.json`): §69.97's points again (the same seed: the same 13,840 and 13,791 training and 14,993 and 14,996 test points), with one more window, 255 × 255 pixels, **51 km, the U-Net's own view**. The 20 km models come out exactly as in §69.97 (57.1 % and 60.9 % on the 237 polygons), a repeat of that run; the window centre again equals the Sample value at 1.0000 of the points.
+
+| at the points | 237 v2 polygons: accuracy, balanced | 1,652 v3 polygons: accuracy, balanced |
+|---|---|---|
+| stand-in, v2 labels, windows to 51 km | 64.7 %, 66.3 % | 59.6 %, 59.6 % |
+| stand-in, v3 labels, windows to 51 km | **62.0 %**, 65.2 % | 59.0 %, 60.9 % |
+| U-Net v3 (published, raw) | 88.2 %, 84.5 % | 86.6 %, 76.7 % |
+
+- **W1 held, narrowly:** on the v3 labels the 51 km window adds **4.9 points** to the windows to 20 km (57.1 → 62.0 %), under the 5-point line by 0.1; the gain is resolved, +1.85 to +7.3 (v3 set +2.05 to +7.1; on the v2 labels −0.1 to +7.1 and −1.1 to +5.5).
+- **W2 held:** the U-Net leads it by **+9.7 to +37.1** points on the 237 polygons (v3 set +13.7 to +37.3); balanced +1.5 to +28.3.
+- **W3 held:** with windows to 51 km the v3 labels score −7.9 to +0.9 points against the v2 labels (v3 set −5.8 to +3.5).
+- **Reading (as registered):** band statistics over as much ground as the U-Net sees take a support vector machine from 39.2 % to 62.0 %, 26.2 points short of the U-Net's 88.2 % at the same points; what the U-Net takes from the third label set is learnt spatial pattern, not band statistics over its view, and a classifier of band statistics gets nothing from that set at any window tried. Each stand-in trained once; a stand-in, not Pro's SVM (§69.95).
+- **Consistency read of the paper, 11-10 (no new numbers):** (1) the comparison with DoMars16k said the classes "rest on 971 polygons"; it now adds that the third label set's 10,269 training and 1,652 held-out polygons are cut from them or placed by rule. (2) The methods said the validation loss "rose the same way" in every retraining with the added polygons; the add-only run peaked at 3.51 (§69.93) against 11.85–943.74 for the others, so it now says far in all but that one, citing §69.93 and §69.96. (3) The abstract runs to about 314 words, over the 250 an AAS journal allows; left for the author, nothing added to it. Still to update after F6: the fresh-block paragraph, the Limits sentence on 14 other blocks, and the deck's "held-out blocks used three times" card; after rep: the thermal card.

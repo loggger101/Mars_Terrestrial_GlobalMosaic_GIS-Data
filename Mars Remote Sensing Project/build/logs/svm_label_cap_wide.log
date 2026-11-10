@@ -1,0 +1,20 @@
+v2 training 13840 of 14000 137 s
+v3 training 13791 of 14000 302 s
+v2 centre pixel equals the Sample value at 1.0000 of points
+  v2 pro_unet_v3      {'accuracy': 0.8817, 'balanced': 0.8451}
+  v2 sk_v2_pixel      {'accuracy': 0.3986, 'balanced': 0.409}
+  v2 sk_v2_context    {'accuracy': 0.609, 'balanced': 0.6299}
+  v2 sk_v2_wide       {'accuracy': 0.6474, 'balanced': 0.6627}
+  v2 sk_v3_pixel      {'accuracy': 0.3918, 'balanced': 0.4464}
+  v2 sk_v3_context    {'accuracy': 0.5713, 'balanced': 0.5912}
+  v2 sk_v3_wide       {'accuracy': 0.6202, 'balanced': 0.6518}
+v3 centre pixel equals the Sample value at 1.0000 of points
+  v3 pro_unet_v3      {'accuracy': 0.8662, 'balanced': 0.7666}
+  v3 sk_v2_pixel      {'accuracy': 0.3762, 'balanced': 0.4062}
+  v3 sk_v2_context    {'accuracy': 0.569, 'balanced': 0.5724}
+  v3 sk_v2_wide       {'accuracy': 0.5959, 'balanced': 0.5958}
+  v3 sk_v3_pixel      {'accuracy': 0.3626, 'balanced': 0.4276}
+  v3 sk_v3_context    {'accuracy': 0.5414, 'balanced': 0.5718}
+  v3 sk_v3_wide       {'accuracy': 0.5901, 'balanced': 0.6091}
+{'W1': 'held', 'W2': 'held', 'W3': 'held'}
+-> F:\Mars Remote Sensing Project\build\logs\svm_label_cap_wide.json

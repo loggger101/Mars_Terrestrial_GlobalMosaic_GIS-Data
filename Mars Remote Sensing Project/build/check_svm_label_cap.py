@@ -56,6 +56,18 @@ first: the window's centre pixel must equal the Sample tool's value at the point
   Reading: X1 held -> one pixel's bands were the limit and surroundings lift a support vector machine too; X1 and X2
   held -> the third label set helps a classifier that sees context, the way the U-Net used it. X1 not held -> windows of
   up to 20 km do not carry what the U-Net uses (its view is 51 km). Writes logs\svm_label_cap_context.json.
+
+--context --wide (added 2026-11-10 13:00 after X1 and X2 were read, §69.97; written before it ran): the same points (the
+same seed), one more window, 255 x 255 pixels (51 km, the U-Net's own view), so the stand-in sees band statistics over
+as much ground as the U-Net does. Models on the v3 and v2 labels: windows to 20 km (as --context) and to 51 km.
+  W1  On the v3 labels the 51 km window adds less than 5 points of accuracy on the 237 v2 polygons to the windows to
+      20 km: band statistics over the U-Net's own view do not close much of the gap.
+  W2  With windows to 51 km the U-Net still leads the stand-in on the v3 labels on the 237 polygons, the block
+      interval above 0.
+  W3  With windows to 51 km the v3 labels still do not score above the v2 labels on the 237 polygons (the block
+      interval's lower end at or below 0).
+  Reading: W1-W3 held -> what the U-Net takes from the third label set is learnt spatial pattern, not band statistics
+  over its view. W1 not held -> the width of the view carries much of it. Writes logs\svm_label_cap_wide.json.
 """
 import os, sys, json, time
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -256,13 +268,16 @@ def pairs():
 
 def context():
     from osgeo import gdal
+    WIDE = "--wide" in sys.argv
+    HS = (2, 12, 50, 127) if WIDE else (2, 12, 50)
+    NARROW = 7 + 14 * 3                                     # the pixel and the windows to 20 km: the --context features
     t0 = time.time()
     ds = gdal.Open(STACK)
     un = gdal.Open(os.path.join(G.OUTDIR, "global60_landforms_unet_v3_200m_seamfix.tif"))
     gt = ds.GetGeoTransform()
     assert un.GetGeoTransform() == gt and (un.RasterXSize, un.RasterYSize) == (ds.RasterXSize, ds.RasterYSize)
     sr = arcpy.Describe(STACK).spatialReference
-    W, H, HALF = ds.RasterXSize, ds.RasterYSize, 50
+    W, H, HALF = ds.RasterXSize, ds.RasterYSize, HS[-1]
 
     def feats(pts):
         """pts: [(x, y)] in the stack's CRS -> (centre bands, features, U-Net class) per point."""
@@ -275,7 +290,7 @@ def context():
             a[a == 0] = np.nan
             cy, cx = r - r0, c - c0
             row = [a[:, cy, cx]]
-            for h in (2, 12, 50):
+            for h in HS:
                 w = a[:, max(0, cy - h):cy + h + 1, max(0, cx - h):cx + h + 1].reshape(7, -1)
                 row += [np.nanmean(w, 1), np.nanstd(w, 1)]
             C.append(a[:, cy, cx]); F.append(np.concatenate(row))
@@ -284,7 +299,8 @@ def context():
 
     import warnings
     warnings.simplefilter("ignore", RuntimeWarning)          # all-NaN windows: dropped below
-    res = dict(script="check_svm_label_cap.py --context", per_class=2000, n_test=15000, windows_px=[5, 25, 101])
+    res = dict(script="check_svm_label_cap.py --context" + (" --wide" if WIDE else ""), per_class=CTX_TRAIN,
+               n_test=CTX_TEST, windows_px=[2 * h + 1 for h in HS])
     rng = np.random.default_rng(11)
     Xtr = {}
     for ls in ("v2", "v3"):
@@ -318,25 +334,37 @@ def context():
         preds = {"pro_unet_v3": u}
         for ls in ("v2", "v3"):
             c_tr, f_tr, y_tr = Xtr[ls]
-            for kind, a_tr, a_te in (("pixel", c_tr, cen), ("context", f_tr, f)):
+            kinds = (("pixel", c_tr, cen), ("context", f_tr[:, :NARROW], f[:, :NARROW]))
+            if WIDE:
+                kinds += (("wide", f_tr, f),)
+            for kind, a_tr, a_te in kinds:
                 m = make_pipeline(StandardScaler(), SVC(kernel="rbf", C=1.0, gamma="scale", cache_size=2000))
                 m.fit(a_tr, y_tr)
                 preds["sk_%s_%s" % (ls, kind)] = m.predict(a_te).astype(int)
         r = res["test"][ts]
         r.update(points=int(ok.sum()), scores={k: dict(zip(("accuracy", "balanced"), [round(v, 4) for v in scores(y, p_)]))
                                                for k, p_ in preds.items()})
-        r["block_bootstrap"] = block_ci(y, preds, blocks, [("sk_v3_context", "sk_v3_pixel"), ("sk_v2_context", "sk_v2_pixel"),
-                                                          ("sk_v3_context", "sk_v2_context"), ("pro_unet_v3", "sk_v3_context")])
+        pairs_ = [("sk_v3_context", "sk_v3_pixel"), ("sk_v2_context", "sk_v2_pixel"),
+                  ("sk_v3_context", "sk_v2_context"), ("pro_unet_v3", "sk_v3_context")]
+        if WIDE:
+            pairs_ += [("sk_v3_wide", "sk_v3_context"), ("sk_v2_wide", "sk_v2_context"), ("pro_unet_v3", "sk_v3_wide"),
+                       ("sk_v3_wide", "sk_v2_wide")]
+        r["block_bootstrap"] = block_ci(y, preds, blocks, pairs_)
         for k, s_ in r["scores"].items():
             print("  %s %-16s %s" % (ts, k, s_), flush=True)
     s2, bb = res["test"]["v2"]["scores"], res["test"]["v2"]["block_bootstrap"]
-    v = dict(X1=s2["sk_v3_context"]["accuracy"] - s2["sk_v3_pixel"]["accuracy"] >= 0.05
-             and bb["sk_v3_context - sk_v3_pixel"]["accuracy_ci95"][0] > 0,
-             X2=bb["sk_v3_context - sk_v2_context"]["accuracy_ci95"][0] > 0)
+    if WIDE:
+        v = dict(W1=s2["sk_v3_wide"]["accuracy"] - s2["sk_v3_context"]["accuracy"] < 0.05,
+                 W2=bb["pro_unet_v3 - sk_v3_wide"]["accuracy_ci95"][0] > 0,
+                 W3=bb["sk_v3_wide - sk_v2_wide"]["accuracy_ci95"][0] <= 0)
+    else:
+        v = dict(X1=s2["sk_v3_context"]["accuracy"] - s2["sk_v3_pixel"]["accuracy"] >= 0.05
+                 and bb["sk_v3_context - sk_v3_pixel"]["accuracy_ci95"][0] > 0,
+                 X2=bb["sk_v3_context - sk_v2_context"]["accuracy_ci95"][0] > 0)
     res["predictions"] = {k: "held" if x else "NOT held" for k, x in v.items()}
     res["seconds"] = round(time.time() - t0)
     print(res["predictions"])
-    out = os.path.join(HERE, "logs", "svm_label_cap_context.json")
+    out = os.path.join(HERE, "logs", "svm_label_cap_%s.json" % ("wide" if WIDE else "context"))
     json.dump(res, open(out, "w", encoding="utf-8"), indent=1)
     print("->", out)
 
