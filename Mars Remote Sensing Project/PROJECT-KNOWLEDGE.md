@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.100).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.101).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7445,3 +7445,24 @@ ef{fig:extraruns}` in the tex (the thermal retraining and the U-Net's gain, both
 - **Reading (as registered):** S1 held: the thermal bands matter over a region, not per pixel, which is why the per-pixel SVM drew 1.4–2.0 points from them and a classifier with 51 km drew 8.0. S2 not held: in blocks never seen, where a point lies does all of the thermal statistics' work, so the 8.0 points need not be material. The THEMIS mosaics are stretched region by region (§24), and regional thermal statistics can carry which stretch a point fell in. The U-Net's 6.4–7.6-point drop, nearly all apron in Tharsis (§69.91), fits the same reading but is not tested by it: the U-Net sees no coordinates. Each stand-in was fitted once, on one draw of points.
 - **Placed:** paper: the thermal paragraph's last sentence replaced by two on (a) and (b); the discussion's thermal clause and conclusion item 4 say the 8.0 points are made up by the coordinates; the SVM paragraph in the third-label-set section gains (c) and the U-Net's 19.0-point lead over it. Deck: the thermal Limits card (slide 40). The paper stays 25 pages. A first build failed on a Unicode minus in the tex; the signed numbers there are in math mode, as elsewhere.
 - **In the figure:** `svm_windows()` now reads `logs\svm_label_cap_thermsplit.json` (its pixel, 20 km and 51 km scores are those of `svm_label_cap_wide.json`) and adds a row, windows to 51 km with the point's map coordinates: on the v3 labels 69.2 % and 65.1 %, on the v2 labels 68.6 % and 62.2 % (balanced 70.6 % and 62.4 %); paper Figure 26 (caption extended) and deck slide 35 (third point: "69.2% with map coordinates too"). Only `svm_windows()` was rerun, so the three committed charts of §69.98's note were not redrawn.
+
+### 69.101 A second draw of the stand-in's points: §69.99 and §69.100 repeat, the coordinates' share less than all — 2026-11-10, desktop **[V]**
+
+`check_svm_label_cap.py --context --wide --nothermal --thermsplit --seed 12` (predictions D1–D3 written into the docstring after §69.100 was read and before this ran; 2981 s; `logs\svm_label_cap_thermsplit_seed12.json`): every stand-in of §69.97–§69.100 was fitted once, on one draw (seed 11) of 2,000 of the 10,000 training points a class and 15,000 of the 30,000 test points; this is the same run on another draw from the same point sets (by chance about a fifth of the training and half of the test points shared). Accuracy, %:
+
+| v3 labels, points | 237 v2 polygons: seed 11, seed 12 | 1,652 v3 polygons: seed 11, seed 12 |
+|---|---|---|
+| 51 km model | 62.02, 63.26 | 59.01, 60.40 |
+| without the thermal bands | 54.00, 53.32 | 51.01, 50.51 |
+| thermal loss | 8.02, 9.94 | 8.00, 9.89 |
+| thermal pixel values only, gain | 0.14, −0.05 | 0.10, −0.05 |
+| coordinates in their place, gain | 8.67, 7.94 | 7.71, 7.36 |
+| all bands and coordinates | 69.15, 69.31 | 65.11, 65.99 |
+| U-Net lead over that | 19.02, 19.15 | 21.51, 20.29 |
+| 51 km over 20 km (W1) | 4.89, 6.43 | 4.87, 6.29 |
+
+- **D1 held:** the thermal loss is **9.94 points** (+2.60 to +14.51; v3 set 9.89, +3.61 to +13.88), inside 5–11 and again resolved.
+- **D2 held:** the coordinates in the thermal bands' place recover **7.94 of 9.94** (+2.79 to +12.75; v3 set 7.36 of 9.89), at least half, though not all as on seed 11 (8.67 of 8.02). Apron: 40.11 → 18.30 → 36.84 % (with, without, without but with coordinates; seed 11 36.15 → 19.74 → 39.90).
+- **D3 held:** with all bands and the coordinates the stand-in reaches 69.31 %, the U-Net 88.46 %, a lead of **19.15 points** (seed 11: 19.02).
+- **Also:** S1 holds again (pixel values −0.05, −0.82 to +0.91). W1 does not on this draw: the 51 km window adds 6.43 points to the 20 km one (+2.45 to +9.33), against 4.89 on seed 11, which held under the 5-point line by 0.11; W1 was a near thing, and the resolved gain of §69.98 stands. W2 and W3 hold again.
+- **Reading:** §69.99 and §69.100 do not rest on one draw: without the thermal bands the 51 km stand-in loses 8.0–9.9 points, none of it from the pixel values, and the coordinates make up most to all of it (80–108 % on the 237 polygons, 74–96 % on the 1,652). The paper and deck said "all"; they now say "most or all". The draw moves single scores by up to 1.59 points.

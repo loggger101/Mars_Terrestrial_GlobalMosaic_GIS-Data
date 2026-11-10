@@ -258,7 +258,7 @@ LIMITS = [   # (head, text)
     ("The thermal signal is weak where it can be checked",
      "The held THEMIS mosaics are 8-bit products stretched region by region: no calibrated thermal inertia; against "
      "TES |r| ≈ 0.1 inside 15° blocks. Per pixel thermal adds 1.3–2.0 points, none by balanced accuracy; without it "
-     "the U-Net loses 6.4–7.6 (not resolved by block), an SVM seeing 51 km 8.0, all of it made up by map coordinates instead (§24, §56, §69.86, §69.99, §69.100)."),
+     "the U-Net loses 6.4–7.6 (not resolved by block), an SVM seeing 51 km 8.0–9.9, mostly made up by map coordinates instead (§24, §56, §69.86, §69.99–§69.101)."),
     ("The landform classes are terrain classes",
      "Slope and relief alone match all seven bands; 'lava tube' marks volcano flanks, not lava plains; the geologic "
      "map's unit groups cannot stand in for material labels either (§40.1, §43.2, §69.50)."),

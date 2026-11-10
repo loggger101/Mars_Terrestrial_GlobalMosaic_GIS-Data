@@ -657,9 +657,10 @@ is resolved by block ($+0.91$ to $+11.99$ and $+1.66$ to $+11.48$ points). Apron
 2 points; seen with their surroundings they carry as much for a support vector machine as for the U-Net. Two more
 fits, predicted first, place it: their pixel values alone add $+0.14$ points ($-0.79$ to $+0.81$), so
 the share lies in their statistics over the surroundings; and the point's map coordinates, given in their place,
-make up all 8.02 points and more (8.67, $+2.28$ to $+13.77$), apron returning to 39.90\%. In blocks never seen, where a
-point lies does the thermal statistics' work, as a contrast stretch set region by region would; the share is not
-shown to be material. %% KB §69.86, §69.87, §69.91, §69.99, §69.100
+make up 8.67 of the 8.02 points ($+2.28$ to $+13.77$), apron returning to 39.90\%. On a second draw of the points the
+thermal bands' loss is 9.94 points, the pixel values' share again nil, and the coordinates make up 7.94 of it.
+In blocks never seen, where a point lies does most or all of the thermal statistics' work, as a contrast
+stretch set region by region would; the share is not shown to be material. %% KB §69.86, §69.87, §69.91, §69.99, §69.100, §69.101
 
 \begin{figure}[t]
 \centering
@@ -973,8 +974,9 @@ on blocks they never saw. What the stack adds is the one grid: the three familie
 visible, thermal and elevation data, and the thermal bands' share is measured rather than assumed: for the support
 vector machine small (1.4 to 2.0 points on four classes) and, by balanced accuracy, absent; for the seven-class U-Net,
 trained once each way, larger (6.4 to 7.6 points) but not resolved by block; and for a support vector machine given
-the U-Net's 51~km of surroundings, 8.0 points and resolved, all of it in the surroundings and all of it recovered
-by the point's map coordinates instead, so it is not shown to be material. %% KB §69.40, §69.50 (W3), §69.86, §69.99, §69.100
+the U-Net's 51~km of surroundings, 8.0 to 9.9 points and resolved, all of it in the surroundings and most or all
+of it recovered by the point's map coordinates instead, so it is not shown to be material.
+%% KB §69.40, §69.50 (W3), §69.86, §69.99, §69.100, §69.101
 
 \subsection{Limits}
 
@@ -1046,7 +1048,7 @@ valleys no more often than a rotated valley map; stream order is a parameter, no
 saw, where geography alone, the nearest training polygon's class, gives 61.3\% (83.2\% overall); the thermal bands add
 a resolved 1.4 to 2.0 points of overall accuracy and none by balanced accuracy. A seven-class U-Net trained once
 without them scores 6.4 to 7.6 points lower, a difference not resolved by block; a support vector machine given 51~km
-of surroundings loses 8.0 points without them, a resolved difference that the point's map coordinates make up. A U-Net reaches 98.9\% as a
+of surroundings loses 8.0 points without them, a resolved difference that the point's map coordinates largely make up. A U-Net reaches 98.9\% as a
 terrain-province map.
 \item Revised to seven classes, the maps separate impact craters from volcanoes and name volcanic edifices, aprons
 and fluvial channels: the U-Net scored 69.0\%, \kap\,0.606 and the support vector machine 42.5\% on 237 held-out

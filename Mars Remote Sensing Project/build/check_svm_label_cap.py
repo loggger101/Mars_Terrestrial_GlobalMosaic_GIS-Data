@@ -94,6 +94,15 @@ coordinates (x, y of the stack's grid, standardised like every feature), (c) all
   Reading: S1 held -> the bands matter over a region, not per pixel, as the per-pixel SVM's small gain suggested. S2 not
   held -> where a point lies does most of the thermal statistics' work in held-out blocks, so they need not carry
   material. (c) against the 51 km model is reported, a description. Writes logs\svm_label_cap_thermsplit.json.
+
+--seed N with --thermsplit (added 2026-11-10 14:00 after S1 and S2 were read, §69.100; written before it ran): every
+stand-in so far was fitted once, on one draw (seed 11) of 2,000 of the 10,000 training points a class and 15,000 of the
+30,000 test points. The same run on another draw (seed 12; the point sets in the scratch gdb are the same, so the two
+draws overlap by chance, about a fifth of the training and half of the test points):
+  D1  On the v3 labels the thermal bands' loss on the 237 polygons is between 5 and 11 points (8.02 on seed 11).
+  D2  The coordinates, in place of the thermal bands, again recover at least half of that loss.
+  D3  The U-Net leads the stand-in with windows to 51 km and coordinates by at least 10 points (19.02 on seed 11).
+  Reading: D1-D3 held -> §69.99 and §69.100 do not rest on one draw. Writes logs\svm_label_cap_thermsplit_seed12.json.
 """
 import os, sys, json, time
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -327,9 +336,11 @@ def context():
 
     import warnings
     warnings.simplefilter("ignore", RuntimeWarning)          # all-NaN windows: dropped below
-    res = dict(script="check_svm_label_cap.py --context" + (" --wide" if WIDE else ""), per_class=CTX_TRAIN,
+    SEED = int(sys.argv[sys.argv.index("--seed") + 1]) if "--seed" in sys.argv else 11
+    res = dict(script="check_svm_label_cap.py --context" + (" --wide" if WIDE else "") + (" --nothermal" if NOTH else "")
+               + (" --thermsplit" if SPLIT else "") + (" --seed %d" % SEED if SEED != 11 else ""), seed=SEED, per_class=CTX_TRAIN,
                n_test=CTX_TEST, windows_px=[2 * h + 1 for h in HS])
-    rng = np.random.default_rng(11)
+    rng = np.random.default_rng(SEED)
     Xtr, XYtr = {}, {}
     for ls in ("v2", "v3"):
         cls = {o: v for o, v in arcpy.da.SearchCursor(os.path.join(GDB, "train_%s_dis" % ls), ["OID@", "Classvalue"])}
@@ -413,6 +424,10 @@ def context():
             loss = s2["sk_v3_wide"]["accuracy"] - s2["sk_v3_wide_noth"]["accuracy"]
             v["S1"] = abs(s2["sk_v3_wide_thpix"]["accuracy"] - s2["sk_v3_wide_noth"]["accuracy"]) < 0.02
             v["S2"] = s2["sk_v3_wide_noth_xy"]["accuracy"] - s2["sk_v3_wide_noth"]["accuracy"] < loss / 2
+            if SEED != 11:
+                v["D1"] = 0.05 <= loss <= 0.11
+                v["D2"] = s2["sk_v3_wide_noth_xy"]["accuracy"] - s2["sk_v3_wide_noth"]["accuracy"] >= loss / 2
+                v["D3"] = s2["pro_unet_v3"]["accuracy"] - s2["sk_v3_wide_xy"]["accuracy"] >= 0.10
     else:
         v = dict(X1=s2["sk_v3_context"]["accuracy"] - s2["sk_v3_pixel"]["accuracy"] >= 0.05
                  and bb["sk_v3_context - sk_v3_pixel"]["accuracy_ci95"][0] > 0,
@@ -420,7 +435,9 @@ def context():
     res["predictions"] = {k: "held" if x else "NOT held" for k, x in v.items()}
     res["seconds"] = round(time.time() - t0)
     print(res["predictions"])
-    out = os.path.join(HERE, "logs", "svm_label_cap_%s.json" % ("thermsplit" if SPLIT else "wide_noth" if NOTH else "wide" if WIDE else "context"))
+    out = os.path.join(HERE, "logs", "svm_label_cap_%s%s.json" % (
+        "thermsplit" if SPLIT else "wide_noth" if NOTH else "wide" if WIDE else "context",
+        "_seed%d" % SEED if SEED != 11 else ""))
     json.dump(res, open(out, "w", encoding="utf-8"), indent=1)
     print("->", out)
 
