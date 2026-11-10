@@ -1,1 +1,3 @@
 block  1/16 lon -180 lat    0: 517 s
+block  2/16 lon -150 lat  -45: 1220 s
+block  3/16 lon -150 lat   15: 1075 s

@@ -1,5 +1,5 @@
-v2 training 13840 of 14000 137 s
-v3 training 13791 of 14000 302 s
+v2 training 13840 of 14000 115 s
+v3 training 13791 of 14000 279 s
 v2 centre pixel equals the Sample value at 1.0000 of points
   v2 pro_unet_v3      {'accuracy': 0.8817, 'balanced': 0.8451}
   v2 sk_v2_pixel      {'accuracy': 0.3986, 'balanced': 0.409}

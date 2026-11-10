@@ -344,6 +344,10 @@ def context():
         r = res["test"][ts]
         r.update(points=int(ok.sum()), scores={k: dict(zip(("accuracy", "balanced"), [round(v, 4) for v in scores(y, p_)]))
                                                for k, p_ in preds.items()})
+        # per class (added 11-10 after §69.98, a description): producer's accuracy and each class's share of the points
+        r["producers"] = {k: [round(float((p_[y == c] == c).mean()), 4) if (y == c).any() else None
+                              for c in range(1, SEVEN + 1)] for k, p_ in preds.items()}
+        r["class_share"] = [round(float((y == c).mean()), 4) for c in range(1, SEVEN + 1)]
         pairs_ = [("sk_v3_context", "sk_v3_pixel"), ("sk_v2_context", "sk_v2_pixel"),
                   ("sk_v3_context", "sk_v2_context"), ("pro_unet_v3", "sk_v3_context")]
         if WIDE:
