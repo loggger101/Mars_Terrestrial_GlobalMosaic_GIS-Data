@@ -17,9 +17,9 @@ r"""Charts the final paper and deck need that the interim never drew; all read f
                                          §69.93): neither, cut only, added only, both, both without thermal (and rep, the
                                          second training, once scored), accuracy and balanced accuracy on both held-out sets
                                          with their block-bootstrap 95 % intervals; logs\v3_extras.json
-  final_img\svm_windows.png              the SVM stand-in on one pixel, with windows to 20 km and to 51 km, on each
-                                         label set, beside the U-Net at the same points (KB §69.95, §69.97, §69.98);
-                                         logs\svm_label_cap_wide.json
+  final_img\svm_windows.png              the SVM stand-in on one pixel, with windows to 20 km, to 51 km and to 51 km
+                                         with map coordinates, on each label set, beside the U-Net at the same points
+                                         (KB §69.95, §69.97, §69.98, §69.100); logs\svm_label_cap_thermsplit.json
 
 Light ground, the palette of the interim charts (accuracy_200m.png). System Python:  py -3.13 make_fig_final.py
 """
@@ -211,11 +211,13 @@ def extra_runs():
 
 
 def svm_windows():
-    """The SVM stand-in by how much ground it sees, on each label set, beside the U-Net (KB §69.98)."""
-    r = log("svm_label_cap_wide.json")
-    rows = [("pixel", "One pixel"), ("context", "Windows to 20 km"), ("wide", "Windows to 51 km"), (None, "U-Net, third label set")]
+    """The SVM stand-in by how much ground it sees, on each label set, beside the U-Net (KB §69.98); with the point's map
+    coordinates as well, from the --thermsplit run, whose other scores are the same (KB §69.100)."""
+    r = log("svm_label_cap_thermsplit.json")
+    rows = [("pixel", "One pixel"), ("context", "Windows to 20 km"), ("wide", "Windows to 51 km"),
+            ("wide_xy", "51 km and map coordinates"), (None, "U-Net, third label set")]
     sets = [("v2", "SVM stand-in, second label set", BLUE, -0.14), ("v3", "SVM stand-in, third label set", ORANGE, 0.14)]
-    fig, axes = plt.subplots(1, 2, figsize=(10, 3.9), dpi=200, sharey=True)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4.4), dpi=200, sharey=True)
     for ax, ts, title in zip(axes, ("v2", "v3"), ("A  237 v2 held-out polygons", "B  1,652 v3 held-out polygons")):
         sc = r["test"][ts]["scores"]
         for y, (k, _) in enumerate(rows):
@@ -238,7 +240,8 @@ def svm_windows():
     h, l = axes[0].get_legend_handles_labels()
     fig.legend(h, l, frameon=False, loc="upper right", ncol=3, fontsize=9)
     fig.text(0.01, 0.01, "Stand-in: scikit-learn SVM (RBF) on the 200 m stack, 2,000 training points a class, each trained once; "
-             "windows add each band's mean and spread. 14,993 and 14,996 test points.", color=MUTED, fontsize=7.5)
+             "windows add each band's mean and spread; coordinates are the point's x and y. 14,993 and 14,996 test points.",
+             color=MUTED, fontsize=7.5)
     fig.tight_layout(rect=(0, 0.05, 1, 0.92))
     p = os.path.join(OUT, "svm_windows.png")
     fig.savefig(p, facecolor="white"); plt.close(fig)
