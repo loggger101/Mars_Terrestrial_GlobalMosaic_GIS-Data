@@ -155,6 +155,28 @@
     0.881
    ]
   },
+  "global60_unet_x5c_v3g_20261109": {
+   "epochs": 30,
+   "best_epoch": 16,
+   "best_valid_loss": 0.5708,
+   "best_accuracy": 0.8035,
+   "max_valid_loss": 943.74,
+   "first_epoch_above_2": 18,
+   "train_loss_last5": [
+    0.492,
+    0.54,
+    0.492,
+    0.625,
+    0.498
+   ],
+   "accuracy_last5": [
+    0.83,
+    0.826,
+    0.811,
+    0.814,
+    0.814
+   ]
+  },
   "global60_unet_x5c_v3nt_20261108": {
    "epochs": 30,
    "best_epoch": 21,

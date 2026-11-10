@@ -806,8 +806,17 @@ adding nothing, it reaches a balanced accuracy of 78.1\% on the 237 polygons; on
 polygons alone (3,602), cutting nothing, 77.6\%; against 84.7\% with both and 56.9\% with neither. Each half gives
 part of the gain, about equally (their difference, $-7.8$ to $+5.8$ points, is not resolved by block), and the two
 together most. By pixel accuracy the added polygons alone score highest, 89.3\%, but lose hills ($-37.4$ points) and
-lava tube ($-38.6$): most of their hills are the rule's. Why the support vector machine did not rise is not measured
-here. %% KB §69.88, §69.93
+lava tube ($-38.6$): most of their hills are the rule's. %% KB §69.88, §69.93
+
+The support vector machine's flat score has another cause. A stand-in, a scikit-learn support vector machine on the
+same seven bands scored at 30,000 points in the 237 polygons, repeats its direction: 39.3\% trained on the second
+label set, 38.8\% on the third, at 1,000 pixels a class. Ten times the 1,000 pixels a class that Pro draws changes its
+accuracy by $-0.6$ to $+1.0$ points, and the third label set does not raise it ($-7.5$ to $+3.1$): what holds the
+support vector machine is one pixel's seven bands, not its sample or its labels. The third set moved its boundary
+between Crater and hills. The rule's hills, half of them on crater flanks, are harder to tell from Crater by those
+bands (two-class accuracy 0.722 against 0.877), and Pro's map on that set reads 21.0\% of the held-out Crater as
+hills, against 4.9\%: Crater, the larger class, loses what hills gains, so accuracy falls while balanced accuracy
+rises. %% KB §69.95
 
 The same 14 held-out blocks have scored every model in this paper. In a run set out before it ran, 14 other blocks
 drawn at random, holding 895 polygons of the third label set, were held out instead and both models retrained on the
@@ -1017,7 +1026,8 @@ polygons, below the four-class maps on the original classes.
 the set was asked for after the earlier scores were read; on 14 other blocks, held out from a retrained model, it
 scores 86.6\%, and its gain over the second label set comes about equally from cutting the polygons and from adding
 new ones. The support vector machine gains nothing resolved (39.1\%,
-\kap\,0.288; 40.2\% on the sample) and fails the rule set for it; both lead this paper.
+\kap\,0.288; 40.2\% on the sample) and fails the rule set for it, held by one pixel's seven bands rather than by its
+sample of 1,000 pixels a class or by its labels; both lead this paper.
 \item Lava flows are not separable in these bands; the geologic map remains the lava-flow reference; H1 awaits
 digitised margins, and H2 a window that holds both fluvial and volcanic channels.
 \end{enumerate}

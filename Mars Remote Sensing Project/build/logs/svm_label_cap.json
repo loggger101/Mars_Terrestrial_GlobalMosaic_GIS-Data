@@ -1,0 +1,255 @@
+{
+ "script": "check_svm_label_cap.py",
+ "plant": false,
+ "per_class_drawn": 10000,
+ "n_test": 30000,
+ "sizes": [
+  [
+   1000,
+   0
+  ],
+  [
+   1000,
+   1
+  ],
+  [
+   1000,
+   2
+  ],
+  [
+   3000,
+   0
+  ],
+  [
+   10000,
+   0
+  ]
+ ],
+ "train_v2_dropped": 743,
+ "train_v2_per_class": {
+  "1": 9994,
+  "2": 10000,
+  "3": 10000,
+  "4": 9828,
+  "5": 9574,
+  "6": 9997,
+  "7": 9864
+ },
+ "train_v3_dropped": 1144,
+ "train_v3_per_class": {
+  "1": 9698,
+  "2": 9895,
+  "3": 9999,
+  "4": 9815,
+  "5": 9594,
+  "6": 9997,
+  "7": 9858
+ },
+ "test": {
+  "v2": {
+   "points": 29994,
+   "dropped": 12,
+   "blocks": 14,
+   "scores": {
+    "pro_svm_v2": {
+     "accuracy": 0.4385,
+     "balanced": 0.4252
+    },
+    "pro_svm_v3": {
+     "accuracy": 0.4084,
+     "balanced": 0.4568
+    },
+    "sk_v2_1000_s0": {
+     "accuracy": 0.3875,
+     "balanced": 0.4033
+    },
+    "sk_v2_1000_s1": {
+     "accuracy": 0.3937,
+     "balanced": 0.4118
+    },
+    "sk_v2_1000_s2": {
+     "accuracy": 0.3971,
+     "balanced": 0.4256
+    },
+    "sk_v2_3000_s0": {
+     "accuracy": 0.3977,
+     "balanced": 0.4128
+    },
+    "sk_v2_10000_s0": {
+     "accuracy": 0.3999,
+     "balanced": 0.4186
+    },
+    "sk_v3_1000_s0": {
+     "accuracy": 0.3869,
+     "balanced": 0.4321
+    },
+    "sk_v3_1000_s1": {
+     "accuracy": 0.3868,
+     "balanced": 0.4518
+    },
+    "sk_v3_1000_s2": {
+     "accuracy": 0.3895,
+     "balanced": 0.4422
+    },
+    "sk_v3_3000_s0": {
+     "accuracy": 0.3844,
+     "balanced": 0.4543
+    },
+    "sk_v3_10000_s0": {
+     "accuracy": 0.3867,
+     "balanced": 0.4654
+    }
+   },
+   "block_bootstrap": {
+    "sk_v3_10000_s0 - sk_v3_1000_s0": {
+     "accuracy_ci95": [
+      -0.0062,
+      0.0103
+     ],
+     "balanced_ci95": [
+      0.0015,
+      0.0811
+     ]
+    },
+    "sk_v3_10000_s0 - sk_v2_10000_s0": {
+     "accuracy_ci95": [
+      -0.0747,
+      0.0307
+     ],
+     "balanced_ci95": [
+      -0.0012,
+      0.0805
+     ]
+    },
+    "sk_v3_1000_s0 - sk_v2_1000_s0": {
+     "accuracy_ci95": [
+      -0.0435,
+      0.0281
+     ],
+     "balanced_ci95": [
+      -0.0032,
+      0.0557
+     ]
+    },
+    "pro_svm_v3 - pro_svm_v2": {
+     "accuracy_ci95": [
+      -0.0755,
+      0.0196
+     ],
+     "balanced_ci95": [
+      -0.0214,
+      0.0751
+     ]
+    }
+   }
+  },
+  "v3": {
+   "points": 29963,
+   "dropped": 10,
+   "blocks": 14,
+   "scores": {
+    "pro_svm_v2": {
+     "accuracy": 0.4042,
+     "balanced": 0.3973
+    },
+    "pro_svm_v3": {
+     "accuracy": 0.3804,
+     "balanced": 0.4341
+    },
+    "sk_v2_1000_s0": {
+     "accuracy": 0.3611,
+     "balanced": 0.3938
+    },
+    "sk_v2_1000_s1": {
+     "accuracy": 0.3702,
+     "balanced": 0.4015
+    },
+    "sk_v2_1000_s2": {
+     "accuracy": 0.3768,
+     "balanced": 0.4066
+    },
+    "sk_v2_3000_s0": {
+     "accuracy": 0.3775,
+     "balanced": 0.4017
+    },
+    "sk_v2_10000_s0": {
+     "accuracy": 0.376,
+     "balanced": 0.3939
+    },
+    "sk_v3_1000_s0": {
+     "accuracy": 0.3605,
+     "balanced": 0.4275
+    },
+    "sk_v3_1000_s1": {
+     "accuracy": 0.3604,
+     "balanced": 0.428
+    },
+    "sk_v3_1000_s2": {
+     "accuracy": 0.3645,
+     "balanced": 0.4205
+    },
+    "sk_v3_3000_s0": {
+     "accuracy": 0.3598,
+     "balanced": 0.429
+    },
+    "sk_v3_10000_s0": {
+     "accuracy": 0.3609,
+     "balanced": 0.4306
+    }
+   },
+   "block_bootstrap": {
+    "sk_v3_10000_s0 - sk_v3_1000_s0": {
+     "accuracy_ci95": [
+      -0.0054,
+      0.0094
+     ],
+     "balanced_ci95": [
+      -0.0031,
+      0.0305
+     ]
+    },
+    "sk_v3_10000_s0 - sk_v2_10000_s0": {
+     "accuracy_ci95": [
+      -0.0729,
+      0.0185
+     ],
+     "balanced_ci95": [
+      -0.0021,
+      0.069
+     ]
+    },
+    "sk_v3_1000_s0 - sk_v2_1000_s0": {
+     "accuracy_ci95": [
+      -0.0366,
+      0.02
+     ],
+     "balanced_ci95": [
+      0.009,
+      0.0634
+     ]
+    },
+    "pro_svm_v3 - pro_svm_v2": {
+     "accuracy_ci95": [
+      -0.0654,
+      0.0141
+     ],
+     "balanced_ci95": [
+      -0.0115,
+      0.0831
+     ]
+    }
+   }
+  }
+ },
+ "predictions": {
+  "Q0": "held",
+  "Q1": "held",
+  "Q2": "held",
+  "Q3": "held"
+ },
+ "stand_in_1000_mean_of_3": {
+  "v2": 0.3928,
+  "v3": 0.3877
+ },
+ "seconds": 2081
+}

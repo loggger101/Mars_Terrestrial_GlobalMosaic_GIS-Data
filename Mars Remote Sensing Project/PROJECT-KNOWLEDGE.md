@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.94).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.96).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7341,5 +7341,33 @@ Written while `add_train` runs, after S1 (§69.88) and before any of add was rea
 
 - **Made:** `make_fig_final.py` gains `extra_runs()`, which writes `build\final_img\extra_runs.png`: for each U-Net window map, the scores on the 237 v2 and the 1,652 v3 held-out polygons, with the block-bootstrap 95 % interval (14 blocks resampled), as accuracy (A) and balanced accuracy (B). Rows: the published second-label-set map (neither), cut, add, base (both), noth (both, without the thermal bands); rep's row ("Both, trained a second time") appears once `v3_extras.json` holds it, and fresh2 is not a window map and is not drawn. Every number is read from `logs\v3_extras.json` (the unet_v2 row included), none typed in.
 - **Placed:** paper Figure 25, after the two v3 map figures in sec:v3, cited from the two-by-two paragraph and the thermal paragraph (T1 on the U-Net); `build_final_paper.py` copies it and cuts its 55-pixel footnote, which the caption replaces. Deck: a new slide 35, "What lifted the U-Net: retrainings set out first", after the two lead-map slides; the two-by-two point moved there from the third-label-set slide, which keeps four points.
-- **Rebuilt and read:** paper 24 pages (23 before; the figure takes page 20), figures in number order; the "float is stuck" warning at input line 693 is from the seven-class section and every figure is placed. Deck 42 slides; slide 35 rendered and read.
+- **Rebuilt and read:** paper 24 pages (23 before; the figure takes page 20), figures in number order; the "float is stuck" warning at input line 693 (the seven-class section) predates the figure: the 45a0f44 source, compiled apart on 11-10, gives it at line 692 with 23 pages. All 25 figures and 5 tables print. Deck 42 slides; slide 35 rendered and read.
 - **To do when rep ends:** rerun `make_fig_final.py` so the sixth row is drawn, and rebuild both.
+
+### 69.95 Why the SVM did not rise on the third label set: one pixel's bands, not the sample cap or the labels — 2026-11-10, desktop **[V]**
+
+The U-Net rose from 69.0 % to 87.6 % on the 237 v2 polygons with the third label set; the SVM went from 42.5 % to 39.1 % (§69.81), and the paper said why was "not measured here". Pro's SVM draws at most 1,000 pixels a class (`max_samples_per_class=1000`), so 14 times the polygons change which pixels it trains on, not how many. New `build\check_svm_label_cap.py` (ArcGIS Python; predictions Q0–Q3 in its docstring, written before the run; 2,081 s): a scikit-learn SVM (RBF, bands standardised) as a stand-in, trained on random 200 m stack pixels inside each label set's training polygons (10,000 a class drawn, 743 and 1,144 of 70,000 dropped as NoData) and scored at 30,000 area-uniform points in each held-out set (29,994 and 29,963 kept; 14 blocks), the same points for every model, Pro's raw maps read there too. Points and samples in `C:\MarsScratch\svm_cap\pts.gdb`; `logs\svm_label_cap.json`. A dry run at 2,000 points with the test labels shuffled (`--plant`) put every score at 13–16 %, chance for seven classes, and failed Q0.
+
+| on the 237 v2 polygons (30,000 points) | accuracy | balanced |
+|---|---|---|
+| Pro svm_v2 raw / svm_v3 raw | 43.9 % / 40.8 % | 42.5 % / 45.7 % |
+| stand-in, v2 labels, 1,000 a class (three draws) | 38.8, 39.4, 39.7 % | 40.3, 41.2, 42.6 % |
+| stand-in, v3 labels, 1,000 a class (three draws) | 38.7, 38.7, 39.0 % | 43.2, 45.2, 44.2 % |
+| stand-in, v2 / v3 labels, 3,000 a class | 39.8 / 38.4 % | 41.3 / 45.4 % |
+| stand-in, v2 / v3 labels, 10,000 a class | 40.0 / 38.7 % | 41.9 / 46.5 % |
+
+On the 1,652 v3 polygons the same pattern: Pro 40.4 / 38.0 %, the stand-in 36.0–37.8 % on either label set at every size.
+
+- **Q0 held:** Pro's raw maps at the points, 43.9 % (svm_v2, v2 set) and 38.0 % (svm_v3, v3 set), against the logged 42.4 % and 37.4 % at 400 m.
+- **Q1 held:** the stand-in at 1,000 a class repeats Pro's direction: 39.3 % on the v2 labels, 38.8 % on the v3 labels (means of three draws), as Pro's accuracy falls and its balanced accuracy rises; each within 8 points of Pro at the same points.
+- **Q2 held (the cap):** on the v3 labels, 10,000 a class against 1,000: accuracy −0.6 to +1.0 points by block (v3 set −0.5 to +0.9). Balanced accuracy gains a little on the 237 polygons, +0.15 to +8.1 (46.5 against 43.2 %), and not resolved on the 1,652 (−0.3 to +3.1).
+- **Q3 held (the labels):** at 10,000 a class the v3 labels score −7.5 to +3.1 points of accuracy against the v2 labels (v3 set −7.3 to +1.85); balanced −0.1 to +8.1. Pro's own v3 − v2 at the points: −7.55 to +2.0 accuracy, −2.1 to +7.5 balanced.
+- **Reading (the rule as registered):** neither the cap nor the labels hold the SVM back; the seven bands of one pixel do. A thousand or ten thousand pixels a class, second or third label set, a per-pixel SVM scores 38–40 % on the 237 polygons; the U-Net, which sees a pixel's surroundings, is not bound by that. A stand-in, not Pro's own SVM: Pro's kernel and settings are not documented to that depth, and it scores 2–5 points above the stand-in at the same points.
+- **Where the SVM's Crater went (Pro's maps at the points, a description):** on the 237 polygons svm_v3 reads **21.0 %** of the held-out Crater points as hills, against **4.9 %** for svm_v2, and Crater as Crater falls from 37.8 % to 21.7 %; held-out hills read as Crater fall from 41.3 % to 8.3 % and as hills rise from 48.2 % to 80.9 % (on the 1,652: Crater as hills 6.6 → 22.9 %, Crater as Crater 32.9 → 19.4 %). The Crater–hills boundary moved: Crater is the larger class, so accuracy falls while balanced accuracy rises, the SVM's v2 → v3 pattern (§69.81).
+- **Why it moved (`--pairs`, a description, not a test; `logs\svm_label_cap_pairs.json`):** two-class accuracy of a 15-nearest-neighbour classifier on 2,000 training pixels a class, 5-fold, 0.5 being no separation. Under the v3 labels hills is much harder to tell by one pixel from Crater (**0.722 against 0.877**), lava tube (0.737 against 0.907), apron (0.746 against 0.881) and edifice (0.834 against 0.927); Normal Ground stays apart from every class (0.864–0.962). The third set's hills are mostly the rule's, half of them on large craters' flanks (§69.87), so their pixels look like crater pixels. Training pixels from the same polygons share folds, so these accuracies are high in absolute terms; the v2–v3 differences are the reading.
+- **Placed:** the paper's sentence that why the SVM did not rise "is not measured here" is replaced by a paragraph in sec:v3 (the stand-in, the cap, the labels, the Crater–hills boundary), and Conclusions item 7 says what holds it. Deck slide 34 (the SVM lead map): the two nearest-polygon points merged, a fifth point gives the cause. Paper 24 pages, deck 42 slides; slide 34 rendered and read.
+
+### 69.96 fresh2 (F6): the second draw of 14 other blocks, trained — 2026-11-10, desktop **[V]** (scores to follow)
+
+- **Queue:** fresh2_export 22.6 min (31,229 chips) from 20:28 on 11-09; fresh2_train **672.9 min** (11.2 h), ended 08:04 on 11-10; fresh2_classify 33.5 min; fresh2_svm-train from 08:37, still running at 11:07 (fresh's took 81.1 min; `check_svm_label_cap.py` shared the CPU 10:13–10:48, §69.95).
+- **Training (`check_v3_loss_spikes.py`):** model `global60_unet_x5c_v3g_20261109`, 30 epochs; the epoch of lowest validation loss, **16 (0.571)**, is the one kept, earlier and higher than fresh's 22 (0.451); validation loss above 2 from epoch 18, peaking at **943.74**. fresh2 trains on the added polygons too, so the late spikes appear again with them, as §69.90 found for every run that has them.
