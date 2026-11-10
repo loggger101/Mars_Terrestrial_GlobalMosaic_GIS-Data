@@ -797,8 +797,15 @@ The score was above the range registered for it (60--78\%), so a leak was sought
 measurable area with a training polygon, where the same test finds 89.2\% of the second label set's training area under
 the third's. The gain is broad: 13 of the 14 blocks rise and 183 polygons gain against 38 that lose. Of its 18.6
 points Crater gives 8.6 and Normal Ground 5.6, as the earlier model's calling Crater edifice or apron, and Normal Ground
-edifice, nearly stops. The Tharsis block with 29.7\% of the pixels gains least and reads 77.2\%. Why the U-Net
-rose and the support vector machine did not is not measured here. %% KB §69.80
+edifice, nearly stops. The Tharsis block with 29.7\% of the pixels gains least and reads 77.2\%. %% KB §69.80
+
+Two retrainings set out before they ran split the U-Net's gain. Trained on the cut pieces alone (7,401 polygons),
+adding nothing, it reaches a balanced accuracy of 78.1\% on the 237 polygons; on the second label set plus the added
+polygons alone (3,602), cutting nothing, 77.6\%; against 84.7\% with both and 56.9\% with neither. Each half gives
+part of the gain, about equally (their difference, $-7.8$ to $+5.8$ points, is not resolved by block), and the two
+together most. By pixel accuracy the added polygons alone score highest, 89.3\%, but lose hills ($-37.4$ points) and
+lava tube ($-38.6$): most of their hills are the rule's. Why the support vector machine did not rise is not measured
+here. %% KB §69.88, §69.93
 
 The same 14 held-out blocks have scored every model in this paper. In a run set out before it ran, 14 other blocks
 drawn at random, holding 895 polygons of the third label set, were held out instead and both models retrained on the

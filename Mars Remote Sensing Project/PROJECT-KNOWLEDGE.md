@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.92).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.93).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7319,3 +7319,20 @@ Written while `add_train` runs, after S1 (§69.88) and before any of add was rea
 
 - **Read:** trained without the added polygons, the U-Net loses Crater: whole held-out craters in blocks 0_0 and 1_0 go to apron and edifice (one 33,456-pixel crater 100 % correct → 9.3 %, another 96.4 → 25.2 %), the ground the Robbins discs teach. It gains edifice, most of it one polygon, the largest edifice polygon in the Tharsis block (462,109 pixels, 72.5 % correct on base → 98.8 % on cut). By pixels the two nearly cancel on the v2 set (−0.63), which is why cut's accuracy (86.9 %) is near base's while its balanced accuracy (78.1 % against 84.7 %) is not: balanced accuracy weights lava tube (producer's −45.7) and Crater (−17.0) as classes, not by area. Add (training now) will show whether the added polygons alone bring Crater back.
 - **Two checks on §69.91's apron, the same day.** (1) The held-out apron lies on Tharsis: by geodesic area, −9_−1 holds **59.8 %** of the v2 set's apron (7 polygons) and **66.1 %** of the v3 set's (230), −9_0 **37.0 %** and **31.1 %**, −11_1 the rest. noth loses the apron in −9_−1 and not in −9_0 (no class and block there moves more than 0.43 points), so the drop is one block's apron, not apron as a class. (2) The Gaussian seven-class ablation (A2, §69.50; `logs	hermal_ablation_v2.json`) cannot cross-check it: it finds apron 6.5 % of the time with all seven bands and 6.7 % without.
+
+### 69.93 Adding alone: C2 and C4 held, C3 not; S1 not decided — why the U-Net rose, measured — 2026-11-09, desktop **[V]**
+
+- **Ran:** `add_export` 29.2 min, `add_train` 724.9 min, `add_classify` 31.9 min, all exit 0, ending 20:28 on 11-09; `fresh2_export` follows. The model, `DLModels\global60_unet_x5c_v3a_20261109`, trains on the second label set's 734 polygons plus the third's added ones (3,602 in all, 2,868 added), all seven bands. `--report` exit 0; `check_v3_run_polygons.py --run add` exit 0 (`logs\v3_add_polygons.json`); `check_v3_loss_spikes.py` (`logs\v3_loss_spikes.json`).
+
+| U-Net, window maps | 237 v2 polygons: accuracy, κ, balanced | 1,652 v3 polygons |
+|---|---|---|
+| neither (unet_v2) | 69.0 %, 0.606, 56.9 % | 65.8 %, 0.565, 52.9 % |
+| cut only | 86.9 %, 0.834, 78.1 % | 82.3 %, 0.774, 69.5 % |
+| **added only (add)** | **89.3 %**, 0.864, **77.6 %** | **88.0 %**, 0.845, 72.5 % |
+| both (base) | 87.5 %, 0.843, 84.7 % | 86.4 %, 0.827, 77.5 % |
+
+  Block bootstrap (accuracy; balanced): add − unet_v2 +11.7 to +36.2; +9.4 to +30.7 (v3 set +14.2 to +38.5; +11.6 to +27.2). add − cut −2.1 to +11.3; **−7.8 to +5.8** (v3 set +1.1 to +16.9; −0.9 to +8.3). base − add −4.5 to +4.2; **+0.3 to +12.7** (v3 set −4.7 to +4.0; +1.0 to +10.3).
+- **Predictions:** C1 held (§69.88); **C2 held** (add's balanced 77.6 % above 56.9 %); **C3 not held** (add's 77.6 % is below cut's 78.1 %, by 0.5 points, a difference not resolved by block either way); **C4 held** (both below base's 84.7 %; base's lead over add is resolved by balanced accuracy on both sets, over cut on the v3 set only). Block 20 (a3)'s branch for C1, C2 and C4 held applies, with C3's result added: the two halves give about equal parts.
+- **By class** (producer's, add − base, v2 / v3 set): hills **−37.4 / −36.4**, lava tube **−38.6 / −20.3**, edifice +10.1 / +9.7, fluvial channel +15.5 / +8.6, the rest within 3.6. By pixels, add is **+1.80 / +1.60** points over base: it gains edifice and apron in −9_−1 (+1.48; v3 set +1.35 and +1.03) and fluvial channel in 5_−2 and 1_0, and loses hills in −4_−1 and −5_−1 (−0.70, −0.57). Add's hills are 597 polygons, 569 of them the rule's (§69.87: half on large craters' flanks), against base's 631 with the author's pieces; it misses the held-out hills, which are mostly the author's. Lava tube's chips are the same in add and base (§69.90), so its loss comes from the other classes around it, not from its own labels.
+- **Read:** the U-Net's rise from 56.9 % to 84.7 % balanced is shared about equally between cutting the second label set's polygons into screened pieces and adding the rule's polygons; either alone gives about 78 %, the two together most. By pixel accuracy the added polygons alone score highest, so the cut pieces' share of the gain is the classes, hills and lava tube, not the area. Each model trained once (§69.86's caveat applies; rep, §69.89, prices it).
+- **S1 not decided** (by the rule as registered): add's validation loss rose above 2 at epoch 20 (2.40) and peaked at **3.51** at epoch 25, between cut's 1.32 and base's 23.25 (fresh 11.85, noth 892.00); its kept epoch is 22 (0.433, validation-chip accuracy 0.855). The added polygons go with a milder rise; the large ones came only with both the added polygons and the cut pieces. Not explained.

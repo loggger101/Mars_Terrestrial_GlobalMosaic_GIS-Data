@@ -89,6 +89,28 @@
     0.882
    ]
   },
+  "global60_unet_x5c_v3a_20261109": {
+   "epochs": 30,
+   "best_epoch": 22,
+   "best_valid_loss": 0.4327,
+   "best_accuracy": 0.8546,
+   "max_valid_loss": 3.507,
+   "first_epoch_above_2": 20,
+   "train_loss_last5": [
+    0.507,
+    0.492,
+    0.532,
+    0.552,
+    0.511
+   ],
+   "accuracy_last5": [
+    0.841,
+    0.864,
+    0.866,
+    0.864,
+    0.864
+   ]
+  },
   "global60_unet_x5c_v3c_20261109": {
    "epochs": 30,
    "best_epoch": 21,
@@ -156,6 +178,6 @@
    ]
   }
  },
- "S1": "waiting for add (0 epochs)",
+ "S1": "not decided",
  "R3": "waiting for rep (0 epochs)"
 }

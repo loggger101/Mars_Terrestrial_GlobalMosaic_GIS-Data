@@ -28,3 +28,9 @@
 2026-11-09 07:51:46  end   add_export: exit 0, 29.2 min
 2026-11-09 07:51:46  start add_train
 2026-11-09 08:42:07  waiting for process 7288
+2026-11-09 19:56:39  end   add_train: exit 0, 724.9 min
+2026-11-09 19:56:39  start add_classify
+2026-11-09 20:28:35  end   add_classify: exit 0, 31.9 min
+2026-11-09 20:28:35  start fresh2_export
+2026-11-09 20:51:09  end   fresh2_export: exit 0, 22.6 min
+2026-11-09 20:51:09  start fresh2_train

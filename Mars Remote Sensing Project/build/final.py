@@ -210,8 +210,9 @@ FIGURES = [
                  "screened, others added by rule",
                  "On the 237 polygons: U-Net 87.6%, κ 0.844 (before 69.0%, 0.606); SVM 39.1%, κ 0.288 (before 42.5%, 0.310)",
                  "Volcanic edifice covers 18.0% of ±60° on the new U-Net map, against 40.0%",
-                 "Asked for after the seven-class scores were read, so a gain here is not a fresh test"],
-         source="§69.49, §69.76, §69.77, §69.81"),
+                 "Asked for after the seven-class scores were read, so a gain here is not a fresh test",
+                 "Why the U-Net rose, balanced: cut pieces alone 78.1%, added polygons alone 77.6%, both 84.7%, neither 56.9%"],
+         source="§69.49, §69.76, §69.77, §69.81, §69.88, §69.93"),
     dict(title="The lead maps: the U-Net",
          images=[("layout", "17c_unet_v3_provinces")], map_left=True, points_h=262,
          points=["Above its registered range (60–78%), so a leak was sought first: no held-out polygon shares area with "
