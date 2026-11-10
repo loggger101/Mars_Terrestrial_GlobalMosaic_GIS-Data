@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.93).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-09 (§69.94).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7336,3 +7336,10 @@ Written while `add_train` runs, after S1 (§69.88) and before any of add was rea
 - **By class** (producer's, add − base, v2 / v3 set): hills **−37.4 / −36.4**, lava tube **−38.6 / −20.3**, edifice +10.1 / +9.7, fluvial channel +15.5 / +8.6, the rest within 3.6. By pixels, add is **+1.80 / +1.60** points over base: it gains edifice and apron in −9_−1 (+1.48; v3 set +1.35 and +1.03) and fluvial channel in 5_−2 and 1_0, and loses hills in −4_−1 and −5_−1 (−0.70, −0.57). Add's hills are 597 polygons, 569 of them the rule's (§69.87: half on large craters' flanks), against base's 631 with the author's pieces; it misses the held-out hills, which are mostly the author's. Lava tube's chips are the same in add and base (§69.90), so its loss comes from the other classes around it, not from its own labels.
 - **Read:** the U-Net's rise from 56.9 % to 84.7 % balanced is shared about equally between cutting the second label set's polygons into screened pieces and adding the rule's polygons; either alone gives about 78 %, the two together most. By pixel accuracy the added polygons alone score highest, so the cut pieces' share of the gain is the classes, hills and lava tube, not the area. Each model trained once (§69.86's caveat applies; rep, §69.89, prices it).
 - **S1 not decided** (by the rule as registered): add's validation loss rose above 2 at epoch 20 (2.40) and peaked at **3.51** at epoch 25, between cut's 1.32 and base's 23.25 (fresh 11.85, noth 892.00); its kept epoch is 22 (0.433, validation-chip accuracy 0.855). The added polygons go with a milder rise; the large ones came only with both the added polygons and the cut pieces. Not explained.
+
+### 69.94 The extra runs in one figure: paper Figure 25, deck slide 35 — 2026-11-09, desktop **[V]**
+
+- **Made:** `make_fig_final.py` gains `extra_runs()`, which writes `build\final_img\extra_runs.png`: for each U-Net window map, the scores on the 237 v2 and the 1,652 v3 held-out polygons, with the block-bootstrap 95 % interval (14 blocks resampled), as accuracy (A) and balanced accuracy (B). Rows: the published second-label-set map (neither), cut, add, base (both), noth (both, without the thermal bands); rep's row ("Both, trained a second time") appears once `v3_extras.json` holds it, and fresh2 is not a window map and is not drawn. Every number is read from `logs\v3_extras.json` (the unet_v2 row included), none typed in.
+- **Placed:** paper Figure 25, after the two v3 map figures in sec:v3, cited from the two-by-two paragraph and the thermal paragraph (T1 on the U-Net); `build_final_paper.py` copies it and cuts its 55-pixel footnote, which the caption replaces. Deck: a new slide 35, "What lifted the U-Net: retrainings set out first", after the two lead-map slides; the two-by-two point moved there from the third-label-set slide, which keeps four points.
+- **Rebuilt and read:** paper 24 pages (23 before; the figure takes page 20), figures in number order; the "float is stuck" warning at input line 693 is from the seven-class section and every figure is placed. Deck 42 slides; slide 35 rendered and read.
+- **To do when rep ends:** rerun `make_fig_final.py` so the sixth row is drawn, and rebuild both.

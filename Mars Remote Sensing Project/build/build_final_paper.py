@@ -47,11 +47,12 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"final_img\04c_global60_landforms_v3.png", "04c_global60_landforms_v3.png"),    # the lead maps (D36, KB §69.82)
     (r"final_img\17c_unet_v3_provinces.png", "17c_unet_v3_provinces.png"),
     (r"final_img\svm_vs_unet_v3.png", "svm_vs_unet_v3.png"),
+    (r"final_img\extra_runs.png", "extra_runs.png"),                          # the extra runs (KB §69.86, §69.88, §69.93)
     (r"final_img\svm_vs_unet_v2.png", "svm_vs_unet_v2.png"),
 ]
 # Two deck charts carry slide furniture a paper caption replaces: a title strip naming the gdb class and the KB
 # (ius_channel_candidates), a footnote citing the KB (global60_thermal). Pixels cut from the top and the bottom.
-CROP = {"ius_channel_candidates.png": (80, 0), "global60_thermal.png": (0, 95)}
+CROP = {"ius_channel_candidates.png": (80, 0), "global60_thermal.png": (0, 95), "extra_runs.png": (0, 55)}
 
 
 def run(exe, *args):

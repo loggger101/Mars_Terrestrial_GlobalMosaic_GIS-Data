@@ -210,9 +210,8 @@ FIGURES = [
                  "screened, others added by rule",
                  "On the 237 polygons: U-Net 87.6%, κ 0.844 (before 69.0%, 0.606); SVM 39.1%, κ 0.288 (before 42.5%, 0.310)",
                  "Volcanic edifice covers 18.0% of ±60° on the new U-Net map, against 40.0%",
-                 "Asked for after the seven-class scores were read, so a gain here is not a fresh test",
-                 "Why the U-Net rose, balanced: cut pieces alone 78.1%, added polygons alone 77.6%, both 84.7%, neither 56.9%"],
-         source="§69.49, §69.76, §69.77, §69.81, §69.88, §69.93"),
+                 "Asked for after the seven-class scores were read, so a gain here is not a fresh test"],
+         source="§69.49, §69.76, §69.77, §69.81"),
     dict(title="The lead maps: the U-Net",
          images=[("layout", "17c_unet_v3_provinces")], map_left=True, points_h=262,
          points=["Above its registered range (60–78%), so a leak was sought first: no held-out polygon shares area with "
@@ -230,6 +229,16 @@ FIGURES = [
                  "Presented beside the U-Net all the same, on one label set",
                  "On 14 other blocks: 37.9%, again no better than the nearest training polygon"],
          source="§69.81, §69.82, §69.84"),
+    dict(title="What lifted the U-Net: retrainings set out first",
+         images=[("file", r"final_img\extra_runs.png")],
+         points=["Each retrained once with the published settings, its prediction written before it ran",
+                 "Balanced: cut pieces alone 78.1%, added polygons alone 77.6%, both 84.7%, neither 56.9%; "
+                 "each half gives part, together most",
+                 "Added polygons alone score highest by accuracy (89.3%) but lose hills (−37.4 points) and lava tube "
+                 "(−38.6): most of their hills are the rule's",
+                 "Without the thermal bands 81.2% against 87.5%, not resolved by block; almost all of it apron in the "
+                 "Tharsis block read as edifice"],
+         source="§69.86, §69.88, §69.91, §69.93"),
     dict(title="A probability sample, on the AI assistant's labels",
          images=[("file", r"final_img\r2_vs_polygons.png")],
          points=["25 points per class of the seven-class SVM map, labelled blind on CTX and shaded relief; 142 of the 175 decided",
