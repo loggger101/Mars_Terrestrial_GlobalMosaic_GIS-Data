@@ -7708,3 +7708,13 @@ D42. Read from `logs/v3_extras.json` by a script, nothing typed: producer's accu
 - **Not checked:** the patched pieces have not been downloaded and rejoined; the hashes are those `github_release_large.py` took from the drive's files as it cut them, and GitHub's digest of each piece matches its line.
 - **Pages:** `docs/backup.md` lists the new release, drops the two patch commands a restore no longer needs and gives the restore's size; `github_catalog_rasters.py` points the five rasters at the new release (`DERIV_PATCHED`) and `docs/rasters.md` is regenerated; the README's Backup paragraph names three releases. `data-2026-11-10` is set back as the repository's latest release, which the upload had taken.
 - "Resume here" row 8 is done; D15 is closed.
+
+### 69.114 Four more answers from the author; the README drafted as the finished-work page (D43) — 2026-11-11, desktop **[V]**
+
+- **Asked 11-11 evening, answered at once:**
+  - *The repository's wording* ("agent", "AI assistant" on its pages, the professor receiving the repository): **"Leave the repo as is."** §69.111's scope stands: the paper and the deck only.
+  - *A real restore test of the patched release* (download and rejoin the 35.3 GB): **"No, hashes are enough."** §69.113's "not checked" line stays as the record of it.
+  - *The README rewrite (D43), now or at the freeze:* **"Draft now, finish at freeze."**
+  - *The working files in the repository at close-out* (`NEXT-STEPS.md`, `HANDOFF-DESKTOP.md`, `INTERIM-PLAN.md`, `build/logs/`): **"Keep, link from README."** Nothing moves; the README says which files are results and which the working record.
+- **The README's draft, the same evening:** "Where it stands" (the task table) and "Next steps" are replaced by "What was asked and what was found" (seven findings, each a number already on the page or in the paper's abstract, each linked to its Results section), "Where to start" (the paper's PDF, the deck, the lead maps, the data, this record, the earlier deliverables), a dated status line saying the page is a draft until the 22 November freeze and that one retraining is running, a nine-row state table (which keeps the "Map layouts" row `tools/check_repo.py` reads) and "The working record" (the four working files and what this record is). "Results so far" is now "Results". The page's other sections are unchanged. `tools/check_repo.py` passes (575 links).
+- **Left for the freeze:** the status line and the "drafts" wording go; the retraining's result (§69.108) enters the findings and the Deep learning section; the Results sections get one read against the frozen paper.
