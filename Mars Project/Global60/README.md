@@ -65,12 +65,18 @@ is never resampled: it is a window read, not a warp.
 | `global60_landforms_svm_200m_mode3 / 5 / 7 / 9 / 11.tif` | G200 | the same after an n × n majority filter; **`_mode11` (2.2 km) is the published map** (§57) |
 | `global60_landforms_unet_200m.tif` | G200 | the U-Net (X5c) landform map, one pass, class codes 1–4, 0 none; held out 98.8 %, κ 0.979; 256 px tile seams (KB §66.7) |
 | `global60_landforms_unet_200m_seamfix.tif` | G200 | the same map from two passes offset by 128 px, each pixel from the pass farther from a tile edge: held out 98.9 %, κ 0.980, seam ratio 1.2; the terrain-province map beside the published SVM map, layout 17 (KB §66.8–66.9) |
+| `global60_landforms_svm_v2_200m.tif`, `_v2_200m_mode11.tif`; `global60_landforms_unet_v2_200m_seamfix.tif` | G200 | the seven-class maps on the reviewed labels, codes 1–7, 255 none (SVM) / 0 none (U-Net): layouts 04b and 17b (KB §69.24–§69.26, D28) |
+| `global60_landforms_svm_v3_200m.tif`, `_v3_200m_mode11.tif`; `global60_landforms_unet_v3_200m_seamfix.tif` | G200 | the seven-class maps on the third label set, **the final's lead maps** (D36): the SVM 11 × 11 (layout 04c) and the U-Net (layout 17c) (KB §69.80–§69.82); in no release yet (KB §69.103) |
+| `global60_landforms_*_v2p_*.tif` | G200 | the seven-class pipeline rehearsed on the label proposals: a test, never a result (KB §69.4) |
+| `global60_tes_r5deg_index / nightIR / viking.tif` | 5° cells (72 × 24) | each layer's correlation with TES thermal inertia inside 5° blocks, layout 18 (KB §69.30); not on G200 by design |
+| `global60_svm_s_ClassifyPixel.tif` | | a stray 4,608 px tile of zeros from a deep-learning pass, not a product (KB §69.4) |
 | `global60_landforms_svm_400m.tif`, `_400m_mode3 / 5 / 7 / 9.tif` | 400 m (53,347 × 17,783) | the earlier 400 m classification and its filters; superseded, not redone after the 180° fix (§57.2) |
 | `global60_landforms_svm_<set>.ecd`, `global60_svm_stack_200m_<set>.tif`, `global60_landforms_svm_<set>_<cell>m.tif` | G200 / 400 m | test T1: the model retrained without band groups, `<set>` = `nothermal`, `novisible`, `terrain` (§56) |
 | `global60_depression_density_0p5deg.tif`, `global60_robbins_density_0p5deg.tif` | 0.5° (720 × 240) | closed depressions and Robbins craters ≥ 1 km per 10⁴ km² (layout 11, §53.6) |
 | `smoke60_*.tif` | G100 | smoke-test windows of the pipeline: Viking, day, night, 4- and 5-band composites (§28.11) |
 | `global60_svm_s_ClassifyRaste*.crf` | | temporary outputs `ClassifyRaster` wrote on 2 Oct; no layer uses them |
-| `layouts\` | | PNG exports of layouts 04–17, polished (06, 09, 14 and 15 show the type areas; 01–03 are in `TypeArea\layouts\`) |
+| `layouts\` | | PNG exports of layouts 04–20 with 04b, 13b, 17b, 04c, 13c, 17c, polished (06, 09, 14 and 15 show the type areas; 01–03 are in `TypeArea\layouts\`) |
+| `v3_extras\` | | the extra runs' window classifications, one folder per run (base, fresh, noth, cut, add, fresh2, rep), 15° blocks with a 25 km margin, and the fresh runs' SVM models `svm_fresh*.ecd` (KB §69.82–§69.102) |
 | `checks\` | | image chips of the DEM steps found by the stack's line sweep (§55.2) |
 | `_0based_originals\` | | the landform maps before their pixel values became the class codes (§36) |
 
@@ -96,7 +102,7 @@ over ±60°, so its numbers are not comparable to `ius_thermal_contrast.tif`.
 
 Checks every product's corners to the millimetre, its cell size, its shape, its
 CRS, and, for 200 m and 400 m products, that it nests on the 100 m grid. Non-zero exit
-if anything fails. Since 2026-10-18 it covers every `global60_*.tif` (27 at that date; not the `smoke60_*` windows)
+if anything fails. Since 2026-10-18 it covers every `global60_*.tif` on the ±60° grids, 38 since 2026-11-10 when the seven-class maps were added (KB §69.103; not the `smoke60_*` windows, the 5° TES grids or the stray tile)
 and reports the never-built harmonised bands as ruled out; add a new product to its `EXPECTED` list.
 
 ## `<drive>\Global60`

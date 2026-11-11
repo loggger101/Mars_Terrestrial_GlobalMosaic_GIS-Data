@@ -50,6 +50,17 @@ EXPECTED = [
     ("global60_landforms_svm_200m_mode11.tif", "G200", "landforms, PUBLISHED (KB 57)"),
     ("global60_landforms_unet_200m.tif", "G200", "landforms, U-Net X5c (KB 66.7)"),
     ("global60_landforms_unet_200m_seamfix.tif", "G200", "landforms, U-Net X5c, two passes (KB 66.8)"),
+    # the seven-class maps (KB 69.4, 69.24-69.26, 69.80-69.82; added 2026-11-10, KB 69.103): the reviewed labels (v2,
+    # D28), the rehearsal on the proposals (v2p, never a result) and the third label set (v3, the final's lead maps, D36)
+    ("global60_landforms_svm_v2_200m.tif", "G200", "seven classes, SVM v2, raw"),
+    ("global60_landforms_svm_v2_200m_mode11.tif", "G200", "seven classes, SVM v2, 11 x 11 (layout 04b)"),
+    ("global60_landforms_unet_v2_200m_seamfix.tif", "G200", "seven classes, U-Net v2 (layout 17b)"),
+    ("global60_landforms_svm_v3_200m.tif", "G200", "seven classes, SVM v3, raw"),
+    ("global60_landforms_svm_v3_200m_mode11.tif", "G200", "seven classes, SVM v3, 11 x 11: a LEAD map (layout 04c)"),
+    ("global60_landforms_unet_v3_200m_seamfix.tif", "G200", "seven classes, U-Net v3: the LEAD map (layout 17c)"),
+    ("global60_landforms_svm_v2p_200m.tif", "G200", "rehearsal v2p, never a result"),
+    ("global60_landforms_svm_v2p_200m_mode11.tif", "G200", "rehearsal v2p, never a result"),
+    ("global60_landforms_unet_v2p_200m_seamfix.tif", "G200", "rehearsal v2p, never a result"),
     ("global60_landforms_svm_400m.tif", "G400", "landforms, 400 m raw (superseded, KB 57.2)"),
     ("global60_landforms_svm_400m_mode3.tif", "G400", "superseded"),
     ("global60_landforms_svm_400m_mode5.tif", "G400", "superseded (published to 2026-10-16)"),
@@ -67,6 +78,9 @@ EXPECTED = [
     ("global60_depression_density_0p5deg.tif", "D05", "closed depressions per 1e4 km2"),
     ("global60_robbins_density_0p5deg.tif", "D05", "Robbins craters per 1e4 km2"),
 ]
+
+# Not on these grids by design, so not checked here: global60_tes_r5deg_*.tif, 5 degree cells of true angle for
+# layout 18 (KB 69.30), and global60_svm_s_ClassifyPixel.tif, a stray tile of zeros, not a product (KB 69.4).
 
 # Ruled out (NEXT-STEPS 10, KB 11 q7): the 100 m Composite Bands run was overtaken by the 200 m SVM stack.
 # Listed so that their absence is reported as a decision, not as work still to do.

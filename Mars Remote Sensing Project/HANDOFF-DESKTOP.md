@@ -1,7 +1,7 @@
 # Working on the Mars Global Mosaic: the operating guide
 
 How to pick the project up on either machine: the first ten minutes, where everything is, the working rules, and the
-end of a session. Current to 2026-11-05.
+end of a session. Current to 2026-11-10.
 
 **Read this file first, then `NEXT-STEPS.md` "Resume here" (the state, the dates and every open task), then
 `PROJECT-KNOWLEDGE.md` as needed.** The record (`PROJECT-KNOWLEDGE.md`, "KB" below; § numbers point into it, and its
@@ -34,16 +34,16 @@ plans. When they disagree, the KB wins and the plan is fixed.
 | the record | `Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (§1–§16 reference, §17 on the dated log; §11 open questions; tags `[V]` verified, `[E]` earlier, `[?]` open) |
 | the plan | `Mars Remote Sensing Project\NEXT-STEPS.md` ("Resume here"; standing §1; decisions §2; after-review steps §3; tests §4; desktop jobs §5; the review §6; figures and the final §7; schedule §8; risks §9; ruled out §10) |
 | the interim plan | `Mars Remote Sensing Project\INTERIM-PLAN.md` (the living build and its commands §0; progress facts §3; hypotheses §5; timeline §6; wording traps §7) |
-| scripts | `Mars Remote Sensing Project\build\` (238 `.py` / `.ps1`; catalogue in the repo's `docs/scripts.md`); logs and test results in `build\logs\` |
+| scripts | `Mars Remote Sensing Project\build\` (239 `.py` / `.ps1`; catalogue in the repo's `docs/scripts.md`); logs and test results in `build\logs\` |
 | interim deck and report | `Mars Remote Sensing Project\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx` (32 slides) and `Mars Mosaic - Interim Report.docx` (21 pages), built from `build\interim.py` |
 | ArcGIS project | `Mars Project\Mars Project.aprx` (45 maps, 26 layouts, KB §5); `Mars Project\Mars Project.gdb` (KB §6); `.aprx` backups in `Mars Project\.backups\` (one per write; drive only) |
-| layout PNGs | `Mars Project\Global60\layouts\` (04–20, with 04b, 13b, 17b) and `Mars Project\TypeArea\layouts\` (01–03) |
-| ±60° products | `Mars Project\Global60\` (its `README.md` lists them): `global60_svm_stack_200m.tif` (the 7-band stack), **`global60_landforms_svm_200m_mode11.tif` (the published map)**; `build\grid60.py` defines the grid |
+| layout PNGs | `Mars Project\Global60\layouts\` (04–20, with 04b, 13b, 17b and the lead sheets 04c, 13c, 17c) and `Mars Project\TypeArea\layouts\` (01–03) |
+| ±60° products | `Mars Project\Global60\` (its `README.md` lists them): `global60_svm_stack_200m.tif` (the 7-band stack), **`global60_landforms_svm_200m_mode11.tif` (the published four-class map)**; the final's lead maps, on the third label set (D36, KB §69.82): `global60_landforms_unet_v3_200m_seamfix.tif` and `global60_landforms_svm_v3_200m_mode11.tif`; `build\grid60.py` defines the grid |
 | type areas | `Mars Project\TypeArea\` (`ius_*`) and `Mars Project\Athabasca\` (`ath_*`); windows in `build\areas.py` |
 | reference data | `Mars Project\Reference\` (USGS SIM 3292, Robbins craters, TES thermal inertia; third-party, never mirrored) |
 | deep-learning exports | `Mars Project\LabeledObjects\global60_svm_stack_200m_train\` (**train on this one only**); `...\global60_svm_stack_200m\` holds the held-out labels too: never train on it |
 | source mosaics | the drive root: Viking MDIM 2.1 colour, THEMIS day IR v12, THEMIS night IR v14 (±60°), HRSC/MOLA blend DEM; pyramids built |
-| public backup and project page | GitHub `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`; clone at `~\OneDrive\Documents\GitHub\Mars_Terrestrial_GlobalMosaic_GIS-Data`; releases `data-2026-10-29` (both type areas, the U-Net maps, the seven-class maps, the deep-learning models) and `derivatives-2026-10-06` (KB §35, §57.4, §63.2, §66.10, §69.28) |
+| public backup and project page | GitHub `loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data`; clone at `~\OneDrive\Documents\GitHub\Mars_Terrestrial_GlobalMosaic_GIS-Data`; releases `data-2026-10-29` (both type areas, the U-Net maps, the seven-class maps, the deep-learning models) and `derivatives-2026-10-06` (KB §35, §57.4, §63.2, §66.10, §69.28); the v3 maps and models are in none yet (asked 11-10: "Not yet", KB §69.103; the repo's `docs/backup.md` lists them) |
 | agent memories (private) | the laptop's, mirrored read-only to `~\OneDrive\Documents\Github Knowledge\memory\loggg\z-drive\`; the desktop has its own for `F:` |
 
 ## 3. Working rules (each one learned the hard way; KB section in brackets)
@@ -63,7 +63,7 @@ plans. When they disagree, the KB wins and the plan is fixed.
   (the published map; the default cell is 400), `make_candidate_maps.py`, `make_mosaic_layout.py`,
   `make_reference_maps.py` (graticules back on the maps the first one wipes), `make_geomap_sheet.py --cell 200`,
   `make_validation_sheet.py`, `make_global60_candidate_sheets.py`, `make_athabasca_layout.py` (layout 15; adds
-  its own graticule), `make_dl_map.py` and `make_unet_map.py` (layouts 16, 17), `make_v2_sheets.py` (04b, 13b, 17b), `make_tes_block_layout.py` (18; needs `make_tes_block_scale.py`'s
+  its own graticule), `make_dl_map.py` and `make_unet_map.py` (layouts 16, 17), `make_v2_sheets.py` (04b, 13b, 17b), `make_v3_sheets.py` (04c, 13c, 17c; KB §69.82), `make_tes_block_layout.py` (18; needs `make_tes_block_scale.py`'s
   rasters first), `make_channel_valley_layout.py` (19; needs `make_channel_valley_check.py`'s log), `make_v3_label_layout.py`
   (20), then `polish_layouts.py`
   (§57, §63, §66.4, §66.9). A text-only change can go into the builder and the `.aprx` element directly, without
@@ -74,7 +74,7 @@ plans. When they disagree, the KB wins and the plan is fixed.
 - **Long jobs:** run detached with Python's output redirected by `cmd /c ... > log 2>&1`. Never stop a
   PowerShell queue that runs `& $py ... *> log`: it pipes the job's output, and killing it breaks the job.
   Two Pro runs at once are safe when each has its own inputs, model, scratch folder and logs (§56.1).
-- **Queues** (`build\run_rehearsal_v2p.ps1` is the one to copy, `-From <step>` to resume) write their own log with a
+- **Queues** (`build\run_v3x.ps1` is the one to copy: `-From <step>` to resume, `-AfterPid <pid>` to wait for another queue, KB §69.89; it reads each step's exit code, which `Start-Process -PassThru` leaves empty unless the process handle is read before the wait, KB §69.83) write their own log with a
   retrying `[IO.File]::AppendAllText`: `Add-Content` under `$ErrorActionPreference = "Stop"` ended a queue when a
   watcher held the file. A watcher counts "queue done" lines; the log keeps earlier runs' lines. A PowerShell
   `-replace` whose replacement holds `$_` inserts the whole input: use `.Replace()` (§69.4).
@@ -94,7 +94,7 @@ plans. When they disagree, the KB wins and the plan is fixed.
 - **±60°, never "global"**: the analysis extent is the THEMIS night mosaic's, 86.6 % of the surface (§16).
 - **"Diurnal-contrast index", never "thermal inertia"** (§24, §28.10, §42.4, §43.1).
 - **"Closed depressions ≥ 1 km", never a crater inventory**: for craters use `Ref_Craters_Robbins2020` (§42.3, §53.4).
-- **The published landform map is the 200 m 11 × 11 one** (§57); the 400 m maps are superseded (§57.2).
+- **The published four-class map is the 200 m 11 × 11 one** (§57); the 400 m maps are superseded (§57.2). The final leads with the two seven-class maps on the third label set, the U-Net and the SVM, the second against the rule set for it (D36, §69.82); the seven-class maps on the reviewed labels (D28) and the four-class ones are kept as history.
 - **The class codes are fixed:** 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, and from the
   revision D17 (§68) 5 volcanic edifice, 6 apron, 7 fluvial channel. Never renumber or delete a class;
   `Landform_TrainingSamples_terrain` is never written (the revision goes through `_v2_proposals` and the
@@ -102,7 +102,9 @@ plans. When they disagree, the KB wins and the plan is fixed.
   1–4 (D19, §68.4, §69.4). **`--labels v2p` is a rehearsal** (every proposal taken as proposed), never a result:
   not published, not in the interim, not used for D18; `labelsets.py` keeps its outputs apart by name.
 - **Score on held-out data**: `Landform_TrainingSamples_terrain_60_train` (329) and `_60_test` (183), split by
-  whole 15° blocks. Never train on the test set.
+  whole 15° blocks; the seven-class sets keep the same 14 blocks (v2: 734 and 237, §69.8; v3: 10,269 and 1,652,
+  §69.49). Never train on the test set. Those blocks have been used three times: further tuning needs validation
+  blocks of its own (§66.5); the extra runs' fresh blocks are drawn by `make_v3_extras.py --plan` (§69.84).
 - **Every number from its source**: the rasters, logs and the KB, never a previous document; round from the log's
   full precision (§48). Every test writes its prediction and verdict rule into the script before it runs (§47, §51).
 - **Prove a check can fail** on a planted defect before trusting that it passes (§46, §49–§51).
@@ -126,7 +128,9 @@ plans. When they disagree, the KB wins and the plan is fixed.
    it flags and its "Where it stands", next steps and results, **current state only**. When a layout or figure
    changed, first `py -3 tools/make_thumbs.py` in the clone (on the laptop `python`: its `py` launcher names a removed
   interpreter, KB §69.34): the pages show its 800 px previews, and
-   `check_repo.py` fails on a preview older than its source (KB §67.1).
+   `check_repo.py` fails on a preview older than its source (KB §67.1). `build_final_paper.py` re-saves its cropped
+   figures with Pillow, so the clone shows them changed with the same pixels: compare the pixels with `git show
+   HEAD:<path>` and, if equal, `git checkout --` them rather than commit bytes that change nothing (KB §69.103).
 4. Commit by hand with a descriptive message and the attribution trailer, push (standing approval after the
    checks pass), and check CI (`gh run list --limit 2`): `check` on every push, and `paper` on a push that touches the
    paper or its figures, which compiles it in TeX Live and keeps the PDF as the run's artifact (KB §69.42). That PDF is
