@@ -120,9 +120,9 @@ guides (`.md`) and the answer files (`.txt`) are mirrored to GitHub; the sheets 
 
 ## The traced lava margins (`margins_check` folder, KB §69.104)
 
-The author's check of the 86 margins the agent traced on CTX (D33), without Pro: 29 sheets, three margins each, every margin on the plate it was traced on, in orange beside the same view with only its ends ringed. Letters `k` keep, `p` partly, `n` no margin, `u` unsure; `answers.txt` in that folder, then `build\score_margin_check.py`. The folder's README gives the rule, written before any answer, and how T5 is rerun on the margins kept. Nothing is written into the layer from these answers.
+A check of the 86 margins the agent traced on CTX (D33), without Pro; answered 11-10 by the agent as a blind second reading, the author doing no more manual review (`answers_agent.txt`, KB §69.105): 29 sheets, three margins each, every margin on the plate it was traced on, in orange beside the same view with only its ends ringed. Letters `k` keep, `p` partly, `n` no margin, `u` unsure; `answers.txt` in that folder, then `build\score_margin_check.py`. The folder's README gives the rule, written before any answer, and how T5 is rerun on the margins kept. Nothing is written into the layer from these answers.
 
 ## Off-Tharsis labels (`offtharsis` folder, KB §69.63)
 
-Not a sheet: edifice and apron polygons drawn in Pro, in the map "Off-Tharsis labels (author)", for the held-out
+Not a sheet (drawn 11-10 by the agent on CTX plates instead, six edifice polygons, no apron, KB §69.105): edifice and apron polygons drawn in Pro, in the map "Off-Tharsis labels (author)", for the held-out
 blocks outside Tharsis. The folder's README gives the targets and the steps.

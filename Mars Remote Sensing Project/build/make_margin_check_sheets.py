@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Sheets for the author's check of the 86 lava-flow margins the agent traced on CTX (D33; KB §69.52, §69.104), so
+r"""Sheets for a check of the 86 lava-flow margins the agent traced on CTX (D33; KB §69.52, §69.104), so
 the check can be done without Pro, as the candidate review is (§69.51).
 
     python make_margin_check_sheets.py [--out <folder>]      (default <drive>\Mars Project\review_sheets\margins_check)

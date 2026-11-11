@@ -1,5 +1,5 @@
 {
- "test": "T5 on CTX-traced margins (KB 69.52), those the author's check kept (kp; KB 69.104)",
+ "test": "T5 on CTX-traced margins (KB 69.52), those the check kept (kp; KB 69.104, 69.105)",
  "hypothesis": "H1",
  "prediction": "H1 not supported: day IR's rate does not exceed Viking red's with an interval above 0 (logs/agent_review/ctx_margins_registration.md)",
  "design": {

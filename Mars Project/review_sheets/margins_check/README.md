@@ -3,7 +3,7 @@
 The agent traced 86 lava-flow margins at Athabasca Valles on CTX (1,476 km, all 126 plates, KB §69.52), and T5 ran on
 them (H1 not supported: day IR minus Viking red +4.9 pt, interval −2.7 to +13.1). A self-check is not a check, so the
 author checks them (D33, 11-03). Pro works as before (`Landform_LavaFlowMargins`, MappedBy "agent CTX (KB 69.52)");
-these sheets are the same check without Pro, answered as letters like the other folders here.
+these sheets are the same check without Pro, answered as letters like the other folders here. **Answered 11-10 by the agent instead** (the amendment at the end; KB §69.105).
 
 Each sheet (`margins_01.png` … `margins_29.png`) holds three margins, one per row, on the 24 km plate it was traced on
 (the same CTX view the tracing used; km from the plate's south-west corner):
@@ -43,7 +43,7 @@ It refuses the whole file on any unknown slot or letter. About an hour for all 8
 - **Prediction:** H1 not supported on either form (day IR minus Viking red, interval includes 0), as on all 86. A
   check that keeps every margin reproduces the all-86 result exactly (planted 11-10, KB §69.104).
 - **The paper:** block 15 of `v2_drafts.tex` then names the check: its (a)–(g) take the checked result in place of
-  the all-86 one, and "the AI assistant traced" becomes "traced by the AI assistant and checked by the author".
+  the all-86 one, and "the AI assistant traced" becomes "traced by the AI assistant and checked by the author". (With the agent's answers, the paper says "read again by it … no one else has checked them", KB §69.105.)
 - **The data:** nothing is written into `Landform_LavaFlowMargins` from these answers; the class keeps all 86 and
   the check lives in `build\logs\margin_check.json`. Redrawing a margin is done in Pro, as before.
 

@@ -49,7 +49,7 @@ apply_margin_tracing.py) in place of the 1:20 M contacts; every other part of th
 "lAv contacts" set; the registration check is reported, not enforced (a traced edge need not be a map contact).
 Writes logs\t5_flow_margins_traced.json. Prediction and rule: logs\agent_review\ctx_margins_registration.md.
 
---margins --check <margin_check.json> [--keep k|kp] (KB §69.104): only the margins the author's check kept
+--margins --check <margin_check.json> [--keep k|kp] (KB §69.104): only the margins a check kept (since 11-10 the agent's blind second reading, KB §69.105)
 (score_margin_check.py's output; k = keep, p = partly), as registered in review_sheets\margins_check\README.md before
 any answer: form k first, kp second. Writes logs\t5_flow_margins_checked_<keep>.json. --out <path> writes elsewhere
 (for planted runs: a check that keeps all 86 must reproduce t5_flow_margins_traced.json).
@@ -147,7 +147,7 @@ if MARGINS:
     # the contacts' place; each is labelled lAv-traced, so the "lAv contacts" set below is the traced set.
     contacts = []
     kept = None
-    if CHECK:   # KB §69.104: the author's check, scored by score_margin_check.py
+    if CHECK:   # KB §69.104, §69.105: the check, scored by score_margin_check.py
         chk = json.load(open(CHECK, encoding="utf-8"))
         assert chk["answered"] == chk["margins"], "the check is not complete: %d of %d answered" % (chk["answered"], chk["margins"])
         kept = {int(o) for o, a in chk["answers_by_oid"].items() if a in KEEP}
@@ -300,7 +300,7 @@ log("registration: contact profiles with different units at +-10 km %.1f %%; nul
 
 # ------------------------------------------------------------------ separation, thresholds, rates
 res = {"test": "T5" + (" on CTX-traced margins (KB 69.52)" if MARGINS else "")
-        + (", those the author's check kept (%s; KB 69.104)" % KEEP if CHECK else ""), "hypothesis": "H1",
+        + (", those the check kept (%s; KB 69.104, 69.105)" % KEEP if CHECK else ""), "hypothesis": "H1",
        "prediction": ("H1 not supported: day IR's rate does not exceed Viking red's with an interval above 0 "
                       "(logs/agent_review/ctx_margins_registration.md)" if MARGINS else
                       "Viking red separates at least as many contacts as day IR; IR-only <= Viking-only; night IR fewest; H1 not supported"),

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Score the author's check of the 86 lava-flow margins the agent traced on CTX (D33; KB §69.52, §69.104; sheets from
+r"""Score a check of the 86 lava-flow margins the agent traced on CTX (D33; KB §69.52, §69.104; sheets from
 make_margin_check_sheets.py, the rule in <drive>\Mars Project\review_sheets\margins_check\README.md, written before
 any answer).
 
