@@ -16,7 +16,7 @@ checklist, is `HANDOFF-DESKTOP.md`.
 
 ---
 
-## Resume here — 2026-11-10 (night, §69.105)
+## Resume here — 2026-11-11 (§69.106)
 
 Only the state, what waits on whom and the next step; the history behind each line is the KB section it cites
 (condensed 2026-10-31, §13.1 P10: the dated paragraphs since 10-18 are in git history and KB §58–§69.34).
@@ -66,7 +66,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 - **The project and the deliverables:** 45 maps and 26 layouts, no broken source (§5; the 42nd, "Off-Tharsis labels (author)", 11-03, §69.63); every sheet's text read against the record and seven corrected 11-03, layout 14's recall now "–" until a feature is drawn by hand (§69.69). The interim at its 26 October
   cut (D20): 32 slides and a 21-page report, rebuilt 10-31 for layout 11's corrected citation (§69.34); speaker
   notes on every slide since 11-01, the slides unchanged (§69.41). The final
-  paper (25 pages since 11-10, §69.103, compiled by the repository's CI on every push that touches it, §69.42) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
+  paper (26 pages since 11-10, §69.105, compiled by the repository's CI on every push that touches it, §69.42) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
   freeze (§12.1). Backup: release `data-2026-11-10` (§69.105; `data-2026-10-29`, §69.28, before it).
 - **The machines:** the drive-root junctions point at `F:` and are broken on the laptop (§58); the drive and the
   clone agree, and `github_sync.py` refuses if the clone ever holds work the drive lacks (§69.20). `run_v3.ps1` ended 11-07 (§69.81):
@@ -84,14 +84,14 @@ Only the state, what waits on whom and the next step; the history behind each li
 | 3b | **The v3 runs: done 11-07; D36: both lead; sheets, paper and deck moved (KB §69.82). Every extra run is done: rep, the second v3 training, scored 11-11 (R1, R2 held, R3 not), placed and added to release `data-2026-11-10` (§69.106; the others §69.84–§69.102, the release §69.105)** (KB §69.80, §69.81; `logs\v3_maps.json`, `logs\r2\r2_v3_result.json`). Every run and check in the sequence is finished; the rule recommends U-Net v3 and not SVM v3. **If the author picks a v3 map** (§69.77 has the audit): the layouts first, `make_v2_sheets.py`'s sheet text being specific to the v2 results, so v3 sheets are written from the v3 results, not by a flag, and `score_metrics.py` run on the v3 check logs for them; then the three figures and every v2 map number in the paper and `final.py`, by `verify_interim.py`; the `\VV` numbers in `v2_drafts.tex` blocks 18 and 19; a new data release (`github_release_bundle.py`'s globs already take the v3 maps and model) | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
 | 4 | ~~The paper's analyses that need no author time~~: all done (A1–A16, KB §69.34–§69.57); nothing in §12.2 is left | agent | §12.2 | done |
 | 5 | The interim: **the report went in on 5 Nov** (KB §69.79); the talk was set for **10 Nov**, not yet recorded here. Before the talk: the "Next Steps" slide's speaker note brought to the day's review tally, 3,791 at 11-05 (§12.5) | author | `INTERIM-PLAN.md` §0, §6 | delivered |
-| 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex` (the settled blocks 8–11, 14 and "Viking colour" went in early, 11-02, §69.58, and into the deck, §69.59; the deck builds and renders on the laptop; blocks 16 (a), (b), (d), 18 and 19 (d), (e), (f), (i) applied 11-07, §69.82, 21, the abstract, 11-10, §69.103, and 12, 15 and 19 (a)–(c), (g), (h) 11-10 once D33 closed, the paper at 26 pages, §69.105; 16 (c) as a note the same night; left: blocks 13 (D23), 20's rep text and the open decisions' clauses; all but block 18's numbers tried on a scratch copy 11-05, every anchor found, §69.78; the deck's share, block 19, drafted and tried the same day, §69.79); rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
+| 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex` (the settled blocks 8–11, 14 and "Viking colour" went in early, 11-02, §69.58, and into the deck, §69.59; the deck builds and renders on the laptop; blocks 16 (a), (b), (d), 18 and 19 (d), (e), (f), (i) applied 11-07, §69.82, 21, the abstract, 11-10, §69.103, and 12, 15 and 19 (a)–(c), (g), (h) 11-10 once D33 closed, the paper at 26 pages, §69.105; 16 (c) as a note the same night; block 13 the same night without a DOI (D23, §69.105) and block 20's rep text 11-11 (§69.106); left: the open decisions' clauses; all but block 18's numbers tried on a scratch copy 11-05, every anchor found, §69.78; the deck's share, block 19, drafted and tried the same day, §69.79); rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
 
 The class revision (§11) is done to the final's text (2a–2c, KB §69.2–§69.27). Deep learning (X5, X5b, X5c) is done
 and scored (§66); further tuning first needs validation blocks of its own (§66.5), the author's call.
 
 **Where the results are weakest and what would most improve them:** §14 (11-01), ranked.
 
-**Waiting on the author:** item 5; no review (11-10: the author does no more manual review, so R1, R2, the margins and the off-Tharsis labels stay on the agent's reading, §69.55, §69.105); D15, D22, D23 (not now, 11-03) and D27 (§2); the interim talk's slot length (§12.5); whether
+**Waiting on the author:** item 5; no review (11-10: the author does no more manual review, so R1, R2, the margins and the off-Tharsis labels stay on the agent's reading, §69.55, §69.105); D15, D22 and D27 (§2; D23 was answered 11-10, §69.105); the interim talk's slot length (§12.5); whether
 layout 18 or `final_img\tes_block_scale.png` goes into a deliverable (§69.30); whether the interim shows layouts 15–18
 (it shows 13 of the 17 that existed at the cut, `INTERIM-PLAN.md` §3); emptying the Recycle Bins (~21 GB of finished
 scratch, §57.5).
