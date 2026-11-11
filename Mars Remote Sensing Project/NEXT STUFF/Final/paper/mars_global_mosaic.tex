@@ -846,14 +846,16 @@ the support vector machine scores 37.9\% and does not separate from that baselin
 accuracy 69.2\%, and the support vector machine 45.6\%, again not separated from the baseline; but there the nearest
 training polygon scores 80.6\%, since 43.5\% of those polygons are apron, which it gets right 92.7\% of the time, and
 the U-Net's lead over it is resolved by balanced accuracy ($+3.8$ to $+16.7$) and not by accuracy ($-2.5$ to $+26.7$),
-though it leads in 13 of the 14 blocks. So the U-Net's score is not a property of the first 14 blocks; its lead over a
-map by nearest neighbour is by class more than by area. On the first draw its hills (18.3\% producer's accuracy, 64.5\%
+though it leads in 13 of the 14 blocks. That is the draw's class mix: weighted to the class mix of the 1,652
+polygons, the baseline falls to 71.9\% there and the U-Net's lead is resolved ($+3.3$ to $+27.9$), and over both draws' 28
+blocks it is resolved as scored ($+0.7$ to $+30.9$). So the U-Net's score is not a property of the first 14 blocks.
+On the first draw its hills (18.3\% producer's accuracy, 64.5\%
 on the second) and fluvial channel (37.4\%, 34.4\%) are weaker. Every hills polygon there is one the rule placed, and on the first 14 blocks such polygons
 score 35.2\% against 81.8\% for pieces of the author's, so the model has learnt the author's hills more than the
 rule's. The rule kept its hills clear of craters of 10~km or more only by 1.3 radii, and half of its training hills
 lie within two radii of one, against 6.5\% of the author's; those the model reads as Crater (79.4\% and 81.3\% of the
 held-out ones within two radii, 28.2\% and 27.3\% beyond), and more of the fresh blocks' hills lie that close.
-Fluvial channel falls in one block, 6\_$-$3, which holds 66 of its 147 polygons at 10.9\%. %% KB §69.84, §69.85, §69.87, §69.96
+Fluvial channel falls in one block, 6\_$-$3, which holds 66 of its 147 polygons at 10.9\%. %% KB §69.84, §69.85, §69.87, §69.96, §69.102
 
 By the rule written before the runs the U-Net map replaces its predecessor. The support vector machine map does not:
 its \kap\ falls on both sets and Crater loses 21.8 points of producer's accuracy (40.0\% to 18.2\%), while hills gain 38.3
@@ -1029,7 +1031,8 @@ third label set. That set was requested after the seven-class scores were read, 
 and its held-out crater discs come from the catalogue the crater results are checked against, so that class partly
 measures agreement with it. Fourteen other blocks, drawn at random, give a retrained U-Net 86.6\%, and a second draw 85.4\%,
 so its score is not tied to the first 14, though on the second its lead over the nearest training polygon is resolved
-only by balanced accuracy; the four- and seven-class scores still rest on the first 14. %% KB §69.84, §69.96
+only once weighted to the first 14 blocks' class mix; the four- and seven-class scores still rest on the first 14.
+%% KB §69.84, §69.96, §69.102
 Any further tuning, of the deep-learning models above all, would
 turn the 14 held-out blocks into a validation set; a next round needs validation blocks of its own. Finally, the manual
 review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709 depressions) has reached 549, all

@@ -278,7 +278,7 @@ LIMITS = [   # (head, text)
      "origins in one area, which neither type area has (§69.7, §69.63)."),
     ("The held-out blocks used three times",
      "By the four-class models, the seven-class ones and those on a third label set, asked for after the seven-class scores were read, "
-     "so a gain there is not a fresh test; two draws of 14 other blocks give a retrained U-Net 86.6% and 85.4%, the second ahead of the nearest polygon by class only (§66.5, §69.49, §69.84, §69.96)."),
+     "so a gain there is not a fresh test; two draws of 14 other blocks give a retrained U-Net 86.6% and 85.4%, the second ahead of the nearest polygon once weighted to the first 14 blocks' class mix (§66.5, §69.49, §69.84, §69.96, §69.102)."),
     ("The polygons flatter five of six maps",
      "Polygon scores sit where a class is clear; the sample shows by how much, but on the AI assistant's labels, which failed their "
      "check, and only the SVM on the third label set scores level, so unbiased accuracies need an analyst who passes it (§69.53, §69.55, §69.82)."),

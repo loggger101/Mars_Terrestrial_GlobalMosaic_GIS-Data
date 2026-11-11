@@ -1,0 +1,12 @@
+mix of the 1,652: {'Crater': np.float64(0.2527), 'steep/windy hills': np.float64(0.0394), 'lava tube': np.float64(0.008), 'Normal Ground': np.float64(0.1875), 'volcanic edifice': np.float64(0.1667), 'apron': np.float64(0.3062), 'fluvial channel': np.float64(0.0394)} (29 s)
+fresh unet 0.8664 0.8149, v3_extras.json 0.8664 0.8149 -> ok
+fresh svm  0.3786 0.2187, v3_extras.json 0.3786 0.2187 -> ok
+fresh near 0.6551 0.5351, v3_extras.json 0.6551 0.5351 -> ok
+fresh at the mix: {'unet': {'accuracy': 0.8497, 'kappa': np.float64(0.8149), 'balanced': 0.7224}, 'svm': {'accuracy': 0.4424, 'kappa': np.float64(0.2187), 'balanced': 0.4794}, 'near': {'accuracy': 0.5295, 'kappa': np.float64(0.5351), 'balanced': 0.4921}} (350 s)
+fresh2 unet 0.8544 0.7811, v3_extras.json 0.8544 0.7811 -> ok
+fresh2 svm  0.4559 0.3416, v3_extras.json 0.4559 0.3416 -> ok
+fresh2 near 0.8062 0.7101, v3_extras.json 0.8062 0.7101 -> ok
+fresh2 at the mix: {'unet': {'accuracy': 0.8253, 'kappa': np.float64(0.7811), 'balanced': 0.6924}, 'svm': {'accuracy': 0.439, 'kappa': np.float64(0.3416), 'balanced': 0.4686}, 'near': {'accuracy': 0.719, 'kappa': np.float64(0.7101), 'balanced': 0.6312}} (799 s)
+pooled: {'unet': {'accuracy': np.float64(0.8579), 'kappa': np.float64(0.7973), 'balanced': 0.7308}, 'svm': {'accuracy': np.float64(0.4332), 'kappa': np.float64(0.3119), 'balanced': 0.4761}, 'near': {'accuracy': np.float64(0.7619), 'kappa': np.float64(0.6601), 'balanced': 0.5949}} {'accuracy_ci95': [0.0065, 0.309], 'balanced_ci95': [0.0785, 0.2462], 'share_above_0_accuracy': 0.9851}
+{'P1': 'held', 'P2': 'held', 'P3': 'held', 'P4': 'held'}
+-> F:\Mars Remote Sensing Project\build\logs\fresh_pooled.json

@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.96 scored, §69.101).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.102).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -7480,3 +7480,24 @@ ef{fig:extraruns}` in the tex (the thermal retraining and the U-Net's gain, both
 - **D3 held:** with all bands and the coordinates the stand-in reaches 69.31 %, the U-Net 88.46 %, a lead of **19.15 points** (seed 11: 19.02).
 - **Also:** S1 holds again (pixel values −0.05, −0.82 to +0.91). W1 does not on this draw: the 51 km window adds 6.43 points to the 20 km one (+2.45 to +9.33), against 4.89 on seed 11, which held under the 5-point line by 0.11; W1 was a near thing, and the resolved gain of §69.98 stands. W2 and W3 hold again.
 - **Reading:** §69.99 and §69.100 do not rest on one draw: without the thermal bands the 51 km stand-in loses 8.0–9.9 points, none of it from the pixel values, and the coordinates make up most to all of it (80–108 % on the 237 polygons, 74–96 % on the 1,652). The paper and deck said "all"; they now say "most or all". The draw moves single scores by up to 1.59 points.
+
+### 69.102 The two fresh draws together, and at one class mix: F6.5's miss is the mix — 2026-11-10, desktop **[V]**
+
+`build\check_fresh_pooled.py` (new; reads only; predictions P1–P4 written into its docstring at 19:05, after §69.96 was read and before it ran; 805 s, while rep_train ran; `logs\fresh_pooled.json`). §69.96 left two readings of F6.5: the U-Net's lead over the nearest training polygon depends on the draw's class mix, or on its ground. Two views, nothing retrained: **pooled**, both draws' 28 blocks, each scored by the models that held it out (−1_−3, in both, counts twice), the bootstrap resampling 14 blocks within each draw (10,000, seed 60); **at the mix**, each draw's confusion rows rescaled to the class mix, by pixel, of the 1,652 held-out polygons of the third label set (Crater 25.3, steep/windy hills 3.9, lava tube 0.8, Normal Ground 18.8, volcanic edifice 16.7, apron 30.6, fluvial channel 3.9 %), so accuracy is the mix-weighted mean of producer's accuracies. **The gate can fail and did not:** each draw's per-block confusions give `v3_extras.json`'s accuracy and kappa for all three maps to 0.0005.
+
+| accuracy, % | U-Net | SVM | nearest polygon | U-Net − nearest | SVM − nearest |
+|---|---|---|---|---|---|
+| fresh, as scored | 86.6 | 37.9 | 65.5 | +5.0 to +49.7 | −51.1 to +14.6 |
+| fresh, at the mix | 85.0 | 44.2 | 52.9 | +17.2 to +43.5 | −25.2 to +6.0 |
+| fresh2, as scored | 85.4 | 45.6 | 80.6 | −2.5 to +26.7 | −56.6 to +11.3 |
+| fresh2, at the mix | 82.5 | 43.9 | 71.9 | +3.3 to +27.9 | −40.7 to −11.5 |
+| both draws, 28 blocks | 85.8 | 43.3 | 76.2 | +0.7 to +30.9 | −52.7 to +4.0 |
+| both draws, at the mix | 84.5 | 42.3 | 66.6 | +10.9 to +32.3 | −34.9 to −8.3 |
+
+- **By pixel, fresh2's held-out ground is 52.3 % apron and 25.3 % Normal Ground** (fresh: 40.7 % and 4.8 %; the 1,652: 30.6 % and 18.8 %), the two classes where the nearest polygon does best there (92.7 % and 65.1 %).
+- **P1 held:** over both draws the U-Net leads the nearest polygon, 85.8 % against 76.2 %, **+0.7 to +30.9** (above 0 in 98.5 % of resamples; balanced +7.8 to +24.6), the lower end close to 0.
+- **P2 held:** the SVM against the nearest polygon, pooled, −52.7 to +4.0.
+- **P3 held:** at the mix the U-Net's lead on fresh2 alone is resolved, **+3.3 to +27.9**.
+- **P4 held:** at the mix the nearest polygon scores 71.9 % on fresh2, 8.7 points below its 80.6 %.
+- **Read** (the rule written with them): F6.5's miss is fresh2's class mix, half its ground apron, not the U-Net's ground; at the mix of the blocks every v3 score in the paper is on, the U-Net leads the baseline on both draws. **Not all of it is the mix:** at the same mix the baseline still scores 71.9 % on fresh2 against 52.9 % on fresh, so fresh2's training polygons lie nearer, or its classes in larger patches, than fresh's; that is described, not tested. **Also:** at the mix the SVM falls below the nearest polygon on fresh2 (−40.7 to −11.5) and on both draws together (−34.9 to −8.3), where as scored it was not separated from it.
+- **Placed:** a sentence after the paper's second-draw sentence; the Limits' "resolved only by balanced accuracy" becomes "resolved once weighted to the first 14 blocks' class mix", and §69.96's clause "its lead over a map by nearest neighbour is by class more than by area" is dropped as superseded; the deck's Limits card "The held-out blocks used three times" the same.
