@@ -484,6 +484,27 @@ degradation states \citep{Robbins2012} show why: from the most degraded rims to 
 are found at 41.3\%, against 63.9\% for full rims. Breached and degraded craters are not closed. In the type areas
 the same rule gives a precision of 11\% (Ius) and 13\% (Athabasca) at $\ge1$~km. %% KB §53.4, §54.4, §42.3, §69.45, §69.47; logs\crater_recall_by_state.json
 
+The size-frequency distributions say the same in one picture (Figure~\ref{fig:sfd}). Counted cumulatively at
+$\sqrt{2}$ steps of diameter, the 465,354 closed depressions outnumber the 352,796 catalogued craters by 1.32 at
+1~km and 1.20 at 2~km, cross them near 2.8~km (0.99) and fall to 0.81 at 4~km and 0.68 at 5.7~km; from 8 to 128~km
+the ratio stays between 0.52 and 0.60. The cumulative slope from 1 to 5~km is $-1.73$ for the depressions against
+$-1.36$ for the catalogue, and from 5 to 50~km $-1.42$ against $-1.32$. Both predictions written before the count
+held: a ratio above 1 at 1~km that crosses between 2 and 5~km and lies in 0.45--0.80 from 10 to 100~km, and a slope
+steeper than the catalogue's by 0.37 below 5~km and within 0.10 of it above. The detector over-counts small
+depressions that are not craters, and above about 5~km its distribution has the catalogue's shape at about half its
+height: it finds about half of the craters at every size, which is the recall of Figure~\ref{fig:robbins} seen as a
+distribution. In the type areas the review's precision rises with diameter, from 5.5\% at 1--2~km to 38.9\% at
+5--10~km at Ius Chasma and from 7.2\% to 72.2\% at Athabasca Valles, and the accepted rims of 5~km and more are 33 of
+the catalogue's 52 in the Ius window and 32 of 60 at Athabasca. %% KB §69.35 (A10)
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/crater_sfd.png}
+\caption{Cumulative size-frequency distributions: craters of at least diameter $D$ per km$^2$, over \pmsixty\ and in
+the two type areas. Orange, the closed depressions; blue, the crater database \citep{Robbins2012}; green, the
+depressions accepted in the review. \label{fig:sfd}}
+\end{figure*}
+
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/depressions_vs_robbins.png}
@@ -985,6 +1006,35 @@ label set, the last the third label set trained a second time. Dots are scores, 
 \caption{The support vector machine by how much ground it sees: a scikit-learn stand-in on the same stack, trained once
 on each label set, on one pixel, with each band's mean and spread over windows to 20~km, to 51~km, the U-Net's
 view, and to 51~km with the point's map coordinates; the published U-Net map read at the same 14,993 (A) and 14,996 (B) test points. \label{fig:svmwindows}}
+\end{figure*}
+
+\subsection{Where the two methods agree} \label{sec:agree}
+
+A score on held-out polygons says how each map does where a class was drawn; where the two methods give the same
+class says how far either can be relied on elsewhere (Figure~\ref{fig:agree}). The published four-class map and the
+four-class U-Net agree on 61.4\% of \pmsixty. On the second label set the seven-class pair agrees on 39.7\%, and on
+the third, the lead pair, on 47.5\%. Three predictions were written before the first comparison and held: under 75\%
+for four classes, under 50\% for seven, and more agreement on the held-out polygons than over \pmsixty\ and more
+again on the training polygons (73.6\% and 86.5\% for four classes, 43.2\% and 54.6\% for seven). The last did not
+hold for the lead pair, which agrees on 40.5\% of the held-out polygons' ground, less than over \pmsixty, and on
+48.3\% of the training polygons'. %% KB §69.46, §69.81
+
+What the two methods share is the plains. Normal Ground's intersection over union rises from 0.42 to 0.64 between
+the second and third label sets, while Crater's falls from 0.30 to 0.12: the two lead maps disagree most where the
+support vector machine draws fluvial channel and the U-Net Crater, 10.7\% of \pmsixty. The support vector machine
+maps Crater on 5.4\% of \pmsixty\ and fluvial channel on 31.9\%; the U-Net 27.8\% and 8.8\%. For four classes the
+agreement runs from 90.9\% at 50--60\textdegree{}N to 50.2\% at 30--40\textdegree{}S, and for the seven classes of
+the second label set from 67.8\% to 25.4\% at 50--60\textdegree{}S: the maps agree on the smooth northern plains and
+part company on the cratered highlands. A class boundary on either lead map is therefore one method's reading; where both give
+the same class, 47.5\% of the extent, the reading does not depend on the method. %% KB §69.46, §69.81
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/map_agreement_v3.png}
+\caption{Where the support vector machine and the U-Net give the same class, in that class's colour, and where they
+differ, in grey. Top: the seven-class maps on the second label set (``v2''). Bottom: the lead maps, on the third
+(``v3''). The key gives each class's intersection over union. White stripes near $\pm60^{\circ}$ are gaps in the
+night mosaic. \label{fig:agree}}
 \end{figure*}
 
 \subsection{A probability sample} \label{sec:sample}

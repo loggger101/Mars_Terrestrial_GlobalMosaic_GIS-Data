@@ -7693,3 +7693,9 @@ D42. Read from `logs/v3_extras.json` by a script, nothing typed: producer's accu
 - **Not changed:** the repository's pages, this record, the script comments and the layouts' sheet text (`make_v3_sheets.py` writes "the AI assistant's labels" on a v3 sheet's note, which the paper's and deck's crops hide), and the gdb's row stamps ("agent CTX"). The author chose the paper and the deck only.
 - The paper builds at **31 pages**, no undefined reference; the deck at 44 slides; `verify_interim.py` passes on both (1,665 and 361 numbers).
 - **Later the same day, the author:** "Make it generic": the acknowledgment sentence now reads "An AI assistant was used in writing the analysis code and in the automated readings of [the "Who judged what" subsection]; the author directed the work and is responsible for its content", with no product or company named.
+
+### 69.112 D42 continued: two results placed that had figures and no place in the paper — 2026-11-11, desktop **[V]**
+
+- **"Where the two methods agree"**, a Results subsection before the probability sample, with Figure `fig:agree` (`final_img/map_agreement_v3.png`, drawn 11-07, §69.81, never placed): the agreement of each SVM and U-Net pair over ±60° (61.4 %, 39.7 %, 47.5 %), the three predictions of §69.46 and the one that did not hold for the lead pair (40.5 % on the held-out polygons, under the 47.5 % of ±60°), the intersection over union of Normal Ground and Crater, the largest disagreement and the two maps' Crater and fluvial shares, the fall of agreement with latitude. Every number is §69.46's or §69.81's.
+- **The crater size-frequency distributions**, a paragraph in Results' Craters with Figure `fig:sfd` (`final_img/crater_sfd.png`, A10): every number §69.35's.
+- Both figures are added to `build_final_paper.py`'s list. The paper builds at **33 pages**, no undefined reference; `verify_interim.py` passes (1,732 numbers). The deck is unchanged.

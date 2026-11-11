@@ -52,6 +52,8 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"final_img\extra_runs.png", "extra_runs.png"),
     (r"final_img\svm_windows.png", "svm_windows.png"),                        # the SVM stand-in by window (KB §69.98)                          # the extra runs (KB §69.86, §69.88, §69.93)
     (r"final_img\svm_vs_unet_v2.png", "svm_vs_unet_v2.png"),
+    (r"final_img\crater_sfd.png", "crater_sfd.png"),               # make_fig_crater_sfd.py (A10, KB §69.35; D42, §69.112)
+    (r"final_img\map_agreement_v3.png", "map_agreement_v3.png"),   # make_fig_map_agreement.py --labels v3 (D42, KB §69.81, §69.112)
 ]
 # Two deck charts carry slide furniture a paper caption replaces: a title strip naming the gdb class and the KB
 # (ius_channel_candidates), a footnote citing the KB (global60_thermal). Pixels cut from the top and the bottom.
