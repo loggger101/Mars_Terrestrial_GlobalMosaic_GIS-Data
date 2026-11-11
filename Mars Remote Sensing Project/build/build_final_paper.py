@@ -28,6 +28,7 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"final_img\08_global60_mosaic.png", "08_global60_mosaic.png"),
     (r"pres1_img\global60_thermal.png", "global60_thermal.png"),     # cropped: CROP
     (r"interim_img\tes_check.png", "tes_check.png"),
+    (r"final_img\tes_block_scale.png", "tes_block_scale.png"),   # make_fig_tes_scale.py (D38, KB §69.29, §69.107)
     (r"final_img\crater_limit.png", "crater_limit.png"),     # make_fig_crater_limit.py (W4, KB §69.50)
     (r"final_img\depressions_vs_robbins.png", "depressions_vs_robbins.png"),
     (r"interim_img\ius_channel_candidates.png", "ius_channel_candidates.png"),   # cropped: CROP

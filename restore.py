@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 r"""Rebuild the Mars Global Mosaic project drive from this repository and its releases.
 
-    python restore.py --dest E:\                    everything: the tree, the newest data and derivatives releases
+    python restore.py --dest E:\                    everything: the tree, the newest data release, every derivatives release
     python restore.py --dest E:\ --dry-run          say what would happen, download nothing
     python restore.py --dest E:\ --only typearea    only assets whose name contains "typearea"
     python restore.py --dest E:\ --no-tree          releases only
@@ -34,8 +34,10 @@ API = f"https://api.github.com/repos/{REPO}/releases"
 
 
 def releases(every=False):
-    """The newest release of each kind ("data-...", "derivatives-..."), newest first: a newer data release
-    holds the whole bundle again, so an older one adds nothing but download. every=True: all of them."""
+    """The newest data release and every derivatives release, newest first: a newer data release holds the whole
+    bundle again, so an older one adds nothing but download; a newer derivatives release holds only the rasters
+    rewritten since the one before it (derivatives-2026-11-11: the five patched at 180 degrees), so the older
+    ones supply the rest, and main() skips their copies of what a newer one gave. every=True: all of them."""
     with urllib.request.urlopen(urllib.request.Request(API, headers={"Accept": "application/vnd.github+json"})) as r:
         rels = sorted(json.load(r), key=lambda x: x["created_at"], reverse=True)
     if every:
@@ -43,7 +45,7 @@ def releases(every=False):
     seen, out = set(), []
     for x in rels:
         kind = x["tag_name"].rsplit("-", 3)[0]
-        if kind not in seen:
+        if kind not in seen or kind == "derivatives":
             seen.add(kind)
             out.append(x)
     return out
@@ -166,7 +168,7 @@ def main():
                 for p in files:
                     place(p, to / p.relative_to(HERE / folder), a.force)
 
-    total = 0
+    total, joined = 0, set()   # joined: split rasters a newer release already gave
     for rel in releases(a.all_releases):
         assets = [x for x in rel["assets"] if a.only in x["name"] or x["name"].startswith("SHA256SUMS")]
         if not any(destination(x["name"], dest)[0] != "skip" for x in assets):
@@ -174,11 +176,15 @@ def main():
         print(f"\nrelease {rel['tag_name']}")
         folder = dl / rel["tag_name"]
         folder.mkdir(parents=True, exist_ok=True) if not a.dry_run else None
-        whole, parts = {}, {}
+        whole, parts, mine = {}, {}, set()
         for x in sorted(assets, key=lambda x: (not x["name"].startswith("SHA256SUMS"), x["name"])):
             how, where = destination(x["name"], dest)
             if how == "skip" and not x["name"].startswith("SHA256SUMS"):
                 continue
+            if how == "join" and x["name"].rsplit(".part", 1)[0] in joined:
+                continue   # a newer release holds this raster: the older pieces are not downloaded
+            if how == "join":
+                mine.add(x["name"].rsplit(".part", 1)[0])
             total += x["size"]
             print(f"  {x['size'] / 1e9:7.2f} GB  {x['name']}  -> {how} {where or ''}")
             if a.dry_run:
@@ -195,6 +201,7 @@ def main():
         for name, ps in parts.items():
             print(f"  join  {name} from {len(ps)} pieces")
             join(ps, dest / "Mars Project" / "Global60" / name, whole.get(name), a.force)
+        joined.update(mine)
     print(f"\n{'would download' if a.dry_run else 'done:'} {total / 1e9:.1f} GB")
     if a.clean and not a.dry_run:
         shutil.rmtree(dl, ignore_errors=True)

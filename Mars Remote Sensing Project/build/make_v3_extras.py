@@ -93,7 +93,9 @@ BASE_EMD = r"C:\MarsScratch\x5c_v3\models\global60_unet_x5c_v3_20261105"
 STACK5 = os.path.join(G.OUTDIR, "global60_svm_stack_200m_nothermal.tif")
 BLOCKS, NEED, SIZE = 14, 30, (800, 2500)      # a draw: 14 blocks, >= 30 polygons of each class on each side, this many
 SEEDS = {"fresh": 60, "fresh2": 61}
-TAGS = {"fresh": "v3f", "fresh2": "v3g", "noth": "v3nt", "cut": "v3c", "add": "v3a", "rep": "v3r", "base": None}
+TAGS = {"fresh": "v3f", "fresh2": "v3g", "noth": "v3nt", "cut": "v3c", "add": "v3a", "rep": "v3r", "base": None,
+        "edf": "v3e", "edfv": "v3e", "freshw": "v3f"}    # D37 (make_v3_edf.py): edf's model on the standard windows (edf)
+                                                         # and on fresh's (edfv); fresh's model on the standard ones
 ARR = "global60_landforms_global60_landforms_unet_%s_200m_seamfix_ov400.npy"
 SVM_ARR = "global60_landforms_%s_200m_mode11_ov400.npy"
 PAIRS_F = [("unet", "svm"), ("unet", "near"), ("svm", "near")]
@@ -164,6 +166,8 @@ def plan():
 
 
 def windows_fc(run):
+    if run == "edfv":                                        # edf's model on fresh's 14 blocks, its validation blocks
+        return fc("fresh", "test")
     return fc(run, "test") if run in SEEDS else os.path.join(EX, PREFIX % ("window", "test"))
 
 

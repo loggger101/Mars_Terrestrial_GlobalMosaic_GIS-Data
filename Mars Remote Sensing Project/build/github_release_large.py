@@ -2,6 +2,11 @@
 r"""Backs up the large, slow-to-recompute products as a second GitHub release (KB §35.3).
 
     <ArcGIS python.exe> github_release_large.py derivatives-YYYY-MM-DD [--no-gdb]
+    python github_release_large.py derivatives-YYYY-MM-DD --patched
+        only the five rasters the 180-degree patch of 2026-10-14 rewrote (KB 54.2: DEM, slope, aspect, hillshade,
+        stack) and their sidecars, as a release of their own beside the full one (D15, KB 69.107). restore.py takes
+        every derivatives release, newest first, so these replace the older release's copies and the rest comes
+        from it. Needs no ArcGIS Python.
 
 What goes, as release assets (GitHub caps one asset at 2 GiB, so big files are byte-split):
   Global60 derivatives: global60_svm_stack_200m, _thermal_contrast, _thermal_contrast_200m, _dem,
@@ -38,6 +43,10 @@ BIG = ["global60_dem.tif", "global60_hillshade.tif", "global60_thermal_contrast_
        "global60_slope_deg.tif", "global60_aspect.tif", "global60_svm_stack_200m.tif",
        "global60_thermal_contrast.tif"]
 SEGMENTED = "Segmented_202609290011302066080"
+PATCHED = "--patched" in sys.argv
+if PATCHED:   # KB 54.2's five; the two thermal-contrast rasters were not touched by the patch
+    BIG = ["global60_dem.tif", "global60_hillshade.tif", "global60_slope_deg.tif", "global60_aspect.tif",
+           "global60_svm_stack_200m.tif"]
 
 TAG = sys.argv[1]
 ctypes.windll.kernel32.SetThreadExecutionState(0x80000000 | 0x00000001)  # ES_CONTINUOUS | SYSTEM_REQUIRED
@@ -143,15 +152,20 @@ def zip_parts(name, base, files, have):
 def main():
     if subprocess.run(["gh", "release", "view", TAG, "-R", REPO], capture_output=True).returncode:
         gh("release", "create", TAG, "--title", TAG, "--notes",
+           "The five plus-minus 60 degree derivatives rewritten by the 180-degree patch of 2026-10-14 (DEM, slope, "
+           "aspect, hillshade, 7-band stack; byte-split, reassemble with `cat name.part* > name`) and their "
+           "sidecars. They replace the same files of derivatives-2026-10-06, which holds the rest. See "
+           "SHA256SUMS and docs/backup.md." if PATCHED else
            "Large derived products from the project drive: the ±60° derivatives (byte-split, "
            "reassemble with `cat name.part* > name`), the deep-learning exports and the GUI ±60° "
            "segmentation. See SHA256SUMS and the README section 'Restoring'.")
     have = existing()
     zip_parts("global60-sidecars", MP, sorted(p for b in BIG for p in G60.glob(b + ".*xml")), have)
     lo = MP / "LabeledObjects"
-    zip_parts("labeledobjects", MP, sorted(p for p in lo.rglob("*") if p.is_file()), have)
+    if not PATCHED:
+        zip_parts("labeledobjects", MP, sorted(p for p in lo.rglob("*") if p.is_file()), have)
     seg = STAGE / f"{SEGMENTED}.tif"
-    if "--no-gdb" in sys.argv or already_up(seg.name, have) or already_up(seg.name + ".part001", have):
+    if PATCHED or "--no-gdb" in sys.argv or already_up(seg.name, have) or already_up(seg.name + ".part001", have):
         pass
     else:
         if not seg.exists():
