@@ -118,6 +118,10 @@ author's own). For R1 and R2, the author's `answers.txt` gives the author's scor
 Redraw any folder with `build\make_review_chips.py` (its docstring gives the commands). Of this folder only the
 guides (`.md`) and the answer files (`.txt`) are mirrored to GitHub; the sheets themselves stay on the drive.
 
+## The traced lava margins (`margins_check` folder, KB §69.104)
+
+The author's check of the 86 margins the agent traced on CTX (D33), without Pro: 29 sheets, three margins each, every margin on the plate it was traced on, in orange beside the same view with only its ends ringed. Letters `k` keep, `p` partly, `n` no margin, `u` unsure; `answers.txt` in that folder, then `build\score_margin_check.py`. The folder's README gives the rule, written before any answer, and how T5 is rerun on the margins kept. Nothing is written into the layer from these answers.
+
 ## Off-Tharsis labels (`offtharsis` folder, KB §69.63)
 
 Not a sheet: edifice and apron polygons drawn in Pro, in the map "Off-Tharsis labels (author)", for the held-out
