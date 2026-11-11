@@ -16,7 +16,7 @@ checklist, is `HANDOFF-DESKTOP.md`.
 
 ---
 
-## Resume here — 2026-11-11 (§69.106)
+## Resume here — 2026-11-11 (§69.107)
 
 Only the state, what waits on whom and the next step; the history behind each line is the KB section it cites
 (condensed 2026-10-31, §13.1 P10: the dated paragraphs since 10-18 are in git history and KB §58–§69.34).
@@ -83,7 +83,10 @@ Only the state, what waits on whom and the next step; the history behind each li
 | 3 | Retests: **done 11-10** (§69.105): T5 on the margins the second reading kept, form `k` +3.3 pt (−7.2 to +13.8), form `kp` +4.6 (−3.4 to +12.6), H1 not supported on either; the off-Tharsis edifice scored (U-Net v3 7.7 %, SVM v3 0.6 %; P1, P3, P4 held, P2 not tested). H2's stage 2 stays skipped (§69.63) | agent | §4 | done |
 | 3b | **The v3 runs: done 11-07; D36: both lead; sheets, paper and deck moved (KB §69.82). Every extra run is done: rep, the second v3 training, scored 11-11 (R1, R2 held, R3 not), placed and added to release `data-2026-11-10` (§69.106; the others §69.84–§69.102, the release §69.105)** (KB §69.80, §69.81; `logs\v3_maps.json`, `logs\r2\r2_v3_result.json`). Every run and check in the sequence is finished; the rule recommends U-Net v3 and not SVM v3. **If the author picks a v3 map** (§69.77 has the audit): the layouts first, `make_v2_sheets.py`'s sheet text being specific to the v2 results, so v3 sheets are written from the v3 results, not by a flag, and `score_metrics.py` run on the v3 check logs for them; then the three figures and every v2 map number in the paper and `final.py`, by `verify_interim.py`; the `\VV` numbers in `v2_drafts.tex` blocks 18 and 19; a new data release (`github_release_bundle.py`'s globs already take the v3 maps and model) | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
 | 4 | ~~The paper's analyses that need no author time~~: all done (A1–A16, KB §69.34–§69.57); nothing in §12.2 is left | agent | §12.2 | done |
-| 5 | The interim: **the report went in on 5 Nov** (KB §69.79); the talk was set for **10 Nov**, not yet recorded here. Before the talk: the "Next Steps" slide's speaker note brought to the day's review tally, 3,791 at 11-05 (§12.5) | author | `INTERIM-PLAN.md` §0, §6 | delivered |
+| 5 | The interim: **the report went in on 5 Nov** (KB §69.79); the talk was given on **10 Nov** (the author, 11-11, KB §69.107) | author | `INTERIM-PLAN.md` §0, §6 | done |
+| 7 | **The edifice retraining (D37, yes 11-11, KB §69.107):** the lead U-Net trained again with validation blocks of its own, edifice negatives on the highland group and class weights (§14 row 4); rule and predictions registered before the run; scored on the same held-out polygons and windows as base and rep; the paper and deck move only if the registered rule says it leads and the author picks it | agent, desktop | §14 row 4 | scored, in the KB, before **22 Nov** |
+| 8 | **A derivatives release with §54's patch (D15, yes 11-11):** the drive's patched DEM, slope, aspect, hillshade and stack, about 33 GB; then `docs/backup.md`, `restore.py`'s newest-release pick and `tools/check_remote.py` | agent, desktop | KB §57.4 | uploaded, every asset's checksum matching |
+| 9 | **The TES figure and layout 18 into the final (D38, both, 11-11):** `final_img\tes_block_scale.png` into the paper's thermal results, layout 18 into the deck beside T3; rebuild and read both | agent | KB §69.30 | in the paper and deck |
 | 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex` (the settled blocks 8–11, 14 and "Viking colour" went in early, 11-02, §69.58, and into the deck, §69.59; the deck builds and renders on the laptop; blocks 16 (a), (b), (d), 18 and 19 (d), (e), (f), (i) applied 11-07, §69.82, 21, the abstract, 11-10, §69.103, and 12, 15 and 19 (a)–(c), (g), (h) 11-10 once D33 closed, the paper at 26 pages, §69.105; 16 (c) as a note the same night; block 13 the same night without a DOI (D23, §69.105) and block 20's rep text 11-11 (§69.106); left: the open decisions' clauses; all but block 18's numbers tried on a scratch copy 11-05, every anchor found, §69.78; the deck's share, block 19, drafted and tried the same day, §69.79); rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
 
 The class revision (§11) is done to the final's text (2a–2c, KB §69.2–§69.27). Deep learning (X5, X5b, X5c) is done
@@ -91,10 +94,7 @@ and scored (§66); further tuning first needs validation blocks of its own (§66
 
 **Where the results are weakest and what would most improve them:** §14 (11-01), ranked.
 
-**Waiting on the author:** item 5; no review (11-10: the author does no more manual review, so R1, R2, the margins and the off-Tharsis labels stay on the agent's reading, §69.55, §69.105); D15, D22 and D27 (§2; D23 was answered 11-10, §69.105); the interim talk's slot length (§12.5); whether
-layout 18 or `final_img\tes_block_scale.png` goes into a deliverable (§69.30); whether the interim shows layouts 15–18
-(it shows 13 of the 17 that existed at the cut, `INTERIM-PLAN.md` §3); emptying the Recycle Bins (~21 GB of finished
-scratch, §57.5).
+**Waiting on the author:** no review (11-10: the author does no more manual review, so R1, R2, the margins and the off-Tharsis labels stay on the agent's reading, §69.55, §69.105); no decision is open since 11-11 (KB §69.107: the talk given, D15 yes, D27 yes without an ORCID, D37 yes, D38 both; D22 stays on the agent's labels); the author deletes the duplicate `F:\check_repo.py` and empties the Recycle Bins (~21 GB of finished scratch, §57.5) later; after row 7 is scored, whether its map leads.
 
 ---
 
@@ -131,11 +131,13 @@ D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2
 
 | # | decision | recommendation |
 |---|---|---|
-| D15 | a derivatives release with the §54 patch (33 GB upload) | not needed: the catalogue gives the two commands that patch a restore (§57.4) |
+| D15 | a derivatives release with the §54 patch (33 GB upload) | **Answered 11-11: "Yes, upload it"** (KB §69.107), against the recommendation (not needed: the catalogue gives the two commands that patch a restore, §57.4); "Resume here" row 8 |
 | D22 | the two blind checks: the rule-screened v2 rows (§12.3 R1, ~45 min) and a probability-sample accuracy check (R2, ~2–3 h) | R1 yes, after the candidate review; R2 if time is free. **Both now scored on the agent's labels at the author's word (§69.55)**; the author's answers, if given, replace them |
 | D23 | a DOI for the data release through Zenodo, and a data statement (§12.4 W7); publishing | **Answered 11-10: "Release, no DOI"** (§69.105): release `data-2026-11-10`, the data paragraph cites the tag; no Zenodo. Before that: yes, with the pre-final release (§7). **Asked 11-03: "Not now"**; block 13 waits |
 | D26 | **Answered 11-03 (KB §69.74):** "everything should be in the repo, there's no point in holding back on anything". `github_sync.py` now mirrors the built deck, report and paper PDF like every other file (`--hold-deliverables` leaves them out for one run); the 44 earlier copies stay in the history (no rewrite was asked for) | done |
-| D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | yes |
+| D27 | closing the project after 8 Dec: final tag and release, `CITATION.cff` completed, the README rewritten as finished work (§13.1 P12); an ORCID for the citation if the author has one | **Answered 11-11: "Yes, but no ORCID"** (KB §69.107) |
+| D37 | retraining the lead U-Net for its volcanic edifice (§14 row 4) | **Answered 11-11: "Yes, retrain before the freeze"** (KB §69.107), against the recommendation (state it as a limit); row 7 |
+| D38 | layout 18 or `final_img\tes_block_scale.png` in a deliverable (§69.30) | **Answered 11-11: "Both"** (KB §69.107), against the recommendation (neither); row 9 |
 D14, D16, D23 and D24 were answered 2026-11-03 (KB §69.64–§69.65). **D14, yes:** the two `_60_smoke` classes
 deleted after a checked copy to `.backups\smoke_D14_20261103-014337.gdb`. **D16:** the interim report goes in on
 Thursday 5 November. **D23: not now.** **D24, yes:** the final deck is drawn in `mars_theme`, done the same day.
