@@ -1,0 +1,6 @@
+cells, masks, map shares (13 s)
+occupied by 27109 existing polygons: 718967 cells (38 s)
+cells passing v3's Normal Ground test 5557277, and mostly edifice on the published map 550845
+squares placed 509, kept outside the 28 held-out and validation blocks 420, in 89 blocks
+{"script": "make_v3_edf.py", "when": "2026-11-11 12:10", "seed": 107, "cap_per_block": 8, "edifice_min": 0.5, "held_out_blocks": ["-11_1", "-11_2", "-3_-1", "-4_-1", "-4_-2", "-5_-1", "-6_1", "-9_-1", "-9_0", "0_0", "1_0", "4_0", "4_2", "5_-2"], "validation_blocks": ["-10_2", "-11_-2", "-1_-3", "-4_1", "-6_2", "-7_1", "-7_3", "-9_2", "10_1", "11_1", "3_1", "6_-3", "7_-4", "9_-3"], "cells_normal_ground": 5557277, "cells_eligible": 550845, "squares_placed": 509, "negatives": 420, "blocks_with_negatives": 89, "on_highland": 0.3452, "on_volcanic_plains": 0.4024, "fresh_training": 9366, "edf_training": 9786, "edf_training_by_class": {"Crater": 882, "steep/windy hills": 579, "lava tube": 71, "Normal Ground": 2367, "volcanic edifice": 1440, "apron": 1657, "fluvial channel": 2790}}
+-> F:\Mars Remote Sensing Project\build\logs\v3_edf_plan.json (49 s)
