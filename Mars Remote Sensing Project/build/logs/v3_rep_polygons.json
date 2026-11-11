@@ -1,0 +1,1004 @@
+{
+ "script": "check_v3_run_polygons.py",
+ "run": "rep",
+ "v2_polygons": {
+  "polygons": 237,
+  "pixels": 4534742,
+  "net_moved": -33470,
+  "net_points": -0.74,
+  "top10_net": -19390,
+  "top10_points": -0.43,
+  "largest_polygon_share": 0.1418,
+  "top": [
+   {
+    "cls": "volcanic edifice",
+    "block": "-9_-1",
+    "pixels": 462109,
+    "base": 0.725,
+    "run": 0.595,
+    "moved": -60076,
+    "run_reads": {
+     "Crater": 0.169
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 129151,
+    "base": 0.753,
+    "run": 0.921,
+    "moved": 21655,
+    "run_reads": {
+     "steep/windy hills": 0.041
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 100213,
+    "base": 0.388,
+    "run": 0.198,
+    "moved": -18986,
+    "run_reads": {
+     "volcanic edifice": 0.217
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 53496,
+    "base": 0.5,
+    "run": 0.816,
+    "moved": 16904,
+    "run_reads": {
+     "steep/windy hills": 0.077
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 134809,
+    "base": 0.843,
+    "run": 0.955,
+    "moved": 15093,
+    "run_reads": {
+     "volcanic edifice": 0.018
+    }
+   },
+   {
+    "cls": "fluvial channel",
+    "block": "5_-2",
+    "pixels": 48070,
+    "base": 0.569,
+    "run": 0.779,
+    "moved": 10119,
+    "run_reads": {
+     "Crater": 0.146
+    }
+   },
+   {
+    "cls": "volcanic edifice",
+    "block": "-9_-1",
+    "pixels": 42552,
+    "base": 0.813,
+    "run": 0.583,
+    "moved": -9785,
+    "run_reads": {
+     "steep/windy hills": 0.242
+    }
+   },
+   {
+    "cls": "steep/windy hills",
+    "block": "-4_-1",
+    "pixels": 45504,
+    "base": 0.811,
+    "run": 0.957,
+    "moved": 6630,
+    "run_reads": {
+     "Crater": 0.041
+    }
+   },
+   {
+    "cls": "fluvial channel",
+    "block": "-3_-1",
+    "pixels": 14173,
+    "base": 0.743,
+    "run": 0.349,
+    "moved": -5584,
+    "run_reads": {
+     "Crater": 0.55
+    }
+   },
+   {
+    "cls": "Crater",
+    "block": "5_-2",
+    "pixels": 76034,
+    "base": 0.91,
+    "run": 0.971,
+    "moved": 4640,
+    "run_reads": {
+     "steep/windy hills": 0.02
+    }
+   },
+   {
+    "cls": "fluvial channel",
+    "block": "4_2",
+    "pixels": 14399,
+    "base": 0.567,
+    "run": 0.246,
+    "moved": -4617,
+    "run_reads": {
+     "steep/windy hills": 0.36,
+     "Crater": 0.341
+    }
+   },
+   {
+    "cls": "volcanic edifice",
+    "block": "-9_0",
+    "pixels": 70581,
+    "base": 0.631,
+    "run": 0.567,
+    "moved": -4485,
+    "run_reads": {
+     "Normal Ground": 0.196
+    }
+   },
+   {
+    "cls": "fluvial channel",
+    "block": "1_0",
+    "pixels": 69592,
+    "base": 0.598,
+    "run": 0.539,
+    "moved": -4073,
+    "run_reads": {
+     "Crater": 0.36
+    }
+   },
+   {
+    "cls": "steep/windy hills",
+    "block": "-4_-2",
+    "pixels": 11881,
+    "base": 0.658,
+    "run": 0.993,
+    "moved": 3985,
+    "run_reads": {
+     "apron": 0.005
+    }
+   },
+   {
+    "cls": "steep/windy hills",
+    "block": "-4_-1",
+    "pixels": 23852,
+    "base": 0.809,
+    "run": 0.969,
+    "moved": 3796,
+    "run_reads": {
+     "Crater": 0.029
+    }
+   },
+   {
+    "cls": "volcanic edifice",
+    "block": "-9_0",
+    "pixels": 111277,
+    "base": 0.993,
+    "run": 0.967,
+    "moved": -2960,
+    "run_reads": {
+     "Normal Ground": 0.025
+    }
+   },
+   {
+    "cls": "steep/windy hills",
+    "block": "-4_-2",
+    "pixels": 9659,
+    "base": 0.694,
+    "run": 0.965,
+    "moved": 2611,
+    "run_reads": {
+     "Crater": 0.035
+    }
+   },
+   {
+    "cls": "volcanic edifice",
+    "block": "-9_-1",
+    "pixels": 24451,
+    "base": 0.846,
+    "run": 0.744,
+    "moved": -2486,
+    "run_reads": {
+     "steep/windy hills": 0.106
+    }
+   },
+   {
+    "cls": "Normal Ground",
+    "block": "-6_1",
+    "pixels": 11259,
+    "base": 0.615,
+    "run": 0.831,
+    "moved": 2431,
+    "run_reads": {
+     "volcanic edifice": 0.145
+    }
+   },
+   {
+    "cls": "Crater",
+    "block": "-3_-1",
+    "pixels": 27389,
+    "base": 0.936,
+    "run": 0.849,
+    "moved": -2387,
+    "run_reads": {
+     "steep/windy hills": 0.151
+    }
+   },
+   {
+    "cls": "volcanic edifice",
+    "block": "-9_-1",
+    "pixels": 9871,
+    "base": 0.645,
+    "run": 0.405,
+    "moved": -2367,
+    "run_reads": {
+     "steep/windy hills": 0.273
+    }
+   },
+   {
+    "cls": "fluvial channel",
+    "block": "4_2",
+    "pixels": 5683,
+    "base": 0.548,
+    "run": 0.177,
+    "moved": -2111,
+    "run_reads": {
+     "Crater": 0.647
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_0",
+    "pixels": 62851,
+    "base": 0.962,
+    "run": 0.991,
+    "moved": 1783,
+    "run_reads": {
+     "volcanic edifice": 0.007
+    }
+   },
+   {
+    "cls": "fluvial channel",
+    "block": "1_0",
+    "pixels": 7507,
+    "base": 0.456,
+    "run": 0.22,
+    "moved": -1770,
+    "run_reads": {
+     "volcanic edifice": 0.499
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 183207,
+    "base": 0.973,
+    "run": 0.982,
+    "moved": 1751,
+    "run_reads": {
+     "lava tube": 0.015
+    }
+   }
+  ],
+  "by_class_block": [
+   {
+    "points": -1.68,
+    "cls": "volcanic edifice",
+    "block": "-9_-1"
+   },
+   {
+    "points": -0.2,
+    "cls": "volcanic edifice",
+    "block": "-9_0"
+   },
+   {
+    "points": -0.19,
+    "cls": "fluvial channel",
+    "block": "4_2"
+   },
+   {
+    "points": -0.18,
+    "cls": "fluvial channel",
+    "block": "1_0"
+   },
+   {
+    "points": -0.16,
+    "cls": "fluvial channel",
+    "block": "-3_-1"
+   },
+   {
+    "points": -0.06,
+    "cls": "fluvial channel",
+    "block": "-4_-1"
+   },
+   {
+    "points": -0.04,
+    "cls": "Crater",
+    "block": "-3_-1"
+   },
+   {
+    "points": -0.04,
+    "cls": "Normal Ground",
+    "block": "4_2"
+   },
+   {
+    "points": -0.03,
+    "cls": "Crater",
+    "block": "1_0"
+   },
+   {
+    "points": -0.02,
+    "cls": "fluvial channel",
+    "block": "-4_-2"
+   },
+   {
+    "points": -0.01,
+    "cls": "volcanic edifice",
+    "block": "-4_-2"
+   },
+   {
+    "points": 0.0,
+    "cls": "Crater",
+    "block": "-6_1"
+   },
+   {
+    "points": -0.0,
+    "cls": "Crater",
+    "block": "-4_-1"
+   },
+   {
+    "points": -0.0,
+    "cls": "lava tube",
+    "block": "-9_0"
+   },
+   {
+    "points": -0.0,
+    "cls": "Crater",
+    "block": "-11_1"
+   },
+   {
+    "points": -0.0,
+    "cls": "fluvial channel",
+    "block": "0_0"
+   },
+   {
+    "points": -0.0,
+    "cls": "fluvial channel",
+    "block": "-9_-1"
+   },
+   {
+    "points": 0.01,
+    "cls": "lava tube",
+    "block": "-6_1"
+   },
+   {
+    "points": 0.01,
+    "cls": "Normal Ground",
+    "block": "-11_1"
+   },
+   {
+    "points": 0.01,
+    "cls": "Crater",
+    "block": "0_0"
+   },
+   {
+    "points": 0.03,
+    "cls": "steep/windy hills",
+    "block": "-5_-1"
+   },
+   {
+    "points": 0.04,
+    "cls": "Crater",
+    "block": "4_0"
+   },
+   {
+    "points": 0.07,
+    "cls": "apron",
+    "block": "-9_0"
+   },
+   {
+    "points": 0.08,
+    "cls": "Normal Ground",
+    "block": "-6_1"
+   },
+   {
+    "points": 0.15,
+    "cls": "steep/windy hills",
+    "block": "-4_-2"
+   },
+   {
+    "points": 0.21,
+    "cls": "fluvial channel",
+    "block": "5_-2"
+   },
+   {
+    "points": 0.24,
+    "cls": "Crater",
+    "block": "5_-2"
+   },
+   {
+    "points": 0.25,
+    "cls": "steep/windy hills",
+    "block": "-4_-1"
+   },
+   {
+    "points": 0.8,
+    "cls": "apron",
+    "block": "-9_-1"
+   }
+  ]
+ },
+ "v3_polygons": {
+  "polygons": 1652,
+  "pixels": 4969037,
+  "net_moved": -43259,
+  "net_points": -0.87,
+  "top10_net": -21166,
+  "top10_points": -0.43,
+  "largest_polygon_share": 0.0133,
+  "top": [
+   {
+    "cls": "Crater",
+    "block": "-4_-1",
+    "pixels": 65852,
+    "base": 0.64,
+    "run": 0.266,
+    "moved": -24690,
+    "run_reads": {
+     "steep/windy hills": 0.663
+    }
+   },
+   {
+    "cls": "lava tube",
+    "block": "-5_-1",
+    "pixels": 15556,
+    "base": 0.485,
+    "run": 0.059,
+    "moved": -6617,
+    "run_reads": {
+     "steep/windy hills": 0.941
+    }
+   },
+   {
+    "cls": "Crater",
+    "block": "-4_-2",
+    "pixels": 36850,
+    "base": 0.81,
+    "run": 0.952,
+    "moved": 5213,
+    "run_reads": {
+     "steep/windy hills": 0.048
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 4933,
+    "base": 0.054,
+    "run": 1.0,
+    "moved": 4665,
+    "run_reads": {}
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 5526,
+    "base": 0.208,
+    "run": 0.999,
+    "moved": 4370,
+    "run_reads": {
+     "Normal Ground": 0.001
+    }
+   },
+   {
+    "cls": "volcanic edifice",
+    "block": "-9_-1",
+    "pixels": 5412,
+    "base": 0.857,
+    "run": 0.131,
+    "moved": -3930,
+    "run_reads": {
+     "Crater": 0.86
+    }
+   },
+   {
+    "cls": "volcanic edifice",
+    "block": "-9_-1",
+    "pixels": 5419,
+    "base": 0.845,
+    "run": 0.13,
+    "moved": -3875,
+    "run_reads": {
+     "Crater": 0.836
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 4857,
+    "base": 0.245,
+    "run": 1.0,
+    "moved": 3666,
+    "run_reads": {}
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 5396,
+    "base": 0.332,
+    "run": 1.0,
+    "moved": 3604,
+    "run_reads": {}
+   },
+   {
+    "cls": "volcanic edifice",
+    "block": "-9_-1",
+    "pixels": 5404,
+    "base": 0.719,
+    "run": 0.058,
+    "moved": -3572,
+    "run_reads": {
+     "apron": 0.577,
+     "Normal Ground": 0.211
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 4952,
+    "base": 0.958,
+    "run": 0.246,
+    "moved": -3526,
+    "run_reads": {
+     "Normal Ground": 0.746
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 5078,
+    "base": 0.295,
+    "run": 0.985,
+    "moved": 3503,
+    "run_reads": {
+     "Normal Ground": 0.015
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 5396,
+    "base": 0.946,
+    "run": 0.298,
+    "moved": -3497,
+    "run_reads": {
+     "volcanic edifice": 0.549
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 4570,
+    "base": 0.221,
+    "run": 0.978,
+    "moved": 3463,
+    "run_reads": {
+     "steep/windy hills": 0.01
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 4582,
+    "base": 0.882,
+    "run": 0.133,
+    "moved": -3431,
+    "run_reads": {
+     "Normal Ground": 0.666,
+     "volcanic edifice": 0.197
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 5526,
+    "base": 0.784,
+    "run": 0.182,
+    "moved": -3329,
+    "run_reads": {
+     "steep/windy hills": 0.398,
+     "Crater": 0.239
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 4496,
+    "base": 0.271,
+    "run": 1.0,
+    "moved": 3279,
+    "run_reads": {}
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 4807,
+    "base": 0.905,
+    "run": 0.224,
+    "moved": -3273,
+    "run_reads": {
+     "Crater": 0.512,
+     "steep/windy hills": 0.257
+    }
+   },
+   {
+    "cls": "volcanic edifice",
+    "block": "-9_-1",
+    "pixels": 5412,
+    "base": 0.751,
+    "run": 0.158,
+    "moved": -3211,
+    "run_reads": {
+     "apron": 0.346,
+     "lava tube": 0.161
+    }
+   },
+   {
+    "cls": "volcanic edifice",
+    "block": "-9_-1",
+    "pixels": 5477,
+    "base": 0.554,
+    "run": 0.012,
+    "moved": -2970,
+    "run_reads": {
+     "Crater": 0.546,
+     "Normal Ground": 0.335
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 4979,
+    "base": 0.376,
+    "run": 0.971,
+    "moved": 2960,
+    "run_reads": {
+     "Crater": 0.015
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 5419,
+    "base": 0.47,
+    "run": 0.998,
+    "moved": 2864,
+    "run_reads": {
+     "volcanic edifice": 0.001
+    }
+   },
+   {
+    "cls": "apron",
+    "block": "-9_-1",
+    "pixels": 4973,
+    "base": 0.37,
+    "run": 0.944,
+    "moved": 2852,
+    "run_reads": {
+     "Crater": 0.044
+    }
+   },
+   {
+    "cls": "Crater",
+    "block": "-3_-1",
+    "pixels": 11943,
+    "base": 0.614,
+    "run": 0.376,
+    "moved": -2844,
+    "run_reads": {
+     "steep/windy hills": 0.624
+    }
+   },
+   {
+    "cls": "volcanic edifice",
+    "block": "-9_-1",
+    "pixels": 5425,
+    "base": 0.903,
+    "run": 0.412,
+    "moved": -2663,
+    "run_reads": {
+     "Crater": 0.346
+    }
+   }
+  ],
+  "by_class_block": [
+   {
+    "points": -1.51,
+    "cls": "volcanic edifice",
+    "block": "-9_-1"
+   },
+   {
+    "points": -0.5,
+    "cls": "Crater",
+    "block": "-4_-1"
+   },
+   {
+    "points": -0.16,
+    "cls": "lava tube",
+    "block": "-5_-1"
+   },
+   {
+    "points": -0.15,
+    "cls": "fluvial channel",
+    "block": "4_2"
+   },
+   {
+    "points": -0.14,
+    "cls": "volcanic edifice",
+    "block": "-9_0"
+   },
+   {
+    "points": -0.14,
+    "cls": "Crater",
+    "block": "-3_-1"
+   },
+   {
+    "points": -0.14,
+    "cls": "fluvial channel",
+    "block": "-3_-1"
+   },
+   {
+    "points": -0.05,
+    "cls": "fluvial channel",
+    "block": "-4_-1"
+   },
+   {
+    "points": -0.05,
+    "cls": "Crater",
+    "block": "-5_-1"
+   },
+   {
+    "points": -0.04,
+    "cls": "Crater",
+    "block": "-6_1"
+   },
+   {
+    "points": -0.04,
+    "cls": "Normal Ground",
+    "block": "4_2"
+   },
+   {
+    "points": -0.04,
+    "cls": "fluvial channel",
+    "block": "1_0"
+   },
+   {
+    "points": -0.03,
+    "cls": "fluvial channel",
+    "block": "-4_-2"
+   },
+   {
+    "points": -0.01,
+    "cls": "Crater",
+    "block": "1_0"
+   },
+   {
+    "points": -0.01,
+    "cls": "volcanic edifice",
+    "block": "-4_-2"
+   },
+   {
+    "points": -0.01,
+    "cls": "steep/windy hills",
+    "block": "4_2"
+   },
+   {
+    "points": -0.01,
+    "cls": "steep/windy hills",
+    "block": "-9_0"
+   },
+   {
+    "points": -0.01,
+    "cls": "Normal Ground",
+    "block": "4_0"
+   },
+   {
+    "points": -0.0,
+    "cls": "lava tube",
+    "block": "-9_0"
+   },
+   {
+    "points": 0.0,
+    "cls": "Normal Ground",
+    "block": "-11_2"
+   },
+   {
+    "points": -0.0,
+    "cls": "Crater",
+    "block": "-11_1"
+   },
+   {
+    "points": -0.0,
+    "cls": "fluvial channel",
+    "block": "0_0"
+   },
+   {
+    "points": -0.0,
+    "cls": "fluvial channel",
+    "block": "-9_-1"
+   },
+   {
+    "points": -0.0,
+    "cls": "Crater",
+    "block": "-9_-1"
+   },
+   {
+    "points": -0.0,
+    "cls": "Crater",
+    "block": "-9_0"
+   },
+   {
+    "points": -0.0,
+    "cls": "lava tube",
+    "block": "-4_-1"
+   },
+   {
+    "points": -0.0,
+    "cls": "lava tube",
+    "block": "-4_-2"
+   },
+   {
+    "points": 0.0,
+    "cls": "steep/windy hills",
+    "block": "5_-2"
+   },
+   {
+    "points": -0.0,
+    "cls": "steep/windy hills",
+    "block": "-6_1"
+   },
+   {
+    "points": 0.0,
+    "cls": "steep/windy hills",
+    "block": "1_0"
+   },
+   {
+    "points": 0.0,
+    "cls": "Normal Ground",
+    "block": "-9_-1"
+   },
+   {
+    "points": 0.0,
+    "cls": "Normal Ground",
+    "block": "0_0"
+   },
+   {
+    "points": 0.0,
+    "cls": "Normal Ground",
+    "block": "-9_0"
+   },
+   {
+    "points": -0.0,
+    "cls": "Normal Ground",
+    "block": "-4_-2"
+   },
+   {
+    "points": -0.0,
+    "cls": "Normal Ground",
+    "block": "-3_-1"
+   },
+   {
+    "points": -0.0,
+    "cls": "Normal Ground",
+    "block": "-4_-1"
+   },
+   {
+    "points": -0.0,
+    "cls": "Normal Ground",
+    "block": "5_-2"
+   },
+   {
+    "points": 0.01,
+    "cls": "lava tube",
+    "block": "-6_1"
+   },
+   {
+    "points": 0.01,
+    "cls": "Normal Ground",
+    "block": "-11_1"
+   },
+   {
+    "points": 0.01,
+    "cls": "steep/windy hills",
+    "block": "4_0"
+   },
+   {
+    "points": 0.01,
+    "cls": "steep/windy hills",
+    "block": "-9_-1"
+   },
+   {
+    "points": 0.01,
+    "cls": "Normal Ground",
+    "block": "-5_-1"
+   },
+   {
+    "points": 0.01,
+    "cls": "Normal Ground",
+    "block": "1_0"
+   },
+   {
+    "points": 0.02,
+    "cls": "Crater",
+    "block": "0_0"
+   },
+   {
+    "points": 0.02,
+    "cls": "steep/windy hills",
+    "block": "-3_-1"
+   },
+   {
+    "points": 0.03,
+    "cls": "steep/windy hills",
+    "block": "-5_-1"
+   },
+   {
+    "points": 0.03,
+    "cls": "Crater",
+    "block": "4_0"
+   },
+   {
+    "points": 0.03,
+    "cls": "Crater",
+    "block": "-11_2"
+   },
+   {
+    "points": 0.07,
+    "cls": "Normal Ground",
+    "block": "-6_1"
+   },
+   {
+    "points": 0.07,
+    "cls": "apron",
+    "block": "-9_0"
+   },
+   {
+    "points": 0.12,
+    "cls": "fluvial channel",
+    "block": "5_-2"
+   },
+   {
+    "points": 0.12,
+    "cls": "Crater",
+    "block": "-4_-2"
+   },
+   {
+    "points": 0.15,
+    "cls": "steep/windy hills",
+    "block": "-4_-2"
+   },
+   {
+    "points": 0.22,
+    "cls": "Crater",
+    "block": "5_-2"
+   },
+   {
+    "points": 0.25,
+    "cls": "steep/windy hills",
+    "block": "-4_-1"
+   },
+   {
+    "points": 0.97,
+    "cls": "apron",
+    "block": "-9_-1"
+   }
+  ]
+ }
+}

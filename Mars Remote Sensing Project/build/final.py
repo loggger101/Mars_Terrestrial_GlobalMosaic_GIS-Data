@@ -159,8 +159,8 @@ FIGURES = [
                  "By balanced accuracy the gain is gone: 63.1% with the thermal bands, 63.4% without (200 m)",
                  "It helps craters and hills and hurts lava tube",
                  "Terrain alone ties the score but makes a poor crater map: the classes are landform classes",
-                 "The seven-class U-Net, retrained once without it: 81.2% against 87.5%, a drop not resolved by block"],
-         source="§40.1, §56, §56.1, §69.86"),
+                 "The seven-class U-Net, retrained once without it: 81.2% against 87.5%, a drop not resolved by block; a second training with it moves under 1 point"],
+         source="§40.1, §56, §56.1, §69.86, §69.106"),
     dict(title="Deep learning, 1: a box detector",
          images=[("layout", "16_x5_detections")], map_left=True,
          points=["RetinaNet on the 7-band stack, trained on the training blocks only",
@@ -244,8 +244,10 @@ FIGURES = [
                  "Added polygons alone score highest by accuracy (89.3%) but lose hills (−37.4 points) and lava tube "
                  "(−38.6): most of their hills are the rule's",
                  "Without the thermal bands 81.2% against 87.5%, not resolved by block; almost all of it apron in the "
-                 "Tharsis block read as edifice"],
-         source="§69.86, §69.88, §69.91, §69.93"),
+                 "Tharsis block read as edifice",
+                 "Trained a second time: 86.8% (score within a point), but edifice on 8.7% of the windows against "
+                 "16.3%: the class areas are one training's"],
+         source="§69.86, §69.88, §69.91, §69.93, §69.106"),
     dict(title="A probability sample, on the AI assistant's labels",
          images=[("file", r"final_img\r2_vs_polygons.png")],
          points=["25 points per class of the seven-class SVM map, labelled blind on CTX and shaded relief; 142 of the 175 decided",
@@ -259,7 +261,7 @@ LIMITS = [   # (head, text)
     ("The thermal signal is weak where it can be checked",
      "The held THEMIS mosaics are 8-bit products stretched region by region: no calibrated thermal inertia; against "
      "TES |r| ≈ 0.1 inside 15° blocks. Per pixel thermal adds 1.3–2.0 points, none by balanced accuracy; without it "
-     "the U-Net loses 6.4–7.6 (not resolved by block), an SVM seeing 51 km 8.0–9.9, mostly made up by map coordinates instead (§24, §56, §69.86, §69.99–§69.101)."),
+     "the U-Net loses 6.4–7.6 (not resolved by block), an SVM seeing 51 km 8.0–9.9, mostly made up by map coordinates (§24, §56, §69.86, §69.99–§69.101, §69.106)."),
     ("The landform classes are terrain classes",
      "Slope and relief alone match all seven bands; 'lava tube' marks volcano flanks, not lava plains; the geologic "
      "map's unit groups cannot stand in for material labels either (§40.1, §43.2, §69.50)."),

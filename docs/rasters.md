@@ -3,7 +3,7 @@
 Every raster backed up in the [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases), and the Athabasca type area's (see its
 section for which release holds them), read from its own header by
 [`github_catalog_rasters.py`](../Mars%20Remote%20Sensing%20Project/build/github_catalog_rasters.py)
-on 2026-11-10. "KB §N" is a section of
+on 2026-11-11. "KB §N" is a section of
 [`PROJECT-KNOWLEDGE.md`](../Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md).
 [`restore.py`](../restore.py) puts each one back where the table's first column says, under
 `Mars Project/Global60/`, `Mars Project/TypeArea/`, `Mars Project/Athabasca/` or `Mars Project/restored_from_gdb/`. The type-area
@@ -28,9 +28,9 @@ are in none.
 The `.ovr` pyramids are not in the releases: build them after restoring.
 
 **`Global60/v3_extras/`**, not listed file by file: the extra runs' classifications of the held-out windows (15°
-blocks with a 25 km margin), one folder per run (base, fresh, noth, cut, add, fresh2; rep once it ends), each block a
+blocks with a 25 km margin), one folder per run (base, fresh, noth, cut, add, fresh2, rep), each block a
 `x5c_block_<lon>_<lat>.tif` on the 200 m grid, and the fresh runs' SVM models `svm_fresh*.ecd`. In
-[`data-2026-11-10`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-11-10) `global60-classification-part*.zip` (KB §69.82–§69.102, §69.105).
+[`data-2026-11-10`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-11-10) `global60-classification-part*.zip`, rep's in [`data-2026-11-10`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-11-10) `global60-classification-rep.zip` (KB §69.82–§69.102, §69.105, §69.106).
 
 ## ±60° analysis extent: `Mars Project/Global60/`
 

@@ -198,8 +198,30 @@
     0.83,
     0.829
    ]
+  },
+  "global60_unet_x5c_v3r_20261110": {
+   "epochs": 30,
+   "best_epoch": 20,
+   "best_valid_loss": 0.4428,
+   "best_accuracy": 0.8491,
+   "max_valid_loss": 2.087,
+   "first_epoch_above_2": 27,
+   "train_loss_last5": [
+    0.393,
+    0.48,
+    0.384,
+    0.473,
+    0.413
+   ],
+   "accuracy_last5": [
+    0.88,
+    0.889,
+    0.885,
+    0.888,
+    0.889
+   ]
   }
  },
  "S1": "not decided",
- "R3": "waiting for rep (0 epochs)"
+ "R3": "not decided"
 }

@@ -1,0 +1,25 @@
+v2_polygons {'polygons': 237, 'net_points': -0.74, 'top10_points': -0.43, 'largest_polygon_share': 0.1418}
+   class x block, points of the set's pixels, most lost first: [(-1.68, 'volcanic edifice', '-9_-1'), (-0.2, 'volcanic edifice', '-9_0'), (-0.19, 'fluvial channel', '4_2'), (-0.18, 'fluvial channel', '1_0'), (-0.16, 'fluvial channel', '-3_-1'), (-0.06, 'fluvial channel', '-4_-1')] most gained: [(0.24, 'Crater', '5_-2'), (0.25, 'steep/windy hills', '-4_-1'), (0.8, 'apron', '-9_-1')]
+   volcanic edifice   -9_-1    462109 px  base 0.725  rep 0.595  reads {'Crater': 0.169}
+   apron              -9_-1    129151 px  base 0.753  rep 0.921  reads {'steep/windy hills': 0.041}
+   apron              -9_-1    100213 px  base 0.388  rep 0.198  reads {'volcanic edifice': 0.217}
+   apron              -9_-1     53496 px  base 0.500  rep 0.816  reads {'steep/windy hills': 0.077}
+   apron              -9_-1    134809 px  base 0.843  rep 0.955  reads {'volcanic edifice': 0.018}
+   fluvial channel    5_-2      48070 px  base 0.569  rep 0.779  reads {'Crater': 0.146}
+   volcanic edifice   -9_-1     42552 px  base 0.813  rep 0.583  reads {'steep/windy hills': 0.242}
+   steep/windy hills  -4_-1     45504 px  base 0.811  rep 0.957  reads {'Crater': 0.041}
+   fluvial channel    -3_-1     14173 px  base 0.743  rep 0.349  reads {'Crater': 0.55}
+   Crater             5_-2      76034 px  base 0.910  rep 0.971  reads {'steep/windy hills': 0.02}
+v3_polygons {'polygons': 1652, 'net_points': -0.87, 'top10_points': -0.43, 'largest_polygon_share': 0.0133}
+   class x block, points of the set's pixels, most lost first: [(-1.51, 'volcanic edifice', '-9_-1'), (-0.5, 'Crater', '-4_-1'), (-0.16, 'lava tube', '-5_-1'), (-0.15, 'fluvial channel', '4_2'), (-0.14, 'volcanic edifice', '-9_0'), (-0.14, 'Crater', '-3_-1')] most gained: [(0.22, 'Crater', '5_-2'), (0.25, 'steep/windy hills', '-4_-1'), (0.97, 'apron', '-9_-1')]
+   Crater             -4_-1     65852 px  base 0.640  rep 0.266  reads {'steep/windy hills': 0.663}
+   lava tube          -5_-1     15556 px  base 0.485  rep 0.059  reads {'steep/windy hills': 0.941}
+   Crater             -4_-2     36850 px  base 0.810  rep 0.952  reads {'steep/windy hills': 0.048}
+   apron              -9_-1      4933 px  base 0.054  rep 1.000  reads {}
+   apron              -9_-1      5526 px  base 0.208  rep 0.999  reads {'Normal Ground': 0.001}
+   volcanic edifice   -9_-1      5412 px  base 0.857  rep 0.131  reads {'Crater': 0.86}
+   volcanic edifice   -9_-1      5419 px  base 0.845  rep 0.130  reads {'Crater': 0.836}
+   apron              -9_-1      4857 px  base 0.245  rep 1.000  reads {}
+   apron              -9_-1      5396 px  base 0.332  rep 1.000  reads {}
+   volcanic edifice   -9_-1      5404 px  base 0.719  rep 0.058  reads {'apron': 0.577, 'Normal Ground': 0.211}
+-> F:\Mars Remote Sensing Project\build\logs\v3_rep_polygons.json

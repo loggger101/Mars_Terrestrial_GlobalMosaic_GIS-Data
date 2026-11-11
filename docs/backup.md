@@ -15,6 +15,7 @@ described in [rasters.md](rasters.md), each vector layer in [the layer catalogue
 | `athabasca.zip` | the whole Athabasca Valles type area: stack, terrain, thermal index, channel rasters ([rasters.md](rasters.md#athabasca-valles-type-area-mars-projectathabasca)); layouts 09 and 15 draw from it |
 | `global60-classification-part*.zip` | the ±60° SVM maps: 200 m raw and 3–11 majority (the published map is the 200 m 11 × 11 one), 400 m raw and 3–9 (superseded), the four T1 band-set maps; the models; the two 0.5° density grids; smoke tests; the two U-Net terrain-province maps (one pass, and the two-pass `_seamfix` one beside the published map, layout 17); and the seven-class maps, the SVM (200 m raw and 11 × 11, layout 04b) and the U-Net (layout 17b) on the reviewed v2 labels, with the same pair from the v2p rehearsal (a pipeline test, never a result, KB §69.4); the two maps on the third label set that lead the final (D36: the U-Net, layout 17c, and the SVM with its 11 × 11 majority, layout 04c); and `v3_extras/`, the extra runs' window maps (KB §69.84–§69.102) |
 | `dl-models-part*.zip` | `Mars Project/DLModels/`: the eleven trained deep-learning models (RetinaNet X5 and X5b, U-Net X5c, the seven-class U-Nets on the v2 labels and the v2p rehearsal, and the six on the v3 labels: `_v3`, `_v3f`, `_v3nt`, `_v3c`, `_v3a`, `_v3g`; `.pth`, `.emd`, `.dlpk`), their loss graphs and sample results, and X5's held-out detections |
+| `dl-models-rep.zip`, `global60-classification-rep.zip` | rep, the second training of the v3 U-Net (`DLModels/global60_unet_x5c_v3r_20261110/`) and its window maps (`Global60/v3_extras/rep/`), added 11 November (KB §69.106) |
 | `Classified_*.tif` | the two SVM maps made in the Pro GUI on 29 and 30 September (superseded, kept); pixel value = class code 1–4, NoData 255, since 2026-10-07 |
 | `mars_project_vectors.gpkg.zip` | the vector layers as a GeoPackage, 39 classes: those in `exports/`, plus the two ±60° candidate classes too big for git (465,354 closed depressions, 969,822 channel segments) |
 | `npy-caches.zip` | decimated arrays of the globals that the figures are drawn from |
@@ -36,7 +37,7 @@ Not backed up anywhere but the drive (git history holds the files the repository
 
 ## Not yet in a release
 
-The second v3 training, rep, running when `data-2026-11-10` was published (KB §69.89, §69.105): its model in `Mars Project/DLModels/` and its window maps in `Global60/v3_extras/rep/` are added to `data-2026-11-10` as files of their own when it ends.
+Nothing a restore needs. The second v3 training, rep, ended after `data-2026-11-10` was published; its model and window maps were added to that release on 11 November as `dl-models-rep.zip` and `global60-classification-rep.zip` (KB §69.106).
 
 ## Keeping it current
 

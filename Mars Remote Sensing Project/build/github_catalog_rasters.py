@@ -309,9 +309,9 @@ are in none.
 The `.ovr` pyramids are not in the releases: build them after restoring.
 
 **`Global60/v3_extras/`**, not listed file by file: the extra runs' classifications of the held-out windows (15°
-blocks with a 25 km margin), one folder per run (base, fresh, noth, cut, add, fresh2; rep once it ends), each block a
+blocks with a 25 km margin), one folder per run (base, fresh, noth, cut, add, fresh2, rep), each block a
 `x5c_block_<lon>_<lat>.tif` on the 200 m grid, and the fresh runs' SVM models `svm_fresh*.ecd`. In
-{rel(DATA, "global60-classification-part*.zip")} (KB §69.82–§69.102, §69.105).
+{rel(DATA, "global60-classification-part*.zip")}, rep's in {rel(DATA, "global60-classification-rep.zip")} (KB §69.82–§69.102, §69.105, §69.106).
 
 ## ±60° analysis extent: `Mars Project/Global60/`
 
