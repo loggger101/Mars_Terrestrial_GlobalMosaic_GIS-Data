@@ -247,7 +247,7 @@ label and new polygons for the new classes were built from the geologic map, the
 elevation model and the valley map of \citet{Alemanno2018}. Every relabel, check and edifice outline was reviewed by
 eye; the apron and fluvial-strip proposals were screened by a rule written before it ran.
 On 80 of those proposals, 30 the rule accepted and 10 it rejected in each class, shown on Context Camera images without the
-rule's verdict, the AI assistant accepted all 27 rule-accepted fluvial strips it decided and 20 of 26 apron pieces
+rule's verdict, an automated reading accepted all 27 rule-accepted fluvial strips it decided and 20 of 26 apron pieces
 (77\%, 58--89\%), and accepted 4 of 6 and 6 of 8 of the rule's rejects: the screen erred toward strictness. Five
 of the apron rejects it accepted are the flat fan-shaped deposits of Arsia and Pavonis Montes, which a slope test
 cannot keep; the third label set admits them by unit, not slope, a net 106 more apron labels. %% KB §69.55, §69.56 (D34)
@@ -316,6 +316,57 @@ contacts for the flow-margin test and over 50~km cells for the channel test, so 
 never treated as independent. Polygons in one held-out block share its geology and its errors, so the map scores are
 also given with block intervals \citep{Kunsch1989}, which resample the 14 held-out blocks (10,000 resamples, every map on the same
 draw). %% KB §69.44
+
+\subsection{Predictions, checks and what repeats} \label{sec:honest}
+
+Three habits kept the scores from being read to fit. First, a run whose result could be read more than one way had
+its predictions, and any rule for choosing between maps, written into its script before it ran; each is reported held
+or not held, and Appendix~\ref{app:predictions} lists those behind the lead maps. Second, a scoring script writes
+nothing unless it first reproduces what is already known: every map it reads must give the accuracy and \kap\ of its
+own earlier log within 0.001. Each such check was itself shown able to fail. Before the third label set's maps
+existed, the script that judges them was run end to end on earlier maps standing in for them, and then again with a
+stand-in rolled half a planet in longitude; the rolled map scored 0.1066 and the script refused it. That rehearsal
+also found a fault that would have lost the real result, a crash while the finished numbers were being written.
+%% KB §69.76
+
+Third, what a rerun would give is known for each kind of number. Every random draw the scripts make is seeded, so
+the splits, the label sets, every score of a map on disk and every bootstrap interval repeat exactly. The training
+tools take no seed. The support vector machine repeats all the same: two trainings on one block gave identical
+classifier files and maps with none of 18,160,923 pixels different. Random Trees, used only in a superseded
+type-area map, does not: two trainings differ on 5.0\% of the pixels. The U-Net does not repeat either, and how far
+it moves was measured by training the lead model a second time (Section~\ref{sec:v3}): the two trainings score within
+0.74 and 0.87 points of each other and differ on 26.8\% of the ground, so a U-Net's score is firmer than its map. The
+trained models are kept, and a map is re-made from its saved model, not by retraining. %% KB §2.6, §69.50, §69.106
+
+The retrainings that test one change at a time (other held-out blocks, no thermal bands, the two halves of the
+third label set, a second training) do not classify all of \pmsixty. Each classifies windows only: the extent of a
+held-out block's polygons with a 25~km margin, in one pass, where the lead map is the two-pass mosaic. So that the
+comparison is like for like, the lead model was run over the same windows the same way. That window map matches the
+lead map on a share of 0.8946 of the pixels and gives its scores (87.54\% against 87.62\% on the 237 polygons), a
+chip grid at another phase changing single pixels and not the score; every retraining is compared with it and not
+with the mosaic. %% KB §69.82, §69.83
+
+\subsection{Who judged what} \label{sec:who}
+
+Three kinds of judgement enter the results, and they are kept apart. The author drew the 512 four-class polygons,
+reviewed the proposals of the seven-class scheme, and reviewed 3,791 of the 9,287 type-area candidates as accept,
+reject or unsure. Written rules, fixed before they ran, screened the apron and fluvial proposals of the second label
+set and placed every polygon of the third (Appendix~\ref{app:rules}); no one looked at those rows to accept them.
+The rest was read by an automated process: the remaining candidate channels at Athabasca Valles and the origin of each accepted channel, the lava
+margins traced on the Context Camera mosaic, the probability sample of Section~\ref{sec:sample}, and six edifice
+polygons outside Tharsis. %% KB §69.33, §69.55, §69.105
+
+Each of the automated readings was given a check, registered before it began, and the checks are reported whether
+or not they passed. The process read candidates from contact sheets that show each one in four panels at 100~m (local relief,
+a hillshade, Viking colour and day infrared) with no review field, index or slope shown. Blind on 48 candidates the
+author had already judged, it agreed with the author at chance (46.5\%, \kap\,0.08), so the candidate review stayed
+the author's. On the hidden calibration points of the probability sample, 35 points inside the author's own
+polygons, it scored 66.7\%, \kap\,0.60, under the gate set for it. Its channel review and its channel origins failed
+their repeat checks as well. At the author's decision those readings are in the data all the same, each row marked
+as automated, and no decision of the author's is overwritten by one; the paper gives each with its measured
+agreement and says so wherever a number rests on them. The traced margins were read a second time by the
+same process, blind to the confidence it had first given each line, and that second reading kept 56 of 85; no one
+else has checked them. %% KB §69.51, §69.52, §69.53, §69.55, §69.105
 
 %% ====================================================================================================
 \section{Results} \label{sec:results}
@@ -522,8 +573,8 @@ contacts of \lAv, day infrared separates 21.0\% (interval 3.3--38.4\%), Viking r
 the index 13.0\%. Day infrared leans toward H1 by $+8.7$ points over Viking red, but the interval ($-1.7$ to $+18.1$)
 includes zero, so by the rule set in advance H1 is not supported. A map at 1:20\,M generalises contacts by kilometres, so the test was repeated on lava-flow margins traced on the
 Context Camera (CTX) mosaic \citep{Malin2007,Dickson2024}: 86 margins (1,476~km) along the \lAv\ boundaries, on 126 plates
-that showed CTX alone, by a rule written before any plate was viewed. The margins were traced by the AI assistant that
-wrote the project's scripts and read again by it on the same views, blind to the confidence it had given each; no one
+that showed CTX alone, by a rule written before any plate was viewed. The margins were traced by an automated process
+and read again by it on the same views, blind to the confidence it had given each; no one
 else has checked them. Across 633 profiles on 78 of them, day infrared
 separates 19.7\% (13.1--27.2\%), Viking red 14.8\%, night infrared 14.5\% and the index 10.0\%. Day infrared leads
 Viking red by $+4.9$ points, interval $-2.7$ to $+13.1$, so H1 is again not supported (Figure~\ref{fig:t5}): the
@@ -647,7 +698,7 @@ training polygon: each pixel given the class of the closest training polygon, ge
 latitude only: a classifier on those two values, F1, Q and A not computed. Block
 intervals on accuracy (95\%, the 14 held-out blocks resampled): SVM $11\times11$ 57.5--87.8, U-Net two passes
 97.3--99.6, SVM seven-class 23.8--71.5, U-Net seven-class 50.5--80.2, on the third label set 21.3--68.9 and 80.5--95.1.
-On the probability sample, labelled by the AI assistant (Section~\ref{sec:sample}), accuracy by the stratified
+On the probability sample, labelled by an automated process (Section~\ref{sec:sample}), accuracy by the stratified
 estimator: SVM $11\times11$ 56.9, U-Net two passes 44.4, SVM seven-class 39.9, U-Net seven-class 21.7, on the
 third label set 40.2 and 49.6. %% KB §69.53, §69.55, §69.81 (block 16 (c), as a note)
 $^{a}$The four-class map of Figure~\ref{fig:landforms}. $^{b}$Figure~\ref{fig:landforms7}. $^{c}$Section~\ref{sec:v3}.}
@@ -940,19 +991,19 @@ view, and to 51~km with the point's map coordinates; the published U-Net map rea
 
 A probability sample \citep{Olofsson2014} gives scores free of where the polygons were drawn. Twenty-five points were
 drawn in each class of the seven-class support vector machine map, with probability proportional to area, and 35
-more inside the author's held-out polygons were hidden among them as a check on the labeller; the AI assistant
+more inside the author's held-out polygons were hidden among them as a check on the labelling; an automated process
 labelled all 210 blind on Context Camera images and elevation-model shading, with no map class shown. On the hidden
 points it agreed with the author's classes on 66.7\% of the 27 it decided ($\kappa=0.604$), short of the 70\% set in
-advance, and missed the apron and fluvial polygons, so what follows is the assistant's reading, reported at the
+advance, and missed the apron and fluvial polygons, so what follows is the automated reading, reported at the
 author's decision. On the 142 sample points it decided, by the stratified estimator, the published four-class map
 scores 56.9\% (48.8--65.0\%), the four-class U-Net 44.4\% (35.8--52.9\%), the seven-class support vector machine
 39.9\% (35.6--44.2\%) and the seven-class U-Net 21.7\% (13.7--29.7\%), each below its score on the held-out polygons.
 On the same points the seven-class U-Net minus the seven-class support vector machine is $-18.3$ points ($-26.7$ to
-$-9.9$), the reverse of its lead on the polygons, but the labeller's lean to Normal Ground favours the support vector
+$-9.9$), the reverse of its lead on the polygons, but the labelling's lean to Normal Ground favours the support vector
 machine, which maps more of it. On the 57 points not read as Normal Ground the difference is $-4.1$ points ($-27.9$ to
 $+19.8$), so the sample does not rank those two maps.
 Normal Ground covers 79.8\% of the sampled ground (73.4--86.3\%) against 33.3\% of the seven-class map, and fluvial
-channel, a third of the map, 3.3\% (a user's accuracy of 4.8\%). The labeller named none of the 175 sample points apron, its
+channel, a third of the map, 3.3\% (a user's accuracy of 4.8\%). The labelling named none of the 175 sample points apron, its
 weakest class on the check, so the apron share is not measured. %% KB §69.53, §69.55, §69.77
 
 The points were drawn before the third label set, so they are not its own. The U-Net on it scores 49.6\%
@@ -1044,10 +1095,10 @@ hills fall short of the training minimum, in two training blocks against three. 
 rule set before they ran, on the four original classes, and are presented for what they name rather than for that
 score: the support vector machine over-predicts fluvial channel and the U-Net volcanic edifice. On the third label
 set the U-Net's edifice falls to 18.0\% of \pmsixty, while the support vector machine's fluvial channel stays at 31.9\%.
-Off Tharsis the edifice class is weak: on six polygons the AI assistant drew at the calderas of Nili and Meroe Paterae
+Off Tharsis the edifice class is weak: on six polygons an automated process drew at the calderas of Nili and Meroe Paterae
 on Syrtis Major, in a held-out block, the U-Net calls 7.7\% of the ground volcanic edifice (1.4--20.5\%,
 resampling the polygons) and the support vector machine 0.6\%, so the U-Net's edifice score is Tharsis ground;
-the assistant could not tell lobate debris aprons from talus on the views it had, so apron was not scored there.
+the process could not tell lobate debris aprons from talus on the views it had, so apron was not scored there.
 %% KB §68.1--§68.4, §69.8, §69.24--§69.26, §69.81, §69.105
 
 The detectors are elevation-model products. Closed depressions miss breached craters by construction, and below about
@@ -1055,8 +1106,8 @@ The detectors are elevation-model products. Closed depressions miss breached cra
 mask that removes synthetic lakes also breaks networks where the DEM is pitted.
 
 Every polygon score in this paper is taken where a class is clear, which flatters five of the six maps sampled, all but
-the support vector machine on the third label set. The probability sample shows the size of that, but on the AI
-assistant's labels, which failed their check; unbiased accuracies and class areas
+the support vector machine on the third label set. The probability sample shows the size of that, but on
+automated labels, which failed their check; unbiased accuracies and class areas
 need the same points labelled by an analyst who passes it. %% KB §69.40, §69.55
 The U-Net maps are firmer as scores than as pixels: the third label set's model, run again over the held-out windows
 on chips placed differently, scores 87.54\% against 87.62\% on the 237 polygons, yet about one pixel in ten changes
@@ -1064,7 +1115,7 @@ class, so a single pixel of a U-Net map should not be read alone. %% KB §69.83
 Nor do the polygon scores fix the class areas. Trained a second time with every setting the same, the U-Net scores
 within a point of the first on both polygon sets, but over the held-out windows its volcanic edifice covers 8.7\% of
 the ground against 16.3\%, the difference going mostly to Crater and Normal Ground. At the 39 labelled sample points
-inside the windows the second training's map calls 4 volcanic edifice against 10, nearer the AI assistant's 1, too
+inside the windows the second training's map calls 4 volcanic edifice against 10, nearer the automated labels' 1, too
 few points to choose between them. The edifice share of \pmsixty\ (18.0\%) is one training's. %% KB §69.106
 
 The held-out blocks have now been used three times, by the four-class models, the seven-class ones and those on the
@@ -1078,11 +1129,11 @@ Any further tuning, of the deep-learning models above all, would
 turn the 14 held-out blocks into a validation set; a next round needs validation blocks of its own. Finally, the manual review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709
 depressions) has reached 3,791, with a precision (accepts over accepts and rejects) of 54\% on the 188 steep,
 rock-floored Ius channels, 50\% on 209 rock-floored Athabasca channels, and 10\% and 13\% on the closed depressions
-of the two areas. The AI assistant read the other 200 rock-floored Athabasca channels on CTX, at the author's
+of the two areas. An automated process read the other 200 rock-floored Athabasca channels on CTX, at the author's
 decision, and accepted 3 (186 rejected, 11 unsure); on 48 lines the author had reviewed, the same reading accepted 3
 against the author's 22 and agreed with the author no better than chance ($\kappa=0.14$), so the channel precisions
-are each reader's standard, not ground truth. The digitised classes hold 202 channels (199 accepted by the author, 3 by
-the assistant) and 381 crater rims, and the 86 traced lava margins, so the machine products are presented as
+are each reading's standard, not ground truth. The digitised classes hold 202 channels (199 accepted by the author, 3 by
+the automated process) and 381 crater rims, and the 86 traced lava margins, so the machine products are presented as
 candidates with measured recall and precision. %% KB §66.5, §6, §69.33, §69.52, §69.55, NEXT-STEPS §6
 
 %% ====================================================================================================
@@ -1093,7 +1144,7 @@ check (Section~\ref{sec:sample}), to give unbiased accuracies and class areas wi
 polygons were drawn. Material labels from photo interpretation, rather than landforms or the geologic map's unit
 groups, would test what the thermal bands add, and THEMIS-derived inertia \citep{Fergason2006}, where it exists,
 would replace the display mosaics' local contrast. A check of the lava margins traced on Context Camera images
-\citep{Malin2007} by a reader other than the assistant that traced them would make H1's test independent; H2 needs a study area that holds both fluvial and
+\citep{Malin2007} by an analyst would make H1's test independent; H2 needs a study area that holds both fluvial and
 volcanic channels. The deep-learning models need validation blocks of their own before any retraining, and labels
 checked by eye rather than placed by rule: the lead U-Net's lava tube (user's accuracy 8.0\%) and its volcanic
 edifice, denser inside none of ten small named edifices, come first. For the craters, a rim-based diameter or merged
@@ -1146,7 +1197,8 @@ Section~\ref{sec:data}. %% KB §69.105 (D23)
 This work was carried out for OCN~4704 Remote Sensing at the Florida Institute of Technology. The THEMIS mosaics are
 products of the Arizona State University Mars Space Flight Facility; the Viking, HRSC/MOLA and geologic-map products are
 distributed by the USGS Astrogeology Science Center; TES thermal inertia by the Planetary Science Institute; and the
-crater database by S.~J.\ Robbins.
+crater database by S.~J.\ Robbins. An AI assistant (Claude, Anthropic) was used in writing the analysis code and in the automated
+readings of Section~\ref{sec:who}; the author directed the work and is responsible for its content.
 \end{acknowledgments}
 
 \facilities{Mars Odyssey (THEMIS), Viking Orbiter, MGS (MOLA, TES), Mars Express (HRSC)}

@@ -167,7 +167,7 @@ def r2_sample():
     ax.grid(False); ax.grid(axis="x", color=GRID, lw=0.8, zorder=0)
     ax.spines["left"].set_visible(False)
     ax.legend(frameon=False, loc="upper left", fontsize=9)
-    fig.text(0.01, 0.01, "Sample: %d of 175 points decided by the AI assistant, whose agreement on the hidden check points was "
+    fig.text(0.01, 0.01, "Sample: %d of 175 points decided by an automated process, whose agreement on the hidden check points was "
              "%.1f %% against a 70 %% bar.\nPolygons: 183 for the four-class maps, 237 for the others."
              % (r["rows"], 100 * r["gate"]["agreement"]), color=MUTED, fontsize=8.5)
     fig.tight_layout(rect=(0, 0.11, 1, 1))

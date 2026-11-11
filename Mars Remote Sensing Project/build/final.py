@@ -135,7 +135,7 @@ FIGURES = [
          points=["633 profiles on 78 margins traced on CTX at Athabasca, 905 on 10 lAv contacts at 1:20 M, each against a random-line null (10%)",
                  "Traced margins: day IR 19.7%, Viking red 14.8%; the difference +4.9 pt, interval −2.7 to +13.1",
                  "Map contacts: 21.0% against 12.3%; +8.7 pt, interval −1.7 to +18.1: the lean persists, zero inside both",
-                 "The AI assistant traced the 86 margins (1,476 km) and, reading them again blind, kept 56 of 85: +3.3 pt there, −7.2 to +13.8; no one else has checked them"],
+                 "An automated process traced the 86 margins (1,476 km) and, reading them again blind, kept 56 of 85: +3.3 pt there, −7.2 to +13.8; no one else has checked them"],
          source="§47.2, §69.52, §69.105"),
     dict(section=("Classification", "Scored on labels the model never saw"),
          title="The four-class landform map at ±60°",
@@ -254,11 +254,11 @@ FIGURES = [
                  "Trained a second time: 86.8% (score within a point), but edifice on 8.7% of the windows against "
                  "16.3%: the class areas are one training's"],
          source="§69.86, §69.88, §69.91, §69.93, §69.106"),
-    dict(title="A probability sample, on the AI assistant's labels",
+    dict(title="A probability sample, on automated labels",
          images=[("file", r"final_img\r2_vs_polygons.png")],
          points=["25 points per class of the seven-class SVM map, labelled blind on CTX and shaded relief; 142 of the 175 decided",
                  "U-Net 49.6% against 21.7% on the earlier labels, interval +17.5 to +38.4; SVM 40.2% against 39.9%",
-                 "The labeller's check failed (66.7% on 27 hidden points, the bar 70%), and it read 79.8% of the ground as Normal Ground",
+                 "The labelling's check failed (66.7% on 27 hidden points, the bar 70%), and it read 79.8% of the ground as Normal Ground",
                  "Off Normal Ground the U-Net leads the SVM by 34.4 pt, interval +5.1 to +63.7"],
          source="§69.53, §69.55, §69.77, §69.81"),
 ]
@@ -287,7 +287,7 @@ LIMITS = [   # (head, text)
      "By the four-class models, the seven-class ones and those on a third label set, asked for after the seven-class scores were read, "
      "so a gain there is not a fresh test; two draws of 14 other blocks give a retrained U-Net 86.6% and 85.4%, the second ahead of the nearest polygon once weighted to the first 14 blocks' class mix (§66.5, §69.49, §69.84, §69.96, §69.102)."),
     ("The polygons flatter five of six maps",
-     "Polygon scores sit where a class is clear; the sample shows by how much, but on the AI assistant's labels, which failed their "
+     "Polygon scores sit where a class is clear; the sample shows by how much, but on automated labels, which failed their "
      "check, and only the SVM on the third label set scores level, so unbiased accuracies need an analyst who passes it (§69.53, §69.55, §69.82)."),
 ]
 
@@ -305,7 +305,7 @@ CONCLUSIONS = [
 
 NEXT_STEPS = [
     "Finish the review at both type areas; draw breached craters by hand",
-    "A reader other than the AI assistant to check the traced margins for H1; H2 needs one area with both channel origins",
+    "An analyst to check the traced margins for H1; H2 needs one area with both channel origins",
     "Seven classes: curb the SVM's fluvial channel and win back its Crater; correct the U-Net's small edifices and lava tube",
     "Have the probability sample labelled by an analyst who passes its check: unbiased accuracies and class areas",
     "Material labels to price the thermal bands; validation blocks of their own before any further deep-learning tuning",
