@@ -1304,6 +1304,75 @@ bands does. \emph{Held}, narrowly: 26.8\% against 28.1\%.
 at 2.09 where the first reached 23.25, so the late rises belong to a training and not to the labels.
 \end{enumerate}
 
+\section{The U-Net trainings class by class and block by block} \label{app:perclass}
+
+Tables~\ref{tab:perclass} and~\ref{tab:perblock} give what the text summarises: every U-Net training on the seven
+classes, scored on the same windows by the same scorer. ``Second set'' is the U-Net on the second label set;
+``third set'' the lead model's labels and settings classified on the windows in one pass, which is why its figures
+differ by a few tenths from the lead map's; ``trained again'' the same labels and settings a second time; ``no
+thermal'' the same labels on five bands; ``cut only'' and ``added only'' the two halves of the third label set's
+change (Section~\ref{sec:v3}). Each column is one training. %% KB §69.110
+\begin{table*}[t]
+\centering
+\caption{Producer's accuracy by class, and the overall scores, of each U-Net training (per cent; $\kappa$ as a fraction). \label{tab:perclass}}
+\small
+\begin{tabular}{lrrrrrr}
+\hline\hline
+ & second set & third set & trained again & no thermal & cut only & added only \\
+\hline
+\multicolumn{7}{l}{\emph{On the 237 polygons}} \\
+Crater & 57.8 & 97.4 & 98.4 & 98.3 & 80.4 & 97.1 \\
+steep/windy hills & 46.8 & 86.6 & 97.7 & 62.1 & 76.6 & 49.2 \\
+lava tube & 22.4 & 90.5 & 95.6 & 83.1 & 44.8 & 51.9 \\
+Normal Ground & 69.7 & 98.6 & 98.8 & 98.9 & 97.5 & 98.0 \\
+volcanic edifice & 81.3 & 76.3 & 66.6 & 87.1 & 94.6 & 86.4 \\
+apron & 77.4 & 87.4 & 90.4 & 61.1 & 85.4 & 89.2 \\
+fluvial channel & 43.0 & 56.4 & 50.0 & 56.4 & 67.6 & 71.9 \\
+Accuracy & 69.0 & 87.5 & 86.8 & 81.2 & 86.9 & 89.3 \\
+Balanced accuracy & 56.9 & 84.7 & 85.4 & 78.2 & 78.1 & 77.6 \\
+$\kappa$ & 0.606 & 0.843 & 0.833 & 0.763 & 0.834 & 0.864 \\
+\hline
+\multicolumn{7}{l}{\emph{On the 1,652 polygons}} \\
+Crater & 52.5 & 94.0 & 92.8 & 94.2 & 72.5 & 95.8 \\
+steep/windy hills & 42.4 & 80.6 & 92.3 & 59.0 & 68.6 & 44.2 \\
+lava tube & 4.9 & 46.7 & 27.4 & 15.0 & 7.6 & 26.4 \\
+Normal Ground & 66.9 & 97.7 & 98.0 & 98.0 & 93.6 & 96.0 \\
+volcanic edifice & 82.8 & 79.1 & 69.1 & 89.7 & 96.8 & 88.8 \\
+apron & 73.8 & 82.0 & 85.4 & 54.7 & 81.5 & 85.6 \\
+fluvial channel & 47.0 & 62.4 & 54.8 & 60.6 & 65.6 & 71.0 \\
+Accuracy & 65.8 & 86.4 & 85.5 & 78.7 & 82.3 & 88.0 \\
+Balanced accuracy & 52.9 & 77.5 & 74.2 & 67.3 & 69.5 & 72.5 \\
+$\kappa$ & 0.565 & 0.827 & 0.815 & 0.731 & 0.774 & 0.845 \\
+\hline
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\caption{Accuracy on the 237 polygons in each of the 14 held-out $15^{\circ}$ blocks (per cent). A block is named by its south-west corner in units of $15^{\circ}$, east longitude then latitude. \label{tab:perblock}}
+\small
+\begin{tabular}{lrrrrrr}
+\hline\hline
+Block & second set & third set & trained again & no thermal & cut only & added only \\
+\hline
+$-11,\,1$ & 77.7 & 99.9 & 100.0 & 100.0 & 99.2 & 99.7 \\
+$-11,\,2$ & 54.3 & 100.0 & 100.0 & 100.0 & 99.4 & 99.5 \\
+$-3,\,-1$ & 73.7 & 93.8 & 89.3 & 93.5 & 91.7 & 92.8 \\
+$-4,\,-1$ & 39.2 & 84.9 & 90.8 & 79.4 & 76.0 & 60.4 \\
+$-4,\,-2$ & 31.8 & 45.4 & 53.8 & 36.0 & 44.6 & 38.1 \\
+$-5,\,-1$ & 89.7 & 96.7 & 98.9 & 52.6 & 95.2 & 56.7 \\
+$-6,\,1$ & 10.6 & 56.7 & 78.7 & 79.8 & 50.7 & 47.7 \\
+$-9,\,-1$ & 68.6 & 77.0 & 74.0 & 56.2 & 84.6 & 83.4 \\
+$-9,\,0$ & 96.3 & 94.7 & 93.9 & 96.9 & 97.8 & 97.5 \\
+$0,\,0$ & 13.9 & 98.3 & 98.4 & 99.2 & 36.5 & 97.9 \\
+$1,\,0$ & 14.7 & 77.5 & 72.8 & 72.4 & 58.7 & 85.9 \\
+$4,\,0$ & 66.7 & 88.2 & 99.7 & 94.0 & 99.9 & 94.2 \\
+$4,\,2$ & 11.9 & 47.2 & 20.2 & 35.0 & 27.8 & 22.7 \\
+$5,\,-2$ & 74.2 & 89.1 & 92.7 & 93.2 & 91.4 & 95.3 \\
+\hline
+\end{tabular}
+\end{table*}
+
 \bibliography{references}{}
 \bibliographystyle{aasjournalv7}
 

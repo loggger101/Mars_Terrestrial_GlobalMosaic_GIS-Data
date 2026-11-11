@@ -7640,3 +7640,47 @@ Asked by the agent while `edf_train` runs, one question each with the recommenda
 - **The report step tried before the run ends** (the session's scratch test, written nowhere on the drive): `make_v3_edf.py --report` with rep standing in for edf, base for freshw and fresh for edfv ran through and reproduced the known figures (base 87.54 % and 86.37 %, rep 86.80 % and 85.51 %, edifice on 16.29 % and 8.72 % of the windows, fresh 86.64 % on its own polygons). Those are stand-ins, not edf's.
 - **D42 begun the same day: Appendix A, "The rules of the third label set"**, after the software line and before the references: what a piece and a new polygon are, the three sources of the measures, Table `tab:rules` (polygons and blocks by class, §69.49's table), the screen and the placement rule of each of the seven classes with its cap, what the screens rejected, and the three rules changed after reading (the lava-tube chains, the apron roughness cap, D34's fans). Every number is §69.49's or §69.56's. A table with paragraph columns does not compile in AASTeX 7 ("Extra \or" at the column spec), so the rules are a numbered list. The paper builds at **28 pages**, no undefined reference; `verify_interim.py` passes (1,379 numbers). Still to add under D42: the registered predictions with their outcomes, the per-class and per-block tables, and fuller Methods, Results and Discussion.
 - **Appendix B, "Predictions written before each run, and their outcomes"** (D42, 11-11): the 28 predictions behind the lead maps and the runs that followed, each with the number that decided it, 20 held: the nine of `score_v3_maps.py` (five held, §69.81), F1–F5 and F6 as five (nine of ten, §69.84, §69.96), T1 and T2 (one, §69.86), C1–C4 (three, §69.88, §69.93), R1–R3 (two, §69.106). The edifice retraining's E1–E5 join it when scored. The paper builds at **29 pages**; `verify_interim.py` passes (1,434 numbers).
+
+### 69.110 The U-Net trainings class by class and block by block, for the paper's Appendix C — 2026-11-11, desktop **[V]**
+
+D42. Read from `logs/v3_extras.json` by a script, nothing typed: producer's accuracy by class and the overall scores of the six U-Net trainings on the windows (per cent; κ as a fraction), then accuracy on the 237 polygons in each held-out block. "third set" is base, the lead model classified on the windows in one pass (§69.83); "trained again" is rep (§69.106), "no thermal" noth (§69.86), "cut only" and "added only" cut and add (§69.88, §69.93), "second set" the U-Net on the v2 labels. These are the figures of the paper's Tables `tab:perclass` and `tab:perblock` (Appendix C).
+
+| set | class or score | second set | third set | trained again | no thermal | cut only | added only |
+|---|---|---|---|---|---|---|---|
+| the 237 polygons | Crater | 57.8 | 97.4 | 98.4 | 98.3 | 80.4 | 97.1 |
+| the 237 polygons | steep/windy hills | 46.8 | 86.6 | 97.7 | 62.1 | 76.6 | 49.2 |
+| the 237 polygons | lava tube | 22.4 | 90.5 | 95.6 | 83.1 | 44.8 | 51.9 |
+| the 237 polygons | Normal Ground | 69.7 | 98.6 | 98.8 | 98.9 | 97.5 | 98.0 |
+| the 237 polygons | volcanic edifice | 81.3 | 76.3 | 66.6 | 87.1 | 94.6 | 86.4 |
+| the 237 polygons | apron | 77.4 | 87.4 | 90.4 | 61.1 | 85.4 | 89.2 |
+| the 237 polygons | fluvial channel | 43.0 | 56.4 | 50.0 | 56.4 | 67.6 | 71.9 |
+| the 237 polygons | Accuracy | 69.0 | 87.5 | 86.8 | 81.2 | 86.9 | 89.3 |
+| the 237 polygons | Balanced accuracy | 56.9 | 84.7 | 85.4 | 78.2 | 78.1 | 77.6 |
+| the 237 polygons | κ | 0.606 | 0.843 | 0.833 | 0.763 | 0.834 | 0.864 |
+| the 1,652 polygons | Crater | 52.5 | 94.0 | 92.8 | 94.2 | 72.5 | 95.8 |
+| the 1,652 polygons | steep/windy hills | 42.4 | 80.6 | 92.3 | 59.0 | 68.6 | 44.2 |
+| the 1,652 polygons | lava tube | 4.9 | 46.7 | 27.4 | 15.0 | 7.6 | 26.4 |
+| the 1,652 polygons | Normal Ground | 66.9 | 97.7 | 98.0 | 98.0 | 93.6 | 96.0 |
+| the 1,652 polygons | volcanic edifice | 82.8 | 79.1 | 69.1 | 89.7 | 96.8 | 88.8 |
+| the 1,652 polygons | apron | 73.8 | 82.0 | 85.4 | 54.7 | 81.5 | 85.6 |
+| the 1,652 polygons | fluvial channel | 47.0 | 62.4 | 54.8 | 60.6 | 65.6 | 71.0 |
+| the 1,652 polygons | Accuracy | 65.8 | 86.4 | 85.5 | 78.7 | 82.3 | 88.0 |
+| the 1,652 polygons | Balanced accuracy | 52.9 | 77.5 | 74.2 | 67.3 | 69.5 | 72.5 |
+| the 1,652 polygons | κ | 0.565 | 0.827 | 0.815 | 0.731 | 0.774 | 0.845 |
+
+| block (237 polygons) | second set | third set | trained again | no thermal | cut only | added only |
+|---|---|---|---|---|---|---|
+| −11_1 | 77.7 | 99.9 | 100.0 | 100.0 | 99.2 | 99.7 |
+| −11_2 | 54.3 | 100.0 | 100.0 | 100.0 | 99.4 | 99.5 |
+| −3_−1 | 73.7 | 93.8 | 89.3 | 93.5 | 91.7 | 92.8 |
+| −4_−1 | 39.2 | 84.9 | 90.8 | 79.4 | 76.0 | 60.4 |
+| −4_−2 | 31.8 | 45.4 | 53.8 | 36.0 | 44.6 | 38.1 |
+| −5_−1 | 89.7 | 96.7 | 98.9 | 52.6 | 95.2 | 56.7 |
+| −6_1 | 10.6 | 56.7 | 78.7 | 79.8 | 50.7 | 47.7 |
+| −9_−1 | 68.6 | 77.0 | 74.0 | 56.2 | 84.6 | 83.4 |
+| −9_0 | 96.3 | 94.7 | 93.9 | 96.9 | 97.8 | 97.5 |
+| 0_0 | 13.9 | 98.3 | 98.4 | 99.2 | 36.5 | 97.9 |
+| 1_0 | 14.7 | 77.5 | 72.8 | 72.4 | 58.7 | 85.9 |
+| 4_0 | 66.7 | 88.2 | 99.7 | 94.0 | 99.9 | 94.2 |
+| 4_2 | 11.9 | 47.2 | 20.2 | 35.0 | 27.8 | 22.7 |
+| 5_−2 | 74.2 | 89.1 | 92.7 | 93.2 | 91.4 | 95.3 |
