@@ -1154,6 +1154,89 @@ crater database by S.~J.\ Robbins.
 \software{ArcGIS Pro \citep{ArcGISPro}, GDAL \citep{GDAL}, NumPy \citep{Harris2020}, Matplotlib \citep{Hunter2007},
 PyTorch \citep{Paszke2019}}
 
+\appendix
+
+\section{The rules of the third label set} \label{app:rules}
+
+The third label set (Section~\ref{sec:v3}) holds 11,921 polygons, 10,269 for training and 1,652 held out. No one
+accepted or rejected a polygon by eye: each row was passed or failed by a rule written into the script before it ran,
+and the rules are given here in full so that the set can be rebuilt or changed. Two kinds of polygon enter it. A
+\emph{piece} is part of a polygon of the second label set: every such polygon over 1,500~km$^2$ or wider than
+$1^{\circ}$ is cut by a $0.5^{\circ}$ grid, pieces under 25~km$^2$ are dropped, and a piece is kept if it passes the
+screen of its class; smaller polygons are kept whole and unscreened. A piece keeps its parent's side of the split, so
+no held-out ground of the second set becomes training ground. A \emph{new polygon} is placed from reference data
+alone, never on the ground of any polygon of the second set, kept or dropped, and one cell clear of every other new
+polygon; it goes to training or held out by the $15^{\circ}$ block of its centre, and its number is capped in each
+block. %% KB §69.49
+
+The measures come from three sources. The 200~m elevation model is summarised in cells of $16\times16$ pixels
+(3.2~km): the median and the 90th-percentile slope, and the 5th, 50th and 95th-percentile height. The crater database
+\citep{Robbins2012} is drawn as discs on an 800~m grid at 1.0 crater radius, the rim test, and at 1.3 radii for craters
+of 3--100~km, the exclusion; ``crater cover'' is the share of a polygon inside those discs. The geologic map
+\citep{Tanaka2014} gives each cell a unit kind: edifice, apron, landslide, volcanic plains or highland.
+Table~\ref{tab:rules} counts the polygons each class gave; the screen of a cut piece and the rule that places a new
+polygon, with its cap in a $15^{\circ}$ block, follow class by class. %% KB §69.49
+
+\begin{table}[t]
+\centering
+\caption{The third label set: polygons for training and held out, with the $15^{\circ}$ blocks that hold them, as
+first written; the fan-shaped deposits then raised apron to 1,924 and 356. \label{tab:rules}}
+\small
+\begin{tabular}{lrr}
+\hline\hline
+Class & Training (blocks) & Held out (blocks) \\
+\hline
+Crater & 949 (178) & 305 (14) \\
+Steep/windy hills & 631 (150) & 121 (11) \\
+Lava tube & 106 (11) & 51 (5) \\
+Normal Ground & 2,081 (178) & 319 (14) \\
+Volcanic edifice & 1,637 (23) & 207 (3) \\
+Apron & 1,868 (21) & 306 (3) \\
+Fluvial channel & 2,941 (111) & 293 (8) \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\item \emph{Crater.} A piece is kept if at least 0.5 of it lies inside the rims of catalogued craters $\ge4$~km. A new
+polygon is a catalogued crater's disc at the rim, one in each diameter bin (6--12, 12--25, 25--50 and 50--120~km) in a
+block, placed if the rim stands at least 50~m, or 5~m per km of diameter if that is more, above the floor.
+\item \emph{Steep/windy hills.} A piece is kept if the median of its cells' 90th-percentile slope is $\ge8^{\circ}$ and
+under half of it lies on edifice, apron or landslide units. A new polygon is $3\times3$ cells with at least 7 of 9 at a
+90th-percentile slope $\ge10^{\circ}$, relief $\ge1{,}000$~m and no crater $\ge10$~km within 1.3 radii, off those
+units; 4 a block.
+\item \emph{Lava tube.} Polygons are kept whole, since no data screens a piece of a pit chain. New polygons are
+troughs in the mapped extent of the 16 named catenae: a black top-hat of the elevation model (4.2~km closing) at
+least 50~m deep, with an elongation $\ge3$ and a length $\ge6$~km, outside crater rims; at most 15 a catena.
+\item \emph{Normal Ground.} A piece is kept if its median slope is $\le2^{\circ}$, its crater cover $\le0.3$ and it
+lies off those units; craters of 8--100~km are then cut out at 1.2 radii, and half the piece must remain. A new
+polygon is $4\times4$ cells, every cell at a median slope $\le1^{\circ}$, a 90th-percentile slope $\le3^{\circ}$ and
+relief $\le150$~m, with no crater $\ge4$~km within 1.3 radii, off those units; 5 a block.
+\item \emph{Volcanic edifice.} A piece is kept if it lies on edifice units or a named volcano and slopes
+$\ge1^{\circ}$, unless it is within 0.3 of the volcano's radius, where calderas are flat. A new polygon is $4\times4$
+cells of edifice units, every cell sloping $\ge1^{\circ}$, with no crater $\ge10$~km within 1.3 radii; 12 a block.
+\item \emph{Apron.} A piece is kept if it lies on apron units and slopes $\ge0.7^{\circ}$; poleward of $30^{\circ}$ its
+cells' 90th-percentile slope must also be $\le15^{\circ}$, which keeps mesa scarps out. A new polygon is $4\times4$
+cells, at least 14 of 16 passing the same tests; 12 a block.
+\item \emph{Fluvial channel.} A piece is kept if its floor lies at least 20~m below a flank ring 4.8~km out and under
+half of it lies on volcanic units. New polygons are strips 20~km long and 2.4~km wide along every second segment of
+the mapped valleys \citep{Alemanno2018}, under the same floor rule; 2 a valley and 6 a block.
+\end{enumerate}
+
+The screens rejected 161 Crater pieces that lay outside rims, 345 edifice, 146 apron, 47 Normal Ground and 910 fluvial
+pieces, and 680 new valley strips. Of 1,049 craters measured for a new disc 693 were placed, of 1,269 valley strips
+589, and of 592 troughs 119. Against the second label set the hills train in 150 blocks where they trained in 2, and
+the lava tubes in 11 where they trained in 3; the edifice polygons still train in 23 blocks and are held out in 3,
+which is why their score is Tharsis ground (Section~\ref{sec:v3}). %% KB §69.49
+
+Two rules were changed after the first polygons were read on hillshade sheets and before the set that stands was
+written. The first run placed 315 lava-tube chains from closed depressions outside crater rims; at full resolution
+none showed a pit, so the catena troughs replaced them. The cap on the cells' 90th-percentile slope had rejected the
+ridged aureole lobes of Olympus Mons, which the class key names as apron, so it now applies poleward of $30^{\circ}$
+only. One rule was changed after a check of the screened rows: the slope test rejected the flat fan-shaped deposits on the west
+flanks of the Tharsis volcanoes, so those deposits pass without it, which added 106 apron polygons, all mostly on that unit.
+%% KB §69.49, §69.56
+
 \bibliography{references}{}
 \bibliographystyle{aasjournalv7}
 
