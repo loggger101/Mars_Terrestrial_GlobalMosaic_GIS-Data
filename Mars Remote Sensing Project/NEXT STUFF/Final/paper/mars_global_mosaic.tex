@@ -23,22 +23,19 @@
 
 \begin{abstract}
 Viking MDIM~2.1 visible colour, THEMIS day and night thermal-infrared mosaics and the HRSC/MOLA blended elevation
-model were co-registered on one 100~m and 200~m grid spanning \pmsixty\ latitude, 86.6\% of Mars, to map impact
-craters, fluvial channels and lava flows. At Ius Chasma the visible bands are one dimension ($r=0.93$--$0.99$)
-and night infrared is nearly independent of every band ($|r|\le0.12$). Across \pmsixty,
-the THEMIS mosaics are 8-bit products stretched region by region: dusty and rocky provinces differ by 47.67~DN in
-Viking red but by $-0.19$ and $+0.02$~DN in day and night infrared, and against calibrated TES thermal inertia the
-THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking colour tracks inertia planet-wide
-($r=-0.36$). Fill depth yields 465,354 closed depressions $\ge1$~km; 63.2\% of those $\ge5$~km are catalogued
-craters, only 15.3\% at $\ge1$~km, and the catalogued craters missed are mostly degraded or breached. Of 969,822 routed channel
-segments 89.8\% lie on slopes under $2^{\circ}$. A support vector machine trained on 329 of 512 hand-drawn landform polygons and scored on the other 183, in whole $15^{\circ}$
-blocks it never saw, reaches a balanced accuracy of 66.7\% (73.8\%, \kap\,0.58 overall), where the nearest training
-polygon's class alone gives 61.3\% (83.2\% overall); the thermal bands add a resolved 1.4 to 2.0 points overall but none
-by balanced accuracy. A U-Net reaches 98.9\% on
-the same blocks as a terrain-province map. Revised to seven classes on a third label set, a U-Net scores 87.6\% on
-237 held-out polygons and 49.6\% on a probability sample. No band separates the lava
-contacts of the 1:20\,M geologic map at Athabasca Valles much better than chance, so lava flows are taken from
-that map. Three of four hypotheses are not supported; the fourth is answered by another method.
+model were co-registered on one grid spanning \pmsixty\ latitude, 86.6\% of Mars, to map impact craters, fluvial
+channels and lava flows. The THEMIS mosaics are 8-bit products stretched region by region: dusty and rocky provinces
+differ by 47.67~DN in Viking red but by $-0.19$ and $+0.02$~DN in day and night infrared, and against TES
+thermal inertia the THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking colour tracks inertia
+planet-wide ($r=-0.36$). Fill depth yields 465,354 closed depressions $\ge1$~km; 63.2\% of those $\ge5$~km are
+catalogued craters, and most craters missed are degraded or breached. Of 969,822 routed channel segments 89.8\%
+lie on slopes under $2^{\circ}$. A support vector machine trained on hand-drawn polygons and scored in whole
+$15^{\circ}$ blocks it never saw reaches a balanced accuracy of 66.7\% (73.8\% overall), against 61.3\% for the nearest
+training polygon's class; the thermal bands add 1.4 to 2.0 points overall but none by balanced accuracy. Revised to
+seven classes on a third, rule-made label set, a U-Net scores 87.6\% on 237 held-out polygons, 86.6\% and 85.4\% on two
+draws of other blocks, and 49.6\% on a probability sample. No band separates the lava contacts of the 1:20\,M geologic
+map at Athabasca Valles much better than chance, so lava flows are taken from that map. Three of four hypotheses are not
+supported; the fourth is answered by another method.
 \end{abstract}
 
 \keywords{Mars --- Planetary surfaces --- Remote sensing --- Infrared imaging --- Impact craters --- Lava flows ---
