@@ -93,7 +93,7 @@ and scored (§66); further tuning first needs validation blocks of its own (§66
 **Waiting on the author:** items 1 and 5; optionally R1 and R2 on their sheets (`review_sheets\r1\`, `r2\`; ~45 min and ~2–3 h, §12.3), whose answers would replace the agent's (§69.55); D15, D22, D23 (not now, 11-03) and D27 (§2); the check of the 86 traced margins (D33) and the off-Tharsis labels (§14 row 3), both promised 11-03; the interim talk's slot length (§12.5); whether
 layout 18 or `final_img\tes_block_scale.png` goes into a deliverable (§69.30); whether the interim shows layouts 15–18
 (it shows 13 of the 17 that existed at the cut, `INTERIM-PLAN.md` §3); emptying the Recycle Bins (~21 GB of finished
-scratch, §57.5).
+scratch, §57.5); the paper's abstract, about 303 words against an AAS 250 (a 247-word draft, not applied: `v2_drafts.tex` block 21, §69.103).
 
 ---
 

@@ -515,3 +515,25 @@ On 14 other blocks, drawn at random and held out from a retrained model: \VV{EX}
 %%     drawn at random, give \VV{EX}{fresh.full.unet.accuracy} for a retrained U-Net (§69.82, §69.8x)."
 %% (f) ALSO, from §69.83, LIMITS after the polygon paragraph (not waiting on any run):
 %%     see the paper: applied 2026-11-07.
+
+%% =========================================================================================================
+%% 21. A shorter abstract, drafted 2026-11-10 (KB §69.103), NOT APPLIED: the abstract's length is the author's call
+%%     (§69.98: about 303 words in the PDF, over the 250 an AAS journal allows). This version is about 247 words: it
+%%     drops the Ius Chasma band correlations, the 15.3\% at >= 1 km, the 329/183 split, kappa and the 83.2\% overall
+%%     baseline, and the four-class U-Net's 98.9\%, and adds the two fresh draws (86.6\% and 85.4\%, §69.84, §69.96).
+%%     Every number is one the paper already prints. To apply: replace the text between \begin{abstract} and
+%%     \end{abstract} in mars_global_mosaic.tex with the paragraph below.
+Viking MDIM~2.1 visible colour, THEMIS day and night thermal-infrared mosaics and the HRSC/MOLA blended elevation
+model were co-registered on one grid spanning \pmsixty\ latitude, 86.6\% of Mars, to map impact craters, fluvial
+channels and lava flows. The THEMIS mosaics are 8-bit products stretched region by region: dusty and rocky provinces
+differ by 47.67~DN in Viking red but by $-0.19$ and $+0.02$~DN in day and night infrared, and against TES
+thermal inertia the THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking colour tracks inertia
+planet-wide ($r=-0.36$). Fill depth yields 465,354 closed depressions $\ge1$~km; 63.2\% of those $\ge5$~km are
+catalogued craters, and most craters missed are degraded or breached. Of 969,822 routed channel segments 89.8\%
+lie on slopes under $2^{\circ}$. A support vector machine trained on hand-drawn polygons and scored in whole
+$15^{\circ}$ blocks it never saw reaches a balanced accuracy of 66.7\% (73.8\% overall), against 61.3\% for the nearest
+training polygon's class; the thermal bands add 1.4 to 2.0 points overall but none by balanced accuracy. Revised to
+seven classes on a third, rule-made label set, a U-Net scores 87.6\% on 237 held-out polygons, 86.6\% and 85.4\% on two
+draws of other blocks, and 49.6\% on a probability sample. No band separates the lava contacts of the 1:20\,M geologic
+map at Athabasca Valles much better than chance, so lava flows are taken from that map. Three of four hypotheses are not
+supported; the fourth is answered by another method.
