@@ -20,6 +20,7 @@ MP = DRIVE / "Mars Project"
 REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
             Path.home() / "OneDrive" / "Documents" / "GitHub" / "Mars_Terrestrial_GlobalMosaic_GIS-Data")
 URL = "https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/"
+DERIV_PATCHED = "derivatives-2026-11-11"   # the five rasters patched at 180 degrees, uploaded 2026-11-11 (D15, KB §69.113)
 DATA, DERIV = "data-2026-11-10", "derivatives-2026-10-06"     # data refreshed 2026-11-10, adds the v3 maps (§69.105); 10-29 the seven-class maps (KB §57.4, §63.2, §66.10, §69.28)
 
 LANDFORM_VALUES = "Classes 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class"
@@ -192,12 +193,12 @@ TES5 = {"global60_tes_r5deg_%s.tif" % k: "T3 in 5° blocks (layout 18, KB §69.3
         % w for k, w in (("nightIR", "THEMIS night IR"), ("index", "the diurnal-contrast index"),
                          ("viking", "Viking red"))}
 G60.update(TES5)
-# Patched in place at the 180° column on 2026-10-14 (KB §54): the derivatives release holds the copy from before
+# Patched in place at the 180° column on 2026-10-14 (KB §54): derivatives-2026-11-11 holds the patched copy,
+# derivatives-2026-10-06 the one from before
 PATCHED = {"global60_dem.tif", "global60_slope_deg.tif", "global60_aspect.tif", "global60_hillshade.tif",
            "global60_svm_stack_200m.tif"}
-PATCH_NOTE = (" **Patched 2026-10-14 at the 180° column (KB §54); the release copy predates the patch: after "
-              "restoring, run `make_global_terrain.py --meridian-only`, then `make_global60_svm_stack.py "
-              "--patch-cols 53342 53350` (KB §54.2).**")
+PATCH_NOTE = (" **Patched 2026-10-14 at the 180° column (KB §54); the release copy is the patched one since "
+              "2026-11-11 (KB §69.113), and `derivatives-2026-10-06` keeps the copy from before the patch.**")
 CM0 = "Classified_202609300147338582853"   # the one raster on a 0° central meridian (Viking's grid)
 GDB = {
     "Classified_202609292109007048151": "The 29 Sep SVM classification made in the Pro GUI. Follows its 4096-px "
@@ -240,7 +241,7 @@ def main():
     for p in sorted((MP / "Global60").glob("*.tif")):
         i = info(str(p)); crs.add(i["srs"]); frames[p.name] = i
         big = p.name in G60 and not p.name.startswith(IN_DATA)
-        where = rel(DERIV, p.name + ".part*") if big else rel(DATA, "global60-classification-part*.zip")
+        where = rel(DERIV_PATCHED if p.name in PATCHED else DERIV, p.name + ".part*") if big else rel(DATA, "global60-classification-part*.zip")
         if p.name in UNRELEASED:
             where = "none (re-computable, KB §56)"
         if p.name in TES5:

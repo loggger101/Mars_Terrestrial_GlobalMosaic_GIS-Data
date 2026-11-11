@@ -1,7 +1,7 @@
 # Backup, releases and restoring
 
 The project's working copy is an external drive. This repository is its off-drive backup. The tree
-holds everything small; two GitHub releases, the newest data release and the derivatives release, hold the rasters. This page lists what is in the
+holds everything small; three GitHub releases, the newest data release and the two derivatives releases, hold the rasters. This page lists what is in the
 releases, how the backup is kept current, and how to rebuild the drive from it. Each raster is
 described in [rasters.md](rasters.md), each vector layer in [the layer catalogue](../exports/README.md).
 
@@ -25,13 +25,21 @@ described in [rasters.md](rasters.md), each vector layer in [the layer catalogue
 
 | Asset | What |
 |---|---|
-| `global60_*.tif.partNNN` | the ±60° derivatives, original bytes cut into 1.9 GB pieces: the 7-band classification stack, the diurnal-contrast index (100 m and 200 m), DEM, slope in degrees, aspect, hillshade. The DEM, slope, aspect, hillshade and stack predate the 2026-10-14 patch at 180°: after restoring, run `make_global_terrain.py --meridian-only`, then `make_global60_svm_stack.py --patch-cols 53342 53350` (KB §54.2) |
+| `global60_*.tif.partNNN` | the ±60° derivatives, original bytes cut into 1.9 GB pieces: the 7-band classification stack, the diurnal-contrast index (100 m and 200 m), DEM, slope in degrees, aspect, hillshade. The DEM, slope, aspect, hillshade and stack here predate the 2026-10-14 patch at 180°; `derivatives-2026-11-11` below holds the patched copies, and a restore takes those |
 | `global60-sidecars.zip` | their statistics and lineage (`.aux.xml`, `.xml`) |
 | `labeledobjects-part*.zip` | both deep-learning exports: the 1 October one from Pro and the ±60° re-export |
 | `Segmented_202609290011302066080.tif*` | the ±60° mean-shift segmentation made in Pro on 29 September |
 | `SHA256SUMS-derivatives-2026-10-06.txt` | checksums of every piece and of every reassembled file |
 
-`restore.py` ([Restoring](#restoring)) rejoins and checks them. [`tools/check_remote.py`](../tools/check_remote.py), run by hand, checks both releases' assets against their checksum files without downloading them. By hand: `cat global60_dem.tif.part* > global60_dem.tif` (or `copy /b a.part001+a.part002 a` in `cmd`), then check it against the sums.
+[`derivatives-2026-11-11`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-11-11), 35.3 GB in 23 assets: the five rasters patched at the 180° column on 2026-10-14 (KB §54), as they are on the drive now.
+
+| Asset | What |
+|---|---|
+| `global60_dem.tif.part*`, `global60_slope_deg.tif.part*`, `global60_aspect.tif.part*`, `global60_hillshade.tif.part*`, `global60_svm_stack_200m.tif.part*` | the patched DEM, slope, aspect, hillshade and 7-band stack in 21 pieces; each whole-file hash differs from its `derivatives-2026-10-06` copy |
+| `global60-sidecars.zip` | their statistics and lineage |
+| `SHA256SUMS-derivatives-2026-11-11.txt` | checksums of every piece and of every reassembled file |
+
+`restore.py` ([Restoring](#restoring)) rejoins and checks them, taking each raster from the newest derivatives release that holds it. [`tools/check_remote.py`](../tools/check_remote.py), run by hand, checks every release's assets against their checksum files without downloading them. By hand: `cat global60_dem.tif.part* > global60_dem.tif` (or `copy /b a.part001+a.part002 a` in `cmd`), then check it against the sums.
 
 Not backed up anywhere but the drive (git history holds the files the repository once mirrored): the `.aprx` snapshots in `Mars Project/.backups/` (git versions `Mars Project.aprx` itself), the unpacked copy of the `.aprx` in `build/aprx_live/`, Presentation 1's figure folders (`build/le_img/`, most of `build/pres1_img/`) and its `.pptx` (the PDF is in `OLD/`), the review contact sheets in `Mars Project/review_sheets/` (PNG, redrawn by `make_review_chips.py`; their guides and answer files are mirrored), the 30 Sep "new training" shapefile (a near copy of `Landform_TrainingSamples_terrain`), the three T1 band-subset stacks (re-computable), the `.ovr` pyramids (Build Pyramids re-creates them), `Global60/_0based_originals/` (the ±60° landform maps before their recode, KB §36) and the other geodatabase rasters, mostly legacy products the knowledge base finds defective and superseded (percent-rise slopes on a degree grid, a global composite mixing raw elevation with 8-bit bands).
 
@@ -90,9 +98,9 @@ python restore.py --dest E:\ --dry-run
 python restore.py --dest E:\
 ```
 
-It copies the repository's folders into place, downloads the newest data release and the derivatives release (about 80 GB; `--all-releases` adds the older ones), checks every download against GitHub's SHA-256, unzips each bundle where it belongs, rejoins the split rasters into `Mars Project/Global60/` and checks each against its whole-file hash. Downloads resume if interrupted, and it never overwrites an existing file unless given `--force`. `--only <text>` restores just the assets whose names contain that text. The two Pro-GUI SVM maps, the segmentation and the GeoPackage go to `Mars Project/restored_from_gdb/`.
+It copies the repository's folders into place, downloads the newest data release and both derivatives releases, the patched rasters from the newer one and the rest from the older (87.7 GB; `--all-releases` adds the older data releases), checks every download against GitHub's SHA-256, unzips each bundle where it belongs, rejoins the split rasters into `Mars Project/Global60/` and checks each against its whole-file hash. Downloads resume if interrupted, and it never overwrites an existing file unless given `--force`. `--only <text>` restores just the assets whose names contain that text. The two Pro-GUI SVM maps, the segmentation and the GeoPackage go to `Mars Project/restored_from_gdb/`.
 
-**Tested 2026-11-05 on part of a restore** (KB §69.75, §69.76): `--only athabasca` from `data-2026-10-29` restored 145 files, 1.18 GB, each identical to the drive's copy by SHA-256; the repository's 1,509 tree files copied identically; and `global60_dem.tif` rejoined from its 2 parts to its SHA256SUMS hash, differing from the drive's copy only in the patched column 53346. The patch commands in the table above and the steps below have not been run after a restore.
+**Tested 2026-11-05 on part of a restore** (KB §69.75, §69.76): `--only athabasca` from `data-2026-10-29` restored 145 files, 1.18 GB, each identical to the drive's copy by SHA-256; the repository's 1,509 tree files copied identically; and `global60_dem.tif` rejoined from its 2 parts to its SHA256SUMS hash, differing from the drive's copy only in the patched column 53346. The steps below have not been run after a restore. **Checked 2026-11-11** (KB §69.113): `--dry-run` lists the five patched rasters from `derivatives-2026-11-11` and everything else from `derivatives-2026-10-06` and `data-2026-11-10`; the patched pieces themselves have not been downloaded and rejoined.
 
 Then, by hand:
 
