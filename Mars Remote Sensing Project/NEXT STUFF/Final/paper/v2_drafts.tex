@@ -189,6 +189,9 @@ predicted no better than by their commonest group, with or without the thermal b
 
 %% ---------------------------------------------------------------------------------------------------------
 %% 12. W6 (NEXT-STEPS §12.4), drafted 2026-11-02: a "Future work" subsection, the outline's item 10, at the end of
+%%     REVISED 2026-11-10 (KB §69.103), anchors tried the same day: R2 is done on the assistant's labels, so its
+%%     sentence asks for an analyst's; block 15 (h)'s H1 sentence is in; the edifice sentence names the lead (v3) U-Net's
+%%     faults, not the v2 U-Net's highland edifice. Still at the freeze, after D33's margin check.
 %%     the Discussion (after Limits). Malin2007 is in references.bib (DOI checked on Crossref 2026-11-02). If R2 is
 %%     done by the freeze, drop its sentence, say what it found in Results instead, and read "Three steps" for "Four
 %%     steps" (block 16 (a) puts it in Results, so this applies unless the author withdraws R2). Every number is in the KB:
@@ -196,17 +199,17 @@ predicted no better than by their commonest group, with or without the thermal b
 %% ---------------------------------------------------------------------------------------------------------
 \subsection{Future work}
 
-Four steps would move these results furthest. A probability sample of the published maps, labelled blind
-\citep{Olofsson2014}, would give unbiased accuracies and class areas with intervals, free of where the polygons were
-drawn. Material labels from photo interpretation, rather than landforms or the geologic map's unit groups, would test
-what the thermal bands add, and THEMIS-derived inertia \citep{Fergason2006}, where it exists, would replace the
-display mosaics' local contrast. Lava-flow margins traced at Athabasca Valles on Context Camera images
-\citep{Malin2007} would test H1 on the features themselves rather than on the map's contacts; H2 needs a study area
-that holds both fluvial and volcanic channels. The deep-learning
-models need validation blocks of their own before any retraining; the seven-class U-Net's volcanic edifice, mapped
-mostly on the highland units, is the first thing to correct. For the craters, a rim-based diameter or merged nested
-basins would recover the 23\% of missed craters that hold only a smaller closed basin, 72\% of the misses at
-$\ge50$~km.
+Five steps would move these results furthest. The probability sample needs labels from an analyst who passes its
+check (Section~\ref{sec:sample}), to give unbiased accuracies and class areas with intervals, free of where the
+polygons were drawn. Material labels from photo interpretation, rather than landforms or the geologic map's unit
+groups, would test what the thermal bands add, and THEMIS-derived inertia \citep{Fergason2006}, where it exists,
+would replace the display mosaics' local contrast. The author's check of the lava margins traced on Context Camera
+images \citep{Malin2007} would make H1's test the project's own; H2 needs a study area that holds both fluvial and
+volcanic channels. The deep-learning models need validation blocks of their own before any retraining, and labels
+checked by eye rather than placed by rule: the lead U-Net's lava tube (user's accuracy 8.0\%) and its volcanic
+edifice, denser inside none of ten small named edifices, come first. For the craters, a rim-based diameter or merged
+nested basins would recover the 23\% of missed craters that hold only a smaller closed basin, 72\% of the
+misses at $\ge50$~km.
 
 %% ---------------------------------------------------------------------------------------------------------
 %% 13. W7 (NEXT-STEPS §12.4, D23), drafted 2026-11-02: the data statement. At the pre-final release (D23's yes),
@@ -296,7 +299,7 @@ over contacts and margins; 10\% is chance by construction. \label{fig:t5}}
 %%     (KB §69.68: no type area holds both channel origins, so H2 stays at stages 1 and 1b) and stays as it is.
 H1 was tested on the geologic map's contacts and on margins traced on CTX, and is supported on neither;
 %% (d) Table tab:hyp, the H1 row:
-%% H1 & Day IR shows flow margins Viking misses & not supported, on map contacts and traced margins & day $-$ Viking $+4.9$ pt, interval $-2.7$ to $+13.1$ \\
+%% H1 & Day IR shows flow margins Viking misses & not supported, both tests & day $-$ Viking $+4.9$ pt, interval $-2.7$ to $+13.1$ \\
 %% (e) Limits: replace from "Finally, the manual review" to the paragraph's end with:
 Finally, the manual review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709
 depressions) has reached 3,791, with a precision (accepts over accepts and rejects) of 54\% on the 188 steep,
@@ -311,8 +314,9 @@ candidates with measured recall and precision. %% KB §69.33, §69.52, §69.55, 
 %%     volcanic channels." with:
 %% H1 is not supported on 1,476~km of margins traced on CTX either, and H2 awaits a window that holds both fluvial and volcanic channels.
 %% (g) Abstract: replace "No band separates the lava contacts of the 1:20\,M geologic map at Athabasca Valles much
-%%     better than chance" with (the abstract has ~217 words against 250, so this fits; CTX is not defined that early):
-%% No band separates the lava contacts of the 1:20\,M geologic map at Athabasca Valles, or margins traced on Context Camera images, much better than chance
+%%     better than chance" with the line below. REVISED 2026-11-10 (KB §69.103): since block 21 the abstract has 249
+%%     words against 250, so the line keeps the old one's 17 words; the scale stays in Section 2's text:
+%% No band separates the geologic map's lava contacts or traced margins at Athabasca Valles much better than chance
 %% (h) Block 12 (Future work): replace "Lava-flow margins traced at Athabasca Valles on Context Camera images
 %%     \citep{Malin2007} would test H1 on the features themselves rather than on the map's contacts;" with:
 %% The author's check of the lava margins traced on Context Camera images \citep{Malin2007} would make H1's test the
@@ -450,12 +454,13 @@ The labeller's check failed (66.7\% on 27 hidden points, the bar 70\%), and it r
 Off Normal Ground the seven-class U-Net minus SVM is −4.1 pt, interval −27.9 to +19.8: the sample does not rank the two
 %% (g) CONCLUSIONS, a last item:
 H1 is not supported on 1,476 km of margins traced on CTX either, and H2 awaits a window that holds both channel origins
-%% (h) NEXT_STEPS, all five (block 12's steps, the sample's labels from block 16 (d)):
-Finish the review at both type areas; the author's check of the traced margins makes H1's test the project's own
+%% (h) NEXT_STEPS, all five, REVISED 2026-11-10 (KB §69.103): final.py's list already names the v3 U-Net's faults
+%%     (since 11-07); at the freeze its five strings become these:
+Finish the review at both type areas; draw breached craters by hand
+The author's check of the traced margins makes H1's test the project's own; H2 needs one area with both channel origins
+Seven classes: curb the SVM's fluvial channel and win back its Crater; correct the U-Net's small edifices and lava tube
 Have the probability sample labelled by an analyst who passes its check: unbiased accuracies and class areas
-Material labels, not landform labels, to price the thermal bands; THEMIS-derived inertia where it exists
-Validation blocks of their own before any retraining; the U-Net's volcanic edifice is the first thing to correct
-Rim-based diameters or merged nested basins for the 23\% of missed craters that hold only a smaller closed basin
+Material labels to price the thermal bands; validation blocks of their own before any further deep-learning tuning
 %% (i) LIMITS, a last card, block 16 (d) in the deck's words (the eighth, which fills the slide's grid), this head and text:
 The polygons flatter each map
 Every polygon score sits where a class is clear; the probability sample shows by how much, but on the AI assistant's labels, which failed their check, so unbiased accuracies need an analyst who passes it (§69.53, §69.55).

@@ -86,7 +86,11 @@ def main():
     run("bibtex.exe", JOB)
     run("pdflatex.exe", *flags)
     out = run("pdflatex.exe", *flags)
-    warn = [l for l in open(os.path.join(PAPER, JOB + ".log"), encoding="latin-1")
+    for _ in range(2):   # the freeze trial (KB §69.103) needed a fourth pass before its labels settled
+        if "Rerun to get cross-references right" not in open(os.path.join(PAPER, JOB + ".log"), encoding="latin-1").read():
+            break
+        out = run("pdflatex.exe", *flags)
+    warn =[l for l in open(os.path.join(PAPER, JOB + ".log"), encoding="latin-1")
             if "undefined" in l.lower() or "Overfull" in l]
     for l in warn:
         print("  " + l.rstrip())
