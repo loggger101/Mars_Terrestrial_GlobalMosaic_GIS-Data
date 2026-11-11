@@ -1237,6 +1237,73 @@ only. One rule was changed after a check of the screened rows: the slope test re
 flanks of the Tharsis volcanoes, so those deposits pass without it, which added 106 apron polygons, all mostly on that unit.
 %% KB §69.49, §69.56
 
+\section{Predictions written before each run, and their outcomes} \label{app:predictions}
+
+Each run behind the lead maps had its predictions, and where a choice hung on it a rule, written into its script
+before it ran; nothing was adjusted afterwards, and each prediction is reported held or not held whichever way it
+fell. They are listed here in the order the runs were made, with the number that decided each. Of the 28 below, 20
+held. A prediction that failed is as much a result as one that held: the U-Net's score on the third label set was
+above the range written for it, which is why a leak was sought before the score was believed
+(Section~\ref{sec:v3}). %% KB §69.76, §69.81, §69.84, §69.86, §69.88, §69.93, §69.96, §69.106
+
+\emph{The maps on the third label set} (nine, written while the U-Net trained and before any map existed; five
+held). The 237 polygons are the second label set's held-out polygons, the 1,652 the third's.
+\begin{enumerate}
+\item[P1] The U-Net's balanced accuracy on the 237 polygons is above the earlier U-Net's 56.9\%. \emph{Held}: 84.5\%.
+\item[P2] Its accuracy there lies in 60--78\%. \emph{Not held}: 87.6\%, above the range.
+\item[P3] The support vector machine's accuracy there lies in 37.5--50\%. \emph{Held}: 39.1\%.
+\item[P4] The hills' producer's accuracy rises on both models. \emph{Held}: 50.3 to 88.7\% and 46.8 to 85.1\%.
+\item[P5] The U-Net maps volcanic edifice on under 40.0\% of \pmsixty. \emph{Held}: 18.0\%.
+\item[P6] The U-Net's gain over the earlier U-Net is not resolved when the blocks are resampled. \emph{Not held}:
+the intervals of accuracy and of balanced accuracy both lie above 0.
+\item[P7] The support vector machine does not separate from the nearest training polygon on the 1,652 polygons.
+\emph{Held}: $-21.7$ to $+20.3$ points of accuracy.
+\item[P8] The U-Net's lead over the support vector machine by balanced accuracy is resolved on the 237 polygons and
+not on the 1,652. \emph{Not held}: it is resolved on both, $+18.4$ to $+47.1$ and $+16.9$ to $+40.4$ points.
+\item[P9] On the 218 polygons new to the held-out set both models beat their earlier maps. \emph{Not held}: the
+U-Net rises from 36.1 to 81.1\%, the support vector machine falls from 30.3 to 25.9\%.
+\end{enumerate}
+
+\emph{Fourteen other blocks held out, twice} (ten; nine held). The models were retrained without 14 blocks drawn at
+random from the training blocks, and scored on them.
+\begin{enumerate}
+\item[F1] First draw: the U-Net's accuracy lies in 70--92\%. \emph{Held}: 86.6\%.
+\item[F2] Its balanced accuracy lies in 60--85\%. \emph{Held}: 72.2\%.
+\item[F3] The U-Net leads the support vector machine, resolved by block. \emph{Held}.
+\item[F4] The support vector machine does not separate from the nearest training polygon. \emph{Held}.
+\item[F5] The U-Net leads the nearest training polygon, resolved by block. \emph{Held}.
+\item[F6] The second draw repeats all five. \emph{Four held}: 85.4\% and 69.2\%, the lead over the support vector
+machine resolved, the support vector machine not separated from the nearest polygon. \emph{The fifth did not}: the
+lead over the nearest training polygon is not resolved by accuracy on that draw, whose polygons lean to apron.
+\end{enumerate}
+
+\emph{The U-Net without the thermal bands} (two; one held).
+\begin{enumerate}
+\item[T1] Its accuracy is within 3 points of the seven-band model's on each polygon set. \emph{Not held}: 6.4 and 7.6
+points lower.
+\item[T2] The difference is not resolved when the blocks are resampled. \emph{Held} on each set.
+\end{enumerate}
+
+\emph{Cutting the polygons and adding new ones, apart} (four; three held).
+\begin{enumerate}
+\item[C1] Trained on the cut pieces alone, the U-Net's balanced accuracy on the 237 polygons is above 56.9\%.
+\emph{Held}: 78.1\%.
+\item[C2] Trained on the added polygons with the uncut second label set, it is above 56.9\% too. \emph{Held}: 77.6\%.
+\item[C3] Adding gives more than cutting. \emph{Not held}: 77.6\% against 78.1\%, a difference not resolved either
+way.
+\item[C4] Each stays below the two together. \emph{Held}: both are below 84.7\%.
+\end{enumerate}
+
+\emph{A second training with the same labels and settings} (three; two held).
+\begin{enumerate}
+\item[R1] Its accuracy is within 3 points of the first training's on each polygon set. \emph{Held}: 0.74 and 0.87
+points apart.
+\item[R2] Its map differs from the first training's on less of the windows' ground than the map without the thermal
+bands does. \emph{Held}, narrowly: 26.8\% against 28.1\%.
+\item[R3] Its validation loss rises above 5 late in training, as the first training's did. \emph{Not held}: it peaks
+at 2.09 where the first reached 23.25, so the late rises belong to a training and not to the labels.
+\end{enumerate}
+
 \bibliography{references}{}
 \bibliographystyle{aasjournalv7}
 
