@@ -7621,3 +7621,20 @@ D37 (§69.107). Written before the negatives were drawn and before any export; t
 - **Queue:** `build\run_v3_edf.ps1` (edf export, train, classify; edfv classify; freshw classify), logs `build\logs\run_v3_edf\`; then `make_v3_edf.py --report` → `logs\v3_edf.json`. About 14 h of training and under 2 h of windows.
 - **The negatives drawn (11-11 12:10, after the registration was pushed as `96ada9a`; `logs/v3_edf_plan.json`):** 5,557,277 cells pass v3's Normal Ground test, 550,845 of them at least half edifice on the published map; 509 squares placed, **420 kept** outside the 28 held-out and validation blocks, in 89 blocks; 40.2 % of them mostly on volcanic plains, 34.5 % mostly on the highland group. None touches an existing polygon. edf trains on **9,786 polygons** (fresh's 9,366 and the 420): Normal Ground 2,367 (1,947), volcanic edifice 1,440, the other classes as fresh's.
 - **Started:** `run_v3_edf.ps1` 11-11 12:10:42 (PID 77672), `edf_export` first.
+
+### 69.109 The author's answers of 11 November, second round: what follows the retraining, the freeze, the paper's length, the repository as a deliverable — 2026-11-11, desktop **[V]**
+
+Asked by the agent while `edf_train` runs, one question each with the recommendation shown; the answers as given.
+
+- **D39, if E1–E5 all hold:** "Yes, classify and lead": the two-pass ±60° classification starts at once without a further question, then the layouts, paper and deck move to the new U-Net. D36's SVM v3 stays the lead SVM.
+- **D40, if the rule does not recommend:** "Reported as a test": a paragraph in the paper and a row on the deck's extra-runs slide, as for the other extra runs; the lead map stays. No second variant was asked for.
+- **The final talk's length:** "it can be as long as we want it to be". The deck is not cut to a slot; it stays whole (44 slides).
+- **After 8 December:** "No, it ends with the final". P12 (the close-out, D27) goes ahead; **P13, the browser maps, is dropped.**
+- **The freeze:** "Keep 22 November".
+- **D41, a final data release at the freeze:** "Yes, publish at the freeze", without asking again: a new tagged release, checked against its checksums, cited by the paper's data section, no DOI (D23).
+- **The paper's length and form:** "there is no limit, it can be as long as we want it to be (this project might become a published paper/report so the longer and more in depth the better)".
+- **D42, how far to expand the paper before the freeze:** "expand every and any parts you think would be useful,,, including but not limited to the two options presented" (the two were: appendices with the full method detail, every registered prediction and its outcome, the per-class and per-block tables and the label rules; and the main text's Methods, Results and Discussion in fuller prose with more figures). The agent chooses what to expand; every added number comes from this record, by `verify_interim.py`.
+- **How the final is handed in:** "the pdf paper and PowerPoint deck are the main parts, but i will also be providing the professor with the github repo we've been working on". **The repository is a deliverable.**
+- **D43, the repository's front page:** "Yes, before the final": at the freeze the README becomes a finished-work page for a reader (what was asked, what was found, where the paper, deck, maps and record are), and the working plan moves off the front page. This brings that part of P12 forward from 9–12 December.
+- **The outlet:** "Undecided, keep AASTeX". Nothing is tailored to a journal.
+- **The report step tried before the run ends** (the session's scratch test, written nowhere on the drive): `make_v3_edf.py --report` with rep standing in for edf, base for freshw and fresh for edfv ran through and reproduced the known figures (base 87.54 % and 86.37 %, rep 86.80 % and 85.51 %, edifice on 16.29 % and 8.72 % of the windows, fresh 86.64 % on its own polygons). Those are stand-ins, not edf's.
