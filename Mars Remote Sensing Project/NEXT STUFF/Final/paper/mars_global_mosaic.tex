@@ -33,8 +33,7 @@ lie on slopes under $2^{\circ}$. A support vector machine trained on hand-drawn 
 $15^{\circ}$ blocks it never saw reaches a balanced accuracy of 66.7\% (73.8\% overall), against 61.3\% for the nearest
 training polygon's class; the thermal bands add 1.4 to 2.0 points overall but none by balanced accuracy. Revised to
 seven classes on a third, rule-made label set, a U-Net scores 87.6\% on 237 held-out polygons, 86.6\% and 85.4\% on two
-draws of other blocks, and 49.6\% on a probability sample. No band separates the lava contacts of the 1:20\,M geologic
-map at Athabasca Valles much better than chance, so lava flows are taken from that map. Three of four hypotheses are not
+draws of other blocks, and 49.6\% on a probability sample. No band separates the geologic map's lava contacts or traced margins at Athabasca Valles much better than chance, so lava flows are taken from that map. Three of four hypotheses are not
 supported; the fourth is answered by another method.
 \end{abstract}
 
@@ -503,14 +502,24 @@ every 2~km, $\pm20$~km perpendicular to each contact, count as separating when t
 percentile of 2,000 random profiles, so chance is 10\% (Figure~\ref{fig:t5}). Across the 905 profiles on the ten
 contacts of \lAv, day infrared separates 21.0\% (interval 3.3--38.4\%), Viking red 12.3\%, night infrared 11.7\% and
 the index 13.0\%. Day infrared leans toward H1 by $+8.7$ points over Viking red, but the interval ($-1.7$ to $+18.1$)
-includes zero, so by the rule set in advance H1 is not supported. A map at 1:20\,M generalises contacts by kilometres,
-and ten contacts cannot settle the question; H1 needs margins digitised on the 100~m stack. %% KB §47.2
+includes zero, so by the rule set in advance H1 is not supported. A map at 1:20\,M generalises contacts by kilometres, so the test was repeated on lava-flow margins traced on the
+Context Camera (CTX) mosaic \citep{Malin2007,Dickson2024}: 86 margins (1,476~km) along the \lAv\ boundaries, on 126 plates
+that showed CTX alone, by a rule written before any plate was viewed. The margins were traced by the AI assistant that
+wrote the project's scripts and read again by it on the same views, blind to the confidence it had given each; no one
+else has checked them. Across 633 profiles on 78 of them, day infrared
+separates 19.7\% (13.1--27.2\%), Viking red 14.8\%, night infrared 14.5\% and the index 10.0\%. Day infrared leads
+Viking red by $+4.9$ points, interval $-2.7$ to $+13.1$, so H1 is again not supported (Figure~\ref{fig:t5}): the
+traced margins narrow the interval, 15.8 points wide against 19.8, but leave zero inside it. The second reading kept
+56 of the 85 margins it decided (65.9\%) as following a flow edge along most of their length, and 81 at least in part;
+on the 56 day infrared leads by $+3.3$ points ($-7.2$ to $+13.8$), on the 81 by $+4.6$ ($-3.4$ to $+12.6$), so the
+verdict does not rest on the doubtful lines. %% KB §47.2, §69.52, §69.79, §69.105
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.75\textwidth]{figures/t5_margins.png}
-\caption{Test T5 (H1): the share of profiles across the geologic map's contacts at Athabasca Valles that each band
-separates, with bootstrap intervals over contacts; 10\% is chance by construction. \label{fig:t5}}
+\includegraphics[width=0.75\textwidth]{figures/t5_traced.png}
+\caption{Test T5 (H1): the share of profiles that each band separates across the geologic map's \lAv\ contacts at
+1:20\,M (open) and across 86 lava-flow margins traced on CTX (filled) at Athabasca Valles, with bootstrap intervals
+over contacts and margins; 10\% is chance by construction. \label{fig:t5}}
 \end{figure*}
 
 \subsection{The landform classification}
@@ -935,8 +944,7 @@ on those 57, which is ($+5.1$ to $+63.7$). The U-Net stays far below its polygon
 Table~\ref{tab:hyp} collects the verdicts. None of the four hypotheses is supported as stated. H3 failed outright: Iso
 Cluster partitions trained on the west and east halves of Ius Chasma agree less for the four-band composite (adjusted
 Rand index 0.40, \citealt{Hubert1985}) than for any single input (0.61 to 0.89), although the composite gives the most
-coherent maps; a one-band clustering is close to a density slice and reproduces easily. H1 was tested on a stand-in
-(the map's contacts) and remains open for margins digitised on the stack; H2 was tested on stand-ins (windows) and
+coherent maps; a one-band clustering is close to a density slice and reproduces easily. H1 was tested on the geologic map's contacts and on margins traced on CTX, and is supported on neither; H2 was tested on stand-ins (windows) and
 cannot be taken further in these type areas, neither of which holds both channel origins. A second stand-in for H2,
 origin taken from the valley map and the geologic map over the whole network, gives the same answer: the 155,236
 order-$\ge2$ segments on volcanic units are shallower than the 10,799 on mapped valleys (median 2.4 against
@@ -950,7 +958,7 @@ order-$\ge2$ segments on volcanic units are shallower than the 10,799 on mapped 
 \hline\hline
  & Claim & Verdict & Decisive number \\
 \hline
-H1 & Day IR shows flow margins Viking misses & not supported at 1:20\,M & day $-$ Viking $+8.7$ pt, interval $-1.7$ to $+18.1$ \\
+H1 & Day IR shows flow margins Viking misses & not supported, both tests & day $-$ Viking $+4.9$ pt, interval $-2.7$ to $+13.1$ \\
 H2 & Fluvial and volcanic channels separate & not supported (stand-ins) & volcanic shallower; thermal $|d|\le0.31$ \\
 H3 & Composite classes are most stable & not supported & ARI 0.40 against 0.61--0.89 \\
 H4 & Large IAU craters recovered & answered by fill depth & 68\% of 117 craters $\ge100$~km \\
@@ -1009,7 +1017,11 @@ hills fall short of the training minimum, in two training blocks against three. 
 rule set before they ran, on the four original classes, and are presented for what they name rather than for that
 score: the support vector machine over-predicts fluvial channel and the U-Net volcanic edifice. On the third label
 set the U-Net's edifice falls to 18.0\% of \pmsixty, while the support vector machine's fluvial channel stays at 31.9\%.
-%% KB §68.1--§68.4, §69.8, §69.24--§69.26, §69.81
+Off Tharsis the edifice class is weak: on six polygons the AI assistant drew at the calderas of Nili and Meroe Paterae
+on Syrtis Major, in a held-out block, the U-Net calls 7.7\% of the ground volcanic edifice (1.4--20.5\%,
+resampling the polygons) and the support vector machine 0.6\%, so the U-Net's edifice score is Tharsis ground;
+the assistant could not tell lobate debris aprons from talus on the views it had, so apron was not scored there.
+%% KB §68.1--§68.4, §69.8, §69.24--§69.26, §69.81, §69.105
 
 The detectors are elevation-model products. Closed depressions miss breached craters by construction, and below about
 5~km their density follows the sharpness of the HRSC/MOLA blend. Channels inherit the same dependence, and the fill
@@ -1031,14 +1043,31 @@ so its score is not tied to the first 14, though on the second its lead over the
 only once weighted to the first 14 blocks' class mix; the four- and seven-class scores still rest on the first 14.
 %% KB §69.84, §69.96, §69.102
 Any further tuning, of the deep-learning models above all, would
-turn the 14 held-out blocks into a validation set; a next round needs validation blocks of its own. Finally, the manual
-review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709 depressions) has reached 549, all
-at Ius Chasma, with a precision (accepts over accepts and rejects) of 54\% on the 188 steep, rock-floored channels and
-7\% on 361 closed depressions. The
-digitised classes hold 94 channels, 26 crater rims and no lava margins, so the machine products are presented as
-candidates with measured recall and precision. %% KB §66.5, §6, §69.7, NEXT-STEPS §6
+turn the 14 held-out blocks into a validation set; a next round needs validation blocks of its own. Finally, the manual review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709
+depressions) has reached 3,791, with a precision (accepts over accepts and rejects) of 54\% on the 188 steep,
+rock-floored Ius channels, 50\% on 209 rock-floored Athabasca channels, and 10\% and 13\% on the closed depressions
+of the two areas. The AI assistant read the other 200 rock-floored Athabasca channels on CTX, at the author's
+decision, and accepted 3 (186 rejected, 11 unsure); on 48 lines the author had reviewed, the same reading accepted 3
+against the author's 22 and agreed with the author no better than chance ($\kappa=0.14$), so the channel precisions
+are each reader's standard, not ground truth. The digitised classes hold 202 channels (199 accepted by the author, 3 by
+the assistant) and 381 crater rims, and the 86 traced lava margins, so the machine products are presented as
+candidates with measured recall and precision. %% KB §66.5, §6, §69.33, §69.52, §69.55, NEXT-STEPS §6
 
 %% ====================================================================================================
+\subsection{Future work}
+
+Five steps would move these results furthest. The probability sample needs labels from an analyst who passes its
+check (Section~\ref{sec:sample}), to give unbiased accuracies and class areas with intervals, free of where the
+polygons were drawn. Material labels from photo interpretation, rather than landforms or the geologic map's unit
+groups, would test what the thermal bands add, and THEMIS-derived inertia \citep{Fergason2006}, where it exists,
+would replace the display mosaics' local contrast. A check of the lava margins traced on Context Camera images
+\citep{Malin2007} by a reader other than the assistant that traced them would make H1's test independent; H2 needs a study area that holds both fluvial and
+volcanic channels. The deep-learning models need validation blocks of their own before any retraining, and labels
+checked by eye rather than placed by rule: the lead U-Net's lava tube (user's accuracy 8.0\%) and its volcanic
+edifice, denser inside none of ten small named edifices, come first. For the craters, a rim-based diameter or merged
+nested basins would recover the 23\% of missed craters that hold only a smaller closed basin, 72\% of the
+misses at $\ge50$~km.
+
 \section{Conclusions} \label{sec:conclusions}
 
 \begin{enumerate}
@@ -1067,8 +1096,7 @@ it scores 86.6\% and 85.4\%, and its gain over the second label set comes about 
 new ones. The support vector machine gains nothing resolved (39.1\%,
 \kap\,0.288; 40.2\% on the sample) and fails the rule set for it, held by one pixel's seven bands rather than by its
 sample of 1,000 pixels a class or by its labels; both lead this paper.
-\item Lava flows are not separable in these bands; the geologic map remains the lava-flow reference; H1 awaits
-digitised margins, and H2 a window that holds both fluvial and volcanic channels.
+\item Lava flows are not separable in these bands; the geologic map remains the lava-flow reference; H1 is not supported on 1,476~km of margins traced on CTX either, and H2 awaits a window that holds both fluvial and volcanic channels.
 \end{enumerate}
 
 \begin{acknowledgments}

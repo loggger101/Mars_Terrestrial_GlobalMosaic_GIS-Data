@@ -1,0 +1,133 @@
+{
+ "labels": "Landform_TrainingSamples_offtharsis_draw",
+ "polygons": 6,
+ "maps": [
+  "unet_v3",
+  "svm_v3",
+  "unet_v2",
+  "svm_v2",
+  "near_v3"
+ ],
+ "classes": {
+  "volcanic edifice": {
+   "polygons": 6,
+   "pixels_400m": 19807,
+   "maps": {
+    "unet_v3": {
+     "share": 0.0774,
+     "ci95": [
+      0.0143,
+      0.2054
+     ],
+     "per_polygon": {
+      "E1": 0.0,
+      "E2": 0.0,
+      "E3": 0.0,
+      "E4": 0.055,
+      "E5": 0.304,
+      "E6": 0.294
+     },
+     "called": {
+      "Crater": 0.4692,
+      "Normal Ground": 0.2591,
+      "fluvial channel": 0.1863,
+      "volcanic edifice": 0.0774
+     }
+    },
+    "svm_v3": {
+     "share": 0.0056,
+     "ci95": [
+      0.0,
+      0.0163
+     ],
+     "per_polygon": {
+      "E1": 0.022,
+      "E2": 0.0,
+      "E3": 0.0,
+      "E4": 0.0,
+      "E5": 0.0,
+      "E6": 0.0
+     },
+     "called": {
+      "fluvial channel": 0.558,
+      "Normal Ground": 0.1694,
+      "Crater": 0.148,
+      "steep/windy hills": 0.1187,
+      "volcanic edifice": 0.0056
+     }
+    },
+    "unet_v2": {
+     "share": 0.2036,
+     "ci95": [
+      0.0408,
+      0.3312
+     ],
+     "per_polygon": {
+      "E1": 0.16,
+      "E2": 0.0,
+      "E3": 0.052,
+      "E4": 0.391,
+      "E5": 0.201,
+      "E6": 0.023
+     },
+     "called": {
+      "Crater": 0.5493,
+      "fluvial channel": 0.2471,
+      "volcanic edifice": 0.2036
+     }
+    },
+    "svm_v2": {
+     "share": 0.005,
+     "ci95": [
+      0.0,
+      0.014
+     ],
+     "per_polygon": {
+      "E1": 0.02,
+      "E2": 0.0,
+      "E3": 0.0,
+      "E4": 0.0,
+      "E5": 0.0,
+      "E6": 0.0
+     },
+     "called": {
+      "fluvial channel": 0.5374,
+      "Crater": 0.3852,
+      "Normal Ground": 0.0617,
+      "steep/windy hills": 0.0065
+     }
+    },
+    "near_v3": {
+     "share": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "per_polygon": {
+      "E1": 0.0,
+      "E2": 0.0,
+      "E3": 0.0,
+      "E4": 0.0,
+      "E5": 0.0,
+      "E6": 0.0
+     },
+     "called": {
+      "Normal Ground": 1.0
+     }
+    }
+   },
+   "unet_v3_minus_svm_v3_ci95": [
+    0.0018,
+    0.1962
+   ]
+  }
+ },
+ "skipped": {
+  "apron": "0 polygons, under the registration's 3"
+ },
+ "predictions": {
+  "P1 unet_v3 edifice share < 0.795": true,
+  "P3 unet_v3 > svm_v3 on each scored class": true,
+  "P4 near_v3 < 0.10 on each scored class": true
+ }
+}

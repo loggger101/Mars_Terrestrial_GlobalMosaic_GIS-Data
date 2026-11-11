@@ -1,5 +1,7 @@
 # Off-Tharsis edifice and apron labels: a guide (about 1 hour, in Pro)
 
+> **Done by the agent, 2026-11-10 (PROJECT-KNOWLEDGE.md §69.105).** The author does no more manual review, so the agent drew the labels on CTX and the DEM hillshade (`plates\`, made by `build\make_offtharsis_plates.py`), by the rule in `build\logs\agent_review\offtharsis_registration.md`: six volcanic edifice polygons at Nili and Meroe Paterae (block 4_0), MappedBy "agent CTX (KB 69.105)"; no apron, since no lobate debris apron was clear on the CTX views. Scored by `build\score_offtharsis.py`: U-Net v3 7.7 % edifice, SVM v3 0.6 %. The guide below is kept as written; an analyst's polygons drawn in Pro would be scored the same way.
+
 **Why.** The seven-class U-Net leads the seven-class SVM by balanced accuracy, but most of that lead sits in the two
 Tharsis held-out blocks (−9_−1 and −9_0), which hold nearly all the held-out volcanic edifice and apron ground
 (PROJECT-KNOWLEDGE.md §69.44, §69.57, §69.61). New edifice and apron labels in held-out blocks outside Tharsis would

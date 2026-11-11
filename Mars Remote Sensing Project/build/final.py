@@ -32,8 +32,8 @@ GOALS = [
 
 HYPOTHESES = [   # (id, claim, verdict, KB)
     ("H1", "Day IR shows lava-flow margins that Viking misses",
-     "Not supported at 1:20 M: day IR 21.0%, Viking red 12.3%, chance 10%; the difference's interval includes 0",
-     "§47.2"),
+     "Not supported on the map's contacts or on margins traced on CTX: day IR 19.7%, Viking red 14.8%, chance 10%; the difference's interval includes 0",
+     "§47.2, §69.52"),
     ("H2", "Fluvial and volcanic channels separate on gradient and thermal response",
      "Not supported at stages 1 and 1b: volcanic channels are shallower (window 1.4 against 10.2 m/km; mapped units "
      "2.4 against 13.9); thermal |d| ≤ 0.31",
@@ -125,11 +125,12 @@ FIGURES = [
                  "Lava flows are therefore taken from the geologic map's volcanic units"],
          source="§43.2, §43.3, §57.1"),
     dict(title="Do the infrared mosaics show flow margins Viking misses? (H1)",
-         images=[("file", r"interim_img\t5_margins.png")],
-         points=["905 profiles across 10 lAv contacts at Athabasca, each against a random-line null (10%)",
-                 "Day IR separates 21.0%, Viking red 12.3%: a lean toward H1, interval −1.7 to +18.1 pt",
-                 "A 1:20 M map's contacts are kilometres wide: H1 needs margins digitised at 100 m"],
-         source="§47.2"),
+         images=[("file", r"final_img\t5_traced.png")],
+         points=["633 profiles on 78 margins traced on CTX at Athabasca, 905 on 10 lAv contacts at 1:20 M, each against a random-line null (10%)",
+                 "Traced margins: day IR 19.7%, Viking red 14.8%; the difference +4.9 pt, interval −2.7 to +13.1",
+                 "Map contacts: 21.0% against 12.3%; +8.7 pt, interval −1.7 to +18.1: the lean persists, zero inside both",
+                 "The AI assistant traced the 86 margins (1,476 km) and, reading them again blind, kept 56 of 85: +3.3 pt there, −7.2 to +13.8; no one else has checked them"],
+         source="§47.2, §69.52, §69.105"),
     dict(section=("Classification", "Scored on labels the model never saw"),
          title="The four-class landform map at ±60°",
          images=[("layout", "04_global60_landforms")],
@@ -218,9 +219,9 @@ FIGURES = [
                  "a training polygon",
                  "13 of 14 blocks rise; Crater gives 8.6 of the 18.6 points, Normal Ground 5.6",
                  "'Crater' 93.5% inside 469 named craters, 53.0% in the ring around them",
-                 "Still wrong: edifice denser inside none of 10 small named edifices; lava tube's user's 8.0%",
+                 "Still wrong: edifice denser inside none of 10 small named edifices, 7.7% at Syrtis Major; lava tube's user's 8.0%",
                  "On two draws of 14 other blocks, held out from retrained models: 86.6% and 85.4%"],
-         source="§69.80, §69.81, §69.82, §69.84, §69.96"),
+         source="§69.80, §69.81, §69.82, §69.84, §69.96, §69.105"),
     dict(title="The lead maps: the SVM, against its rule",
          images=[("layout", "04c_global60_landforms_v3")],
          points=["The rule set before the run keeps the v2 map: κ falls, and Crater falls from 40.0% to 18.2% of producer's",
@@ -272,10 +273,8 @@ LIMITS = [   # (head, text)
     ("Channels and orders are DEM-limited",
      "Fill floods closed basins; 89.8% of ±60° channels lie under 2° and meet the mapped valleys no more often than "
      "a rotated valley map; the stream order is a setting (§25.1, §47.4, §54.4, §69.50)."),
-    ("The review has only begun",
-     "549 of 9,287 candidates reviewed, all at Ius Chasma (precision 54% on steep channels, 7% on depressions); "
-     "the digitising classes hold 94 channels, 26 crater rims and no lava margins, so H1 waits; H2 needs both channel "
-     "origins in one area, which neither type area has (§69.7, §69.63)."),
+    ("The review is partial",
+     "3,791 of 9,287 candidates reviewed (precision 54% on steep Ius channels, 50% on rock-floored Athabasca channels, 10% and 13% on depressions); the digitising classes hold 202 channels, 381 crater rims and 86 traced lava margins; H2 needs both channel origins in one area, which neither type area has (§69.33, §69.52, §69.55, §69.63)."),
     ("The held-out blocks used three times",
      "By the four-class models, the seven-class ones and those on a third label set, asked for after the seven-class scores were read, "
      "so a gain there is not a fresh test; two draws of 14 other blocks give a retrained U-Net 86.6% and 85.4%, the second ahead of the nearest polygon once weighted to the first 14 blocks' class mix (§66.5, §69.49, §69.84, §69.96, §69.102)."),
@@ -293,14 +292,15 @@ CONCLUSIONS = [
     "The four-class landform map scores 66.7% balanced (73.8%, κ 0.58 overall) on blocks it never saw, above geography alone by class (61.3%); thermal adds a resolved 1.4–2.0 points overall, none by balanced accuracy",
     "A U-Net reaches 98.9% as a four-class province map and, with seven classes on a third label set, 87.6% on polygons and "
     "49.6% on a probability sample; the SVM there fails its rule (39.1%); both lead; lava flows still come from the geologic map",
+    "H1 is not supported on 1,476 km of margins traced on CTX either, and H2 awaits a window that holds both channel origins",
 ]
 
 NEXT_STEPS = [
-    "Review the 9,287 machine candidates at Ius Chasma and Athabasca Valles; draw breached craters and lava margins",
-    "Retest H1 on margins digitised at 100 m; test H2 where fluvial and volcanic channels share one area",
+    "Finish the review at both type areas; draw breached craters by hand",
+    "A reader other than the AI assistant to check the traced margins for H1; H2 needs one area with both channel origins",
     "Seven classes: curb the SVM's fluvial channel and win back its Crater; correct the U-Net's small edifices and lava tube",
-    "Material labels, not landform labels, to price the thermal bands; calibrated THEMIS products where they exist",
-    "Validation blocks of their own before any further deep-learning tuning",
+    "Have the probability sample labelled by an analyst who passes its check: unbiased accuracies and class areas",
+    "Material labels to price the thermal bands; validation blocks of their own before any further deep-learning tuning",
 ]
 
 DATA = ("Every map, script and model: github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data, "

@@ -1,0 +1,194 @@
+{
+ "test": "T5 on CTX-traced margins (KB 69.52), those the author's check kept (kp; KB 69.104)",
+ "hypothesis": "H1",
+ "prediction": "H1 not supported: day IR's rate does not exceed Viking red's with an interval above 0 (logs/agent_review/ctx_margins_registration.md)",
+ "design": {
+  "step_km": 2.0,
+  "half_km": 20.0,
+  "gap_km": 3.0,
+  "null_n": 2000,
+  "null_min_km": 25.0,
+  "boot": 2000,
+  "seed": 20261008,
+  "null_quantile": 0.9
+ },
+ "contacts_by_pair_km": {
+  "lAv-traced": 1422.1
+ },
+ "registration": {
+  "contact_sides_differ": 0.6889250814332247,
+  "null_sides_differ": 0.023
+ },
+ "sets": {
+  "lAv contacts": {
+   "profiles": 614,
+   "contacts": 74,
+   "bands": {
+    "viking_r": {
+     "null_p90": 1.674,
+     "median_d_contact": 0.768,
+     "median_d_null": 0.631,
+     "separates": 0.148,
+     "ci95": [
+      0.089,
+      0.217
+     ]
+    },
+    "viking_g": {
+     "null_p90": 1.616,
+     "median_d_contact": 0.731,
+     "median_d_null": 0.606,
+     "separates": 0.148,
+     "ci95": [
+      0.09,
+      0.215
+     ]
+    },
+    "viking_b": {
+     "null_p90": 1.56,
+     "median_d_contact": 0.699,
+     "median_d_null": 0.581,
+     "separates": 0.155,
+     "ci95": [
+      0.093,
+      0.226
+     ]
+    },
+    "day_ir": {
+     "null_p90": 1.543,
+     "median_d_contact": 0.62,
+     "median_d_null": 0.544,
+     "separates": 0.194,
+     "ci95": [
+      0.122,
+      0.269
+     ]
+    },
+    "night_ir": {
+     "null_p90": 1.625,
+     "median_d_contact": 0.612,
+     "median_d_null": 0.619,
+     "separates": 0.147,
+     "ci95": [
+      0.094,
+      0.203
+     ]
+    },
+    "contrast_index": {
+     "null_p90": 1.643,
+     "median_d_contact": 0.586,
+     "median_d_null": 0.637,
+     "separates": 0.106,
+     "ci95": [
+      0.061,
+      0.156
+     ]
+    }
+   },
+   "day_minus_viking_r": {
+    "diff": 0.046,
+    "ci95": [
+     -0.034,
+     0.126
+    ]
+   },
+   "night_minus_viking_r": {
+    "diff": -0.002,
+    "ci95": [
+     -0.072,
+     0.062
+    ]
+   },
+   "day_only": 81,
+   "viking_only": 53,
+   "night_only": 58,
+   "viking_only_vs_night": 59,
+   "h1_supported": false
+  },
+  "all contacts": {
+   "profiles": 614,
+   "contacts": 74,
+   "bands": {
+    "viking_r": {
+     "null_p90": 1.674,
+     "median_d_contact": 0.768,
+     "median_d_null": 0.631,
+     "separates": 0.148,
+     "ci95": [
+      0.09,
+      0.215
+     ]
+    },
+    "viking_g": {
+     "null_p90": 1.616,
+     "median_d_contact": 0.731,
+     "median_d_null": 0.606,
+     "separates": 0.148,
+     "ci95": [
+      0.09,
+      0.214
+     ]
+    },
+    "viking_b": {
+     "null_p90": 1.56,
+     "median_d_contact": 0.699,
+     "median_d_null": 0.581,
+     "separates": 0.155,
+     "ci95": [
+      0.093,
+      0.224
+     ]
+    },
+    "day_ir": {
+     "null_p90": 1.543,
+     "median_d_contact": 0.62,
+     "median_d_null": 0.544,
+     "separates": 0.194,
+     "ci95": [
+      0.123,
+      0.273
+     ]
+    },
+    "night_ir": {
+     "null_p90": 1.625,
+     "median_d_contact": 0.612,
+     "median_d_null": 0.619,
+     "separates": 0.147,
+     "ci95": [
+      0.094,
+      0.203
+     ]
+    },
+    "contrast_index": {
+     "null_p90": 1.643,
+     "median_d_contact": 0.586,
+     "median_d_null": 0.637,
+     "separates": 0.106,
+     "ci95": [
+      0.061,
+      0.157
+     ]
+    }
+   },
+   "day_minus_viking_r": {
+    "diff": 0.046,
+    "ci95": [
+     -0.032,
+     0.128
+    ]
+   },
+   "night_minus_viking_r": {
+    "diff": -0.002,
+    "ci95": [
+     -0.071,
+     0.062
+    ]
+   },
+   "day_only": 81,
+   "viking_only": 53,
+   "night_only": 58,
+   "viking_only_vs_night": 59,
+   "h1_supported": false
+  }
+ }
+}

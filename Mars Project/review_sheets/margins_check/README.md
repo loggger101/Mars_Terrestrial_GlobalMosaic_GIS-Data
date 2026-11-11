@@ -48,3 +48,13 @@ It refuses the whole file on any unknown slot or letter. About an hour for all 8
   the check lives in `build\logs\margin_check.json`. Redrawing a margin is done in Pro, as before.
 
 Redraw the sheets with `build\make_margin_check_sheets.py` (it reads the class and the cached CTX views, never renders).
+
+## Amendment, 2026-11-10, before any answer: the agent answers (KB §69.105)
+
+The author will do no more manual review ("i will not be doing any more manual review work myself, please perform
+them yourself if there are any left that should be done", 2026-11-10). The agent answers these sheets instead, as a
+**blind second reading of its own lines**: the sheets hide the confidence and type it gave when tracing, and it
+reads them without opening `index.json`'s per-slot values. That measures whether the same reader, on a clean view,
+keeps its own lines; it is not an independent check, and the paper says so. The letters, the scoring and the two T5
+forms are unchanged; the answers go in `answers_agent.txt`, and the result in `build\logs\margin_check.json`.
+**Prediction:** most lines kept (k at least 60 % of those decided), H1 not supported on either form.

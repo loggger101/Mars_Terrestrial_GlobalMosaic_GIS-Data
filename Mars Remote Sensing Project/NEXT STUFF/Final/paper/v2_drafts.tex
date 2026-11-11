@@ -192,6 +192,8 @@ predicted no better than by their commonest group, with or without the thermal b
 %%     REVISED 2026-11-10 (KB §69.103), anchors tried the same day: R2 is done on the assistant's labels, so its
 %%     sentence asks for an analyst's; block 15 (h)'s H1 sentence is in; the edifice sentence names the lead (v3) U-Net's
 %%     faults, not the v2 U-Net's highland edifice. Still at the freeze, after D33's margin check.
+%%     APPLIED 2026-11-10 (KB §69.105) with block 15: D33 closed by the author's word (no more manual review), so the
+%%     margins' sentence asks for a reader other than the assistant that traced and re-read them.
 %%     the Discussion (after Limits). Malin2007 is in references.bib (DOI checked on Crossref 2026-11-02). If R2 is
 %%     done by the freeze, drop its sentence, say what it found in Results instead, and read "Three steps" for "Four
 %%     steps" (block 16 (a) puts it in Results, so this applies unless the author withdraws R2). Every number is in the KB:
@@ -203,8 +205,8 @@ Five steps would move these results furthest. The probability sample needs label
 check (Section~\ref{sec:sample}), to give unbiased accuracies and class areas with intervals, free of where the
 polygons were drawn. Material labels from photo interpretation, rather than landforms or the geologic map's unit
 groups, would test what the thermal bands add, and THEMIS-derived inertia \citep{Fergason2006}, where it exists,
-would replace the display mosaics' local contrast. The author's check of the lava margins traced on Context Camera
-images \citep{Malin2007} would make H1's test the project's own; H2 needs a study area that holds both fluvial and
+would replace the display mosaics' local contrast. A check of the lava margins traced on Context Camera images
+\citep{Malin2007} by a reader other than the assistant that traced them would make H1's test independent; H2 needs a study area that holds both fluvial and
 volcanic channels. The deep-learning models need validation blocks of their own before any retraining, and labels
 checked by eye rather than placed by rule: the lead U-Net's lava tube (user's accuracy 8.0\%) and its volcanic
 edifice, denser inside none of ten small named edifices, come first. For the craters, a rim-based diameter or merged
@@ -277,6 +279,10 @@ Crater, lava tube and Normal Ground. Shares are of this window. \label{fig:zoom}
 %%     it plainly, as the KB does, and drops that clause only if the author has checked them.
 %%     D33 ANSWERED 2026-11-03 (KB §69.62): the author checks the margins first; then rerun T5 and drop the clause.
 %%     If the check has not happened by the freeze, (a) goes in as drafted, the clause kept.
+%%     D33 CLOSED and (a)-(h) APPLIED 2026-11-10 (KB §69.105): the author will do no more manual review, so the
+%%     assistant read its 86 lines again blind (review_sheets\margins_check, answers_agent.txt) and T5 ran on the lines
+%%     it kept (logs\t5_flow_margins_checked_k.json, _kp.json). (a) names both readings and adds the two forms; the
+%%     all-86 numbers stay the headline (the class keeps all 86); (h) asks for a reader other than the assistant.
 %%    NOTE 2026-11-02 (KB §69.58): block 10 (b)'s A7 sentence is now in the .tex right after (c)'s anchor; (c) replaces
 %%    the anchor sentence only and keeps that A7 sentence after it.
 %% ---------------------------------------------------------------------------------------------------------
@@ -285,10 +291,14 @@ Crater, lava tube and Normal Ground. Shares are of this window. \label{fig:zoom}
 A map at 1:20\,M generalises contacts by kilometres, so the test was repeated on lava-flow margins traced on the
 Context Camera (CTX) mosaic \citep{Malin2007,Dickson2024}: 86 margins (1,476~km) along the \lAv\ boundaries, on 126 plates
 that showed CTX alone, by a rule written before any plate was viewed. The margins were traced by the AI assistant that
-wrote the project's scripts, and the author has not checked them. Across 633 profiles on 78 of them, day infrared
+wrote the project's scripts and read again by it on the same views, blind to the confidence it had given each; no one
+else has checked them. Across 633 profiles on 78 of them, day infrared
 separates 19.7\% (13.1--27.2\%), Viking red 14.8\%, night infrared 14.5\% and the index 10.0\%. Day infrared leads
 Viking red by $+4.9$ points, interval $-2.7$ to $+13.1$, so H1 is again not supported (Figure~\ref{fig:t5}): the
-traced margins narrow the interval, 15.8 points wide against 19.8, but leave zero inside it. %% KB §69.52, §69.79
+traced margins narrow the interval, 15.8 points wide against 19.8, but leave zero inside it. The second reading kept
+56 of the 85 margins it decided (65.9\%) as following a flow edge along most of their length, and 81 at least in part;
+on the 56 day infrared leads by $+3.3$ points ($-7.2$ to $+13.8$), on the 81 by $+4.6$ ($-3.4$ to $+12.6$), so the
+verdict does not rest on the doubtful lines. %% KB §69.52, §69.79, §69.105
 %% (b) The figure fig:t5: \includegraphics{figures/t5_traced.png} in place of t5_margins.png, this caption, and add
 %%     (r"final_img\t5_traced.png", "t5_traced.png") to build_final_paper.py's FIGURES (make_fig_t5_traced.py).
 \caption{Test T5 (H1): the share of profiles that each band separates across the geologic map's \lAv\ contacts at
@@ -319,8 +329,8 @@ candidates with measured recall and precision. %% KB §69.33, §69.52, §69.55, 
 %% No band separates the geologic map's lava contacts or traced margins at Athabasca Valles much better than chance
 %% (h) Block 12 (Future work): replace "Lava-flow margins traced at Athabasca Valles on Context Camera images
 %%     \citep{Malin2007} would test H1 on the features themselves rather than on the map's contacts;" with:
-%% The author's check of the lava margins traced on Context Camera images \citep{Malin2007} would make H1's test the
-%% project's own;
+%% A check of the lava margins traced on Context Camera images \citep{Malin2007} by a reader other than the assistant
+%% that traced them would make H1's test independent;   (REVISED 2026-11-10, KB §69.105; block 12 carries it)
 %%     (Rewritten 2026-11-03, KB §69.68: volcanic channels drawn at Athabasca would only repeat H2's stage 1, §69.63.)
 
 %% ---------------------------------------------------------------------------------------------------------
@@ -424,6 +434,8 @@ $+19.8$), so the sample does not rank the two maps. %% KB §69.77
 %%     (b) if the author has checked the margins; the "assistant" wording leaves (f) if the author answers R2's
 %%     sheets; (e) goes in whichever maps the author picks, and if a v3 map is picked the seven-class slides are
 %%     rewritten from its numbers as well. STATUS_DATE becomes the freeze's date; DATA changes only with a new release.
+%%     (a), (b), (c), (g), (h) APPLIED 2026-11-10 with blocks 12 and 15 (KB §69.105, D33 closed): (b)'s last point
+%%     and (h)'s second item name the assistant's second reading, not an author's check.
 %% ---------------------------------------------------------------------------------------------------------
 %% (a) HYPOTHESES, H1: this verdict, its KB "§47.2, §69.52":
 Not supported on the map's contacts or on margins traced on CTX: day IR 19.7\%, Viking red 14.8\%, chance 10\%; the difference's interval includes 0
@@ -431,7 +443,7 @@ Not supported on the map's contacts or on margins traced on CTX: day IR 19.7\%, 
 633 profiles on 78 margins traced on CTX at Athabasca, 905 on 10 lAv contacts at 1:20 M, each against a random-line null (10\%)
 Traced margins: day IR 19.7\%, Viking red 14.8\%; the difference +4.9 pt, interval −2.7 to +13.1
 Map contacts: 21.0\% against 12.3\%; +8.7 pt, interval −1.7 to +18.1: the lean persists, zero inside both
-The AI assistant traced the 86 margins (1,476 km); the author has not checked them
+The AI assistant traced the 86 margins (1,476 km) and, reading them again blind, kept 56 of 85: +3.3 pt there, −7.2 to +13.8; no one else has checked them
 %% (c) LIMITS, for "The review has only begun", this head and text:
 The review is partial
 3,791 of 9,287 candidates reviewed (precision 54\% on steep Ius channels, 50\% on rock-floored Athabasca channels, 10\% and 13\% on depressions); the digitising classes hold 202 channels, 381 crater rims and 86 traced lava margins; H2 needs both channel origins in one area, which neither type area has (§69.33, §69.52, §69.55, §69.63).
@@ -457,7 +469,7 @@ H1 is not supported on 1,476 km of margins traced on CTX either, and H2 awaits a
 %% (h) NEXT_STEPS, all five, REVISED 2026-11-10 (KB §69.103): final.py's list already names the v3 U-Net's faults
 %%     (since 11-07); at the freeze its five strings become these:
 Finish the review at both type areas; draw breached craters by hand
-The author's check of the traced margins makes H1's test the project's own; H2 needs one area with both channel origins
+A reader other than the AI assistant to check the traced margins for H1; H2 needs one area with both channel origins
 Seven classes: curb the SVM's fluvial channel and win back its Crater; correct the U-Net's small edifices and lava tube
 Have the probability sample labelled by an analyst who passes its check: unbiased accuracies and class areas
 Material labels to price the thermal bands; validation blocks of their own before any further deep-learning tuning

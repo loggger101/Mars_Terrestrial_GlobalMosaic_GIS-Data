@@ -34,6 +34,7 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"final_img\12_global60_channels.png", "12_global60_channels.png"),
     (r"interim_img\t8_enrichment.png", "t8_enrichment.png"),
     (r"interim_img\t5_margins.png", "t5_margins.png"),
+    (r"final_img\t5_traced.png", "t5_traced.png"),            # make_fig_t5_traced.py (KB §69.52, §69.105)
     (r"final_img\04_global60_landforms.png", "04_global60_landforms.png"),
     (r"final_img\typearea_zoom.png", "typearea_zoom.png"),     # make_fig_typearea_zoom.py (W4, KB §69.50)
     (r"final_img\svm_baselines.png", "svm_baselines.png"),     # make_fig_baselines.py (A3, KB §69.50)

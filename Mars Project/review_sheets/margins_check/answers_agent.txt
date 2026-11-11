@@ -1,0 +1,11 @@
+# The agent's blind second reading of its own 86 margins (README amendment, KB §69.105), 2026-11-10.
+# Read on the sheets alone; index.json's confidence and type not opened. Letters as the README defines them.
+M01 k, M02 p, M03 p, M04 k, M05 k, M06 k, M07 p, M08 p, M09 p, M10 k
+M11 k, M12 n, M13 k, M14 k, M15 k, M16 n, M17 p, M18 k, M19 p, M20 k
+M21 k, M22 k, M23 k, M24 k, M25 k, M26 k, M27 k, M28 k, M29 k, M30 k
+M31 p, M32 p, M33 p, M34 k, M35 k, M36 p, M37 k, M38 p, M39 k, M40 k
+M41 k, M42 n, M43 k, M44 p, M45 k, M46 p, M47 k, M48 k, M49 k, M50 p
+M51 k, M52 p, M53 p, M54 k, M55 k, M56 p, M57 p, M58 k, M59 k, M60 k
+M61 p, M62 k, M63 k, M64 p, M65 k, M66 n, M67 k, M68 p, M69 k, M70 k
+M71 k, M72 k, M73 k, M74 p, M75 k, M76 k, M77 p, M78 k, M79 k, M80 k
+M81 k, M82 p, M83 k, M84 k, M85 u, M86 k

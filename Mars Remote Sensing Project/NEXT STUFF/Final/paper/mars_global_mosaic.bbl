@@ -104,6 +104,14 @@
   Research, 64, 1615, \dodoi{10.1016/j.asr.2019.07.017}
 
 % type= article
+\bibitem[{J.~L. {Dickson} {et~al.}(2024){Dickson}, {Ehlmann}, {Kerber}, \&
+  {Fassett}}]{Dickson2024}
+{Dickson}, J.~L., {Ehlmann}, B.~L., {Kerber}, L., \& {Fassett}, C.~I. 2024,
+  \bibinfo{title}{The Global Context Camera ({CTX}) Mosaic of Mars: A Product
+  of Information-Preserving Image Data Processing,} Earth and Space Science,
+  11, e2024EA003555, \dodoi{10.1029/2024EA003555}
+
+% type= article
 \bibitem[{C.~S. {Edwards} {et~al.}(2011){Edwards}, {Nowicki}, {Christensen},
   {Hill}, {Gorelick}, \& {Murray}}]{Edwards2011}
 {Edwards}, C.~S., {Nowicki}, K.~J., {Christensen}, P.~R., {et~al.} 2011,
@@ -254,6 +262,14 @@
 {Luo}, W., \& {Stepinski}, T.~F. 2009, \bibinfo{title}{Computer-generated
   global map of valley networks on Mars,} Journal of Geophysical Research
   (Planets), 114, E11010, \dodoi{10.1029/2009JE003357}
+
+% type= article
+\bibitem[{M.~C. {Malin} {et~al.}(2007){Malin}, {Bell}, {Cantor},
+  {et~al.}}]{Malin2007}
+{Malin}, M.~C., {Bell}, J.~F., {Cantor}, B.~A., {et~al.} 2007,
+  \bibinfo{title}{Context Camera Investigation on board the Mars Reconnaissance
+  Orbiter,} Journal of Geophysical Research (Planets), 112,
+  \dodoi{10.1029/2006JE002808}
 
 % type= article
 \bibitem[{M.~T. {Mellon} {et~al.}(2000){Mellon}, {Jakosky}, {Kieffer}, \&
