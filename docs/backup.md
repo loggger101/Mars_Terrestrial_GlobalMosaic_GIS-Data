@@ -34,6 +34,14 @@ described in [rasters.md](rasters.md), each vector layer in [the layer catalogue
 
 Not backed up anywhere but the drive (git history holds the files the repository once mirrored): the `.aprx` snapshots in `Mars Project/.backups/` (git versions `Mars Project.aprx` itself), the unpacked copy of the `.aprx` in `build/aprx_live/`, Presentation 1's figure folders (`build/le_img/`, most of `build/pres1_img/`) and its `.pptx` (the PDF is in `OLD/`), the review contact sheets in `Mars Project/review_sheets/` (PNG, redrawn by `make_review_chips.py`; their guides and answer files are mirrored), the 30 Sep "new training" shapefile (a near copy of `Landform_TrainingSamples_terrain`), the three T1 band-subset stacks (re-computable), the `.ovr` pyramids (Build Pyramids re-creates them), `Global60/_0based_originals/` (the ±60° landform maps before their recode, KB §36) and the other geodatabase rasters, mostly legacy products the knowledge base finds defective and superseded (percent-rise slopes on a degree grid, a global composite mixing raw elevation with 8-bit bands).
 
+## Not yet in a release
+
+Made after `data-2026-10-29` and so on the project drive only (KB §69.80–§69.102), until the next data release, planned before the final (`NEXT-STEPS.md` §7):
+
+- the two maps on the third label set that lead the final (D36): `Global60/global60_landforms_unet_v3_200m_seamfix.tif` (layout 17c) and `global60_landforms_svm_v3_200m.tif` with its 11 × 11 majority `_mode11` (layout 04c);
+- the six U-Nets trained on that label set in `Mars Project/DLModels/` (`_v3`, `_v3f`, `_v3nt`, `_v3c`, `_v3a`, `_v3g`), whose `.pth` and `.dlpk` are too large for git; their metadata and plots are in the tree;
+- the extra runs' window rasters in `Global60/v3_extras/` (their sidecars are in the tree).
+
 ## Keeping it current
 
 Run from `Mars Remote Sensing Project\build\` on the drive; each script finds the drive from its own location, so `Z:` and `F:` both work. "ArcGIS Python" below is ArcGIS Pro's `arcgispro-py3` environment: `C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe` on the laptop, `D:\ArcGISPro\...` on the desktop.

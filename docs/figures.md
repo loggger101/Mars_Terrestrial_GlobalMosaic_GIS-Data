@@ -201,7 +201,7 @@ seven-class U-Net, beside the four-class one (KB §69.25, §69.26). Validation c
 
 Trained on the v3 labels (KB §69.49) in
 [`global60_unet_x5c_v3_20261105/`](../Mars%20Project/DLModels/global60_unet_x5c_v3_20261105); the epoch of lowest validation loss, 18 of 0–29, is the
-model kept (KB §69.76). Its map is still being made: no held-out score yet. Validation chips from the training split.
+model kept (KB §69.76). Its map scores 87.6 %, κ 0.844 on the 237 held-out v2 polygons (layout 17c, KB §69.80). The rows after its own two are the extra runs' retrainings: on 14 fresh blocks, without the thermal bands, on the cut pieces alone, on the added polygons alone, and on a second fresh draw (KB §69.84–§69.96). Validation chips from each model's training split.
 
 | | What it shows | Made by |
 |---|---|---|
@@ -238,6 +238,6 @@ figures on this page, put there by `build_final_paper.py` so the `.tex` compiles
 |---|---|---|
 | [`pipeline.svg`](pipeline.svg) | The pipeline diagram on the front page: four sources, one ±60° grid, the products, both rounds of hand-drawn labels, the SVM and the U-Net with their seven-class and four-class scores, and the candidates. KB §69.38. | by hand |
 | [`final_img/pipeline.pdf`](../Mars%20Remote%20Sensing%20Project/build/final_img/pipeline.pdf) · [`pipeline.png`](../Mars%20Remote%20Sensing%20Project/build/final_img/pipeline.png) | The same diagram rendered for the paper, the footnote left to the caption: one vector page and a 2,200 × 892 PNG. In the paper's Methods (`fig:pipeline`). KB §69.38. | `make_fig_pipeline.py` |
-| [`NEXT STUFF/Final/paper/mars_global_mosaic.pdf`](../Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final/paper/mars_global_mosaic.pdf) | The final paper, a draft in AASTeX 7 (14 pages); the machine products presented as candidates while the review is open. KB §69. | `build_final_paper.py` |
+| [`NEXT STUFF/Final/paper/mars_global_mosaic.pdf`](../Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final/paper/mars_global_mosaic.pdf) | The final paper, a draft in AASTeX 7 (25 pages, the references included); the machine products presented as candidates while the review is open. KB §69. | `build_final_paper.py` |
 | [`NEXT STUFF/Mars Mosaic - Interim Report.pdf`](../Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Mars%20Mosaic%20-%20Interim%20Report.pdf) | The interim report, submitted 5 November 2026: 21 pages, 21 figures, the data cut 26 October (D20), its Viking wording corrected 3 November. KB §69.64. | `build_interim_report_live.py`, rendered through Word |
 | [`OLD/ocean first pres LE.pdf`](../Mars%20Remote%20Sensing%20Project/OLD/ocean%20first%20pres%20LE.pdf) | Presentation 1 as delivered (history, not corrected). KB §14.5. | — |

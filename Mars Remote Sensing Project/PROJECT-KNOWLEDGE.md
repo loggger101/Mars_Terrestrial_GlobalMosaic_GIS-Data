@@ -2,7 +2,7 @@
 
 **Owner:** Logan M Edwards · OCN 4704 Remote Sensing · Fall 2026 · Florida Tech
 **File:** `<drive>\Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (`Z:` on the laptop, `F:` on the desktop)
-**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.102).
+**Started:** 2026-09-18 · **Last updated:** 2026-11-10 (§69.103).
 
 The record of what is true about this project, and the authority for every number in the plans, the
 layouts and the deliverables. How to work is `HANDOFF-DESKTOP.md`; what to do next is `NEXT-STEPS.md`.
@@ -43,6 +43,10 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | the 180° column | §54, §55.1 |
 | GitHub backup and releases | what would make the repository better, §69.19, the sync's guard, §69.20, and its deliverables gate, §69.42 (`NEXT-STEPS.md` §13); §35, §57.4, §63.2 (`data-2026-10-19`, the first with Athabasca), §66.10 (`data-2026-10-21`, the first with the deep-learning models), §69.28 (`data-2026-10-29`, the first with the seven-class maps) |
 | the interim builds | §39.3, §45, §48, §51.5, §57.3, §66.10, §67; speaker notes §69.41 |
+| deep learning (X5): the detector and the U-Nets | §66; on the reviewed seven classes §69.25; on the third label set §69.76, §69.80 |
+| the seven classes and the third label set (v3) | §68, §69.2, §69.8, §69.24–§69.27 (D28); v3: §69.49, §69.56, §69.80–§69.82 (D36) |
+| the v3 extra runs | fresh blocks §69.84, §69.85, §69.96, §69.102; without thermal §69.86, §69.87, §69.91; cut and add §69.88, §69.92, §69.93; loss spikes §69.90; a second training §69.89; the figure §69.94 |
+| why the SVM stays flat | §69.95, §69.97, §69.98; its thermal share §69.99–§69.101 |
 
 ---
 
@@ -57,8 +61,8 @@ impact craters. **[E]**
 co-registered stack spans ±60°, 86.6 % of the surface, set by THEMIS night coverage.
 
 **Deliverables.** Presentation 1 and the prospectus are **delivered and presented**: history, not to be
-corrected (§14.5). Left: the **interim** report + presentation, due **mid-November 2026** (exact day not
-given **[?]**), and the **final**, due **Tuesday 8 December 2026** **[V]**. No rubric exists for either
+corrected (§14.5). The **interim** report went in on **5 November 2026** (§69.79) and its presentation was set
+for **10 November**; left: the **final**, due **Tuesday 8 December 2026** **[V]**, its data frozen on 22 November. No rubric exists for either
 (§50). The working dates are in `NEXT-STEPS.md`.
 
 > **The standing directive, 2026-09-19: "just worry about getting data worked and laid out."** Work the
@@ -465,7 +469,10 @@ There is **no ground truth and no sub-metre imagery.** Validation rests on:
   and precision (§42.3, §53.4);
 - **TES thermal inertia** (§41): the only calibrated thermal product, at ~3 km (§42.4, §43.1);
 - the **IAU gazetteer** in the gdb (§6) and the hosted **CTX mosaic** (§3), network permitting;
-- the **held-out half of the hand-drawn labels**, 183 polygons in whole 15° blocks (§31.3).
+- the **held-out half of the hand-drawn labels**, 183 polygons in whole 15° blocks (§31.3);
+- since the class revision, the **237 held-out reviewed polygons** and the **1,652 of the third label set** in the
+  same 14 blocks (§69.8, §69.49), and for the v3 U-Net two draws of 14 other blocks (§69.84, §69.96, §69.102);
+- a **probability sample** of the maps (§69.53), labelled by the AI assistant, whose labels failed their check (§69.55).
 
 ---
 
@@ -479,6 +486,8 @@ There is **no ground truth and no sub-metre imagery.** Validation rests on:
 | 14 | The 8 Sep segmentation's time: the September interim logs "Sep 9, 03:35", the output name encodes 2026-09-08 19:25:34 | unresolved; plausibly UTC against local time (§14.5) |
 | 15 | Does the GUI ±60° segmentation of 29 Sep de-speckle? | unmeasured; low priority; never start another ±60° segmentation without asking (§23.6, §29.5) |
 | 24 | Which step inside `ClassifyRaster` makes neighbouring processing tiles differ? | the tiles themselves are proven the cause (§53.2); the inner step is not known, and the `.afr` is gone |
+| 28 | Is the v3 U-Net's 6.4–7.6-point drop without the thermal bands larger than one training against another? | being priced: rep, a second training with the published settings, runs to 11-11; R1–R3 registered (§69.86, §69.89) |
+| 29 | Why does the nearest training polygon score 71.9 % on the second fresh draw against 52.9 % on the first at the same class mix? | described, not tested: nearer training polygons or larger patches (§69.102) |
 
 **Answered** **[V]** (the question as asked, and its answer):
 
@@ -7501,3 +7510,14 @@ ef{fig:extraruns}` in the tex (the thermal retraining and the U-Net's gain, both
 - **P4 held:** at the mix the nearest polygon scores 71.9 % on fresh2, 8.7 points below its 80.6 %.
 - **Read** (the rule written with them): F6.5's miss is fresh2's class mix, half its ground apron, not the U-Net's ground; at the mix of the blocks every v3 score in the paper is on, the U-Net leads the baseline on both draws. **Not all of it is the mix:** at the same mix the baseline still scores 71.9 % on fresh2 against 52.9 % on fresh, so fresh2's training polygons lie nearer, or its classes in larger patches, than fresh's; that is described, not tested. **Also:** at the mix the SVM falls below the nearest polygon on fresh2 (−40.7 to −11.5) and on both draws together (−34.9 to −8.3), where as scored it was not separated from it.
 - **Placed:** a sentence after the paper's second-draw sentence; the Limits' "resolved only by balanced accuracy" becomes "resolved once weighted to the first 14 blocks' class mix", and §69.96's clause "its lead over a map by nearest neighbour is by class more than by area" is dropped as superseded; the deck's Limits card "The held-out blocks used three times" the same.
+
+### 69.103 An audit of the repository's pages against the record — 2026-11-10, desktop **[V]**
+
+Read while rep_train runs (no new numbers; each fix cites the section it rests on):
+
+- **README.md:** the front image was the reviewed seven-class map (04b) though the v3 maps lead since D36; it is now layout 17c, with 04c, 04b and 04 named in its caption. The layout gallery left out the three lead sheets 04c, 13c and 17c; they are in it now (the count of 26 already held them). "Where it stands" was dated 11-05 and said the interim talk "is on 10 November" and the extra runs "are running": now dated 11-10, with the scored extra runs (§69.84–§69.102) and rep running. The deep-learning row and results gain the v3 U-Net (§69.80), the fresh draws (§69.84, §69.96, §69.102) and the SVM stand-in (§69.95–§69.98); the thermal results gain the U-Net without thermal (§69.86, §69.91) and the 51 km stand-in (§69.99–§69.101). "Using the data" and the tree now say the v3 maps and the six v3 U-Nets are in no release yet (the tree said five models; `DLModels\` holds eleven).
+- **docs/backup.md:** a section "Not yet in a release": the two v3 maps, the six v3 models' weights and the extra runs' window rasters, made after `data-2026-10-29`.
+- **docs/figures.md:** the v3 U-Net section said "Its map is still being made: no held-out score yet"; now its score and the extra runs' models. The paper row said 14 pages; it is 25.
+- **This file:** §1's deliverables (the interim went in, §69.79); "Where to look" gains rows for the U-Nets, the seven classes and v3, the extra runs and the SVM stand-in; §10 gains the seven-class held-out sets, the fresh draws and the probability sample; §11 gains q28 (rep prices the thermal drop) and q29 (§69.102's baseline gap).
+- **NEXT-STEPS.md:** "Resume here" dated 11-10; row 3b says what is left of the extra runs; row 5's talk date is past and not recorded here.
+- **Not changed, the author's call:** the README title and `CITATION.cff` keep the project's own title (D21, §69.62); the abstract's length (§69.98); a data release with the v3 maps (`NEXT-STEPS.md` §7, D23).
