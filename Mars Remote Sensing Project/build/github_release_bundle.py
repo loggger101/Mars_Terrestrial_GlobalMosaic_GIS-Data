@@ -19,7 +19,9 @@ byte for byte, so a restore is an unzip:
                              also 200 m raw + mode 3-11 and the four T1 maps), the models, the two
                              0.5° density grids, smoke tests; since 2026-10-21 the two U-Net maps
                              (one pass and two passes, §66.7-66.8); since 2026-10-29 the seven-class
-                             SVM and U-Net maps, v2 and the v2p rehearsal (§69.4, §69.24-69.25)
+                             SVM and U-Net maps, v2 and the v2p rehearsal (§69.4, §69.24-69.25); since
+                             2026-11-10 the v3 maps (§69.80-69.81) and Global60\v3_extras\, the extra
+                             runs' window rasters (§69.84-69.102)
   dl-models.zip              <drive>\Mars Project\DLModels\, whole: every trained deep-learning
                              model (X5, X5b, X5c, and since 2026-10-29 the two seven-class U-Nets:
                              .pth, .emd, .dlpk), their loss graphs and the detections (§66, §69).
@@ -58,7 +60,9 @@ def groups():
         + [p for p in g60.glob("global60_landforms_unet*") if p.is_file() and p.suffix != ".ovr"]  # §66.7-66.8
         + [p for p in g60.glob("global60_*_density_0p5deg.tif*") if p.is_file() and p.suffix != ".ovr"]  # §53.6
         + [p for p in g60.glob("smoke60_*") if p.is_file()]
-        + [p for d in g60.glob("*.crf") for p in files_under(d)] + [g60 / "README.md"])
+        + [p for d in g60.glob("*.crf") for p in files_under(d)]
+        + (files_under(g60 / "v3_extras") if (g60 / "v3_extras").is_dir() else [])          # §69.84-69.102
+        + [g60 / "README.md"])
     yield "dl-models", MP, files_under(MP / "DLModels")                                        # §66
     yield "npy-caches", RSP, sorted(p for p in (RSP / "build").rglob("*.npy")
                                     if not p.name.endswith("_ov400.npy"))

@@ -221,7 +221,7 @@ ArcGIS Pro is not required. The rasters are GeoTIFFs and the vectors come as a f
 **Quick start.** Download the landform maps (1.9 GB; the published one unzips to `Global60/global60_landforms_svm_200m_mode11.tif`) and unzip them:
 
 ```bash
-curl -LO https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/download/data-2026-10-29/global60-classification-part1.zip
+curl -LO https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/download/data-2026-11-10/global60-classification-part1.zip
 unzip global60-classification-part1.zip
 ```
 
@@ -253,8 +253,8 @@ It prints Crater 32.8%, steep/windy hills 1.8%, lava tube 9.3%, Normal Ground 56
 
 - **Coordinate system.** Almost everything is in `Mars_Equidistant_Cylindrical_CM180`: metres on the Mars sphere (R = 3,396,190 m) with the **central meridian at 180°**, so x runs 0–360°E. The CRS is embedded in each file; keep it. Reprojecting to an Earth CRS, or assuming a 0° meridian, puts features half a planet away. The exception is the 30 Sep SVM map, `Classified_202609300147338582853`: same projection, but **central meridian 0°**, on Viking's grid. The hand-drawn labels and the IAU nomenclature are in geographic `Mars_2000_(Sphere)`.
 - **The four-class landform map** is `global60_landforms_svm_200m_mode11.tif` (the 400 m maps are its superseded predecessors). Its pixel values are the class codes: **1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class**, the same codes as the training labels; the attribute table adds names and colours. Read the lava tube class as unreliable (above). Every classified raster in the project follows the same rule: pixel value = class code.
-- **The seven-class maps**, which the project leads with (D28), are `global60_landforms_svm_v2_200m_mode11.tif` (the SVM, layout 04b) and `global60_landforms_unet_v2_200m_seamfix.tif` (the U-Net, layout 17b), both in [`global60-classification-part2.zip`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/download/data-2026-10-29/global60-classification-part2.zip) (2.0 GB). Codes 1–4 as above, plus **5 volcanic edifice, 6 apron, 7 fluvial channel**. The `_v2p_` files beside them are a rehearsal of the pipeline, never a result.
-- **The maps on the third label set**, which lead the final (D36), are `global60_landforms_unet_v3_200m_seamfix.tif` (the U-Net, layout 17c) and `global60_landforms_svm_v3_200m_mode11.tif` (the SVM, layout 04c), with the same codes 1–7. They are on the project drive and in no release yet ([backup](docs/backup.md#not-yet-in-a-release)).
+- **The seven-class maps**, which the project leads with (D28), are `global60_landforms_svm_v2_200m_mode11.tif` (the SVM, layout 04b) and `global60_landforms_unet_v2_200m_seamfix.tif` (the U-Net, layout 17b), in [`global60-classification-part2.zip`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/download/data-2026-11-10/global60-classification-part2.zip) and [`-part3.zip`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/download/data-2026-11-10/global60-classification-part3.zip). Codes 1–4 as above, plus **5 volcanic edifice, 6 apron, 7 fluvial channel**. The `_v2p_` files beside them are a rehearsal of the pipeline, never a result.
+- **The maps on the third label set**, which lead the final (D36), are `global60_landforms_unet_v3_200m_seamfix.tif` (the U-Net, layout 17c) and `global60_landforms_svm_v3_200m_mode11.tif` (the SVM, layout 04c), with the same codes 1–7, in [`global60-classification-part3.zip`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/download/data-2026-11-10/global60-classification-part3.zip) of [`data-2026-11-10`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-11-10) (KB §69.105).
 - **The training labels** are `Landform_TrainingSamples_terrain` in [`exports/`](exports/README.md), with the same class codes 1–4. One class schema in the project swaps 2 and 3; the layer catalogue says which.
 - **What each raster is**, with its grid, data type, NoData and the release that holds it: [docs/rasters.md](docs/rasters.md).
 
@@ -274,8 +274,8 @@ Mars Project/
   Global60/, TypeArea/,    metadata sidecars, models (.ecd), raster attribute tables, layouts;
   Athabasca/               Global60/checks/ holds the DEM step chips
   DLModels/                the eleven deep-learning models' metadata and training plots (the
-                           weight files, 137-165 MB, of the first five are in the release's
-                           dl-models.zip; the six on the third label set are in no release yet)
+                           weight files, 137-165 MB, are in the release's
+                           dl-models-part*.zip, data-2026-11-10)
   LabeledObjects/          deep-learning export metadata (the chips are in the release)
   GpMessages/, ImportLog/  Pro's own geoprocessing logs
   review_sheets/           the guides to the candidate review on contact sheets and to the off-Tharsis
@@ -310,7 +310,7 @@ CITATION.cff               how to cite the project ("Cite this repository" on Gi
 
 ## Backup and restore
 
-The rasters are in two releases: [`data-2026-10-29`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-29) (10.8 GB: both type areas, Ius Chasma and Athabasca Valles, the ±60° landform maps with the U-Net maps and the seven-class maps, the five trained deep-learning models, the GUI SVM maps, caches, the GeoPackage with the ±60° candidates and the seven-class labels; it replaces `data-2026-10-21`) and [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) (74.4 GB: the ±60° derivatives, split into 1.9 GB pieces, and the deep-learning exports). [`restore.py`](restore.py) rebuilds the drive from a clone and those two releases, checking every file against its SHA-256:
+The rasters are in two releases: [`data-2026-11-10`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-11-10) (13.0 GB: both type areas, Ius Chasma and Athabasca Valles, the ±60° landform maps with the U-Net maps, the seven-class maps and the two v3 maps that lead the final, the extra runs' window maps, the eleven trained deep-learning models, the GUI SVM maps, caches, the GeoPackage with the ±60° candidates and the seven-class and v3 labels; it replaces `data-2026-10-29`) and [`derivatives-2026-10-06`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/derivatives-2026-10-06) (74.4 GB: the ±60° derivatives, split into 1.9 GB pieces, and the deep-learning exports). [`restore.py`](restore.py) rebuilds the drive from a clone and those two releases, checking every file against its SHA-256:
 
 ```bash
 python restore.py --dest E:\ --dry-run

@@ -57,7 +57,7 @@ the labels and nomenclature are in geographic `Mars_2000_(Sphere)`.
 | `Landform_TrainingSamples_v3_60_test` | Polygon | 1,652 | Mars_2000_(Sphere) | The v3 labels, held out in the same 14 blocks (1,652; KB §69.49, §69.56). | `Classcode`, `Classname`, `Classvalue`, `RED`, `GREEN`, `BLUE`, `Subtype`, `ProposalOID`, `OldOID`, `MappedBy`, `Split`, `Block` |
 | `Landform_TrainingSamples_offtharsis_draw` | Polygon | 6 | Mars_2000_(Sphere) | Off-Tharsis labels drawn blind to the maps, for scoring only: six volcanic edifice polygons at Nili and Meroe Paterae (block 4_0), drawn by the agent on CTX and the DEM hillshade, MappedBy 'agent CTX (KB 69.105)'; no apron (KB §69.63, §69.105). | `Classvalue`, `Classname`, `MappedBy`, `Notes` |
 
-**In the release GeoPackage only** (too big for git: GitHub refuses files over 100 MB): `mars_project_vectors.gpkg.zip` in [`data-2026-10-29`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-10-29):
+**In the release GeoPackage only** (too big for git: GitHub refuses files over 100 MB): `mars_project_vectors.gpkg.zip` in [`data-2026-11-10`](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-11-10):
 
-- `Landform_CraterCandidates_auto_60`: 465,354 rows. Closed depressions ≥ 1 km over ±60°, the X2 fine pass (KB §53.4; the tiles over 180° rerun, §54).
 - `Landform_ChannelCandidates_auto_60`: 969,822 rows. Channel segments over ±60°, the X2 fine pass (KB §53.4, §54).
+- `Landform_CraterCandidates_auto_60`: 465,354 rows. Closed depressions ≥ 1 km over ±60°, the X2 fine pass (KB §53.4; the tiles over 180° rerun, §54).

@@ -20,7 +20,7 @@ MP = DRIVE / "Mars Project"
 REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
             Path.home() / "OneDrive" / "Documents" / "GitHub" / "Mars_Terrestrial_GlobalMosaic_GIS-Data")
 URL = "https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/"
-DATA, DERIV = "data-2026-10-29", "derivatives-2026-10-06"     # data refreshed 2026-10-29, adds the seven-class maps (KB §57.4, §63.2, §66.10, §69.28)
+DATA, DERIV = "data-2026-11-10", "derivatives-2026-10-06"     # data refreshed 2026-11-10, adds the v3 maps (§69.105); 10-29 the seven-class maps (KB §57.4, §63.2, §66.10, §69.28)
 
 LANDFORM_VALUES = "Classes 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class"
 V2_VALUES = LANDFORM_VALUES.replace(", 255", ", 5 volcanic edifice, 6 apron, 7 fluvial channel, 255")
@@ -85,10 +85,12 @@ G60 = {
         "label proposals as proposed: 88.8 %, κ 0.856 on the 258 held-out rehearsal polygons. " + V2_VALUES + ".",
     "global60_landforms_svm_v3_200m.tif": "The seven-class SVM at 200 m on the v3 labels (KB §69.49): 10,269 training "
         "polygons, the same 14 held-out blocks. " + V2_VALUES + ".",
-    "global60_landforms_svm_v3_200m_mode11.tif": "The same, 11 × 11 majority filter: the v3 counterpart of the "
-        "seven-class SVM map above (scores: `logs\v3_maps.json`).",
-    "global60_landforms_unet_v3_200m_seamfix.tif": "The U-Net on the v3 labels (KB §69.49), two passes as `_seamfix` "
-        "above: the v3 counterpart of the seven-class U-Net map (scores: `logs\v3_maps.json`). " + V2_VALUES + ".",
+    "global60_landforms_svm_v3_200m_mode11.tif": "**A lead seven-class map** (layout 04c, D36): the same, 11 × 11 "
+        "majority filter; 39.1 %, κ 0.288 on the 237 held-out v2 polygons, 40.2 % on the probability sample. The rule "
+        "set before the run does not recommend it; it leads at the author's word (KB §69.81, §69.82).",
+    "global60_landforms_unet_v3_200m_seamfix.tif": "**A lead seven-class map** (layout 17c, D36): the U-Net on the "
+        "v3 labels, two passes as `_seamfix` above; 87.6 %, κ 0.844 on the 237 held-out v2 polygons, 49.6 % on the "
+        "probability sample; volcanic edifice 18.0 % of ±60° (KB §69.80–§69.82). " + V2_VALUES + ".",
     "global60_svm_s_ClassifyPixel.tif": "Not a product: a single 4,608 × 4,608 tile of zeros left by a "
         "`ClassifyPixelsUsingDeepLearning` run on 2026-10-26, during the v2p rehearsal's U-Net passes (KB §69.4).",
     "global60_svm_stack_200m_nothermal.tif": "Bands 1–3, 6, 7 of the classification stack, copied exactly (T1, KB §56).",
@@ -184,6 +186,12 @@ IN_DATA = ("global60_landforms", "smoke60", "global60_depression_density", "glob
 UNRELEASED = {n for n in G60 if n.startswith("global60_svm_stack_200m_")}
 # In no release and not a product: a tool's leftover the bundle's globs do not take
 STRAY = {"global60_svm_s_ClassifyPixel.tif"}
+# Layout 18's 5° grids (KB §69.30): not in a release, made in seconds by make_tes_block_scale.py
+TES5 = {"global60_tes_r5deg_%s.tif" % k: "T3 in 5° blocks (layout 18, KB §69.30): per block, the correlation r of "
+        "%s against TES thermal inertia over that block's measured TES cells; one cell per 5° block on the ±60° frame."
+        % w for k, w in (("nightIR", "THEMIS night IR"), ("index", "the diurnal-contrast index"),
+                         ("viking", "Viking red"))}
+G60.update(TES5)
 # Patched in place at the 180° column on 2026-10-14 (KB §54): the derivatives release holds the copy from before
 PATCHED = {"global60_dem.tif", "global60_slope_deg.tif", "global60_aspect.tif", "global60_hillshade.tif",
            "global60_svm_stack_200m.tif"}
@@ -235,6 +243,8 @@ def main():
         where = rel(DERIV, p.name + ".part*") if big else rel(DATA, "global60-classification-part*.zip")
         if p.name in UNRELEASED:
             where = "none (re-computable, KB §56)"
+        if p.name in TES5:
+            where = "none (re-computable in seconds: `make_tes_block_scale.py`, KB §69.30)"
         if p.name in STRAY:
             where = "none (not a product)"
         desc = G60.get(p.name)
@@ -297,6 +307,11 @@ Viking's 231.5 m global grid, so its x runs −180 to +180°E. The ±60° grids:
 the file is bigger), except the files marked as patched after the release and the three T1 stacks, which
 are in none.
 The `.ovr` pyramids are not in the releases: build them after restoring.
+
+**`Global60/v3_extras/`**, not listed file by file: the extra runs' classifications of the held-out windows (15°
+blocks with a 25 km margin), one folder per run (base, fresh, noth, cut, add, fresh2; rep once it ends), each block a
+`x5c_block_<lon>_<lat>.tif` on the 200 m grid, and the fresh runs' SVM models `svm_fresh*.ecd`. In
+{rel(DATA, "global60-classification-part*.zip")} (KB §69.82–§69.102, §69.105).
 
 ## ±60° analysis extent: `Mars Project/Global60/`
 
