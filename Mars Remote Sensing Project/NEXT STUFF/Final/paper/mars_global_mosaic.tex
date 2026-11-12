@@ -1498,7 +1498,9 @@ only once weighted to the first 14 blocks' class mix; the four- and seven-class 
 Any further tuning, of the deep-learning models above all, would
 turn the 14 held-out blocks into a validation set; a next round needs validation blocks of its own. The retraining
 against the extra edifice was judged on validation blocks of its own before the held-out ones, the first run here to
-be, and they gave the same verdict as the held-out blocks did afterwards. Finally, the manual review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709
+be. For its first training they gave the same verdict as the held-out blocks did afterwards; for its second they
+were the stricter, 3.4 points below the control where the held-out blocks showed no loss, a reminder that one draw of
+14 blocks holds its own class mix. Finally, the manual review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709
 depressions) has reached 3,791, with a precision (accepts over accepts and rejects) of 54\% on the 188 steep,
 rock-floored Ius channels, 50\% on 209 rock-floored Athabasca channels, and 10\% and 13\% on the closed depressions
 of the two areas. An automated process read the other 200 rock-floored Athabasca channels on CTX, at the author's
@@ -1517,8 +1519,9 @@ polygons were drawn. Material labels from photo interpretation, rather than land
 groups, would test what the thermal bands add, and THEMIS-derived inertia \citep{Fergason2006}, where it exists,
 would replace the display mosaics' local contrast. A check of the lava margins traced on Context Camera images
 \citep{Malin2007} by an analyst would make H1's test independent; H2 needs a study area that holds both fluvial and
-volcanic channels. The one retraining judged on validation blocks of its own (Section~\ref{sec:v3}) shows the form the next should
-take, with the learning rate fixed and not left to the tool, so that only the labels change; the models also need labels
+volcanic channels. The retraining judged on validation blocks of its own (Section~\ref{sec:v3}) shows the form the next should take,
+with the learning rate fixed and not left to the tool, as in its second training, so that only the labels change, and
+with predictions written for that training before it runs; the models also need labels
 checked by eye rather than placed by rule: the lead U-Net's lava tube (user's accuracy 8.0\%) and its volcanic
 edifice, denser inside none of ten small named edifices, come first. For the craters, a rim-based diameter or merged
 nested basins would recover the 23\% of missed craters that hold only a smaller closed basin, 72\% of the

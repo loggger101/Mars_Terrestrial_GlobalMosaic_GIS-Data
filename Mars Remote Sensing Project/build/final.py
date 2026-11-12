@@ -353,7 +353,7 @@ NEXT_STEPS = [
     "An analyst to check the traced margins for H1; H2 needs one area with both channel origins",
     "Seven classes: curb the SVM's fluvial channel and win back its Crater; correct the U-Net's small edifices and lava tube",
     "Have the probability sample labelled by an analyst who passes its check: unbiased accuracies and class areas",
-    "Material labels to price the thermal bands; validation blocks of their own before any further deep-learning tuning",
+    "Material labels to price the thermal bands; further deep-learning tuning on its own validation blocks, learning rate fixed",
 ]
 
 DATA = ("Every map, script and model: github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data, "

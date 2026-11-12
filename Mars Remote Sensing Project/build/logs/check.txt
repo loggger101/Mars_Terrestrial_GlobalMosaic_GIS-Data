@@ -1,10 +1,10 @@
-links checked:   584
+links checked:   589
 python files:    248
-files sized:     3126
+files sized:     3297
 counts checked:  9
-figures indexed: 371
-images shown:    142
-previews:        61
+figures indexed: 374
+images shown:    144
+previews:        62
 number checks:   5
 layers described: 37
 test files:      1
