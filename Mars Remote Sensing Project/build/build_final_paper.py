@@ -54,6 +54,10 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"final_img\svm_vs_unet_v2.png", "svm_vs_unet_v2.png"),
     (r"final_img\crater_sfd.png", "crater_sfd.png"),               # make_fig_crater_sfd.py (A10, KB §69.35; D42, §69.112)
     (r"final_img\map_agreement_v3.png", "map_agreement_v3.png"),   # make_fig_map_agreement.py --labels v3 (D42, KB §69.81, §69.112)
+    (r"interim_img\t2_density.png", "t2_density.png"),   # T2, KB §42.2 (D42, KB §69.115)
+    (r"interim_img\t4_channels.png", "t4_channels.png"),   # T4, KB §51.1 (D42, KB §69.115)
+    (r"interim_img\t6_stability.png", "t6_stability.png"),   # T6, KB §47.3 (D42, KB §69.115)
+    (r"interim_img\t7_orders.png", "t7_orders.png"),   # T7, KB §47.4 (D42, KB §69.115)
 ]
 # Two deck charts carry slide furniture a paper caption replaces: a title strip naming the gdb class and the KB
 # (ius_channel_candidates), a footnote citing the KB (global60_thermal). Pixels cut from the top and the bottom.

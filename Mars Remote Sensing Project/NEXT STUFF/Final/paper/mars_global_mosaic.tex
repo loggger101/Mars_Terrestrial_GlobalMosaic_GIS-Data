@@ -522,6 +522,23 @@ as expected: on \lAv\ Robbins counts 1,122 craters $\ge1$~km per $10^6$~km$^2$, 
 units of the Athabasca window; the detector reverses the order (4,966 on \lAv) by counting non-crater pits on flat lava.
 These densities are relative and are not converted to ages \citep{Hartmann2005}. %% KB §53.6, §42.2
 
+Figure~\ref{fig:t2} gives every unit of at least 20,000~km$^2$ in the two windows. At Athabasca the catalogue's order
+is the stratigraphic one, \lAv\ (184,458~km$^2$, 207 craters) below the Amazonian and Hesperian volcanic unit (1,760)
+and the Hesperian and Noachian transition unit (2,183); the young unit is at about half the density of the next, not
+far below it, because at 1:20\,M its polygon spans more ground than the flood lava itself. The detector counts 916
+depressions on \lAv, 4,966 per $10^6$~km$^2$, more than on the older volcanic unit (2,944). At Ius Chasma the two
+disagree as widely: the catalogue runs from 190 on the Hesperian transition unit to 7,383 on the Late Hesperian
+volcanic unit, the detector from 2,015 to 7,260, and it ranks the two highland units (7,017 and 7,260) above the
+volcanic plateau the catalogue puts first. The detector cannot rank surfaces by crater density. %% KB §42.2
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/t2_density.png}
+\caption{Test T2: craters of 1~km and more per $10^6$~km$^2$ on each SIM~3292 unit of at least 20,000~km$^2$ in the
+two type areas. Blue, the crater database \citep{Robbins2012}; orange, the closed depressions. The catalogue puts the
+flood-lava unit \lAv\ lowest at Athabasca Valles; the detector does not. Relative densities, not ages. \label{fig:t2}}
+\end{figure*}
+
 \subsection{Channels}
 
 At Ius Chasma, \texttt{Fill} raised 21.7\% of the scene by more than 1~m and the canyon floor by up to 2,077~m, and
@@ -561,6 +578,41 @@ thresholds from 1 to 500~km$^2$ at Ius Chasma, the highest order falls from 5 to
 the threshold, while only 30.8--36.7\% of first-order cells lie on slopes $\ge2^{\circ}$ (53.3\% of the window does); the
 rule set in advance (first-order streams at least half on $\ge2^{\circ}$) is met by no threshold. %% KB §47.4
 
+Table~\ref{tab:t7} and Figure~\ref{fig:t7} give the sweep. The highest-order streams lie almost wholly on flat
+ground at every threshold (0 to 7\% of their cells on slopes $\ge2^{\circ}$): they are the trunks routed across the
+plateau. A lower threshold adds orders without moving the first-order streams onto real slopes, so the order count
+reports the setting. %% KB §47.4
+
+\begin{table}[t]
+\centering
+\caption{Test T7 at Ius Chasma: the channel network against the catchment threshold \label{tab:t7}}
+\small
+\begin{tabular}{rrrr}
+\hline\hline
+Threshold & Highest & Order 1 on & Highest order \\
+(km$^2$) & order & $\ge2^{\circ}$ (\%) & on $\ge2^{\circ}$ (\%) \\
+\hline
+1 & 5 & 36.7 & 7 \\
+2.5 & 5 & 35.0 & 4 \\
+5 & 4 & 35.0 & 3 \\
+10 & 4 & 36.0 & 2 \\
+20 & 4 & 36.1 & 0 \\
+50 & 3 & 35.5 & 2 \\
+100 & 3 & 34.3 & 0 \\
+200 & 3 & 32.9 & 0 \\
+500 & 2 & 30.8 & 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/t7_orders.png}
+\caption{Test T7 at Ius Chasma. Left: the highest Strahler order against the catchment threshold. Right: the share of
+first-order stream cells on slopes of $2^{\circ}$ and more; the rule set in advance asked for half, and 53.3\% of the
+window is that steep. \label{fig:t7}}
+\end{figure*}
+
 H2 was tested at a first stage with the window standing in for origin (Ius fluvial, Athabasca volcanic). The volcanic
 window's 3,272 candidates are shallower, not steeper, than Ius's 2,588 (median 1.4 against 10.2~m~km$^{-1}$, difference
 $-8.85$~m~km$^{-1}$, interval $-15.69$ to $-5.76$), and the thermal z-score separates the two no better than chance (AUC
@@ -568,6 +620,24 @@ $-8.85$~m~km$^{-1}$, interval $-15.69$ to $-5.76$), and the thermal z-score sepa
 cannot settle H2. Stage two, the origins compared within one window, needs fluvial and volcanic channels in the same
 area, and neither type area holds both: Ius Chasma was chosen for water-cut channels, and the outflow forms of
 Athabasca Valles are draped by lava, their origin debated \citep{Burr2002, Jaeger2007}. %% KB §51.1, §69.63
+
+Figure~\ref{fig:t4} shows both cuts of the test. Gradient is the straight-line drop over the routed length on the
+100~m elevation model, the thermal response is each candidate's index as a z-score against 200,000 background pixels
+of its own window, the intervals come from a bootstrap over 50~km cells and the AUC is cross-validated five-fold. Kept
+to Strahler order 2 and higher (1,009 candidates at Ius, 1,803 at Athabasca), the medians are 3.8 and
+0.9~m~km$^{-1}$, a difference of $-2.87$~m~km$^{-1}$ ($-4.87$ to $-1.91$), and the AUC is 0.76 for gradient, 0.53 for
+the thermal response and 0.77 for both. The thermal difference between the windows is $d=-0.02$ ($-0.12$ to $+0.08$)
+on all candidates and $-0.08$ ($-0.20$ to $+0.04$) at order 2 and higher, and neither window's candidates differ from
+their own background (mean z $+0.04$ and $+0.03$): channels routed on the elevation model carry no thermal signature
+of their own in these mosaics. %% KB §51.1
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.88\textwidth]{figures/t4_channels.png}
+\caption{Test T4 (H2), stage one: the window stands in for origin. Left: the median gradient of the channel candidates
+at Ius Chasma and Athabasca Valles; H2 expected the volcanic window steeper. Right: how well gradient, the thermal
+response and both tell the two windows' candidates apart (cross-validated AUC; 0.5 is chance). \label{fig:t4}}
+\end{figure*}
 
 \subsection{Lava flows}
 
@@ -1064,12 +1134,57 @@ minus the support vector machine is $+9.5$ points on all the points, which is no
 on those 57, which is ($+5.1$ to $+63.7$). The U-Net stays far below its polygon scores; the support vector machine's sample score is level with its own.
 %% KB §69.80, §69.81, §69.82
 
+\subsection{Whether the composite's classes repeat (H3)} \label{sec:h3}
+
+H3 held that classes drawn from the co-registered composite would be more stable than those from any one input. It
+was tested at Ius Chasma with the unsupervised classifier of the first maps, Iso Cluster: for each input the classifier
+was trained once on the west half of the window and once on the east half, each was applied to the whole window, and
+the two maps were compared by the adjusted Rand index \citep{Hubert1985}, which is 1 for identical partitions and 0
+for chance agreement. Coherence, the share of four-neighbour pixel pairs that fall in one class, was measured beside
+it (Table~\ref{tab:t6}, Figure~\ref{fig:t6}). %% KB §47.3
+
+\begin{table}[t]
+\centering
+\caption{Test T6 (H3) at Ius Chasma: stability and coherence of Iso Cluster maps by input \label{tab:t6}}
+\small
+\begin{tabular}{lrr}
+\hline\hline
+Input & Stability (ARI) & Coherence \\
+\hline
+Viking colour & 0.611 & 0.841 \\
+Day infrared & 0.891 & 0.697 \\
+Night infrared & 0.866 & 0.543 \\
+4-band composite & 0.396 & 0.846 \\
+5-band composite & 0.378 & 0.798 \\
+\hline
+\end{tabular}
+\end{table}
+
+The composites give the least reproducible partitions and the most coherent maps. The four-band composite, the
+hypothesis' own input, repeats at 0.396 against 0.611 to 0.891 for the single inputs, and a fifth band lowers it to
+0.378; all five inputs keep 10 classes of at least 1\% of the window. The two properties pull apart for a plain
+reason. One band clustered alone is close to a density slice: its class limits are cuts along one axis, which two
+trainings place nearly alike, and the map speckles wherever the band is noisy (night infrared, coherence 0.543). With
+four or five bands the clusters are free to settle differently in each half, while each map taken alone follows
+terrain and is smooth. Stability across trainings is therefore not evidence that a class means something, and its
+absence is not evidence against: the composite's classes are the ones that follow the canyon walls, floor and plateau.
+The supervised runs later in the project showed the same pair of properties at larger scale, a second training of the
+lead U-Net moving its score by under a point and its edifice area by half (Section~\ref{sec:discussion}). %% KB §47.3, §47.5, §69.106
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/t6_stability.png}
+\caption{Test T6 (H3) at Ius Chasma. Left: agreement between Iso Cluster maps trained on the west and on the east half
+of the window (adjusted Rand index). Right: the share of neighbouring pixel pairs in one class. Blue, single inputs;
+orange, composites. \label{fig:t6}}
+\end{figure*}
+
 %% ====================================================================================================
 \section{Discussion} \label{sec:discussion}
 
 \subsection{The hypotheses}
 
-Table~\ref{tab:hyp} collects the verdicts. None of the four hypotheses is supported as stated. H3 failed outright: Iso
+Table~\ref{tab:hyp} collects the verdicts. None of the four hypotheses is supported as stated. H3 failed outright (Section~\ref{sec:h3}): Iso
 Cluster partitions trained on the west and east halves of Ius Chasma agree less for the four-band composite (adjusted
 Rand index 0.40, \citealt{Hubert1985}) than for any single input (0.61 to 0.89), although the composite gives the most
 coherent maps; a one-band clustering is close to a density slice and reproduces easily. H1 was tested on the geologic map's contacts and on margins traced on CTX, and is supported on neither; H2 was tested on stand-ins (windows) and
