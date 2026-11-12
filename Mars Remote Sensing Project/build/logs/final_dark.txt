@@ -1,0 +1,102 @@
+make_fig_final.py
+  dark final_img\dark\depressions_vs_robbins.png
+wrote F:\Mars Remote Sensing Project\build\final_img\depressions_vs_robbins.png
+  dark final_img\dark\svm_vs_unet.png
+wrote F:\Mars Remote Sensing Project\build\final_img\svm_vs_unet.png
+  dark final_img\dark\svm_vs_unet_v2.png
+wrote F:\Mars Remote Sensing Project\build\final_img\svm_vs_unet_v2.png
+  dark final_img\dark\r2_vs_polygons.png
+wrote F:\Mars Remote Sensing Project\build\final_img\r2_vs_polygons.png
+  dark final_img\dark\extra_runs.png
+wrote F:\Mars Remote Sensing Project\build\final_img\extra_runs.png
+  dark final_img\dark\svm_windows.png
+wrote F:\Mars Remote Sensing Project\build\final_img\svm_windows.png
+  dark final_img\dark\svm_vs_unet_v3.png
+wrote F:\Mars Remote Sensing Project\build\final_img\svm_vs_unet_v3.png
+make_fig_t5_traced.py
+  dark final_img\dark\t5_traced.png
+wrote F:\Mars Remote Sensing Project\build\final_img\t5_traced.png
+make_fig_baselines.py
+  dark final_img\dark\svm_baselines.png
+wrote F:\Mars Remote Sensing Project\build\final_img\svm_baselines.png
+make_fig_checks.py
+  dark final_img\dark\accuracy_200m.png
+wrote F:\Mars Remote Sensing Project\build\interim_img\accuracy_200m.png
+  dark final_img\dark\t2_density.png
+wrote F:\Mars Remote Sensing Project\build\interim_img\t2_density.png
+  dark final_img\dark\lava_relabel.png
+wrote F:\Mars Remote Sensing Project\build\interim_img\lava_relabel.png
+make_fig_tes.py
+  dark final_img\dark\tes_check.png
+wrote F:\Mars Remote Sensing Project\build\interim_img\tes_check.png
+make_fig_t8.py
+  dark final_img\dark\t8_enrichment.png
+wrote F:\Mars Remote Sensing Project\build\interim_img\t8_enrichment.png
+make_fig_t1_pro.py
+  dark final_img\dark\t1_pro.png
+wrote F:\Mars Remote Sensing Project\build\interim_img\t1_pro.png
+make_fig_tests567.py
+  dark final_img\dark\t5_margins.png
+wrote F:\Mars Remote Sensing Project\build\interim_img\t5_margins.png
+  dark final_img\dark\t6_stability.png
+wrote F:\Mars Remote Sensing Project\build\interim_img\t6_stability.png
+  dark final_img\dark\t7_orders.png
+wrote F:\Mars Remote Sensing Project\build\interim_img\t7_orders.png
+make_fig_global60.py
+1. read PROJECT-KNOWLEDGE.md section 28.10
+2. check the record against itself
+   index: 3 dusty, 4 rocky, difference -0.000925 (recorded -0.0009)
+   day IR     dusty: mean of 2 provinces 125.550, recorded 125.61
+   day IR     rocky: mean of 2 provinces 125.800, recorded 125.80
+   night IR   dusty: mean of 2 provinces 124.450, recorded 124.50
+   night IR   rocky: mean of 2 provinces 124.450, recorded 124.49
+   Viking red dusty: mean of 2 provinces 123.500, recorded 123.50
+   Viking red rocky: mean of 2 provinces 75.800, recorded 75.82
+3. draw
+  dark final_img\dark\global60_thermal.png
+   wrote F:\Mars Remote Sensing Project\build\pres1_img\global60_thermal.png
+make_fig_channels.py
+raised > 1 m: 21.7 %, max 2077 m
+plotting 2610 candidate lines, 15428 km
+  dark final_img\dark\ius_channel_candidates.png
+wrote F:\Mars Remote Sensing Project\build\pres1_img\ius_channel_candidates.png
+make_fig_crater_sfd.py
+  dark final_img\dark\crater_sfd.png
+wrote F:\Mars Remote Sensing Project\build\final_img\crater_sfd.png
+make_fig_t4.py
+  dark final_img\dark\t4_channels.png
+wrote F:\Mars Remote Sensing Project\build\interim_img\t4_channels.png
+  dark final_img\dark\15_athabasca_type_area.png
+  dark final_img\dark\10_global60_locator.png
+  dark final_img\dark\10_global60_locator__map.png
+  dark final_img\dark\10_global60_locator__legend.png
+  dark final_img\dark\08_global60_mosaic.png
+  dark final_img\dark\18_t3_tes_blocks.png
+  dark final_img\dark\07_global60_basins.png
+  dark final_img\dark\07_global60_basins__map.png
+  dark final_img\dark\07_global60_basins__legend.png
+  dark final_img\dark\12_global60_channels.png
+  dark final_img\dark\12_global60_channels__map.png
+  dark final_img\dark\12_global60_channels__legend.png
+  dark final_img\dark\04_global60_landforms.png
+  dark final_img\dark\04_global60_landforms__map.png
+  dark final_img\dark\04_global60_landforms__legend.png
+  dark final_img\dark\16_x5_detections.png
+  dark final_img\dark\16_x5_detections__map.png
+  dark final_img\dark\16_x5_detections__legend.png
+  dark final_img\dark\17_x5c_unet_provinces.png
+  dark final_img\dark\17_x5c_unet_provinces__map.png
+  dark final_img\dark\17_x5c_unet_provinces__legend.png
+  dark final_img\dark\04b_global60_landforms_v2.png
+  dark final_img\dark\04b_global60_landforms_v2__map.png
+  dark final_img\dark\04b_global60_landforms_v2__legend.png
+  dark final_img\dark\17b_unet_v2_provinces.png
+  dark final_img\dark\17b_unet_v2_provinces__map.png
+  dark final_img\dark\17b_unet_v2_provinces__legend.png
+  dark final_img\dark\17c_unet_v3_provinces.png
+  dark final_img\dark\17c_unet_v3_provinces__map.png
+  dark final_img\dark\17c_unet_v3_provinces__legend.png
+  dark final_img\dark\04c_global60_landforms_v3.png
+  dark final_img\dark\04c_global60_landforms_v3__map.png
+  dark final_img\dark\04c_global60_landforms_v3__legend.png
+  dark final_img\dark\15_athabasca_type_area.png

@@ -298,6 +298,18 @@ before the runs recommends a new map over its predecessor only if on both sets i
 least as high, no class loses 5 points or more of producer's accuracy on the 237 polygons and, for the U-Net, volcanic
 edifice covers no more of \pmsixty. %% KB §69.49, §69.76
 
+The lead U-Net maps volcanic edifice on 18.0\% of \pmsixty, where the geologic map's edifice units cover 1.1\%. Measured
+before anything was changed, the extra edifice is flat, uncratered plains: off the edifice, apron and landslide units,
+96.0\% of the 3.2~km cells the map calls edifice have relief of 150~m or less and 63.6\% pass the third label set's own
+test for Normal Ground. One retraining was set against that fault. New Normal Ground squares were placed by the third
+label set's rule for such a square, unchanged, with one condition added: every cell at least half volcanic edifice on
+the published map. Up to 8 went into a block, none into the 14 held-out blocks or into the 14 blocks of the first
+other draw, which serve here as validation blocks; 420 squares in 89 blocks were kept, placed by rule and looked at by
+no one. The model was trained on that draw's 9,366 training polygons and the 420 squares, with every setting of the
+script unchanged, so the draw's own model is its control on the validation blocks. One setting is not the script's:
+the training tool finds a learning rate for itself at the start of each training. Five predictions and the rule for
+reading them were written before the squares were drawn (Appendix~\ref{app:predictions}). %% KB §69.108, §69.125
+
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/block_split.png}
@@ -1136,6 +1148,23 @@ U-Net map, and 3 on the other, and only 30.5\% of the U-Net's edifice lies on th
 accuracy is 8.0\% on the 237 polygons and 18.3\% on the 1,652. A larger majority filter does not help the support vector
 machine: its accuracy falls from 37.4\% raw to 36.3\% at 13 pixels and 33.2\% at 127. %% KB §69.80, §69.81
 
+The retraining against the extra volcanic edifice was judged first on its validation blocks and then on the held-out
+ones, and four of its five predictions failed (Appendix~\ref{app:predictions}). On the validation blocks it scores
+71.3\% against the control's 86.6\%, and maps edifice on 9.0\% of the ground off the edifice units against 17.5\%. On
+the 237 and the 1,652 held-out polygons it scores 75.1\% and 73.0\%, against 87.5\% and 86.4\% for the lead model on
+the same windows, both differences resolved with the blocks resampled ($-20.7$ to $-6.8$ and $-20.6$ to $-7.4$
+points). Off the edifice units its edifice covers 8.9\% of the windows' ground, where three trainings without the
+squares (the lead model, its second training, and the other draw's model) give 15.4\%, 7.8\% and 13.5\%; its producer's
+accuracy of volcanic edifice on the 1,652 polygons is 56.8\%, against 79.1\% and 69.1\%. By the rule written before the
+run the retrained model is not recommended, and the lead map is not changed. The run does not show what the squares
+cost, though, because the training went unlike every other. The learning rate the tool found for it was
+$2.5\times10^{-3}$, where the seven other trainings behind the third label set were given $2.5\times10^{-4}$ to
+$1.0\times10^{-3}$, and its accuracy on its own validation chips peaked at 67.2\% in the 13th epoch of 30, where the
+others end at 81 to 92\%. Its map holds almost no lava tube (0.1\% of the windows' ground against 2.5 to 3.2\%; producer's
+accuracy 0.6\% on the 1,652 polygons) and more than twice the apron (16.0\% against 6.2 to 7.4\%), changes that 420
+squares of Normal Ground give no reason for. The labels and the rate changed together, and one training cannot tell
+them apart. %% KB §69.125
+
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/04c_global60_landforms_v3.png}
@@ -1157,7 +1186,7 @@ polygons. \label{fig:unet8}}
 \includegraphics[width=0.9\textwidth]{figures/extra_runs.png}
 \caption{The U-Net by what its training labels held: each row a window map trained once with the published model's
 settings, scored on the 237 v2 and the 1,652 v3 held-out polygons; the first row is the published map on the second
-label set, the last the third label set trained a second time. Dots are scores, lines 95\% intervals with the 14 blocks resampled. A: accuracy; B: balanced accuracy.
+label set, the last two the third label set trained a second time and the retraining with Normal Ground squares on the extra edifice. Dots are scores, lines 95\% intervals with the 14 blocks resampled. A: accuracy; B: balanced accuracy.
 \label{fig:extraruns}}
 \end{figure*}
 
@@ -1444,7 +1473,9 @@ Nor do the polygon scores fix the class areas. Trained a second time with every 
 within a point of the first on both polygon sets, but over the held-out windows its volcanic edifice covers 8.7\% of
 the ground against 16.3\%, the difference going mostly to Crater and Normal Ground. At the 39 labelled sample points
 inside the windows the second training's map calls 4 volcanic edifice against 10, nearer the automated labels' 1, too
-few points to choose between them. The edifice share of \pmsixty\ (18.0\%) is one training's. %% KB §69.106
+few points to choose between them. The edifice share of \pmsixty\ (18.0\%) is one training's. A retraining with
+Normal Ground squares placed on the extra edifice did not settle it: its training went unlike the others, so its
+smaller edifice share (8.9\% off the edifice units) cannot be laid to the squares (Section~\ref{sec:v3}). %% KB §69.106, §69.125
 
 The held-out blocks have now been used three times, by the four-class models, the seven-class ones and those on the
 third label set. That set was requested after the seven-class scores were read, so any gain on it is not a fresh test,
@@ -1454,7 +1485,9 @@ so its score is not tied to the first 14, though on the second its lead over the
 only once weighted to the first 14 blocks' class mix; the four- and seven-class scores still rest on the first 14.
 %% KB §69.84, §69.96, §69.102
 Any further tuning, of the deep-learning models above all, would
-turn the 14 held-out blocks into a validation set; a next round needs validation blocks of its own. Finally, the manual review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709
+turn the 14 held-out blocks into a validation set; a next round needs validation blocks of its own. The retraining
+against the extra edifice was judged on validation blocks of its own before the held-out ones, the first run here to
+be, and they gave the same verdict as the held-out blocks did afterwards. Finally, the manual review of the 9,287 type-area candidates (2,610 and 3,283 channels, 1,685 and 1,709
 depressions) has reached 3,791, with a precision (accepts over accepts and rejects) of 54\% on the 188 steep,
 rock-floored Ius channels, 50\% on 209 rock-floored Athabasca channels, and 10\% and 13\% on the closed depressions
 of the two areas. An automated process read the other 200 rock-floored Athabasca channels on CTX, at the author's
@@ -1473,7 +1506,8 @@ polygons were drawn. Material labels from photo interpretation, rather than land
 groups, would test what the thermal bands add, and THEMIS-derived inertia \citep{Fergason2006}, where it exists,
 would replace the display mosaics' local contrast. A check of the lava margins traced on Context Camera images
 \citep{Malin2007} by an analyst would make H1's test independent; H2 needs a study area that holds both fluvial and
-volcanic channels. The deep-learning models need validation blocks of their own before any retraining, and labels
+volcanic channels. The one retraining judged on validation blocks of its own (Section~\ref{sec:v3}) shows the form the next should
+take, with the learning rate fixed and not left to the tool, so that only the labels change; the models also need labels
 checked by eye rather than placed by rule: the lead U-Net's lava tube (user's accuracy 8.0\%) and its volcanic
 edifice, denser inside none of ten small named edifices, come first. For the craters, a rim-based diameter or merged
 nested basins would recover the 23\% of missed craters that hold only a smaller closed basin, 72\% of the
@@ -1507,7 +1541,9 @@ the set was asked for after the earlier scores were read; on two draws of 14 oth
 it scores 86.6\% and 85.4\%, and its gain over the second label set comes about equally from cutting the polygons and from adding
 new ones. The support vector machine gains nothing resolved (39.1\%,
 \kap\,0.288; 40.2\% on the sample) and fails the rule set for it, held by one pixel's seven bands rather than by its
-sample of 1,000 pixels a class or by its labels; both lead this paper.
+sample of 1,000 pixels a class or by its labels; both lead this paper. A retraining of the U-Net with Normal Ground
+squares on its extra volcanic edifice failed four of five predictions (73.0\% on the 1,652 polygons) in a training
+that went unlike the others, and is reported as a test.
 \item Lava flows are not separable in these bands; the geologic map remains the lava-flow reference; H1 is not supported on 1,476~km of margins traced on CTX either, and H2 awaits a window that holds both fluvial and volcanic channels.
 \end{enumerate}
 
@@ -1621,10 +1657,10 @@ flanks of the Tharsis volcanoes, so those deposits pass without it, which added 
 
 Each run behind the lead maps had its predictions, and where a choice hung on it a rule, written into its script
 before it ran; nothing was adjusted afterwards, and each prediction is reported held or not held whichever way it
-fell. They are listed here in the order the runs were made, with the number that decided each. Of the 28 below, 20
+fell. They are listed here in the order the runs were made, with the number that decided each. Of the 33 below, 21
 held. A prediction that failed is as much a result as one that held: the U-Net's score on the third label set was
 above the range written for it, which is why a leak was sought before the score was believed
-(Section~\ref{sec:v3}). %% KB §69.76, §69.81, §69.84, §69.86, §69.88, §69.93, §69.96, §69.106
+(Section~\ref{sec:v3}). %% KB §69.76, §69.81, §69.84, §69.86, §69.88, §69.93, §69.96, §69.106, §69.108, §69.125
 
 \emph{The maps on the third label set} (nine, written while the U-Net trained and before any map existed; five
 held). The 237 polygons are the second label set's held-out polygons, the 1,652 the third's.
@@ -1684,6 +1720,24 @@ bands does. \emph{Held}, narrowly: 26.8\% against 28.1\%.
 at 2.09 where the first reached 23.25, so the late rises belong to a training and not to the labels.
 \end{enumerate}
 
+\emph{Normal Ground squares against the extra volcanic edifice} (five; one held). Validation is on the 14 blocks of
+the first other draw, with that draw's model as the control; the test is on the 14 held-out blocks.
+\begin{enumerate}
+\item[E1] Validation: its accuracy is within 3 points of the control's 86.6\%. \emph{Not held}: 71.3\%, 15.3 points
+below.
+\item[E2] Validation: it maps volcanic edifice on less of the ground off the edifice units than the control.
+\emph{Held}: 9.0\% against 17.5\%.
+\item[E3] Test: its accuracy is within 3 points of the lead model's on each polygon set. \emph{Not held}: 12.4 and
+13.4 points below.
+\item[E4] Test: off the edifice units its edifice covers less of the windows than in any of three trainings without
+the squares. \emph{Not held}: 8.9\%, less than the lead model's 15.4\% and the other draw's 13.5\% but more than the
+second training's 7.8\%.
+\item[E5] Test: its producer's accuracy of volcanic edifice on the 1,652 polygons is no more than 10 points below
+the lower of the lead model's two trainings. \emph{Not held}: 56.8\%, where the floor was 59.1\%.
+\end{enumerate}
+The training went unlike the others (Section~\ref{sec:v3}), so the four failures are this run's and are not laid to
+the squares. %% KB §69.125
+
 \section{The U-Net trainings class by class and block by block} \label{app:perclass}
 
 Tables~\ref{tab:perclass} and~\ref{tab:perblock} give what the text summarises: every U-Net training on the seven
@@ -1691,38 +1745,39 @@ classes, scored on the same windows by the same scorer. ``Second set'' is the U-
 ``third set'' the lead model's labels and settings classified on the windows in one pass, which is why its figures
 differ by a few tenths from the lead map's; ``trained again'' the same labels and settings a second time; ``no
 thermal'' the same labels on five bands; ``cut only'' and ``added only'' the two halves of the third label set's
-change (Section~\ref{sec:v3}). Each column is one training. %% KB §69.110
+change (Section~\ref{sec:v3}); ``with squares'' the retraining against the extra edifice, trained on the first
+other draw's polygons and the 420 squares. Each column is one training. %% KB §69.110, §69.125
 \begin{table*}[t]
 \centering
 \caption{Producer's accuracy by class, and the overall scores, of each U-Net training (per cent; $\kappa$ as a fraction). \label{tab:perclass}}
 \small
-\begin{tabular}{lrrrrrr}
+\begin{tabular}{lrrrrrrr}
 \hline\hline
- & second set & third set & trained again & no thermal & cut only & added only \\
+ & second set & third set & trained again & no thermal & cut only & added only & with squares \\
 \hline
-\multicolumn{7}{l}{\emph{On the 237 polygons}} \\
-Crater & 57.8 & 97.4 & 98.4 & 98.3 & 80.4 & 97.1 \\
-steep/windy hills & 46.8 & 86.6 & 97.7 & 62.1 & 76.6 & 49.2 \\
-lava tube & 22.4 & 90.5 & 95.6 & 83.1 & 44.8 & 51.9 \\
-Normal Ground & 69.7 & 98.6 & 98.8 & 98.9 & 97.5 & 98.0 \\
-volcanic edifice & 81.3 & 76.3 & 66.6 & 87.1 & 94.6 & 86.4 \\
-apron & 77.4 & 87.4 & 90.4 & 61.1 & 85.4 & 89.2 \\
-fluvial channel & 43.0 & 56.4 & 50.0 & 56.4 & 67.6 & 71.9 \\
-Accuracy & 69.0 & 87.5 & 86.8 & 81.2 & 86.9 & 89.3 \\
-Balanced accuracy & 56.9 & 84.7 & 85.4 & 78.2 & 78.1 & 77.6 \\
-$\kappa$ & 0.606 & 0.843 & 0.833 & 0.763 & 0.834 & 0.864 \\
+\multicolumn{8}{l}{\emph{On the 237 polygons}} \\
+Crater & 57.8 & 97.4 & 98.4 & 98.3 & 80.4 & 97.1 & 82.8 \\
+steep/windy hills & 46.8 & 86.6 & 97.7 & 62.1 & 76.6 & 49.2 & 47.8 \\
+lava tube & 22.4 & 90.5 & 95.6 & 83.1 & 44.8 & 51.9 & 3.4 \\
+Normal Ground & 69.7 & 98.6 & 98.8 & 98.9 & 97.5 & 98.0 & 98.7 \\
+volcanic edifice & 81.3 & 76.3 & 66.6 & 87.1 & 94.6 & 86.4 & 53.8 \\
+apron & 77.4 & 87.4 & 90.4 & 61.1 & 85.4 & 89.2 & 83.2 \\
+fluvial channel & 43.0 & 56.4 & 50.0 & 56.4 & 67.6 & 71.9 & 24.6 \\
+Accuracy & 69.0 & 87.5 & 86.8 & 81.2 & 86.9 & 89.3 & 75.1 \\
+Balanced accuracy & 56.9 & 84.7 & 85.4 & 78.2 & 78.1 & 77.6 & 56.3 \\
+$\kappa$ & 0.606 & 0.843 & 0.833 & 0.763 & 0.834 & 0.864 & 0.679 \\
 \hline
-\multicolumn{7}{l}{\emph{On the 1,652 polygons}} \\
-Crater & 52.5 & 94.0 & 92.8 & 94.2 & 72.5 & 95.8 \\
-steep/windy hills & 42.4 & 80.6 & 92.3 & 59.0 & 68.6 & 44.2 \\
-lava tube & 4.9 & 46.7 & 27.4 & 15.0 & 7.6 & 26.4 \\
-Normal Ground & 66.9 & 97.7 & 98.0 & 98.0 & 93.6 & 96.0 \\
-volcanic edifice & 82.8 & 79.1 & 69.1 & 89.7 & 96.8 & 88.8 \\
-apron & 73.8 & 82.0 & 85.4 & 54.7 & 81.5 & 85.6 \\
-fluvial channel & 47.0 & 62.4 & 54.8 & 60.6 & 65.6 & 71.0 \\
-Accuracy & 65.8 & 86.4 & 85.5 & 78.7 & 82.3 & 88.0 \\
-Balanced accuracy & 52.9 & 77.5 & 74.2 & 67.3 & 69.5 & 72.5 \\
-$\kappa$ & 0.565 & 0.827 & 0.815 & 0.731 & 0.774 & 0.845 \\
+\multicolumn{8}{l}{\emph{On the 1,652 polygons}} \\
+Crater & 52.5 & 94.0 & 92.8 & 94.2 & 72.5 & 95.8 & 77.3 \\
+steep/windy hills & 42.4 & 80.6 & 92.3 & 59.0 & 68.6 & 44.2 & 43.2 \\
+lava tube & 4.9 & 46.7 & 27.4 & 15.0 & 7.6 & 26.4 & 0.6 \\
+Normal Ground & 66.9 & 97.7 & 98.0 & 98.0 & 93.6 & 96.0 & 98.2 \\
+volcanic edifice & 82.8 & 79.1 & 69.1 & 89.7 & 96.8 & 88.8 & 56.8 \\
+apron & 73.8 & 82.0 & 85.4 & 54.7 & 81.5 & 85.6 & 74.4 \\
+fluvial channel & 47.0 & 62.4 & 54.8 & 60.6 & 65.6 & 71.0 & 27.9 \\
+Accuracy & 65.8 & 86.4 & 85.5 & 78.7 & 82.3 & 88.0 & 73.0 \\
+Balanced accuracy & 52.9 & 77.5 & 74.2 & 67.3 & 69.5 & 72.5 & 54.1 \\
+$\kappa$ & 0.565 & 0.827 & 0.815 & 0.731 & 0.774 & 0.845 & 0.648 \\
 \hline
 \end{tabular}
 \end{table*}
@@ -1731,28 +1786,29 @@ $\kappa$ & 0.565 & 0.827 & 0.815 & 0.731 & 0.774 & 0.845 \\
 \centering
 \caption{Accuracy on the 237 polygons in each of the 14 held-out $15^{\circ}$ blocks (per cent). A block is named by its south-west corner in units of $15^{\circ}$, longitude (negative to the west) then latitude. \label{tab:perblock}}
 \small
-\begin{tabular}{lrrrrrr}
+\begin{tabular}{lrrrrrrr}
 \hline\hline
-Block & second set & third set & trained again & no thermal & cut only & added only \\
+Block & second set & third set & trained again & no thermal & cut only & added only & with squares \\
 \hline
-$-11,\,1$ & 77.7 & 99.9 & 100.0 & 100.0 & 99.2 & 99.7 \\
-$-11,\,2$ & 54.3 & 100.0 & 100.0 & 100.0 & 99.4 & 99.5 \\
-$-3,\,-1$ & 73.7 & 93.8 & 89.3 & 93.5 & 91.7 & 92.8 \\
-$-4,\,-1$ & 39.2 & 84.9 & 90.8 & 79.4 & 76.0 & 60.4 \\
-$-4,\,-2$ & 31.8 & 45.4 & 53.8 & 36.0 & 44.6 & 38.1 \\
-$-5,\,-1$ & 89.7 & 96.7 & 98.9 & 52.6 & 95.2 & 56.7 \\
-$-6,\,1$ & 10.6 & 56.7 & 78.7 & 79.8 & 50.7 & 47.7 \\
-$-9,\,-1$ & 68.6 & 77.0 & 74.0 & 56.2 & 84.6 & 83.4 \\
-$-9,\,0$ & 96.3 & 94.7 & 93.9 & 96.9 & 97.8 & 97.5 \\
-$0,\,0$ & 13.9 & 98.3 & 98.4 & 99.2 & 36.5 & 97.9 \\
-$1,\,0$ & 14.7 & 77.5 & 72.8 & 72.4 & 58.7 & 85.9 \\
-$4,\,0$ & 66.7 & 88.2 & 99.7 & 94.0 & 99.9 & 94.2 \\
-$4,\,2$ & 11.9 & 47.2 & 20.2 & 35.0 & 27.8 & 22.7 \\
-$5,\,-2$ & 74.2 & 89.1 & 92.7 & 93.2 & 91.4 & 95.3 \\
+$-11,\,1$ & 77.7 & 99.9 & 100.0 & 100.0 & 99.2 & 99.7 & 99.2 \\
+$-11,\,2$ & 54.3 & 100.0 & 100.0 & 100.0 & 99.4 & 99.5 & 100.0 \\
+$-3,\,-1$ & 73.7 & 93.8 & 89.3 & 93.5 & 91.7 & 92.8 & 81.9 \\
+$-4,\,-1$ & 39.2 & 84.9 & 90.8 & 79.4 & 76.0 & 60.4 & 49.6 \\
+$-4,\,-2$ & 31.8 & 45.4 & 53.8 & 36.0 & 44.6 & 38.1 & 23.2 \\
+$-5,\,-1$ & 89.7 & 96.7 & 98.9 & 52.6 & 95.2 & 56.7 & 69.6 \\
+$-6,\,1$ & 10.6 & 56.7 & 78.7 & 79.8 & 50.7 & 47.7 & 62.2 \\
+$-9,\,-1$ & 68.6 & 77.0 & 74.0 & 56.2 & 84.6 & 83.4 & 61.9 \\
+$-9,\,0$ & 96.3 & 94.7 & 93.9 & 96.9 & 97.8 & 97.5 & 87.5 \\
+$0,\,0$ & 13.9 & 98.3 & 98.4 & 99.2 & 36.5 & 97.9 & 71.6 \\
+$1,\,0$ & 14.7 & 77.5 & 72.8 & 72.4 & 58.7 & 85.9 & 29.9 \\
+$4,\,0$ & 66.7 & 88.2 & 99.7 & 94.0 & 99.9 & 94.2 & 88.8 \\
+$4,\,2$ & 11.9 & 47.2 & 20.2 & 35.0 & 27.8 & 22.7 & 4.8 \\
+$5,\,-2$ & 74.2 & 89.1 & 92.7 & 93.2 & 91.4 & 95.3 & 83.1 \\
 \hline
 \end{tabular}
 \end{table*}
 
+\clearpage
 \bibliography{references}{}
 \bibliographystyle{aasjournalv7}
 

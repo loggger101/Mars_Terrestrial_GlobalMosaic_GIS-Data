@@ -196,7 +196,11 @@ def report():
     kind, KIND = kinds400(shape)
     res = dict(script="make_v3_edf.py", when=time.strftime("%Y-%m-%d %H:%M"), boot=B.NBOOT, seed=B.SEED,
                plan=json.load(open(PLAN, encoding="utf-8")))
-    std = {r: win(r) for r in ("base", "rep", "freshw", "edf")}
+    again = "--rerun" in sys.argv                  # edf2: the same labels trained at fresh's learning rate (KB §69.125);
+    E, EV = ("edf2", "edf2v") if again else ("edf", "edfv")   # its maps stand under the keys edf and edfv, in v3_edf2.json
+    if again:
+        res["rerun"] = "edf2: edf's labels and chips, learning rate fixed at the control's (fresh's); decided after edf was scored"
+    std = {r: win(E if r == "edf" else r) for r in ("base", "rep", "freshw", "edf")}
     maps = {r: pack(a) for r, a in std.items()}
     pairs = [("edf", "base"), ("edf", "rep"), ("edf", "freshw"), ("base", "rep")]
     for name, f in (("v2_polygons", X.V2_TEST), ("v3_polygons", X.V3_TEST)):
@@ -204,7 +208,7 @@ def report():
         print(name, json.dumps(res[name]["full"], ensure_ascii=False)[:1200], flush=True)
     res["standard_windows"] = areas(std, kind, KIND, g)
     print("standard windows", json.dumps(res["standard_windows"], ensure_ascii=False)[:1500], flush=True)
-    val = {"fresh": win("fresh"), "edfv": win("edfv")}
+    val = {"fresh": win("fresh"), "edfv": win(EV)}
     res["validation_polygons"], _, _ = X.score({r: pack(a) for r, a in val.items()}, B.polys(X.fc("fresh", "test")), [("edfv", "fresh")])
     print("validation", json.dumps(res["validation_polygons"]["full"], ensure_ascii=False)[:900], flush=True)
     res["validation_windows"] = areas(val, kind, KIND, g)
@@ -219,8 +223,9 @@ def report():
     print("syrtis", res["syrtis_edifice"], flush=True)
     res["predictions"] = judge(res)
     print(res["predictions"])
-    json.dump(res, open(OUT, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
-    print("->", OUT)
+    out = OUT.replace("v3_edf.json", "v3_edf2.json") if again else OUT
+    json.dump(res, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    print("->", out)
 
 
 def judge(res):

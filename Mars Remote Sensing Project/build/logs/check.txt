@@ -1,0 +1,17 @@
+links checked:   580
+python files:    248
+files sized:     3125
+counts checked:  9
+figures indexed: 370
+images shown:    140
+previews:        60
+number checks:   5
+layers described: 37
+test files:      1
+FAIL not in docs/figures.md: Mars Project\DLModels\global60_unet_x5c_v3e_20261111\ModelCharacteristics\loss_graph.png
+FAIL not in docs/figures.md: Mars Project\DLModels\global60_unet_x5c_v3e_20261111\ModelCharacteristics\show_results.png
+FAIL numbers not in the record: Mars Remote Sensing Project\NEXT STUFF\Final\paper\mars_global_mosaic.tex
+    NOT IN THE RECORD (2):
+      71.6       in: \hline\hline Block & second set & third set & trained again & no thermal & cut only & adde
+      81.9       in: \hline\hline Block & second set & third set & trained again & no thermal & cut only & adde
+3 FAILED

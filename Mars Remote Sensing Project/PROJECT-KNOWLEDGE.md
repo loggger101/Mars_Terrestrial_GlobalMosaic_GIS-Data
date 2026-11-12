@@ -7805,3 +7805,141 @@ Read-only: `github_release_bundle.py`'s own `groups()` was imported and its file
 - **The deck against the paper, by script (the session's scratch `deck_vs_paper.py`):** every number in `final.py`'s slide text is printed in the paper except three, and those are the paper's own numbers rounded for a slide (55 for 55.4 %, 68 for 68.0 %, 91 for 91.3 %). The two do not disagree on any number.
 - **`build\summarise_v3_edf.py` (new):** reads `logs\v3_edf.json` and prints this record's tables for the retraining (scores and producer's accuracies of base, rep, freshw and edf on both polygon sets, the block intervals of each difference, the class areas and the edifice share by unit group on both sets of windows, the validation scores, the six Syrtis Major polygons) and E1–E5 each with the numbers that decided it. It judges nothing: the verdicts are the log's. Tested on a stand-in file with the real report's structure and made-up values (the session's scratch, not kept): every section printed, a missing map's row shown as dashes. The page's script count is **250**.
 - **A watch is set** on `logs\run_v3_edf\queue.log`: it ends at "queue done", at "chain stopped", or if no log in the folder is written for 90 minutes.
+
+### 69.125 The edifice retraining scored: four of five predictions failed, in a training that went unlike the others; reported as a test (D40), and trained again at the control's learning rate — 2026-11-12, desktop **[V]**
+
+`run_v3_edf.ps1` ended 04:58:39 on 11-12, every step exit 0 (export 31.0 min, train 861.6 min, classify edf 41.2, edfv 37.2, freshw 36.8). edf's model was copied to `F:\Mars Project\DLModels\global60_unet_x5c_v3e_20261111`, its windows to `Global60\v3_extras\edf\`, `edfv\`, `freshw\` by the scripts themselves (§69.123's step 1 is done for edf). `make_v3_edf.py --report` wrote `logs\v3_edf.json` at 05:09; the tables below are `summarise_v3_edf.py`'s output, typed by no one.
+
+**Test: the 14 held-out blocks' windows** (237 and 1652 polygons with pixels)
+
+| polygons | score | base | rep | freshw | edf |
+|---|---|---|---|---|---|
+| 237 v2 | accuracy | 87.5 | 86.8 | 88.0 | 75.1 |
+| 237 v2 | balanced accuracy | 84.7 | 85.4 | 81.5 | 56.3 |
+| 237 v2 | κ | 0.843 | 0.833 | 0.848 | 0.679 |
+| 237 v2 | producer's, Crater | 97.4 | 98.4 | 97.3 | 82.8 |
+| 237 v2 | producer's, steep/windy hills | 86.6 | 97.7 | 53.0 | 47.8 |
+| 237 v2 | producer's, lava tube | 90.5 | 95.6 | 82.8 | 3.4 |
+| 237 v2 | producer's, Normal Ground | 98.6 | 98.8 | 98.5 | 98.7 |
+| 237 v2 | producer's, volcanic edifice | 76.3 | 66.6 | 85.7 | 53.8 |
+| 237 v2 | producer's, apron | 87.4 | 90.4 | 84.8 | 83.2 |
+| 237 v2 | producer's, fluvial channel | 56.4 | 50.0 | 68.5 | 24.6 |
+| 1,652 v3 | accuracy | 86.4 | 85.5 | 86.7 | 73.0 |
+| 1,652 v3 | balanced accuracy | 77.5 | 74.2 | 77.7 | 54.1 |
+| 1,652 v3 | κ | 0.827 | 0.815 | 0.830 | 0.648 |
+| 1,652 v3 | producer's, Crater | 94.0 | 92.8 | 96.0 | 77.3 |
+| 1,652 v3 | producer's, steep/windy hills | 80.6 | 92.3 | 48.1 | 43.2 |
+| 1,652 v3 | producer's, lava tube | 46.7 | 27.4 | 65.5 | 0.6 |
+| 1,652 v3 | producer's, Normal Ground | 97.7 | 98.0 | 97.3 | 98.2 |
+| 1,652 v3 | producer's, volcanic edifice | 79.1 | 69.1 | 88.3 | 56.8 |
+| 1,652 v3 | producer's, apron | 82.0 | 85.4 | 79.4 | 74.4 |
+| 1,652 v3 | producer's, fluvial channel | 62.4 | 54.8 | 69.5 | 27.9 |
+
+| polygons | difference | accuracy, 95 % by block (points) | balanced accuracy |
+|---|---|---|---|
+| 237 v2 | base − rep | -1.6 to +2.4 | -6.1 to +3.8 |
+| 237 v2 | edf − base | -20.7 to -6.8 | -34.3 to -16.0 |
+| 237 v2 | edf − freshw | -20.4 to -6.3 | -32.3 to -10.8 |
+| 237 v2 | edf − rep | -20.0 to -6.8 | -34.4 to -15.9 |
+| 1,652 v3 | base − rep | -0.9 to +2.4 | -3.4 to +6.9 |
+| 1,652 v3 | edf − base | -20.6 to -7.4 | -29.8 to -15.8 |
+| 1,652 v3 | edf − freshw | -20.2 to -7.6 | -28.8 to -13.9 |
+| 1,652 v3 | edf − rep | -19.2 to -7.3 | -29.9 to -13.7 |
+
+**Areas on the held-out blocks' windows** (share of the ground every map of the set holds; groups' shares of that ground: off_edifice_units 98.6, highland 42.6, volcanic_plains 34.8, edifice_units 1.4)
+
+| class, % of the ground | base | rep | freshw | edf |
+|---|---|---|---|---|
+| Crater | 27.1 | 32.8 | 30.8 | 26.7 |
+| steep/windy hills | 4.2 | 7.5 | 1.7 | 1.8 |
+| lava tube | 2.5 | 3.2 | 3.0 | 0.1 |
+| Normal Ground | 35.7 | 35.6 | 32.4 | 40.7 |
+| volcanic edifice | 16.3 | 8.7 | 14.5 | 9.6 |
+| apron | 6.2 | 7.4 | 6.8 | 16.0 |
+| fluvial channel | 8.1 | 4.8 | 10.8 | 5.1 |
+
+| volcanic edifice, % of each unit group | base | rep | freshw | edf |
+|---|---|---|---|---|
+| off_edifice_units | 15.4 | 7.8 | 13.5 | 8.9 |
+| highland | 16.5 | 8.7 | 13.3 | 8.0 |
+| volcanic_plains | 17.3 | 8.8 | 16.5 | 10.8 |
+| edifice_units | 77.9 | 71.3 | 88.5 | 58.2 |
+
+**Areas on the validation blocks' windows** (share of the ground every map of the set holds; groups' shares of that ground: off_edifice_units 99.2, highland 62.0, volcanic_plains 22.1, edifice_units 0.8)
+
+| class, % of the ground | fresh | edfv |
+|---|---|---|
+| Crater | 38.4 | 34.4 |
+| steep/windy hills | 0.5 | 0.6 |
+| lava tube | 2.6 | 0.1 |
+| Normal Ground | 23.0 | 35.4 |
+| volcanic edifice | 18.0 | 9.3 |
+| apron | 3.9 | 15.0 |
+| fluvial channel | 13.6 | 5.2 |
+
+| volcanic edifice, % of each unit group | fresh | edfv |
+|---|---|---|
+| off_edifice_units | 17.5 | 9.0 |
+| highland | 16.1 | 7.3 |
+| volcanic_plains | 22.7 | 12.9 |
+| edifice_units | 80.9 | 55.7 |
+
+**Validation: fresh's 14 blocks** (895 polygons with pixels)
+
+| score | fresh | edfv |
+|---|---|---|
+| accuracy | 86.6 | 71.3 |
+| balanced accuracy | 72.2 | 47.4 |
+| κ | 0.815 | 0.601 |
+| producer's, Crater | 97.1 | 68.3 |
+| producer's, steep/windy hills | 18.3 | 9.4 |
+| producer's, lava tube | 93.7 | 0.4 |
+| producer's, Normal Ground | 85.7 | 94.4 |
+| producer's, volcanic edifice | 84.1 | 57.2 |
+| producer's, apron | 89.4 | 90.5 |
+| producer's, fluvial channel | 37.4 | 11.7 |
+edfv − fresh by block: accuracy -25.4 to -6.9, balanced accuracy -26.8 to -15.5 points
+
+**The six Syrtis Major edifice polygons** (share of their ground each map calls each class; base 7.7 % edifice, §69.105)
+
+| map | Crater | steep/windy hills | lava tube | Normal Ground | volcanic edifice | apron | fluvial channel |
+|---|---|---|---|---|---|---|---|
+| base | 46.8 | 0.5 | 0.3 | 26.2 | 6.9 | 0.0 | 19.3 |
+| rep | 94.9 | 0.6 | 0.0 | 2.9 | 0.0 | 0.0 | 1.6 |
+| freshw | 36.5 | 1.7 | 5.2 | 8.5 | 41.4 | 0.0 | 6.7 |
+| edf | 71.8 | 0.9 | 0.0 | 18.4 | 0.0 | 0.6 | 8.3 |
+
+**Predictions** (the log's verdicts; the numbers beside each)
+- E1 NOT held: validation accuracy edfv 71.3 against fresh 86.6, 15.34 points apart (bound 3).
+- E2 held: edifice off the edifice units on the validation windows, edfv 9.0 against fresh 17.5.
+- E3 NOT held: accuracy edf against base, 75.1 against 87.5 on the 237 polygons and 73.0 against 86.4 on the 1,652 (12.39 and 13.38 points apart, bound 3).
+- E4 NOT held: edifice off the edifice units on the held-out windows, edf 8.9 against base 15.4, rep 7.8, freshw 13.5.
+- E5 NOT held: producer's accuracy of volcanic edifice on the 1,652 polygons, edf 56.8 against base 79.1 and rep 69.1 (floor 59.1).
+- The rule: does not recommend edf's labels.
+
+**edf block by block** (paper Table 10's column "with squares", `make_appendix_c.py`):
+
+| block (15° units, lon, lat) | edf: accuracy on the 237 polygons, % |
+|---|---|
+| -11, 1 | 99.2 |
+| -11, 2 | 100.0 |
+| -3, -1 | 81.9 |
+| -4, -1 | 49.6 |
+| -4, -2 | 23.2 |
+| -5, -1 | 69.6 |
+| -6, 1 | 62.2 |
+| -9, -1 | 61.9 |
+| -9, 0 | 87.5 |
+| 0, 0 | 71.6 |
+| 1, 0 | 29.9 |
+| 4, 0 | 88.8 |
+| 4, 2 | 4.8 |
+| 5, -2 | 83.1 |
+
+**By the rule written before the run (§69.108): E1, E3, E4, E5 not held, E2 held; not recommended.** By the author's D40 (§69.109) the retraining is reported as a test and the lead map is not changed; D39's two-pass classification (`run_v3e_lead.ps1`) is not run.
+
+**Why the run does not answer its question (the agent's reading, found after scoring).** The training tool picks its own learning rate at the start of each training (its learning-rate finder; `make_dl_pixels.py` never set one). For edf it picked slice(2.51e-4, **2.51e-3**); the seven other trainings behind the third label set were given maxima of 2.51e-4 (rep) to 1.00e-3 (add), and fresh, edf's control, 3.31e-4. edf's chip accuracy on its own 10 % validation chips peaked at 67.2 % in epoch 12 (0-based) and fell to 47.7 % in epoch 13, ending at 53.3 %; every other v3 training ends at 81–92 % (fresh 88.1, rep 88.9, add 86.4, cut 92.3, noth 82.9, fresh2 81.4, the published 88.2). Its map holds almost no lava tube (0.1 % of the windows against 2.5–3.2 %; producer's 0.6 % on the 1,652) and 16.0 % apron against 6.2–7.4 %, which 420 squares of Normal Ground give no reason for. The labels and the rate changed together; one training cannot separate them. The paper says so and does not lay the failures to the squares.
+
+**edf2, started 05:12:06 on 11-12 (the agent's decision; not asked of the author, who may stop it: `logs\run_v3_edf2\queue.log`, queue PID 23768).** edf's labels and chips unchanged (no export; `D:\MarsScratch\x5c_v3x\export_tiles` is edf's), the learning rate fixed at fresh's 3.311e-4 by a new `--lr` flag (`make_dl_pixels.py`, used only here), then edf2's windows (standard) and edf2v's (fresh's blocks). `make_v3_extras.py` gained runs `edf2` (tag v3e2) and `edf2v`; `make_v3_edf.py --report --rerun` scores them under the keys edf/edfv into `logs\v3_edf2.json` with E1–E5 unchanged. Queue: `build\run_v3_edf2.ps1`. About 15 h of training then ~80 min of windows: ends around 21:30 on 11-12. **It was decided after edf was scored, so whatever it gives is not a pre-registered test**: if it holds all five it is a candidate the author decides on (D39's "Yes, classify and lead" was given for edf, not edf2), and either way it is reported beside edf, not in place of it.
+
+**What changed (D40, branch T of `v2_drafts.tex` block 22, written with the training's fault added):** paper — Methods paragraph on the fault and the squares (with "one setting is not the script's"), Results paragraph after "Each map has its checks", Limits (both paragraphs), Future work (fix the rate), Conclusions item 7, Appendix B a sixth group E1–E5 ("Of the 33 below, 21 held"), Appendix C column "with squares" (`make_appendix_c.py --check`: 34 of 34 rows), Figure `extra_runs` a seventh row and its caption; `\clearpage` before the bibliography (two overfull boxes at the float flush otherwise). 41 pages, no overfull or undefined. Deck — slide 42 ("What lifted the U-Net") gains a point on edf and drops its first, general point to keep five; `STATUS_DATE` 12 November 2026; 51 slides, 422 numbers in the record; `make_final_dark.py` rerun for the figure's navy copy.

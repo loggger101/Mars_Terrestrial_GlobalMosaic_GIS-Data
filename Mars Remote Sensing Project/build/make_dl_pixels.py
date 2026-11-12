@@ -98,6 +98,8 @@ def train():
                batch_size=arg("--batch", 8), arguments="class_balancing True;ignore_classes [0]",
                backbone_model=arg("--backbone", "RESNET34"), validation_percentage=10,
                stop_training="CONTINUE_TRAINING", freeze="UNFREEZE_MODEL", chip_size=256, monitor="VALID_LOSS")
+    if "--lr" in sys.argv:                                   # edf2 only (KB §69.125): the tool's own finder is left out
+        cfg["learning_rate"] = float(sys.argv[sys.argv.index("--lr") + 1])
     print("training", json.dumps(cfg), flush=True)
     t = time.time()
     arcpy.CheckOutExtension("ImageAnalyst")

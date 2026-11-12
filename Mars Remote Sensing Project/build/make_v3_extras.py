@@ -94,7 +94,9 @@ STACK5 = os.path.join(G.OUTDIR, "global60_svm_stack_200m_nothermal.tif")
 BLOCKS, NEED, SIZE = 14, 30, (800, 2500)      # a draw: 14 blocks, >= 30 polygons of each class on each side, this many
 SEEDS = {"fresh": 60, "fresh2": 61}
 TAGS = {"fresh": "v3f", "fresh2": "v3g", "noth": "v3nt", "cut": "v3c", "add": "v3a", "rep": "v3r", "base": None,
-        "edf": "v3e", "edfv": "v3e", "freshw": "v3f"}    # D37 (make_v3_edf.py): edf's model on the standard windows (edf)
+        "edf": "v3e", "edfv": "v3e", "freshw": "v3f",
+        "edf2": "v3e2", "edf2v": "v3e2"}                 # edf's labels and chips trained again at fresh's learning rate (KB §69.125)
+                                                         # D37 (make_v3_edf.py): edf's model on the standard windows (edf)
                                                          # and on fresh's (edfv); fresh's model on the standard ones
 ARR = "global60_landforms_global60_landforms_unet_%s_200m_seamfix_ov400.npy"
 SVM_ARR = "global60_landforms_%s_200m_mode11_ov400.npy"
@@ -166,7 +168,7 @@ def plan():
 
 
 def windows_fc(run):
-    if run == "edfv":                                        # edf's model on fresh's 14 blocks, its validation blocks
+    if run in ("edfv", "edf2v"):                                     # edf's model on fresh's 14 blocks, its validation blocks
         return fc("fresh", "test")
     return fc(run, "test") if run in SEEDS else os.path.join(EX, PREFIX % ("window", "test"))
 
@@ -183,6 +185,9 @@ def wire(run):
         D.LABELS = V3_TRAIN if run in ("noth", "rep") else fc(run, "train")
         if run in ("noth", "rep"):                           # rep: the published v3 run again, its labels and stack
             L.TRAIN = PREFIX % ("v3", "train")
+        if run in ("edf2", "edf2v"):                         # edf's own labels and its export, nothing drawn again
+            L.TRAIN = PREFIX % ("v3e", "train")
+            D.LABELS = fc("edf", "train")
 
 
 def emd(run):

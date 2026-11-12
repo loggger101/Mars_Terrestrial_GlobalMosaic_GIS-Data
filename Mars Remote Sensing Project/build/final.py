@@ -14,7 +14,7 @@ from content import DECK_TITLE, COURSE, TITLE                # unchanged since t
 from interim import BANDS, CORRELATION                         # the data slides are the interim's, unchanged
 
 AUTHOR = "Logan M Edwards"                                     # the public name, as the sheets' footers (KB §63)
-STATUS_DATE = "11 November 2026"
+STATUS_DATE = "12 November 2026"
 
 QUESTION = (
     "Athabasca Valles was read as a water-carved outflow channel for decades, then reinterpreted as flood lava. "
@@ -277,16 +277,16 @@ FIGURES = [
          source="§69.95, §69.97, §69.98, §69.100"),
     dict(title="What lifted the U-Net: retrainings set out first",
          images=[("file", r"final_img\extra_runs.png")],
-         points=["Each retrained once with the published settings, its prediction written before it ran",
-                 "Balanced: cut pieces alone 78.1%, added polygons alone 77.6%, both 84.7%, neither 56.9%; "
+         points=["Balanced: cut pieces alone 78.1%, added polygons alone 77.6%, both 84.7%, neither 56.9%; "
                  "each half gives part, together most",
                  "Added polygons alone score highest by accuracy (89.3%) but lose hills (−37.4 points) and lava tube "
                  "(−38.6): most of their hills are the rule's",
                  "Without the thermal bands 81.2% against 87.5%, not resolved by block; almost all of it apron in the "
                  "Tharsis block read as edifice",
                  "Trained a second time: 86.8% (score within a point), but edifice on 8.7% of the windows against "
-                 "16.3%: the class areas are one training's"],
-         source="§69.86, §69.88, §69.91, §69.93, §69.106"),
+                 "16.3%: the class areas are one training's",
+                 "With Normal Ground squares on the extra edifice: 75.1%, but at 2.5 to 10 times the others' learning rate: a test"],
+         source="§69.86, §69.88, §69.91, §69.93, §69.106, §69.125"),
     dict(title="A probability sample, on automated labels",
          images=[("file", r"final_img\r2_vs_polygons.png")],
          points=["25 points per class of the seven-class SVM map, labelled blind on CTX and shaded relief; 142 of the 175 decided",

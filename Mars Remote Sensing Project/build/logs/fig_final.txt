@@ -1,0 +1,7 @@
+wrote F:\Mars Remote Sensing Project\build\final_img\depressions_vs_robbins.png
+wrote F:\Mars Remote Sensing Project\build\final_img\svm_vs_unet.png
+wrote F:\Mars Remote Sensing Project\build\final_img\svm_vs_unet_v2.png
+wrote F:\Mars Remote Sensing Project\build\final_img\r2_vs_polygons.png
+wrote F:\Mars Remote Sensing Project\build\final_img\extra_runs.png
+wrote F:\Mars Remote Sensing Project\build\final_img\svm_windows.png
+wrote F:\Mars Remote Sensing Project\build\final_img\svm_vs_unet_v3.png
