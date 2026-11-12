@@ -1,0 +1,24 @@
+block  1/23 lon -165 lat    0: 223 s
+block  2/23 lon -165 lat   15: 87 s
+block  3/23 lon -165 lat   30: 86 s
+block  4/23 lon -150 lat   15: 64 s
+block  5/23 lon -150 lat   30: 64 s
+block  6/23 lon -135 lat  -15: 86 s
+block  7/23 lon -135 lat    0: 82 s
+block  8/23 lon -120 lat  -15: 65 s
+block  9/23 lon  -90 lat   15: 83 s
+block 10/23 lon  -75 lat  -15: 86 s
+block 11/23 lon  -60 lat  -30: 85 s
+block 12/23 lon  -60 lat  -15: 86 s
+block 13/23 lon  -45 lat  -30: 64 s
+block 14/23 lon  -45 lat  -15: 90 s
+block 15/23 lon    0 lat    0: 85 s
+block 16/23 lon   15 lat  -15: 64 s
+block 17/23 lon   15 lat    0: 85 s
+block 18/23 lon   45 lat   30: 65 s
+block 19/23 lon   60 lat    0: 84 s
+block 20/23 lon   60 lat   15: 68 s
+block 21/23 lon   60 lat   30: 91 s
+block 22/23 lon   75 lat  -30: 86 s
+block 23/23 lon   90 lat  -30: 65 s
+windows -> C:\MarsScratch\x5c_v3x\classified\edf2 copied -> F:\Mars Project\Global60\v3_extras\edf2

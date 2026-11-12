@@ -1,1 +1,7 @@
 2026-11-12 05:12:06  start edf2_train
+2026-11-12 17:21:05  end   edf2_train: exit 0, 729.0 min
+2026-11-12 17:21:05  start edf2_classify
+2026-11-12 17:54:00  end   edf2_classify: exit 0, 32.9 min
+2026-11-12 17:54:01  start edf2v_classify
+2026-11-12 18:26:27  end   edf2v_classify: exit 0, 32.4 min
+2026-11-12 18:26:28  queue done

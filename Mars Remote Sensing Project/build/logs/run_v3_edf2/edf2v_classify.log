@@ -1,0 +1,17 @@
+block  1/16 lon -165 lat  -30: 137 s
+block  2/16 lon -150 lat   30: 85 s
+block  3/16 lon -135 lat   30: 85 s
+block  4/16 lon -105 lat   15: 86 s
+block  5/16 lon -105 lat   45: 81 s
+block  6/16 lon  -90 lat   30: 86 s
+block  7/16 lon  -60 lat   15: 83 s
+block  8/16 lon  -15 lat  -60: 66 s
+block  9/16 lon  -15 lat  -45: 536 s
+block 10/16 lon   45 lat   15: 84 s
+block 11/16 lon   90 lat  -45: 83 s
+block 12/16 lon  105 lat  -60: 81 s
+block 13/16 lon  105 lat  -45: 67 s
+block 14/16 lon  135 lat  -45: 85 s
+block 15/16 lon  150 lat   15: 85 s
+block 16/16 lon  165 lat   15: 200 s
+windows -> C:\MarsScratch\x5c_v3x\classified\edf2v copied -> F:\Mars Project\Global60\v3_extras\edf2v

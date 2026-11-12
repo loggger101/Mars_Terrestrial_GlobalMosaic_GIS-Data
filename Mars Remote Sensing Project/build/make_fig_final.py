@@ -190,6 +190,12 @@ def extra_runs():
             r[s]["full"]["edf"] = e[s]["full"]["edf"]
             r[s]["block_bootstrap"]["edf"] = e[s]["block_bootstrap"]["edf"]
         rows.append(("edf", "With Normal Ground squares\non the extra edifice"))
+    if os.path.exists(os.path.join(HERE, "logs", "v3_edf2.json")):   # the same labels at a fixed learning rate (KB §69.126)
+        e = log("v3_edf2.json")
+        for s, _, _, _ in sets:
+            r[s]["full"]["edf2"] = e[s]["full"]["edf"]
+            r[s]["block_bootstrap"]["edf2"] = e[s]["block_bootstrap"]["edf"]
+        rows.append(("edf2", "The same squares, learning\nrate fixed at the control's"))
     rows = [(k, n) for k, n in rows if k in r["v2_polygons"]["full"]]
     fig, axes = plt.subplots(1, 2, figsize=(10, 0.62 * len(rows) + 1.5), dpi=200, sharey=True)
     for ax, metric, title in zip(axes, ("accuracy", "balanced"), ("A  Accuracy", "B  Balanced accuracy")):

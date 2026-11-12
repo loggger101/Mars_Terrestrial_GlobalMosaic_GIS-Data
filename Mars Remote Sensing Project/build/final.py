@@ -285,8 +285,8 @@ FIGURES = [
                  "Tharsis block read as edifice",
                  "Trained a second time: 86.8% (score within a point), but edifice on 8.7% of the windows against "
                  "16.3%: the class areas are one training's",
-                 "With Normal Ground squares on the extra edifice: 75.1%, but at 2.5 to 10 times the others' learning rate: a test"],
-         source="§69.86, §69.88, §69.91, §69.93, §69.106, §69.125"),
+                 "Squares on the extra edifice, at a normal learning rate: 88.5%, edifice 6.7% against 15.4%, but Crater halved: a test"],
+         source="§69.86, §69.88, §69.91, §69.93, §69.106, §69.125, §69.126"),
     dict(title="A probability sample, on automated labels",
          images=[("file", r"final_img\r2_vs_polygons.png")],
          points=["25 points per class of the seven-class SVM map, labelled blind on CTX and shaded relief; 142 of the 175 decided",
