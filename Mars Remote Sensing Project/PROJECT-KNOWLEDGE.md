@@ -7758,3 +7758,12 @@ D42. Read from `logs/v3_extras.json` by a script, nothing typed: producer's accu
 - **`STATUS_DATE`** is 11 November 2026 (it read 10 November; the deck has carried the second training's result of 11-11 since §69.106).
 - **Checked and left:** the hook slide's Viking correlation at Athabasca (−0.55) is the dayside one and the paper's (−0.64) the nightside (§42.4's table gives both).
 - The deck builds at **49 slides**; `verify_interim.py` passes on `final.py` (409 numbers).
+
+### 69.120 Made ready for the edifice retraining's result: the lead-map queue and the drafted text — 2026-11-11, desktop **[V]**
+
+Written while `edf_train` runs (alive at 23:04, GPU in use). Nothing here is a result, and nothing was run on the GPU.
+
+- **The ±60° classification for D39, ready and not started.** `build\make_v3e_global.py` is `make_dl_pixels.py`'s `--classify-global` and `--mosaic --two-pass` with three things changed: the model (edf's newest `.emd`, `make_v3_extras.emd("edf")`), the scratch (`C:\MarsScratch\x5c_v3e\global`, so no v3 tile is read or replaced) and the names (`global60_landforms_unet_v3e_200m_seamfix.tif`, `logs\dl_unet_v3e_global_mosaic_seamfix.json`). `build\run_v3e_lead.ps1` queues it as `run_v3.ps1` did the v3 map: each pass in four chunks of at most 60 new tiles (§69.4), the mosaic, then `verify_global60_classification.py` on the v3 and on the v2 held-out polygons; logs in `build\logs\run_v3e_lead\`, resumed with `-From <step>`. **To be run only if `make_v3_edf.py --report` gives E1–E5 all held** (D39, §69.109); otherwise neither is used.
+- **Checked without running it:** `make_v3e_global.py --plan` prints the scratch folder, the output map (not yet there), the stack (found), 243 tiles and "no .emd yet"; the queue script parses with no error. The first real tile is the first test of the classification itself.
+- **The text, drafted with a branch for each outcome:** `v2_drafts.tex` block 22, on block 20's pattern. A Methods paragraph on the fault and the 420 squares (every number §69.108's), a Results paragraph whose numbers are keys of `logs\v3_edf.json`, its ending for all five held (the map leads) and for E4, E1 or E3, E5 and E2 not held (a reported test), E1–E5 as a sixth group of Appendix B (33 predictions in all), a column in Appendix C's two tables, a row in the extra-runs figure, the Limits, Future work, Conclusions and abstract by branch, the deck's points, and the order of work for the lead branch.
+- The page's script count is **248** (`README.md`, `docs/scripts.md`); `tools/check_repo.py` passes.

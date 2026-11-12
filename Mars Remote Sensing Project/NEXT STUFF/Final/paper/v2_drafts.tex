@@ -563,3 +563,118 @@ seven classes on a third, rule-made label set, a U-Net scores 87.6\% on 237 held
 draws of other blocks, and 49.6\% on a probability sample. No band separates the lava contacts of the 1:20\,M geologic
 map at Athabasca Valles much better than chance, so lava flows are taken from that map. Three of four hypotheses are not
 supported; the fourth is answered by another method.
+
+%% =========================================================================================================
+%% 22. The edifice retraining (make_v3_edf.py, run_v3_edf.ps1; D37, KB §69.108), drafted 2026-11-11 while edf_train
+%%     runs: no result exists yet. Predictions E1-E5 and the reading rule are in the script's docstring, written
+%%     before the negatives were drawn. Each paragraph goes in only once make_v3_edf.py --report has run and its
+%%     numbers are in the KB; pick the branch the log's "predictions" give. The author's answers (KB §69.109):
+%%     D39, all five held -> "Yes, classify and lead" (branch L below, no further question); D40, otherwise ->
+%%     "Reported as a test" (branch T).
+%%     ED   logs\v3_edf.json; keys: v2_polygons / v3_polygons .full.<base|rep|freshw|edf>.<accuracy|balanced|kappa|
+%%          producers.*>, .block_bootstrap.<edf-base|edf-rep|edf-freshw|base-rep>; standard_windows.<run>.edifice.
+%%          off_edifice_units (and the class areas); validation_polygons.full.<fresh|edfv>; validation_windows.<fresh|
+%%          edfv>.edifice.off_edifice_units; syrtis_edifice.<run>; predictions.E1..E5, .rule
+%%     PL   logs\v3_edf_plan.json (already in the KB, §69.108): 420 negatives in 89 blocks, 9,786 training polygons
+%%          (fresh's 9,366 and the 420), 550,845 eligible cells of 5,557,277.
+%%     All of base, rep, freshw and edf are one-pass window maps from one route (Section sec:honest), compared with
+%%     one another and not with the published mosaic.
+%% ---------------------------------------------------------------------------------------------------------
+%% (a) METHODS, "Supervised classification and its score", after the third label set's paragraph (both branches):
+The lead U-Net maps volcanic edifice on 18.0\% of \pmsixty, where the geologic map's edifice units cover 1.1\%. Measured
+before anything was changed, the extra edifice is flat, uncratered plains: off the edifice, apron and landslide units,
+96.0\% of the 3.2~km cells the map calls edifice have relief of 150~m or less and 63.6\% pass the third label set's own
+test for Normal Ground. One retraining was set against that fault. New Normal Ground squares were placed by the third
+label set's rule for such a square, unchanged, with one condition added: every cell at least half volcanic edifice on
+the published map. Up to 8 went into a block, none into the 14 held-out blocks or into the 14 blocks of the first
+other draw, which serve here as validation blocks; 420 squares in 89 blocks were kept, placed by rule and looked at by
+no one. The model was trained on that draw's 9,366 training polygons and the 420 squares, with every setting
+unchanged, so the draw's own model is its control on the validation blocks. Five predictions and the rule for reading
+them were written before the squares were drawn (Appendix~\ref{app:predictions}). %% KB §69.108
+%% ---------------------------------------------------------------------------------------------------------
+%% (b) RESULTS, Section~\ref{sec:v3}, a paragraph after "Each map has its checks." Common opening, then one branch:
+The retraining against the extra volcanic edifice was judged first on its validation blocks and then on the held-out
+ones. On the validation blocks it scores \VV{ED}{validation\_polygons.full.edfv.accuracy} against the control's
+\VV{ED}{validation\_polygons.full.fresh.accuracy}, and maps edifice on \VV{ED}{validation\_windows.edfv.edifice.off\_edifice\_units}
+of the ground off the edifice units against \VV{ED}{validation\_windows.fresh.edifice.off\_edifice\_units}. On the 237
+and the 1,652 held-out polygons it scores \VV{ED}{v2\_polygons.full.edf.accuracy} and
+\VV{ED}{v3\_polygons.full.edf.accuracy}, against \VV{ED}{v2\_polygons.full.base.accuracy} and
+\VV{ED}{v3\_polygons.full.base.accuracy} for the lead model on the same windows. Off the edifice units its edifice
+covers \VV{ED}{standard\_windows.edf.edifice.off\_edifice\_units} of the windows' ground, where three trainings without
+the squares (the lead model, its second training, and the other draw's model) give
+\VV{ED}{standard\_windows.base.edifice.off\_edifice\_units}, \VV{ED}{standard\_windows.rep.edifice.off\_edifice\_units} and
+\VV{ED}{standard\_windows.freshw.edifice.off\_edifice\_units}; its producer's accuracy of volcanic edifice on the 1,652
+polygons is \VV{ED}{v3\_polygons.full.edf.producers.volcanic edifice}, against
+\VV{ED}{v3\_polygons.full.base.producers.volcanic edifice} and \VV{ED}{v3\_polygons.full.rep.producers.volcanic edifice}.
+%% (b-L) E1-E5 all held (D39):
+All five predictions held: the squares shrink the extra edifice by more than one training differs from another, at
+no cost in score and without losing the edifices themselves. By the rule written before the run the retrained model
+replaces the lead U-Net, and it was run over all of \pmsixty\ in two passes as its predecessor was; the map it gives
+(Figure~\ref{fig:unet9}) is the U-Net map this paper leads with, and scores \VV{V3E}{...} on the 237 polygons and
+\VV{V3E}{...} on the 1,652, with volcanic edifice on \VV{V3E}{class\_share.volcanic edifice} of \pmsixty\ against 18.0\%.
+%%     then, by what the checks give: the named-crater, valley and small-edifice checks of "Each map has its checks",
+%%     the sample score (score_r2_sample on the new map), the agreement with the SVM map (Section sec:agree), and the
+%%     Syrtis Major polygons, each with the earlier lead's number beside it. The earlier lead map stays in the
+%%     release and in Table tab:svm as "U-Net, third label set".
+%% (b-T1) E4 not held, the rest held (D40, "a reported test"):
+The squares cost no score, but the edifice they remove is not more than one training removes from another: the
+second training of the lead model, with no squares, already maps less. The retraining is reported as a test and the
+lead map is not changed; the edifice share of a U-Net map is set as much by the training as by these labels.
+%% (b-T2) E1 or E3 not held:
+The squares cost accuracy (\VV{ED}{...} points on \VV{ED}{...}), more than one training differs from another, so by
+the rule the retrained model is not recommended and the lead map is not changed.
+%% (b-T3) E5 not held:
+The squares remove edifice the labels do hold: its producer's accuracy falls \VV{ED}{...} points below the lower of
+the two earlier trainings', past the 10 points allowed, so the retrained model is not recommended and the lead map
+is not changed.
+%% (b-T4) E2 not held with the rest held: say so in one clause after the validation numbers ("on the validation
+%%     blocks it did not map less edifice than the control"); the rule then does not recommend (not all five held).
+%% Any T branch, last sentence, the described rows: the edifice share on the highland group and on the volcanic
+%% plains, and the six Syrtis Major polygons (\VV{ED}{syrtis\_edifice.edf.volcanic edifice} against base's 7.7\%).
+%% ---------------------------------------------------------------------------------------------------------
+%% (c) APPENDIX B, a sixth group after R1-R3. The count in the appendix's first paragraph becomes "Of the 33 below,
+%%     <20 + the number of E held> held", and its KB comment gains §69.108 and the result's section.
+\emph{Normal Ground squares against the extra volcanic edifice} (five; \VV{ED}{n held} held). Validation is on the
+14 blocks of the first other draw, with that draw's model as the control; the test is on the 14 held-out blocks.
+\begin{enumerate}
+\item[E1] Validation: its accuracy is within 3 points of the control's 86.6\%. \emph{\VV{ED}{predictions.E1}}: ...
+\item[E2] Validation: it maps volcanic edifice on less of the ground off the edifice units than the control.
+\emph{\VV{ED}{predictions.E2}}: ...
+\item[E3] Test: its accuracy is within 3 points of the lead model's on each polygon set. \emph{\VV{ED}{predictions.E3}}: ...
+\item[E4] Test: off the edifice units its edifice covers less of the windows than in any of three trainings without
+the squares. \emph{\VV{ED}{predictions.E4}}: ...
+\item[E5] Test: its producer's accuracy of volcanic edifice on the 1,652 polygons is no more than 10 points below
+the lower of the lead model's two trainings. \emph{\VV{ED}{predictions.E5}}: ...
+\end{enumerate}
+%% ---------------------------------------------------------------------------------------------------------
+%% (d) APPENDIX C (Tables tab:perclass, tab:perblock): a seventh column "with squares" (edf) in both, and a clause
+%%     in the appendix's paragraph: "``with squares'' the retraining against the extra edifice, trained on the first
+%%     other draw's polygons and the 420 squares". Check the table still fits the page width (\small, 8 columns).
+%% (e) FIGURE extra_runs.png (make_fig_final.py): a row for edf, as rep's was added (§69.106); caption: "... the last
+%%     two the third label set trained a second time and the retraining with Normal Ground squares."
+%% (f) LIMITS, the paragraph "Nor do the polygon scores fix the class areas", its last sentence by branch:
+%%     L: "The edifice share of \pmsixty\ (\VV{V3E}{...}) is still one training's, though it now rests on labels placed
+%%        against the fault."     T: unchanged, plus "A retraining with Normal Ground squares placed on the extra
+%%        edifice did not settle it (Section~\ref{sec:v3})."
+%%     and the held-out paragraph gains: "The retraining against the extra edifice was judged on validation blocks of
+%%     its own before the held-out ones, the first run here to be." (both branches)
+%% (g) FUTURE WORK: "The deep-learning models need validation blocks of their own before any retraining" becomes
+%%     "The one retraining judged on validation blocks of its own (Section~\ref{sec:v3}) shows the form the next
+%%     should take"; the edifice clause by branch (L: lava tube comes first; T: lava tube and edifice still first).
+%% (h) CONCLUSIONS, item 7, a clause by branch.  L: "; retrained with Normal Ground squares on its extra edifice it
+%%     keeps its score and maps edifice on \VV{V3E}{...} of \pmsixty, and that map leads."  T: "; a retraining with
+%%     Normal Ground squares on its extra edifice \VV{ED}{...}, and is reported as a test."
+%% (i) ABSTRACT: L only, if the lead score changes: the U-Net's 87.6\% and 49.6\% become the new map's.
+%% ---------------------------------------------------------------------------------------------------------
+%% (j) DECK (final.py). T: one more point on "What lifted the U-Net: retrainings set out first":
+%%        "Normal Ground squares on the extra edifice (420, placed by rule): <score>, edifice <x>% of the windows off
+%%         the edifice units against <base>, <rep>, <freshw>: <the branch's verdict in five words>"
+%%     and the figure's new row. L: that point, plus a new slide after "The lead maps: the U-Net" with layout 17d
+%%     (make_final_figs.py: a copy of 17c on the v3e map), the Limits card "The seven classes cost the old ones"
+%%     (edifice share), the Conclusions line and STATUS_DATE.
+%% (k) BRANCH L, the order of work (D39): run_v3e_lead.ps1 (make_v3e_global.py; about as long as the v3 passes) ->
+%%     the checks the v3 map had (make_geomap_check, named features, score_r2_sample, map agreement, block bootstrap)
+%%     on global60_landforms_unet_v3e_200m_seamfix.tif -> KB -> layouts 17d and 13d -> paper (b-L and the rest above,
+%%     Table tab:svm a row "U-Net, third label set with squares") -> deck -> README hero and gallery -> the release
+%%     at the freeze carries the map and model. D36's SVM v3 stays the lead SVM.
+%% (l) README (finished at the freeze): one line under "What was asked and what was found", by branch.
