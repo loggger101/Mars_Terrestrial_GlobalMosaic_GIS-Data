@@ -20,7 +20,7 @@ import make_interim_dark as D                                     # noqa: E402  
 D.OUT = os.path.join(HERE, "final_img", "dark")
 D.CHARTS = ["make_fig_final.py", "make_fig_t5_traced.py", "make_fig_baselines.py", "make_fig_checks.py", "make_fig_tes.py", "make_fig_t8.py",
             "make_fig_t1_pro.py", "make_fig_tests567.py", "make_fig_global60.py", "make_fig_channels.py",
-            "make_fig_crater_sfd.py"]    # the size-frequency slide (KB 69.112)
+            "make_fig_crater_sfd.py", "make_fig_t4.py"]    # the size-frequency slide (KB 69.112)
 
 
 def layouts():
