@@ -1319,6 +1319,62 @@ T7 & Tributary orders resolved at 100~m & no DEM-supported answer & order follow
 \end{tabular}
 \end{table*}
 
+\subsection{The question at Athabasca Valles} \label{sec:athabasca}
+
+The introduction asked whether the stack can tell lava, water and impact landforms apart at Athabasca Valles, and
+how much of the answer the thermal infrared carries. In this stack the flood lava is told apart by three things, and
+none of them is thermal. The first is the geologic map: the channel floor lies in unit \lAv, and no band reproduces
+that unit's contacts or the margins traced on Context Camera images much above chance (day infrared separates 19.7\%
+of the profiles across the traced margins and Viking red 14.8\%, where chance is 10\%). The second is crater density
+from the catalogue, which puts \lAv\ lowest of the window's units, at 1,122 craters $\ge1$~km per $10^6$~km$^2$
+against 1,760 and 2,183; the closed-depression detector reverses that order by counting pits on flat lava, so the
+evidence of youth comes from the catalogue and not from this study's detector. The third is form: the window's
+channel candidates are shallow, a median of 1.4~m~km$^{-1}$ against 10.2 at Ius Chasma, which is the setting of a
+lava plain and says nothing of what cut the channels. %% KB §42.2, §47.2, §51.1, §69.52
+
+The thermal pair adds least exactly here. The diurnal-contrast index does not follow calibrated inertia in the
+window ($r=-0.01$) while Viking colour does ($-0.64$); the window's $5^{\circ}$ blocks lie at the weak end of the
+planet for night infrared ($+0.06$ to $+0.16$); and the channel candidates carry no thermal signature against their
+own background. So the answer to the question as posed is no for these mosaics: they do not separate lava from
+water-cut ground at Athabasca Valles, and what the study can say of the flood lava it takes from the map and the
+crater catalogue. That is a statement about 8-bit display mosaics stretched region by region, not about thermal
+infrared, and the calibrated products named under Future work are the test the question deserves.
+%% KB §42.4, §51.1, §69.30
+
+\subsection{The thermal infrared at four distances} \label{sec:scales}
+
+What the thermal pair is worth depends on the distance it is asked at. At one pixel it adds little: 1.4 to 2.0
+points of accuracy to the four-class support vector machine, and none by balanced accuracy. Inside one area it
+orders surfaces as their materials would: the nine classes of Ius Chasma run from $-0.467$ on wall outcrop to
+$+0.261$ on the highest ground, and slope does not produce that order. Against calibrated inertia the signal is
+real, weak and local, of the physical sign in 97\% of the $5^{\circ}$ blocks for night infrared at
+$|r|\approx0.1$, and gone across the planet, where dusty and rocky provinces differ by $-0.19$ and $+0.02$~DN.
+With 51~km of surroundings the bands carry 8.0 points for a support vector machine and 6.4 to 7.6 for the U-Net,
+but map coordinates given in their place recover most or all of that, as a contrast stretch set region by region
+would have it: at that distance the mosaics tell a classifier where it is. These are one fact seen four times. The
+mosaics keep contrast within a region and discard it between regions, so they sharpen boundaries that a classifier
+already has from terrain and cannot, alone, say what a surface is made of.
+%% KB §24.3, §28.10, §43.1, §56.1, §69.29, §69.86, §69.99--§69.101
+
+\subsection{What each score measures} \label{sec:scores}
+
+Four kinds of score appear in this paper, and they answer different questions. A held-out polygon score says how a
+map does where a landform was plain enough to draw, in blocks the model never saw; it is the only score every map
+has, and it flatters five of the six maps sampled. The nearest training polygon's class says how much of that score
+geography alone would give: 83.2\% for four classes, more than the support vector machine map's 73.8\%, and 45.6\%
+for seven, which only the seven-class U-Nets clear. Intervals from resampling whole blocks say whether a difference
+would survive other ground: the lead U-Net's gain over its predecessor does ($+13.0$ to $+38.7$ points of balanced
+accuracy), and the seven-class U-Net's lead in accuracy over the support vector machine does not ($-9.7$ to
+$+47.8$). The probability sample says how a map does on ground chosen by area and not by whoever drew the labels,
+and there the lead U-Net falls from 87.6\% to 49.6\%; its labels failed their check, so neither number is an
+unbiased accuracy, but five of the six maps fall the same way. %% KB §69.35, §69.44, §69.80--§69.82
+
+Two further measures say what a score cannot. A second training moves the lead U-Net's score by under a point and
+its map on 26.8\% of the ground, and the two lead maps, made by different methods from the same labels, agree on
+47.5\% of \pmsixty. Read together: the lead U-Net reproduces drawn landforms on unseen blocks far better than
+geography alone, about half of the points drawn by area agree with it, and the class at any one pixel is one
+training's and one method's reading. %% KB §69.81, §69.106
+
 \subsection{Against earlier automated mapping}
 
 Each product here falls short of the method built for its own landform, and the comparison shows where. A
