@@ -7756,5 +7756,5 @@ D42. Read from `logs/v3_extras.json` by a script, nothing typed: producer's accu
 - All of `final.py` was read against the paper as it now stands (§69.118). Nothing in it disagrees with the paper.
 - **Slide 13** (the T3 block map, layout 18) had three points on block size and none on what the map itself shows. A first point now gives it: the physical sign in 97 % of the 1,728 blocks for night infrared and 93 % for the index, strongest on high-inertia southern ground (§69.29, §69.30; the paper's paragraph of §69.117). The slide was exported and read: four points fit under the map.
 - **`STATUS_DATE`** is 11 November 2026 (it read 10 November; the deck has carried the second training's result of 11-11 since §69.106).
-- **Checked and left:** the hook slide's Viking correlation at Athabasca (−0.55) is the dayside one and the paper's (−0.64) the nightside (§43.1's table gives both).
+- **Checked and left:** the hook slide's Viking correlation at Athabasca (−0.55) is the dayside one and the paper's (−0.64) the nightside (§42.4's table gives both).
 - The deck builds at **49 slides**; `verify_interim.py` passes on `final.py` (409 numbers).
