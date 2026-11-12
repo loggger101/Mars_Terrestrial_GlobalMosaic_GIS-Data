@@ -7750,3 +7750,11 @@ D42. Read from `logs/v3_extras.json` by a script, nothing typed: producer's accu
 - **Three small ones.** The thermal results cited mean-shift again where the new Methods subsection now explains the object-based classes, so it points to that section. A block was written `6_-3` in the text; it now uses the naming of the per-block table. Appendix A sent the reader to the lead-maps section for "Tharsis ground", which is said in the Discussion's limits; the reference is corrected.
 - **Checked and left:** the two chance-level blind checks that both use 48 lines are different checks (contact sheets, 46.5 %, kappa 0.08, §69.51; Context Camera, kappa 0.14, §69.52). Appendix B's count (28 predictions, 20 held) adds up from its five groups. Window scores (84.7 %) against the mosaic's (84.5 %) are explained where the windows are introduced.
 - The deck has no such sentence. The paper builds at **39 pages**, no undefined reference, no overfull box; `verify_interim.py` passes (1,910 numbers).
+
+### 69.119 The deck read through once for slips; two changes — 2026-11-11, desktop **[V]**
+
+- All of `final.py` was read against the paper as it now stands (§69.118). Nothing in it disagrees with the paper.
+- **Slide 13** (the T3 block map, layout 18) had three points on block size and none on what the map itself shows. A first point now gives it: the physical sign in 97 % of the 1,728 blocks for night infrared and 93 % for the index, strongest on high-inertia southern ground (§69.29, §69.30; the paper's paragraph of §69.117). The slide was exported and read: four points fit under the map.
+- **`STATUS_DATE`** is 11 November 2026 (it read 10 November; the deck has carried the second training's result of 11-11 since §69.106).
+- **Checked and left:** the hook slide's Viking correlation at Athabasca (−0.55) is the dayside one and the paper's (−0.64) the nightside (§43.1's table gives both).
+- The deck builds at **49 slides**; `verify_interim.py` passes on `final.py` (409 numbers).

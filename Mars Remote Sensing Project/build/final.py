@@ -14,7 +14,7 @@ from content import DECK_TITLE, COURSE, TITLE                # unchanged since t
 from interim import BANDS, CORRELATION                         # the data slides are the interim's, unchanged
 
 AUTHOR = "Logan M Edwards"                                     # the public name, as the sheets' footers (KB §63)
-STATUS_DATE = "10 November 2026"
+STATUS_DATE = "11 November 2026"
 
 QUESTION = (
     "Athabasca Valles was read as a water-carved outflow channel for decades, then reinterpreted as flood lava. "
@@ -94,7 +94,9 @@ FIGURES = [
          source="§41, §42.4, §43.1"),
     dict(title="Smaller blocks do not uncover a stronger thermal signal (T3)",
          images=[("layout", "18_t3_tes_blocks")],
-         points=["Night IR against TES inertia peaks within 2–5° blocks at r ≈ 0.12; 0.15–0.2 was predicted",
+         points=["Mapped at 5°: night IR has the physical sign in 97% of 1,728 blocks, the index in 93%; strongest "
+                 "on high-inertia southern ground",
+                 "Night IR against TES inertia peaks within 2–5° blocks at r ≈ 0.12; 0.15–0.2 was predicted",
                  "Below 2° the signal falls away: a block then holds too few TES cells to test it",
                  "Viking's correlation shrinks with the block: a regional signal, the dust provinces"],
          source="§69.29, §69.30"),
