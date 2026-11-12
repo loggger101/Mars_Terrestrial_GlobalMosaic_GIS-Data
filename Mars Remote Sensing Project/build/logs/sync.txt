@@ -1,0 +1,37 @@
+drive F:\  ->  repo C:\Users\Owner\OneDrive\Documents\GitHub\Mars_Terrestrial_GlobalMosaic_GIS-Data
+copied 7, unchanged 2966, removed 0, too big 28, held back 0
+  + Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md
+  + Mars Remote Sensing Project\build\final_img\pipeline.pdf
+  + Mars Remote Sensing Project\build\final_img\pipeline.png
+  + Mars Remote Sensing Project\build\logs\paper_build.txt
+  + Mars Remote Sensing Project\NEXT STUFF\Final\paper\mars_global_mosaic.pdf
+  + Mars Remote Sensing Project\NEXT STUFF\Final\paper\mars_global_mosaic.tex
+  + Mars Remote Sensing Project\NEXT STUFF\Final\paper\figures\pipeline.pdf
+  SKIPPED (> 95 MB, 137 MB): F:\Mars Project\DLModels\global60_retinanet_20261019\global60_retinanet_20261019.dlpk
+  SKIPPED (> 95 MB, 146 MB): F:\Mars Project\DLModels\global60_retinanet_20261019\global60_retinanet_20261019.pth
+  SKIPPED (> 95 MB, 137 MB): F:\Mars Project\DLModels\global60_retinanet_x5b_20261020\global60_retinanet_x5b_20261020.dlpk
+  SKIPPED (> 95 MB, 146 MB): F:\Mars Project\DLModels\global60_retinanet_x5b_20261020\global60_retinanet_x5b_20261020.pth
+  SKIPPED (> 95 MB, 156 MB): F:\Mars Project\DLModels\global60_unet_x5c_20261020\global60_unet_x5c_20261020.dlpk
+  SKIPPED (> 95 MB, 165 MB): F:\Mars Project\DLModels\global60_unet_x5c_20261020\global60_unet_x5c_20261020.pth
+  SKIPPED (> 95 MB, 156 MB): F:\Mars Project\DLModels\global60_unet_x5c_v2p_20261025\global60_unet_x5c_v2p_20261025.dlpk
+  SKIPPED (> 95 MB, 165 MB): F:\Mars Project\DLModels\global60_unet_x5c_v2p_20261025\global60_unet_x5c_v2p_20261025.pth
+  SKIPPED (> 95 MB, 156 MB): F:\Mars Project\DLModels\global60_unet_x5c_v2_20261028\global60_unet_x5c_v2_20261028.dlpk
+  SKIPPED (> 95 MB, 165 MB): F:\Mars Project\DLModels\global60_unet_x5c_v2_20261028\global60_unet_x5c_v2_20261028.pth
+  SKIPPED (> 95 MB, 157 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3a_20261109\global60_unet_x5c_v3a_20261109.dlpk
+  SKIPPED (> 95 MB, 165 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3a_20261109\global60_unet_x5c_v3a_20261109.pth
+  SKIPPED (> 95 MB, 156 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3c_20261109\global60_unet_x5c_v3c_20261109.dlpk
+  SKIPPED (> 95 MB, 165 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3c_20261109\global60_unet_x5c_v3c_20261109.pth
+  SKIPPED (> 95 MB, 156 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3e2_20261112\global60_unet_x5c_v3e2_20261112.dlpk
+  SKIPPED (> 95 MB, 165 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3e2_20261112\global60_unet_x5c_v3e2_20261112.pth
+  SKIPPED (> 95 MB, 157 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3e_20261111\global60_unet_x5c_v3e_20261111.dlpk
+  SKIPPED (> 95 MB, 165 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3e_20261111\global60_unet_x5c_v3e_20261111.pth
+  SKIPPED (> 95 MB, 156 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3f_20261107\global60_unet_x5c_v3f_20261107.dlpk
+  SKIPPED (> 95 MB, 165 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3f_20261107\global60_unet_x5c_v3f_20261107.pth
+  SKIPPED (> 95 MB, 156 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3g_20261109\global60_unet_x5c_v3g_20261109.dlpk
+  SKIPPED (> 95 MB, 165 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3g_20261109\global60_unet_x5c_v3g_20261109.pth
+  SKIPPED (> 95 MB, 156 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3nt_20261108\global60_unet_x5c_v3nt_20261108.dlpk
+  SKIPPED (> 95 MB, 165 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3nt_20261108\global60_unet_x5c_v3nt_20261108.pth
+  SKIPPED (> 95 MB, 156 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3r_20261110\global60_unet_x5c_v3r_20261110.dlpk
+  SKIPPED (> 95 MB, 165 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3r_20261110\global60_unet_x5c_v3r_20261110.pth
+  SKIPPED (> 95 MB, 156 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3_20261105\global60_unet_x5c_v3_20261105.dlpk
+  SKIPPED (> 95 MB, 165 MB): F:\Mars Project\DLModels\global60_unet_x5c_v3_20261105\global60_unet_x5c_v3_20261105.pth
