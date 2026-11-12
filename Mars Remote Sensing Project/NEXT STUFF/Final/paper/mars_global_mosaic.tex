@@ -206,6 +206,30 @@ a large diurnal swing (dust-like) and low for a damped one (rock and coarse debr
 over which it was stretched. Over Ius Chasma its mean is $+0.0757$ (s.d.\ 0.279), and it is nearly independent of
 topography ($r=+0.108$ with elevation, $-0.248$ with slope). %% KB §24.2, §24.3
 
+\subsection{Object-based classes at the type area} \label{sec:segments}
+
+The first maps of the type area were unsupervised, and classifying pixel by pixel leaves speckle. It was measured over
+one window across the wall and plateau of Ius Chasma by two numbers: the share of pixels with a four-neighbour of
+another class, and the mean run, the horizontal distance to a change of class. Per pixel, 43.13\% of pixels lie on a
+class boundary and the mean run is 5.0 pixels. Grouping pixels into mean-shift segments \citep{Comaniciu2002} before
+clustering removes speckle only if the classifier works on the segments rather than on their pixels, and then by an
+amount set almost wholly by the detail of the segmentation (Figure~\ref{fig:segsweep}). At the finest setting
+(spectral and spatial detail 20 of 20, segments of at least 5 pixels) boundary pixels fall only to 35.22\%, with a mean
+run of 6.9 pixels. At 14, 14 and 30 pixels they fall to 12.99\%, with a run of 18.6 pixels, about 1.9~km. At 9, 9
+and 80 pixels they fall to 6.36\%, with a run of 37.3 pixels or 3.7~km, and the plateau becomes one unit. The middle
+setting was adopted, because its run sits just above the 1~km that ten 100~m pixels resolve; the nine classes it gives
+are the object-based classes used below. Coarser segments cost more time, not less, and at this setting the
+\pmsixty\ stack, 411 times the type area's pixels, would take days, so object-based classification is a type-area
+technique in this study and the \pmsixty\ maps are classified per pixel or by the U-Net. %% KB §23.1, §23.2, §23.5, §23.6
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/ius_segmentation_sweep.png}
+\caption{One window on the wall of Ius Chasma classified four ways, over shaded relief; colours are class numbers and
+do not correspond between panels. The share of pixels on a class boundary falls from 43.1\% per pixel to 35.2\%, 13.0\%
+and 6.4\% as the segmentation is made coarser; the lower left setting was adopted. \label{fig:segsweep}}
+\end{figure*}
+
 \subsection{Closed depressions and channels}
 
 The \texttt{Fill} operation \citep{Jenson1988} floods every closed depression, which is what a fresh crater is
@@ -412,7 +436,22 @@ Night IR & & & & & 1 \\
 Inside one area the diurnal-contrast index behaves as a material signal should. On the object-based classes of Ius
 Chasma, built on mean-shift segments \citep{Comaniciu2002}, the steep canyon wall (mean slope $21.5^{\circ}$) and the mantled chasma floor ($17.0^{\circ}$) are the two
 steepest units, yet differ by 0.46 in the index at opposite signs, and fresh crater ejecta come out damped against the
-plateau. %% KB §24.3
+plateau (Figure~\ref{fig:iusindex}). The nine classes run from $-0.467$ on wall outcrop (2.6\% of the window) and
+$-0.443$ on the lower wall and floor bedrock (3.8\%) to $+0.202$ on the dust-mantled plateau, which is 43.4\% of the
+window, and $+0.261$ on the highest ground (3.4\%). The order is what the canyon's materials would give, rock damped
+and mantle swinging, and slope does not produce it: the index correlates with slope at $-0.248$, and the wall and the
+floor take opposite signs at nearly one steepness. That is as far as the evidence goes. Nothing calibrated resolves
+these units, and at the 3~km the Thermal Emission Spectrometer does resolve, the index does not follow inertia in
+this window (below). %% KB §24.3, §42.4
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.68\textwidth]{figures/ius_thermal_contrast.png}
+\caption{The diurnal-contrast index at Ius Chasma. (A) The index, red for a large day--night swing and blue for a damped
+one. (B) Its mean in each of the nine object-based classes, with the class's share of the window. (C) The class means
+against mean slope: the two steepest classes, $4.4^{\circ}$ apart in slope, lie 0.46 apart in the index at opposite
+signs. A relative index from 8-bit values, not calibrated thermal inertia. \label{fig:iusindex}}
+\end{figure*}
 
 Across \pmsixty\ the signal does not survive (Figure~\ref{fig:provinces}). Over seven provinces whose thermal-inertia
 contrast is well known \citep{Mellon2000, Putzig2007}, the dusty group (Arabia Terra, Amazonis, Tharsis) and the rocky group (Syrtis Major, Acidalia,
@@ -499,7 +538,7 @@ the catalogue's 52 in the Ius window and 32 of 60 at Athabasca. %% KB §69.35 (A
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/crater_sfd.png}
+\includegraphics[width=0.94\textwidth]{figures/crater_sfd.png}
 \caption{Cumulative size-frequency distributions: craters of at least diameter $D$ per km$^2$, over \pmsixty\ and in
 the two type areas. Orange, the closed depressions; blue, the crater database \citep{Robbins2012}; green, the
 depressions accepted in the review. \label{fig:sfd}}
@@ -645,10 +684,27 @@ The classification's lava-tube class does not find lava plains. Against SIM~3292
 $P(\mathrm{class}\mid\mathrm{group})/P(\mathrm{class})$ (Figure~\ref{fig:t8}), lava tube is slightly depleted on volcanic
 plains ($\times0.84$) and enriched on volcanic edifices ($\times3.30$) and aprons ($\times4.29$): steep volcano flanks.
 Normal Ground covers 76\% of the volcanic plains. The other classes sit where the geologic map says they should, so the
-map is coherent as a terrain map but is not a lava-flow map. A relabelled class trained on the map's volcanic units
-fared worse: as a fifth class it lowered the other three classes' held-out accuracy from 70.2\% to 64.6\%, and only 30\%
-of what it called volcanic was, below the 38\% base rate. Lava flows in this study therefore come from the geologic
-map's volcanic units. %% KB §43.2, §43.3, §57.1
+map is coherent as a terrain map but is not a lava-flow map. %% KB §43.2, §57.1
+
+Whether a class taught from the geologic map would do better was tested four ways before any map was rerun
+(Figure~\ref{fig:relabel}), with the Gaussian classifier of test T1 at 1.6~km on the held-out blocks and volcanic
+samples taken from SIM~3292's volcanic units outside every hand-drawn polygon. With the four hand-drawn classes (A)
+the Crater, hills and Normal Ground polygons score 70.2\%, and lava tube is found on 36\% of its own held-out area.
+Renaming lava tube to a volcanic class drawn from the map (B) leaves the three at 70.2\% and gives a poor class
+(producer's accuracy 21\%, user's 30\%): 75\% of the volcanic plains come out Normal Ground, because in these bands a
+lava plain is not separable from any other plain. Dropping lava tube altogether (C) raises the three to 79.0\%, so
+the class costs the others accuracy even where it is hand-drawn. Keeping the four and adding the map's volcanic class
+as a fifth (D), which the author allowed if it helped, lowers the three to 64.6\%, and only 30\% of what the fifth class calls
+volcanic is, below its 38\% share of the test blocks. No fifth class was added and no map rerun; lava flows in this
+study come from the geologic map's volcanic units. %% KB §43.3
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/lava_relabel.png}
+\caption{The lava-tube relabel, four variants: held-out accuracy on the Crater, steep/windy hills and Normal Ground
+polygons with the Gaussian classifier at 1.6~km. A volcanic class taken from the geologic map does not help as a
+replacement (B) or as a fifth class (D); leaving lava tube out (C) helps the other three. \label{fig:relabel}}
+\end{figure*}
 
 \begin{figure*}[t]
 \centering
@@ -1133,6 +1189,22 @@ Normal Ground it scores 56.4\% (36.8--75.9\%) against 28.7\%, a difference of $+
 minus the support vector machine is $+9.5$ points on all the points, which is not resolved ($-0.7$ to $+19.6$), and $+34.4$
 on those 57, which is ($+5.1$ to $+63.7$). The U-Net stays far below its polygon scores; the support vector machine's sample score is level with its own.
 %% KB §69.80, §69.81, §69.82
+
+Figure~\ref{fig:samplepoly} sets the two kinds of score side by side for the six maps. Held-out polygons flatter five
+of them, by 2.6 points for the seven-class support vector machine and by 16.9 to 54.5 points for the other four; only
+the support vector machine on the third label set is level, 40.2\% on the sample and 39.1\% on the polygons. The gap is
+widest for the U-Nets (38.0, 47.3 and 54.5 points), the maps that reproduce drawn polygons best: a polygon is drawn
+where a landform is plain, and a point drawn by area mostly falls where none is. The order of the maps also changes
+between the two measures, which is why neither is given alone. %% KB §69.77, §69.82
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/r2_vs_polygons.png}
+\caption{Overall accuracy of the six landform maps on the probability sample (filled, with 95\% interval) and on the
+held-out polygons (open). Sample: the 142 of 175 points decided by the automated labelling, whose agreement on the
+hidden check points was 66.7\% against a 70\% bar. Polygons: 183 for the four-class maps, 237 for the others.
+\label{fig:samplepoly}}
+\end{figure*}
 
 \subsection{Whether the composite's classes repeat (H3)} \label{sec:h3}
 

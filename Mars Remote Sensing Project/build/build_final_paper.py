@@ -58,10 +58,15 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"interim_img\t4_channels.png", "t4_channels.png"),   # T4, KB §51.1 (D42, KB §69.115)
     (r"interim_img\t6_stability.png", "t6_stability.png"),   # T6, KB §47.3 (D42, KB §69.115)
     (r"interim_img\t7_orders.png", "t7_orders.png"),   # T7, KB §47.4 (D42, KB §69.115)
+    (r"interim_img\ius_segmentation_sweep.png", "ius_segmentation_sweep.png"),   # cropped: CROP (D42, KB §69.116)
+    (r"interim_img\ius_thermal_contrast.png", "ius_thermal_contrast.png"),   # cropped: CROP (D42, KB §69.116)
+    (r"interim_img\lava_relabel.png", "lava_relabel.png"),   # KB §43.3 (D42, KB §69.116)
+    (r"final_img\r2_vs_polygons.png", "r2_vs_polygons.png"),   # cropped: CROP (D42, KB §69.116)
 ]
 # Two deck charts carry slide furniture a paper caption replaces: a title strip naming the gdb class and the KB
 # (ius_channel_candidates), a footnote citing the KB (global60_thermal). Pixels cut from the top and the bottom.
-CROP = {"ius_channel_candidates.png": (80, 0), "global60_thermal.png": (0, 95), "extra_runs.png": (0, 55), "svm_windows.png": (0, 50)}
+CROP = {"ius_channel_candidates.png": (80, 0), "global60_thermal.png": (0, 95), "extra_runs.png": (0, 55), "svm_windows.png": (0, 50),
+        "ius_segmentation_sweep.png": (75, 0), "ius_thermal_contrast.png": (95, 0), "r2_vs_polygons.png": (0, 85)}
 
 
 def run(exe, *args):

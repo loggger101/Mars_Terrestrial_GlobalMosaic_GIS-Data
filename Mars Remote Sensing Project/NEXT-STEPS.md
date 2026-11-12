@@ -66,7 +66,7 @@ Only the state, what waits on whom and the next step; the history behind each li
 - **The project and the deliverables:** 45 maps and 26 layouts, no broken source (§5; the 42nd, "Off-Tharsis labels (author)", 11-03, §69.63); every sheet's text read against the record and seven corrected 11-03, layout 14's recall now "–" until a feature is drawn by hand (§69.69). The interim at its 26 October
   cut (D20): 32 slides and a 21-page report, rebuilt 10-31 for layout 11's corrected citation (§69.34); speaker
   notes on every slide since 11-01, the slides unchanged (§69.41). The final
-  paper (35 pages since 11-11, §69.115; the deck 49 slides, compiled by the repository's CI on every push that touches it, §69.42) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
+  paper (37 pages since 11-11, §69.116; the deck 49 slides, compiled by the repository's CI on every push that touches it, §69.42) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
   freeze (§12.1). Backup: release `data-2026-11-10` (§69.105; `data-2026-10-29`, §69.28, before it).
 - **The machines:** the drive-root junctions point at `F:` and are broken on the laptop (§58); the drive and the
   clone agree, and `github_sync.py` refuses if the clone ever holds work the drive lacks (§69.20). `run_v3.ps1` ended 11-07 (§69.81):
