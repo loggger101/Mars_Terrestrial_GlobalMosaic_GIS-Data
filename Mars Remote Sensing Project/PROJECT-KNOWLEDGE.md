@@ -7782,3 +7782,20 @@ Written while `edf_train` runs (alive at 23:04, GPU in use). Nothing here is a r
 - **The deck, 51 slides (49).** It opens on "Lava or water at Athabasca Valles?" and never returned to it. After the probability sample it now has a divider, "The answer", and a slide "Back to Athabasca Valles: what told the lava apart" on layout 15: not the thermal pair (the index against inertia −0.01, Viking colour −0.64, §42.4); the geologic map's unit (day IR 19.7 %, Viking red 14.8 %, chance 10 %, §69.52); the catalogue's crater density (1,122 per million km² on lAv, §42.2); form (median 1.4 against 10.2 m/km, §51.1); and the answer, no for these mosaics. It is the paper's new subsection (§69.121) in five points. Both slides were exported and read; `verify_interim.py` passes on `final.py` (419 numbers).
 - **`make_fig_final.py`, the extra-runs chart:** once `logs\v3_edf.json` exists the chart gains a last row for run edf, read from that log's scores and block intervals (the same scorer and windows). Rerun today without that log, the chart is unchanged.
 - **`build\make_appendix_c.py` (new):** prints the rows of the paper's Tables `tab:perclass` and `tab:perblock` and §69.110's table from `logs\v3_extras.json`, with a seventh column "with squares" once `logs\v3_edf.json` exists. `--check` compares its rows with the paper's: **34 of 34 found**, so the tables in the paper are exactly what the log gives. The page's script count is **249**.
+
+### 69.123 The freeze's data release (D41), tallied ahead without building anything — 2026-11-11, desktop **[V]**
+
+Read-only: `github_release_bundle.py`'s own `groups()` was imported and its files counted; nothing was zipped or uploaded.
+
+| group | files | size | parts of 1.9 GB |
+|---|---|---|---|
+| typearea | 351 | 3.42 GB | 3 |
+| athabasca | 145 | 1.18 GB | 1 |
+| global60-classification | 1,119 | 4.83 GB | 3 |
+| dl-models | 299 | 3.82 GB | 3 |
+| npy-caches | 10 | 0.13 GB | 1 |
+| mars_project_vectors.gpkg | 1 | 1.03 GB | 1 |
+
+- **14.41 GB** before compression; no single file is larger than one part, so no asset can pass GitHub's 2 GiB limit; the staging folder's disk has 75.6 GB free (the last release's zips, about 14 GB, are still there and are rebuilt in place).
+- **What the retraining adds, either way.** edf's model is on internal disk only (`C:\MarsScratch\x5c_v3x\models\global60_unet_x5c_v3e_20261111`) and its window maps are not yet under `Global60\v3_extras\`; after scoring both are placed as rep's were (§69.106: the model into `DLModels\`, the windows into `Global60\v3_extras\edf\`, `edfv\`, `freshw\`), and then the bundle takes them without a change. If the model leads (D39), `global60_landforms_unet_v3e_200m_seamfix.tif` is matched by the bundle's `global60_landforms_unet*` pattern as it stands.
+- **The order at the freeze (22 Nov):** (1) place edf's model and windows; (2) `github_export_gdb.py --rasters` under the ArcGIS Python, since the staging GeoPackage dates from 11-10 and the label and candidate layers have changed since; (3) `github_release_bundle.py --upload data-2026-11-22`; (4) `tools/check_remote.py`; (5) the tag in the paper's Data availability, the deck's `DATA` line, the README and `docs/backup.md`, which all still name `data-2026-11-10`.
