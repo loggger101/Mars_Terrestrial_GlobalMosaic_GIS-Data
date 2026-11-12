@@ -294,6 +294,18 @@ FIGURES = [
                  "The labelling's check failed (66.7% on 27 hidden points, the bar 70%), and it read 79.8% of the ground as Normal Ground",
                  "Off Normal Ground the U-Net leads the SVM by 34.4 pt, interval +5.1 to +63.7"],
          source="§69.53, §69.55, §69.77, §69.81"),
+    dict(section=("The answer", "Lava or water at Athabasca Valles?"),
+         title="Back to Athabasca Valles: what told the lava apart",
+         images=[("layout", "15_athabasca_type_area")], side_h=330,
+         points=["Not the thermal pair: the index against calibrated inertia is r −0.01 here, Viking colour −0.64",
+                 "The geologic map's unit lAv: no band finds its contacts or the traced margins much above chance "
+                 "(day IR 19.7%, Viking red 14.8%, chance 10%)",
+                 "The catalogue's crater density: 1,122 per million km² on lAv, lowest in the window; the detector "
+                 "reverses the order",
+                 "Form: the channel candidates are shallow (median 1.4 m/km against 10.2 at Ius Chasma)",
+                 "So for these 8-bit, region-stretched mosaics the answer is no; calibrated thermal data is the "
+                 "test the question deserves"],
+         source="§42.2, §42.4, §47.2, §51.1, §69.52, §69.121"),
 ]
 
 LIMITS = [   # (head, text)

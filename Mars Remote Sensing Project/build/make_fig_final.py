@@ -182,8 +182,15 @@ def extra_runs():
     rows = [("unet_v2", "Neither: second label set"), ("cut", "Cut pieces only"), ("add", "Added polygons only"),
             ("base", "Both: third label set"), ("noth", "Both, without the thermal bands"),
             ("rep", "Both, trained a second time")]
-    rows = [(k, n) for k, n in rows if k in r["v2_polygons"]["full"]]
     sets = [("v2_polygons", "237 v2 polygons", BLUE, -0.14), ("v3_polygons", "1,652 v3 polygons", ORANGE, 0.14)]
+    edf = os.path.join(HERE, "logs", "v3_edf.json")          # the edifice retraining (make_v3_edf.py --report, D37):
+    if os.path.exists(edf):                                  # a last row once it is scored; the same scorer and windows
+        e = log("v3_edf.json")
+        for s, _, _, _ in sets:
+            r[s]["full"]["edf"] = e[s]["full"]["edf"]
+            r[s]["block_bootstrap"]["edf"] = e[s]["block_bootstrap"]["edf"]
+        rows.append(("edf", "With Normal Ground squares\non the extra edifice"))
+    rows = [(k, n) for k, n in rows if k in r["v2_polygons"]["full"]]
     fig, axes = plt.subplots(1, 2, figsize=(10, 0.62 * len(rows) + 1.5), dpi=200, sharey=True)
     for ax, metric, title in zip(axes, ("accuracy", "balanced"), ("A  Accuracy", "B  Balanced accuracy")):
         for y, (k, _) in enumerate(rows):
