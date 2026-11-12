@@ -289,9 +289,10 @@ A third label set tests whether more and smaller training polygons help. Every s
 written screen for its class, and polygons were added from the crater catalogue, the geologic map and the elevation
 model, by rule and not by eye, giving 10,269 training and 1,652 held-out polygons in the same 14 blocks. The models
 were retrained on them; the U-Net's validation loss was unsteady, and the epoch with the lowest, the 19th of 30, was kept.
-The loss rose late in each later retraining that kept the added polygons, far in all but the one on them alone (to
-3.51), and each kept an epoch from before the rise; trained on the cut pieces alone, like every earlier U-Net, it did
-not rise. %% KB §69.84, §69.86, §69.88, §69.90, §69.93, §69.96
+The loss rose far late in most of the later retrainings that kept the added polygons, but not in all: on the added
+polygons alone it peaked at 3.51, and in a second training on the same labels at 2.09 where the first reached 23.25,
+so the rise belongs to a training and not to the labels. Each kept its epoch of lowest loss; trained on the cut pieces
+alone, like every earlier U-Net, the loss did not rise. %% KB §69.84, §69.86, §69.88, §69.90, §69.93, §69.96, §69.106
 Each new map is scored on the 237 held-out polygons, the like-for-like comparison, and on the 1,652. A rule written
 before the runs recommends a new map over its predecessor only if on both sets its balanced accuracy and \kap\ are at
 least as high, no class loses 5 points or more of producer's accuracy on the 237 polygons and, for the U-Net, volcanic
@@ -434,7 +435,7 @@ Night IR & & & & & 1 \\
 \subsection{What the thermal pair can and cannot do} \label{sec:thermal}
 
 Inside one area the diurnal-contrast index behaves as a material signal should. On the object-based classes of Ius
-Chasma, built on mean-shift segments \citep{Comaniciu2002}, the steep canyon wall (mean slope $21.5^{\circ}$) and the mantled chasma floor ($17.0^{\circ}$) are the two
+Chasma (Section~\ref{sec:segments}), the steep canyon wall (mean slope $21.5^{\circ}$) and the mantled chasma floor ($17.0^{\circ}$) are the two
 steepest units, yet differ by 0.46 in the index at opposite signs, and fresh crater ejecta come out damped against the
 plateau (Figure~\ref{fig:iusindex}). The nine classes run from $-0.467$ on wall outcrop (2.6\% of the window) and
 $-0.443$ on the lower wall and floor bedrock (3.8\%) to $+0.202$ on the dust-mantled plateau, which is 43.4\% of the
@@ -1120,7 +1121,7 @@ score 35.2\% against 81.8\% for pieces of the author's, so the model has learnt 
 rule's. The rule kept its hills clear of craters of 10~km or more only by 1.3 radii, and half of its training hills
 lie within two radii of one, against 6.5\% of the author's; those the model reads as Crater (79.4\% and 81.3\% of the
 held-out ones within two radii, 28.2\% and 27.3\% beyond), and more of the fresh blocks' hills lie that close.
-Fluvial channel falls in one block, 6\_$-$3, which holds 66 of its 147 polygons at 10.9\%. %% KB §69.84, §69.85, §69.87, §69.96, §69.102
+Fluvial channel falls in one block, $6,\,-3$ in the naming of Table~\ref{tab:perblock}, which holds 66 of its 147 polygons at 10.9\%. %% KB §69.84, §69.85, §69.87, §69.96, §69.102
 
 By the rule written before the runs the U-Net map replaces its predecessor. The support vector machine map does not:
 its \kap\ falls on both sets and Crater loses 21.8 points of producer's accuracy (40.0\% to 18.2\%), while hills gain 38.3
@@ -1550,7 +1551,7 @@ The screens rejected 161 Crater pieces that lay outside rims, 345 edifice, 146 a
 pieces, and 680 new valley strips. Of 1,049 craters measured for a new disc 693 were placed, of 1,269 valley strips
 589, and of 592 troughs 119. Against the second label set the hills train in 150 blocks where they trained in 2, and
 the lava tubes in 11 where they trained in 3; the edifice polygons still train in 23 blocks and are held out in 3,
-which is why their score is Tharsis ground (Section~\ref{sec:v3}). %% KB §69.49
+which is why their score is Tharsis ground (Section~\ref{sec:discussion}). %% KB §69.49
 
 Two rules were changed after the first polygons were read on hillshade sheets and before the set that stands was
 written. The first run placed 315 lava-tube chains from closed depressions outside crater rims; at full resolution
