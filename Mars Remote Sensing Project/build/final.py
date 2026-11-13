@@ -35,9 +35,9 @@ HYPOTHESES = [   # (id, claim, verdict, KB)
      "Not supported on the map's contacts or on margins traced on CTX: day IR 19.7%, Viking red 14.8%, chance 10%; the difference's interval includes 0",
      "§47.2, §69.52"),
     ("H2", "Fluvial and volcanic channels separate on gradient and thermal response",
-     "Not supported at stages 1 and 1b: volcanic channels are shallower (window 1.4 against 10.2 m/km; mapped units "
-     "2.4 against 13.9); thermal |d| ≤ 0.31",
-     "§51.1, §69.50"),
+     "Not supported at stages 1, 1b and 2: on the geologic map's own rilles, steeper by median (8.70 against "
+     "5.45 m/km) but unresolved; thermal d −0.49, short of 0.5",
+     "§51.1, §69.50, §69.133"),
     ("H3", "The composite gives more stable classes than any single input",
      "Not supported: the composites are the least reproducible inputs (ARI 0.40 against 0.61–0.89)", "§47.3"),
     ("H4", "Crater rims from DN gradient recover the large IAU craters",
@@ -318,7 +318,8 @@ LIMITS = [   # (head, text)
      "the U-Net loses 6.4–7.6 (not resolved by block), an SVM seeing 51 km 8.0–9.9, mostly made up by map coordinates (§24, §56, §69.86, §69.99–§69.101, §69.106)."),
     ("The landform classes are terrain classes",
      "Slope and relief alone match all seven bands; 'lava tube' marks volcano flanks, not lava plains; the geologic "
-     "map's unit groups cannot stand in for material labels either (§40.1, §43.2, §69.50)."),
+     "map's unit groups are no material labels; on TES inertia classes Viking carries the material signal and thermal "
+     "adds 0.4–0.6 points, resolved only within blocks (§40.1, §43.2, §69.50, §69.133)."),
     ("The seven classes cost the old ones",
      "Five four-class 'Crater' labels were volcanoes (Arsia Mons alone 31% of the held-out Crater area); the "
      "revision fixes that, but both seven-class maps fall below the four-class ones on the original classes. On the "
@@ -330,7 +331,7 @@ LIMITS = [   # (head, text)
      "Fill floods closed basins; 89.8% of ±60° channels lie under 2° and meet the mapped valleys no more often than "
      "a rotated valley map; the stream order is a setting (§25.1, §47.4, §54.4, §69.50)."),
     ("The review is partial",
-     "3,791 of 9,287 candidates reviewed (precision 54% on steep Ius channels, 50% on rock-floored Athabasca channels, 10% and 13% on depressions); the digitising classes hold 202 channels, 381 crater rims and 86 traced lava margins; H2 needs both channel origins in one area, which neither type area has (§69.33, §69.52, §69.55, §69.63)."),
+     "3,791 of 9,287 candidates reviewed (precision 54% on steep Ius channels, 50% on rock-floored Athabasca channels, 10% and 13% on depressions); the digitising classes hold 202 channels, 381 crater rims and 86 traced lava margins; H2's second stage rests on the geologic map's 18 rilles (§69.33, §69.52, §69.55, §69.63, §69.133)."),
     ("The held-out blocks used three times",
      "By the four-class models, the seven-class ones and those on a third label set, asked for after the seven-class scores were read, "
      "so a gain there is not a fresh test; two draws of 14 other blocks give a retrained U-Net 86.6% and 85.4%, the second ahead of the nearest polygon once weighted to the first 14 blocks' class mix (§66.5, §69.49, §69.84, §69.96, §69.102)."),
@@ -348,15 +349,15 @@ CONCLUSIONS = [
     "The four-class landform map scores 66.7% balanced (73.8%, κ 0.58 overall) on blocks it never saw, above geography alone by class (61.3%); thermal adds a resolved 1.4–2.0 points overall, none by balanced accuracy",
     "A U-Net reaches 98.9% as a four-class province map and, with seven classes on a third label set, 87.6% on polygons and "
     "49.6% on a probability sample; the SVM there fails its rule (39.1%); both lead; lava flows still come from the geologic map",
-    "H1 is not supported on 1,476 km of margins traced on CTX either, and H2 awaits a window that holds both channel origins",
+    "H1 is not supported on 1,476 km of margins traced on CTX either, nor H2 on the geologic map's own rilles and channels",
 ]
 
 NEXT_STEPS = [
     "Finish the review at both type areas; draw breached craters by hand",
-    "An analyst to check the traced margins for H1; H2 needs one area with both channel origins",
+    "An analyst to check the traced margins for H1; rilles mapped at a finer scale for H2",
     "Seven classes: curb the SVM's fluvial channel and win back its Crater; correct the U-Net's small edifices and lava tube",
     "Have the probability sample labelled by an analyst who passes its check: unbiased accuracies and class areas",
-    "Material labels to price the thermal bands; further deep-learning tuning on its own validation blocks, learning rate fixed",
+    "Photo-interpreted material labels to price the thermal bands; further deep-learning tuning on its own validation blocks, learning rate fixed",
 ]
 
 DATA = ("Every map, script and model: github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data, "

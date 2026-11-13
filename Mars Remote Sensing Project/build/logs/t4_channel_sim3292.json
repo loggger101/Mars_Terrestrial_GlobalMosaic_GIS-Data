@@ -1,0 +1,94 @@
+{
+ "source": "SIM 3292 SIM3292_Global_Structure: Rille (volcanic), Channel axis and Outflow Channel (fluvial)",
+ "step_km": 1.0,
+ "piece_km": 10,
+ "floor_window_km": 1.0,
+ "shared_blocks": [
+  [
+   -120,
+   -45
+  ],
+  [
+   105,
+   -30
+  ],
+  [
+   75,
+   0
+  ],
+  [
+   150,
+   15
+  ],
+  [
+   -120,
+   15
+  ]
+ ],
+ "scopes": {
+  "shared": {
+   "pieces": {
+    "fluvial": 210,
+    "volcanic": 89
+   },
+   "lines": {
+    "fluvial": 14,
+    "volcanic": 7
+   },
+   "median_gradient": {
+    "fluvial": 5.45,
+    "volcanic": 8.7
+   },
+   "d_log_gradient": 0.1926190156107059,
+   "d_thermal": -0.48875910672441525,
+   "auc_gradient": 0.5719903691813805,
+   "auc_thermal": 0.626645264847512,
+   "median_difference_volc_minus_fluv": 3.249999999999999,
+   "median_difference_ci95": [
+    -3.2049999999999996,
+    6.800000000000001
+   ],
+   "d_thermal_ci95": [
+    -1.084413548088276,
+    -0.03901362178337173
+   ],
+   "verdict": "NOT SUPPORTED",
+   "gradient_direction_holds": false
+  },
+  "all": {
+   "pieces": {
+    "fluvial": 12525,
+    "volcanic": 261
+   },
+   "lines": {
+    "fluvial": 562,
+    "volcanic": 18
+   },
+   "median_gradient": {
+    "fluvial": 4.7,
+    "volcanic": 5.2
+   },
+   "d_log_gradient": 0.19854845378433036,
+   "d_thermal": -0.4083098094488261,
+   "auc_gradient": 0.5524208288404034,
+   "auc_thermal": 0.5850175511046871,
+   "median_difference_volc_minus_fluv": 0.5,
+   "median_difference_ci95": [
+    -1.3499999999999996,
+    4.0
+   ],
+   "d_thermal_ci95": [
+    -0.7313916887646669,
+    -0.11401695166853437
+   ],
+   "verdict": "NOT SUPPORTED",
+   "gradient_direction_holds": false
+  }
+ },
+ "predictions": {
+  "P1 shared: volcanic steeper, interval above 0": false,
+  "P2 shared: |d thermal| < 0.5": true,
+  "P3 shared: NOT SUPPORTED": true,
+  "P4 all: volcanic steeper, interval above 0": false
+ }
+}

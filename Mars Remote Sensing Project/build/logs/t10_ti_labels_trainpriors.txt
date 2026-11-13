@@ -1,0 +1,28 @@
+[   0.2s] selftest lattice -> image centres             ok
+[   0.2s] selftest a hole filled by the unit inside it  ok
+[   0.2s] selftest a ring at -180 lands mid-lattice     ok
+[   0.2s] selftest accuracy and balanced accuracy       ok
+[   1.0s] lattice from cache C:\Users\Owner\AppData\Local\Temp\mars_scratch\t9_samples.npz
+[   2.4s] check: 200 of 200 lattice inertia values equal a direct GDAL read
+[   3.7s] lattice 1778 x 5335; 8547432 valid labelled samples; class shares [0.287, 0.672, 0.041]
+[   5.4s] block  all 7 bands                      acc  72.4 %  kappa 0.507  balanced  57.7 %
+[   6.4s] block  without thermal (no night, day)  acc  69.3 %  kappa 0.451  balanced  56.1 %
+[   6.9s] block  thermal only                     acc  49.1 %  kappa 0.000  balanced  33.3 %
+[   7.7s] block  without visible (no Viking)      acc  48.2 %  kappa 0.009  balanced  38.5 %
+[   7.7s] block    all 7 minus without thermal (no night, day) acc  +3.1 pt [+0.6, +6.5]  balanced  +1.6 pt [-0.2, +3.6]
+[   7.7s] block    all 7 minus thermal only                   acc +23.3 pt [-1.1, +46.1]  balanced +24.3 pt [+18.3, +29.0]
+[   7.7s] block    all 7 minus without visible (no Viking)    acc +24.3 pt [+0.4, +46.3]  balanced +19.2 pt [+13.8, +23.5]
+[   7.7s] block  thermal does NOT HELP on inertia labels (one class everywhere 49.1 %)
+[  10.9s] within all 7 bands                      acc  70.3 %  kappa 0.402  balanced  52.8 %
+[  12.6s] within without thermal (no night, day)  acc  69.7 %  kappa 0.386  balanced  52.0 %
+[  13.5s] within thermal only                     acc  67.4 %  kappa 0.000  balanced  33.3 %
+[  14.9s] within without visible (no Viking)      acc  65.7 %  kappa 0.005  balanced  34.9 %
+[  14.9s] within   all 7 minus without thermal (no night, day) acc  +0.6 pt [+0.1, +1.2]  balanced  +0.8 pt [+0.3, +1.4]
+[  14.9s] within   all 7 minus thermal only                   acc  +2.9 pt [-2.9, +8.6]  balanced +19.4 pt [+17.0, +21.8]
+[  14.9s] within   all 7 minus without visible (no Viking)    acc  +4.6 pt [-1.0, +10.3]  balanced +17.9 pt [+15.8, +20.2]
+[  14.9s] within thermal HELPS on inertia labels (one class everywhere 67.4 %)
+[  14.9s] prediction P1 block: thermal adds < 3 pt of accuracy                                        NOT HELD
+[  14.9s] prediction P2 thermal adds more within blocks than at the block split                       NOT HELD
+[  14.9s] prediction P3 block: leaving out Viking costs more balanced accuracy than leaving out thermal held
+[  14.9s] prediction P4 block: all 7 bands >= 43.3 % balanced                                         held
+[  14.9s] wrote F:\Mars Remote Sensing Project\build\logs\t10_ti_labels_trainpriors.json

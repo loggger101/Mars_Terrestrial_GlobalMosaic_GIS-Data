@@ -1,0 +1,18 @@
+[   8.6s] SIM 3292 channels: 594 line parts (18 volcanic, 576 fluvial)
+[   8.7s] 135397 samples at 1 km, 132507 within 60 deg
+[  10.4s]   strip 1 / 70
+[  59.6s]   strip 21 / 70
+[ 111.1s]   strip 41 / 70
+[ 165.1s]   strip 61 / 70
+[ 184.3s] check: 25 single-window reads match the strip reads
+[ 188.0s] shared pieces fluvial 210 (14 lines), volcanic 89 (7 lines)
+[ 188.0s] shared median gradient fluvial 5.45, volcanic 8.70 m/km; volcanic - fluvial +3.25 [-3.20, +6.80]
+[ 188.0s] shared d log gradient +0.19, d thermal -0.49 [-1.08, -0.04]; AUC gradient 0.57, thermal 0.63; NOT SUPPORTED
+[ 189.0s] all    pieces fluvial 12525 (562 lines), volcanic 261 (18 lines)
+[ 189.0s] all    median gradient fluvial 4.70, volcanic 5.20 m/km; volcanic - fluvial +0.50 [-1.35, +4.00]
+[ 189.0s] all    d log gradient +0.20, d thermal -0.41 [-0.73, -0.11]; AUC gradient 0.55, thermal 0.59; NOT SUPPORTED
+[ 189.0s] prediction P1 shared: volcanic steeper, interval above 0      NOT HELD
+[ 189.0s] prediction P2 shared: |d thermal| < 0.5                       held
+[ 189.0s] prediction P3 shared: NOT SUPPORTED                           held
+[ 189.0s] prediction P4 all: volcanic steeper, interval above 0         NOT HELD
+[ 189.0s] wrote F:\Mars Remote Sensing Project\build\logs\t4_channel_sim3292.json

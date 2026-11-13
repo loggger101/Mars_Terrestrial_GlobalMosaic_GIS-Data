@@ -121,9 +121,9 @@ balanced accuracy (D25, §69.18), while the seven-class U-Net, trained once with
 signal and the Viking colour, not a calibrated albedo, carries the regional signal (§42.4, §43.1, §69.50). The hand-drawn classes are landform classes (§40.1, §56.1).
 
 **Hypotheses** (status table in `INTERIM-PLAN.md` §5): H1 not supported at the geologic map's 1:20 M
-nor on the 86 CTX-traced margins (§69.52), nor on those the agent's blind second reading kept (§69.105); H2 not supported at stages 1 and
-1b, stage 2 cannot run in these type areas (§69.63); H3 not supported;
-H4 supported when tested as written, 11-12 (image gradients find 104 of 109 large craters, largely through topography; fill depth 68 %, §69.132). Q1, Q2, Q4, Q5 answered; Q3 overtaken; Q6 examined 11-12: faintly yes, the composite's gradient marks the geologic map's contacts a little more than any one band (AUC 0.545, §69.132). All in the paper's Table of hypotheses and the deck.
+nor on the 86 CTX-traced margins (§69.52), nor on those the agent's blind second reading kept (§69.105); H2 not supported at stages 1,
+1b and 2 (stage 2, 11-12: SIM 3292's mapped rilles against its channels in the five blocks holding both, volcanic steeper by median, unresolved, thermal d −0.49, just short of the rule's 0.5, §69.133); H3 not supported;
+H4 supported when tested as written, 11-12 (image gradients find 104 of 109 large craters, largely through topography; fill depth 68 %, §69.132). Q1, Q2, Q4, Q5 answered; Q3 overtaken; Q6 examined 11-12: faintly yes, the composite's gradient marks the geologic map's contacts a little more than any one band (AUC 0.545, §69.132). T10, 11-12: on TES thermal-inertia classes as material labels the thermal bands add about half a point, resolved within blocks, not across held-out blocks; Viking carries the material signal (§69.133). All in the paper's Table of hypotheses and the deck.
 
 ---
 
@@ -212,7 +212,7 @@ Each writes its prediction and verdict rule into the script before it runs.
 | T1 | does thermal IR improve the classification? | **done**: +1.3 pt numpy (§40.1); Pro's SVM +1.36 (200 m), +1.97 (400 m); without visible and terrain only tie (§56, §56.1) |
 | T2 | is Athabasca younger than Ius's plateau? | **done** (§42.2) |
 | T3 | which layer tracks calibrated thermal inertia? | **done**: Viking does, the THEMIS pair barely (§42.4, §43.1) |
-| T4 | H2: do volcanic and fluvial channels separate on gradient and thermal response? | stage 1 done, not supported (§51.1); **stage 2 open**, on reviewed channels (§3 step 3) |
+| T4 | H2: do volcanic and fluvial channels separate on gradient and thermal response? | stage 1 done, not supported (§51.1); stage 1b (§69.50); **stage 2 done 11-12** on SIM 3292's mapped rilles and channels, not supported (§69.133) |
 | T5 | H1: does IR show flow margins Viking misses? | inconclusive at 1:20 M (§47.2); the lean survives removing topography (A9, §69.50); **open**, on digitised margins (§3 step 4) |
 | T6 | H3: is the composite more stable than any single input? | **done**, not supported (§47.3) |
 | T7 | Q5: how many tributary orders does 100 m resolve? | **done**: no DEM-supported answer (§47.4) |
@@ -220,6 +220,7 @@ Each writes its prediction and verdict rule into the script before it runs.
 | T1b | T1 on the seven v2 classes | **done** 11-01: +1.1 pt [+0.6, +1.7], balanced +0.8; Crater +4.4, fluvial +1.5, hills −3.1; no new class gains ≥ 2 pt (KB §69.50) |
 | T4, stage 1b | H2 with the valley map and SIM 3292 standing in for origin | **done** 11-01, not supported: the segments on mapped valleys are 5.7 times steeper than those on volcanic units (order ≥ 2), thermal |d| ≤ 0.31 (KB §69.50); stage 2 stays the authority |
 | T9 | does thermal IR help predict geologic-unit groups, material labels? | **done 11-02** (KB §69.50): does not help as registered; the stack cannot predict the unit groups above the commonest group under either prior, so they are not material labels the stack sees; thermal adds at most ~1 pt |
+| T10 | does thermal IR help predict a calibrated material property? | **done 11-12** (KB §69.133): TES nightside inertia in three classes; does not help at the held-out blocks (+0.5 pt), helps within blocks (+0.5 to +0.6 pt); without Viking −8.5 balanced pt |
 
 **Scope:** every open test is optional; if time runs short, drop tests, never the digitising checkpoint or
 the cut dates.

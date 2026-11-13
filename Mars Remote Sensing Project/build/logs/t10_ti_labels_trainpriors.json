@@ -1,0 +1,259 @@
+{
+ "method": "T9's design (make_t9_material_labels.py) with TES nightside thermal inertia classes as the label",
+ "classes": [
+  "low inertia (< 150)",
+  "moderate (150-349)",
+  "high (>= 350)"
+ ],
+ "edges_tiu": [
+  150,
+  350
+ ],
+ "priors": "train",
+ "bands": [
+  "Viking R",
+  "Viking G",
+  "Viking B",
+  "Night IR",
+  "Day IR",
+  "slope",
+  "relief"
+ ],
+ "label_check_direct_reads": 200,
+ "held_out_blocks": [
+  "-11_1",
+  "-11_2",
+  "-3_-1",
+  "-4_-1",
+  "-4_-2",
+  "-5_-1",
+  "-6_1",
+  "-9_-1",
+  "-9_0",
+  "0_0",
+  "1_0",
+  "4_0",
+  "4_2",
+  "5_-2"
+ ],
+ "splits": {
+  "block": {
+   "n_train": 7888497,
+   "n_test": 658935,
+   "test_blocks": 14,
+   "one_class_everywhere": 0.4908723983854972,
+   "test_share_by_class": {
+    "low inertia (< 150)": 0.454,
+    "moderate (150-349)": 0.4909,
+    "high (>= 350)": 0.0551
+   },
+   "sets": {
+    "all 7 bands": {
+     "accuracy": 0.7243058282364133,
+     "kappa": 0.5065301089129963,
+     "balanced_accuracy": 0.5768096174662013,
+     "producers": {
+      "low inertia (< 150)": 0.7164,
+      "moderate (150-349)": 0.7874,
+      "high (>= 350)": 0.2265
+     },
+     "balanced_ci95": [
+      0.5162419262526715,
+      0.6236954115140279
+     ]
+    },
+    "without thermal (no night, day)": {
+     "accuracy": 0.6928877138908628,
+     "kappa": 0.4509325132364988,
+     "balanced_accuracy": 0.5610575251628626,
+     "producers": {
+      "low inertia (< 150)": 0.646,
+      "moderate (150-349)": 0.7858,
+      "high (>= 350)": 0.2514
+     },
+     "balanced_ci95": [
+      0.49283216124629187,
+      0.6157736640851624
+     ],
+     "gain_from_full_stack": {
+      "accuracy": 0.03141811434555053,
+      "accuracy_ci95": [
+       0.005664073867794136,
+       0.06461768890313213
+      ],
+      "balanced_accuracy": 0.01575209230333874,
+      "balanced_accuracy_ci95": [
+       -0.0017681368978184587,
+       0.036346525117479773
+      ]
+     }
+    },
+    "thermal only": {
+     "accuracy": 0.49087239838538455,
+     "kappa": 0.0,
+     "balanced_accuracy": 0.3333333333333333,
+     "producers": {
+      "low inertia (< 150)": 0.0,
+      "moderate (150-349)": 1.0,
+      "high (>= 350)": 0.0
+     },
+     "balanced_ci95": [
+      0.3333333333333333,
+      0.3333333333333333
+     ],
+     "gain_from_full_stack": {
+      "accuracy": 0.23343342985102877,
+      "accuracy_ci95": [
+       -0.010554433610960777,
+       0.4607588187606057
+      ],
+      "balanced_accuracy": 0.24347628413286798,
+      "balanced_accuracy_ci95": [
+       0.18290859291933817,
+       0.2903620781806945
+      ]
+     }
+    },
+    "without visible (no Viking)": {
+     "accuracy": 0.4817608806109813,
+     "kappa": 0.009138442637332073,
+     "balanced_accuracy": 0.3852622944180743,
+     "producers": {
+      "low inertia (< 150)": 0.0023,
+      "moderate (150-349)": 0.9573,
+      "high (>= 350)": 0.1962
+     },
+     "balanced_ci95": [
+      0.3543286989589887,
+      0.4090224846388912
+     ],
+     "gain_from_full_stack": {
+      "accuracy": 0.242544947625432,
+      "accuracy_ci95": [
+       0.004082314365761474,
+       0.4631576557758192
+      ],
+      "balanced_accuracy": 0.191547323048127,
+      "balanced_accuracy_ci95": [
+       0.13759704392075833,
+       0.23514675842377059
+      ]
+     }
+    }
+   },
+   "thermal_helps": false
+  },
+  "within": {
+   "n_train": 4272663,
+   "n_test": 4274769,
+   "test_blocks": 192,
+   "one_class_everywhere": 0.6743377541426178,
+   "test_share_by_class": {
+    "low inertia (< 150)": 0.2846,
+    "moderate (150-349)": 0.6743,
+    "high (>= 350)": 0.0411
+   },
+   "sets": {
+    "all 7 bands": {
+     "accuracy": 0.7028534537349146,
+     "kappa": 0.4016128206779854,
+     "balanced_accuracy": 0.5277845928677515,
+     "producers": {
+      "low inertia (< 150)": 0.7158,
+      "moderate (150-349)": 0.7319,
+      "high (>= 350)": 0.1356
+     },
+     "balanced_ci95": [
+      0.502964635832902,
+      0.551800230403579
+     ]
+    },
+    "without thermal (no night, day)": {
+     "accuracy": 0.6968899933982547,
+     "kappa": 0.38615604043472784,
+     "balanced_accuracy": 0.519757301129968,
+     "producers": {
+      "low inertia (< 150)": 0.6931,
+      "moderate (150-349)": 0.7328,
+      "high (>= 350)": 0.1334
+     },
+     "balanced_ci95": [
+      0.49372827752178994,
+      0.5463732639506623
+     ],
+     "gain_from_full_stack": {
+      "accuracy": 0.005963460336659843,
+      "accuracy_ci95": [
+       0.0008951028227398988,
+       0.01174261846932752
+      ],
+      "balanced_accuracy": 0.008027291737783493,
+      "balanced_accuracy_ci95": [
+       0.002767686629131433,
+       0.013727806812624178
+      ]
+     }
+    },
+    "thermal only": {
+     "accuracy": 0.6743377541427511,
+     "kappa": 3.4091241424153673e-16,
+     "balanced_accuracy": 0.3333333333333333,
+     "producers": {
+      "low inertia (< 150)": 0.0,
+      "moderate (150-349)": 1.0,
+      "high (>= 350)": 0.0
+     },
+     "balanced_ci95": [
+      0.3333333333333333,
+      0.3333333333333333
+     ],
+     "gain_from_full_stack": {
+      "accuracy": 0.02851569959216349,
+      "accuracy_ci95": [
+       -0.029026298056626185,
+       0.08591449998942548
+      ],
+      "balanced_accuracy": 0.19445125953441816,
+      "balanced_accuracy_ci95": [
+       0.16963130249956865,
+       0.2184668970702457
+      ]
+     }
+    },
+    "without visible (no Viking)": {
+     "accuracy": 0.6565219256114632,
+     "kappa": 0.004716722375042376,
+     "balanced_accuracy": 0.34852572667313647,
+     "producers": {
+      "low inertia (< 150)": 0.0,
+      "moderate (150-349)": 0.9689,
+      "high (>= 350)": 0.0767
+     },
+     "balanced_ci95": [
+      0.338833519026467,
+      0.3607749923437554
+     ],
+     "gain_from_full_stack": {
+      "accuracy": 0.046331528123451426,
+      "accuracy_ci95": [
+       -0.010293669872817102,
+       0.10305007557877376
+      ],
+      "balanced_accuracy": 0.179258866194615,
+      "balanced_accuracy_ci95": [
+       0.15753152859238673,
+       0.20186682118241478
+      ]
+     }
+    }
+   },
+   "thermal_helps": true
+  }
+ },
+ "predictions": {
+  "P1 block: thermal adds < 3 pt of accuracy": false,
+  "P2 thermal adds more within blocks than at the block split": false,
+  "P3 block: leaving out Viking costs more balanced accuracy than leaving out thermal": true,
+  "P4 block: all 7 bands >= 43.3 % balanced": true
+ }
+}
