@@ -1,0 +1,47 @@
+[   0.9s] selftest lattice -> image centres             ok
+[   0.9s] selftest a hole filled by the unit inside it  ok
+[   0.9s] selftest a ring at -180 lands mid-lattice     ok
+[   0.9s] selftest accuracy and balanced accuracy       ok
+[   1.3s] lattice from cache C:\Users\Owner\AppData\Local\Temp\mars_scratch\t9_samples.npz
+[   4.2s] check: the base variants equal T10's and T11's labels
+[   5.5s] TI3 (150, 350): 8547432 samples, shares [0.287, 0.672, 0.041]
+[   8.7s]   block  ML  all7 acc  59.3 bal  59.3 | thermal acc +0.51 [-0.04, +1.07] bal +0.40 [+0.04, +1.12] | prod gain -0.5 +1.4 +0.2 | does not help
+[  47.8s]   block  GBT all7 acc  74.9 bal  67.0 | thermal acc +0.62 [-0.21, +1.34] bal +2.06 [+1.06, +3.08] | prod gain +0.7 -0.0 +5.5 | does not help
+[  52.7s]   within ML  all7 acc  49.3 bal  55.2 | thermal acc +0.80 [+0.53, +1.09] bal +0.77 [+0.54, +1.04] | prod gain -0.9 +1.5 +1.8 | HELPS
+[ 159.7s]   within GBT all7 acc  65.2 bal  62.7 | thermal acc +0.00 [-0.29, +0.31] bal +1.49 [+1.11, +1.92] | prod gain +0.7 -0.5 +4.3 | does not help
+[ 160.2s] TI3 (100, 300): 8547432 samples, shares [0.21, 0.681, 0.109]
+[ 163.6s]   block  ML  all7 acc  59.1 bal  61.9 | thermal acc +0.70 [+0.17, +1.31] bal +0.49 [+0.09, +1.12] | prod gain -0.2 +1.6 +0.1 | HELPS
+[ 196.9s]   block  GBT all7 acc  69.1 bal  66.8 | thermal acc +1.85 [+1.00, +2.61] bal +1.38 [+0.80, +1.91] | prod gain +0.2 +3.5 +0.4 | HELPS
+[ 202.1s]   within ML  all7 acc  48.2 bal  57.0 | thermal acc +1.14 [+0.84, +1.44] bal +0.91 [+0.63, +1.26] | prod gain -0.6 +1.6 +1.7 | HELPS
+[ 304.2s]   within GBT all7 acc  59.3 bal  64.2 | thermal acc +1.37 [+1.06, +1.69] bal +1.45 [+1.15, +1.80] | prod gain +0.7 +1.4 +2.2 | HELPS
+[ 304.6s] TI3 (200, 400): 8547432 samples, shares [0.462, 0.522, 0.017]
+[ 307.7s]   block  ML  all7 acc  60.3 bal  55.2 | thermal acc +0.34 [-0.19, +0.86] bal -0.03 [-0.42, +0.61] | prod gain +0.1 +0.8 -1.0 | does not help
+[ 338.0s]   block  GBT all7 acc  72.6 bal  60.6 | thermal acc +0.27 [-0.18, +0.76] bal +1.52 [+0.90, +2.04] | prod gain +0.8 -0.9 +4.6 | does not help
+[ 342.9s]   within ML  all7 acc  54.3 bal  52.2 | thermal acc +0.27 [+0.06, +0.46] bal +0.37 [+0.09, +0.69] | prod gain -0.8 +1.1 +0.7 | HELPS
+[ 440.6s]   within GBT all7 acc  64.2 bal  57.7 | thermal acc +0.30 [+0.10, +0.51] bal +1.14 [+0.70, +1.60] | prod gain +1.1 -0.4 +2.8 | HELPS
+[ 441.0s] UNITS (150, 0.2): 8477237 samples, shares [0.281, 0.257, 0.463]
+[ 443.9s]   block  ML  all7 acc  73.8 bal  68.7 | thermal acc +1.46 [+0.08, +3.55] bal +0.90 [-0.16, +2.43] | prod gain +3.1 -0.8 +0.4 | does not help
+[ 475.4s]   block  GBT all7 acc  78.9 bal  72.4 | thermal acc +0.42 [-0.06, +0.87] bal +0.72 [-0.13, +2.15] | prod gain +0.3 +1.7 +0.2 | does not help
+[ 480.1s]   within ML  all7 acc  58.2 bal  59.6 | thermal acc +0.70 [+0.33, +1.16] bal +0.75 [+0.28, +1.28] | prod gain +0.9 +0.8 +0.5 | HELPS
+[ 580.4s]   within GBT all7 acc  67.2 bal  67.3 | thermal acc +0.75 [+0.52, +1.04] bal +0.83 [+0.55, +1.17] | prod gain +1.0 +1.1 +0.4 | HELPS
+[ 580.8s] UNITS (150, 0.18): 8499586 samples, shares [0.282, 0.306, 0.411]
+[ 583.5s]   block  ML  all7 acc  74.6 bal  67.8 | thermal acc +0.57 [-0.00, +1.25] bal +0.31 [-0.84, +1.08] | prod gain +1.1 -0.5 +0.4 | does not help
+[ 613.9s]   block  GBT all7 acc  78.8 bal  72.6 | thermal acc +0.43 [-0.05, +0.89] bal +0.68 [-0.06, +1.54] | prod gain +0.5 +1.6 -0.0 | does not help
+[ 618.4s]   within ML  all7 acc  58.8 bal  60.0 | thermal acc +0.65 [+0.33, +0.98] bal +0.66 [+0.30, +1.06] | prod gain +0.3 +1.3 +0.4 | HELPS
+[ 717.9s]   within GBT all7 acc  67.5 bal  67.8 | thermal acc +0.84 [+0.59, +1.09] bal +0.89 [+0.60, +1.15] | prod gain +1.1 +1.1 +0.5 | HELPS
+[ 718.3s] UNITS (150, 0.22): 8435693 samples, shares [0.277, 0.208, 0.515]
+[ 721.0s]   block  ML  all7 acc  72.0 bal  69.4 | thermal acc +1.73 [-0.16, +4.15] bal +1.28 [-0.16, +2.92] | prod gain +3.9 +0.0 -0.1 | does not help
+[ 751.6s]   block  GBT all7 acc  79.5 bal  73.3 | thermal acc +0.26 [-0.22, +0.74] bal +0.37 [-0.33, +1.45] | prod gain +0.1 +0.7 +0.3 | does not help
+[ 756.0s]   within ML  all7 acc  57.6 bal  60.4 | thermal acc +0.68 [+0.31, +1.11] bal +0.78 [+0.29, +1.30] | prod gain +1.2 +0.7 +0.4 | HELPS
+[ 855.4s]   within GBT all7 acc  66.9 bal  67.5 | thermal acc +0.51 [+0.27, +0.75] bal +0.64 [+0.33, +0.95] | prod gain +0.8 +1.0 +0.2 | HELPS
+[ 855.8s] UNITS (200, 0.2): 7810406 samples, shares [0.411, 0.171, 0.417]
+[ 858.4s]   block  ML  all7 acc  72.1 bal  64.7 | thermal acc +1.69 [+0.12, +3.67] bal +0.58 [-0.44, +1.69] | prod gain +3.1 -1.6 +0.3 | does not help
+[ 887.4s]   block  GBT all7 acc  76.2 bal  67.2 | thermal acc +0.51 [-0.08, +1.36] bal +0.49 [-0.08, +1.30] | prod gain +0.8 +0.6 +0.0 | does not help
+[ 891.5s]   within ML  all7 acc  60.2 bal  58.3 | thermal acc +0.59 [+0.25, +0.96] bal +0.54 [+0.17, +0.89] | prod gain +0.8 +0.3 +0.4 | HELPS
+[ 983.2s]   within GBT all7 acc  65.8 bal  64.4 | thermal acc +0.63 [+0.43, +0.83] bal +0.72 [+0.47, +0.96] | prod gain +0.7 +1.1 +0.4 | HELPS
+[ 983.2s] prediction P1 ML block: thermal does not help for the five new variants           NOT HELD
+[ 983.2s] prediction P2 block: thermal adds < 3 pt accuracy in all 14 runs                  held
+[ 983.2s] prediction P3 block: GBT all-7 balanced >= ML's in at least 5 of 7                held
+[ 983.2s] prediction P4 GBT block: thermal helps in at most 2 of 7                          held
+[ 983.2s] prediction P5 block: duricrust producer's gain from thermal < 2 pt in all 8 unit runs held
+[ 983.2s] wrote F:\Mars Remote Sensing Project\build\logs\t12_label_robustness.json

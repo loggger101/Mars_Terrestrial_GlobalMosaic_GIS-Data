@@ -1,0 +1,283 @@
+{
+ "floors_px": [
+  3,
+  5,
+  10
+ ],
+ "pieces_km": [
+  5,
+  10,
+  20
+ ],
+ "settings": {
+  "floor 0.6 km, piece 5 km": {
+   "pieces": {
+    "fluvial": 430,
+    "volcanic": 180
+   },
+   "lines": {
+    "fluvial": 14,
+    "volcanic": 7
+   },
+   "median_gradient": {
+    "fluvial": 6.699999999999999,
+    "volcanic": 10.8
+   },
+   "d_log_gradient": 0.2314038701848666,
+   "d_thermal": -0.46614052859982,
+   "auc_gradient": 0.5745284237726098,
+   "auc_thermal": 0.6217764857881136,
+   "median_difference_volc_minus_fluv": 4.100000000000001,
+   "median_difference_ci95": [
+    -2.0,
+    7.300000000000001
+   ],
+   "d_thermal_ci95": [
+    -1.0211251257805223,
+    -0.07513927564028448
+   ],
+   "verdict": "NOT SUPPORTED",
+   "gradient_direction_holds": false
+  },
+  "floor 0.6 km, piece 10 km": {
+   "pieces": {
+    "fluvial": 210,
+    "volcanic": 89
+   },
+   "lines": {
+    "fluvial": 14,
+    "volcanic": 7
+   },
+   "median_gradient": {
+    "fluvial": 5.75,
+    "volcanic": 9.0
+   },
+   "d_log_gradient": 0.211837195746954,
+   "d_thermal": -0.48875910672441525,
+   "auc_gradient": 0.5789727126805778,
+   "auc_thermal": 0.626645264847512,
+   "median_difference_volc_minus_fluv": 3.25,
+   "median_difference_ci95": [
+    -2.8999999999999995,
+    6.151249999999994
+   ],
+   "d_thermal_ci95": [
+    -1.082046293691258,
+    -0.055152325492030856
+   ],
+   "verdict": "NOT SUPPORTED",
+   "gradient_direction_holds": false
+  },
+  "floor 0.6 km, piece 20 km": {
+   "pieces": {
+    "fluvial": 101,
+    "volcanic": 43
+   },
+   "lines": {
+    "fluvial": 14,
+    "volcanic": 7
+   },
+   "median_gradient": {
+    "fluvial": 5.25,
+    "volcanic": 10.55
+   },
+   "d_log_gradient": 0.22036846688153522,
+   "d_thermal": -0.5542960742681047,
+   "auc_gradient": 0.5775961317061938,
+   "auc_thermal": 0.644945889937831,
+   "median_difference_volc_minus_fluv": 5.300000000000001,
+   "median_difference_ci95": [
+    -3.8500000000000005,
+    7.8999999999999995
+   ],
+   "d_thermal_ci95": [
+    -1.3504140636712594,
+    -0.026302226860892872
+   ],
+   "verdict": "NOT SUPPORTED",
+   "gradient_direction_holds": false
+  },
+  "floor 1.0 km, piece 5 km": {
+   "pieces": {
+    "fluvial": 430,
+    "volcanic": 180
+   },
+   "lines": {
+    "fluvial": 14,
+    "volcanic": 7
+   },
+   "median_gradient": {
+    "fluvial": 6.2,
+    "volcanic": 10.2
+   },
+   "d_log_gradient": 0.2537477766335757,
+   "d_thermal": -0.46614052859982,
+   "auc_gradient": 0.5832364341085271,
+   "auc_thermal": 0.6217764857881136,
+   "median_difference_volc_minus_fluv": 3.999999999999999,
+   "median_difference_ci95": [
+    -2.4,
+    7.200000000000001
+   ],
+   "d_thermal_ci95": [
+    -1.0211251257805223,
+    -0.07513927564028448
+   ],
+   "verdict": "NOT SUPPORTED",
+   "gradient_direction_holds": false
+  },
+  "floor 1.0 km, piece 10 km": {
+   "pieces": {
+    "fluvial": 210,
+    "volcanic": 89
+   },
+   "lines": {
+    "fluvial": 14,
+    "volcanic": 7
+   },
+   "median_gradient": {
+    "fluvial": 5.45,
+    "volcanic": 8.7
+   },
+   "d_log_gradient": 0.1926190156107059,
+   "d_thermal": -0.48875910672441525,
+   "auc_gradient": 0.5719903691813805,
+   "auc_thermal": 0.626645264847512,
+   "median_difference_volc_minus_fluv": 3.249999999999999,
+   "median_difference_ci95": [
+    -3.00125,
+    6.951249999999994
+   ],
+   "d_thermal_ci95": [
+    -1.082046293691258,
+    -0.055152325492030856
+   ],
+   "verdict": "NOT SUPPORTED",
+   "gradient_direction_holds": false
+  },
+  "floor 1.0 km, piece 20 km": {
+   "pieces": {
+    "fluvial": 101,
+    "volcanic": 43
+   },
+   "lines": {
+    "fluvial": 14,
+    "volcanic": 7
+   },
+   "median_gradient": {
+    "fluvial": 4.75,
+    "volcanic": 10.05
+   },
+   "d_log_gradient": 0.29363973098510937,
+   "d_thermal": -0.5542960742681047,
+   "auc_gradient": 0.5914114667280681,
+   "auc_thermal": 0.644945889937831,
+   "median_difference_volc_minus_fluv": 5.300000000000001,
+   "median_difference_ci95": [
+    -2.5000000000000004,
+    7.401249999999994
+   ],
+   "d_thermal_ci95": [
+    -1.3504140636712594,
+    -0.026302226860892872
+   ],
+   "verdict": "NOT SUPPORTED",
+   "gradient_direction_holds": false
+  },
+  "floor 2.0 km, piece 5 km": {
+   "pieces": {
+    "fluvial": 430,
+    "volcanic": 180
+   },
+   "lines": {
+    "fluvial": 14,
+    "volcanic": 7
+   },
+   "median_gradient": {
+    "fluvial": 6.2,
+    "volcanic": 9.7
+   },
+   "d_log_gradient": 0.2503220361626055,
+   "d_thermal": -0.46614052859982,
+   "auc_gradient": 0.5822868217054263,
+   "auc_thermal": 0.6217764857881136,
+   "median_difference_volc_minus_fluv": 3.499999999999999,
+   "median_difference_ci95": [
+    -2.002500000000001,
+    6.6
+   ],
+   "d_thermal_ci95": [
+    -1.0211251257805223,
+    -0.07513927564028448
+   ],
+   "verdict": "NOT SUPPORTED",
+   "gradient_direction_holds": false
+  },
+  "floor 2.0 km, piece 10 km": {
+   "pieces": {
+    "fluvial": 210,
+    "volcanic": 89
+   },
+   "lines": {
+    "fluvial": 14,
+    "volcanic": 7
+   },
+   "median_gradient": {
+    "fluvial": 4.9,
+    "volcanic": 9.7
+   },
+   "d_log_gradient": 0.1512559810059493,
+   "d_thermal": -0.48875910672441525,
+   "auc_gradient": 0.5681380417335473,
+   "auc_thermal": 0.626645264847512,
+   "median_difference_volc_minus_fluv": 4.799999999999999,
+   "median_difference_ci95": [
+    -3.3,
+    7.000000000000001
+   ],
+   "d_thermal_ci95": [
+    -1.082046293691258,
+    -0.055152325492030856
+   ],
+   "verdict": "NOT SUPPORTED",
+   "gradient_direction_holds": false
+  },
+  "floor 2.0 km, piece 20 km": {
+   "pieces": {
+    "fluvial": 101,
+    "volcanic": 43
+   },
+   "lines": {
+    "fluvial": 14,
+    "volcanic": 7
+   },
+   "median_gradient": {
+    "fluvial": 5.0,
+    "volcanic": 9.45
+   },
+   "d_log_gradient": 0.29391592601840777,
+   "d_thermal": -0.5542960742681047,
+   "auc_gradient": 0.5950955560672346,
+   "auc_thermal": 0.644945889937831,
+   "median_difference_volc_minus_fluv": 4.449999999999999,
+   "median_difference_ci95": [
+    -2.3499999999999996,
+    7.15
+   ],
+   "d_thermal_ci95": [
+    -1.3504140636712594,
+    -0.026302226860892872
+   ],
+   "verdict": "NOT SUPPORTED",
+   "gradient_direction_holds": false
+  }
+ },
+ "smallest_resolvable_shift_m_per_km": 3.25,
+ "observed_difference_m_per_km": 3.249999999999999,
+ "predictions": {
+  "S1 NOT SUPPORTED in all 9": true,
+  "S2 volcanic median steeper in >= 7 of 9": true,
+  "S3 |d thermal| < 0.5 in >= 5 of 9": true,
+  "S4 smallest resolvable shift > observed +3.25": true
+ }
+}

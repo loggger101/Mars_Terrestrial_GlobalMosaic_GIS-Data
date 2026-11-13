@@ -1,0 +1,288 @@
+{
+ "units": [
+  "A dust",
+  "C duricrust",
+  "B sand and rock"
+ ],
+ "classes": [
+  "Crater",
+  "steep/windy hills",
+  "lava tube",
+  "Normal Ground",
+  "volcanic edifice",
+  "apron",
+  "fluvial channel"
+ ],
+ "ti_edge": 150,
+ "albedo_edge": 0.2,
+ "maps": {
+  "U-Net v3": {
+   "overall_unit_shares": {
+    "A dust": 0.281,
+    "C duricrust": 0.2569,
+    "B sand and rock": 0.4621
+   },
+   "cramers_v": 0.22040324663474076,
+   "cramers_v_ci95": [
+    0.18415721101054777,
+    0.26269463229260864
+   ],
+   "uncertainty_coefficient": 0.04470563822325474,
+   "uc_ci95": [
+    0.031238574814009133,
+    0.0644344910175743
+   ],
+   "classes": {
+    "Crater": {
+     "area_share": 0.28053383878875326,
+     "unit_shares": {
+      "A dust": 0.1825,
+      "C duricrust": 0.2488,
+      "B sand and rock": 0.5687
+     },
+     "enrichment": {
+      "A dust": 0.65,
+      "C duricrust": 0.968,
+      "B sand and rock": 1.231
+     },
+     "median_inertia": 218.0,
+     "median_albedo": 0.17521558701992035
+    },
+    "steep/windy hills": {
+     "area_share": 0.01596836809358682,
+     "unit_shares": {
+      "A dust": 0.2252,
+      "C duricrust": 0.3796,
+      "B sand and rock": 0.3952
+     },
+     "enrichment": {
+      "A dust": 0.801,
+      "C duricrust": 1.478,
+      "B sand and rock": 0.855
+     },
+     "median_inertia": 225.0,
+     "median_albedo": 0.2241567224264145
+    },
+    "lava tube": {
+     "area_share": 0.016351394056456487,
+     "unit_shares": {
+      "A dust": 0.7782,
+      "C duricrust": 0.1327,
+      "B sand and rock": 0.0892
+     },
+     "enrichment": {
+      "A dust": 2.77,
+      "C duricrust": 0.516,
+      "B sand and rock": 0.193
+     },
+     "median_inertia": 78.0,
+     "median_albedo": 0.27717626094818115
+    },
+    "Normal Ground": {
+     "area_share": 0.3788263560000568,
+     "unit_shares": {
+      "A dust": 0.2824,
+      "C duricrust": 0.2938,
+      "B sand and rock": 0.4238
+     },
+     "enrichment": {
+      "A dust": 1.005,
+      "C duricrust": 1.143,
+      "B sand and rock": 0.917
+     },
+     "median_inertia": 220.0,
+     "median_albedo": 0.21599987149238586
+    },
+    "volcanic edifice": {
+     "area_share": 0.17695582537385723,
+     "unit_shares": {
+      "A dust": 0.3699,
+      "C duricrust": 0.2177,
+      "B sand and rock": 0.4123
+     },
+     "enrichment": {
+      "A dust": 1.317,
+      "C duricrust": 0.847,
+      "B sand and rock": 0.892
+     },
+     "median_inertia": 194.0,
+     "median_albedo": 0.21599987149238586
+    },
+    "apron": {
+     "area_share": 0.04213259440042465,
+     "unit_shares": {
+      "A dust": 0.6804,
+      "C duricrust": 0.2166,
+      "B sand and rock": 0.103
+     },
+     "enrichment": {
+      "A dust": 2.422,
+      "C duricrust": 0.843,
+      "B sand and rock": 0.223
+     },
+     "median_inertia": 94.0,
+     "median_albedo": 0.2679997980594635
+    },
+    "fluvial channel": {
+     "area_share": 0.08923162328686454,
+     "unit_shares": {
+      "A dust": 0.1384,
+      "C duricrust": 0.2238,
+      "B sand and rock": 0.6378
+     },
+     "enrichment": {
+      "A dust": 0.493,
+      "C duricrust": 0.871,
+      "B sand and rock": 1.38
+     },
+     "median_inertia": 217.0,
+     "median_albedo": 0.16094107925891876
+    }
+   },
+   "check_single_reads": 50
+  },
+  "SVM v3": {
+   "overall_unit_shares": {
+    "A dust": 0.281,
+    "C duricrust": 0.2569,
+    "B sand and rock": 0.4621
+   },
+   "cramers_v": 0.2574702710416866,
+   "cramers_v_ci95": [
+    0.22947487340641318,
+    0.28671758756512955
+   ],
+   "uncertainty_coefficient": 0.06411208788950076,
+   "uc_ci95": [
+    0.05066084417117434,
+    0.08096845386482768
+   ],
+   "classes": {
+    "Crater": {
+     "area_share": 0.0798919671853222,
+     "unit_shares": {
+      "A dust": 0.1113,
+      "C duricrust": 0.25,
+      "B sand and rock": 0.6387
+     },
+     "enrichment": {
+      "A dust": 0.396,
+      "C duricrust": 0.973,
+      "B sand and rock": 1.382
+     },
+     "median_inertia": 233.0,
+     "median_albedo": 0.16399990022182465
+    },
+    "steep/windy hills": {
+     "area_share": 0.05007308600078576,
+     "unit_shares": {
+      "A dust": 0.1707,
+      "C duricrust": 0.2986,
+      "B sand and rock": 0.5308
+     },
+     "enrichment": {
+      "A dust": 0.607,
+      "C duricrust": 1.162,
+      "B sand and rock": 1.149
+     },
+     "median_inertia": 222.0,
+     "median_albedo": 0.184392049908638
+    },
+    "lava tube": {
+     "area_share": 0.023201657491204238,
+     "unit_shares": {
+      "A dust": 0.4199,
+      "C duricrust": 0.2483,
+      "B sand and rock": 0.3318
+     },
+     "enrichment": {
+      "A dust": 1.494,
+      "C duricrust": 0.966,
+      "B sand and rock": 0.718
+     },
+     "median_inertia": 184.0,
+     "median_albedo": 0.22313711047172546
+    },
+    "Normal Ground": {
+     "area_share": 0.3869808178404747,
+     "unit_shares": {
+      "A dust": 0.3375,
+      "C duricrust": 0.2728,
+      "B sand and rock": 0.3897
+     },
+     "enrichment": {
+      "A dust": 1.201,
+      "C duricrust": 1.062,
+      "B sand and rock": 0.843
+     },
+     "median_inertia": 208.0,
+     "median_albedo": 0.22313711047172546
+    },
+    "volcanic edifice": {
+     "area_share": 0.11980484425421047,
+     "unit_shares": {
+      "A dust": 0.5537,
+      "C duricrust": 0.2122,
+      "B sand and rock": 0.2341
+     },
+     "enrichment": {
+      "A dust": 1.971,
+      "C duricrust": 0.826,
+      "B sand and rock": 0.507
+     },
+     "median_inertia": 140.0,
+     "median_albedo": 0.2537253201007843
+    },
+    "apron": {
+     "area_share": 0.04516442037565746,
+     "unit_shares": {
+      "A dust": 0.4644,
+      "C duricrust": 0.3149,
+      "B sand and rock": 0.2208
+     },
+     "enrichment": {
+      "A dust": 1.653,
+      "C duricrust": 1.226,
+      "B sand and rock": 0.478
+     },
+     "median_inertia": 170.0,
+     "median_albedo": 0.24149003624916077
+    },
+    "fluvial channel": {
+     "area_share": 0.29488320685234526,
+     "unit_shares": {
+      "A dust": 0.1216,
+      "C duricrust": 0.2409,
+      "B sand and rock": 0.6374
+     },
+     "enrichment": {
+      "A dust": 0.433,
+      "C duricrust": 0.938,
+      "B sand and rock": 1.379
+     },
+     "median_inertia": 224.0,
+     "median_albedo": 0.1619606912136078
+    }
+   },
+   "check_single_reads": 50
+  }
+ },
+ "svm_minus_unet": {
+  "cramers_v": 0.03706702440694587,
+  "cramers_v_ci95": [
+   0.0008202133350389983,
+   0.06673179279955078
+  ],
+  "uc": 0.019406449666246023,
+  "uc_ci95": [
+   0.004279392577093104,
+   0.03170923614789784
+  ]
+ },
+ "predictions": {
+  "P1 U-Net: volcanic edifice A enrichment > 1.5": false,
+  "P2 U-Net: Crater and fluvial channel B enrichment > 1": true,
+  "P3 both maps: Cramer's V < 0.30": true,
+  "P4 SVM's V > U-Net's": true
+ }
+}

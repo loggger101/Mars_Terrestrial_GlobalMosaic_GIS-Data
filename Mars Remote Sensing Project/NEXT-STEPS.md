@@ -212,7 +212,7 @@ Each writes its prediction and verdict rule into the script before it runs.
 | T1 | does thermal IR improve the classification? | **done**: +1.3 pt numpy (§40.1); Pro's SVM +1.36 (200 m), +1.97 (400 m); without visible and terrain only tie (§56, §56.1) |
 | T2 | is Athabasca younger than Ius's plateau? | **done** (§42.2) |
 | T3 | which layer tracks calibrated thermal inertia? | **done**: Viking does, the THEMIS pair barely (§42.4, §43.1) |
-| T4 | H2: do volcanic and fluvial channels separate on gradient and thermal response? | stage 1 done, not supported (§51.1); stage 1b (§69.50); **stage 2 done 11-12** on SIM 3292's mapped rilles and channels, not supported (§69.133) |
+| T4 | H2: do volcanic and fluvial channels separate on gradient and thermal response? | stage 1 done, not supported (§51.1); stage 1b (§69.50); **stage 2 done 11-12** on SIM 3292's mapped rilles and channels, not supported (§69.133); the same in all 9 settings of floor window and piece length, and seven rilles could resolve only about twice the observed difference (§69.137) |
 | T5 | H1: does IR show flow margins Viking misses? | inconclusive at 1:20 M (§47.2); the lean survives removing topography (A9, §69.50); **open**, on digitised margins (§3 step 4) |
 | T6 | H3: is the composite more stable than any single input? | **done**, not supported (§47.3) |
 | T7 | Q5: how many tributary orders does 100 m resolve? | **done**: no DEM-supported answer (§47.4) |
@@ -222,6 +222,8 @@ Each writes its prediction and verdict rule into the script before it runs.
 | T9 | does thermal IR help predict geologic-unit groups, material labels? | **done 11-02** (KB §69.50): does not help as registered; the stack cannot predict the unit groups above the commonest group under either prior, so they are not material labels the stack sees; thermal adds at most ~1 pt |
 | T10 | does thermal IR help predict a calibrated material property? | **done 11-12** (KB §69.133): TES nightside inertia in three classes; does not help at the held-out blocks (+0.5 pt), helps within blocks (+0.5 to +0.6 pt); without Viking −8.5 balanced pt |
 | T11 | do the thermal bands help predict thermophysical units (inertia x albedo)? | **done 11-12** (KB §69.134): TES albedo downloaded at the author's yes; does not help at the held-out blocks (+1.5 pt, balanced +0.9 unresolved), helps within (+0.8); duricrust, the unit only inertia separates, gains nothing (−0.7) |
+| T12 | do T10 and T11 survive other class edges and a nonlinear classifier? | **done 11-12** (KB §69.135): 7 label variants x 2 classifiers; thermal adds +0.26 to +1.85 pt at held-out blocks and passes the rule in 2 of 14 (one edge setting, inertia 100/300); boosted trees do better overall, not from thermal |
+| T13 | what material do the lead maps' classes sit on? | **done 11-12** (KB §69.136): little (Cramér's V 0.220 U-Net, 0.257 SVM, the SVM resolved ahead); channels and craters on sand and rock, dust on apron and lava tube |
 
 **Scope:** every open test is optional; if time runs short, drop tests, never the digitising checkpoint or
 the cut dates.

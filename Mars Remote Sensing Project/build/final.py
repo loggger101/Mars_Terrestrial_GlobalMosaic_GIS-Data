@@ -36,8 +36,8 @@ HYPOTHESES = [   # (id, claim, verdict, KB)
      "§47.2, §69.52"),
     ("H2", "Fluvial and volcanic channels separate on gradient and thermal response",
      "Not supported at stages 1, 1b and 2: on the geologic map's own rilles, steeper by median (8.70 against "
-     "5.45 m/km) but unresolved; thermal d −0.49, short of 0.5",
-     "§51.1, §69.50, §69.133"),
+     "5.45 m/km) but unresolved in all nine settings tried; thermal d −0.49, short of 0.5",
+     "§51.1, §69.50, §69.133, §69.137"),
     ("H3", "The composite gives more stable classes than any single input",
      "Not supported: the composites are the least reproducible inputs (ARI 0.40 against 0.61–0.89)", "§47.3"),
     ("H4", "Crater rims from DN gradient recover the large IAU craters",

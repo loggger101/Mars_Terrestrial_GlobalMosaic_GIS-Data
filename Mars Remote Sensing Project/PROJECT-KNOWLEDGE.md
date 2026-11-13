@@ -37,7 +37,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | craters and closed depressions | §26, §28.11, §42.3, §53.4, §53.6; size-frequency §69.35; recall by degradation state §69.45 |
 | channels | §25, §47.4, §53.4, §53.6, §54.4; scored against the valley map, §69.50 |
 | lava flows and the geologic map | §41, §43.2, §43.3, §44, §47.2 |
-| tests T1–T8 and the hypotheses | §40.1, §42.2–§42.4, §43, §47, §51.1, §56; T1b, A9 and T4 stage 1b §69.50; H4 and Q6 §69.132; T10 and T4 stage 2 §69.133; T11 §69.134 (status: `NEXT-STEPS.md` §4) |
+| tests T1–T8 and the hypotheses | §40.1, §42.2–§42.4, §43, §47, §51.1, §56; T1b, A9 and T4 stage 1b §69.50; H4 and Q6 §69.132; T10 and T4 stage 2 §69.133; T11 §69.134; T12 §69.135; T13 §69.136; T4 stage 2 settings §69.137 (status: `NEXT-STEPS.md` §4) |
 | the GUI work of 24 Sep–1 Oct and its checks | §29, §30, §53.2 |
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
@@ -8218,3 +8218,75 @@ Gain of all 7 bands over **without thermal**: blocks acc **+1.5 [+0.1, +3.4]**, 
 Answer rule: thermal **does NOT HELP** at the held-out blocks (the balanced interval reaches below 0) and **HELPS** within blocks. Predictions: P1 thermal under 3 points at the blocks **held** (+1.5); P2 more within blocks than at the blocks **not held** (+0.8 against +1.5); P3 Viking costs more than thermal **held** (26.1 against 0.9); P4 at least 43.3 % balanced **held** (68.7 %); **P5 unit C gains most from thermal not held**: its producer's accuracy moves −0.7 at the blocks, +0.8 within.
 
 **Reading (the agent's).** Thermophysical units are the label on which the thermal bands should earn their place, and they do not: the stack predicts the units well (68.7 % balanced against 33.3 %), almost all of it from Viking, and the one unit only inertia separates, duricrust, is mapped at about 53 % with or without the thermal bands; thermal alone finds 14.3 % of it. What thermal adds across blocks is a point and a half of accuracy, from the dust unit, not resolved by balanced accuracy, and under a point within blocks. Together with T10 (§69.133) this closes the question the paper's limit had left to material labels: on two calibrated material label sets the THEMIS display mosaics add about a point, and do not carry the inertia contrast that would separate bright rock-and-crust from bright dust. That fits §24 and §28.10: stretched 8-bit mosaics keep local contrast, not inertia. Labels drawn by an analyst would test geologic materials, a different question, and stay future work. Nothing earlier changes.
+
+### 69.135 T12: T10's and T11's answers across seven label definitions and two classifiers — the thermal bands help across held-out blocks in 2 of 14 runs, never by 3 points — 2026-11-12, desktop **[V]**
+
+At the author's "continue working on, refining, and adding analyses" (11-12). T10 (§69.133) and T11 (§69.134) each rest on one set of class edges and one classifier (Gaussian maximum likelihood, which can draw only quadric boundaries). `build\make_t12_label_robustness.py` (new, ArcGIS Python; predictions P1–P5 in its header before the first run) reruns both over a grid of edges fixed in advance — inertia classes 150/350 (T10), 100/300, 200/400 tiu; thermophysical units at inertia/albedo 150/0.20 (T11), 150/0.18, 150/0.22, 200/0.20 — with gradient-boosted trees (scikit-learn 1.6.1 `HistGradientBoostingClassifier`: 200 iterations, learning rate 0.1, 31 leaves, no early stopping, class weights balanced, trained on 400,000 training samples drawn in proportion to cos latitude) beside maximum likelihood. Everything else is T9/T10/T11's. Log `logs\t12_label_robustness.txt`, `.json`, 983 s. Check: the base variants' labels equal T10's and T11's exactly. The block-split scores of the base variants with maximum likelihood equal T10's and T11's (59.3 and 73.8 % accuracy); their intervals and the within-block numbers differ a little, because the random stream that draws the within-block cells and the resamples runs differently here.
+
+**Held-out blocks** (all 7 bands: accuracy / balanced %; thermal gain = all 7 minus without thermal, points, 95 %; HELPS by the rule)
+
+| labels, edges | shares | ML all 7 | ML thermal gain acc / bal | GBT all 7 | GBT thermal gain acc / bal |
+|---|---|---|---|---|---|
+| inertia 150/350 | .287/.672/.041 | 59.3 / 59.3 | +0.51 [−0.04, +1.07] / +0.40 [+0.04, +1.12] | 74.9 / 67.0 | +0.62 [−0.21, +1.34] / +2.06 [+1.06, +3.08] |
+| inertia 100/300 | .210/.681/.109 | 59.1 / 61.9 | **+0.70 [+0.17, +1.31] / +0.49 [+0.09, +1.12] HELPS** | 69.1 / 66.8 | **+1.85 [+1.00, +2.61] / +1.38 [+0.80, +1.91] HELPS** |
+| inertia 200/400 | .462/.522/.017 | 60.3 / 55.2 | +0.34 [−0.19, +0.86] / −0.03 [−0.42, +0.61] | 72.6 / 60.6 | +0.27 [−0.18, +0.76] / +1.52 [+0.90, +2.04] |
+| units 150/0.20 | .281/.257/.463 | 73.8 / 68.7 | +1.46 [+0.08, +3.55] / +0.90 [−0.16, +2.43] | 78.9 / 72.4 | +0.42 [−0.06, +0.87] / +0.72 [−0.13, +2.15] |
+| units 150/0.18 | .282/.306/.411 | 74.6 / 67.8 | +0.57 [−0.00, +1.25] / +0.31 [−0.84, +1.08] | 78.8 / 72.6 | +0.43 [−0.05, +0.89] / +0.68 [−0.06, +1.54] |
+| units 150/0.22 | .277/.208/.515 | 72.0 / 69.4 | +1.73 [−0.16, +4.15] / +1.28 [−0.16, +2.92] | 79.5 / 73.3 | +0.26 [−0.22, +0.74] / +0.37 [−0.33, +1.45] |
+| units 200/0.20 | .411/.171/.417 | 72.1 / 64.7 | +1.69 [+0.12, +3.67] / +0.58 [−0.44, +1.69] | 76.2 / 67.2 | +0.51 [−0.08, +1.36] / +0.49 [−0.08, +1.30] |
+
+Duricrust (unit C) producer's gain from thermal at the blocks: ML −0.8, −0.5, +0.0, −1.6; GBT +1.7, +1.6, +0.7, +0.6 (the four unit variants in table order).
+
+**Within blocks:** thermal HELPS in 13 of 14 runs, gains +0.27 to +1.37 accuracy and +0.37 to +1.49 balanced; the exception is GBT on inertia 150/350 (accuracy +0.00 [−0.29, +0.31], balanced +1.49).
+
+**Predictions:** **P1 not held**: with maximum likelihood thermal HELPS at the blocks on inertia 100/300, one of the five new variants (+0.70 / +0.49, both intervals just above 0). P2 thermal adds under 3 points of accuracy at the blocks in all 14 **held** (largest +1.85). P3 GBT's balanced accuracy at least maximum likelihood's in at least 5 of 7 **held** (7 of 7, +2.5 to +7.7 points). P4 GBT: thermal helps at the blocks in at most 2 of 7 **held** (1 of 7, the same 100/300 variant). P5 duricrust's gain under 2 points in all 8 unit runs **held** (largest +1.7).
+
+**Reading (the agent's).** The answer of T10 and T11 survives both choices: across 14 runs the thermal bands add +0.26 to +1.85 points of accuracy at held-out blocks, and they pass the rule in 2, both on one edge setting (inertia 100/300, where the high class takes in more rocky ground and the gain is still under 2 points). A nonlinear learner gets more from the whole stack (balanced accuracy up in all 7) but not more from the thermal pair in particular, and it does not find duricrust in them either. With boosted trees the balanced-accuracy gain from thermal is resolved on all three inertia variants while the accuracy gain is not: the trees use thermal for the small classes, at the cost of the large one. So the thermal share is about a point whatever the edges and classifier, with small, edge-dependent exceptions, and its being resolved depends on the label definition, which the paper should say.
+
+### 69.136 T13: the lead maps' landform classes against the thermophysical units — the classes carry little material information, the SVM's a little more — 2026-11-12, desktop **[V]**
+
+At the author's "continue working on, refining, and adding analyses" (11-12). `build\make_t13_maps_on_units.py` (new, ArcGIS Python; predictions in its header before the first run), log `logs\t13_maps_on_units.txt`, `.json`. For every 0.05° TES cell within 59.9° that TES measured (**15,922,910**, of them **15,787,785** in units A/C/B), the class of each lead map (D36: U-Net v3 `global60_landforms_unet_v3_200m_seamfix.tif`, SVM v3 `global60_landforms_svm_v3_200m.tif`) at the cell centre's 200 m pixel, against T11's unit (§69.134: inertia 150 tiu, albedo 0.20; A dust, C duricrust, B sand and rock). Weights cos latitude; association by Cramér's V and the uncertainty coefficient U(unit | class) (the share of the unit's entropy the class removes); intervals from 1,000 resamples of whole 15° blocks, the same draws for both maps. Check: 50 of 50 cells equal single-pixel reads, on each map. The paired difference between the maps was added after the first run, which had given the two intervals separately; it is not a prediction. Overall unit shares: A 0.281, C 0.257, B 0.462.
+
+**Unit shares by class** (%, A / C / B; enrichment = share in the class over the share overall; median inertia tiu, median albedo)
+
+| class | U-Net area | U-Net A / C / B | U-Net enrichment | TI, albedo | SVM area | SVM A / C / B | SVM enrichment | TI, albedo |
+|---|---|---|---|---|---|---|---|---|
+| Crater | 28.1 | 18.2 / 24.9 / 56.9 | 0.65 / 0.97 / 1.23 | 218, 0.175 | 8.0 | 11.1 / 25.0 / 63.9 | 0.40 / 0.97 / 1.38 | 233, 0.164 |
+| steep/windy hills | 1.6 | 22.5 / 38.0 / 39.5 | 0.80 / 1.48 / 0.86 | 225, 0.224 | 5.0 | 17.1 / 29.9 / 53.1 | 0.61 / 1.16 / 1.15 | 222, 0.184 |
+| lava tube | 1.6 | 77.8 / 13.3 / 8.9 | 2.77 / 0.52 / 0.19 | 78, 0.277 | 2.3 | 42.0 / 24.8 / 33.2 | 1.49 / 0.97 / 0.72 | 184, 0.223 |
+| Normal Ground | 37.9 | 28.2 / 29.4 / 42.4 | 1.01 / 1.14 / 0.92 | 220, 0.216 | 38.7 | 33.8 / 27.3 / 39.0 | 1.20 / 1.06 / 0.84 | 208, 0.223 |
+| volcanic edifice | 17.7 | 37.0 / 21.8 / 41.2 | 1.32 / 0.85 / 0.89 | 194, 0.216 | 12.0 | 55.4 / 21.2 / 23.4 | 1.97 / 0.83 / 0.51 | 140, 0.254 |
+| apron | 4.2 | 68.0 / 21.7 / 10.3 | 2.42 / 0.84 / 0.22 | 94, 0.268 | 4.5 | 46.4 / 31.5 / 22.1 | 1.65 / 1.23 / 0.48 | 170, 0.241 |
+| fluvial channel | 8.9 | 13.8 / 22.4 / 63.8 | 0.49 / 0.87 / 1.38 | 217, 0.161 | 29.5 | 12.2 / 24.1 / 63.7 | 0.43 / 0.94 / 1.38 | 224, 0.162 |
+
+(The area shares are over the measured TES cells within 59.9°, so they differ slightly from the maps' own class areas.)
+
+**Association:** U-Net Cramér's V **0.220 [0.184, 0.263]**, U(unit | class) **0.045 [0.031, 0.064]**; SVM V **0.257 [0.229, 0.287]**, U **0.064 [0.051, 0.081]**. SVM minus U-Net, paired: V **+0.037 [+0.001, +0.067]**, U **+0.019 [+0.004, +0.032]**.
+
+**Predictions:** P1 U-Net volcanic edifice dust-enriched above 1.5 **not held** (1.32; on the SVM it is 1.97); P2 U-Net Crater and fluvial channel enriched in sand and rock **held** (1.23, 1.38); P3 both maps' V under 0.30 **held**; P4 the SVM's V above the U-Net's **held**, resolved by the paired interval, narrowly.
+
+**Reading (the agent's).** The landform classes are, as the paper says, terrain classes: knowing a pixel's class removes 4.5 % (U-Net) to 6.4 % (SVM) of the uncertainty about its thermophysical unit. Where they do lean, the lean is physical and repeats on both maps: fluvial channels and craters sit on dark, high-inertia sand and rock (enrichment 1.23–1.38), the low-inertia dust units gather on the U-Net's apron and lava tube (median inertia 94 and 78 tiu, enrichment 2.42 and 2.77; the lava-tube class is volcano-flank terrain, §43.2) and on the SVM's volcanic edifice (1.97). The U-Net's edifice is less dusty than expected (1.32), because it maps edifice over 17.7 % of the cells, far beyond the dusty Tharsis and Elysium summits. The SVM's classes follow each pixel's colour, which tracks albedo, so they carry a little more material information than the U-Net's, which follow shape: the difference is resolved, narrowly. Nothing earlier changes.
+
+### 69.137 H2 stage 2 across its two settings, and the difference seven rilles could resolve — 2026-11-12, desktop **[V]**
+
+At the author's "continue working on, refining, and adding analyses" (11-12). `build\make_t4_sim3292_sensitivity.py` (new, ArcGIS Python; predictions S1–S4 in its header before the first run) reruns stage 2 (§69.133) on the same SIM 3292 lines, measures, 2,000-draw line bootstrap and verdict rule, over the floor half-window (3, 5, 10 px: 0.6, 1.0, 2.0 km; stage 2 used 1.0) and the piece length (5, 10, 20 km; stage 2 used 10). Log `logs\t4_sim3292_sensitivity.txt`, `.json`. Check: the base setting reproduces stage 2's medians (5.45, 8.70 m/km) and d (−0.489) exactly; its intervals differ slightly from §69.133's (−3.00 to +6.95 against −3.20 to +6.80; d −1.08 to −0.06 against −1.08 to −0.04) because the bootstrap draws follow a different random stream.
+
+**Shared scope (the five blocks holding both origins)**
+
+| floor window, piece | pieces fluvial / volcanic | median fluvial / volcanic, m/km | volcanic − fluvial, 95 % | d thermal, 95 % | verdict |
+|---|---|---|---|---|---|
+| 0.6 km, 5 km | 430 / 180 | 6.70 / 10.80 | +4.10 [−2.00, +7.30] | −0.47 [−1.02, −0.08] | NOT SUPPORTED |
+| 0.6 km, 10 km | 210 / 89 | 5.75 / 9.00 | +3.25 [−2.90, +6.15] | −0.49 [−1.08, −0.06] | NOT SUPPORTED |
+| 0.6 km, 20 km | 101 / 43 | 5.25 / 10.55 | +5.30 [−3.85, +7.90] | −0.55 [−1.35, −0.03] | NOT SUPPORTED |
+| 1.0 km, 5 km | 430 / 180 | 6.20 / 10.20 | +4.00 [−2.40, +7.20] | −0.47 [−1.02, −0.08] | NOT SUPPORTED |
+| **1.0 km, 10 km (stage 2)** | 210 / 89 | 5.45 / 8.70 | +3.25 [−3.00, +6.95] | −0.49 [−1.08, −0.06] | NOT SUPPORTED |
+| 1.0 km, 20 km | 101 / 43 | 4.75 / 10.05 | +5.30 [−2.50, +7.40] | −0.55 [−1.35, −0.03] | NOT SUPPORTED |
+| 2.0 km, 5 km | 430 / 180 | 6.20 / 9.70 | +3.50 [−2.00, +6.60] | −0.47 [−1.02, −0.08] | NOT SUPPORTED |
+| 2.0 km, 10 km | 210 / 89 | 4.90 / 9.70 | +4.80 [−3.30, +7.00] | −0.49 [−1.08, −0.06] | NOT SUPPORTED |
+| 2.0 km, 20 km | 101 / 43 | 5.00 / 9.45 | +4.45 [−2.35, +7.15] | −0.55 [−1.35, −0.03] | NOT SUPPORTED |
+
+**The resolvable difference.** At stage 2's setting, the smallest shift added to every volcanic piece's gradient at which the interval of the median difference sits above 0 is **+3.25 m/km** (0.25 m/km steps, 1,000 draws each): a difference of about twice the observed one, some +6.5 m/km, would have been resolved.
+
+**Predictions:** S1 NOT SUPPORTED in all 9 **held** (9 of 9); S2 volcanic steeper in at least 7 of 9 **held** (9 of 9, +3.25 to +5.30); S3 |d thermal| under 0.5 in at least 5 of 9 **held** (6 of 9; the three 20 km settings give −0.55); **S4 the smallest resolvable shift exceeds the observed +3.25: not held** — the two are equal (3.25 against 3.2499…, a floating-point difference the script printed as "held"; the agent counts a tie as not exceeding).
+
+**Reading (the agent's).** Stage 2's answer does not hang on its settings: the verdict is the same in all nine, the rilles are steeper by median in all nine (+3.25 to +5.30 m/km) and never resolved, and the thermal effect sits on the rule's 0.5 edge (−0.47 to −0.55), crossing it only with 20 km pieces, where gradient is still unresolved, so the verdict cannot change through thermal alone. With seven rilles the test could only have resolved a gradient difference about twice the one observed. So H2's direction (volcanic steeper) is seen in the mapped rilles at every setting but is not established, and the reason is sample size, which a finer rille map would address (paper, Future work).

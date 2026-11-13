@@ -738,7 +738,11 @@ rilles are steeper by median, 8.70 against 5.45~m~km$^{-1}$, the direction H2 na
 to $+6.80$), is not resolved with seven rilles. They sit lower on the thermal index, $d=-0.49$ ($-1.08$ to $-0.04$),
 just short of the 0.5 that the rule, unchanged from the first stage, asked for. Over every mapped piece within
 60$^{\circ}$ (12,525 fluvial, 261 volcanic) the medians are 4.70 and 5.20~m~km$^{-1}$, unresolved, and $d=-0.41$. H2 is
-not supported at the second stage either; the thermal difference is the closest it has come. %% KB §69.133
+not supported at the second stage either; the thermal difference is the closest it has come. Neither setting decides
+it: with floor windows of 0.6, 1.0 and 2.0~km and pieces of 5, 10 and 20~km the rilles are the steeper in all nine
+settings, by $+3.25$ to $+5.30$~m~km$^{-1}$, never resolved, and $d$ runs from $-0.47$ to $-0.55$ while the gradient
+part still fails. Seven rilles could have resolved a difference of about twice the one observed: a shift of
+$+3.25$~m~km$^{-1}$ added to every volcanic piece is the least that lifts the interval above zero. %% KB §69.133, §69.137
 
 \begin{figure*}[t]
 \centering
@@ -1505,7 +1509,16 @@ tells it from dust. The stack predicts the three units at 68.7\% balanced accura
 out Viking costs 26.1 points; leaving out the thermal bands costs 1.5 points of accuracy ($+0.1$ to $+3.4$) and 0.9
 balanced ($-0.3$ to $+2.3$), so again they do not help across blocks by the rule, and duricrust, found 53.5\% of the
 time, gains nothing from them ($-0.7$, interval $-3.9$ to $+2.2$). On two calibrated label sets, then, the display
-mosaics add about a point and do not carry the inertia contrast that separates crust from dust. %% KB §69.133, §69.134 Lava tube, with 44 polygons, is too thin a class for a planet-scale map; the U-Net makes it
+mosaics add about a point and do not carry the inertia contrast that separates crust from dust. Neither the edges
+nor the classifier decides this. Over three sets of inertia edges and four of unit edges, each with maximum likelihood
+and with gradient-boosted trees, the thermal bands add 0.26 to 1.85 points of accuracy across held-out blocks and pass
+the rule in 2 of the 14 runs, both on one setting (inertia classes split at 100 and 300~tiu); the trees score higher
+on every label set, by 2.5 to 7.7 balanced points, but not through the thermal pair, and duricrust gains at most 1.7
+points from it. The landform maps themselves carry little of this material information: crossed with the units on the
+TES grid, the U-Net's classes remove 4.5\% of the uncertainty about a cell's unit and the support vector machine's
+6.4\% (Cram\'er's $V$ 0.220 and 0.257, the difference resolved, narrowly). Where they lean, the lean is physical:
+fluvial channels and craters sit on dark, high-inertia ground, the U-Net's apron and lava tube on dust (median inertia
+94 and 78~tiu). %% KB §69.133--§69.136 Lava tube, with 44 polygons, is too thin a class for a planet-scale map; the U-Net makes it
 usable only as a province.
 
 An audit of the 512 labels found no two classes sharing ground, but five Crater polygons drawn around volcanoes (Arsia,

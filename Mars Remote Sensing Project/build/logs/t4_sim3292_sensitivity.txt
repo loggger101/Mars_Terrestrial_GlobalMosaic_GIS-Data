@@ -1,0 +1,31 @@
+[  29.5s]   strip 1 / 70
+[  54.4s]   strip 21 / 70
+[  81.3s]   strip 41 / 70
+[ 107.3s]   strip 61 / 70
+[ 116.6s] check: 25 single-window reads match the strip reads
+[ 127.2s] floor 0.6 km, piece 5 km     pieces 430/180  median fluv 6.70 volc 10.80  diff +4.10 [-2.00, +7.30]  d thermal -0.47 [-1.02, -0.08]  NOT SUPPORTED
+[ 132.8s] floor 0.6 km, piece 10 km    pieces 210/89  median fluv 5.75 volc 9.00  diff +3.25 [-2.90, +6.15]  d thermal -0.49 [-1.08, -0.06]  NOT SUPPORTED
+[ 136.0s] floor 0.6 km, piece 20 km    pieces 101/43  median fluv 5.25 volc 10.55  diff +5.30 [-3.85, +7.90]  d thermal -0.55 [-1.35, -0.03]  NOT SUPPORTED
+[ 136.6s]   strip 1 / 70
+[ 160.0s]   strip 21 / 70
+[ 185.2s]   strip 41 / 70
+[ 211.1s]   strip 61 / 70
+[ 220.9s] check: 25 single-window reads match the strip reads
+[ 232.2s] floor 1.0 km, piece 5 km     pieces 430/180  median fluv 6.20 volc 10.20  diff +4.00 [-2.40, +7.20]  d thermal -0.47 [-1.02, -0.08]  NOT SUPPORTED
+[ 237.0s] floor 1.0 km, piece 10 km    pieces 210/89  median fluv 5.45 volc 8.70  diff +3.25 [-3.00, +6.95]  d thermal -0.49 [-1.08, -0.06]  NOT SUPPORTED
+[ 240.0s] floor 1.0 km, piece 20 km    pieces 101/43  median fluv 4.75 volc 10.05  diff +5.30 [-2.50, +7.40]  d thermal -0.55 [-1.35, -0.03]  NOT SUPPORTED
+[ 240.7s]   strip 1 / 70
+[ 264.2s]   strip 21 / 70
+[ 289.5s]   strip 41 / 70
+[ 315.3s]   strip 61 / 70
+[ 324.8s] check: 25 single-window reads match the strip reads
+[ 335.3s] floor 2.0 km, piece 5 km     pieces 430/180  median fluv 6.20 volc 9.70  diff +3.50 [-2.00, +6.60]  d thermal -0.47 [-1.02, -0.08]  NOT SUPPORTED
+[ 340.4s] floor 2.0 km, piece 10 km    pieces 210/89  median fluv 4.90 volc 9.70  diff +4.80 [-3.30, +7.00]  d thermal -0.49 [-1.08, -0.06]  NOT SUPPORTED
+[ 344.1s] floor 2.0 km, piece 20 km    pieces 101/43  median fluv 5.00 volc 9.45  diff +4.45 [-2.35, +7.15]  d thermal -0.55 [-1.35, -0.03]  NOT SUPPORTED
+[ 344.1s] check: the base setting reproduces stage 2 (5.45, 8.70 m/km; d -0.489)
+[ 346.7s] smallest shift of the volcanic gradients the shared scope resolves: +3.25 m/km (observed difference +3.25)
+[ 346.7s] prediction S1 NOT SUPPORTED in all 9                     held
+[ 346.7s] prediction S2 volcanic median steeper in >= 7 of 9       held
+[ 346.7s] prediction S3 |d thermal| < 0.5 in >= 5 of 9             held
+[ 346.7s] prediction S4 smallest resolvable shift > observed +3.25 held
+[ 346.7s] wrote F:\Mars Remote Sensing Project\build\logs\t4_sim3292_sensitivity.json
