@@ -1,0 +1,28 @@
+typearea-part1.zip	226 files	920 MB
+typearea-part2.zip	1 files	1,182 MB
+typearea-part3.zip	124 files	1,058 MB
+athabasca.zip	145 files	819 MB
+global60-classification-part1.zip	70 files	1,794 MB
+global60-classification-part2.zip	39 files	1,881 MB
+global60-classification-part3.zip	1515 files	1,185 MB
+dl-models-part1.zip	245 files	1,800 MB
+dl-models-part2.zip	47 files	1,723 MB
+dl-models-part3.zip	25 files	780 MB
+npy-caches.zip	10 files	45 MB
+mars_project_vectors.gpkg.zip	1 files	350 MB
+https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/data-2026-11-12
+uploaded typearea-part1.zip
+uploaded typearea-part2.zip
+uploaded typearea-part3.zip
+uploaded athabasca.zip
+uploaded global60-classification-part1.zip
+uploaded global60-classification-part2.zip
+uploaded global60-classification-part3.zip
+uploaded dl-models-part1.zip
+uploaded dl-models-part2.zip
+uploaded dl-models-part3.zip
+uploaded npy-caches.zip
+uploaded mars_project_vectors.gpkg.zip
+uploaded Classified_202609292109007048151.tif
+uploaded Classified_202609300147338582853.tif
+uploaded SHA256SUMS.txt

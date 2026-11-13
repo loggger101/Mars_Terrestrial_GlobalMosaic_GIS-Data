@@ -21,7 +21,7 @@ REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
             Path.home() / "OneDrive" / "Documents" / "GitHub" / "Mars_Terrestrial_GlobalMosaic_GIS-Data")
 URL = "https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/tag/"
 DERIV_PATCHED = "derivatives-2026-11-11"   # the five rasters patched at 180 degrees, uploaded 2026-11-11 (D15, KB §69.113)
-DATA, DERIV = "data-2026-11-10", "derivatives-2026-10-06"     # data refreshed 2026-11-10, adds the v3 maps (§69.105); 10-29 the seven-class maps (KB §57.4, §63.2, §66.10, §69.28)
+DATA, DERIV = "data-2026-11-12", "derivatives-2026-10-06"     # the final data release 2026-11-12, adds both retrainings (D41, §69.130); 11-10 the v3 maps (§69.105); 10-29 the seven-class maps (KB §57.4, §63.2, §66.10, §69.28)
 
 LANDFORM_VALUES = "Classes 1 Crater, 2 steep/windy hills, 3 lava tube, 4 Normal Ground, 255 no class"
 V2_VALUES = LANDFORM_VALUES.replace(", 255", ", 5 volcanic edifice, 6 apron, 7 fluvial channel, 255")
@@ -310,9 +310,9 @@ are in none.
 The `.ovr` pyramids are not in the releases: build them after restoring.
 
 **`Global60/v3_extras/`**, not listed file by file: the extra runs' classifications of the held-out windows (15°
-blocks with a 25 km margin), one folder per run (base, fresh, noth, cut, add, fresh2, rep), each block a
-`x5c_block_<lon>_<lat>.tif` on the 200 m grid, and the fresh runs' SVM models `svm_fresh*.ecd`. In
-{rel(DATA, "global60-classification-part*.zip")}, rep's in {rel(DATA, "global60-classification-rep.zip")} (KB §69.82–§69.102, §69.105, §69.106).
+blocks with a 25 km margin), one folder per run (base, fresh, noth, cut, add, fresh2, rep, and the edifice retrainings' edf, edfv,
+freshw, edf2, edf2v), each block a `x5c_block_<lon>_<lat>.tif` on the 200 m grid, and the fresh runs' SVM models
+`svm_fresh*.ecd`. In {rel(DATA, "global60-classification-part*.zip")} (KB §69.82–§69.102, §69.105, §69.106, §69.125, §69.126).
 
 ## ±60° analysis extent: `Mars Project/Global60/`
 
