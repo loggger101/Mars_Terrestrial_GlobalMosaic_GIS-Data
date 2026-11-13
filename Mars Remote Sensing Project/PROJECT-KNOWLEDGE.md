@@ -8112,3 +8112,45 @@ The freeze read of §69.128 stopped at page 37; pages 38-41 (the end of Appendix
 - Nothing else found on those pages. Paper 41 pages.
 - **`restore.py --dry-run`** (to a scratch folder, nothing downloaded) takes `data-2026-11-12`, then `derivatives-2026-11-11` and `derivatives-2026-10-06`: 88.5 GB in all.
 - **`CITATION.cff`** (repository root) still said released 2026-10-29, gave no version, and its abstract led with the support vector machine. Now `version: "data-2026-11-12"`, `date-released: "2026-11-12"`, an abstract with the seven-class U-Net leading (87.6 % on the held-out blocks, §69.82) beside the SVM, and two keywords (deep learning, U-Net). The close-out (9-12 Dec) moves it to `final-2026-12-08`.
+
+### 69.132 H4 tested as the prospectus wrote it, and Q6 examined: image gradients find 104 of 109 large craters; the composite marks unit contacts weakly, a little more than any one band — 2026-11-12, desktop **[V]**
+
+At the author's "see if there are any other analyses ... ensure all hypothesis and research questions have all been properly addressed" (11-12). An audit of the prospectus's four hypotheses and the interim plan's six questions (`INTERIM-PLAN.md` §5) against the paper, deck and README found two gaps: **H4 had only been answered with another method** (fill depth, 68 % of 117, §28.11), never with the image gradients it names; **Q6 ("does DN gradient reveal unit boundaries beyond the source image?") was never examined**; and Q1–Q6 are named nowhere in the paper or deck. `build\make_h4_q6.py` (new, ArcGIS Python) tests both, its predictions written in its header before the first run; log `logs\h4_q6.txt`, results `logs\h4_q6.json`.
+
+**Method.** The 7-band stack (§31.2) at its 1.6 km overview; each band's gradient after a 3 × 3 mean, east-west spacing times cos latitude; "composite" the multiband gradient of the five spectral bands (each over its standard deviation, root of the summed squares); slope (band 6) as the terrain reference.
+- **H4:** the IAU gazetteer's craters ≥ 100 km centred within 58° (the two crater layers, `MARS_nomenclature_craters_gt100km_March2019` and `_lt100km_`; **117**, the set of §28.11; a first run read the miscellaneous layer, which holds no craters, and stopped before scoring anything). A rim is found when the annulus (0.05 R wide) with the highest mean between 0.5 and 1.5 R lies at 0.8–1.2 R and the rim contrast, mean(0.9–1.1 R) / mean(0.5–0.7 and 1.3–1.6 R), exceeds the 95th percentile of the same contrast at 1,000 random placements (radii drawn from the craters', centres at least 1.5 R from any IAU crater ≥ 50 km). **8 craters dropped** (under 80 % valid pixels inside 2 R), **109 scored**.
+- **Q6:** SIM 3292's **44 units** rasterised at 0.02°; contact pixels where a 4-neighbour is another unit; per input, AUC of its gradient within 3 px (~5 km) of a contact against 10–25 px (16–40 km) away (4,256,398 and 12,128,064 pixels after cos-latitude thinning); null: the contacts rotated by 30–330° in longitude (11 rotations); interval: 192 15° blocks resampled 1,000 times.
+
+**H4: rims from image gradients** (chance is the share of random placements that pass the same rule)
+
+| input | found | share | 95 % lower (Wilson) | chance |
+|---|---|---|---|---|
+| Viking red | 101 / 109 | 92.7 % | 86.2 % | 4.6 % |
+| Viking green | 101 / 109 | 92.7 % | 86.2 % | 4.4 % |
+| Viking blue | 101 / 109 | 92.7 % | 86.2 % | 4.2 % |
+| night IR | 38 / 109 | 34.9 % | 26.6 % | 4.6 % |
+| day IR | 103 / 109 | 94.5 % | 88.5 % | 4.5 % |
+| **composite** | **104 / 109** | **95.4 %** | **89.7 %** | 4.7 % |
+| slope | 104 / 109 | 95.4 % | 89.7 % | 4.3 % |
+
+The rim is placed where it is: on the composite the found peaks lie at a median 0.975 R, 102 of 104 within 0.9–1.1 R. The composite misses Greeley, Dollfus, de Vaucouleurs, Miyamoto and Moroz.
+
+**Q6: gradients at the geologic map's unit contacts**
+
+| input | AUC | rotated contacts, largest |
+|---|---|---|
+| Viking red | 0.537 | 0.504 |
+| Viking green | 0.538 | 0.505 |
+| Viking blue | 0.538 | 0.506 |
+| night IR | 0.531 | 0.500 |
+| day IR | 0.534 | 0.500 |
+| **composite** | **0.545** | 0.501 |
+| slope | 0.541 | 0.509 |
+
+Composite minus the best single band (Viking green) **+0.007, 95 % +0.005 to +0.009**; slope minus composite −0.004, 95 % −0.008 to +0.000.
+
+**Verdicts (the script's):** H4-1 **held** (95.4 % > 50 %): **H4 is supported as stated**. H4-2 held for every spectral input and the composite. H4-3 **not held**: slope ties the composite (104 each), and the composite finds more than fill depth's 68 %, not fewer. Q6-1 **held**: the composite marks contacts better than any single band, resolved. Q6-2 held for every input. Q6-3 **not held**: slope is not ahead of the composite (unresolved, −0.004).
+
+**Reading (the agent's).** The agent's expectation (H4-1 not held) was wrong. Large named craters have rims image gradients find almost every time; the same rule on fill depth (§28.11) finds about two thirds because breached and degraded craters hold no closed depression, while their walls still shade. **The caveat that matters:** MDIM 2.1's brightness was normalised so equal slopes show equal contrast (§69.50), and day IR carries slope heating, so their gradients see topography; the least topographic band, night IR, finds 38. So H4 holds for the stack's DN gradients, much of it through terrain shading in the images, not through a thermal or albedo contrast. Q6: every band's gradient is higher near the map's contacts than 10–25 px away and none is near its rotated null, but the effect is small (AUC 0.53–0.55, where 0.5 is no signal): at 1:20 M and 1.6 km the contacts are mostly not where the images change. The composite does a little better than any one band, so in the question's words it does reveal boundaries "beyond the source image", by a margin of +0.007 AUC. Neither result touches the classifications or any earlier number.
+
+**The questions, Q1–Q6, where each stands** (`INTERIM-PLAN.md` §5; now in the paper's Table of hypotheses and the deck): Q1 projecting the DEM changes slope enough to matter: yes, slope on a geographic grid was in percent rise with a z-factor of 1 (§7, §20); Q2 Composite Bands completes once harmonised: yes, bounded 8.8 s (§18, §29.1); Q3 how much 8-bit depth limits separation: overtaken, the region-by-region stretch is the larger limit (§28.10); Q4 day IR enough or night needed: night IR is the most independent band (|r| ≤ 0.12, §18.3); Q5 tributary orders at 100 m: none the DEM supports (T7, §47.4); Q6 as above.

@@ -123,7 +123,7 @@ signal and the Viking colour, not a calibrated albedo, carries the regional sign
 **Hypotheses** (status table in `INTERIM-PLAN.md` §5): H1 not supported at the geologic map's 1:20 M
 nor on the 86 CTX-traced margins (§69.52), nor on those the agent's blind second reading kept (§69.105); H2 not supported at stages 1 and
 1b, stage 2 cannot run in these type areas (§69.63); H3 not supported;
-H4 answered by another method. Q1, Q2, Q4, Q5 answered; Q3 overtaken; Q6 unexamined.
+H4 supported when tested as written, 11-12 (image gradients find 104 of 109 large craters, largely through topography; fill depth 68 %, §69.132). Q1, Q2, Q4, Q5 answered; Q3 overtaken; Q6 examined 11-12: faintly yes, the composite's gradient marks the geologic map's contacts a little more than any one band (AUC 0.545, §69.132). All in the paper's Table of hypotheses and the deck.
 
 ---
 

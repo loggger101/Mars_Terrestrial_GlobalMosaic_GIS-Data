@@ -41,7 +41,8 @@ HYPOTHESES = [   # (id, claim, verdict, KB)
     ("H3", "The composite gives more stable classes than any single input",
      "Not supported: the composites are the least reproducible inputs (ARI 0.40 against 0.61–0.89)", "§47.3"),
     ("H4", "Crater rims from DN gradient recover the large IAU craters",
-     "Answered by another method: fill depth recovers 68% of 117 craters ≥ 100 km", "§28.11"),
+     "Supported, largely through topography: image gradients find 104 of 109 rims (chance 4.7%), night IR 38; "
+     "fill depth 68%", "§28.11, §69.132"),
     ("T1", "Thermal IR improves the landform classification",
      "Yes, a little, in overall accuracy: +1.3 pt (numpy), +1.36 and +1.97 pt (Pro SVM), every interval above 0; "
      "none by balanced accuracy; the seven-class U-Net loses 6.4–7.6 pt without it, not resolved by block",
@@ -49,6 +50,8 @@ HYPOTHESES = [   # (id, claim, verdict, KB)
     ("T3", "The THEMIS pair tracks calibrated thermal inertia",
      "Weakly and only locally (|r| ≈ 0.1 within 15° blocks); Viking colour carries the regional signal (r −0.36)",
      "§43.1"),
+    ("Q6", "Image gradients show unit contacts beyond one source",
+     "Faintly: AUC 0.545 for the composite against 0.531–0.538 for single bands, +0.007 resolved", "§69.132"),
 ]
 
 # ------------------------------------------------------------------ figures, in talk order

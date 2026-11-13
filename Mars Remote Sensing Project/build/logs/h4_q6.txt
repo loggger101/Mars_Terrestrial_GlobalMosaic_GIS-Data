@@ -1,0 +1,23 @@
+stack read at 1600 m: 13337 x 4446
+H4: 117 IAU craters >= 100 km within 58 deg
+  Viking red    found 101 of 109 (92.7%, 95% lower 86.2%), dropped 8; chance 4.6% (contrast > 1.276)
+  Viking green  found 101 of 109 (92.7%, 95% lower 86.2%), dropped 8; chance 4.4% (contrast > 1.332)
+  Viking blue   found 101 of 109 (92.7%, 95% lower 86.2%), dropped 8; chance 4.2% (contrast > 1.365)
+  night IR      found  38 of 109 (34.9%, 95% lower 26.6%), dropped 8; chance 4.6% (contrast > 1.189)
+  day IR        found 103 of 109 (94.5%, 95% lower 88.5%), dropped 8; chance 4.5% (contrast > 1.200)
+  composite     found 104 of 109 (95.4%, 95% lower 89.7%), dropped 8; chance 4.7% (contrast > 1.199)
+  slope         found 104 of 109 (95.4%, 95% lower 89.7%), dropped 8; chance 4.3% (contrast > 1.326)
+SIM 3292: 44 units rasterised
+Q6: 4256398 near-contact and 12128064 far pixels (after cos-latitude thinning)
+  Viking red    AUC 0.537   rotated contacts max 0.504 (median 0.502)
+  Viking green  AUC 0.538   rotated contacts max 0.505 (median 0.502)
+  Viking blue   AUC 0.538   rotated contacts max 0.506 (median 0.502)
+  night IR      AUC 0.531   rotated contacts max 0.500 (median 0.499)
+  day IR        AUC 0.534   rotated contacts max 0.500 (median 0.498)
+  composite     AUC 0.545   rotated contacts max 0.501 (median 0.499)
+  slope         AUC 0.541   rotated contacts max 0.509 (median 0.504)
+  composite - Viking green: +0.007, 95% ['+0.005', '+0.009']
+  slope - composite: -0.004, 95% ['-0.008', '+0.000']
+
+verdicts: {"H4-1": true, "H4-2": {"Viking red": true, "Viking green": true, "Viking blue": true, "night IR": true, "day IR": true, "composite": true}, "H4-3": false, "Q6-1": true, "Q6-2": {"Viking red": true, "Viking green": true, "Viking blue": true, "night IR": true, "day IR": true, "composite": true}, "Q6-3": false}
+wrote F:\Mars Remote Sensing Project\build\logs\h4_q6.json

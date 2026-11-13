@@ -12,7 +12,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 430 GB with all derived rasters, measured 2026-10-22). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in three [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 251, by purpose) · [software environment](docs/environment.md) (each machine's versions, read from the machine) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 252, by purpose) · [software environment](docs/environment.md) (each machine's versions, read from the machine) · [backup and restore](docs/backup.md)
 
 [![Mars ±60° landform classification, seven classes, from a U-Net on the third label set](docs/thumbs/17c_unet_v3_provinces.jpg)](Mars%20Project/Global60/layouts/17c_unet_v3_provinces.png)
 *The lead map: seven landform classes over ±60° from a U-Net trained on the third label set, scored on polygons it never saw (layout 17c; the SVM map on the same labels is layout 04c, the seven-class map on the reviewed labels 04b, the four-class map 04).*
@@ -33,7 +33,7 @@ The prospectus asked whether a co-registered visible and thermal-infrared mosaic
 4. **The routed channel network is the elevation model's drainage, not a valley map.** Of 969,822 segments, 89.8% lie on ground under 2°, and only 2.8% of the larger ones' length lies within 5 km of a mapped valley ([Channels](#channels)).
 5. **A classifier maps landforms from terrain more than from colour or heat.** A support vector machine scored on whole 15° blocks it never saw reaches a balanced accuracy of 66.7% (73.8% overall); the thermal bands add 1.4 to 2.0 points overall and nothing by balanced accuracy ([classification](#60-landform-classification), [T1](#does-thermal-infrared-help-test-t1)).
 6. **Seven classes need a network that sees surroundings.** On a third, rule-made label set a U-Net scores 87.6% on 237 held-out polygons, 86.6% and 85.4% on two other draws of held-out blocks, and 49.6% on a probability sample; the support vector machine, held to one pixel's seven bands, scores 39.1%. Retrained against its extra volcanic edifice, the U-Net keeps its score and maps less than half the edifice, but shifts other classes and misses one prediction, so the lead map is unchanged ([Deep learning](#deep-learning-x5)).
-7. **Lava flows are not separable in these bands.** No band separates the geologic map's lava contacts or the traced margins at Athabasca Valles much better than chance, so lava flows are taken from the USGS geologic map. Three of the prospectus' four hypotheses are not supported; the fourth is answered by another method ([hypotheses](#the-prospectus-hypotheses-t4t7)).
+7. **Lava flows are not separable in these bands.** No band separates the geologic map's lava contacts or the traced margins at Athabasca Valles much better than chance, so lava flows are taken from the USGS geologic map. Three of the prospectus' four hypotheses are not supported; the fourth, that image gradients find the large named craters, is: they find 104 of 109, largely through the topography the images carry ([hypotheses](#the-prospectus-hypotheses-and-questions-t4t7-q1q6)).
 
 ## Where to start
 
@@ -157,9 +157,11 @@ Across ±60°, 465,354 closed depressions ≥ 1 km; against the Robbins catalogu
 
 *Ius Chasma. A: the 2,610 channel candidates, coloured by the diurnal-contrast index. B: where `Fill` raised the DEM, which is what the channel network had been routed across before the mask (KB §25.1).*
 
-### The prospectus' hypotheses (T4–T7)
+### The prospectus' hypotheses and questions (T4–T7, Q1–Q6)
 
 No band separates the geologic map's lava contacts or the 86 traced margins at Athabasca much better than chance (H1, at 1:20 M and on CTX, KB §69.52, §69.105; day IR's small lead survives removing topography, A9); the volcanic channel candidates are shallower than the fluvial ones and thermal response doesn't tell them apart (H2, stage 1), and the same holds over the whole ±60° network with origin taken from the valley map and the geologic map: order ≥ 2 segments on volcanic units have a median gradient of 2.4 m/km against 13.9 m/km on mapped valleys, and thermal Cohen's d is −0.21 (stage 1b, KB §69.50); the composite's Iso Cluster classes are the least reproducible input (H3); no channel threshold keeps first-order streams on real slopes, so the tributary order count is a setting, not a measurement (Q5).
+
+H4, that crater rims from image gradients recover most of the large named craters, was answered at the interim with fill depth (68 % of 117); tested as written, the gradient of the five spectral bands finds the rim of 104 of the 109 craters it can see whole, against 4.7 % for rings of the same sizes placed at random, each Viking band 101, day IR 103 and night IR only 38. It holds, largely through topography: the Viking mosaic was normalised so equal slopes show equal contrast, and day IR carries the heating of sunward slopes. Of the plan's six questions, Q1–Q5 were settled on the way (the DEM must be projected before slope; Composite Bands completes on bounded extents; the regional stretch limits more than the 8-bit depth; night IR is the most independent band; no tributary order count is supported, T7). Q6, whether image gradients reveal unit boundaries beyond any one source, was examined last: near the geologic map's contacts every band's gradient is only a little higher than farther away (AUC 0.531–0.538, 0.5 is none), the five bands together a little more (0.545, resolved), so faintly yes (KB §69.132).
 
 <details>
 <summary>The four charts</summary>
@@ -286,7 +288,7 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   251 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   252 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
   NEXT STUFF/              interim report and presentation; Final/: the AASTeX paper and the final deck
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)

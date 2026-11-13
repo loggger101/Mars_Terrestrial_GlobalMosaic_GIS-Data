@@ -466,7 +466,7 @@ group = "What it adds up to"
 
 s = new(prs, "The Hypotheses and Tests", group)
 table(s, ["", "Claim", "Verdict"], [list(r[:3]) for r in F.HYPOTHESES],
-      widths=[0.5, 3.8, 6.8], size=13, row_h=52 * PT, bold_first=True)
+      widths=[0.5, 3.8, 6.8], size=13, row_h=46 * PT, bold_first=True)   # 8 rows since Q6 (KB 69.132)
 notes(s, "Sources: PROJECT-KNOWLEDGE.md " + "; ".join("%s %s" % (r[0], r[3]) for r in F.HYPOTHESES) + ".")
 
 s = new(prs, "Limits", group)

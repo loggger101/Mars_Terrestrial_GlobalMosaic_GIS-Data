@@ -1,0 +1,4059 @@
+{
+ "cell_m": 1599.9700082477318,
+ "H4": {
+  "n_craters": 117,
+  "n_null": 1000,
+  "inputs": {
+   "Viking red": {
+    "found": 101,
+    "scored": 109,
+    "dropped": 8,
+    "share": 0.926605504587156,
+    "lower95": 0.8618222513812481,
+    "null_threshold": 1.2755799767296656,
+    "chance": 0.046012269938650305,
+    "null_scored": 978,
+    "craters": {
+     "Huygens": {
+      "peak_r": 1.025,
+      "contrast": 1.422653361802399,
+      "found": true
+     },
+     "Schiaparelli": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5932094885301,
+      "found": true
+     },
+     "Greeley": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.1773193982725512,
+      "found": false
+     },
+     "Cassini": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5295076044212381,
+      "found": true
+     },
+     "Antoniadi": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4935209231771533,
+      "found": true
+     },
+     "Dollfus": {
+      "peak_r": 1.025,
+      "contrast": 1.313241760690567,
+      "found": true
+     },
+     "Tikhonravov": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.4668730318273726,
+      "found": true
+     },
+     "de Vaucouleurs": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.0842691202599406,
+      "found": false
+     },
+     "Copernicus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5170680596083688,
+      "found": true
+     },
+     "Newton": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5858147724567697,
+      "found": true
+     },
+     "Herschel": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.4282982679288263,
+      "found": true
+     },
+     "Koval'sky": {
+      "peak_r": 1.025,
+      "contrast": 1.5069002406777208,
+      "found": true
+     },
+     "Schroeter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4630096167093696,
+      "found": true
+     },
+     "Newcomb": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.3006304643879367,
+      "found": true
+     },
+     "Flaugergues": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0103957811813067,
+      "found": true
+     },
+     "Galle": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0521557552885428,
+      "found": true
+     },
+     "Lyot": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5979871281066238,
+      "found": true
+     },
+     "Vinogradov": {
+      "peak_r": 1.025,
+      "contrast": 1.7620931834004536,
+      "found": true
+     },
+     "Lowell": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.2139000068526322,
+      "found": false
+     },
+     "Kaiser": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.847557935269853,
+      "found": true
+     },
+     "Sch\u00f6ner": {
+      "peak_r": 1.025,
+      "contrast": 1.2331207904260069,
+      "found": false
+     },
+     "Mutch": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.501760273018723,
+      "found": true
+     },
+     "Dawes": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6721598065766696,
+      "found": true
+     },
+     "Green": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.8627643107371152,
+      "found": true
+     },
+     "Baldet": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5992547630540834,
+      "found": true
+     },
+     "Savich": {
+      "peak_r": 1.025,
+      "contrast": 1.7938533898784437,
+      "found": true
+     },
+     "Flammarion": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4960273008241762,
+      "found": true
+     },
+     "Proctor": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.7252611496952646,
+      "found": true
+     },
+     "Terby": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4270966106603695,
+      "found": true
+     },
+     "Wallace": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.507327379047898,
+      "found": true
+     },
+     "Molesworth": {
+      "peak_r": 1.025,
+      "contrast": 1.4864086613154208,
+      "found": true
+     },
+     "Henry": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.8067691026333212,
+      "found": true
+     },
+     "Becquerel": {
+      "peak_r": 0.575,
+      "contrast": 1.3983343561558252,
+      "found": false
+     },
+     "Ptolemaeus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9426989738924265,
+      "found": true
+     },
+     "Denning": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6350543398659103,
+      "found": true
+     },
+     "Schaeberle": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.222157482993539,
+      "found": true
+     },
+     "Gusev": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4571973636591375,
+      "found": true
+     },
+     "Mariner": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4858613028581442,
+      "found": true
+     },
+     "Graff": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.8154822476162504,
+      "found": true
+     },
+     "Gale": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5585676808651434,
+      "found": true
+     },
+     "Janssen": {
+      "peak_r": 1.025,
+      "contrast": 2.0912816831800507,
+      "found": true
+     },
+     "Bakhuysen": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.6602127752526274,
+      "found": true
+     },
+     "Holden": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1458276501070324,
+      "found": true
+     },
+     "Arago": {
+      "peak_r": 1.025,
+      "contrast": 1.3928083686885824,
+      "found": true
+     },
+     "Dejnev": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7394452195037426,
+      "found": true
+     },
+     "Robert Sharp": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5610814628984564,
+      "found": true
+     },
+     "Lohse": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.2782150741160168,
+      "found": true
+     },
+     "Trouvelot": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4692412336456928,
+      "found": true
+     },
+     "Miyamoto": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.228991576727333,
+      "found": false
+     },
+     "Wislicenus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.016464332889063,
+      "found": true
+     },
+     "Roddenberry": {
+      "peak_r": 1.025,
+      "contrast": 1.6559256338612152,
+      "found": true
+     },
+     "Maggini": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5068753661900025,
+      "found": true
+     },
+     "Hooke": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.1556919196158595,
+      "found": false
+     },
+     "Le Verrier": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.2654093780781754,
+      "found": true
+     },
+     "Hale": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7942078954325422,
+      "found": true
+     },
+     "Galilaei": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7008758908907242,
+      "found": true
+     },
+     "Quenisset": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9295087573877008,
+      "found": true
+     },
+     "Russell": {
+      "peak_r": 1.025,
+      "contrast": 1.7622696970548402,
+      "found": true
+     },
+     "Moreux": {
+      "peak_r": 1.025,
+      "contrast": 1.4930442595273454,
+      "found": true
+     },
+     "Bernard": {
+      "peak_r": 1.025,
+      "contrast": 1.950974920719339,
+      "found": true
+     },
+     "Slipher": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.6549293847122475,
+      "found": true
+     },
+     "M\u00e4dler": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.5489185101305867,
+      "found": true
+     },
+     "Oudemans": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.649187312840005,
+      "found": true
+     },
+     "Knobel": {
+      "peak_r": 1.025,
+      "contrast": 1.934033687374255,
+      "found": true
+     },
+     "Williams": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7452768283503304,
+      "found": true
+     },
+     "Arrhenius": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8386832681102936,
+      "found": true
+     },
+     "Vogel": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.7948050869100045,
+      "found": true
+     },
+     "Barabashov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.529854335623078,
+      "found": true
+     },
+     "M\u00fcller": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.050279716590476,
+      "found": true
+     },
+     "Wirtz": {
+      "peak_r": 1.025,
+      "contrast": 2.0430338285315575,
+      "found": true
+     },
+     "Comas Sola": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4362586130365291,
+      "found": true
+     },
+     "Burton": {
+      "peak_r": 1.025,
+      "contrast": 1.9424200675822665,
+      "found": true
+     },
+     "Arkhangelsky": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0124563433419915,
+      "found": true
+     },
+     "Moroz": {
+      "peak_r": 1.125,
+      "contrast": 1.0608701735132597,
+      "found": false
+     },
+     "Pasteur": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9208807690270304,
+      "found": true
+     },
+     "Orson Welles": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.511583848461855,
+      "found": true
+     },
+     "Hadley": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.654812259975176,
+      "found": true
+     },
+     "Masursky": {
+      "peak_r": 1.025,
+      "contrast": 1.7325869575091628,
+      "found": true
+     },
+     "Pickering": {
+      "peak_r": 1.025,
+      "contrast": 2.697102819389685,
+      "found": true
+     },
+     "Wien": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.939514477056817,
+      "found": true
+     },
+     "Teisserenc de Bort": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6574420445279325,
+      "found": true
+     },
+     "Niesten": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.549258872150037,
+      "found": true
+     },
+     "Cerulli": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8714076901051602,
+      "found": true
+     },
+     "Fournier": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7076783917144938,
+      "found": true
+     },
+     "Milankovi\u010d": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 3.7707563326959126,
+      "found": true
+     },
+     "Millochau": {
+      "peak_r": 1.025,
+      "contrast": 2.5005724265530085,
+      "found": true
+     },
+     "Columbus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9533506196541892,
+      "found": true
+     },
+     "Helmholtz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.217048706273916,
+      "found": true
+     },
+     "Curie": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.968956516091171,
+      "found": true
+     },
+     "Crommelin": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.5937023820765392,
+      "found": true
+     },
+     "Tikhov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.972969137845076,
+      "found": true
+     },
+     "Radau": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0104396322079925,
+      "found": true
+     },
+     "Sklodowska": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.035985082919627,
+      "found": true
+     },
+     "Lasswitz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.797531807173159,
+      "found": true
+     },
+     "Bouguer": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.009061251808519,
+      "found": true
+     },
+     "Rudaux": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5553277014206865,
+      "found": true
+     },
+     "Boeddicker": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8513674857422735,
+      "found": true
+     },
+     "Rutherford": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6562561135190623,
+      "found": true
+     },
+     "Rabe": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9116142595486771,
+      "found": true
+     },
+     "Li Fan": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1972372808091976,
+      "found": true
+     },
+     "Bond": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9819326647423836,
+      "found": true
+     },
+     "Porter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.611010946705269,
+      "found": true
+     },
+     "Magelhaens": {
+      "peak_r": 1.025,
+      "contrast": 1.608302824112507,
+      "found": true
+     },
+     "Nicholson": {
+      "peak_r": 1.025,
+      "contrast": 1.7730501383667798,
+      "found": true
+     },
+     "Neukum": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.582182006059599,
+      "found": true
+     },
+     "Coblentz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.686511548819924,
+      "found": true
+     },
+     "Luzin": {
+      "peak_r": 1.025,
+      "contrast": 2.0908749189745013,
+      "found": true
+     },
+     "Mie": {
+      "peak_r": 1.025,
+      "contrast": 2.4909566641782406,
+      "found": true
+     },
+     "Oyama": {
+      "peak_r": 1.0749999999999997,
+      "contrast": 1.7057014617276454,
+      "found": true
+     }
+    }
+   },
+   "Viking green": {
+    "found": 101,
+    "scored": 109,
+    "dropped": 8,
+    "share": 0.926605504587156,
+    "lower95": 0.8618222513812481,
+    "null_threshold": 1.3320327242036911,
+    "chance": 0.04396728016359918,
+    "null_scored": 978,
+    "craters": {
+     "Huygens": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.644856933777877,
+      "found": true
+     },
+     "Schiaparelli": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8003657436498544,
+      "found": true
+     },
+     "Greeley": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.2371972959286466,
+      "found": false
+     },
+     "Cassini": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.601949612976082,
+      "found": true
+     },
+     "Antoniadi": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5312525679658235,
+      "found": true
+     },
+     "Dollfus": {
+      "peak_r": 1.025,
+      "contrast": 1.392633864187978,
+      "found": true
+     },
+     "Tikhonravov": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.5479441570115342,
+      "found": true
+     },
+     "de Vaucouleurs": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.1519673858115795,
+      "found": false
+     },
+     "Copernicus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.657224868827866,
+      "found": true
+     },
+     "Newton": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7762835697154689,
+      "found": true
+     },
+     "Herschel": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6042689691157719,
+      "found": true
+     },
+     "Koval'sky": {
+      "peak_r": 1.025,
+      "contrast": 1.548009166217398,
+      "found": true
+     },
+     "Schroeter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5173628381781532,
+      "found": true
+     },
+     "Newcomb": {
+      "peak_r": 1.025,
+      "contrast": 1.4379858903135658,
+      "found": true
+     },
+     "Flaugergues": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.3233044517079513,
+      "found": true
+     },
+     "Galle": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.4727285649729325,
+      "found": true
+     },
+     "Lyot": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7834265313066708,
+      "found": true
+     },
+     "Vinogradov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9081231043847766,
+      "found": true
+     },
+     "Lowell": {
+      "peak_r": 1.025,
+      "contrast": 1.2650710775546614,
+      "found": false
+     },
+     "Kaiser": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.017479827666697,
+      "found": true
+     },
+     "Sch\u00f6ner": {
+      "peak_r": 1.025,
+      "contrast": 1.2728370041356825,
+      "found": false
+     },
+     "Mutch": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7493862953116661,
+      "found": true
+     },
+     "Dawes": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7502366015058146,
+      "found": true
+     },
+     "Green": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.9853015091481716,
+      "found": true
+     },
+     "Baldet": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8825579645304493,
+      "found": true
+     },
+     "Savich": {
+      "peak_r": 1.025,
+      "contrast": 2.165816665862579,
+      "found": true
+     },
+     "Flammarion": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6983406004868342,
+      "found": true
+     },
+     "Proctor": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.8275358591513517,
+      "found": true
+     },
+     "Terby": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4267310004084237,
+      "found": true
+     },
+     "Wallace": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5989354986615765,
+      "found": true
+     },
+     "Molesworth": {
+      "peak_r": 1.025,
+      "contrast": 1.6266558163406764,
+      "found": true
+     },
+     "Henry": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.175258480767412,
+      "found": true
+     },
+     "Becquerel": {
+      "peak_r": 0.5249999999999999,
+      "contrast": 1.3728561621412672,
+      "found": false
+     },
+     "Ptolemaeus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.2336861845577194,
+      "found": true
+     },
+     "Denning": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.849063941059416,
+      "found": true
+     },
+     "Schaeberle": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.8289337210183203,
+      "found": true
+     },
+     "Gusev": {
+      "peak_r": 1.025,
+      "contrast": 1.4964128591108505,
+      "found": true
+     },
+     "Mariner": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6351188822179066,
+      "found": true
+     },
+     "Graff": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.986588830586004,
+      "found": true
+     },
+     "Gale": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7997122453807037,
+      "found": true
+     },
+     "Janssen": {
+      "peak_r": 1.025,
+      "contrast": 2.546456585559554,
+      "found": true
+     },
+     "Bakhuysen": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 3.2939962045187143,
+      "found": true
+     },
+     "Holden": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.5931237370464135,
+      "found": true
+     },
+     "Arago": {
+      "peak_r": 1.025,
+      "contrast": 1.5589135284577502,
+      "found": true
+     },
+     "Dejnev": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9459919892581192,
+      "found": true
+     },
+     "Robert Sharp": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7454112548906175,
+      "found": true
+     },
+     "Lohse": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.7315936518769286,
+      "found": true
+     },
+     "Trouvelot": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5792198884714026,
+      "found": true
+     },
+     "Miyamoto": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.2241345110376114,
+      "found": false
+     },
+     "Wislicenus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.2342195851701288,
+      "found": true
+     },
+     "Roddenberry": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8309675338071578,
+      "found": true
+     },
+     "Maggini": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5167654835258673,
+      "found": true
+     },
+     "Hooke": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.1950620268603158,
+      "found": false
+     },
+     "Le Verrier": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.4176276478938914,
+      "found": true
+     },
+     "Hale": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1437381880854156,
+      "found": true
+     },
+     "Galilaei": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.812009168204448,
+      "found": true
+     },
+     "Quenisset": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.073122533209217,
+      "found": true
+     },
+     "Russell": {
+      "peak_r": 1.025,
+      "contrast": 2.0636286057427395,
+      "found": true
+     },
+     "Moreux": {
+      "peak_r": 1.025,
+      "contrast": 1.5635382067255568,
+      "found": true
+     },
+     "Bernard": {
+      "peak_r": 1.025,
+      "contrast": 2.334213945789233,
+      "found": true
+     },
+     "Slipher": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 3.332686613094008,
+      "found": true
+     },
+     "M\u00e4dler": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.736586743506,
+      "found": true
+     },
+     "Oudemans": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9042688185130976,
+      "found": true
+     },
+     "Knobel": {
+      "peak_r": 1.025,
+      "contrast": 2.2274602999131696,
+      "found": true
+     },
+     "Williams": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9598860391717474,
+      "found": true
+     },
+     "Arrhenius": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8756270836830597,
+      "found": true
+     },
+     "Vogel": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 2.1674765826606115,
+      "found": true
+     },
+     "Barabashov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6710965835863691,
+      "found": true
+     },
+     "M\u00fcller": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.402376031685011,
+      "found": true
+     },
+     "Wirtz": {
+      "peak_r": 1.025,
+      "contrast": 2.4114573975858025,
+      "found": true
+     },
+     "Comas Sola": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4885389688083834,
+      "found": true
+     },
+     "Burton": {
+      "peak_r": 1.025,
+      "contrast": 1.8143657003086495,
+      "found": true
+     },
+     "Arkhangelsky": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.356632396538135,
+      "found": true
+     },
+     "Moroz": {
+      "peak_r": 1.4749999999999996,
+      "contrast": 1.0143485177151212,
+      "found": false
+     },
+     "Pasteur": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0848649504647967,
+      "found": true
+     },
+     "Orson Welles": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.6675466626868338,
+      "found": true
+     },
+     "Hadley": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.930048710060482,
+      "found": true
+     },
+     "Masursky": {
+      "peak_r": 1.025,
+      "contrast": 1.8340410399639304,
+      "found": true
+     },
+     "Pickering": {
+      "peak_r": 1.025,
+      "contrast": 3.509316804541557,
+      "found": true
+     },
+     "Wien": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.202828844983405,
+      "found": true
+     },
+     "Teisserenc de Bort": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.836168579116457,
+      "found": true
+     },
+     "Niesten": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6376919155558072,
+      "found": true
+     },
+     "Cerulli": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9984158213355483,
+      "found": true
+     },
+     "Fournier": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8025106533917943,
+      "found": true
+     },
+     "Milankovi\u010d": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 4.235366177637852,
+      "found": true
+     },
+     "Millochau": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 3.144914309876921,
+      "found": true
+     },
+     "Columbus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.291508711102753,
+      "found": true
+     },
+     "Helmholtz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.6533856467495456,
+      "found": true
+     },
+     "Curie": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.220277123138744,
+      "found": true
+     },
+     "Crommelin": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.6167107803416938,
+      "found": true
+     },
+     "Tikhov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.030951184666512,
+      "found": true
+     },
+     "Radau": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.087723931257459,
+      "found": true
+     },
+     "Sklodowska": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0037381836692356,
+      "found": true
+     },
+     "Lasswitz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.03171359847471,
+      "found": true
+     },
+     "Bouguer": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.3440257671217353,
+      "found": true
+     },
+     "Rudaux": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7109573294130174,
+      "found": true
+     },
+     "Boeddicker": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1494115213557503,
+      "found": true
+     },
+     "Rutherford": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6808350453645278,
+      "found": true
+     },
+     "Rabe": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0504745265694266,
+      "found": true
+     },
+     "Li Fan": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.650723551710884,
+      "found": true
+     },
+     "Bond": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.3688014020366848,
+      "found": true
+     },
+     "Porter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 3.1824118946879203,
+      "found": true
+     },
+     "Magelhaens": {
+      "peak_r": 1.025,
+      "contrast": 1.7913016233508094,
+      "found": true
+     },
+     "Nicholson": {
+      "peak_r": 1.025,
+      "contrast": 1.8690440232695738,
+      "found": true
+     },
+     "Neukum": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.6757031341425073,
+      "found": true
+     },
+     "Coblentz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8378004771679004,
+      "found": true
+     },
+     "Luzin": {
+      "peak_r": 1.025,
+      "contrast": 2.0349761725725735,
+      "found": true
+     },
+     "Mie": {
+      "peak_r": 1.025,
+      "contrast": 2.7444002372136804,
+      "found": true
+     },
+     "Oyama": {
+      "peak_r": 1.0749999999999997,
+      "contrast": 1.767805295633975,
+      "found": true
+     }
+    }
+   },
+   "Viking blue": {
+    "found": 101,
+    "scored": 109,
+    "dropped": 8,
+    "share": 0.926605504587156,
+    "lower95": 0.8618222513812481,
+    "null_threshold": 1.364510079016309,
+    "chance": 0.041922290388548056,
+    "null_scored": 978,
+    "craters": {
+     "Huygens": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8052662907433337,
+      "found": true
+     },
+     "Schiaparelli": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9295321746004355,
+      "found": true
+     },
+     "Greeley": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.2640141794850441,
+      "found": false
+     },
+     "Cassini": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6166690903779455,
+      "found": true
+     },
+     "Antoniadi": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5744732124601533,
+      "found": true
+     },
+     "Dollfus": {
+      "peak_r": 1.025,
+      "contrast": 1.4368569815849868,
+      "found": true
+     },
+     "Tikhonravov": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.557496232080678,
+      "found": true
+     },
+     "de Vaucouleurs": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.1833915612817316,
+      "found": false
+     },
+     "Copernicus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.697713141703263,
+      "found": true
+     },
+     "Newton": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.874783918640016,
+      "found": true
+     },
+     "Herschel": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7225847542573838,
+      "found": true
+     },
+     "Koval'sky": {
+      "peak_r": 1.025,
+      "contrast": 1.576647338419518,
+      "found": true
+     },
+     "Schroeter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5971742935345228,
+      "found": true
+     },
+     "Newcomb": {
+      "peak_r": 1.025,
+      "contrast": 1.5164102390307708,
+      "found": true
+     },
+     "Flaugergues": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.461302179378166,
+      "found": true
+     },
+     "Galle": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.6169830136754433,
+      "found": true
+     },
+     "Lyot": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8588833259745754,
+      "found": true
+     },
+     "Vinogradov": {
+      "peak_r": 1.025,
+      "contrast": 2.0000924031422067,
+      "found": true
+     },
+     "Lowell": {
+      "peak_r": 1.025,
+      "contrast": 1.3038403829059684,
+      "found": false
+     },
+     "Kaiser": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.084718777962335,
+      "found": true
+     },
+     "Sch\u00f6ner": {
+      "peak_r": 1.025,
+      "contrast": 1.2907974603177719,
+      "found": false
+     },
+     "Mutch": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.846091806485019,
+      "found": true
+     },
+     "Dawes": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7571463369746145,
+      "found": true
+     },
+     "Green": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.039280398194014,
+      "found": true
+     },
+     "Baldet": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1785586526484937,
+      "found": true
+     },
+     "Savich": {
+      "peak_r": 1.025,
+      "contrast": 2.3842068730989343,
+      "found": true
+     },
+     "Flammarion": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7544093341588851,
+      "found": true
+     },
+     "Proctor": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.8782320249692819,
+      "found": true
+     },
+     "Terby": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4308126665902408,
+      "found": true
+     },
+     "Wallace": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.612813955175229,
+      "found": true
+     },
+     "Molesworth": {
+      "peak_r": 1.025,
+      "contrast": 1.7290581340879012,
+      "found": true
+     },
+     "Henry": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.264811507416936,
+      "found": true
+     },
+     "Becquerel": {
+      "peak_r": 0.5249999999999999,
+      "contrast": 1.3632614732776058,
+      "found": false
+     },
+     "Ptolemaeus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.328581314722307,
+      "found": true
+     },
+     "Denning": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9385504694875257,
+      "found": true
+     },
+     "Schaeberle": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 3.251462293893919,
+      "found": true
+     },
+     "Gusev": {
+      "peak_r": 1.025,
+      "contrast": 1.5110021987864628,
+      "found": true
+     },
+     "Mariner": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.711007735478198,
+      "found": true
+     },
+     "Graff": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.1188763016442556,
+      "found": true
+     },
+     "Gale": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.948947599052419,
+      "found": true
+     },
+     "Janssen": {
+      "peak_r": 1.025,
+      "contrast": 2.663844455068226,
+      "found": true
+     },
+     "Bakhuysen": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 3.6051475684183356,
+      "found": true
+     },
+     "Holden": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.946433223842345,
+      "found": true
+     },
+     "Arago": {
+      "peak_r": 1.025,
+      "contrast": 1.6255051019702302,
+      "found": true
+     },
+     "Dejnev": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.038112808173994,
+      "found": true
+     },
+     "Robert Sharp": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.8479207406925309,
+      "found": true
+     },
+     "Lohse": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.9305601583422765,
+      "found": true
+     },
+     "Trouvelot": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6464634333685337,
+      "found": true
+     },
+     "Miyamoto": {
+      "peak_r": 1.025,
+      "contrast": 1.2195945452254169,
+      "found": false
+     },
+     "Wislicenus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.3305524832941993,
+      "found": true
+     },
+     "Roddenberry": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8774808842076496,
+      "found": true
+     },
+     "Maggini": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5201745484229954,
+      "found": true
+     },
+     "Hooke": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.2210228434915364,
+      "found": false
+     },
+     "Le Verrier": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.480791538867042,
+      "found": true
+     },
+     "Hale": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.4188147128673325,
+      "found": true
+     },
+     "Galilaei": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8802140841358295,
+      "found": true
+     },
+     "Quenisset": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.11463480364588,
+      "found": true
+     },
+     "Russell": {
+      "peak_r": 1.025,
+      "contrast": 2.2181208673024972,
+      "found": true
+     },
+     "Moreux": {
+      "peak_r": 1.025,
+      "contrast": 1.6194130050256046,
+      "found": true
+     },
+     "Bernard": {
+      "peak_r": 1.025,
+      "contrast": 2.4760504524357567,
+      "found": true
+     },
+     "Slipher": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 3.8209194407130957,
+      "found": true
+     },
+     "M\u00e4dler": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8869881932706976,
+      "found": true
+     },
+     "Oudemans": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.000883284457733,
+      "found": true
+     },
+     "Knobel": {
+      "peak_r": 1.025,
+      "contrast": 2.414729635148797,
+      "found": true
+     },
+     "Williams": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.032690097524079,
+      "found": true
+     },
+     "Arrhenius": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.845658492943719,
+      "found": true
+     },
+     "Vogel": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 2.369203932546204,
+      "found": true
+     },
+     "Barabashov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.697837761851992,
+      "found": true
+     },
+     "M\u00fcller": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.5925704800735567,
+      "found": true
+     },
+     "Wirtz": {
+      "peak_r": 1.025,
+      "contrast": 2.565208450913507,
+      "found": true
+     },
+     "Comas Sola": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.496662106840209,
+      "found": true
+     },
+     "Burton": {
+      "peak_r": 1.025,
+      "contrast": 1.7506385598487244,
+      "found": true
+     },
+     "Arkhangelsky": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.5568406252135225,
+      "found": true
+     },
+     "Moroz": {
+      "peak_r": 1.4749999999999996,
+      "contrast": 0.9847776898815009,
+      "found": false
+     },
+     "Pasteur": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 2.1545225938250767,
+      "found": true
+     },
+     "Orson Welles": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.702884626473218,
+      "found": true
+     },
+     "Hadley": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1190095177476365,
+      "found": true
+     },
+     "Masursky": {
+      "peak_r": 1.025,
+      "contrast": 1.8361931768025055,
+      "found": true
+     },
+     "Pickering": {
+      "peak_r": 1.025,
+      "contrast": 4.098186847744781,
+      "found": true
+     },
+     "Wien": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.3412175383789546,
+      "found": true
+     },
+     "Teisserenc de Bort": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8896071303144009,
+      "found": true
+     },
+     "Niesten": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6945708071194925,
+      "found": true
+     },
+     "Cerulli": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0260535968807027,
+      "found": true
+     },
+     "Fournier": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9727466920369146,
+      "found": true
+     },
+     "Milankovi\u010d": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 4.408407173916323,
+      "found": true
+     },
+     "Millochau": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 3.625695516842859,
+      "found": true
+     },
+     "Columbus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.4478128757609467,
+      "found": true
+     },
+     "Helmholtz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.837298977692124,
+      "found": true
+     },
+     "Curie": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 2.323881724221192,
+      "found": true
+     },
+     "Crommelin": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.6287652240803392,
+      "found": true
+     },
+     "Tikhov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9991184595251432,
+      "found": true
+     },
+     "Radau": {
+      "peak_r": 1.025,
+      "contrast": 2.0780080773318512,
+      "found": true
+     },
+     "Sklodowska": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9930485291729472,
+      "found": true
+     },
+     "Lasswitz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1435153510046505,
+      "found": true
+     },
+     "Bouguer": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.4771615867870116,
+      "found": true
+     },
+     "Rudaux": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7665400391692136,
+      "found": true
+     },
+     "Boeddicker": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.2728773313195787,
+      "found": true
+     },
+     "Rutherford": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6732918311928757,
+      "found": true
+     },
+     "Rabe": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.131203634667227,
+      "found": true
+     },
+     "Li Fan": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.8173738165446753,
+      "found": true
+     },
+     "Bond": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.6605042711372047,
+      "found": true
+     },
+     "Porter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 3.471925603753149,
+      "found": true
+     },
+     "Magelhaens": {
+      "peak_r": 1.025,
+      "contrast": 1.8448615753886803,
+      "found": true
+     },
+     "Nicholson": {
+      "peak_r": 1.025,
+      "contrast": 1.8684364228256258,
+      "found": true
+     },
+     "Neukum": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.7699943111296537,
+      "found": true
+     },
+     "Coblentz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9029368441825507,
+      "found": true
+     },
+     "Luzin": {
+      "peak_r": 1.025,
+      "contrast": 1.9793749018876328,
+      "found": true
+     },
+     "Mie": {
+      "peak_r": 1.025,
+      "contrast": 2.832491922775269,
+      "found": true
+     },
+     "Oyama": {
+      "peak_r": 1.0749999999999997,
+      "contrast": 1.785575514079065,
+      "found": true
+     }
+    }
+   },
+   "night IR": {
+    "found": 38,
+    "scored": 109,
+    "dropped": 8,
+    "share": 0.3486238532110092,
+    "lower95": 0.26570209891776764,
+    "null_threshold": 1.1888277997627883,
+    "chance": 0.046012269938650305,
+    "null_scored": 978,
+    "craters": {
+     "Huygens": {
+      "peak_r": 0.575,
+      "contrast": 0.9285848466283986,
+      "found": false
+     },
+     "Schiaparelli": {
+      "peak_r": 1.025,
+      "contrast": 1.1501266554432659,
+      "found": false
+     },
+     "Greeley": {
+      "peak_r": 0.7249999999999999,
+      "contrast": 0.9329730858058471,
+      "found": false
+     },
+     "Cassini": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.436326927499964,
+      "found": true
+     },
+     "Antoniadi": {
+      "peak_r": 0.8249999999999998,
+      "contrast": 0.9957419573112896,
+      "found": false
+     },
+     "Dollfus": {
+      "peak_r": 0.7249999999999999,
+      "contrast": 0.9003238492076326,
+      "found": false
+     },
+     "Tikhonravov": {
+      "peak_r": 1.0749999999999997,
+      "contrast": 1.5819542713733088,
+      "found": true
+     },
+     "de Vaucouleurs": {
+      "peak_r": 0.7249999999999999,
+      "contrast": 1.0395952669602848,
+      "found": false
+     },
+     "Copernicus": {
+      "peak_r": 1.025,
+      "contrast": 1.2769676406876316,
+      "found": true
+     },
+     "Newton": {
+      "peak_r": 1.025,
+      "contrast": 1.1942734565884412,
+      "found": true
+     },
+     "Herschel": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 0.9886554858026005,
+      "found": false
+     },
+     "Koval'sky": {
+      "peak_r": 1.4249999999999998,
+      "contrast": 0.9714847273365943,
+      "found": false
+     },
+     "Schroeter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.0850415116223062,
+      "found": false
+     },
+     "Newcomb": {
+      "peak_r": 0.8249999999999998,
+      "contrast": 1.0116396701712471,
+      "found": false
+     },
+     "Flaugergues": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.142290743278752,
+      "found": false
+     },
+     "Galle": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5103676732041262,
+      "found": true
+     },
+     "Lyot": {
+      "peak_r": 0.5249999999999999,
+      "contrast": 1.0877417057060284,
+      "found": false
+     },
+     "Vinogradov": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.009027793326729,
+      "found": false
+     },
+     "Lowell": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.1832202670406242,
+      "found": false
+     },
+     "Kaiser": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 1.0427498040146816,
+      "found": false
+     },
+     "Sch\u00f6ner": {
+      "peak_r": 1.025,
+      "contrast": 1.1512767794483276,
+      "found": false
+     },
+     "Mutch": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 0.8925868290510298,
+      "found": false
+     },
+     "Dawes": {
+      "peak_r": 0.6249999999999999,
+      "contrast": 0.9921661369009264,
+      "found": false
+     },
+     "Green": {
+      "peak_r": 0.6749999999999999,
+      "contrast": 0.8718266237416596,
+      "found": false
+     },
+     "Baldet": {
+      "peak_r": 1.4249999999999998,
+      "contrast": 1.0146963367035144,
+      "found": false
+     },
+     "Savich": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.1293426176041692,
+      "found": false
+     },
+     "Flammarion": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.1351017123872156,
+      "found": false
+     },
+     "Proctor": {
+      "peak_r": 0.8249999999999998,
+      "contrast": 1.0436688493918878,
+      "found": false
+     },
+     "Terby": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.2507499321332434,
+      "found": true
+     },
+     "Wallace": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 0.8995770175567709,
+      "found": false
+     },
+     "Molesworth": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.0146913003386842,
+      "found": false
+     },
+     "Henry": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4557045585999224,
+      "found": true
+     },
+     "Becquerel": {
+      "peak_r": 0.6749999999999999,
+      "contrast": 0.9442978114004222,
+      "found": false
+     },
+     "Ptolemaeus": {
+      "peak_r": 1.0749999999999997,
+      "contrast": 1.2105998202322508,
+      "found": true
+     },
+     "Denning": {
+      "peak_r": 0.8249999999999998,
+      "contrast": 1.1372900467288272,
+      "found": false
+     },
+     "Schaeberle": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 1.05327891478364,
+      "found": false
+     },
+     "Gusev": {
+      "peak_r": 0.6749999999999999,
+      "contrast": 0.9226362180043962,
+      "found": false
+     },
+     "Mariner": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 1.014239886632044,
+      "found": false
+     },
+     "Graff": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 0.814860742754392,
+      "found": false
+     },
+     "Gale": {
+      "peak_r": 0.5249999999999999,
+      "contrast": 0.8418368334439695,
+      "found": false
+     },
+     "Janssen": {
+      "peak_r": 1.025,
+      "contrast": 2.20308979841893,
+      "found": true
+     },
+     "Bakhuysen": {
+      "peak_r": 1.2249999999999996,
+      "contrast": 1.3071232003005797,
+      "found": false
+     },
+     "Holden": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.5943330109905491,
+      "found": true
+     },
+     "Arago": {
+      "peak_r": 1.025,
+      "contrast": 1.2868730401505544,
+      "found": true
+     },
+     "Dejnev": {
+      "peak_r": 0.8249999999999998,
+      "contrast": 1.2195528755958827,
+      "found": true
+     },
+     "Robert Sharp": {
+      "peak_r": 0.5249999999999999,
+      "contrast": 1.0007923056849815,
+      "found": false
+     },
+     "Lohse": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.3197763802729112,
+      "found": true
+     },
+     "Trouvelot": {
+      "peak_r": 1.025,
+      "contrast": 1.1118124269674963,
+      "found": false
+     },
+     "Miyamoto": {
+      "peak_r": 1.4249999999999998,
+      "contrast": 0.9218787135306817,
+      "found": false
+     },
+     "Wislicenus": {
+      "peak_r": 0.5249999999999999,
+      "contrast": 1.0828189688903829,
+      "found": false
+     },
+     "Roddenberry": {
+      "peak_r": 0.8249999999999998,
+      "contrast": 1.2627244172893801,
+      "found": true
+     },
+     "Maggini": {
+      "peak_r": 1.025,
+      "contrast": 1.4193459515078475,
+      "found": true
+     },
+     "Hooke": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6149924767800923,
+      "found": true
+     },
+     "Le Verrier": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 0.972000330669261,
+      "found": false
+     },
+     "Hale": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.6839353742155223,
+      "found": true
+     },
+     "Galilaei": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.0993381699272406,
+      "found": false
+     },
+     "Quenisset": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.2706675177047988,
+      "found": true
+     },
+     "Russell": {
+      "peak_r": 0.6749999999999999,
+      "contrast": 1.0554566548113262,
+      "found": false
+     },
+     "Moreux": {
+      "peak_r": 1.025,
+      "contrast": 1.3483896288806332,
+      "found": true
+     },
+     "Bernard": {
+      "peak_r": 0.8249999999999998,
+      "contrast": 0.7960869419380474,
+      "found": false
+     },
+     "Slipher": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4073337389954985,
+      "found": true
+     },
+     "M\u00e4dler": {
+      "peak_r": 0.6749999999999999,
+      "contrast": 1.0291727472323235,
+      "found": false
+     },
+     "Oudemans": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.349614063144354,
+      "found": true
+     },
+     "Knobel": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 0.8505884188717555,
+      "found": false
+     },
+     "Williams": {
+      "peak_r": 0.6249999999999999,
+      "contrast": 0.8188974398102473,
+      "found": false
+     },
+     "Arrhenius": {
+      "peak_r": 0.8249999999999998,
+      "contrast": 1.0815626729750818,
+      "found": false
+     },
+     "Vogel": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.0273844071770368,
+      "found": false
+     },
+     "Barabashov": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 1.1595673314798995,
+      "found": false
+     },
+     "M\u00fcller": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 0.9053272013157944,
+      "found": false
+     },
+     "Wirtz": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.4791241762892684,
+      "found": true
+     },
+     "Comas Sola": {
+      "peak_r": 1.025,
+      "contrast": 1.2374732993707291,
+      "found": true
+     },
+     "Burton": {
+      "peak_r": 1.025,
+      "contrast": 1.3562289219708443,
+      "found": true
+     },
+     "Arkhangelsky": {
+      "peak_r": 1.025,
+      "contrast": 1.2379231013723067,
+      "found": true
+     },
+     "Moroz": {
+      "peak_r": 0.575,
+      "contrast": 0.8257620617636108,
+      "found": false
+     },
+     "Pasteur": {
+      "peak_r": 1.0749999999999997,
+      "contrast": 1.2594790351879366,
+      "found": true
+     },
+     "Orson Welles": {
+      "peak_r": 1.025,
+      "contrast": 1.5457212915655454,
+      "found": true
+     },
+     "Hadley": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.1775337823107055,
+      "found": false
+     },
+     "Masursky": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 1.0861868720769299,
+      "found": false
+     },
+     "Pickering": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.7425808538020355,
+      "found": true
+     },
+     "Wien": {
+      "peak_r": 0.8249999999999998,
+      "contrast": 0.894620639945432,
+      "found": false
+     },
+     "Teisserenc de Bort": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.3007179941906435,
+      "found": true
+     },
+     "Niesten": {
+      "peak_r": 0.7249999999999999,
+      "contrast": 0.9556264664471082,
+      "found": false
+     },
+     "Cerulli": {
+      "peak_r": 1.025,
+      "contrast": 1.1776950881153072,
+      "found": false
+     },
+     "Fournier": {
+      "peak_r": 0.575,
+      "contrast": 0.6802531136484824,
+      "found": false
+     },
+     "Milankovi\u010d": {
+      "peak_r": 1.025,
+      "contrast": 1.6121642949969108,
+      "found": true
+     },
+     "Millochau": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 0.7644820052284014,
+      "found": false
+     },
+     "Columbus": {
+      "peak_r": 0.7249999999999999,
+      "contrast": 0.7626697763687271,
+      "found": false
+     },
+     "Helmholtz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4133088023398084,
+      "found": true
+     },
+     "Curie": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5629120454025265,
+      "found": true
+     },
+     "Crommelin": {
+      "peak_r": 0.5249999999999999,
+      "contrast": 0.682775573030019,
+      "found": false
+     },
+     "Tikhov": {
+      "peak_r": 0.6749999999999999,
+      "contrast": 0.7274492686311491,
+      "found": false
+     },
+     "Radau": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.1675219292801966,
+      "found": false
+     },
+     "Sklodowska": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.1197126217941435,
+      "found": false
+     },
+     "Lasswitz": {
+      "peak_r": 0.7249999999999999,
+      "contrast": 1.0108976306155075,
+      "found": false
+     },
+     "Bouguer": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 0.8714765611189601,
+      "found": false
+     },
+     "Rudaux": {
+      "peak_r": 0.6249999999999999,
+      "contrast": 1.0549631212206947,
+      "found": false
+     },
+     "Boeddicker": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.0309342054021284,
+      "found": false
+     },
+     "Rutherford": {
+      "peak_r": 0.6249999999999999,
+      "contrast": 0.9196688929158122,
+      "found": false
+     },
+     "Rabe": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 0.9205767320800632,
+      "found": false
+     },
+     "Li Fan": {
+      "peak_r": 0.7249999999999999,
+      "contrast": 1.0701654441057713,
+      "found": false
+     },
+     "Bond": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4709016421338421,
+      "found": true
+     },
+     "Porter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4205283489981697,
+      "found": true
+     },
+     "Magelhaens": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 1.0032658165405657,
+      "found": false
+     },
+     "Nicholson": {
+      "peak_r": 1.025,
+      "contrast": 1.5331114683101765,
+      "found": true
+     },
+     "Neukum": {
+      "peak_r": 0.7249999999999999,
+      "contrast": 0.9319907357344738,
+      "found": false
+     },
+     "Coblentz": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.3824352984604984,
+      "found": true
+     },
+     "Luzin": {
+      "peak_r": 1.025,
+      "contrast": 1.380709194096332,
+      "found": true
+     },
+     "Mie": {
+      "peak_r": 1.025,
+      "contrast": 1.3198752311928725,
+      "found": true
+     },
+     "Oyama": {
+      "peak_r": 0.6749999999999999,
+      "contrast": 0.6564448152447548,
+      "found": false
+     }
+    }
+   },
+   "day IR": {
+    "found": 103,
+    "scored": 109,
+    "dropped": 8,
+    "share": 0.944954128440367,
+    "lower95": 0.8850827252372058,
+    "null_threshold": 1.1998856150852062,
+    "chance": 0.044989775051124746,
+    "null_scored": 978,
+    "craters": {
+     "Huygens": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.282604631268859,
+      "found": true
+     },
+     "Schiaparelli": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.1611896625615268,
+      "found": false
+     },
+     "Greeley": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.07601837823563,
+      "found": false
+     },
+     "Cassini": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.235037749055272,
+      "found": true
+     },
+     "Antoniadi": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.255218764762916,
+      "found": true
+     },
+     "Dollfus": {
+      "peak_r": 1.125,
+      "contrast": 1.0371752652642687,
+      "found": false
+     },
+     "Tikhonravov": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.267651346363832,
+      "found": true
+     },
+     "de Vaucouleurs": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.0764972132677553,
+      "found": false
+     },
+     "Copernicus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.361799125691063,
+      "found": true
+     },
+     "Newton": {
+      "peak_r": 1.025,
+      "contrast": 1.584605595183694,
+      "found": true
+     },
+     "Herschel": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4526542659079509,
+      "found": true
+     },
+     "Koval'sky": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.324118328162837,
+      "found": true
+     },
+     "Schroeter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.2309158382154768,
+      "found": true
+     },
+     "Newcomb": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.3643284571826204,
+      "found": true
+     },
+     "Flaugergues": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7282807842017254,
+      "found": true
+     },
+     "Galle": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.913337116465535,
+      "found": true
+     },
+     "Lyot": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.3917371595112078,
+      "found": true
+     },
+     "Vinogradov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6206394853321289,
+      "found": true
+     },
+     "Lowell": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.3291856058417988,
+      "found": true
+     },
+     "Kaiser": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5454074845259242,
+      "found": true
+     },
+     "Sch\u00f6ner": {
+      "peak_r": 1.025,
+      "contrast": 1.2831394632171624,
+      "found": true
+     },
+     "Mutch": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4701273967099717,
+      "found": true
+     },
+     "Dawes": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.613176760873168,
+      "found": true
+     },
+     "Green": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.4146042954391418,
+      "found": true
+     },
+     "Baldet": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5785060728712197,
+      "found": true
+     },
+     "Savich": {
+      "peak_r": 1.025,
+      "contrast": 1.7884261726944037,
+      "found": true
+     },
+     "Flammarion": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.411081774389326,
+      "found": true
+     },
+     "Proctor": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.6472517560959705,
+      "found": true
+     },
+     "Terby": {
+      "peak_r": 1.025,
+      "contrast": 1.3807961626415932,
+      "found": true
+     },
+     "Wallace": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4092243628858088,
+      "found": true
+     },
+     "Molesworth": {
+      "peak_r": 1.025,
+      "contrast": 1.6037722869427435,
+      "found": true
+     },
+     "Henry": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7383242153995286,
+      "found": true
+     },
+     "Becquerel": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4028152669819136,
+      "found": true
+     },
+     "Ptolemaeus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.797086686358516,
+      "found": true
+     },
+     "Denning": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8962011674511183,
+      "found": true
+     },
+     "Schaeberle": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1551512972686,
+      "found": true
+     },
+     "Gusev": {
+      "peak_r": 1.025,
+      "contrast": 1.5250876626753136,
+      "found": true
+     },
+     "Mariner": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.576187697963181,
+      "found": true
+     },
+     "Graff": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.5492855743172098,
+      "found": true
+     },
+     "Gale": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.433241121074727,
+      "found": true
+     },
+     "Janssen": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1726530335786824,
+      "found": true
+     },
+     "Bakhuysen": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1906798957571114,
+      "found": true
+     },
+     "Holden": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.29163726738451,
+      "found": true
+     },
+     "Arago": {
+      "peak_r": 1.025,
+      "contrast": 1.269695955643774,
+      "found": true
+     },
+     "Dejnev": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9008584418387784,
+      "found": true
+     },
+     "Robert Sharp": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.439302994445416,
+      "found": true
+     },
+     "Lohse": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9236633559483955,
+      "found": true
+     },
+     "Trouvelot": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6405434531234306,
+      "found": true
+     },
+     "Miyamoto": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.101047015804967,
+      "found": false
+     },
+     "Wislicenus": {
+      "peak_r": 1.025,
+      "contrast": 1.8957534072486233,
+      "found": true
+     },
+     "Roddenberry": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5620020872338136,
+      "found": true
+     },
+     "Maggini": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4584347054736675,
+      "found": true
+     },
+     "Hooke": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5310910684814327,
+      "found": true
+     },
+     "Le Verrier": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.945845362153387,
+      "found": true
+     },
+     "Hale": {
+      "peak_r": 1.025,
+      "contrast": 1.8750446021926312,
+      "found": true
+     },
+     "Galilaei": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.639034385434988,
+      "found": true
+     },
+     "Quenisset": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9809258218163486,
+      "found": true
+     },
+     "Russell": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8631058480941454,
+      "found": true
+     },
+     "Moreux": {
+      "peak_r": 1.025,
+      "contrast": 1.7430879642915484,
+      "found": true
+     },
+     "Bernard": {
+      "peak_r": 1.025,
+      "contrast": 1.6496514839588328,
+      "found": true
+     },
+     "Slipher": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.5162412456322394,
+      "found": true
+     },
+     "M\u00e4dler": {
+      "peak_r": 1.025,
+      "contrast": 1.7720145130916114,
+      "found": true
+     },
+     "Oudemans": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.2188118101178267,
+      "found": true
+     },
+     "Knobel": {
+      "peak_r": 1.025,
+      "contrast": 1.5717960612593174,
+      "found": true
+     },
+     "Williams": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.636959183229135,
+      "found": true
+     },
+     "Arrhenius": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9215235596655382,
+      "found": true
+     },
+     "Vogel": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.5460753359337942,
+      "found": true
+     },
+     "Barabashov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5838649207117759,
+      "found": true
+     },
+     "M\u00fcller": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.8577883774876576,
+      "found": true
+     },
+     "Wirtz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0926921868514907,
+      "found": true
+     },
+     "Comas Sola": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.3325953247613747,
+      "found": true
+     },
+     "Burton": {
+      "peak_r": 1.025,
+      "contrast": 2.105855132508349,
+      "found": true
+     },
+     "Arkhangelsky": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1977303470225684,
+      "found": true
+     },
+     "Moroz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.0737969184091132,
+      "found": false
+     },
+     "Pasteur": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8718821365446767,
+      "found": true
+     },
+     "Orson Welles": {
+      "peak_r": 1.025,
+      "contrast": 1.544127204761717,
+      "found": true
+     },
+     "Hadley": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7244579642220448,
+      "found": true
+     },
+     "Masursky": {
+      "peak_r": 1.025,
+      "contrast": 1.7151205198521322,
+      "found": true
+     },
+     "Pickering": {
+      "peak_r": 1.025,
+      "contrast": 2.5686145127063362,
+      "found": true
+     },
+     "Wien": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.7045411060309361,
+      "found": true
+     },
+     "Teisserenc de Bort": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.638597026847927,
+      "found": true
+     },
+     "Niesten": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.524309317148297,
+      "found": true
+     },
+     "Cerulli": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.583519874651684,
+      "found": true
+     },
+     "Fournier": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.844086964326828,
+      "found": true
+     },
+     "Milankovi\u010d": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 3.1845502361900553,
+      "found": true
+     },
+     "Millochau": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.2320523235681704,
+      "found": true
+     },
+     "Columbus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1820612925372846,
+      "found": true
+     },
+     "Helmholtz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0750913362450727,
+      "found": true
+     },
+     "Curie": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9538682146273296,
+      "found": true
+     },
+     "Crommelin": {
+      "peak_r": 1.025,
+      "contrast": 1.4776343990733989,
+      "found": true
+     },
+     "Tikhov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0532299177276068,
+      "found": true
+     },
+     "Radau": {
+      "peak_r": 1.025,
+      "contrast": 1.7710380908665797,
+      "found": true
+     },
+     "Sklodowska": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6418655399951108,
+      "found": true
+     },
+     "Lasswitz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6592473896003146,
+      "found": true
+     },
+     "Bouguer": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6695589927999488,
+      "found": true
+     },
+     "Rudaux": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5287996895360916,
+      "found": true
+     },
+     "Boeddicker": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9868245107761178,
+      "found": true
+     },
+     "Rutherford": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7004177055297212,
+      "found": true
+     },
+     "Rabe": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.899001462530035,
+      "found": true
+     },
+     "Li Fan": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.037344140094778,
+      "found": true
+     },
+     "Bond": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.318432981398437,
+      "found": true
+     },
+     "Porter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.5836948786113467,
+      "found": true
+     },
+     "Magelhaens": {
+      "peak_r": 1.025,
+      "contrast": 1.8183128147219305,
+      "found": true
+     },
+     "Nicholson": {
+      "peak_r": 1.025,
+      "contrast": 1.5960156111381436,
+      "found": true
+     },
+     "Neukum": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9122057205424603,
+      "found": true
+     },
+     "Coblentz": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.5370504988625207,
+      "found": true
+     },
+     "Luzin": {
+      "peak_r": 1.025,
+      "contrast": 1.9354351872047861,
+      "found": true
+     },
+     "Mie": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.850443558688042,
+      "found": true
+     },
+     "Oyama": {
+      "peak_r": 1.0749999999999997,
+      "contrast": 1.5383897775331017,
+      "found": true
+     }
+    }
+   },
+   "composite": {
+    "found": 104,
+    "scored": 109,
+    "dropped": 8,
+    "share": 0.9541284403669725,
+    "lower95": 0.8970875634008366,
+    "null_threshold": 1.198993343982723,
+    "chance": 0.04703476482617587,
+    "null_scored": 978,
+    "craters": {
+     "Huygens": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.311728287346398,
+      "found": true
+     },
+     "Schiaparelli": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.3296587120858196,
+      "found": true
+     },
+     "Greeley": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.1128787344894235,
+      "found": false
+     },
+     "Cassini": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.3705425055832854,
+      "found": true
+     },
+     "Antoniadi": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.2309034604882645,
+      "found": true
+     },
+     "Dollfus": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.1445968640130029,
+      "found": false
+     },
+     "Tikhonravov": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.4208768804426892,
+      "found": true
+     },
+     "de Vaucouleurs": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.0989808078080947,
+      "found": false
+     },
+     "Copernicus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4546692276945081,
+      "found": true
+     },
+     "Newton": {
+      "peak_r": 1.025,
+      "contrast": 1.5689121692846315,
+      "found": true
+     },
+     "Herschel": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.4316671560003154,
+      "found": true
+     },
+     "Koval'sky": {
+      "peak_r": 1.025,
+      "contrast": 1.2801640309716096,
+      "found": true
+     },
+     "Schroeter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.3079992179565432,
+      "found": true
+     },
+     "Newcomb": {
+      "peak_r": 1.025,
+      "contrast": 1.2482342642977962,
+      "found": true
+     },
+     "Flaugergues": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6585075362918573,
+      "found": true
+     },
+     "Galle": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0774662243633286,
+      "found": true
+     },
+     "Lyot": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5501914060871758,
+      "found": true
+     },
+     "Vinogradov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5445363843754534,
+      "found": true
+     },
+     "Lowell": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.2606579000176665,
+      "found": true
+     },
+     "Kaiser": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5995133455977364,
+      "found": true
+     },
+     "Sch\u00f6ner": {
+      "peak_r": 1.025,
+      "contrast": 1.2249407630925826,
+      "found": true
+     },
+     "Mutch": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5042813290560655,
+      "found": true
+     },
+     "Dawes": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5101348007209987,
+      "found": true
+     },
+     "Green": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.4165534716387065,
+      "found": true
+     },
+     "Baldet": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5291964179815332,
+      "found": true
+     },
+     "Savich": {
+      "peak_r": 1.025,
+      "contrast": 1.7422684964481678,
+      "found": true
+     },
+     "Flammarion": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4055551305073446,
+      "found": true
+     },
+     "Proctor": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.5041859117773007,
+      "found": true
+     },
+     "Terby": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.3338939344238436,
+      "found": true
+     },
+     "Wallace": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.457246485298504,
+      "found": true
+     },
+     "Molesworth": {
+      "peak_r": 1.025,
+      "contrast": 1.4775568719436407,
+      "found": true
+     },
+     "Henry": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7426079848991427,
+      "found": true
+     },
+     "Becquerel": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.2406633865756695,
+      "found": true
+     },
+     "Ptolemaeus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8318599503878839,
+      "found": true
+     },
+     "Denning": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.687148980913917,
+      "found": true
+     },
+     "Schaeberle": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0418653908311053,
+      "found": true
+     },
+     "Gusev": {
+      "peak_r": 1.025,
+      "contrast": 1.3832207020303606,
+      "found": true
+     },
+     "Mariner": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.490885798695151,
+      "found": true
+     },
+     "Graff": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.502456969333965,
+      "found": true
+     },
+     "Gale": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.447090239677613,
+      "found": true
+     },
+     "Janssen": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.2462202549485903,
+      "found": true
+     },
+     "Bakhuysen": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.405089383434064,
+      "found": true
+     },
+     "Holden": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.2368315345732372,
+      "found": true
+     },
+     "Arago": {
+      "peak_r": 1.025,
+      "contrast": 1.356652246335907,
+      "found": true
+     },
+     "Dejnev": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7168912234420717,
+      "found": true
+     },
+     "Robert Sharp": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5419648533231696,
+      "found": true
+     },
+     "Lohse": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.117122946629359,
+      "found": true
+     },
+     "Trouvelot": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4459579248562227,
+      "found": true
+     },
+     "Miyamoto": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.0728973196376732,
+      "found": false
+     },
+     "Wislicenus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6621127211469844,
+      "found": true
+     },
+     "Roddenberry": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.625852138120255,
+      "found": true
+     },
+     "Maggini": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4376638204268524,
+      "found": true
+     },
+     "Hooke": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5062690940007855,
+      "found": true
+     },
+     "Le Verrier": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8409005179463622,
+      "found": true
+     },
+     "Hale": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.95216594055977,
+      "found": true
+     },
+     "Galilaei": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4959619122939583,
+      "found": true
+     },
+     "Quenisset": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.789477155993548,
+      "found": true
+     },
+     "Russell": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7226479815850249,
+      "found": true
+     },
+     "Moreux": {
+      "peak_r": 1.025,
+      "contrast": 1.5335917574052558,
+      "found": true
+     },
+     "Bernard": {
+      "peak_r": 1.025,
+      "contrast": 1.7478015712946118,
+      "found": true
+     },
+     "Slipher": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.343770795142342,
+      "found": true
+     },
+     "M\u00e4dler": {
+      "peak_r": 1.025,
+      "contrast": 1.5781521110765007,
+      "found": true
+     },
+     "Oudemans": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8068349191915685,
+      "found": true
+     },
+     "Knobel": {
+      "peak_r": 1.025,
+      "contrast": 1.7659778284761216,
+      "found": true
+     },
+     "Williams": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.445262643947944,
+      "found": true
+     },
+     "Arrhenius": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6857108142073305,
+      "found": true
+     },
+     "Vogel": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.6976240578175992,
+      "found": true
+     },
+     "Barabashov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5623865915342556,
+      "found": true
+     },
+     "M\u00fcller": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.9440853538903655,
+      "found": true
+     },
+     "Wirtz": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.1053734246628726,
+      "found": true
+     },
+     "Comas Sola": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.3978731503788917,
+      "found": true
+     },
+     "Burton": {
+      "peak_r": 1.025,
+      "contrast": 1.764024853226444,
+      "found": true
+     },
+     "Arkhangelsky": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.956578942197779,
+      "found": true
+     },
+     "Moroz": {
+      "peak_r": 0.6249999999999999,
+      "contrast": 0.9755008091156361,
+      "found": false
+     },
+     "Pasteur": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.6495171980419316,
+      "found": true
+     },
+     "Orson Welles": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.592436372171063,
+      "found": true
+     },
+     "Hadley": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6727487299823143,
+      "found": true
+     },
+     "Masursky": {
+      "peak_r": 1.025,
+      "contrast": 1.6501460156768177,
+      "found": true
+     },
+     "Pickering": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.6699865119176254,
+      "found": true
+     },
+     "Wien": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.8238554444770532,
+      "found": true
+     },
+     "Teisserenc de Bort": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5841263441278377,
+      "found": true
+     },
+     "Niesten": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4190226537950625,
+      "found": true
+     },
+     "Cerulli": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.573127879164807,
+      "found": true
+     },
+     "Fournier": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5578278615477767,
+      "found": true
+     },
+     "Milankovi\u010d": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 3.158067593173611,
+      "found": true
+     },
+     "Millochau": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.26547044797622,
+      "found": true
+     },
+     "Columbus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.901669598069017,
+      "found": true
+     },
+     "Helmholtz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1651386498683105,
+      "found": true
+     },
+     "Curie": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9249905484627792,
+      "found": true
+     },
+     "Crommelin": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.2033883787583854,
+      "found": true
+     },
+     "Tikhov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8073362416002028,
+      "found": true
+     },
+     "Radau": {
+      "peak_r": 1.025,
+      "contrast": 1.725993073641164,
+      "found": true
+     },
+     "Sklodowska": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5814440590165202,
+      "found": true
+     },
+     "Lasswitz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7858493283563626,
+      "found": true
+     },
+     "Bouguer": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6215470675810988,
+      "found": true
+     },
+     "Rudaux": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4686992660112386,
+      "found": true
+     },
+     "Boeddicker": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.787373126658573,
+      "found": true
+     },
+     "Rutherford": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4165441634013325,
+      "found": true
+     },
+     "Rabe": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.571914369741641,
+      "found": true
+     },
+     "Li Fan": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0295197087210908,
+      "found": true
+     },
+     "Bond": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0815350959709558,
+      "found": true
+     },
+     "Porter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.5453062302831153,
+      "found": true
+     },
+     "Magelhaens": {
+      "peak_r": 1.025,
+      "contrast": 1.5745546791975729,
+      "found": true
+     },
+     "Nicholson": {
+      "peak_r": 1.025,
+      "contrast": 1.713436703977986,
+      "found": true
+     },
+     "Neukum": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7334894345662406,
+      "found": true
+     },
+     "Coblentz": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.516575053824128,
+      "found": true
+     },
+     "Luzin": {
+      "peak_r": 1.025,
+      "contrast": 1.7571171248673927,
+      "found": true
+     },
+     "Mie": {
+      "peak_r": 1.025,
+      "contrast": 1.989553298639938,
+      "found": true
+     },
+     "Oyama": {
+      "peak_r": 1.0749999999999997,
+      "contrast": 1.3437298977392291,
+      "found": true
+     }
+    }
+   },
+   "slope": {
+    "found": 104,
+    "scored": 109,
+    "dropped": 8,
+    "share": 0.9541284403669725,
+    "lower95": 0.8970875634008366,
+    "null_threshold": 1.3263877346275015,
+    "chance": 0.04294478527607362,
+    "null_scored": 978,
+    "craters": {
+     "Huygens": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7220746456848184,
+      "found": true
+     },
+     "Schiaparelli": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8252649383342516,
+      "found": true
+     },
+     "Greeley": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.3278392125165623,
+      "found": true
+     },
+     "Cassini": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.5603903499089882,
+      "found": true
+     },
+     "Antoniadi": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.3218198418276752,
+      "found": false
+     },
+     "Dollfus": {
+      "peak_r": 1.025,
+      "contrast": 1.331286918548599,
+      "found": true
+     },
+     "Tikhonravov": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.4889551000023786,
+      "found": true
+     },
+     "de Vaucouleurs": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.1482607326647987,
+      "found": false
+     },
+     "Copernicus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.537926303390771,
+      "found": true
+     },
+     "Newton": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9743696167048461,
+      "found": true
+     },
+     "Herschel": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.1217611969886634,
+      "found": true
+     },
+     "Koval'sky": {
+      "peak_r": 1.025,
+      "contrast": 1.4946588592399552,
+      "found": true
+     },
+     "Schroeter": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4542378493452535,
+      "found": true
+     },
+     "Newcomb": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.729889008945327,
+      "found": true
+     },
+     "Flaugergues": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.3964546655129317,
+      "found": true
+     },
+     "Galle": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.276084155301395,
+      "found": true
+     },
+     "Lyot": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.714796420944606,
+      "found": true
+     },
+     "Vinogradov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.4472486549439827,
+      "found": true
+     },
+     "Lowell": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.6710623765676136,
+      "found": true
+     },
+     "Kaiser": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9147949566098839,
+      "found": true
+     },
+     "Sch\u00f6ner": {
+      "peak_r": 1.025,
+      "contrast": 1.5095773858796364,
+      "found": true
+     },
+     "Mutch": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0443811454219407,
+      "found": true
+     },
+     "Dawes": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.4508080364276665,
+      "found": true
+     },
+     "Green": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.7628835316377127,
+      "found": true
+     },
+     "Baldet": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8960594919027935,
+      "found": true
+     },
+     "Savich": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.197850530126397,
+      "found": true
+     },
+     "Flammarion": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7057287612124992,
+      "found": true
+     },
+     "Proctor": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.7734529310359715,
+      "found": true
+     },
+     "Terby": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.5749411182275743,
+      "found": true
+     },
+     "Wallace": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.0401335742788613,
+      "found": true
+     },
+     "Molesworth": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7638649093935521,
+      "found": true
+     },
+     "Henry": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.889710274565607,
+      "found": true
+     },
+     "Becquerel": {
+      "peak_r": 0.7749999999999999,
+      "contrast": 1.6331921607512134,
+      "found": false
+     },
+     "Ptolemaeus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.043650692475899,
+      "found": true
+     },
+     "Denning": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8020133519453188,
+      "found": true
+     },
+     "Schaeberle": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 3.7381321838815667,
+      "found": true
+     },
+     "Gusev": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.5291605418700702,
+      "found": true
+     },
+     "Mariner": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.8078574926617978,
+      "found": true
+     },
+     "Graff": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.9567066623938565,
+      "found": true
+     },
+     "Gale": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9044128114213277,
+      "found": true
+     },
+     "Janssen": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.556510443192605,
+      "found": true
+     },
+     "Bakhuysen": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.501194691293455,
+      "found": true
+     },
+     "Holden": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.645070092210088,
+      "found": true
+     },
+     "Arago": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.3597617253608976,
+      "found": true
+     },
+     "Dejnev": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.209206638559131,
+      "found": true
+     },
+     "Robert Sharp": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.6139598324873914,
+      "found": true
+     },
+     "Lohse": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.099670011256216,
+      "found": true
+     },
+     "Trouvelot": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.193273953115137,
+      "found": true
+     },
+     "Miyamoto": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.450797347003666,
+      "found": true
+     },
+     "Wislicenus": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.176016690368348,
+      "found": true
+     },
+     "Roddenberry": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.7485643070244985,
+      "found": true
+     },
+     "Maggini": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.5333144743274383,
+      "found": true
+     },
+     "Hooke": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.9131279864493371,
+      "found": true
+     },
+     "Le Verrier": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.2172159621969576,
+      "found": true
+     },
+     "Hale": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9149332359736513,
+      "found": true
+     },
+     "Galilaei": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.1306290427418557,
+      "found": true
+     },
+     "Quenisset": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.9791990171084364,
+      "found": true
+     },
+     "Russell": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.50843233860789,
+      "found": true
+     },
+     "Moreux": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.7041067133026608,
+      "found": true
+     },
+     "Bernard": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.6100409841550953,
+      "found": true
+     },
+     "Slipher": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.5526319734795484,
+      "found": true
+     },
+     "M\u00e4dler": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9795011630677206,
+      "found": true
+     },
+     "Oudemans": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.523472234022101,
+      "found": true
+     },
+     "Knobel": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.6773125453184505,
+      "found": true
+     },
+     "Williams": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.8317356575844794,
+      "found": true
+     },
+     "Arrhenius": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.5191962704303243,
+      "found": true
+     },
+     "Vogel": {
+      "peak_r": 0.8249999999999998,
+      "contrast": 1.5370153518221863,
+      "found": true
+     },
+     "Barabashov": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.7463755669390035,
+      "found": true
+     },
+     "M\u00fcller": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.8090867817872023,
+      "found": true
+     },
+     "Wirtz": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 3.2405538893950823,
+      "found": true
+     },
+     "Comas Sola": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.4641984177566099,
+      "found": true
+     },
+     "Burton": {
+      "peak_r": 0.8249999999999998,
+      "contrast": 2.6030918096984585,
+      "found": true
+     },
+     "Arkhangelsky": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 4.0908895145585005,
+      "found": true
+     },
+     "Moroz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.1723682951464256,
+      "found": false
+     },
+     "Pasteur": {
+      "peak_r": 0.8249999999999998,
+      "contrast": 2.0978745565985775,
+      "found": true
+     },
+     "Orson Welles": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.732356364779723,
+      "found": true
+     },
+     "Hadley": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.9908435147093886,
+      "found": true
+     },
+     "Masursky": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.85408515397119,
+      "found": true
+     },
+     "Pickering": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.7278419056752967,
+      "found": true
+     },
+     "Wien": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.39899891417469,
+      "found": true
+     },
+     "Teisserenc de Bort": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.432956688492966,
+      "found": true
+     },
+     "Niesten": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.5945438633930769,
+      "found": true
+     },
+     "Cerulli": {
+      "peak_r": 0.6749999999999999,
+      "contrast": 1.3961733321460426,
+      "found": false
+     },
+     "Fournier": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.119741399641899,
+      "found": true
+     },
+     "Milankovi\u010d": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 4.809492500010119,
+      "found": true
+     },
+     "Millochau": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.653974589139034,
+      "found": true
+     },
+     "Columbus": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.426006323196449,
+      "found": true
+     },
+     "Helmholtz": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.8538466045659403,
+      "found": true
+     },
+     "Curie": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.0643660591349087,
+      "found": true
+     },
+     "Crommelin": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.3470863217412132,
+      "found": true
+     },
+     "Tikhov": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 4.037324250722199,
+      "found": true
+     },
+     "Radau": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.2981639760689414,
+      "found": true
+     },
+     "Sklodowska": {
+      "peak_r": 1.025,
+      "contrast": 1.7831916227456528,
+      "found": true
+     },
+     "Lasswitz": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 2.068065213246292,
+      "found": true
+     },
+     "Bouguer": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 1.856659535078747,
+      "found": true
+     },
+     "Rudaux": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.5881470657273165,
+      "found": true
+     },
+     "Boeddicker": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.2793053088267334,
+      "found": true
+     },
+     "Rutherford": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.9620531383185722,
+      "found": true
+     },
+     "Rabe": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.111699319140389,
+      "found": true
+     },
+     "Li Fan": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 3.0261683541965265,
+      "found": true
+     },
+     "Bond": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.554836377696253,
+      "found": true
+     },
+     "Porter": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.754548867778334,
+      "found": true
+     },
+     "Magelhaens": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.5937261898127437,
+      "found": true
+     },
+     "Nicholson": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.3724170680694674,
+      "found": true
+     },
+     "Neukum": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 2.1459404030205964,
+      "found": true
+     },
+     "Coblentz": {
+      "peak_r": 0.9749999999999999,
+      "contrast": 2.4223627689252454,
+      "found": true
+     },
+     "Luzin": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 1.6775858949120834,
+      "found": true
+     },
+     "Mie": {
+      "peak_r": 0.8749999999999999,
+      "contrast": 2.5727126965551568,
+      "found": true
+     },
+     "Oyama": {
+      "peak_r": 0.9249999999999999,
+      "contrast": 1.7991001234924167,
+      "found": true
+     }
+    }
+   }
+  },
+  "verdicts": {
+   "H4-1": true,
+   "H4-2": {
+    "Viking red": true,
+    "Viking green": true,
+    "Viking blue": true,
+    "night IR": true,
+    "day IR": true,
+    "composite": true
+   },
+   "H4-3": false
+  }
+ },
+ "Q6": {
+  "near_px": 4256398,
+  "far_px": 12128064,
+  "auc": {
+   "Viking red": 0.5372471198619799,
+   "Viking green": 0.5379733065666339,
+   "Viking blue": 0.5375397202509309,
+   "night IR": 0.530996390304997,
+   "day IR": 0.5335803041170964,
+   "composite": 0.5453012176097057,
+   "slope": 0.5412845841696903
+  },
+  "null_max": {
+   "Viking red": 0.5036740165741945,
+   "Viking green": 0.5048147619094016,
+   "Viking blue": 0.5057228197335634,
+   "night IR": 0.5002129871064975,
+   "day IR": 0.49979323030780626,
+   "composite": 0.5008230171629585,
+   "slope": 0.5087456153578946
+  },
+  "null": {
+   "Viking red": [
+    0.5024441623342837,
+    0.5036740165741945,
+    0.5013481925088472,
+    0.5030256644633436,
+    0.5026906120093663,
+    0.5007886661296665,
+    0.4997013680577328,
+    0.4977343261768667,
+    0.5022055780064898,
+    0.49997866375455186,
+    0.5028256594729925
+   ],
+   "Viking green": [
+    0.5021616690168679,
+    0.5025942015115059,
+    0.5006739594713816,
+    0.5023450562612862,
+    0.5024893167648353,
+    0.5011748571583412,
+    0.5005084740954066,
+    0.49856985415171645,
+    0.5048147619094016,
+    0.5026715542144087,
+    0.5039890708983026
+   ],
+   "Viking blue": [
+    0.5015965363935431,
+    0.5015298082501893,
+    0.5000105028073694,
+    0.5015114709293703,
+    0.5014846275930221,
+    0.5012678880660865,
+    0.501018518705017,
+    0.4990510260672169,
+    0.5057228197335634,
+    0.5038267182895372,
+    0.5043046930872618
+   ],
+   "night IR": [
+    0.49902413670515144,
+    0.49959366255546195,
+    0.4983119433778392,
+    0.5002129871064975,
+    0.49834756811471104,
+    0.4985720660418786,
+    0.4994543967549677,
+    0.4990351406773189,
+    0.49745436851458785,
+    0.4973921387551596,
+    0.4977716198836805
+   ],
+   "day IR": [
+    0.4979058168009451,
+    0.49979323030780626,
+    0.49737270550019913,
+    0.498645411860355,
+    0.49802704355687566,
+    0.4987145353077043,
+    0.49757174115813635,
+    0.49754593604198544,
+    0.49778892055424295,
+    0.4969148794963259,
+    0.49937830399205385
+   ],
+   "composite": [
+    0.49987190705295886,
+    0.5002330299757377,
+    0.4979991934333116,
+    0.5005223254345303,
+    0.4992368512895636,
+    0.49910560555247985,
+    0.4983337791435555,
+    0.49722746600864026,
+    0.50001118079523,
+    0.49879467297269486,
+    0.5008230171629585
+   ],
+   "slope": [
+    0.5078146795993002,
+    0.5067810332989338,
+    0.5020623116832008,
+    0.5087456153578946,
+    0.5033190000414439,
+    0.5031980044556115,
+    0.5045921529615129,
+    0.5036895132637546,
+    0.5032206939090295,
+    0.5022084665910725,
+    0.5062443114705736
+   ]
+  },
+  "best_single": "Viking green",
+  "intervals": {
+   "composite-best": [
+    0.0052312928678330765,
+    0.009384794363286127
+   ],
+   "slope-composite": [
+    -0.008442603426464902,
+    0.0004488294414801304
+   ]
+  },
+  "verdicts": {
+   "Q6-1": true,
+   "Q6-2": {
+    "Viking red": true,
+    "Viking green": true,
+    "Viking blue": true,
+    "night IR": true,
+    "day IR": true,
+    "composite": true
+   },
+   "Q6-3": false
+  },
+  "n_units": 44
+ }
+}

@@ -34,7 +34,7 @@ $15^{\circ}$ blocks it never saw reaches a balanced accuracy of 66.7\% (73.8\% o
 training polygon's class; the thermal bands add 1.4 to 2.0 points overall but none by balanced accuracy. Revised to
 seven classes on a third, rule-made label set, a U-Net scores 87.6\% on 237 held-out polygons, 86.6\% and 85.4\% on two
 draws of other blocks, and 49.6\% on a probability sample. No band separates the geologic map's lava contacts or traced margins at Athabasca Valles much better than chance, so lava flows are taken from that map. Three of four hypotheses are not
-supported; the fourth is answered by another method.
+supported; the fourth is: image gradients find the rims of 104 of 109 large named craters.
 \end{abstract}
 
 \keywords{Mars --- Planetary surfaces --- Remote sensing --- Infrared imaging --- Impact craters --- Lava flows ---
@@ -73,8 +73,10 @@ something it never saw. Four hypotheses were set when the project was proposed: 
 lava-flow margins under dust that Viking misses; H2, that fluvial channels have shallower gradients than volcanic ones
 and the two separate on gradient against thermal response; H3, that the multi-band composite gives more stable
 unsupervised classes than any single input; and H4, that crater rims found from image gradients recover most of the
-141 named craters larger than 100~km. Each test below wrote its prediction and verdict rule into its script before it
-ran. %% KB §14.1, §47, §51.1
+141 named craters larger than 100~km. The plan that followed asked six narrower questions, Q1 to Q6, from whether
+projecting the elevation model changes slope to whether image gradients reveal unit boundaries beyond any one source;
+Section~\ref{sec:hypdisc} answers each. Each test below wrote its prediction and verdict rule into its script before it
+ran. %% KB §14.1, §47, §51.1, §69.132
 
 %% ====================================================================================================
 \section{Data} \label{sec:data}
@@ -540,16 +542,24 @@ infrared, (B) the diurnal-contrast index. Blue is the physical direction on both
 the index negative), red the opposite, grey none. Black outlines, the two type areas. \label{fig:tesblocks}}
 \end{figure*}
 
-\subsection{Craters}
+\subsection{Craters} \label{sec:craters}
 
 The basin pass finds 217,622 closed depressions at 1.6~km in 48~s, 5,144 of them $\ge20$~km, including Hellas
 (2,697~km across, 7,857~m deep), Utopia (2,093~km) and Isidis (1,026~km). Of the 117 named IAU craters $\ge100$~km
 inside $\pm58^{\circ}$, 88 (75\%) have a closed depression near their centre and 79 (68\%) one whose diameter is within
-50\%; on those the median diameter error is $+2.2\%$ (10th and 90th percentiles $-12.6\%$ and $+20.8\%$). This answers
-H4 with fill depth rather than image gradients (Figure~\ref{fig:basins}). The basins follow the dichotomy: they crowd
+50\%; on those the median diameter error is $+2.2\%$ (10th and 90th percentiles $-12.6\%$ and $+20.8\%$)
+(Figure~\ref{fig:basins}). H4 named image gradients, not fill depth, so it was tested as written as well: around each of
+the 117 craters the mean gradient of an input in rings 0.05 crater radii wide, a rim found when the strongest ring
+between 0.5 and 1.5 radii lies at 0.8 to 1.2 and stands out from the rings inside and outside it by more than at
+95\% of 1,000 rings of the same sizes placed at random, so that chance is under 5\%. On the 109 craters with the
+whole ring in the stack, the gradient of the five spectral bands together finds 104 (95.4\%, chance 4.7\%), its rim
+peaks at a median 0.975 radii; each Viking band finds 101, day infrared 103, slope 104, and night infrared only 38.
+H4 holds as stated, and image gradients find rims that fill depth misses because a breached crater's walls still
+shade. They do so largely through topography: the Viking mosaic was normalised so equal slopes show equal contrast,
+day infrared carries the heating of sunward slopes, and the least topographic band, night infrared, finds a third. The basins follow the dichotomy: they crowd
 the southern highlands and Arabia Terra and thin out over Tharsis, Elysium and the northern plains, as the cratering
 record does. A red ring with no blue symbol inside it is a named crater the pass missed, most of them degraded or
-breached. %% KB §28.11
+breached. %% KB §28.11, §69.132
 
 \begin{figure*}[t]
 \centering
@@ -1329,9 +1339,10 @@ orange, composites. \label{fig:t6}}
 %% ====================================================================================================
 \section{Discussion} \label{sec:discussion}
 
-\subsection{The hypotheses}
+\subsection{The hypotheses and questions} \label{sec:hypdisc}
 
-Table~\ref{tab:hyp} collects the verdicts. None of the four hypotheses is supported as stated. H3 failed outright (Section~\ref{sec:h3}): Iso
+Table~\ref{tab:hyp} collects the verdicts. One of the four hypotheses is supported as stated, H4, that image
+gradients recover most of the large named craters (Section~\ref{sec:craters}); the other three are not. H3 failed outright (Section~\ref{sec:h3}): Iso
 Cluster partitions trained on the west and east halves of Ius Chasma agree less for the four-band composite (adjusted
 Rand index 0.40, \citealt{Hubert1985}) than for any single input (0.61 to 0.89), although the composite gives the most
 coherent maps; a one-band clustering is close to a density slice and reproduces easily. H1 was tested on the geologic map's contacts and on margins traced on CTX, and is supported on neither; H2 was tested on stand-ins (windows) and
@@ -1340,10 +1351,23 @@ origin taken from the valley map and the geologic map over the whole network, gi
 order-$\ge2$ segments on volcanic units are shallower than the 10,799 on mapped valleys (median 2.4 against
 13.9~m~km$^{-1}$), and the two differ little on the thermal index (Cohen's $d=-0.21$; \citealt{Cohen1988}). %% KB §47.3, §47.5, §69.50 (A7)
 
+The six questions of the plan are answered in the lower half of Table~\ref{tab:hyp}. Q1 to Q5 were settled on the
+way: slope from an elevation model in geographic degrees came out in percent rise with a z-factor of one, so the
+model is projected first (Section~\ref{sec:data}); Composite Bands completes in seconds on a bounded, harmonised extent;
+the 8-bit depth matters less than the mosaics' stretch region by region; night infrared is the band least like any
+other ($|r|\le0.12$ in the type area); and no tributary order count is supported by the elevation model (T7). Q6, whether
+image gradients reveal unit boundaries beyond any one source, was examined last, on the 44 units of the geologic map
+at 1.6~km: within 5~km of a contact every band's gradient is a little higher than 16 to 40~km away, and the gradient of
+the five spectral bands together a little more than any one band's (area under the curve 0.545 against 0.531 to 0.538,
+the difference over the best band $+0.007$, interval $+0.005$ to $+0.009$ with 15$^{\circ}$ blocks resampled; contacts
+rotated in longitude give 0.500 to 0.506). So the composite does show boundaries beyond each source, but faintly: at this
+scale the map's contacts are mostly not where the images change. Slope does no better than the composite (0.541). %% KB §69.132
+
 \begin{table*}[t]
 \centering
-\caption{The hypotheses and tests \label{tab:hyp}}
+\caption{The hypotheses, tests and questions \label{tab:hyp}}
 \small
+\setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{llll}
 \hline\hline
  & Claim & Verdict & Decisive number \\
@@ -1351,10 +1375,17 @@ order-$\ge2$ segments on volcanic units are shallower than the 10,799 on mapped 
 H1 & Day IR shows flow margins Viking misses & not supported, both tests & day $-$ Viking $+4.9$ pt, interval $-2.7$ to $+13.1$ \\
 H2 & Fluvial and volcanic channels separate & not supported (stand-ins) & volcanic shallower; thermal $|d|\le0.31$ \\
 H3 & Composite classes are most stable & not supported & ARI 0.40 against 0.61--0.89 \\
-H4 & Large IAU craters recovered & answered by fill depth & 68\% of 117 craters $\ge100$~km \\
+H4 & Large IAU craters recovered & supported (topography) & 104 of 109; chance 4.7\% \\
 T1 & Thermal IR improves the classification & slightly, by accuracy only & $+1.36$ and $+1.97$ pt, intervals above 0 \\
 T3 & THEMIS tracks calibrated inertia & weakly, locally & within-block $|r|\approx0.1$; Viking $-0.36$ \\
 T7 & Tributary orders resolved at 100~m & no DEM-supported answer & order follows threshold \\
+\hline
+Q1 & Projecting the DEM changes slope & yes & unprojected: percent rise \\
+Q2 & Composite Bands runs harmonised & yes, bounded & 8.8~s, type area \\
+Q3 & 8-bit depth limits separation & overtaken & the regional stretch limits more \\
+Q4 & Night IR needed beside day IR & yes, most independent & $|r|\le0.12$ \\
+Q5 & Tributary orders recoverable & none the DEM supports & T7 above \\
+Q6 & Composite gradient shows contacts & faintly; composite best & AUC 0.545, bands 0.531--0.538 \\
 \hline
 \end{tabular}
 \end{table*}
@@ -1534,8 +1565,10 @@ misses at $\ge50$~km.
 \item Four global products now share one co-registered grid over \pmsixty, 86.6\% of Mars, with the THEMIS pair never
 resampled and the elevation model reproduced exactly at 200~m.
 \item Viking colour, day infrared and night infrared span about three dimensions locally, night infrared nearly independent of the others, but the held THEMIS
-mosaics carry local contrast only; calibrated thermal inertia follows Viking colour across the planet.
-\item Fill depth recovers 68\% of the large named craters and gives 465,354 closed depressions $\ge1$~km whose precision
+mosaics carry local contrast only; calibrated thermal inertia follows Viking colour across the planet. Their gradients
+mark the geologic map's unit contacts only faintly, the five bands together a little more than any one (Q6).
+\item Image gradients find the rims of 104 of 109 large named craters (H4), largely through the topography the
+Viking and day-infrared mosaics carry, against 38 for night infrared; fill depth recovers 68\% of them and gives 465,354 closed depressions $\ge1$~km whose precision
 against Robbins rises from 15.3\% to 63.2\% at 5~km; recall, 52.4\% at 5~km, falls with rim degradation, from 83.1\%
 for the freshest rims to 38.4\% for the most degraded, and breached craters stay invisible.
 \item Routed channels are dominated by the elevation model at \pmsixty\ (89.8\% under $2^{\circ}$) and meet the mapped
