@@ -318,8 +318,8 @@ LIMITS = [   # (head, text)
      "the U-Net loses 6.4–7.6 (not resolved by block), an SVM seeing 51 km 8.0–9.9, mostly made up by map coordinates (§24, §56, §69.86, §69.99–§69.101, §69.106)."),
     ("The landform classes are terrain classes",
      "Slope and relief alone match all seven bands; 'lava tube' marks volcano flanks, not lava plains; the geologic "
-     "map's unit groups are no material labels; on TES inertia classes Viking carries the material signal and thermal "
-     "adds 0.4–0.6 points, resolved only within blocks (§40.1, §43.2, §69.50, §69.133)."),
+     "map's unit groups are no material labels; on TES inertia classes and thermophysical units Viking carries the "
+     "material signal, thermal adds about a point, and duricrust, which only inertia separates, gains nothing (§40.1, §43.2, §69.50, §69.133, §69.134)."),
     ("The seven classes cost the old ones",
      "Five four-class 'Crater' labels were volcanoes (Arsia Mons alone 31% of the held-out Crater area); the "
      "revision fixes that, but both seven-class maps fall below the four-class ones on the original classes. On the "

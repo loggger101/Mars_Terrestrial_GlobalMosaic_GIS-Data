@@ -123,7 +123,7 @@ signal and the Viking colour, not a calibrated albedo, carries the regional sign
 **Hypotheses** (status table in `INTERIM-PLAN.md` §5): H1 not supported at the geologic map's 1:20 M
 nor on the 86 CTX-traced margins (§69.52), nor on those the agent's blind second reading kept (§69.105); H2 not supported at stages 1,
 1b and 2 (stage 2, 11-12: SIM 3292's mapped rilles against its channels in the five blocks holding both, volcanic steeper by median, unresolved, thermal d −0.49, just short of the rule's 0.5, §69.133); H3 not supported;
-H4 supported when tested as written, 11-12 (image gradients find 104 of 109 large craters, largely through topography; fill depth 68 %, §69.132). Q1, Q2, Q4, Q5 answered; Q3 overtaken; Q6 examined 11-12: faintly yes, the composite's gradient marks the geologic map's contacts a little more than any one band (AUC 0.545, §69.132). T10, 11-12: on TES thermal-inertia classes as material labels the thermal bands add about half a point, resolved within blocks, not across held-out blocks; Viking carries the material signal (§69.133). All in the paper's Table of hypotheses and the deck.
+H4 supported when tested as written, 11-12 (image gradients find 104 of 109 large craters, largely through topography; fill depth 68 %, §69.132). Q1, Q2, Q4, Q5 answered; Q3 overtaken; Q6 examined 11-12: faintly yes, the composite's gradient marks the geologic map's contacts a little more than any one band (AUC 0.545, §69.132). T10, 11-12: on TES thermal-inertia classes as material labels the thermal bands add about half a point, resolved within blocks, not across held-out blocks; Viking carries the material signal (§69.133); T11 on thermophysical units (inertia crossed with TES albedo) agrees, and duricrust, the unit only inertia separates, gains nothing from thermal (§69.134). All in the paper's Table of hypotheses and the deck.
 
 ---
 
@@ -221,6 +221,7 @@ Each writes its prediction and verdict rule into the script before it runs.
 | T4, stage 1b | H2 with the valley map and SIM 3292 standing in for origin | **done** 11-01, not supported: the segments on mapped valleys are 5.7 times steeper than those on volcanic units (order ≥ 2), thermal |d| ≤ 0.31 (KB §69.50); stage 2 stays the authority |
 | T9 | does thermal IR help predict geologic-unit groups, material labels? | **done 11-02** (KB §69.50): does not help as registered; the stack cannot predict the unit groups above the commonest group under either prior, so they are not material labels the stack sees; thermal adds at most ~1 pt |
 | T10 | does thermal IR help predict a calibrated material property? | **done 11-12** (KB §69.133): TES nightside inertia in three classes; does not help at the held-out blocks (+0.5 pt), helps within blocks (+0.5 to +0.6 pt); without Viking −8.5 balanced pt |
+| T11 | do the thermal bands help predict thermophysical units (inertia x albedo)? | **done 11-12** (KB §69.134): TES albedo downloaded at the author's yes; does not help at the held-out blocks (+1.5 pt, balanced +0.9 unresolved), helps within (+0.8); duricrust, the unit only inertia separates, gains nothing (−0.7) |
 
 **Scope:** every open test is optional; if time runs short, drop tests, never the digitising checkpoint or
 the cut dates.

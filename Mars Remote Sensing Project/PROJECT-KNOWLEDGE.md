@@ -37,7 +37,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | craters and closed depressions | §26, §28.11, §42.3, §53.4, §53.6; size-frequency §69.35; recall by degradation state §69.45 |
 | channels | §25, §47.4, §53.4, §53.6, §54.4; scored against the valley map, §69.50 |
 | lava flows and the geologic map | §41, §43.2, §43.3, §44, §47.2 |
-| tests T1–T8 and the hypotheses | §40.1, §42.2–§42.4, §43, §47, §51.1, §56; T1b, A9 and T4 stage 1b §69.50; H4 and Q6 §69.132; T10 and T4 stage 2 §69.133 (status: `NEXT-STEPS.md` §4) |
+| tests T1–T8 and the hypotheses | §40.1, §42.2–§42.4, §43, §47, §51.1, §56; T1b, A9 and T4 stage 1b §69.50; H4 and Q6 §69.132; T10 and T4 stage 2 §69.133; T11 §69.134 (status: `NEXT-STEPS.md` §4) |
 | the GUI work of 24 Sep–1 Oct and its checks | §29, §30, §53.2 |
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
@@ -8192,4 +8192,29 @@ Predictions: P1 shared, volcanic steeper with the interval above 0, **not held**
 
 **H2 stage 2, reading (the agent's).** This is the test H2 asked for, channels of known origin in areas that hold both, and H2 is **not supported** here either, on both parts of the rule. The rilles run steeper by median (8.70 against 5.45 m/km in the shared blocks), the direction H2 names, but seven rilles are too few for the difference to resolve. Thermally the rilles sit lower on the contrast index than the fluvial channels (d −0.49, interval excluding 0), which is the closest H2 has come on its second part: just under the 0.5 the rule asked for, so it fails narrowly and is reported as failing. Stages 1, 1b and 2 now agree: the stack does not separate fluvial from volcanic channels on gradient against thermal response. H2 is closed, not supported at all three stages; the remaining limit is SIM 3292's small rille count, which only a finer map would raise.
 
-**Not done, with a reason.** A TES albedo mosaic (USGS, `Mars_MGS_TES_Albedo_mosaic_global_7410m.tif`, about 16 MB) could add thermophysical units (inertia crossed with albedo) as a second label set; it was not downloaded, as downloads need the author's permission. Neither result changes a classification or an earlier number.
+**Not done, with a reason** (done the same day, §69.134). A TES albedo mosaic (USGS, `Mars_MGS_TES_Albedo_mosaic_global_7410m.tif`, about 16 MB) could add thermophysical units (inertia crossed with albedo) as a second label set; it was not downloaded, as downloads need the author's permission. Neither result changes a classification or an earlier number.
+
+### 69.134 T11: thermophysical units (TES inertia crossed with TES albedo) as material labels; the thermal bands do not help with duricrust, the one unit only inertia separates — 2026-11-12, desktop **[V]**
+
+At the author's "Yes, download it" (11-12) to the TES albedo mosaic offered at the end of §69.133. **Downloaded:** `Mars_MGS_TES_Albedo_mosaic_global_7410m.tif` from https://planetarymaps.usgs.gov/mosaic/ (USGS Astrogeology; TES Lambert albedo, Christensen et al. 2001), 16,600,981 bytes, SHA-256 `c91dfcaa1834b96db383beddec537d85e8e82b782682744ee723907ed9e58178`, to `F:\Mars Project\Reference\TES_albedo_USGS\` (a new folder of its own). 2880 × 1440 Float32, simple cylindrical on a 3,396,000 m sphere, 7,410 m pixels, values 0.06–0.32 (both ends clipped, 131,653 and 126,665 pixels), no gaps. The header's 7,410 m is 0.125018° where 2880 columns suggest exactly 1/8°; read either way a sample moves at most 0.025° and the correlation with log TES inertia within 60° is −0.718 for both, so the script reads it through the file's own geotransform (200 of 200 lattice values equal a direct GDAL read; a first run that indexed at 1/8° matched 179 of 200 and stopped at that check before scoring anything).
+
+**Method.** `build\make_t11_thermophysical_units.py` (new, ArcGIS Python; predictions in its header before the first run), log `logs\t11_thermophysical_units.txt`, results `.json`. Labels: TES nightside inertia (measured cells, as T10) crossed with TES albedo, edges fixed before any model ran: inertia 150 tiu (T10's), albedo 0.20. The area shares were looked at before the header was written (within 60°: low-inertia bright 0.275, low-inertia dark 0.009, high-inertia bright 0.251, high-inertia dark 0.466), and the low-inertia dark corner, 0.9 %, dropped as too rare to score. Three units, after Mellon et al. (2000): **A dust** (low inertia, bright), **C duricrust** (high inertia, bright), **B sand and rock** (high inertia, dark). C is the case for the thermal bands: in albedo and in Viking colour it looks like A, and only inertia tells them apart. Everything else is T10's and T9's (equal priors). **8,477,237** labelled samples; shares 0.281 / 0.257 / 0.463; one class everywhere 45.3 % (blocks), 45.2 % (within).
+
+**Results** (accuracy / balanced accuracy, %; producer's accuracy A / C / B)
+
+| split | set | acc / bal | producer's A / C / B |
+|---|---|---|---|
+| held-out blocks | all 7 bands | 73.8 / 68.7 (κ 0.583) | 84.8 / 53.5 / 67.8 |
+| | without thermal | 72.3 / 67.8 | 81.7 / 54.3 / 67.4 |
+| | thermal only | 50.6 / 41.3 | 81.6 / 14.3 / 28.0 |
+| | without Viking | 50.0 / 42.6 | 79.7 / 21.4 / 26.7 |
+| within blocks | all 7 bands | 59.1 / 60.5 (κ 0.396) | 78.1 / 51.1 / 52.2 |
+| | without thermal | 58.3 / 59.6 | 76.8 / 50.4 / 51.6 |
+| | thermal only | 36.7 / 38.5 | 76.3 / 12.3 / 26.8 |
+| | without Viking | 36.8 / 38.5 | 76.3 / 11.9 / 27.2 |
+
+Gain of all 7 bands over **without thermal**: blocks acc **+1.5 [+0.1, +3.4]**, bal **+0.9 [−0.3, +2.3]**; producer's A +3.1 [−0.4, +7.4], **C −0.7 [−3.9, +2.2]**, B +0.4 [+0.1, +0.6]. Within blocks acc +0.8 [+0.5, +1.3], bal +0.9 [+0.5, +1.4]; A +1.3 [+0.1, +2.6], C +0.8 [+0.1, +1.4], B +0.6 [+0.5, +0.8]. Over **without Viking**: blocks acc +23.8 [+12.9, +35.5], bal **+26.1 [+12.8, +36.3]**; within +22.4, bal +22.0 [+19.0, +24.9]. Over **thermal only**: blocks bal +27.4 [+16.5, +35.7]; within +22.0.
+
+Answer rule: thermal **does NOT HELP** at the held-out blocks (the balanced interval reaches below 0) and **HELPS** within blocks. Predictions: P1 thermal under 3 points at the blocks **held** (+1.5); P2 more within blocks than at the blocks **not held** (+0.8 against +1.5); P3 Viking costs more than thermal **held** (26.1 against 0.9); P4 at least 43.3 % balanced **held** (68.7 %); **P5 unit C gains most from thermal not held**: its producer's accuracy moves −0.7 at the blocks, +0.8 within.
+
+**Reading (the agent's).** Thermophysical units are the label on which the thermal bands should earn their place, and they do not: the stack predicts the units well (68.7 % balanced against 33.3 %), almost all of it from Viking, and the one unit only inertia separates, duricrust, is mapped at about 53 % with or without the thermal bands; thermal alone finds 14.3 % of it. What thermal adds across blocks is a point and a half of accuracy, from the dust unit, not resolved by balanced accuracy, and under a point within blocks. Together with T10 (§69.133) this closes the question the paper's limit had left to material labels: on two calibrated material label sets the THEMIS display mosaics add about a point, and do not carry the inertia contrast that would separate bright rock-and-crust from bright dust. That fits §24 and §28.10: stretched 8-bit mosaics keep local contrast, not inertia. Labels drawn by an analyst would test geologic materials, a different question, and stay future work. Nothing earlier changes.

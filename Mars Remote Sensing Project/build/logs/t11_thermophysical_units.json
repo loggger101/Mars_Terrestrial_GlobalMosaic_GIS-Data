@@ -1,0 +1,377 @@
+{
+ "method": "T10's design (make_t10_ti_labels.py, T9's) with thermophysical units, TES inertia x TES albedo",
+ "classes": [
+  "A dust (low inertia, bright)",
+  "C duricrust (high inertia, bright)",
+  "B sand and rock (high inertia, dark)"
+ ],
+ "ti_edge_tiu": 150,
+ "albedo_edge": 0.2,
+ "priors": "equal",
+ "bands": [
+  "Viking R",
+  "Viking G",
+  "Viking B",
+  "Night IR",
+  "Day IR",
+  "slope",
+  "relief"
+ ],
+ "class_shares": [
+  0.281,
+  0.257,
+  0.463
+ ],
+ "label_check_direct_reads": 200,
+ "held_out_blocks": [
+  "-11_1",
+  "-11_2",
+  "-3_-1",
+  "-4_-1",
+  "-4_-2",
+  "-5_-1",
+  "-6_1",
+  "-9_-1",
+  "-9_0",
+  "0_0",
+  "1_0",
+  "4_0",
+  "4_2",
+  "5_-2"
+ ],
+ "splits": {
+  "block": {
+   "n_train": 7819997,
+   "n_test": 657240,
+   "test_blocks": 14,
+   "one_class_everywhere": 0.4526911826759097,
+   "test_share_by_class": {
+    "A dust (low inertia, bright)": 0.4527,
+    "C duricrust (high inertia, bright)": 0.1212,
+    "B sand and rock (high inertia, dark)": 0.4261
+   },
+   "sets": {
+    "all 7 bands": {
+     "accuracy": 0.7377255064169207,
+     "kappa": 0.5830398462690577,
+     "balanced_accuracy": 0.6871538307453081,
+     "producers": {
+      "A dust (low inertia, bright)": 0.8479,
+      "C duricrust (high inertia, bright)": 0.5353,
+      "B sand and rock (high inertia, dark)": 0.6782
+     },
+     "balanced_ci95": [
+      0.5884343647196276,
+      0.7694221566118793
+     ]
+    },
+    "without thermal (no night, day)": {
+     "accuracy": 0.7231052224474147,
+     "kappa": 0.5634663107793719,
+     "balanced_accuracy": 0.6781488829739483,
+     "producers": {
+      "A dust (low inertia, bright)": 0.8172,
+      "C duricrust (high inertia, bright)": 0.5428,
+      "B sand and rock (high inertia, dark)": 0.6744
+     },
+     "balanced_ci95": [
+      0.574156015095821,
+      0.7607409374542693
+     ],
+     "gain_from_full_stack": {
+      "accuracy": 0.014620283969505987,
+      "accuracy_ci95": [
+       0.000510748956554716,
+       0.033990402163373255
+      ],
+      "balanced_accuracy": 0.00900494777135985,
+      "balanced_accuracy_ci95": [
+       -0.0028826798857145394,
+       0.022757063013670868
+      ],
+      "producers": {
+       "A dust (low inertia, bright)": 0.03069999999999995,
+       "C duricrust (high inertia, bright)": -0.007499999999999951,
+       "B sand and rock (high inertia, dark)": 0.0038000000000000256
+      },
+      "producers_ci95": {
+       "A dust (low inertia, bright)": [
+        -0.004143752503586745,
+        0.07356754807121832
+       ],
+       "C duricrust (high inertia, bright)": [
+        -0.03908223196976635,
+        0.02150876311175528
+       ],
+       "B sand and rock (high inertia, dark)": [
+        0.0014218931016982239,
+        0.005902045826112248
+       ]
+      }
+     }
+    },
+    "thermal only": {
+     "accuracy": 0.5060000582338803,
+     "kappa": 0.15478956720863463,
+     "balanced_accuracy": 0.4130757965441472,
+     "producers": {
+      "A dust (low inertia, bright)": 0.8157,
+      "C duricrust (high inertia, bright)": 0.1434,
+      "B sand and rock (high inertia, dark)": 0.2801
+     },
+     "balanced_ci95": [
+      0.3918619833174777,
+      0.43293731409773967
+     ],
+     "gain_from_full_stack": {
+      "accuracy": 0.23172544818304042,
+      "accuracy_ci95": [
+       0.1130693071436462,
+       0.3596329355813058
+      ],
+      "balanced_accuracy": 0.2740780342011609,
+      "balanced_accuracy_ci95": [
+       0.165298991739198,
+       0.35737423912708843
+      ],
+      "producers": {
+       "A dust (low inertia, bright)": 0.032200000000000006,
+       "C duricrust (high inertia, bright)": 0.3919,
+       "B sand and rock (high inertia, dark)": 0.3981
+      },
+      "producers_ci95": {
+       "A dust (low inertia, bright)": [
+        -0.07816766896036076,
+        0.12100094291476292
+       ],
+       "C duricrust (high inertia, bright)": [
+        0.11620796405818105,
+        0.4817000855141856
+       ],
+       "B sand and rock (high inertia, dark)": [
+        0.1788598011370859,
+        0.5836690660504941
+       ]
+      }
+     }
+    },
+    "without visible (no Viking)": {
+     "accuracy": 0.500191836252812,
+     "kappa": 0.16364895192190196,
+     "balanced_accuracy": 0.42566999873122846,
+     "producers": {
+      "A dust (low inertia, bright)": 0.7968,
+      "C duricrust (high inertia, bright)": 0.2136,
+      "B sand and rock (high inertia, dark)": 0.2666
+     },
+     "balanced_ci95": [
+      0.38418506674338776,
+      0.47945267910275774
+     ],
+     "gain_from_full_stack": {
+      "accuracy": 0.23753367016410865,
+      "accuracy_ci95": [
+       0.12947748229270087,
+       0.35508665820378366
+      ],
+      "balanced_accuracy": 0.26148383201407965,
+      "balanced_accuracy_ci95": [
+       0.128181164851945,
+       0.3625527346717904
+      ],
+      "producers": {
+       "A dust (low inertia, bright)": 0.051100000000000034,
+       "C duricrust (high inertia, bright)": 0.3217,
+       "B sand and rock (high inertia, dark)": 0.4116
+      },
+      "producers_ci95": {
+       "A dust (low inertia, bright)": [
+        -0.05878496025275528,
+        0.14039351515118306
+       ],
+       "C duricrust (high inertia, bright)": [
+        -0.09826886161088222,
+        0.5322051299418328
+       ],
+       "B sand and rock (high inertia, dark)": [
+        0.22507172960401595,
+        0.5646490192220084
+       ]
+      }
+     }
+    }
+   },
+   "thermal_helps": false
+  },
+  "within": {
+   "n_train": 4237796,
+   "n_test": 4239441,
+   "test_blocks": 192,
+   "one_class_everywhere": 0.45248356424065467,
+   "test_share_by_class": {
+    "A dust (low inertia, bright)": 0.2784,
+    "C duricrust (high inertia, bright)": 0.2691,
+    "B sand and rock (high inertia, dark)": 0.4525
+   },
+   "sets": {
+    "all 7 bands": {
+     "accuracy": 0.5912519430356589,
+     "kappa": 0.3962504716816089,
+     "balanced_accuracy": 0.6048409122030359,
+     "producers": {
+      "A dust (low inertia, bright)": 0.7814,
+      "C duricrust (high inertia, bright)": 0.5113,
+      "B sand and rock (high inertia, dark)": 0.5218
+     },
+     "balanced_ci95": [
+      0.5739205912652685,
+      0.6343964082467849
+     ]
+    },
+    "without thermal (no night, day)": {
+     "accuracy": 0.5827909905108425,
+     "kappa": 0.38443230311346605,
+     "balanced_accuracy": 0.5959101373899944,
+     "producers": {
+      "A dust (low inertia, bright)": 0.7684,
+      "C duricrust (high inertia, bright)": 0.5037,
+      "B sand and rock (high inertia, dark)": 0.5157
+     },
+     "balanced_ci95": [
+      0.5628656393346059,
+      0.6263427655295084
+     ],
+     "gain_from_full_stack": {
+      "accuracy": 0.008460952524816379,
+      "accuracy_ci95": [
+       0.004848806407458598,
+       0.012506006564120717
+      ],
+      "balanced_accuracy": 0.008930774813041498,
+      "balanced_accuracy_ci95": [
+       0.004538245324088766,
+       0.013653681789341475
+      ],
+      "producers": {
+       "A dust (low inertia, bright)": 0.013000000000000012,
+       "C duricrust (high inertia, bright)": 0.00759999999999994,
+       "B sand and rock (high inertia, dark)": 0.006099999999999994
+      },
+      "producers_ci95": {
+       "A dust (low inertia, bright)": [
+        0.0008924189233517205,
+        0.026069759555746454
+       ],
+       "C duricrust (high inertia, bright)": [
+        0.0012679114169974915,
+        0.013955963972514928
+       ],
+       "B sand and rock (high inertia, dark)": [
+        0.004921399166481924,
+        0.007520895171949038
+       ]
+      }
+     }
+    },
+    "thermal only": {
+     "accuracy": 0.3670439226320648,
+     "kappa": 0.07384826196389245,
+     "balanced_accuracy": 0.38490537651985407,
+     "producers": {
+      "A dust (low inertia, bright)": 0.7635,
+      "C duricrust (high inertia, bright)": 0.1229,
+      "B sand and rock (high inertia, dark)": 0.2684
+     },
+     "balanced_ci95": [
+      0.3782531515375809,
+      0.3909992810918439
+     ],
+     "gain_from_full_stack": {
+      "accuracy": 0.22420802040359405,
+      "accuracy_ci95": [
+       0.18801246025907858,
+       0.26112984475154055
+      ],
+      "balanced_accuracy": 0.21993553568318186,
+      "balanced_accuracy_ci95": [
+       0.18953588420541026,
+       0.24891881871495278
+      ],
+      "producers": {
+       "A dust (low inertia, bright)": 0.017900000000000027,
+       "C duricrust (high inertia, bright)": 0.38839999999999997,
+       "B sand and rock (high inertia, dark)": 0.2534
+      },
+      "producers_ci95": {
+       "A dust (low inertia, bright)": [
+        -0.025449342021348503,
+        0.05800721703975356
+       ],
+       "C duricrust (high inertia, bright)": [
+        0.3303892145167695,
+        0.4447964582768325
+       ],
+       "B sand and rock (high inertia, dark)": [
+        0.19758939673826634,
+        0.3072494291555225
+       ]
+      }
+     }
+    },
+    "without visible (no Viking)": {
+     "accuracy": 0.36759541260671036,
+     "kappa": 0.07315484316534912,
+     "balanced_accuracy": 0.3846969541566549,
+     "producers": {
+      "A dust (low inertia, bright)": 0.7628,
+      "C duricrust (high inertia, bright)": 0.1189,
+      "B sand and rock (high inertia, dark)": 0.2724
+     },
+     "balanced_ci95": [
+      0.3749467896818269,
+      0.3934535846894012
+     ],
+     "gain_from_full_stack": {
+      "accuracy": 0.2236565304289485,
+      "accuracy_ci95": [
+       0.18693604676511213,
+       0.2611049726125107
+      ],
+      "balanced_accuracy": 0.22014395804638104,
+      "balanced_accuracy_ci95": [
+       0.18975488999543308,
+       0.24854080726317107
+      ],
+      "producers": {
+       "A dust (low inertia, bright)": 0.01859999999999995,
+       "C duricrust (high inertia, bright)": 0.39239999999999997,
+       "B sand and rock (high inertia, dark)": 0.24940000000000007
+      },
+      "producers_ci95": {
+       "A dust (low inertia, bright)": [
+        -0.02779175452718308,
+        0.05737935486560066
+       ],
+       "C duricrust (high inertia, bright)": [
+        0.3313813087598218,
+        0.45670712963643606
+       ],
+       "B sand and rock (high inertia, dark)": [
+        0.19269361846573807,
+        0.3054808307154185
+       ]
+      }
+     }
+    }
+   },
+   "thermal_helps": true
+  }
+ },
+ "predictions": {
+  "P1 block: thermal adds < 3 pt of accuracy": true,
+  "P2 thermal adds more within blocks than at the block split": false,
+  "P3 block: leaving out Viking costs more balanced accuracy than leaving out thermal": true,
+  "P4 block: all 7 bands >= 43.3 % balanced": true,
+  "P5 block: unit C's producer's gain from thermal exceeds the balanced-accuracy gain": false
+ }
+}

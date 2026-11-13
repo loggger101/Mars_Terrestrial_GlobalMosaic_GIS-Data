@@ -1,0 +1,47 @@
+[   0.1s] selftest lattice -> image centres             ok
+[   0.1s] selftest a hole filled by the unit inside it  ok
+[   0.1s] selftest a ring at -180 lands mid-lattice     ok
+[   0.1s] selftest accuracy and balanced accuracy       ok
+[   0.5s] lattice from cache C:\Users\Owner\AppData\Local\Temp\mars_scratch\t9_samples.npz
+[   2.0s] check: 200 of 200 lattice albedo values equal a direct GDAL read
+[   3.3s] lattice 1778 x 5335; 8477237 valid labelled samples; class shares [0.281, 0.257, 0.463]
+[   4.8s] block  all 7 bands                      acc  73.8 %  kappa 0.583  balanced  68.7 %  producers 84.8 53.5 67.8
+[   5.6s] block  without thermal (no night, day)  acc  72.3 %  kappa 0.563  balanced  67.8 %  producers 81.7 54.3 67.4
+[   6.2s] block  thermal only                     acc  50.6 %  kappa 0.155  balanced  41.3 %  producers 81.6 14.3 28.0
+[   6.9s] block  without visible (no Viking)      acc  50.0 %  kappa 0.164  balanced  42.6 %  producers 79.7 21.4 26.7
+[   6.9s] block    all 7 minus without thermal (no night, day) acc  +1.5 pt [+0.1, +3.4]  balanced  +0.9 pt [-0.3, +2.3]
+[   6.9s] block        producer's A dust (low inertia, bright)            +3.1 pt [-0.4, +7.4]
+[   6.9s] block        producer's C duricrust (high inertia, bright)      -0.7 pt [-3.9, +2.2]
+[   6.9s] block        producer's B sand and rock (high inertia, dark)    +0.4 pt [+0.1, +0.6]
+[   6.9s] block    all 7 minus thermal only                   acc +23.2 pt [+11.3, +36.0]  balanced +27.4 pt [+16.5, +35.7]
+[   6.9s] block        producer's A dust (low inertia, bright)            +3.2 pt [-7.8, +12.1]
+[   6.9s] block        producer's C duricrust (high inertia, bright)     +39.2 pt [+11.6, +48.2]
+[   6.9s] block        producer's B sand and rock (high inertia, dark)   +39.8 pt [+17.9, +58.4]
+[   6.9s] block    all 7 minus without visible (no Viking)    acc +23.8 pt [+12.9, +35.5]  balanced +26.1 pt [+12.8, +36.3]
+[   6.9s] block        producer's A dust (low inertia, bright)            +5.1 pt [-5.9, +14.0]
+[   6.9s] block        producer's C duricrust (high inertia, bright)     +32.2 pt [-9.8, +53.2]
+[   6.9s] block        producer's B sand and rock (high inertia, dark)   +41.2 pt [+22.5, +56.5]
+[   6.9s] block  thermal does NOT HELP on thermophysical units (one class everywhere 45.3 %)
+[   9.5s] within all 7 bands                      acc  59.1 %  kappa 0.396  balanced  60.5 %  producers 78.1 51.1 52.2
+[  10.9s] within without thermal (no night, day)  acc  58.3 %  kappa 0.384  balanced  59.6 %  producers 76.8 50.4 51.6
+[  11.6s] within thermal only                     acc  36.7 %  kappa 0.074  balanced  38.5 %  producers 76.3 12.3 26.8
+[  12.8s] within without visible (no Viking)      acc  36.8 %  kappa 0.073  balanced  38.5 %  producers 76.3 11.9 27.2
+[  12.8s] within   all 7 minus without thermal (no night, day) acc  +0.8 pt [+0.5, +1.3]  balanced  +0.9 pt [+0.5, +1.4]
+[  12.8s] within       producer's A dust (low inertia, bright)            +1.3 pt [+0.1, +2.6]
+[  12.8s] within       producer's C duricrust (high inertia, bright)      +0.8 pt [+0.1, +1.4]
+[  12.8s] within       producer's B sand and rock (high inertia, dark)    +0.6 pt [+0.5, +0.8]
+[  12.8s] within   all 7 minus thermal only                   acc +22.4 pt [+18.8, +26.1]  balanced +22.0 pt [+19.0, +24.9]
+[  12.8s] within       producer's A dust (low inertia, bright)            +1.8 pt [-2.5, +5.8]
+[  12.8s] within       producer's C duricrust (high inertia, bright)     +38.8 pt [+33.0, +44.5]
+[  12.8s] within       producer's B sand and rock (high inertia, dark)   +25.3 pt [+19.8, +30.7]
+[  12.8s] within   all 7 minus without visible (no Viking)    acc +22.4 pt [+18.7, +26.1]  balanced +22.0 pt [+19.0, +24.9]
+[  12.8s] within       producer's A dust (low inertia, bright)            +1.9 pt [-2.8, +5.7]
+[  12.8s] within       producer's C duricrust (high inertia, bright)     +39.2 pt [+33.1, +45.7]
+[  12.8s] within       producer's B sand and rock (high inertia, dark)   +24.9 pt [+19.3, +30.5]
+[  12.8s] within thermal HELPS on thermophysical units (one class everywhere 45.2 %)
+[  12.8s] prediction P1 block: thermal adds < 3 pt of accuracy                                            held
+[  12.8s] prediction P2 thermal adds more within blocks than at the block split                           NOT HELD
+[  12.8s] prediction P3 block: leaving out Viking costs more balanced accuracy than leaving out thermal   held
+[  12.8s] prediction P4 block: all 7 bands >= 43.3 % balanced                                             held
+[  12.8s] prediction P5 block: unit C's producer's gain from thermal exceeds the balanced-accuracy gain   NOT HELD
+[  12.8s] wrote F:\Mars Remote Sensing Project\build\logs\t11_thermophysical_units.json
