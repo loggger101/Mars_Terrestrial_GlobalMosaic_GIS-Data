@@ -8084,3 +8084,31 @@ At the author's "finish the rest of the work which needs done" (11-12), the two 
 - **Rebuilt and checked:** paper 41 pages, no overfull line or undefined reference, all 2,081 numbers in the record; deck 51 slides, all 422.
 
 Left for the close-out, 9–12 Dec: the tag `final-2026-12-08` and `CITATION.cff` (no ORCID).
+
+### 69.131 Paper pages 38-41 read: Appendix C gains edf2's column; three citations punctuated — 2026-11-12, desktop **[V]**
+
+The freeze read of §69.128 stopped at page 37; pages 38-41 (the end of Appendix B, Appendix C and the references) were read after §69.130.
+
+- **Appendix C showed the first edifice retraining only.** edf2 (§69.126) is in the text and Appendix B but not in Tables 9 and 10. `make_appendix_c.py` now reads `logs\v3_edf2.json` too (edf2's maps stand under the key edf there) and adds an eighth column, "rate fixed"; the tables are 9 columns wide (`lrrrrrrrr`), still inside the text width (no overfull line), and the paragraph before them says what the column is and that the run was decided after "with squares" was scored. `make_appendix_c.py --check`: 34 of 34 rows in the paper. Its per-class column is §69.126's numbers; its accuracy on the 237 polygons in each held-out block, beside edf's:
+
+| block | with squares (edf) | rate fixed (edf2) |
+|---|---|---|
+| -11, 1 | 99.2 | 99.6 |
+| -11, 2 | 100.0 | 97.7 |
+| -3, -1 | 81.9 | 86.9 |
+| -4, -1 | 49.6 | 74.5 |
+| -4, -2 | 23.2 | 45.0 |
+| -5, -1 | 69.6 | 92.8 |
+| -6, 1 | 62.2 | 71.5 |
+| -9, -1 | 61.9 | 80.7 |
+| -9, 0 | 87.5 | 96.3 |
+| 0, 0 | 71.6 | 94.9 |
+| 1, 0 | 29.9 | 89.8 |
+| 4, 0 | 88.8 | 83.5 |
+| 4, 2 | 4.8 | 58.0 |
+| 5, -2 | 83.1 | 88.1 |
+
+- **Three references ran a version into the next field** ("release data-2026-11-12 GitHub", "v3.7 Redlands", "200m, v2 Astrogeology"): `aasjournalv7.bst` prints a `version` with no comma after it. The version now ends each title in `references.bib` (Edwards2026data, ArcGISPro, Fergason2018), and the three read "…, release data-2026-11-12, GitHub", "…, v3.7, Redlands, CA: …", "…, v2, Astrogeology PDS Annex, …".
+- Nothing else found on those pages. Paper 41 pages.
+- **`restore.py --dry-run`** (to a scratch folder, nothing downloaded) takes `data-2026-11-12`, then `derivatives-2026-11-11` and `derivatives-2026-10-06`: 88.5 GB in all.
+- **`CITATION.cff`** (repository root) still said released 2026-10-29, gave no version, and its abstract led with the support vector machine. Now `version: "data-2026-11-12"`, `date-released: "2026-11-12"`, an abstract with the seven-class U-Net leading (87.6 % on the held-out blocks, §69.82) beside the SVM, and two keywords (deep learning, U-Net). The close-out (9-12 Dec) moves it to `final-2026-12-08`.

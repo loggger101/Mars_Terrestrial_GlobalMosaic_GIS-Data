@@ -124,7 +124,7 @@
 \bibitem[{L.~M. {Edwards}(2026){Edwards}}]{Edwards2026data}
 {Edwards}, L.~M. 2026, Mars Global Mosaic: Mapping Lava Flows, Fluvial
   Channels, and Impact Craters in Visible and Infrared (maps, data, models and
-  scripts), release data-2026-11-12 GitHub.
+  scripts), release data-2026-11-12, GitHub.
 \newblock
   \url{https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data}
 
@@ -137,7 +137,7 @@
 % type= misc
 \bibitem[{ {Esri}(2026){Esri}}]{ArcGISPro}
 {Esri}. 2026, ArcGIS Pro, with the Spatial Analyst and Image Analyst extensions
-  and the Deep Learning Libraries, v3.7 Redlands, CA: Environmental Systems
+  and the Deep Learning Libraries, v3.7, Redlands, CA: Environmental Systems
   Research Institute
 
 % type= article
@@ -152,7 +152,7 @@
 \bibitem[{R.~L. {Fergason} {et~al.}(2018){Fergason}, {Hare}, \&
   {Laura}}]{Fergason2018}
 {Fergason}, R.~L., {Hare}, T.~M., \& {Laura}, J. 2018, HRSC and MOLA Blended
-  Digital Elevation Model at 200m, v2 Astrogeology PDS Annex, U.S. Geological
+  Digital Elevation Model at 200m, v2, Astrogeology PDS Annex, U.S. Geological
   Survey
 
 % type= misc

@@ -3,7 +3,9 @@ r"""The paper's Appendix C from the logs, nothing typed (KB §69.110): producer'
 scores of each U-Net training on the windows, and accuracy on the 237 polygons in each held-out block.
 
 Reads logs\v3_extras.json (make_v3_extras.py --report) and, once it exists, logs\v3_edf.json (make_v3_edf.py --report),
-which adds a seventh column, "with squares" (run edf, the edifice retraining, D37). Prints the rows of Tables
+which adds a seventh column, "with squares" (run edf, the edifice retraining, D37), and logs3_edf2.json
+(make_v3_edf.py --report --rerun), which adds an eighth, "rate fixed" (edf2, the same squares at the control's learning
+rate, KB §69.126; its maps stand under the key edf in that file). Prints the rows of Tables
 tab:perclass and tab:perblock as LaTeX, and the same as a Markdown table for the KB.
 
   py -3 make_appendix_c.py            prints the rows
@@ -30,6 +32,14 @@ def load():
             for b, row in e[s]["by_block"].items():
                 r[s]["by_block"][b]["edf"] = row["edf"]
         runs.append(("edf", "with squares"))
+    p = os.path.join(HERE, "logs", "v3_edf2.json")
+    if os.path.exists(p):
+        e = json.load(open(p, encoding="utf-8"))
+        for s, _ in SETS:
+            r[s]["full"]["edf2"] = e[s]["full"]["edf"]
+            for b, row in e[s]["by_block"].items():
+                r[s]["by_block"][b]["edf2"] = row["edf"]
+        runs.append(("edf2", "rate fixed"))
     return r, runs
 
 
