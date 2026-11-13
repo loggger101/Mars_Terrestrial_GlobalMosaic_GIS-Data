@@ -1,0 +1,18 @@
+T10 inertia classes: 658935 test samples, all-7 accuracy 0.5930
+  error correlation by 100 km: 0.46 0.41 0.38 0.36 0.32 0.29 0.26 0.23 0.19 0.15 0.14 0.14 0.15 0.17 0.22 0.24 0.26 0.28 0.28 0.23
+  first bin below 0.1 ends at 2400 km
+     5 deg blocks: 126 groups; all-7 accuracy [0.538, 0.651] width 0.113; thermal acc [+0.0023, +0.0078] bal [+0.0012, +0.0067] HELPS
+   7.5 deg blocks:  56 groups; all-7 accuracy [0.515, 0.674] width 0.160; thermal acc [+0.0018, +0.0084] bal [+0.0009, +0.0074] HELPS
+    15 deg blocks:  14 groups; all-7 accuracy [0.435, 0.748] width 0.313; thermal acc [-0.0003, +0.0107] bal [+0.0004, +0.0109] does not help
+    30 deg blocks:  11 groups; all-7 accuracy [0.439, 0.764] width 0.325; thermal acc [-0.0019, +0.0108] bal [-0.0001, +0.0209] does not help
+T11 units: 657240 test samples, all-7 accuracy 0.7377
+  error correlation by 100 km: 0.36 0.31 0.26 0.22 0.21 0.15 0.13 0.10 0.05 0.01 -0.02 -0.04 -0.05 -0.03 -0.02 0.01 0.02 0.04 0.04 0.02
+  first bin below 0.1 ends at 800 km
+     5 deg blocks: 126 groups; all-7 accuracy [0.689, 0.781] width 0.091; thermal acc [+0.0070, +0.0240] bal [+0.0015, +0.0172] HELPS
+   7.5 deg blocks:  56 groups; all-7 accuracy [0.668, 0.803] width 0.135; thermal acc [+0.0033, +0.0277] bal [+0.0002, +0.0198] HELPS
+    15 deg blocks:  14 groups; all-7 accuracy [0.618, 0.845] width 0.227; thermal acc [+0.0001, +0.0336] bal [-0.0022, +0.0217] does not help
+    30 deg blocks:  11 groups; all-7 accuracy [0.644, 0.853] width 0.209; thermal acc [-0.0005, +0.0369] bal [-0.0028, +0.0237] does not help
+prediction B1 error correlation below 0.1 by 890 km, both                    NOT HELD
+prediction B2 30 deg widens the accuracy interval by < 50 % over 15 deg, both held
+prediction B3 same thermal verdict at 15 and 30 deg, both                    held
+wrote F:\Mars Remote Sensing Project\build\logs\block_size_check.json

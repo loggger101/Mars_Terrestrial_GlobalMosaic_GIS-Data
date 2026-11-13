@@ -1,0 +1,17 @@
+[   0.2s] selftest lattice -> image centres             ok
+[   0.2s] selftest a hole filled by the unit inside it  ok
+[   0.2s] selftest a ring at -180 lands mid-lattice     ok
+[   0.2s] selftest accuracy and balanced accuracy       ok
+[  11.4s] TI3 (150, 350) block  ML  all7+c acc  59.4 bal  65.6 | coords only bal  58.7 | thermal acc +0.96 [-0.01, +1.94] bal +0.41 [-0.13, +1.59] does not help | without coords (T12) acc +0.51 bal +0.40
+[  73.9s] TI3 (150, 350) block  GBT all7+c acc  81.2 bal  75.0 | coords only bal  68.8 | thermal acc -0.29 [-0.90, +0.24] bal +1.62 [+0.23, +2.84] does not help | without coords (T12) acc +0.62 bal +2.06
+[  88.6s] TI3 (150, 350) within ML  all7+c acc  64.1 bal  66.8 | coords only bal  66.9 | thermal acc -0.04 [-0.58, +0.60] bal +0.44 [+0.13, +0.75] does not help | without coords (T12) acc +0.80 bal +0.77
+[ 284.4s] TI3 (150, 350) within GBT all7+c acc  84.7 bal  82.6 | coords only bal  81.9 | thermal acc +0.16 [-0.18, +0.55] bal +0.10 [-0.11, +0.32] does not help | without coords (T12) acc +0.00 bal +1.49
+[ 291.3s] UNITS (150, 0.2) block  ML  all7+c acc  81.2 bal  74.6 | coords only bal  63.1 | thermal acc -0.08 [-0.64, +0.34] bal -0.21 [-1.14, +0.97] does not help | without coords (T12) acc +1.46 bal +0.90
+[ 357.1s] UNITS (150, 0.2) block  GBT all7+c acc  91.2 bal  84.4 | coords only bal  80.5 | thermal acc +0.13 [-0.42, +0.52] bal -0.52 [-3.06, +0.39] does not help | without coords (T12) acc +0.42 bal +0.72
+[ 367.3s] UNITS (150, 0.2) within ML  all7+c acc  75.9 bal  75.0 | coords only bal  67.4 | thermal acc -0.04 [-0.28, +0.23] bal -0.07 [-0.36, +0.27] does not help | without coords (T12) acc +0.70 bal +0.75
+[ 535.8s] UNITS (150, 0.2) within GBT all7+c acc  92.2 bal  91.6 | coords only bal  91.1 | thermal acc -0.02 [-0.14, +0.10] bal +0.00 [-0.12, +0.15] does not help | without coords (T12) acc +0.75 bal +0.83
+[ 535.8s] prediction C1 within GBT: thermal gain smaller with coords, both labels                NOT HELD
+[ 535.8s] prediction C2 within GBT + coords: thermal HELPS, both labels                          NOT HELD
+[ 535.8s] prediction C3 block GBT: coords only >= 43.3 % balanced on the units                   held
+[ 535.8s] prediction C4 block + coords: thermal does not help, both classifiers, both labels     held
+[ 535.8s] wrote F:\Mars Remote Sensing Project\build\logs\t15_coords_control.json

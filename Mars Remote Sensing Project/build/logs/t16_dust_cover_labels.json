@@ -1,0 +1,206 @@
+{
+ "classes": [
+  "dusty (DCI < 0.94)",
+  "transitional (0.94-0.96)",
+  "clear (>= 0.96)"
+ ],
+ "class_shares": [
+  0.24411965464169846,
+  0.2885334974871519,
+  0.4673468478711496
+ ],
+ "cramers_v_with_t11_units": 0.629297344635484,
+ "dci_by_t11_unit_row_shares": [
+  [
+   0.7448,
+   0.25,
+   0.0052
+  ],
+  [
+   0.3091,
+   0.5227,
+   0.1682
+  ],
+  [
+   0.0126,
+   0.0908,
+   0.8966
+  ]
+ ],
+ "splits": {
+  "block": {
+   "n_train": 7997335,
+   "n_test": 644220,
+   "one_class_everywhere": 0.41982959205049214,
+   "sets": {
+    "all 7 bands": {
+     "accuracy": 0.6606009468770815,
+     "kappa": 0.46426541013023787,
+     "balanced_accuracy": 0.5886545030373719,
+     "producers": {
+      "dusty (DCI < 0.94)": 0.8717,
+      "transitional (0.94-0.96)": 0.1492,
+      "clear (>= 0.96)": 0.745
+     }
+    },
+    "without thermal (no night, day)": {
+     "accuracy": 0.6597603012918798,
+     "kappa": 0.46220124740086804,
+     "balanced_accuracy": 0.5865743499461099,
+     "producers": {
+      "dusty (DCI < 0.94)": 0.8766,
+      "transitional (0.94-0.96)": 0.139,
+      "clear (>= 0.96)": 0.7442
+     },
+     "gain_from_full_stack": {
+      "accuracy": 0.0008406455852016936,
+      "accuracy_ci95": [
+       -0.0012733505808095597,
+       0.0027824673079995888
+      ],
+      "balanced_accuracy": 0.0020801530912619715,
+      "balanced_accuracy_ci95": [
+       0.0005768706484517272,
+       0.0035903959731254757
+      ]
+     }
+    },
+    "thermal only": {
+     "accuracy": 0.4427330104897488,
+     "kappa": 0.1204638809582275,
+     "balanced_accuracy": 0.39992056219224587,
+     "producers": {
+      "dusty (DCI < 0.94)": 0.7966,
+      "transitional (0.94-0.96)": 0.0724,
+      "clear (>= 0.96)": 0.3308
+     },
+     "gain_from_full_stack": {
+      "accuracy": 0.2178679363873327,
+      "accuracy_ci95": [
+       0.11115513760300119,
+       0.3417872998370853
+      ],
+      "balanced_accuracy": 0.188733940845126,
+      "balanced_accuracy_ci95": [
+       0.125990509288624,
+       0.23679355483504333
+      ]
+     }
+    },
+    "without visible (no Viking)": {
+     "accuracy": 0.4310729503465158,
+     "kappa": 0.12006025991543268,
+     "balanced_accuracy": 0.4005046303128297,
+     "producers": {
+      "dusty (DCI < 0.94)": 0.811,
+      "transitional (0.94-0.96)": 0.1298,
+      "clear (>= 0.96)": 0.2607
+     },
+     "gain_from_full_stack": {
+      "accuracy": 0.22952799653056566,
+      "accuracy_ci95": [
+       0.10974372330659048,
+       0.36700925127963735
+      ],
+      "balanced_accuracy": 0.1881498727245422,
+      "balanced_accuracy_ci95": [
+       0.12623533323572095,
+       0.23918942213954733
+      ]
+     }
+    }
+   },
+   "thermal_helps": false
+  },
+  "within": {
+   "n_train": 4321041,
+   "n_test": 4320514,
+   "one_class_everywhere": 0.4712441091340957,
+   "sets": {
+    "all 7 bands": {
+     "accuracy": 0.5152103024284247,
+     "kappa": 0.2882010612605017,
+     "balanced_accuracy": 0.526469072133711,
+     "producers": {
+      "dusty (DCI < 0.94)": 0.8552,
+      "transitional (0.94-0.96)": 0.1759,
+      "clear (>= 0.96)": 0.5484
+     }
+    },
+    "without thermal (no night, day)": {
+     "accuracy": 0.5105065698310872,
+     "kappa": 0.2836305261380751,
+     "balanced_accuracy": 0.5234368078643655,
+     "producers": {
+      "dusty (DCI < 0.94)": 0.8667,
+      "transitional (0.94-0.96)": 0.1637,
+      "clear (>= 0.96)": 0.5399
+     },
+     "gain_from_full_stack": {
+      "accuracy": 0.004703732597337473,
+      "accuracy_ci95": [
+       0.0031698374442543807,
+       0.006395230875300765
+      ],
+      "balanced_accuracy": 0.0030322642693454416,
+      "balanced_accuracy_ci95": [
+       0.0015829326384271564,
+       0.004485771242338437
+      ]
+     }
+    },
+    "thermal only": {
+     "accuracy": 0.3528090925399767,
+     "kappa": 0.06582341204129012,
+     "balanced_accuracy": 0.3811297517335495,
+     "producers": {
+      "dusty (DCI < 0.94)": 0.7454,
+      "transitional (0.94-0.96)": 0.0788,
+      "clear (>= 0.96)": 0.3191
+     },
+     "gain_from_full_stack": {
+      "accuracy": 0.16240120988844797,
+      "accuracy_ci95": [
+       0.13599165859757578,
+       0.1890229954062145
+      ],
+      "balanced_accuracy": 0.14533932040016145,
+      "balanced_accuracy_ci95": [
+       0.1266534447970879,
+       0.1653816251824933
+      ]
+     }
+    },
+    "without visible (no Viking)": {
+     "accuracy": 0.3468785411497304,
+     "kappa": 0.06156189769043679,
+     "balanced_accuracy": 0.3777569830027687,
+     "producers": {
+      "dusty (DCI < 0.94)": 0.7823,
+      "transitional (0.94-0.96)": 0.039,
+      "clear (>= 0.96)": 0.312
+     },
+     "gain_from_full_stack": {
+      "accuracy": 0.16833176127869431,
+      "accuracy_ci95": [
+       0.1422908821160859,
+       0.19420211291687223
+      ],
+      "balanced_accuracy": 0.14871208913094225,
+      "balanced_accuracy_ci95": [
+       0.12970384977860985,
+       0.1670206058607446
+      ]
+     }
+    }
+   },
+   "thermal_helps": true
+  }
+ },
+ "predictions": {
+  "D1 block: thermal does not help": true,
+  "D2 within: thermal helps": true,
+  "D3 block: Viking costs more balanced accuracy than thermal": true,
+  "D4 block: all 7 bands >= 43.3 % balanced": true
+ }
+}

@@ -27,7 +27,10 @@ model were co-registered on one grid spanning \pmsixty\ latitude, 86.6\% of Mars
 channels and lava flows. The THEMIS mosaics are 8-bit products stretched region by region: dusty and rocky provinces
 differ by 47.67~DN in Viking red but by $-0.19$ and $+0.02$~DN in day and night infrared, and against TES
 thermal inertia the THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking colour tracks inertia
-planet-wide ($r=-0.36$). Fill depth yields 465,354 closed depressions $\ge1$~km; 63.2\% of those $\ge5$~km are
+planet-wide ($r=-0.36$). On three calibrated material labels, classes of TES inertia, thermophysical units and
+dust cover, the thermal pair adds under two points across held-out blocks, never resolved, and nothing once map
+coordinates are given; against 100~m THEMIS inertia the night mosaic ranks the ground within 10~km tiles
+($\rho\approx0.5$--0.6) but weakly or not across a region. Fill depth yields 465,354 closed depressions $\ge1$~km; 63.2\% of those $\ge5$~km are
 catalogued craters, and most craters missed are degraded or breached. Of 969,822 routed channel segments 89.8\%
 lie on slopes under $2^{\circ}$. A support vector machine trained on hand-drawn polygons and scored in whole
 $15^{\circ}$ blocks it never saw reaches a balanced accuracy of 66.7\% (73.8\% overall), against 61.3\% for the nearest
@@ -114,13 +117,15 @@ HRSC/MOLA blend DEM v2 & $0.0033741^{\circ}$ & $106{,}694\times53{,}347$ & geogr
 
 \subsection{Reference data}
 
-Four independent references score the products \citep{Congalton1991}. The USGS Geologic Map of Mars, SIM~3292
+Five independent references score the products \citep{Congalton1991}. The USGS Geologic Map of Mars, SIM~3292
 \citep{Tanaka2014}, supplies 1,311 unit polygons and is the lava-flow reference. The Robbins and Hynek database
 \citep{Robbins2012}, 2020 release, holds 385,049 craters $\ge1$~km. TES thermal inertia \citep{Christensen2001, Putzig2007}, dayside and
-nightside at 20 pixels per degree, is the only calibrated thermal product. The IAU gazetteer \citep{Gazetteer} names
+nightside at 20 pixels per degree, is the only calibrated thermal product. TES Lambert albedo
+\citep{Christensen2001}, from the USGS Astrogeology mosaic at 8 pixels per degree (7,410~m, values 0.06 to 0.32,
+fetched for the material-label tests), is crossed with it to give thermophysical units. The IAU gazetteer \citep{Gazetteer} names
 141 craters larger than 100~km. Every IAU crater larger than 100~km matches a Robbins crater with a median centre
 offset of 1.0\% of its diameter, and the Athabasca Valles floor falls in unit \lAv\ of the geologic map, as
-published. %% KB §41, §6
+published. %% KB §41, §6, §69.134
 
 \subsection{The analysis extent and the type areas}
 
@@ -556,10 +561,14 @@ whole ring in the stack, the gradient of the five spectral bands together finds 
 peaks at a median 0.975 radii; each Viking band finds 101, day infrared 103, slope 104, and night infrared only 38.
 H4 holds as stated, and image gradients find rims that fill depth misses because a breached crater's walls still
 shade. They do so largely through topography: the Viking mosaic was normalised so equal slopes show equal contrast,
-day infrared carries the heating of sunward slopes, and the least topographic band, night infrared, finds a third. The basins follow the dichotomy: they crowd
+day infrared carries the heating of sunward slopes, and the least topographic band, night infrared, finds a third.
+Below 100~km the same rule on 400 Robbins craters drawn at random per size bin finds 62.3\% of the rims of 20--30~km
+craters, 77.3\% at 30--50~km and 79.4\% at 50--100~km, against 4.3 to 4.7\% by chance; slope finds as many or more,
+night infrared 26.4 to 34.6\%, and the misses are the degraded rims, found at 52 to 69\% where the freshest are found
+at 85 to 100\%. The basins follow the dichotomy: they crowd
 the southern highlands and Arabia Terra and thin out over Tharsis, Elysium and the northern plains, as the cratering
 record does. A red ring with no blue symbol inside it is a named crater the pass missed, most of them degraded or
-breached. %% KB §28.11, §69.132
+breached. %% KB §28.11, §69.132, §69.140
 
 \begin{figure*}[t]
 \centering
@@ -1446,6 +1455,83 @@ labels show the same: the pair adds half a point within blocks and nothing resol
 nothing to duricrust, the unit only inertia can tell from dust.
 %% KB §24.3, §28.10, §43.1, §56.1, §69.29, §69.86, §69.99--§69.101, §69.133, §69.134
 
+\subsection{What the thermal bands carry: calibrated material labels} \label{sec:material}
+
+The landform labels cannot say whether the thermal bands map materials, since slope and relief predict them alone.
+The geologic map's unit groups \citep{Tanaka2014} are no material
+labels either: on a 4~km lattice of the stack they are predicted no better than by their commonest group, with or
+without the thermal bands, which add at most a point. A measured material property does better as a label. On the
+same lattice and held-out blocks, TES nightside inertia \citep{Putzig2007} in three classes fixed before the run
+(below 150, 150 to 349, and 350~tiu and above, where TES measured) is predicted at 59.3\% balanced accuracy, against
+33.3\% for chance. Without the Viking bands that falls 8.5 points; without the thermal bands, 0.4 (interval 0.0 to
+1.2), with accuracy $+0.5$ ($-0.0$ to $+1.1$), so by the rule they do not help across blocks. Within blocks they add
+0.5 points of accuracy and 0.6 balanced, both resolved. The thermal pair alone reaches 44.5\%, so it holds some of
+the material signal, nearly all of it also in the Viking colour. Crossing inertia with TES albedo
+\citep{Christensen2001} at 0.20 gives the thermophysical units of \citet{Mellon2000}: dust (low inertia, bright),
+duricrust (high inertia, bright) and sand and rock (high inertia, dark). Duricrust is the test case, since only inertia
+tells it from dust. The stack predicts the three units at 68.7\% balanced accuracy across held-out blocks, and leaving
+out Viking costs 26.1 points; leaving out the thermal bands costs 1.5 points of accuracy ($+0.1$ to $+3.4$) and 0.9
+balanced ($-0.3$ to $+2.3$), so again they do not help across blocks by the rule, and duricrust, found 53.5\% of the
+time, gains nothing from them ($-0.7$, interval $-3.9$ to $+2.2$). On two calibrated label sets, then, the display
+mosaics add about a point and do not carry the inertia contrast that separates crust from dust. Neither the edges
+nor the classifier decides this. Over three sets of inertia edges and four of unit edges, each with maximum likelihood
+and with gradient-boosted trees, the thermal bands add 0.26 to 1.85 points of accuracy across held-out blocks and pass
+the rule in 2 of the 14 runs, both on one setting (inertia classes split at 100 and 300~tiu); the trees score higher
+on every label set, by 2.5 to 7.7 balanced points, but not through the thermal pair, and duricrust gains at most 1.7
+points from it. The landform maps themselves carry little of this material information: crossed with the units on the
+TES grid (Figure~\ref{fig:mapsunits}), the U-Net's classes remove 4.5\% of the uncertainty about a cell's unit and the support vector machine's
+6.4\% (Cram\'er's $V$ 0.220 and 0.257, the difference resolved, narrowly). Where they lean, the lean is physical:
+fluvial channels and craters sit on dark, high-inertia ground, the U-Net's apron and lava tube on dust (median inertia
+94 and 78~tiu). %% KB §69.133--§69.136
+
+A third calibrated label, independent of inertia and albedo, gives the same answer. The TES dust cover index
+\citep{Ruff2002}, read from its colour steps into dusty (below 0.94), transitional and clear ($\ge0.96$) ground
+before any model ran, agrees with the thermophysical units without being the same label (Cram\'er's $V$ 0.629). The
+stack predicts it at 58.9\% balanced accuracy across held-out blocks; leaving out the Viking bands costs 18.8
+points, the thermal bands 0.2 (accuracy $+0.1$, interval $-0.1$ to $+0.3$), so they do not help by the rule; within
+blocks they add half a point. Three calibrated label sets, then, agree (Figure~\ref{fig:material}a).
+%% KB §69.142
+
+Where, then, is the inertia contrast the night mosaic ought to hold? It is local. Within 2$^{\circ}$ windows the night
+mosaic is warmer on duricrust than on dust, with the physical sign in 77\% of them, but weakly (area under the curve
+0.556, where 0.5 is none); pooled over \pmsixty\ it is 0.516, while Viking red separates the two across the planet
+(0.328, duricrust darker) and hardly within windows (Figure~\ref{fig:material}b). The day mosaic shows no sign of it
+(0.508). The small gain the thermal bands give within blocks does not survive map coordinates either: with latitude
+and longitude added to both band sets, on the inertia classes and the units, with either classifier, at either split,
+the thermal bands help in none of the eight runs, where without coordinates they helped within blocks in all four.
+Where they helped, they were telling the classifier where it was, as at 51~km on the landform labels
+(Section~\ref{sec:v3}). %% KB §69.138, §69.139
+
+Calibrated THEMIS inertia \citep{Fergason2006} measures this at the mosaics' own resolution. Read over the two type
+areas from the 100~m quantitative mosaic, without downloading its 2.5~GB tiles whole, log inertia ranks with the night
+mosaic at Spearman's $\rho=+0.603$ (Ius Chasma) and $+0.509$ (Athabasca Valles) within 10~km tiles, positive in 99\%
+and 97\% of them, the strongest local relation of any input; the diurnal-contrast index is weaker, and day infrared,
+Viking red and slope carry almost none within tiles. Across each whole window the night mosaic falls to $+0.442$ and
+$+0.185$, and at Athabasca Viking red tracks inertia more closely ($-0.493$). The display mosaics therefore do carry
+thermal inertia, as local contrast within about 10~km, and lose it beyond, where the colour of dust carries the
+material signal; a classifier that must name a surface from its pixel values across regions has little to learn from
+them. %% KB §69.144
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/material_thermal_gain.png}
+\caption{What the thermal pair adds on calibrated material labels. (a) The gain in accuracy from adding the night and
+day mosaics to the five other bands, across held-out blocks with 95\% intervals from resampling whole blocks, for
+three sets of inertia edges and four of unit edges with maximum likelihood and boosted trees, the dust cover classes,
+and the inertia classes and units with map coordinates added (grey). (b) The night mosaic and Viking red separating
+duricrust from dust: area under the curve within 1, 2 and 5$^{\circ}$ windows (median, 95\%) and pooled over
+\pmsixty. \label{fig:material}}
+\end{figure*}
+%% KB §69.135, §69.138, §69.139, §69.142, §69.143
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/maps_on_units.png}
+\caption{The lead maps crossed with the thermophysical units on the TES grid: each class's share of each unit over the
+unit's share of \pmsixty\ (1 is no lean; the class's share of the area beside its name). \label{fig:mapsunits}}
+\end{figure*}
+%% KB §69.136, §69.143
+
 \subsection{What each score measures} \label{sec:scores}
 
 Four kinds of score appear in this paper, and they answer different questions. A held-out polygon score says how a
@@ -1464,6 +1550,14 @@ its map on 26.8\% of the ground, and the two lead maps, made by different method
 47.5\% of \pmsixty. Read together: the lead U-Net reproduces drawn landforms on unseen blocks far better than
 geography alone, about half of the points drawn by area agree with it, and the class at any one pixel is one
 training's and one method's reading. %% KB §69.81, §69.106
+
+The intervals assume that whole 15$^{\circ}$ blocks are close to independent. On the material labels of
+Section~\ref{sec:material} they are not quite: classification errors stay correlated to about 2,400~km for the inertia
+classes, which are provinces, and to 800~km for the thermophysical units. Grouping the 14 held-out blocks into
+30$^{\circ}$ blocks widens the accuracy interval by 4\% or narrows it by 8\% and changes no verdict, because the
+held-out blocks lie apart; blocks of 5 to 7.5$^{\circ}$ would narrow the intervals by half or more and turn both
+thermal verdicts to help. The 15$^{\circ}$ blocks are therefore the cautious choice, and the results that rest on
+correlated samples are the gains within blocks. %% KB §69.141
 
 \subsection{Against earlier automated mapping}
 
@@ -1494,31 +1588,10 @@ TES inertia map, at the cost of resolution (3~km), or THEMIS-derived inertia \ci
 this study the Viking colour carries the regional material signal, and it is not calibrated albedo.
 
 The labels limit what the classification can show. The four hand-drawn classes are landforms, and slope and relief
-alone predict them as well as the full stack. The geologic map's unit groups \citep{Tanaka2014} are no material
-labels either: on a 4~km lattice of the stack they are predicted no better than by their commonest group, with or
-without the thermal bands, which add at most a point. A measured material property does better as a label. On the
-same lattice and held-out blocks, TES nightside inertia \citep{Putzig2007} in three classes fixed before the run
-(below 150, 150 to 349, and 350~tiu and above, where TES measured) is predicted at 59.3\% balanced accuracy, against
-33.3\% for chance. Without the Viking bands that falls 8.5 points; without the thermal bands, 0.4 (interval 0.0 to
-1.2), with accuracy $+0.5$ ($-0.0$ to $+1.1$), so by the rule they do not help across blocks. Within blocks they add
-0.5 points of accuracy and 0.6 balanced, both resolved. The thermal pair alone reaches 44.5\%, so it holds some of
-the material signal, nearly all of it also in the Viking colour. Crossing inertia with TES albedo
-\citep{Christensen2001} at 0.20 gives the thermophysical units of \citet{Mellon2000}: dust (low inertia, bright),
-duricrust (high inertia, bright) and sand and rock (high inertia, dark). Duricrust is the test case, since only inertia
-tells it from dust. The stack predicts the three units at 68.7\% balanced accuracy across held-out blocks, and leaving
-out Viking costs 26.1 points; leaving out the thermal bands costs 1.5 points of accuracy ($+0.1$ to $+3.4$) and 0.9
-balanced ($-0.3$ to $+2.3$), so again they do not help across blocks by the rule, and duricrust, found 53.5\% of the
-time, gains nothing from them ($-0.7$, interval $-3.9$ to $+2.2$). On two calibrated label sets, then, the display
-mosaics add about a point and do not carry the inertia contrast that separates crust from dust. Neither the edges
-nor the classifier decides this. Over three sets of inertia edges and four of unit edges, each with maximum likelihood
-and with gradient-boosted trees, the thermal bands add 0.26 to 1.85 points of accuracy across held-out blocks and pass
-the rule in 2 of the 14 runs, both on one setting (inertia classes split at 100 and 300~tiu); the trees score higher
-on every label set, by 2.5 to 7.7 balanced points, but not through the thermal pair, and duricrust gains at most 1.7
-points from it. The landform maps themselves carry little of this material information: crossed with the units on the
-TES grid, the U-Net's classes remove 4.5\% of the uncertainty about a cell's unit and the support vector machine's
-6.4\% (Cram\'er's $V$ 0.220 and 0.257, the difference resolved, narrowly). Where they lean, the lean is physical:
-fluvial channels and craters sit on dark, high-inertia ground, the U-Net's apron and lava tube on dust (median inertia
-94 and 78~tiu). %% KB §69.133--§69.136 Lava tube, with 44 polygons, is too thin a class for a planet-scale map; the U-Net makes it
+alone predict them as well as the full stack. Calibrated material labels are better, and what the thermal bands add to them is the subject of
+Section~\ref{sec:material}: about a point, none of it resolved across held-out blocks once location is known.
+%% KB §69.133--§69.144
+Lava tube, with 44 polygons, is too thin a class for a planet-scale map; the U-Net makes it
 usable only as a province.
 
 An audit of the 512 labels found no two classes sharing ground, but five Crater polygons drawn around volcanoes (Arsia,
@@ -1607,10 +1680,16 @@ resampled and the elevation model reproduced exactly at 200~m.
 \item Viking colour, day infrared and night infrared span about three dimensions locally, night infrared nearly independent of the others, but the held THEMIS
 mosaics carry local contrast only; calibrated thermal inertia follows Viking colour across the planet. Their gradients
 mark the geologic map's unit contacts only faintly, the five bands together a little more than any one (Q6).
+On classes of TES inertia, thermophysical units and TES dust cover as labels, the thermal pair adds at most 1.85
+points across held-out blocks and passes the rule in 2 of 15 runs, and with map coordinates in none; duricrust,
+which only inertia tells from dust, gains nothing. Against 100~m THEMIS inertia the night mosaic ranks the ground at
+$\rho=+0.603$ and $+0.509$ within 10~km tiles but $+0.442$ and $+0.185$ across the two type areas: it holds inertia
+as local contrast, which a classifier across regions cannot use.
 \item Image gradients find the rims of 104 of 109 large named craters (H4), largely through the topography the
 Viking and day-infrared mosaics carry, against 38 for night infrared; fill depth recovers 68\% of them and gives 465,354 closed depressions $\ge1$~km whose precision
 against Robbins rises from 15.3\% to 63.2\% at 5~km; recall, 52.4\% at 5~km, falls with rim degradation, from 83.1\%
-for the freshest rims to 38.4\% for the most degraded, and breached craters stay invisible.
+for the freshest rims to 38.4\% for the most degraded, and breached craters stay invisible. Below 100~km image
+gradients still find 62.3 to 79.4\% of the Robbins rims, fewer as craters shrink and degrade.
 \item Routed channels are dominated by the elevation model at \pmsixty\ (89.8\% under $2^{\circ}$) and meet the mapped
 valleys no more often than a rotated valley map; stream order is a parameter, not a measurement.
 \item The four-class landform map scores a balanced accuracy of 66.7\% (73.8\%, \kap\,0.58 overall) on blocks it never
@@ -1747,8 +1826,8 @@ flanks of the Tharsis volcanoes, so those deposits pass without it, which added 
 
 Each run behind the lead maps had its predictions, and where a choice hung on it a rule, written into its script
 before it ran; nothing was adjusted afterwards, and each prediction is reported held or not held whichever way it
-fell. They are listed here in the order the runs were made, with the number that decided each. Of the 33 below, 21
-held. A prediction that failed is as much a result as one that held: the U-Net's score on the third label set was
+fell. They are listed here in the order the runs were made, with the number that decided each. Of the 33 written for those runs, 21
+held; with the 55 written since for the tests that followed, 40 of them held, 61 of 88 held. A prediction that failed is as much a result as one that held: the U-Net's score on the third label set was
 above the range written for it, which is why a leak was sought before the score was believed
 (Section~\ref{sec:v3}). %% KB §69.76, §69.81, §69.84, §69.86, §69.88, §69.93, §69.96, §69.106, §69.108, §69.125
 
@@ -1830,6 +1909,77 @@ the squares. Trained again with the learning rate fixed at the control's, decide
 not counted above, the same five come out: E1 not held (83.2\%, 3.4 points below); E2 held (9.8\% against 17.5\%);
 E3 held (1.0 and 0.0 points from the lead model); E4 held (6.7\%, below all three); E5 held (81.0\%).
 %% KB §69.125, §69.126
+
+\emph{The tests run after the maps}. The hypotheses, questions and material-label tests of
+Sections~\ref{sec:craters}, \ref{sec:channels}, \ref{sec:hypdisc} and \ref{sec:material} wrote their predictions the
+same way, before each first run, as did the checks of their own settings. %% KB §69.132--§69.144
+
+\emph{H4 and Q6} (six; four held).
+\begin{enumerate}
+\item[H4-1] The five spectral bands' gradient finds the rims of more than half the large named craters. \emph{Held}: 104
+of 109. The agent expected this one to fail.
+\item[H4-2] Each spectral input finds more than its chance, the binomial lower bound above 5\%. \emph{Held} for all.
+\item[H4-3] Slope finds more than the composite, and the composite fewer than fill depth's 68\%. \emph{Not held}: 104
+each, and more than fill depth.
+\item[Q6-1] The composite marks the geologic map's contacts better than any single band, resolved. \emph{Held}: $+0.007$.
+\item[Q6-2] Every input does better than at the contacts rotated in longitude. \emph{Held}.
+\item[Q6-3] Slope does better than every spectral input. \emph{Not held}: $-0.004$ against the composite, unresolved.
+\end{enumerate}
+
+\emph{H2 at its second stage, on the geologic map's rilles and channels} (four; two held), \emph{and across its
+settings} (four; three held).
+\begin{enumerate}
+\item[P1] In the five shared blocks the rilles are steeper, resolved. \emph{Not held}: $+3.25$, unresolved.
+\item[P2] Thermal does not separate them, $|d|<0.5$. \emph{Held}, narrowly: $-0.49$.
+\item[P3] So H2 is not supported. \emph{Held}.
+\item[P4] Over every mapped piece the rilles are steeper, resolved. \emph{Not held}: $+0.50$, unresolved.
+\item[S1] Not supported in all nine settings of floor window and piece length. \emph{Held}.
+\item[S2] The rilles steeper in at least seven of nine. \emph{Held}: all nine.
+\item[S3] $|d|<0.5$ in at least five of nine. \emph{Held}: six.
+\item[S4] The smallest resolvable shift exceeds the observed difference. \emph{Not held}: the two are equal, $+3.25$.
+\end{enumerate}
+
+\emph{H4 below 100~km} (four; four held).
+\begin{enumerate}
+\item[K1] The composite finds more than half of the 50--100~km craters. \emph{Held}: 79.4\%.
+\item[K2] Its share falls with size. \emph{Held}: 62.3, 77.3 and 79.4\%.
+\item[K3] Fresh rims are found more often than degraded ones in every bin. \emph{Held}.
+\item[K4] Night infrared finds fewer than the composite in every bin. \emph{Held}: 26.4 to 34.6\%.
+\end{enumerate}
+
+\emph{Material labels} (twenty-two; eighteen held). T10 on inertia classes, T11 on thermophysical units, T12 across
+edges and classifiers, T16 on dust cover; across held-out blocks unless stated.
+\begin{enumerate}
+\item[T10] Thermal adds under 3 points; more within blocks than across; Viking costs more than thermal; the stack
+reaches 43.3\% balanced. \emph{All four held}: $+0.5$; $+0.54$ against $+0.51$; 8.5 against 0.4; 59.3\%.
+\item[T11] The same four, and duricrust gains most from thermal. \emph{Three held}; \emph{not held}: more within
+blocks ($+0.8$ against $+1.5$) and duricrust ($-0.7$).
+\item[T12] Thermal does not help on any of the five new label settings with maximum likelihood (\emph{not held}: it
+helps on inertia 100/300); under 3 points in all 14 runs (\emph{held}: at most 1.85); the trees at least as good on
+five of seven (\emph{held}: seven); thermal helps with the trees on at most two (\emph{held}: one); duricrust gains
+under 2 points in all eight unit runs (\emph{held}: at most 1.7).
+\item[T13] The U-Net's edifice is dust-rich (\emph{not held}: 1.32); its craters and channels lean to sand and rock
+(\emph{held}); Cram\'er's $V$ under 0.30 on both maps (\emph{held}); the support vector machine's higher
+(\emph{held}, narrowly).
+\item[T16] On dust cover thermal does not help across blocks, helps within, costs less than Viking, and the stack
+reaches 43.3\% balanced. \emph{All four held}.
+\end{enumerate}
+
+\emph{Where the thermal signal is} (fifteen; nine held). T14 on duricrust against dust within windows, T15 with map
+coordinates, the block-size check, T17 against THEMIS inertia.
+\begin{enumerate}
+\item[T14] Night infrared is higher on duricrust within 2$^{\circ}$ windows (\emph{held}: 0.556); pooled it is under
+0.55 (\emph{held}: 0.516); it beats Viking red within windows (\emph{held}, narrowly); day infrared is lower on
+duricrust (\emph{not held}: 0.508).
+\item[T15] With coordinates the trees' thermal gain within blocks shrinks on both label sets (\emph{not held}: not on the
+inertia classes' accuracy) and still helps (\emph{not held}: on neither); coordinates alone reach 43.3\% on the units
+(\emph{held}: 80.5\%); thermal does not help across blocks with coordinates (\emph{held}).
+\item[B] Errors decorrelate within 890~km (\emph{not held}: 2,400~km for the inertia classes); 30$^{\circ}$ blocks
+widen the intervals by under half (\emph{held}); the verdicts are the same (\emph{held}).
+\item[T17] Night infrared tracks inertia over each whole window, $\rho$ above 0.3 (\emph{not held}: $+0.185$ at
+Athabasca); more within 10~km tiles (\emph{held}: $+0.603$ and $+0.509$); more than the diurnal-contrast index
+(\emph{held}); Viking red's $|\rho|$ below night infrared's (\emph{not held}: $-0.493$ at Athabasca).
+\end{enumerate}
 
 \section{The U-Net trainings class by class and block by block} \label{app:perclass}
 

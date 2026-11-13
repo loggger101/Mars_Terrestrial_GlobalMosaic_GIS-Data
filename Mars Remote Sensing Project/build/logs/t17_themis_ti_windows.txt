@@ -1,0 +1,17 @@
+Ius Chasma       night IR         whole rho +0.442 [+0.396, +0.491]  10 km tiles 3722: median +0.603 (IQR +0.412 to +0.783), 99 % positive
+Ius Chasma       day IR           whole rho +0.082 [+0.045, +0.120]  10 km tiles 3722: median +0.020 (IQR -0.131 to +0.180), 53 % positive
+Ius Chasma       diurnal contrast whole rho -0.306 [-0.344, -0.271]  10 km tiles 3722: median -0.406 (IQR -0.567 to -0.258), 4 % positive
+Ius Chasma       Viking red       whole rho -0.204 [-0.248, -0.162]  10 km tiles 3722: median -0.044 (IQR -0.179 to +0.090), 40 % positive
+Ius Chasma       slope            whole rho +0.293 [+0.202, +0.362]  10 km tiles 3722: median +0.075 (IQR -0.044 to +0.241), 66 % positive
+Ius Chasma       1468303 samples, median THEMIS inertia 236 tiu
+Athabasca Valles night IR         whole rho +0.185 [+0.156, +0.234]  10 km tiles 4141: median +0.509 (IQR +0.261 to +0.693), 97 % positive
+Athabasca Valles day IR           whole rho +0.045 [+0.019, +0.078]  10 km tiles 4141: median +0.022 (IQR -0.117 to +0.171), 54 % positive
+Athabasca Valles diurnal contrast whole rho -0.110 [-0.138, -0.084]  10 km tiles 4141: median -0.314 (IQR -0.499 to -0.148), 8 % positive
+Athabasca Valles Viking red       whole rho -0.493 [-0.534, -0.427]  10 km tiles 4141: median -0.069 (IQR -0.190 to +0.035), 33 % positive
+Athabasca Valles slope            whole rho +0.043 [-0.021, +0.148]  10 km tiles 4141: median +0.021 (IQR -0.086 to +0.145), 55 % positive
+Athabasca Valles 1663606 samples, median THEMIS inertia 192 tiu
+prediction Q1 night IR whole-window rho > 0.3, both                     NOT HELD
+prediction Q2 night IR median 10 km tile rho > whole-window rho, both   held
+prediction Q3 night IR rho > diurnal contrast rho (whole), both         held
+prediction Q4 |Viking red rho| < night IR rho (whole), both             NOT HELD
+wrote F:\Mars Remote Sensing Project\build\logs\t17_themis_ti_windows.json

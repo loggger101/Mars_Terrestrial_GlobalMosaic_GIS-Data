@@ -1,0 +1,165 @@
+{
+ "step_px": 5,
+ "tile_px": 100,
+ "areas": {
+  "Ius Chasma": {
+   "n": 1468303,
+   "ti_median": 235.91616821289062,
+   "inputs": {
+    "night IR": {
+     "rho_whole": 0.4417606327050606,
+     "rho_whole_ci95": [
+      0.3956649338037335,
+      0.49132446928519774
+     ],
+     "tiles": 3722,
+     "rho_tile_median": 0.6030718316989481,
+     "rho_tile_iqr": [
+      0.41242373389833686,
+      0.7834104119400745
+     ],
+     "share_tiles_positive": 0.9868350349274584
+    },
+    "day IR": {
+     "rho_whole": 0.0823779668549843,
+     "rho_whole_ci95": [
+      0.04499802917396725,
+      0.1200449383811911
+     ],
+     "tiles": 3722,
+     "rho_tile_median": 0.019551215945099655,
+     "rho_tile_iqr": [
+      -0.1314992124950781,
+      0.18020704816905103
+     ],
+     "share_tiles_positive": 0.5341214400859753
+    },
+    "diurnal contrast": {
+     "rho_whole": -0.3058978096580635,
+     "rho_whole_ci95": [
+      -0.3439733969683523,
+      -0.27050533213544875
+     ],
+     "tiles": 3722,
+     "rho_tile_median": -0.4056986293664335,
+     "rho_tile_iqr": [
+      -0.5672813267582921,
+      -0.2576000787504922
+     ],
+     "share_tiles_positive": 0.039494895217624934
+    },
+    "Viking red": {
+     "rho_whole": -0.20375193318751667,
+     "rho_whole_ci95": [
+      -0.24825941915411426,
+      -0.1619294387105471
+     ],
+     "tiles": 3722,
+     "rho_tile_median": -0.043777679860499116,
+     "rho_tile_iqr": [
+      -0.17938705866911664,
+      0.08983213957587236
+     ],
+     "share_tiles_positive": 0.4030091348737238
+    },
+    "slope": {
+     "rho_whole": 0.29275020737989654,
+     "rho_whole_ci95": [
+      0.20218387457183276,
+      0.36247062367110466
+     ],
+     "tiles": 3722,
+     "rho_tile_median": 0.07479271745448408,
+     "rho_tile_iqr": [
+      -0.04409169744810905,
+      0.24081403633772708
+     ],
+     "share_tiles_positive": 0.6630843632455669
+    }
+   }
+  },
+  "Athabasca Valles": {
+   "n": 1663606,
+   "ti_median": 191.93563842773438,
+   "inputs": {
+    "night IR": {
+     "rho_whole": 0.18549590086433254,
+     "rho_whole_ci95": [
+      0.15587931408261185,
+      0.23415536890232677
+     ],
+     "tiles": 4141,
+     "rho_tile_median": 0.5094875592972455,
+     "rho_tile_iqr": [
+      0.26105056906605667,
+      0.6927967674797967
+     ],
+     "share_tiles_positive": 0.9686066167592369
+    },
+    "day IR": {
+     "rho_whole": 0.04520446345051557,
+     "rho_whole_ci95": [
+      0.018914733388002765,
+      0.07821193636916192
+     ],
+     "tiles": 4141,
+     "rho_tile_median": 0.02190651191569947,
+     "rho_tile_iqr": [
+      -0.11741417133857086,
+      0.1709684435527722
+     ],
+     "share_tiles_positive": 0.5443129678821541
+    },
+    "diurnal contrast": {
+     "rho_whole": -0.10999982046852977,
+     "rho_whole_ci95": [
+      -0.1383851734501065,
+      -0.08387486445336695
+     ],
+     "tiles": 4141,
+     "rho_tile_median": -0.31363058519115744,
+     "rho_tile_iqr": [
+      -0.49935762098513115,
+      -0.14755610972568578
+     ],
+     "share_tiles_positive": 0.07534411977783144
+    },
+    "Viking red": {
+     "rho_whole": -0.4930431065749018,
+     "rho_whole_ci95": [
+      -0.5339931115291837,
+      -0.4266537438712849
+     ],
+     "tiles": 4141,
+     "rho_tile_median": -0.0690833067706673,
+     "rho_tile_iqr": [
+      -0.18956424727654547,
+      0.035491346820917626
+     ],
+     "share_tiles_positive": 0.32649118570393626
+    },
+    "slope": {
+     "rho_whole": 0.04279414395994502,
+     "rho_whole_ci95": [
+      -0.02079108311913325,
+      0.1482980427148147
+     ],
+     "tiles": 4141,
+     "rho_tile_median": 0.021010068812930077,
+     "rho_tile_iqr": [
+      -0.08569066056662854,
+      0.14517053231582697
+     ],
+     "share_tiles_positive": 0.553730982854383
+    }
+   }
+  }
+ },
+ "note_bootstrap": "whole-window intervals from 300 of the 1,000 drawn resamples of 50 km tiles",
+ "predictions": {
+  "Q1 night IR whole-window rho > 0.3, both": false,
+  "Q2 night IR median 10 km tile rho > whole-window rho, both": true,
+  "Q3 night IR rho > diurnal contrast rho (whole), both": true,
+  "Q4 |Viking red rho| < night IR rho (whole), both": false
+ }
+}

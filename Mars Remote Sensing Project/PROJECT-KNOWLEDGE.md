@@ -37,7 +37,7 @@ Additions must be tagged. An untagged claim is worth nothing six weeks later.
 | craters and closed depressions | §26, §28.11, §42.3, §53.4, §53.6; size-frequency §69.35; recall by degradation state §69.45 |
 | channels | §25, §47.4, §53.4, §53.6, §54.4; scored against the valley map, §69.50 |
 | lava flows and the geologic map | §41, §43.2, §43.3, §44, §47.2 |
-| tests T1–T8 and the hypotheses | §40.1, §42.2–§42.4, §43, §47, §51.1, §56; T1b, A9 and T4 stage 1b §69.50; H4 and Q6 §69.132; T10 and T4 stage 2 §69.133; T11 §69.134; T12 §69.135; T13 §69.136; T4 stage 2 settings §69.137 (status: `NEXT-STEPS.md` §4) |
+| tests T1–T8 and the hypotheses | §40.1, §42.2–§42.4, §43, §47, §51.1, §56; T1b, A9 and T4 stage 1b §69.50; H4 and Q6 §69.132; T10 and T4 stage 2 §69.133; T11 §69.134; T12 §69.135; T13 §69.136; T4 stage 2 settings §69.137; T14–T16 and H4 below 100 km §69.138–§69.142; T17 §69.144 (status: `NEXT-STEPS.md` §4) |
 | the GUI work of 24 Sep–1 Oct and its checks | §29, §30, §53.2 |
 | digitising by review | §46, §49 |
 | the 180° column | §54, §55.1 |
@@ -8290,3 +8290,139 @@ At the author's "continue working on, refining, and adding analyses" (11-12). `b
 **Predictions:** S1 NOT SUPPORTED in all 9 **held** (9 of 9); S2 volcanic steeper in at least 7 of 9 **held** (9 of 9, +3.25 to +5.30); S3 |d thermal| under 0.5 in at least 5 of 9 **held** (6 of 9; the three 20 km settings give −0.55); **S4 the smallest resolvable shift exceeds the observed +3.25: not held** — the two are equal (3.25 against 3.2499…, a floating-point difference the script printed as "held"; the agent counts a tie as not exceeding).
 
 **Reading (the agent's).** Stage 2's answer does not hang on its settings: the verdict is the same in all nine, the rilles are steeper by median in all nine (+3.25 to +5.30 m/km) and never resolved, and the thermal effect sits on the rule's 0.5 edge (−0.47 to −0.55), crossing it only with 20 km pieces, where gradient is still unresolved, so the verdict cannot change through thermal alone. With seven rilles the test could only have resolved a gradient difference about twice the one observed. So H2's direction (volcanic steeper) is seen in the mapped rilles at every setting but is not established, and the reason is sample size, which a finer rille map would address (paper, Future work).
+
+### 69.138 T14: the night mosaic holds the duricrust/dust contrast locally, weakly, and loses it between regions — 2026-11-13, desktop **[V]**
+
+At the author's "go ahead with all of them" (11-13) to the agent's list of next steps. `build\make_t14_crust_dust_local.py` (new; predictions in its header before the first run), log `logs\t14_crust_dust_local.txt`, `.json`. T11 (§69.134) found the thermal bands add nothing to duricrust (unit C) against dust (unit A). T14 asks whether the night mosaic holds that contrast locally, where a classifier trained across regions cannot use it. For every 0.05° TES cell within 59.9° in unit A or C (T11's units, measured cells; **7,865,570** with all seven bands, A 3,986,197, C 3,879,373), the stack's bands at the cell centre from its 1.6 km overview (check: 30 of 30 night-IR values equal single-pixel reads). Per square window of 1°, 2° (primary) and 5° with at least 20 cells of each unit: each band's AUC for C against A (0.5 is none; above 0.5, higher on C). Median over windows (weighted by the window's cos-latitude area) and share of windows above 0.5, intervals from 1,000 resamples of 15° blocks of windows.
+
+**Pooled over all cells** (AUC, C against A): Viking red 0.328, green 0.377, blue 0.434, night IR **0.516**, day IR 0.504, slope 0.534, relief 0.532.
+
+**Within windows** (median AUC [95 %]; share of windows above 0.5 [95 %])
+
+| window | windows | night IR | night IR share | day IR | Viking red | Viking red share |
+|---|---|---|---|---|---|---|
+| 1° | 5,359 | 0.544 [0.538, 0.552] | 0.67 [0.65, 0.69] | 0.505 | 0.482 [0.474, 0.489] | 0.43 |
+| **2°** | 2,378 | **0.556 [0.550, 0.563]** | **0.77 [0.75, 0.80]** | 0.508 [0.504, 0.513] | 0.475 [0.468, 0.482] | 0.37 |
+| 5° | 701 | 0.557 [0.551, 0.564] | 0.85 [0.81, 0.89] | 0.508 | 0.463 [0.451, 0.478] | 0.33 |
+
+Median |AUC − 0.5|, night IR minus Viking red (paired): 1° +0.009 [+0.004, +0.012]; 2° **+0.010 [+0.004, +0.016]**; 5° −0.001 [−0.011, +0.006]. Slope and relief within 2° windows 0.502 and 0.503.
+
+**Predictions:** P1 night IR higher on duricrust within 2° windows (median above 0.55, share's interval above 0.5) **held** (0.556; 0.77); P2 pooled night IR AUC below 0.55 **held** (0.516); P3 night IR separates the units better than Viking red within 2° windows **held**, narrowly (+0.010); P4 day IR lower on duricrust within windows **not held** (0.508: day IR does not separate them either way).
+
+**Reading (the agent's).** The night mosaic does carry the inertia contrast between duricrust and dust, with the physical sign (warmer at night on the higher-inertia crust) in 77 % of 2° windows, but weakly (AUC 0.556, where 0.5 is none) and only locally: pooled over the planet it is 0.516. Viking red does the reverse, separating the units across the planet (0.328, duricrust darker within the bright half) and only weakly within windows. That is the region-by-region stretch at work (§28.10): it keeps a small local inertia signal and removes it between regions, so a classifier trained across regions has nothing in the thermal bands to learn duricrust from. The day mosaic carries no sign of it.
+
+### 69.139 T15: with map coordinates added, the thermal bands' small gain on material labels disappears — 2026-11-13, desktop **[V]**
+
+At the same request. `build\make_t15_coords_control.py` (new; predictions C1–C4 before the first run), log `logs\t15_coords_control.txt`, `.json`, 536 s. T10–T12 (§69.133–§69.135) found the thermal pair adds about half a point to a point on material labels, resolved within blocks; on the landform labels at 51 km map coordinates had made up most or all of the thermal share (§69.100). T15 adds the sample's coordinates (latitude, sin and cos longitude) to both band sets, on T10's inertia classes (150/350) and T11's units (150/0.20), with maximum likelihood and gradient-boosted trees (T12's settings and samples), both splits. Gain = all 7 + coordinates minus without thermal + coordinates.
+
+| labels | split, classifier | all 7 + coords acc / bal | coords only bal | thermal gain acc [95 %] | bal [95 %] | without coords (T12) acc / bal |
+|---|---|---|---|---|---|---|
+| inertia 150/350 | block ML | 59.4 / 65.6 | 58.7 | +0.96 [−0.01, +1.94] | +0.41 [−0.13, +1.59] | +0.51 / +0.40 |
+| | block GBT | 81.2 / 75.0 | 68.8 | −0.29 [−0.90, +0.24] | +1.62 [+0.23, +2.84] | +0.62 / +2.06 |
+| | within ML | 64.1 / 66.8 | 66.9 | −0.04 [−0.58, +0.60] | +0.44 [+0.13, +0.75] | +0.80 / +0.77 |
+| | within GBT | 84.7 / 82.6 | 81.9 | +0.16 [−0.18, +0.55] | +0.10 [−0.11, +0.32] | +0.00 / +1.49 |
+| units 150/0.20 | block ML | 81.2 / 74.6 | 63.1 | −0.08 [−0.64, +0.34] | −0.21 [−1.14, +0.97] | +1.46 / +0.90 |
+| | block GBT | 91.2 / 84.4 | 80.5 | +0.13 [−0.42, +0.52] | −0.52 [−3.06, +0.39] | +0.42 / +0.72 |
+| | within ML | 75.9 / 75.0 | 67.4 | −0.04 [−0.28, +0.23] | −0.07 [−0.36, +0.27] | +0.70 / +0.75 |
+| | within GBT | 92.2 / 91.6 | 91.1 | −0.02 [−0.14, +0.10] | +0.00 [−0.12, +0.15] | +0.75 / +0.83 |
+
+Thermal HELPS by the rule in **none of the 8 runs** (it helped within blocks in all four without coordinates, T12).
+
+**Predictions:** C1 within blocks with trees the thermal gain smaller with coordinates, both labels, **not held**: on the units it falls (+0.75 to −0.02), on the inertia classes the accuracy gain was already +0.00 and is +0.16 with coordinates (the balanced gain falls, +1.49 to +0.10); C2 thermal still HELPS within blocks with trees and coordinates **not held**: it helps in neither; C3 coordinates alone at least 43.3 % balanced at the block split on the units **held** (80.5 %); C4 at the block split thermal does not help with coordinates **held** (none of four).
+
+**Reading (the agent's).** The agent expected the local thermal gain to survive coordinates, since T14 shows a local inertia signal in the night mosaic; it does not. Where the thermal bands helped on material labels, they were telling the classifier where it was, as they did for the landform labels at 51 km (§69.100): given the coordinates, they add nothing measurable on either label set, with either classifier, at either split. (Coordinates alone score high within blocks, 81.9 and 91.1 % balanced with trees, because neighbouring cells of the same region are in training; that is spatial leakage, the reason the paper's primary split holds out whole blocks.) The weak local contrast of T14 is real but too small to move a classifier once location is known.
+
+### 69.140 H4 below 100 km: image gradients find 62–79 % of 20–100 km Robbins craters, falling with size and with rim degradation — 2026-11-13, desktop **[V]**
+
+At the same request. `build\make_h4_robbins.py` (new; predictions K1–K4 before the first run), log `logs\h4_robbins.txt`, `.json`. The rim rule and 1.6 km gradients of `make_h4_q6.py` (§69.132, imported) on Robbins & Hynek 2020 craters within 58° (24,385 ≥ 10 km in the catalogue), 400 drawn at random per bin (seed 20261113), random placements per bin (radii from the bin's sample, centres at least 1.5 (R + r) from any Robbins crater of at least half the bin's smallest diameter; 1,000 each). DEG_RIM 1 is the most degraded, 4 the freshest (0: not given).
+
+| bin | input | found | share | chance | DEG_RIM 1 | 2 | 3 | 4 |
+|---|---|---|---|---|---|---|---|---|
+| 20–30 km | composite | 231 / 371 | 62.3 % | 4.3 % | 115/220 | 63/88 | 44/52 | 7/7 |
+| | Viking red | 233 / 371 | 62.8 % | 4.4 % | | | | |
+| | night IR | 98 / 371 | 26.4 % | 4.5 % | 33/220 | 29/88 | 32/52 | 3/7 |
+| | day IR | 255 / 371 | 68.7 % | 4.0 % | | | | |
+| | slope | 281 / 371 | 75.7 % | 4.6 % | 160/220 | 76/88 | 39/52 | 5/7 |
+| 30–50 km | composite | 297 / 384 | 77.3 % | 4.6 % | 149/217 | 111/126 | 32/33 | 5/5 |
+| | Viking red | 289 / 384 | 75.3 % | 4.3 % | | | | |
+| | night IR | 133 / 384 | 34.6 % | 4.6 % | 60/217 | 52/126 | 16/33 | 5/5 |
+| | day IR | 305 / 384 | 79.4 % | 4.6 % | | | | |
+| | slope | 313 / 384 | 81.5 % | 4.0 % | | | | |
+| 50–100 km | composite | 301 / 379 | 79.4 % | 4.7 % | 114/181 | 159/167 | 22/23 | 6/6 |
+| | Viking red | 290 / 379 | 76.5 % | 4.9 % | | | | |
+| | night IR | 107 / 379 | 28.2 % | 4.9 % | 41/181 | 52/167 | 10/23 | 4/6 |
+| | day IR | 308 / 379 | 81.3 % | 4.8 % | | | | |
+| | slope | 292 / 379 | 77.0 % | 4.6 % | | | | |
+
+**Predictions:** K1 the composite finds more than half of the 50–100 km craters **held** (79.4 %); K2 its share falls with size **held** (62.3 < 77.3 < 79.4 %); K3 the freshest rims found more often than the most degraded in every bin **held** (DEG_RIM 4: 7/7, 5/5, 6/6, small samples; DEG_RIM 1: 52.3, 68.7, 63.0 %); K4 night IR finds fewer than the composite in every bin **held** (26.4–34.6 %).
+
+**Reading (the agent's).** H4's result extends below 100 km: the composite finds about four in five rims of 30–100 km craters and three in five at 20–30 km, where a rim is close to the 1.6 km pixel, against about 4.5 % by chance. As for the large craters, it is topography that finds them: slope does as well or better at every size, and night IR, the least topographic band, finds a quarter to a third. The misses are the degraded rims (DEG_RIM 1, half of the sample), found at 52–69 %, against 85–100 % for DEG_RIM 3 and 4: the same pattern as the closed-depression detector (§69.45).
+
+### 69.141 Are 15° blocks wide enough? Errors stay correlated beyond 15° for the inertia classes, but larger blocks change neither the intervals much nor any verdict; smaller blocks would — 2026-11-13, desktop **[V]**
+
+At the same request. `build\make_block_size_check.py` (new; predictions B1–B3 before the first run), log `logs\block_size_check.txt`, `.json`. Every interval in the paper resamples 15° blocks (about 890 km at the equator). On T10's and T11's held-out samples (maximum likelihood; check: all-7 accuracy 0.5930 and 0.7377, as published): (1) the correlation of the all-7 error indicator between 2,000,000 random pairs of samples, by great-circle distance in 100 km bins; (2) the same predictions resampled by blocks of 5, 7.5, 15 and 30°.
+
+**Error correlation by distance** (first 10 bins, 0–1,000 km): inertia classes 0.46, 0.41, 0.38, 0.36, 0.32, 0.29, 0.26, 0.23, 0.19, 0.15, staying 0.14–0.28 out to 2,000 km and first below 0.1 in the bin ending at **2,400 km**; units 0.36, 0.31, 0.26, 0.22, 0.21, 0.15, 0.13, 0.10, 0.05, 0.01, first below 0.1 in the bin ending at **800 km**.
+
+**Intervals by block size** (groups; all-7 accuracy interval and its width; thermal verdict by the rule)
+
+| labels | 5° | 7.5° | 15° | 30° |
+|---|---|---|---|---|
+| inertia classes | 126; [0.538, 0.651] 0.113; HELPS | 56; [0.515, 0.674] 0.160; HELPS | 14; [0.435, 0.748] 0.313; does not | 11; [0.439, 0.764] 0.325; does not |
+| units | 126; [0.689, 0.781] 0.091; HELPS | 56; [0.668, 0.803] 0.135; HELPS | 14; [0.618, 0.845] 0.227; does not | 11; [0.644, 0.853] 0.209; does not |
+
+(30° blocks hold only 11 groups of the 14 held-out 15° blocks, which lie apart from one another.)
+
+**Predictions:** B1 error correlation below 0.1 by 890 km for both **not held** (inertia classes 2,400 km); B2 30° blocks widen the accuracy interval by under 50 % **held** (+4 % and −8 %); B3 the same thermal verdict at 15 and 30° **held**.
+
+**Reading (the agent's).** For the inertia classes the errors stay correlated over continental distances, because the classes are provinces: the dusty Tharsis–Arabia–Elysium group against the rest. Strictly, 15° blocks are not independent for them. In practice the 14 held-out blocks are scattered across the planet, so grouping them into 30° blocks changes the intervals little and no verdict. The direction that matters is the other one: blocks of 5–7.5° would narrow the intervals by half or more and turn both thermal verdicts to "helps". So the 15° choice is the cautious one, and the paper's "does not help" across blocks is not an artefact of blocks too small; the "helps within blocks" results are the ones resting on correlated samples, as T15 also shows.
+
+### 69.142 T16: a third calibrated label, TES dust cover — the thermal bands add 0.1 point across blocks — 2026-11-13, desktop **[V]**
+
+At the same request. **Downloaded** at the author's yes: the ASU TES Dust Cover Index (Ruff & Christensen 2002), `tes_ruffdust.png` from http://www.mars.asu.edu/data/tes_ruffdust/large/ (31,742,546 bytes, SHA-256 `367efac0163fa41a4c7cdfc0327ec1f1cb446e1068ca02b5eba9940767d5cb26`; 5760 × 2880 RGB, 16 pixels per degree, simple cylindrical, −180 to 180 E, 90 N to 90 S) and its labelled version `tes_ruffdust_label.png` (607,133 bytes, SHA-256 `d6765f4043c9d35ebe6ad65694a61fa98c1e8be9e6f9998dfe84899688a4b4fb`, 835 × 512) for the colour scale, to `F:\Mars Project\Reference\TES_dust_cover_index_ASU\`. ASU serves the DCI only as a colour picture over shaded relief; the scale steps one colour per 0.01 of DCI (red 0.92–0.93 … magenta 0.98–0.99, grey no data), so the colour step, not the value, is read back, by hue. `build\make_t16_dust_cover_labels.py` (new; predictions D1–D4 before the first run), log `logs\t16_dust_cover_labels.txt`, `.json`. Three classes fixed before any model ran: **dusty** (red, orange; DCI < 0.94), **transitional** (yellow, green; 0.94–0.96), **clear** (cyan, blue, magenta; ≥ 0.96); hue < 45° or ≥ 330°, 45–150°, 150–330°, saturation above 0.35. Check: the scale's pure colours fall in their classes. Image shares (no data, dusty, transitional, clear) 0.253, 0.137, 0.201, 0.408. Everything else is T10's and T9's.
+
+**8,641,555** labelled samples; shares 0.244 / 0.289 / 0.467; one class everywhere 42.0 % (blocks), 47.1 % (within). Against T11's units (rows dusty, transitional, clear; shares A / C / B): 0.745 / 0.250 / 0.005; 0.309 / 0.523 / 0.168; 0.013 / 0.091 / 0.897; Cramér's V **0.629**: the spectral dust measure agrees with the inertia-and-albedo units, as it should, without being the same label.
+
+| split | set | acc / bal | producer's dusty / transitional / clear |
+|---|---|---|---|
+| held-out blocks | all 7 | 66.1 / 58.9 (κ 0.464) | 87.2 / 14.9 / 74.5 |
+| | without thermal | 66.0 / 58.7 | 87.7 / 13.9 / 74.4 |
+| | thermal only | 44.3 / 40.0 | 79.7 / 7.2 / 33.1 |
+| | without Viking | 43.1 / 40.1 | 81.1 / 13.0 / 26.1 |
+| within blocks | all 7 | 51.5 / 52.6 (κ 0.288) | 85.5 / 17.6 / 54.8 |
+| | without thermal | 51.1 / 52.3 | |
+
+Gain over without thermal: blocks acc **+0.1 [−0.1, +0.3]**, bal +0.2 [+0.1, +0.4]: **does NOT HELP**; within acc +0.5 [+0.3, +0.6], bal +0.3 [+0.2, +0.4]: HELPS. Over without Viking: blocks acc +23.0 [+11.0, +36.7], bal **+18.8 [+12.6, +23.9]**; within bal +14.9. Over thermal only: blocks bal +18.9.
+
+**Predictions:** D1–D4 all **held** (thermal does not help at the blocks; helps within; Viking costs more; 58.9 % balanced).
+
+**Reading (the agent's).** A label from the spectrum itself, independent of inertia and albedo, gives the same answer as T10 and T11, and more starkly: across held-out blocks the thermal pair adds a tenth of a point, while the Viking bands carry 19 balanced points. The transitional class is barely mapped (producer's 14.9 %), the stack telling dusty from clear and little between. Three calibrated label sets now agree.
+
+### 69.143 The material-label tests drawn, given their own Discussion subsection, and every later prediction added to Appendix B — 2026-11-13, desktop **[V]**
+
+At the author's "go ahead with all of them" (11-13), items 1–4 of the agent's list. (1) The paper's Reference data now name the TES albedo mosaic (five references, not four), and the README's Source data gain a paragraph on the reference data held in `Mars Project/Reference/`, the albedo mosaic among them with its address and size. (2) Appendix B, which listed the 33 predictions of the runs behind the lead maps (21 held), gains every prediction written since by the tests: H4 and Q6 (6; 4 held), H2 stage 2 and its settings (8; 5), H4 below 100 km (4; 4), the material labels T10, T11, T12, T13, T16 (22; 18), and where the thermal signal is, T14, T15, the block-size check, T17 (15; 9): **55 more, 40 held**, so **88 in all, 61 held**. (3) `build\make_fig_material.py` (new, system Python, reads the logs): `final_img\material_thermal_gain.png` (A: the thermal gain with its interval across held-out blocks in every material-label run, T12's 14, T16 and T15's four with coordinates; B: T14's night IR and Viking red AUC within 1, 2 and 5° windows and pooled) and `final_img\maps_on_units.png` (T13's enrichment of each lead-map class in each unit, both maps); both in the paper and as two slides of the deck's thermal section. (4) The material-label results moved out of Limits into a Discussion subsection of their own (`sec:material`), Limits keeping a pointer; abstract and conclusions now state the material-label answer.
+
+### 69.144 T17: the display mosaics against calibrated THEMIS thermal inertia at 100 m — night IR tracks it within 10 km, weakly or not across a window — 2026-11-13, desktop **[V]**
+
+At the author's "go ahead with all of them" (11-13), item 9: THEMIS-derived inertia (Fergason et al. 2006). The USGS quantitative mosaic (32-bit, 100 m, 30 × 60° tiles, ISIS3 cubes of about 2.5 GB, internally tiled 128 × 128; `THEMIS_TI_Mosaic_Quant_30S240E_100mpp.cub`, 2,532,510,196 bytes, and `..._00N120E_...`, 2,532,510,192 bytes, at https://asc-astropedia.s3.us-west-2.amazonaws.com/Mars/Odyssey/THEMIS-Global-Thermal-Inertia-Mosaic/Quantitative-32-Bit/) was **not downloaded whole**: GDAL read only the two type-area windows over HTTP (`/vsicurl/`), warped bilinearly onto each window's 100 m grid (equidistant cylindrical, CM 180), and wrote `F:\Mars Project\Reference\THEMIS_TI_quantitative_windows\ius_themis_ti_quant.tif` (8891 × 4150, 99.7 % valid; inertia 1st/25th/50th/75th/99th percentiles 42, 200, 236, 283, 482 tiu) and `ath_themis_ti_quant.tif` (7114 × 5929, 98.7 % valid; 26, 129, 192, 260, 482), 104 s and 93 s. The tile frame (simple cylindrical, CM 0, x from −7,113,000 m) puts Ius (−89 to −74° E, −6 to −13°) in 30S240E and Athabasca (150–162° E, 4–14° N) in 00N120E.
+
+`build\make_t17_themis_ti_windows.py` (new; predictions Q1–Q4 before the first run), log `logs\t17_themis_ti_windows.txt`, `.json`. Every 5th pixel each way with all inputs valid (**1,468,303** at Ius, median inertia 236 tiu; **1,663,606** at Athabasca, 192 tiu): Spearman's ρ of log inertia with each input over the whole window (interval from 300 resamples of 50 km tiles) and within 10 km tiles (at least 200 samples).
+
+| window | input | ρ whole [95 %] | 10 km tiles | median ρ (IQR) | tiles positive |
+|---|---|---|---|---|---|
+| Ius Chasma | night IR | **+0.442 [+0.396, +0.491]** | 3,722 | **+0.603** (+0.412 to +0.783) | 99 % |
+| | day IR | +0.082 [+0.045, +0.120] | | +0.020 (−0.131 to +0.180) | 53 % |
+| | diurnal contrast | −0.306 [−0.344, −0.271] | | −0.406 (−0.567 to −0.258) | 4 % |
+| | Viking red | −0.204 [−0.248, −0.162] | | −0.044 (−0.179 to +0.090) | 40 % |
+| | slope | +0.293 [+0.202, +0.362] | | +0.075 (−0.044 to +0.241) | 66 % |
+| Athabasca Valles | night IR | **+0.185 [+0.156, +0.234]** | 4,141 | **+0.509** (+0.261 to +0.693) | 97 % |
+| | day IR | +0.045 [+0.019, +0.078] | | +0.022 (−0.117 to +0.171) | 54 % |
+| | diurnal contrast | −0.110 [−0.138, −0.084] | | −0.314 (−0.499 to −0.148) | 8 % |
+| | Viking red | **−0.493 [−0.534, −0.427]** | | −0.069 (−0.190 to +0.035) | 33 % |
+| | slope | +0.043 [−0.021, +0.148] | | +0.021 (−0.086 to +0.145) | 55 % |
+
+(The diurnal-contrast index is high where the day–night swing is large, which is low inertia: its physical sign is negative.)
+
+**Predictions:** Q1 night IR's whole-window ρ above 0.3 in both **not held** (Athabasca +0.185); Q2 within 10 km tiles higher than over the window in both **held** (+0.603 against +0.442; +0.509 against +0.185); Q3 night IR above the diurnal-contrast index over the window in both **held** (as coded, on signed ρ; by magnitude too: 0.442 against 0.306, 0.185 against 0.110); Q4 Viking red's |ρ| below night IR's in both **not held** (Athabasca 0.493 against 0.185).
+
+**Reading (the agent's).** At the mosaics' own resolution the night mosaic does carry thermal inertia: within any 10 km tile it ranks the ground by calibrated inertia at ρ about 0.5–0.6, with the right sign in 97–99 % of tiles, the strongest local relation any input has. Across a whole 700–900 km window that falls to 0.44 at Ius and 0.19 at Athabasca, and at Athabasca Viking red tracks inertia more closely (−0.49) than night IR does, though not within tiles. This is T3, T14 and §28.10 measured directly at 100 m: the stretch and blending of the mosaic keep inertia contrast within roughly 10 km and lose it beyond, where colour (dust) carries the material signal. Day IR carries almost none at either scale. So the thermal bands are informative about material, but only as local contrast; for a classifier that must name a surface from its pixel values across regions, that is little use, which is what T10–T16 found. The paper's future-work step of THEMIS-derived inertia is done for the two type areas; across ±60° it would need the 24 tiles (about 60 GB) and stays future work.

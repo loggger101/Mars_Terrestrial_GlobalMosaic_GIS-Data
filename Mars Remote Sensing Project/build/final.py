@@ -103,6 +103,19 @@ FIGURES = [
                  "Below 2° the signal falls away: a block then holds too few TES cells to test it",
                  "Viking's correlation shrinks with the block: a regional signal, the dust provinces"],
          source="§69.29, §69.30"),
+    dict(title="On calibrated material labels the thermal pair adds about a point",
+         images=[("file", r"final_img\material_thermal_gain.png")],
+         points=["TES inertia classes, thermophysical units, dust cover: thermal adds 0.26–1.85 points across held-out "
+                 "blocks and passes the rule in 2 of 15 runs; dropping Viking costs 8.5–26.1 points",
+                 "Given map coordinates, thermal helps in none of 8 runs: where it helped, it said where the sample was",
+                 "Within 2° windows night IR is warmer on duricrust than dust (AUC 0.556, 77% of windows); pooled 0.516"],
+         source="§69.133–§69.135, §69.138, §69.139, §69.142"),
+    dict(title="Inertia in the lead maps (T13) and in the night mosaic (T17)",
+         images=[("file", r"final_img\maps_on_units.png")],
+         points=["Night IR ranks calibrated inertia within 10 km tiles: ρ +0.603 (Ius), +0.509 (Athabasca), 97–99% positive",
+                 "Across each whole window +0.442 and +0.185; at Athabasca Viking red tracks it more closely (−0.493)",
+                 "The lead maps carry little material information: Cramér's V 0.220 (U-Net), 0.257 (SVM) with the units"],
+         source="§69.136, §69.144"),
     dict(section=("Landforms", "Craters, channels, lava flows"),
          title="Basins ≥ 20 km: the large craters",
          images=[("layout", "07_global60_basins")], map_h=230,
@@ -318,8 +331,8 @@ LIMITS = [   # (head, text)
      "the U-Net loses 6.4–7.6 (not resolved by block), an SVM seeing 51 km 8.0–9.9, mostly made up by map coordinates (§24, §56, §69.86, §69.99–§69.101, §69.106)."),
     ("The landform classes are terrain classes",
      "Slope and relief alone match all seven bands; 'lava tube' marks volcano flanks, not lava plains; the geologic "
-     "map's unit groups are no material labels; on TES inertia classes and thermophysical units Viking carries the "
-     "material signal, thermal adds about a point, and duricrust, which only inertia separates, gains nothing (§40.1, §43.2, §69.50, §69.133, §69.134)."),
+     "map's unit groups are no material labels; on TES inertia classes, thermophysical units and dust cover Viking carries the "
+     "material signal, thermal adds about a point, none with map coordinates, and duricrust, which only inertia separates, gains nothing (§40.1, §43.2, §69.50, §69.133, §69.134, §69.139, §69.142)."),
     ("The seven classes cost the old ones",
      "Five four-class 'Crater' labels were volcanoes (Arsia Mons alone 31% of the held-out Crater area); the "
      "revision fixes that, but both seven-class maps fall below the four-class ones on the original classes. On the "
@@ -343,7 +356,8 @@ LIMITS = [   # (head, text)
 CONCLUSIONS = [
     "Four global products now share one co-registered grid over ±60°; the co-registration that failed four times works",
     "Viking colour, day IR and night IR span about three dimensions, night IR nearly independent of the others, but the THEMIS mosaics carry "
-    "local contrast only, and calibrated inertia follows Viking",
+    "local contrast only: night IR ranks 100 m THEMIS inertia within 10 km tiles (ρ +0.5 to +0.6), not across regions, and adds "
+    "about a point on calibrated material labels",
     "Craters ≥ 5 km are mostly recovered as closed depressions (63.2% precision); those missed are mostly degraded or breached",
     "Routed channels follow the elevation model (89.8% under 2°) and meet the mapped valleys no more often than chance",
     "The four-class landform map scores 66.7% balanced (73.8%, κ 0.58 overall) on blocks it never saw, above geography alone by class (61.3%); thermal adds a resolved 1.4–2.0 points overall, none by balanced accuracy",
@@ -357,7 +371,7 @@ NEXT_STEPS = [
     "An analyst to check the traced margins for H1; rilles mapped at a finer scale for H2",
     "Seven classes: curb the SVM's fluvial channel and win back its Crater; correct the U-Net's small edifices and lava tube",
     "Have the probability sample labelled by an analyst who passes its check: unbiased accuracies and class areas",
-    "Photo-interpreted material labels to price the thermal bands; further deep-learning tuning on its own validation blocks, learning rate fixed",
+    "Photo-interpreted material labels, and THEMIS inertia across ±60° (24 tiles, about 60 GB); further deep-learning tuning on its own validation blocks, learning rate fixed",
 ]
 
 DATA = ("Every map, script and model: github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data, "

@@ -224,6 +224,12 @@ Each writes its prediction and verdict rule into the script before it runs.
 | T11 | do the thermal bands help predict thermophysical units (inertia x albedo)? | **done 11-12** (KB §69.134): TES albedo downloaded at the author's yes; does not help at the held-out blocks (+1.5 pt, balanced +0.9 unresolved), helps within (+0.8); duricrust, the unit only inertia separates, gains nothing (−0.7) |
 | T12 | do T10 and T11 survive other class edges and a nonlinear classifier? | **done 11-12** (KB §69.135): 7 label variants x 2 classifiers; thermal adds +0.26 to +1.85 pt at held-out blocks and passes the rule in 2 of 14 (one edge setting, inertia 100/300); boosted trees do better overall, not from thermal |
 | T13 | what material do the lead maps' classes sit on? | **done 11-12** (KB §69.136): little (Cramér's V 0.220 U-Net, 0.257 SVM, the SVM resolved ahead); channels and craters on sand and rock, dust on apron and lava tube |
+| T14 | does the night mosaic hold the duricrust/dust contrast locally? | **done 11-13** (KB §69.138): yes, weakly, within 2° windows (AUC 0.556, 77 % of windows); pooled 0.516; Viking red separates them across the planet |
+| T15 | does the thermal gain survive map coordinates? | **done 11-13** (KB §69.139): no; thermal helps in none of 8 runs with coordinates |
+| T16 | a third calibrated label, TES dust cover (downloaded 11-13) | **done 11-13** (KB §69.142): thermal +0.1 pt across blocks, does not help; Viking 18.8 balanced |
+| T17 | the display mosaics against 100 m THEMIS inertia at the type areas | **done 11-13** (KB §69.144): night IR ρ +0.603 / +0.509 within 10 km tiles, +0.442 / +0.185 per window; Viking red −0.493 at Athabasca |
+| H4b | H4 below 100 km on Robbins craters | **done 11-13** (KB §69.140): 62.3 / 77.3 / 79.4 % for 20–30 / 30–50 / 50–100 km; misses are degraded rims |
+| Blocks | are 15° blocks wide enough? | **done 11-13** (KB §69.141): errors correlated to 2,400 km on inertia classes; 30° blocks change no verdict; smaller blocks would turn thermal to helps |
 
 **Scope:** every open test is optional; if time runs short, drop tests, never the digitising checkpoint or
 the cut dates.

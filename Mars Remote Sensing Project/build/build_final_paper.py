@@ -64,6 +64,8 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"final_img\r2_vs_polygons.png", "r2_vs_polygons.png"),   # cropped: CROP (D42, KB §69.116)
     (r"final_img\18_t3_tes_blocks.png", "18_t3_tes_blocks.png"),   # cropped: CROP, layout 18 (D42, KB §69.117)
     (r"final_img\07_global60_basins.png", "07_global60_basins.png"),   # layout 07 (D42, KB §69.117)
+    (r"final_img\material_thermal_gain.png", "material_thermal_gain.png"),   # make_fig_material.py (KB §69.143)
+    (r"final_img\maps_on_units.png", "maps_on_units.png"),   # make_fig_material.py, T13 (KB §69.143)
 ]
 # Two deck charts carry slide furniture a paper caption replaces: a title strip naming the gdb class and the KB
 # (ius_channel_candidates), a footnote citing the KB (global60_thermal). Pixels cut from the top and the bottom.

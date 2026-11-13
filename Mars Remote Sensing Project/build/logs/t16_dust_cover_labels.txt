@@ -1,0 +1,28 @@
+[   4.2s] check: the scale's colours fall in their classes; image (2880, 5760), shares (no data, 1, 2, 3) [0.253, 0.137, 0.201, 0.408]
+[   8.7s] 8641555 labelled samples; class shares [0.244, 0.289, 0.467]
+[   9.1s] DCI class x T11 unit (rows dusty/transitional/clear, columns A dust/C duricrust/B sand and rock), shares of row:
+[   9.1s]   dusty (DCI < 0.94)         [0.745, 0.25, 0.005]
+[   9.1s]   transitional (0.94-0.96)   [0.309, 0.523, 0.168]
+[   9.1s]   clear (>= 0.96)            [0.013, 0.091, 0.897]
+[   9.1s]   Cramer's V 0.629
+[  12.5s] block  all 7 bands                      acc  66.1 %  kappa 0.464  balanced  58.9 %  producers 87.2 14.9 74.5
+[  13.8s] block  without thermal (no night, day)  acc  66.0 %  kappa 0.462  balanced  58.7 %  producers 87.7 13.9 74.4
+[  14.7s] block  thermal only                     acc  44.3 %  kappa 0.120  balanced  40.0 %  producers 79.7 7.2 33.1
+[  15.8s] block  without visible (no Viking)      acc  43.1 %  kappa 0.120  balanced  40.1 %  producers 81.1 13.0 26.1
+[  15.8s] block    all 7 minus without thermal (no night, day) acc  +0.1 pt [-0.1, +0.3]  balanced  +0.2 pt [+0.1, +0.4]
+[  15.8s] block    all 7 minus thermal only                   acc +21.8 pt [+11.1, +34.2]  balanced +18.9 pt [+12.6, +23.7]
+[  15.8s] block    all 7 minus without visible (no Viking)    acc +23.0 pt [+11.0, +36.7]  balanced +18.8 pt [+12.6, +23.9]
+[  15.8s] block  thermal does NOT HELP on dust-cover classes (one class everywhere 42.0 %)
+[  20.8s] within all 7 bands                      acc  51.5 %  kappa 0.288  balanced  52.6 %  producers 85.5 17.6 54.8
+[  23.1s] within without thermal (no night, day)  acc  51.1 %  kappa 0.284  balanced  52.3 %  producers 86.7 16.4 54.0
+[  24.2s] within thermal only                     acc  35.3 %  kappa 0.066  balanced  38.1 %  producers 74.5 7.9 31.9
+[  26.1s] within without visible (no Viking)      acc  34.7 %  kappa 0.062  balanced  37.8 %  producers 78.2 3.9 31.2
+[  26.1s] within   all 7 minus without thermal (no night, day) acc  +0.5 pt [+0.3, +0.6]  balanced  +0.3 pt [+0.2, +0.4]
+[  26.1s] within   all 7 minus thermal only                   acc +16.2 pt [+13.6, +18.9]  balanced +14.5 pt [+12.7, +16.5]
+[  26.1s] within   all 7 minus without visible (no Viking)    acc +16.8 pt [+14.2, +19.4]  balanced +14.9 pt [+13.0, +16.7]
+[  26.1s] within thermal HELPS on dust-cover classes (one class everywhere 47.1 %)
+[  26.1s] prediction D1 block: thermal does not help                                   held
+[  26.1s] prediction D2 within: thermal helps                                          held
+[  26.1s] prediction D3 block: Viking costs more balanced accuracy than thermal        held
+[  26.1s] prediction D4 block: all 7 bands >= 43.3 % balanced                          held
+[  26.1s] wrote F:\Mars Remote Sensing Project\build\logs\t16_dust_cover_labels.json

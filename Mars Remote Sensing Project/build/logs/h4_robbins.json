@@ -1,0 +1,507 @@
+{
+ "bins": {
+  "20-30": {
+   "pool": 4470,
+   "sampled": 400,
+   "n_null": 1000,
+   "null_tries": 2055,
+   "inputs": {
+    "Viking red": {
+     "found": 233,
+     "scored": 371,
+     "share": 0.628032345013477,
+     "lower95": 0.5777734778101095,
+     "chance": 0.044284243048403706,
+     "null_threshold": 1.2970155564440724,
+     "null_scored": 971,
+     "by_deg_rim": {
+      "0": {
+       "found": 2,
+       "scored": 4
+      },
+      "1": {
+       "found": 118,
+       "scored": 220
+      },
+      "2": {
+       "found": 65,
+       "scored": 88
+      },
+      "3": {
+       "found": 43,
+       "scored": 52
+      },
+      "4": {
+       "found": 5,
+       "scored": 7
+      }
+     }
+    },
+    "night IR": {
+     "found": 98,
+     "scored": 371,
+     "share": 0.2641509433962264,
+     "lower95": 0.22187074356542016,
+     "chance": 0.04531410916580844,
+     "null_threshold": 1.2904454653056154,
+     "null_scored": 971,
+     "by_deg_rim": {
+      "0": {
+       "found": 1,
+       "scored": 4
+      },
+      "1": {
+       "found": 33,
+       "scored": 220
+      },
+      "2": {
+       "found": 29,
+       "scored": 88
+      },
+      "3": {
+       "found": 32,
+       "scored": 52
+      },
+      "4": {
+       "found": 3,
+       "scored": 7
+      }
+     }
+    },
+    "day IR": {
+     "found": 255,
+     "scored": 371,
+     "share": 0.6873315363881402,
+     "lower95": 0.6384425876196074,
+     "chance": 0.04016477857878476,
+     "null_threshold": 1.2796109206904922,
+     "null_scored": 971,
+     "by_deg_rim": {
+      "0": {
+       "found": 2,
+       "scored": 4
+      },
+      "1": {
+       "found": 133,
+       "scored": 220
+      },
+      "2": {
+       "found": 68,
+       "scored": 88
+      },
+      "3": {
+       "found": 45,
+       "scored": 52
+      },
+      "4": {
+       "found": 7,
+       "scored": 7
+      }
+     }
+    },
+    "composite": {
+     "found": 231,
+     "scored": 371,
+     "share": 0.6226415094339622,
+     "lower95": 0.5722980697257691,
+     "chance": 0.04325437693099897,
+     "null_threshold": 1.222338339722441,
+     "null_scored": 971,
+     "by_deg_rim": {
+      "0": {
+       "found": 2,
+       "scored": 4
+      },
+      "1": {
+       "found": 115,
+       "scored": 220
+      },
+      "2": {
+       "found": 63,
+       "scored": 88
+      },
+      "3": {
+       "found": 44,
+       "scored": 52
+      },
+      "4": {
+       "found": 7,
+       "scored": 7
+      }
+     }
+    },
+    "slope": {
+     "found": 281,
+     "scored": 371,
+     "share": 0.7574123989218329,
+     "lower95": 0.7113007557745886,
+     "chance": 0.046343975283213185,
+     "null_threshold": 1.342749365794432,
+     "null_scored": 971,
+     "by_deg_rim": {
+      "0": {
+       "found": 1,
+       "scored": 4
+      },
+      "1": {
+       "found": 160,
+       "scored": 220
+      },
+      "2": {
+       "found": 76,
+       "scored": 88
+      },
+      "3": {
+       "found": 39,
+       "scored": 52
+      },
+      "4": {
+       "found": 5,
+       "scored": 7
+      }
+     }
+    }
+   }
+  },
+  "30-50": {
+   "pool": 3284,
+   "sampled": 400,
+   "n_null": 1000,
+   "null_tries": 2208,
+   "inputs": {
+    "Viking red": {
+     "found": 289,
+     "scored": 384,
+     "share": 0.7526041666666666,
+     "lower95": 0.707085571245988,
+     "chance": 0.04290091930541369,
+     "null_threshold": 1.305303475612721,
+     "null_scored": 979,
+     "by_deg_rim": {
+      "0": {
+       "found": 0,
+       "scored": 3
+      },
+      "1": {
+       "found": 141,
+       "scored": 217
+      },
+      "2": {
+       "found": 112,
+       "scored": 126
+      },
+      "3": {
+       "found": 31,
+       "scored": 33
+      },
+      "4": {
+       "found": 5,
+       "scored": 5
+      }
+     }
+    },
+    "night IR": {
+     "found": 133,
+     "scored": 384,
+     "share": 0.3463541666666667,
+     "lower95": 0.30049799916241543,
+     "chance": 0.045965270684371805,
+     "null_threshold": 1.2759361838568384,
+     "null_scored": 979,
+     "by_deg_rim": {
+      "0": {
+       "found": 0,
+       "scored": 3
+      },
+      "1": {
+       "found": 60,
+       "scored": 217
+      },
+      "2": {
+       "found": 52,
+       "scored": 126
+      },
+      "3": {
+       "found": 16,
+       "scored": 33
+      },
+      "4": {
+       "found": 5,
+       "scored": 5
+      }
+     }
+    },
+    "day IR": {
+     "found": 305,
+     "scored": 384,
+     "share": 0.7942708333333334,
+     "lower95": 0.7510204244677008,
+     "chance": 0.045965270684371805,
+     "null_threshold": 1.269049093983472,
+     "null_scored": 979,
+     "by_deg_rim": {
+      "0": {
+       "found": 0,
+       "scored": 3
+      },
+      "1": {
+       "found": 154,
+       "scored": 217
+      },
+      "2": {
+       "found": 115,
+       "scored": 126
+      },
+      "3": {
+       "found": 31,
+       "scored": 33
+      },
+      "4": {
+       "found": 5,
+       "scored": 5
+      }
+     }
+    },
+    "composite": {
+     "found": 297,
+     "scored": 384,
+     "share": 0.7734375,
+     "lower95": 0.7289804401019999,
+     "chance": 0.045965270684371805,
+     "null_threshold": 1.2274133675691106,
+     "null_scored": 979,
+     "by_deg_rim": {
+      "0": {
+       "found": 0,
+       "scored": 3
+      },
+      "1": {
+       "found": 149,
+       "scored": 217
+      },
+      "2": {
+       "found": 111,
+       "scored": 126
+      },
+      "3": {
+       "found": 32,
+       "scored": 33
+      },
+      "4": {
+       "found": 5,
+       "scored": 5
+      }
+     }
+    },
+    "slope": {
+     "found": 313,
+     "scored": 384,
+     "share": 0.8151041666666666,
+     "lower95": 0.7732213909719744,
+     "chance": 0.03983656792645557,
+     "null_threshold": 1.343174250142676,
+     "null_scored": 979,
+     "by_deg_rim": {
+      "0": {
+       "found": 0,
+       "scored": 3
+      },
+      "1": {
+       "found": 166,
+       "scored": 217
+      },
+      "2": {
+       "found": 110,
+       "scored": 126
+      },
+      "3": {
+       "found": 32,
+       "scored": 33
+      },
+      "4": {
+       "found": 5,
+       "scored": 5
+      }
+     }
+    }
+   }
+  },
+  "50-100": {
+   "pool": 1548,
+   "sampled": 400,
+   "n_null": 1000,
+   "null_tries": 2434,
+   "inputs": {
+    "Viking red": {
+     "found": 290,
+     "scored": 379,
+     "share": 0.7651715039577837,
+     "lower95": 0.7199661587570796,
+     "chance": 0.048879837067209775,
+     "null_threshold": 1.3260702132982756,
+     "null_scored": 982,
+     "by_deg_rim": {
+      "0": {
+       "found": 0,
+       "scored": 2
+      },
+      "1": {
+       "found": 108,
+       "scored": 181
+      },
+      "2": {
+       "found": 154,
+       "scored": 167
+      },
+      "3": {
+       "found": 22,
+       "scored": 23
+      },
+      "4": {
+       "found": 6,
+       "scored": 6
+      }
+     }
+    },
+    "night IR": {
+     "found": 107,
+     "scored": 379,
+     "share": 0.28232189973614774,
+     "lower95": 0.23936369208250774,
+     "chance": 0.048879837067209775,
+     "null_threshold": 1.2679409138909674,
+     "null_scored": 982,
+     "by_deg_rim": {
+      "0": {
+       "found": 0,
+       "scored": 2
+      },
+      "1": {
+       "found": 41,
+       "scored": 181
+      },
+      "2": {
+       "found": 52,
+       "scored": 167
+      },
+      "3": {
+       "found": 10,
+       "scored": 23
+      },
+      "4": {
+       "found": 4,
+       "scored": 6
+      }
+     }
+    },
+    "day IR": {
+     "found": 308,
+     "scored": 379,
+     "share": 0.8126649076517151,
+     "lower95": 0.7703174483650312,
+     "chance": 0.04786150712830957,
+     "null_threshold": 1.269147761586851,
+     "null_scored": 982,
+     "by_deg_rim": {
+      "0": {
+       "found": 0,
+       "scored": 2
+      },
+      "1": {
+       "found": 123,
+       "scored": 181
+      },
+      "2": {
+       "found": 156,
+       "scored": 167
+      },
+      "3": {
+       "found": 23,
+       "scored": 23
+      },
+      "4": {
+       "found": 6,
+       "scored": 6
+      }
+     }
+    },
+    "composite": {
+     "found": 301,
+     "scored": 379,
+     "share": 0.7941952506596306,
+     "lower95": 0.7506381661914183,
+     "chance": 0.04684317718940937,
+     "null_threshold": 1.2378234786381603,
+     "null_scored": 982,
+     "by_deg_rim": {
+      "0": {
+       "found": 0,
+       "scored": 2
+      },
+      "1": {
+       "found": 114,
+       "scored": 181
+      },
+      "2": {
+       "found": 159,
+       "scored": 167
+      },
+      "3": {
+       "found": 22,
+       "scored": 23
+      },
+      "4": {
+       "found": 6,
+       "scored": 6
+      }
+     }
+    },
+    "slope": {
+     "found": 292,
+     "scored": 379,
+     "share": 0.7704485488126649,
+     "lower95": 0.7255215101054054,
+     "chance": 0.045824847250509164,
+     "null_threshold": 1.3931702421794099,
+     "null_scored": 982,
+     "by_deg_rim": {
+      "0": {
+       "found": 0,
+       "scored": 2
+      },
+      "1": {
+       "found": 113,
+       "scored": 181
+      },
+      "2": {
+       "found": 153,
+       "scored": 167
+      },
+      "3": {
+       "found": 22,
+       "scored": 23
+      },
+      "4": {
+       "found": 4,
+       "scored": 6
+      }
+     }
+    }
+   }
+  }
+ },
+ "inputs": [
+  "Viking red",
+  "night IR",
+  "day IR",
+  "composite",
+  "slope"
+ ],
+ "n_per_bin": 400,
+ "predictions": {
+  "K1 composite finds > half of 50-100 km": true,
+  "K2 composite share 20-30 < 30-50 < 50-100": true,
+  "K3 DEG_RIM 4 found more often than DEG_RIM 1 in every bin": true,
+  "K4 night IR finds fewer than the composite in every bin": true
+ }
+}

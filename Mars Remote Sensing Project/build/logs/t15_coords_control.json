@@ -1,0 +1,420 @@
+{
+ "variants": [
+  {
+   "kind": "TI3",
+   "edges": [
+    150,
+    350
+   ],
+   "runs": {
+    "block ML": {
+     "sets": {
+      "all 7 + coords": {
+       "accuracy": 0.593953456141012,
+       "balanced_accuracy": 0.6564187662987325,
+       "producers": [
+        0.9396761509422659,
+        0.253764574905224,
+        0.7758155730487075
+       ]
+      },
+      "without thermal + coords": {
+       "accuracy": 0.5843625145414786,
+       "balanced_accuracy": 0.652357704324574,
+       "producers": [
+        0.9423190269577274,
+        0.23087664429773808,
+        0.7838774417182565
+       ]
+      },
+      "coords only": {
+       "accuracy": 0.4154167486886027,
+       "balanced_accuracy": 0.5865436886077072,
+       "producers": [
+        0.7717752296076482,
+        0.024278508387204682,
+        0.9635773278282688
+       ]
+      }
+     },
+     "thermal_gain": {
+      "accuracy": 0.009590941599533442,
+      "accuracy_ci95": [
+       -0.00011609408117675688,
+       0.019404545403772004
+      ],
+      "balanced_accuracy": 0.004061061974158564,
+      "balanced_accuracy_ci95": [
+       -0.0013204826540274355,
+       0.015892103794669127
+      ],
+      "thermal_helps": false
+     },
+     "thermal_gain_without_coords_t12": {
+      "accuracy": 0.005055151250521472,
+      "balanced_accuracy": 0.003973719862146008,
+      "thermal_helps": false
+     }
+    },
+    "block GBT": {
+     "sets": {
+      "all 7 + coords": {
+       "accuracy": 0.8123022035127965,
+       "balanced_accuracy": 0.7501466579563348,
+       "producers": [
+        0.9628883371677087,
+        0.698019788467848,
+        0.5895318482334481
+       ]
+      },
+      "without thermal + coords": {
+       "accuracy": 0.8151583606653288,
+       "balanced_accuracy": 0.7339017281125141,
+       "producers": [
+        0.9602762614372969,
+        0.7131264946454714,
+        0.528302428254774
+       ]
+      },
+      "coords only": {
+       "accuracy": 0.7890738675180284,
+       "balanced_accuracy": 0.6879791812189987,
+       "producers": [
+        0.9430682866484787,
+        0.6864399330607709,
+        0.43442932394774625
+       ]
+      }
+     },
+     "thermal_gain": {
+      "accuracy": -0.0028561571525322904,
+      "accuracy_ci95": [
+       -0.00898766338598378,
+       0.002420309222184935
+      ],
+      "balanced_accuracy": 0.016244929843820755,
+      "balanced_accuracy_ci95": [
+       0.0023457662121711383,
+       0.028352004829912843
+      ],
+      "thermal_helps": false
+     },
+     "thermal_gain_without_coords_t12": {
+      "accuracy": 0.0062334241640138455,
+      "balanced_accuracy": 0.0205604203288956,
+      "thermal_helps": false
+     }
+    },
+    "within ML": {
+     "sets": {
+      "all 7 + coords": {
+       "accuracy": 0.6406832027769785,
+       "balanced_accuracy": 0.6680800828882724,
+       "producers": [
+        0.9051526588270655,
+        0.5328651162176344,
+        0.5662224736201172
+       ]
+      },
+      "without thermal + coords": {
+       "accuracy": 0.6410870324650115,
+       "balanced_accuracy": 0.6636796682059315,
+       "producers": [
+        0.912923257910091,
+        0.5313088730050837,
+        0.5468068737026198
+       ]
+      },
+      "coords only": {
+       "accuracy": 0.6391705267792166,
+       "balanced_accuracy": 0.6685093776964809,
+       "producers": [
+        0.7694460196232317,
+        0.5830915648416916,
+        0.6529905486245191
+       ]
+      }
+     },
+     "thermal_gain": {
+      "accuracy": -0.00040382968803298613,
+      "accuracy_ci95": [
+       -0.005841767658481897,
+       0.005988749884488273
+      ],
+      "balanced_accuracy": 0.00440041468234087,
+      "balanced_accuracy_ci95": [
+       0.0013146090005809214,
+       0.007477278693996467
+      ],
+      "thermal_helps": false
+     },
+     "thermal_gain_without_coords_t12": {
+      "accuracy": 0.008014330284110693,
+      "balanced_accuracy": 0.007737817627579857,
+      "thermal_helps": true
+     }
+    },
+    "within GBT": {
+     "sets": {
+      "all 7 + coords": {
+       "accuracy": 0.8467311782455368,
+       "balanced_accuracy": 0.8255479312463679,
+       "producers": [
+        0.9338992090413695,
+        0.8168559775468607,
+        0.7258886071508739
+       ]
+      },
+      "without thermal + coords": {
+       "accuracy": 0.8451050612716854,
+       "balanced_accuracy": 0.8245443576738208,
+       "producers": [
+        0.9349506376212036,
+        0.8140736105663849,
+        0.7246088248338739
+       ]
+      },
+      "coords only": {
+       "accuracy": 0.8405460708059294,
+       "balanced_accuracy": 0.8193995464698899,
+       "producers": [
+        0.934088933005313,
+        0.8081888566096171,
+        0.7159208497947392
+       ]
+      }
+     },
+     "thermal_gain": {
+      "accuracy": 0.0016261169738513992,
+      "accuracy_ci95": [
+       -0.0018448741594919132,
+       0.0055397802872169085
+      ],
+      "balanced_accuracy": 0.0010035735725471007,
+      "balanced_accuracy_ci95": [
+       -0.0011005659971042524,
+       0.0032273344889215457
+      ],
+      "thermal_helps": false
+     },
+     "thermal_gain_without_coords_t12": {
+      "accuracy": 3.9895827891323066e-06,
+      "balanced_accuracy": 0.014898202288851192,
+      "thermal_helps": false
+     }
+    }
+   }
+  },
+  {
+   "kind": "UNITS",
+   "edges": [
+    150,
+    0.2
+   ],
+   "runs": {
+    "block ML": {
+     "sets": {
+      "all 7 + coords": {
+       "accuracy": 0.8115659531001477,
+       "balanced_accuracy": 0.7463545195072676,
+       "producers": [
+        0.9056800112140309,
+        0.5463360258379274,
+        0.7870475214698445
+       ]
+      },
+      "without thermal + coords": {
+       "accuracy": 0.8123314945931386,
+       "balanced_accuracy": 0.7484356332367813,
+       "producers": [
+        0.9059500938276368,
+        0.5525748870070568,
+        0.7867819188756503
+       ]
+      },
+      "coords only": {
+       "accuracy": 0.7064362369360098,
+       "balanced_accuracy": 0.6307845804700608,
+       "producers": [
+        0.6991325132167672,
+        0.38856726092410787,
+        0.8046539672693073
+       ]
+      }
+     },
+     "thermal_gain": {
+      "accuracy": -0.0007655414929909066,
+      "accuracy_ci95": [
+       -0.006369369501576775,
+       0.003353444956497628
+      ],
+      "balanced_accuracy": -0.002081113729513695,
+      "balanced_accuracy_ci95": [
+       -0.01141614859110485,
+       0.00973998985729221
+      ],
+      "thermal_helps": false
+     },
+     "thermal_gain_without_coords_t12": {
+      "accuracy": 0.014620283969505987,
+      "balanced_accuracy": 0.00900494777135985,
+      "thermal_helps": false
+     }
+    },
+    "block GBT": {
+     "sets": {
+      "all 7 + coords": {
+       "accuracy": 0.9123842802183332,
+       "balanced_accuracy": 0.8444334363107254,
+       "producers": [
+        0.958203536174136,
+        0.6314480766087812,
+        0.943648696149259
+       ]
+      },
+      "without thermal + coords": {
+       "accuracy": 0.911052329376881,
+       "balanced_accuracy": 0.8495923943645024,
+       "producers": [
+        0.955432710426334,
+        0.6572088234302657,
+        0.9361356492369075
+       ]
+      },
+      "coords only": {
+       "accuracy": 0.8764894607713063,
+       "balanced_accuracy": 0.8048448568851598,
+       "producers": [
+        0.9575718902723006,
+        0.5831447956000222,
+        0.8738178847831568
+       ]
+      }
+     },
+     "thermal_gain": {
+      "accuracy": 0.0013319508414522119,
+      "accuracy_ci95": [
+       -0.004204050103922932,
+       0.0051995849029556115
+      ],
+      "balanced_accuracy": -0.005158958053776974,
+      "balanced_accuracy_ci95": [
+       -0.030623091726559318,
+       0.003911324190213002
+      ],
+      "thermal_helps": false
+     },
+     "thermal_gain_without_coords_t12": {
+      "accuracy": 0.004239359686010413,
+      "balanced_accuracy": 0.007239538081406316,
+      "thermal_helps": false
+     }
+    },
+    "within ML": {
+     "sets": {
+      "all 7 + coords": {
+       "accuracy": 0.759117963854139,
+       "balanced_accuracy": 0.7496108473233515,
+       "producers": [
+        0.8321170322518162,
+        0.6324438407153521,
+        0.7842716690028859
+       ]
+      },
+      "without thermal + coords": {
+       "accuracy": 0.759501823833287,
+       "balanced_accuracy": 0.7502651623279265,
+       "producers": [
+        0.8318583506848063,
+        0.6351785481347788,
+        0.7837585881641944
+       ]
+      },
+      "coords only": {
+       "accuracy": 0.6882856807214415,
+       "balanced_accuracy": 0.6739295887713092,
+       "producers": [
+        0.7297025924134709,
+        0.557114273087458,
+        0.7349719008129983
+       ]
+      }
+     },
+     "thermal_gain": {
+      "accuracy": -0.00038385997914802683,
+      "accuracy_ci95": [
+       -0.0027846118801806872,
+       0.0022541626560780036
+      ],
+      "balanced_accuracy": -0.0006543150045750235,
+      "balanced_accuracy_ci95": [
+       -0.003586616591760283,
+       0.002652054745887534
+      ],
+      "thermal_helps": false
+     },
+     "thermal_gain_without_coords_t12": {
+      "accuracy": 0.007040843113278683,
+      "balanced_accuracy": 0.007523217638617297,
+      "thermal_helps": true
+     }
+    },
+    "within GBT": {
+     "sets": {
+      "all 7 + coords": {
+       "accuracy": 0.9218223173778692,
+       "balanced_accuracy": 0.9161076549309136,
+       "producers": [
+        0.9159744326560363,
+        0.8891173177896454,
+        0.9432312143470589
+       ]
+      },
+      "without thermal + coords": {
+       "accuracy": 0.9220532076093555,
+       "balanced_accuracy": 0.9160781598570233,
+       "producers": [
+        0.9155094850009755,
+        0.8882331003068291,
+        0.9444918942632655
+       ]
+      },
+      "coords only": {
+       "accuracy": 0.9173201204865117,
+       "balanced_accuracy": 0.9114700578269167,
+       "producers": [
+        0.9178327502948341,
+        0.8781631167096248,
+        0.9384143064762914
+       ]
+      }
+     },
+     "thermal_gain": {
+      "accuracy": -0.0002308902314862582,
+      "accuracy_ci95": [
+       -0.001420386627574996,
+       0.0009895149846681603
+      ],
+      "balanced_accuracy": 2.9495073890273282e-05,
+      "balanced_accuracy_ci95": [
+       -0.0012264091672278237,
+       0.0014504943476574244
+      ],
+      "thermal_helps": false
+     },
+     "thermal_gain_without_coords_t12": {
+      "accuracy": 0.00750602928441213,
+      "balanced_accuracy": 0.00829938802434127,
+      "thermal_helps": true
+     }
+    }
+   }
+  }
+ ],
+ "predictions": {
+  "C1 within GBT: thermal gain smaller with coords, both labels": false,
+  "C2 within GBT + coords: thermal HELPS, both labels": false,
+  "C3 block GBT: coords only >= 43.3 % balanced on the units": true,
+  "C4 block + coords: thermal does not help, both classifiers, both labels": true
+ }
+}
