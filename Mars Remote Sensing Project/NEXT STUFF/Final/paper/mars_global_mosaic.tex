@@ -28,9 +28,10 @@ channels and lava flows. The THEMIS mosaics are 8-bit products stretched region 
 differ by 47.67~DN in Viking red but by $-0.19$ and $+0.02$~DN in day and night infrared, and against TES
 thermal inertia the THEMIS pair keeps only a weak local signal ($|r|\approx0.1$) while Viking colour tracks inertia
 planet-wide ($r=-0.36$). On three calibrated material labels, classes of TES inertia, thermophysical units and
-dust cover, the thermal pair adds under two points across held-out blocks, never resolved, and nothing once map
-coordinates are given; against 100~m THEMIS inertia the night mosaic ranks the ground within 10~km tiles
-($\rho\approx0.5$--0.6) but weakly or not across a region. Fill depth yields 465,354 closed depressions $\ge1$~km; 63.2\% of those $\ge5$~km are
+dust cover, the thermal pair adds under two points across held-out blocks, a gain resolved in accuracy and balanced
+accuracy together in 2 of 15 runs, both on one choice of class edges, and in none once map coordinates are given;
+against 100~m THEMIS inertia the night mosaic ranks the ground within 10~km tiles ($\rho\approx0.5$--0.6) but less
+closely across a whole type area ($\rho=0.44$ and 0.19). Fill depth yields 465,354 closed depressions $\ge1$~km; 63.2\% of those $\ge5$~km are
 catalogued craters, and most craters missed are degraded or breached. Of 969,822 routed channel segments 89.8\%
 lie on slopes under $2^{\circ}$. A support vector machine trained on hand-drawn polygons and scored in whole
 $15^{\circ}$ blocks it never saw reaches a balanced accuracy of 66.7\% (73.8\% overall), against 61.3\% for the nearest
@@ -117,12 +118,15 @@ HRSC/MOLA blend DEM v2 & $0.0033741^{\circ}$ & $106{,}694\times53{,}347$ & geogr
 
 \subsection{Reference data}
 
-Five independent references score the products \citep{Congalton1991}. The USGS Geologic Map of Mars, SIM~3292
+Seven independent references score the products \citep{Congalton1991}. The USGS Geologic Map of Mars, SIM~3292
 \citep{Tanaka2014}, supplies 1,311 unit polygons and is the lava-flow reference. The Robbins and Hynek database
 \citep{Robbins2012}, 2020 release, holds 385,049 craters $\ge1$~km. TES thermal inertia \citep{Christensen2001, Putzig2007}, dayside and
 nightside at 20 pixels per degree, is the only calibrated thermal product. TES Lambert albedo
 \citep{Christensen2001}, from the USGS Astrogeology mosaic at 8 pixels per degree (7,410~m, values 0.06 to 0.32,
-fetched for the material-label tests), is crossed with it to give thermophysical units. The IAU gazetteer \citep{Gazetteer} names
+fetched for the material-label tests), is crossed with it to give thermophysical units. Two more enter only those
+tests: the TES dust cover index \citep{Ruff2002}, as the colour map at 16 pixels per degree that Arizona State
+University serves (mars.asu.edu), and the 100~m quantitative THEMIS thermal inertia mosaic \citep{Fergason2006} of the
+USGS Astrogeology Science Center, read over the two type areas only. The IAU gazetteer \citep{Gazetteer} names
 141 craters larger than 100~km. Every IAU crater larger than 100~km matches a Robbins crater with a median centre
 offset of 1.0\% of its diameter, and the Athabasca Valles floor falls in unit \lAv\ of the geologic map, as
 published. %% KB §41, §6, §69.134
@@ -470,7 +474,7 @@ this window (below). %% KB §24.3, §42.4
 \includegraphics[width=0.68\textwidth]{figures/ius_thermal_contrast.png}
 \caption{The diurnal-contrast index at Ius Chasma. (A) The index, red for a large day--night swing and blue for a damped
 one. (B) Its mean in each of the nine object-based classes, with the class's share of the window. (C) The class means
-against mean slope: the two steepest classes, $4.4^{\circ}$ apart in slope, lie 0.46 apart in the index at opposite
+against mean slope: the two steepest classes, at $21.5^{\circ}$ and $17.0^{\circ}$ mean slope, lie 0.46 apart in the index at opposite
 signs. A relative index from 8-bit values, not calibrated thermal inertia. \label{fig:iusindex}}
 \end{figure*}
 
@@ -563,7 +567,7 @@ H4 holds as stated, and image gradients find rims that fill depth misses because
 shade. They do so largely through topography: the Viking mosaic was normalised so equal slopes show equal contrast,
 day infrared carries the heating of sunward slopes, and the least topographic band, night infrared, finds a third.
 Below 100~km the same rule on 400 Robbins craters drawn at random per size bin finds 62.3\% of the rims of 20--30~km
-craters, 77.3\% at 30--50~km and 79.4\% at 50--100~km, against 4.3 to 4.7\% by chance; slope finds as many or more,
+craters, 77.3\% at 30--50~km and 79.4\% at 50--100~km, against 4.3 to 4.7\% by chance; slope finds more below 50~km (75.7 and 81.5\%) and about as many at 50--100~km (77.0\%),
 night infrared 26.4 to 34.6\%, and the misses are the degraded rims, found at 52 to 69\% where the freshest are found
 at 85 to 100\%. The basins follow the dichotomy: they crowd
 the southern highlands and Arabia Terra and thin out over Tharsis, Elysium and the northern plains, as the cratering
@@ -605,19 +609,19 @@ the catalogue's 52 in the Ius window and 32 of 60 at Athabasca. %% KB §69.35 (A
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.94\textwidth]{figures/crater_sfd.png}
-\caption{Cumulative size-frequency distributions: craters of at least diameter $D$ per km$^2$, over \pmsixty\ and in
-the two type areas. Orange, the closed depressions; blue, the crater database \citep{Robbins2012}; green, the
-depressions accepted in the review. \label{fig:sfd}}
-\end{figure*}
-
-\begin{figure*}[t]
-\centering
 \includegraphics[width=\textwidth]{figures/depressions_vs_robbins.png}
 \caption{The 465,354 closed depressions $\ge1$~km against the Robbins and Hynek crater database
 \citep{Robbins2012} by minimum diameter: (A) precision, (B) recall, each beside a chance baseline made by shifting
 every candidate three of its diameters east; each set is cut at the minimum diameter only where it is scored.
 \label{fig:robbins}}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.94\textwidth]{figures/crater_sfd.png}
+\caption{Cumulative size-frequency distributions: craters of at least diameter $D$ per km$^2$, over \pmsixty\ and in
+the two type areas. Orange, the closed depressions; blue, the crater database \citep{Robbins2012}; green, the
+depressions accepted in the review. \label{fig:sfd}}
 \end{figure*}
 
 Mapped by density, the small candidates do not follow the craters: per 0.5$^{\circ}$ cell their log density correlates
@@ -783,17 +787,17 @@ study come from the geologic map's volcanic units. %% KB §43.3
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/lava_relabel.png}
-\caption{The lava-tube relabel, four variants: held-out accuracy on the Crater, steep/windy hills and Normal Ground
-polygons with the Gaussian classifier at 1.6~km. A volcanic class taken from the geologic map does not help as a
-replacement (B) or as a fifth class (D); leaving lava tube out (C) helps the other three. \label{fig:relabel}}
+\includegraphics[width=0.85\textwidth]{figures/t8_enrichment.png}
+\caption{The four-class landform map against the unit groups of SIM~3292: how much more often each class occurs in a
+group than across \pmsixty\ ($\times1$: no association). \label{fig:t8}}
 \end{figure*}
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/t8_enrichment.png}
-\caption{The four-class landform map against the unit groups of SIM~3292: how much more often each class occurs in a
-group than across \pmsixty\ ($\times1$: no association). \label{fig:t8}}
+\includegraphics[width=0.85\textwidth]{figures/lava_relabel.png}
+\caption{The lava-tube relabel, four variants: held-out accuracy on the Crater, steep/windy hills and Normal Ground
+polygons with the Gaussian classifier at 1.6~km. A volcanic class taken from the geologic map does not help as a
+replacement (B) or as a fifth class (D); leaving lava tube out (C) helps the other three. \label{fig:relabel}}
 \end{figure*}
 
 H1 was tested on the 14 internal contacts (2,764~km) between the five SIM~3292 units of the Athabasca window. Profiles
@@ -821,7 +825,7 @@ verdict does not rest on the doubtful lines. %% KB §47.2, §69.52, §69.79, §6
 over contacts and margins; 10\% is chance by construction. \label{fig:t5}}
 \end{figure*}
 
-\subsection{The landform classification}
+\subsection{The landform classification} \label{sec:landforms}
 
 The four-class map (Figure~\ref{fig:landforms}) is the 200~m support vector machine map with an $11\times11$ (2.2~km)
 majority filter. On the 183 held-out polygons it scores a balanced accuracy of 66.7\% and 73.8\%, \kap\,0.583 overall,
@@ -832,6 +836,22 @@ usable class (user's 2.4\%). At full resolution the map follows terrain rather t
 no longer an elevation map (elevation bins reproduce 55.4\%, within a point of its largest class alone, 54.7\%), shows
 no tile seams (ratio 1.00), and labels 56.8\% of the ground inside named craters as Crater against 46.2\% in the ring
 around them. %% KB §55.3, §57; logs\global60_classification_check_200m_mode11.json
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/04_global60_landforms.png}
+\caption{The four-class \pmsixty\ landform map: support vector machine on the seven-band 200~m stack, $11\times11$
+majority filter, with the held-out hand-drawn labels outlined in their class colours. Held out: balanced accuracy 66.7\%; 73.8\%, \kap\,0.58 overall.
+\label{fig:landforms}}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/accuracy_200m.png}
+\caption{(A) Where each held-out class lands on the four-class map, as a share of its area. (B) Held-out accuracy
+against the majority-filter window for the 200~m and 400~m maps; the score rises with every window, so the window was set
+by feature size. \label{fig:accuracy}}
+\end{figure*}
 
 \begin{figure*}[t]
 \centering
@@ -873,22 +893,6 @@ elevation and latitude alone, and one class everywhere (dashed; accuracy). Filte
 82.1\%, never above the nearest polygon; the seven-class curve stays flat. \label{fig:baselines}}
 \end{figure}
 %% KB §69.50 (A3 (c)); build\make_fig_baselines.py
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/04_global60_landforms.png}
-\caption{The four-class \pmsixty\ landform map: support vector machine on the seven-band 200~m stack, $11\times11$
-majority filter, with the held-out hand-drawn labels outlined in their class colours. Held out: balanced accuracy 66.7\%; 73.8\%, \kap\,0.58 overall.
-\label{fig:landforms}}
-\end{figure*}
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/accuracy_200m.png}
-\caption{(A) Where each held-out class lands on the four-class map, as a share of its area. (B) Held-out accuracy
-against the majority-filter window for the 200~m and 400~m maps; the score rises with every window, so the window was set
-by feature size. \label{fig:accuracy}}
-\end{figure*}
 
 \begin{table}[t]
 \centering
@@ -976,13 +980,6 @@ thermal bands' loss is 9.94 points, the pixel values' share again nil, and the c
 In blocks never seen, where a point lies does most or all of the thermal statistics' work, as a contrast
 stretch set region by region would; the share is not shown to be material. %% KB §69.86, §69.87, §69.91, §69.99, §69.100, §69.101
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/thermal_ablation.png}
-\caption{Test T1, first form: held-out accuracy of a Gaussian maximum-likelihood classifier on each band set at 400~m.
-The dashed line is one class everywhere. \label{fig:ablation}}
-\end{figure}
-
 \begin{table}[t]
 \centering
 \caption{Test T1 with ArcGIS Pro's support vector machine \label{tab:t1}}
@@ -1030,6 +1027,13 @@ The four-class maps are kept beside them, and the maps the paper leads with are 
 Figure~\ref{fig:landforms}, trained on the reviewed labels, with the 237 held-out polygons outlined in their class
 colours. Held out: 42.5\%, \kap\,0.31. \label{fig:landforms7}}
 \end{figure*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/thermal_ablation.png}
+\caption{Test T1, first form: held-out accuracy of a Gaussian maximum-likelihood classifier on each band set at 400~m.
+The dashed line is one class everywhere. \label{fig:ablation}}
+\end{figure}
 
 \subsection{Deep learning} \label{sec:dl}
 
@@ -1080,6 +1084,15 @@ Mons, Tholus and Patera on the U-Net map and 3 on the support vector machine map
 basin or transition units, and on the three volcanic ones both maps give the ring more edifice than the summit; the
 large volcanoes carry labels and cannot be checked this way. %% KB §69.39; logs\named_feature_check_v2.json
 
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/extra_runs.png}
+\caption{The U-Net by what its training labels held: each row a window map trained once with the published model's
+settings, scored on the 237 v2 and the 1,652 v3 held-out polygons; the first row is the published map on the second
+label set, the last three the third label set trained a second time, the retraining with Normal Ground squares on the extra edifice, and the same retraining with its learning rate fixed at the control's. Dots are scores, lines 95\% intervals with the 14 blocks resampled. A: accuracy; B: balanced accuracy.
+\label{fig:extraruns}}
+\end{figure*}
 
 \begin{figure*}[t]
 \centering
@@ -1141,8 +1154,8 @@ support vector machine is one pixel's seven bands, not its sample or its labels.
 between Crater and hills. The rule's hills, half of them on crater flanks, are harder to tell from Crater by those
 bands (two-class accuracy 0.722 against 0.877), and Pro's map on that set reads 21.0\% of the held-out Crater as
 hills, against 4.9\%: Crater, the larger class, loses what hills gains, so accuracy falls while balanced accuracy
-rises. Given each pixel's surroundings as well, each band's mean and spread over 1, 5 and 20~km, the stand-in rises
-from 39.2\% to 57.1\% on the third label set ($+9.7$ to $+28.2$ points) and to 60.9\% on the second, so the third
+rises. Given each pixel's surroundings as well, each band's mean and spread over 1, 5 and 20~km, the stand-in, scored
+on a subset of about 15,000 of the points where on one pixel it reaches 39.2\%, rises to 57.1\% on the third label set ($+9.7$ to $+28.2$ points) and to 60.9\% on the second, so the third
 set still does not help it ($-9.6$ to $-0.2$); the U-Net, at 88.2\% on the same points, leads it by $+12.0$ to
 $+42.9$. Over 51~km, the U-Net's own view, the stand-in reaches 62.0\% ($+1.85$ to $+7.3$ points more) and the
 U-Net still leads by $+9.7$ to $+37.1$, while the third label set still does not help it: what the U-Net draws
@@ -1152,7 +1165,7 @@ stand-in does better on hills and fluvial channel. Given the point's map coordin
 and the U-Net still leads by 19.0 points. %% KB §69.95, §69.97, §69.98, §69.100
 
 The same 14 held-out blocks have scored every model in this paper. In a run set out before it ran, 14 other blocks
-drawn at random, holding 895 polygons of the third label set, were held out instead and both models retrained on the
+drawn at random, holding 899 polygons of the third label set (895 of them with pixels to score), were held out instead and both models retrained on the
 other 9,366 polygons. The U-Net scores 86.6\%, \kap\,0.815, balanced accuracy 72.2\% (block interval 74.8--94.6\%),
 as the published model does on the 1,652 polygons, and leads the nearest training polygon by $+5.0$ to $+49.7$ points;
 the support vector machine scores 37.9\% and does not separate from that baseline ($-51.1$ to $+14.6$). A second draw,
@@ -1169,7 +1182,7 @@ score 35.2\% against 81.8\% for pieces of the author's, so the model has learnt 
 rule's. The rule kept its hills clear of craters of 10~km or more only by 1.3 radii, and half of its training hills
 lie within two radii of one, against 6.5\% of the author's; those the model reads as Crater (79.4\% and 81.3\% of the
 held-out ones within two radii, 28.2\% and 27.3\% beyond), and more of the fresh blocks' hills lie that close.
-Fluvial channel falls in one block, $6,\,-3$ in the naming of Table~\ref{tab:perblock}, which holds 66 of its 147 polygons at 10.9\%. %% KB §69.84, §69.85, §69.87, §69.96, §69.102
+Fluvial channel falls in one block, $6,\,-3$ in the naming of Appendix~\ref{app:perclass}, which holds 66 of its 147 polygons at 10.9\%. %% KB §69.84, §69.85, §69.87, §69.96, §69.102
 
 By the rule written before the runs the U-Net map replaces its predecessor. The support vector machine map does not:
 its \kap\ falls on both sets and Crater loses 21.8 points of producer's accuracy (40.0\% to 18.2\%), while hills gain 38.3
@@ -1225,15 +1238,6 @@ colours. Held out: 36.5\%, \kap\,0.26; 39.1\%, \kap\,0.29 on the 237 v2 polygons
 \caption{Left: the U-Net map on the third label set over \pmsixty, with a held-out block enlarged. Right: the two maps on
 the third label set under the same scorer, producer's (A) and user's (B) accuracy per class on the 237 v2 held-out
 polygons. \label{fig:unet8}}
-\end{figure*}
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.9\textwidth]{figures/extra_runs.png}
-\caption{The U-Net by what its training labels held: each row a window map trained once with the published model's
-settings, scored on the 237 v2 and the 1,652 v3 held-out polygons; the first row is the published map on the second
-label set, the last three the third label set trained a second time, the retraining with Normal Ground squares on the extra edifice, and the same retraining with its learning rate fixed at the control's. Dots are scores, lines 95\% intervals with the 14 blocks resampled. A: accuracy; B: balanced accuracy.
-\label{fig:extraruns}}
 \end{figure*}
 
 \begin{figure*}[t]
@@ -1372,14 +1376,14 @@ Cluster partitions trained on the west and east halves of Ius Chasma agree less 
 Rand index 0.40, \citealt{Hubert1985}) than for any single input (0.61 to 0.89), although the composite gives the most
 coherent maps; a one-band clustering is close to a density slice and reproduces easily. H1 was tested on the geologic map's contacts and on margins traced on CTX, and is supported on neither; H2 was tested on stand-ins (windows),
 and then on the geologic map's own rilles and channels in the five blocks that hold both, and is not supported at
-either stage (Section~\ref{sec:channels}). A second stand-in for H2,
+either (Section~\ref{sec:channels}); a second stand-in, the third of its three stages, agrees. That stand-in,
 origin taken from the valley map and the geologic map over the whole network, gives the same answer: the 155,236
 order-$\ge2$ segments on volcanic units are shallower than the 10,799 on mapped valleys (median 2.4 against
 13.9~m~km$^{-1}$), and the two differ little on the thermal index (Cohen's $d=-0.21$; \citealt{Cohen1988}). %% KB §47.3, §47.5, §69.50 (A7)
 
 The six questions of the plan are answered in the lower half of Table~\ref{tab:hyp}. Q1 to Q5 were settled on the
 way: slope from an elevation model in geographic degrees came out in percent rise with a z-factor of one, so the
-model is projected first (Section~\ref{sec:data}); Composite Bands completes in seconds on a bounded, harmonised extent;
+model is projected first (Section~\ref{sec:methods}); Composite Bands completes in seconds on a bounded, harmonised extent;
 the 8-bit depth matters less than the mosaics' stretch region by region; night infrared is the band least like any
 other ($|r|\le0.12$ in the type area); and no tributary order count is supported by the elevation model (T7). Q6, whether
 image gradients reveal unit boundaries beyond any one source, was examined last, on the 44 units of the geologic map
@@ -1498,9 +1502,9 @@ mosaic is warmer on duricrust than on dust, with the physical sign in 77\% of th
 (0.328, duricrust darker) and hardly within windows (Figure~\ref{fig:material}b). The day mosaic shows no sign of it
 (0.508). The small gain the thermal bands give within blocks does not survive map coordinates either: with latitude
 and longitude added to both band sets, on the inertia classes and the units, with either classifier, at either split,
-the thermal bands help in none of the eight runs, where without coordinates they helped within blocks in all four.
-Where they helped, they were telling the classifier where it was, as at 51~km on the landform labels
-(Section~\ref{sec:v3}). %% KB §69.138, §69.139
+the thermal bands help in none of the eight runs, where without coordinates they helped within blocks in three of
+the four (boosted trees on the inertia classes gained no accuracy, $+0.00$ points). Where they helped, they were
+telling the classifier where it was, as at 51~km on the landform labels (Section~\ref{sec:landforms}). %% KB §69.138, §69.139
 
 Calibrated THEMIS inertia \citep{Fergason2006} measures this at the mosaics' own resolution. Read over the two type
 areas from the 100~m quantitative mosaic, without downloading its 2.5~GB tiles whole, log inertia ranks with the night
@@ -1514,6 +1518,12 @@ them. %% KB §69.144
 
 \begin{figure*}[t]
 \centering
+\includegraphics[width=\textwidth]{figures/maps_on_units.png}
+\caption{The lead maps crossed with the thermophysical units on the TES grid: each class's share of each unit over the
+unit's share of \pmsixty\ (1 is no lean; the class's share of the area beside its name). \label{fig:mapsunits}}
+\end{figure*}
+\begin{figure*}[t]
+\centering
 \includegraphics[width=\textwidth]{figures/material_thermal_gain.png}
 \caption{What the thermal pair adds on calibrated material labels. (a) The gain in accuracy from adding the night and
 day mosaics to the five other bands, across held-out blocks with 95\% intervals from resampling whole blocks, for
@@ -1524,12 +1534,6 @@ duricrust from dust: area under the curve within 1, 2 and 5$^{\circ}$ windows (m
 \end{figure*}
 %% KB §69.135, §69.138, §69.139, §69.142, §69.143
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/maps_on_units.png}
-\caption{The lead maps crossed with the thermophysical units on the TES grid: each class's share of each unit over the
-unit's share of \pmsixty\ (1 is no lean; the class's share of the area beside its name). \label{fig:mapsunits}}
-\end{figure*}
 %% KB §69.136, §69.143
 
 \subsection{What each score measures} \label{sec:scores}
@@ -1555,8 +1559,8 @@ The intervals assume that whole 15$^{\circ}$ blocks are close to independent. On
 Section~\ref{sec:material} they are not quite: classification errors stay correlated to about 2,400~km for the inertia
 classes, which are provinces, and to 800~km for the thermophysical units. Grouping the 14 held-out blocks into
 30$^{\circ}$ blocks widens the accuracy interval by 4\% or narrows it by 8\% and changes no verdict, because the
-held-out blocks lie apart; blocks of 5 to 7.5$^{\circ}$ would narrow the intervals by half or more and turn both
-thermal verdicts to help. The 15$^{\circ}$ blocks are therefore the cautious choice, and the results that rest on
+held-out blocks lie apart; blocks of 5$^{\circ}$ would narrow the intervals by 60 to 64\% and blocks of
+7.5$^{\circ}$ by 41 to 49\%, and either would turn both thermal verdicts to help. The 15$^{\circ}$ blocks are therefore the cautious choice, and the results that rest on
 correlated samples are the gains within blocks. %% KB §69.141
 
 \subsection{Against earlier automated mapping}
@@ -1589,7 +1593,9 @@ this study the Viking colour carries the regional material signal, and it is not
 
 The labels limit what the classification can show. The four hand-drawn classes are landforms, and slope and relief
 alone predict them as well as the full stack. Calibrated material labels are better, and what the thermal bands add to them is the subject of
-Section~\ref{sec:material}: about a point, none of it resolved across held-out blocks once location is known.
+Section~\ref{sec:material}: about a point, and once location is known it passes the rule across held-out blocks in no
+run (one balanced-accuracy gain, $+1.6$ points with boosted trees on the inertia classes, is resolved on its own while
+accuracy falls).
 %% KB §69.133--§69.144
 Lava tube, with 44 polygons, is too thin a class for a planet-scale map; the U-Net makes it
 usable only as a province.
@@ -1686,7 +1692,7 @@ which only inertia tells from dust, gains nothing. Against 100~m THEMIS inertia 
 $\rho=+0.603$ and $+0.509$ within 10~km tiles but $+0.442$ and $+0.185$ across the two type areas: it holds inertia
 as local contrast, which a classifier across regions cannot use.
 \item Image gradients find the rims of 104 of 109 large named craters (H4), largely through the topography the
-Viking and day-infrared mosaics carry, against 38 for night infrared; fill depth recovers 68\% of them and gives 465,354 closed depressions $\ge1$~km whose precision
+Viking and day-infrared mosaics carry, against 38 for night infrared; fill depth sizes 68\% of the 117 such craters within $\pm58^{\circ}$ to within half their diameter and gives 465,354 closed depressions $\ge1$~km whose precision
 against Robbins rises from 15.3\% to 63.2\% at 5~km; recall, 52.4\% at 5~km, falls with rim degradation, from 83.1\%
 for the freshest rims to 38.4\% for the most degraded, and breached craters stay invisible. Below 100~km image
 gradients still find 62.3 to 79.4\% of the Robbins rims, fewer as craters shrink and degrade.
@@ -1723,7 +1729,7 @@ build script and the project record are published at \citet{Edwards2026data}: th
 layers in the repository, the rasters and models as the files of its release \texttt{data-2026-11-12}; the code under
 the MIT licence and everything else under CC~BY~4.0. A script there regenerates every product and figure, and the
 repository lists the software and versions that each machine ran. The source mosaics, the elevation model, the
-geologic map, the thermal-inertia map and the crater database are public from the sources cited in
+geologic map, the thermal-inertia, albedo and dust-cover maps, the THEMIS inertia mosaic and the crater database are public from the sources cited in
 Section~\ref{sec:data}. %% KB §69.105 (D23)
 
 \begin{acknowledgments}
