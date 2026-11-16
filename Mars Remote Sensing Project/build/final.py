@@ -288,7 +288,7 @@ FIGURES = [
          images=[("file", r"final_img\svm_windows.png")],
          points=["A stand-in SVM on the same stack repeats Pro's: 39.3% on the second label set, 38.8% on the third",
                  "Ten times the 1,000 pixels a class adds −0.6 to +1.0 points; the third label set helps at no window",
-                 "Surroundings lift it: 39.2% to 57.1% with windows to 20 km, 62.0% to 51 km, 69.2% with map coordinates too",
+                 "Surroundings lift it (on a 15,000-point subset): 39.2% to 57.1% with windows to 20 km, 62.0% to 51 km, 69.2% with map coordinates too",
                  "The U-Net still leads by 26.2 points, apron 14.85 and Crater 8.48: classes defined by where they lie"],
          source="§69.95, §69.97, §69.98, §69.100"),
     dict(title="What lifted the U-Net: retrainings set out first",
@@ -356,7 +356,7 @@ LIMITS = [   # (head, text)
 CONCLUSIONS = [
     "Four global products now share one co-registered grid over ±60°; the co-registration that failed four times works",
     "Viking colour, day IR and night IR span about three dimensions, night IR nearly independent of the others, but the THEMIS mosaics carry "
-    "local contrast only: night IR ranks 100 m THEMIS inertia within 10 km tiles (ρ +0.5 to +0.6), not across regions, and adds "
+    "local contrast only: night IR ranks 100 m THEMIS inertia within 10 km tiles (ρ +0.5 to +0.6), less closely across a whole window (+0.44, +0.19), and adds "
     "about a point on calibrated material labels",
     "Craters ≥ 5 km are mostly recovered as closed depressions (63.2% precision); those missed are mostly degraded or breached",
     "Routed channels follow the elevation model (89.8% under 2°) and meet the mapped valleys no more often than chance",
