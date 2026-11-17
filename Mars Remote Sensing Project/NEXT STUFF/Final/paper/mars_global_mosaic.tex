@@ -1020,6 +1020,22 @@ which four classes cannot; the cost, measured above and in Section~\ref{sec:dl},
 The four-class maps are kept beside them, and the maps the paper leads with are those on the third label set
 (Section~\ref{sec:v3}). %% KB §69.26 (D28), §69.82 (D36)
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/thermal_ablation.png}
+\caption{Test T1, first form: held-out accuracy of a Gaussian maximum-likelihood classifier on each band set at 400~m.
+The dashed line is one class everywhere. \label{fig:ablation}}
+\end{figure}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/extra_runs.png}
+\caption{The U-Net by what its training labels held: each row a window map trained once with the published model's
+settings, scored on the 237 v2 and the 1,652 v3 held-out polygons; the first row is the published map on the second
+label set, the last three the third label set trained a second time, the retraining with Normal Ground squares on the extra edifice, and the same retraining with its learning rate fixed at the control's. Dots are scores, lines 95\% intervals with the 14 blocks resampled. A: accuracy; B: balanced accuracy.
+\label{fig:extraruns}}
+\end{figure*}
+
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/04b_global60_landforms_v2.png}
@@ -1027,13 +1043,6 @@ The four-class maps are kept beside them, and the maps the paper leads with are 
 Figure~\ref{fig:landforms}, trained on the reviewed labels, with the 237 held-out polygons outlined in their class
 colours. Held out: 42.5\%, \kap\,0.31. \label{fig:landforms7}}
 \end{figure*}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/thermal_ablation.png}
-\caption{Test T1, first form: held-out accuracy of a Gaussian maximum-likelihood classifier on each band set at 400~m.
-The dashed line is one class everywhere. \label{fig:ablation}}
-\end{figure}
 
 \subsection{Deep learning} \label{sec:dl}
 
@@ -1084,15 +1093,6 @@ Mons, Tholus and Patera on the U-Net map and 3 on the support vector machine map
 basin or transition units, and on the three volcanic ones both maps give the ring more edifice than the summit; the
 large volcanoes carry labels and cannot be checked this way. %% KB §69.39; logs\named_feature_check_v2.json
 
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.9\textwidth]{figures/extra_runs.png}
-\caption{The U-Net by what its training labels held: each row a window map trained once with the published model's
-settings, scored on the 237 v2 and the 1,652 v3 held-out polygons; the first row is the published map on the second
-label set, the last three the third label set trained a second time, the retraining with Normal Ground squares on the extra edifice, and the same retraining with its learning rate fixed at the control's. Dots are scores, lines 95\% intervals with the 14 blocks resampled. A: accuracy; B: balanced accuracy.
-\label{fig:extraruns}}
-\end{figure*}
 
 \begin{figure*}[t]
 \centering
