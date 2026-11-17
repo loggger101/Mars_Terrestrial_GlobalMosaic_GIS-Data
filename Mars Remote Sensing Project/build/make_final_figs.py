@@ -19,7 +19,11 @@ from PIL import Image
 import make_interim_figs as M
 import final as F
 
-M.I = F                                     # which layouts: final.py's FIGURES
+class _Figures:                             # which layouts: final.py's FIGURES, and those the paper alone shows
+    FIGURES = F.FIGURES + [{"images": [("layout", n)]} for n in ("20_labels_v3",)]   # Fig. labelsv3 (KB §69.146)
+
+
+M.I = _Figures
 M.OUT = os.path.join(HERE, "final_img")     # where: its own folder
 
 # The final's own changes, in memory like the hidden prose, so the interim's figures stay as they are (KB §69.69).

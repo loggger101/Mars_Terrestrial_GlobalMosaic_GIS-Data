@@ -65,6 +65,8 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"final_img\07_global60_basins.png", "07_global60_basins.png"),   # layout 07 (D42, KB §69.117)
     (r"final_img\material_thermal_gain.png", "material_thermal_gain.png"),   # make_fig_material.py (KB §69.143)
     (r"final_img\maps_on_units.png", "maps_on_units.png"),   # make_fig_material.py, T13 (KB §69.143)
+    (r"final_img\20_labels_v3.png", "20_labels_v3.png"),     # layout 20, make_final_figs.py (KB §69.146)
+    (r"final_img\geomap_v3.png", "geomap_v3.png"),           # make_fig_geomap_v3.py (KB §69.146)
 ]
 # Two deck charts carry slide furniture a paper caption replaces: a title strip naming the gdb class and the KB
 # (ius_channel_candidates), a footnote citing the KB (global60_thermal). Pixels cut from the top and the bottom.

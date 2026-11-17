@@ -299,7 +299,8 @@ held-out area, and (c) Crater, hills and Normal Ground each losing under 5 point
 A third label set tests whether more and smaller training polygons help. Every seven-class polygon over
 1,500~km$^2$ or wider than 1\textdegree{} was cut on a 0.5\textdegree{} grid, each piece kept only if it passed a
 written screen for its class, and polygons were added from the crater catalogue, the geologic map and the elevation
-model, by rule and not by eye, giving 10,269 training and 1,652 held-out polygons in the same 14 blocks. The models
+model, by rule and not by eye, giving 10,269 training and 1,652 held-out polygons in the same 14 blocks
+(Figure~\ref{fig:labelsv3}; the rules in full, Appendix~\ref{app:rules}). The models
 were retrained on them; the U-Net's validation loss was unsteady, and the epoch with the lowest, the 19th of 30, was kept.
 The loss rose far late in most of the later retrainings that kept the added polygons, but not in all: on the added
 polygons alone it peaked at 3.51, and in a second training on the same labels at 2.09 where the first reached 23.25,
@@ -309,6 +310,7 @@ Each new map is scored on the 237 held-out polygons, the like-for-like compariso
 before the runs recommends a new map over its predecessor only if on both sets its balanced accuracy and \kap\ are at
 least as high, no class loses 5 points or more of producer's accuracy on the 237 polygons and, for the U-Net, volcanic
 edifice covers no more of \pmsixty. %% KB §69.49, §69.76
+
 
 The lead U-Net maps volcanic edifice on 18.0\% of \pmsixty, where the geologic map's edifice units cover 1.1\%. Measured
 before anything was changed, the extra edifice is flat, uncratered plains: off the edifice, apron and landslide units,
@@ -329,6 +331,19 @@ reading them were written before the squares were drawn (Appendix~\ref{app:predi
 held out in 14 (blue). Bottom: the 971 seven-class labels, 734 for training in 129 blocks and 237 held out in the same
 14. Each dot is one label in its class's map colour; held-out labels are ringed. Geographic coordinates, centred on
 $0^{\circ}$E. \label{fig:split}}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/20_labels_v3.png}
+\caption{The third label set, on which both lead maps were trained. (A) Its 11,921 polygons over \pmsixty, held-out
+polygons outlined in black: pieces of the seven-class polygons that passed their class's screen, and new polygons
+placed by rule, among them Crater discs at catalogued rims, fluvial strips along the mapped valleys, squares of
+smooth uncratered Normal Ground and of edifice and apron units, and troughs in the named catenae. (B) Tharsis from
+$135^{\circ}$ to $75^{\circ}$W, $10^{\circ}$S to $10^{\circ}$N: volcanic edifice and apron as large polygons cut into
+pieces by the $0.5^{\circ}$ grid, beside small squares of Normal Ground and the lava tube and hills labels of the
+chasmata. Placed by written rules (Appendix~\ref{app:rules}), not drawn by eye; Table~\ref{tab:rules} counts them
+by class. \label{fig:labelsv3}}
 \end{figure*}
 %% KB §31.3, §69.8, §69.41; build\make_block_split.py, make_fig_block_split.py
 
@@ -765,7 +780,7 @@ at Ius Chasma and Athabasca Valles; H2 expected the volcanic window steeper. Rig
 response and both tell the two windows' candidates apart (cross-validated AUC; 0.5 is chance). \label{fig:t4}}
 \end{figure*}
 
-\subsection{Lava flows}
+\subsection{Lava flows} \label{sec:lava}
 
 The classification's lava-tube class does not find lava plains. Against SIM~3292 unit groups, expressed as enrichment
 $P(\mathrm{class}\mid\mathrm{group})/P(\mathrm{class})$ (Figure~\ref{fig:t8}), lava tube is slightly depleted on volcanic
@@ -1197,6 +1212,23 @@ U-Net map, and 3 on the other, and only 30.5\% of the U-Net's edifice lies on th
 accuracy is 8.0\% on the 237 polygons and 18.3\% on the 1,652. A larger majority filter does not help the support vector
 machine: its accuracy falls from 37.4\% raw to 36.3\% at 13 pixels and 33.2\% at 127. %% KB §69.80, §69.81
 
+Against the unit groups of SIM~3292 (Figure~\ref{fig:geomapv3}, the seven-class form of Figure~\ref{fig:t8}) two of
+the matches are built in: the rules placed volcanic edifice labels on edifice units and apron labels on apron units.
+That the U-Net then calls 78.4\% of the edifice units edifice ($\times4.29$) and 89.3\% of the apron units apron
+($\times21.08$), and the support vector machine 51.6\% and 25.4\% ($\times4.04$, $\times7.15$), shows only that each
+map carries its training units across \pmsixty, the U-Net more completely. What the rules did not place reads more
+plainly. Lava tube, whose labels come from the named catenae and not from any unit, is enriched on the U-Net map on
+volcanic plains ($\times2.81$) and volcanic fields ($\times2.89$), with 67.3\% of it on the three volcanic groups,
+where the four-class map's lava tube was slightly depleted on the plains ($\times0.84$, Section~\ref{sec:lava}); on
+the support vector machine map it gathers instead on edifice and apron units ($\times5.20$, $\times3.41$), with
+24.9\% on the volcanic groups. The U-Net's lean is not a lava-flow map: its lava tube covers 5.2\% of the volcanic
+plains, and its user's accuracy is the 8.0\% above. Steep/windy hills is most enriched on the undivided highland
+($\times8.92$ U-Net, $\times3.12$ support vector machine) and on highland massifs ($\times2.65$, $\times3.33$); the
+U-Net calls 78.2\% of the massifs Crater. Normal Ground holds 93.9\% of the lowland on the U-Net map and 78.8\% on the
+other. Two errors show plainly: the U-Net calls 21.4\% of the highland group edifice, and the support vector
+machine's fluvial channel covers 45.5\% of it ($\times1.43$), far more ground than any valley map holds. %% KB §69.146; logs\geomap_check_global60_landforms_unet_v3_200m_seamfix.json, logs\geomap_check_v3.json
+
+
 The retraining against the extra volcanic edifice was judged first on its validation blocks and then on the held-out
 ones, and four of its five predictions failed (Appendix~\ref{app:predictions}). On the validation blocks it scores
 71.3\% against the control's 86.6\%, and maps edifice on 9.0\% of the ground off the edifice units against 17.5\%. On
@@ -1246,6 +1278,16 @@ polygons. \label{fig:unet8}}
 \caption{The support vector machine by how much ground it sees: a scikit-learn stand-in on the same stack, trained once
 on each label set, on one pixel, with each band's mean and spread over windows to 20~km, to 51~km, the U-Net's
 view, and to 51~km with the point's map coordinates; the published U-Net map read at the same 14,993 (A) and 14,996 (B) test points. \label{fig:svmwindows}}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/geomap_v3.png}
+\caption{The two lead maps against the unit groups of SIM~3292 \citep{Tanaka2014}, read at 1.6~km and weighted by
+area: how much more often each class occurs in a group than across \pmsixty\ ($\times1$: no association), with the
+class's share of the group in brackets. (a) The U-Net, (b) the support vector machine. Outlined: the two cells where
+the label rules placed the class on that unit, so the match is in part built in. Not an accuracy: the classes are
+landforms, the units geologic. The 12 groups shown cover 96.9\% of \pmsixty. \label{fig:geomapv3}}
 \end{figure*}
 
 \subsection{Where the two methods agree} \label{sec:agree}
