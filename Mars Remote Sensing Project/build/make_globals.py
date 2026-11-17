@@ -13,7 +13,7 @@ is 2x at 60 degrees and 5.8x at 80. The band still holds 86.6% of the surface.
 THEMIS ships on central meridian 180 while Viking and the DEM ship on 0, so the
 THEMIS array is rolled by half its width before plotting. Without that the three
 sheets would not line up and every feature would sit half a planet from where the
-other two put it -- the same mismatch that is the subject of make_meridian.py.
+other two put it -- the three-frame trap of KB §4.
 """
 import os
 import time

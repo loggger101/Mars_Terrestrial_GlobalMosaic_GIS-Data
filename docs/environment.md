@@ -7,7 +7,7 @@ What each machine that built this project runs, read from the machine by `Mars R
 
 | | |
 |---|---|
-| Written | 2026-11-05 |
+| Written | 2026-11-17 |
 | OS | Windows 11 (build 10.0.26100) |
 | CPU | Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz |
 | Memory | 68.6 GB |
@@ -15,11 +15,11 @@ What each machine that built this project runs, read from the machine by `Mars R
 | ArcGIS Pro | ArcGISPro 3.7 (build 1901) |
 | Licensed extensions | 3D Available, Spatial Available, ImageAnalyst Available |
 | ArcGIS Python | 3.13.13, `D:\ArcGISPro\bin\Python\envs\arcgispro-py3\python.exe` |
-| ArcGIS Python packages | numpy `2.3.5`, scipy `1.16.3`, matplotlib `3.10.8`, Pillow `12.2.0`, GDAL `3.12.2`, arcgis `2.4.3`, torch `2.9.1`, torchvision `0.25.0`, fastai `1.0.63` |
+| ArcGIS Python packages | numpy `2.3.5`, scipy `1.16.3`, matplotlib `3.10.8`, Pillow `12.2.0`, GDAL `3.12.2`, scikit-learn `1.6.1`, shapely `2.1.2`, arcgis `2.4.3`, torch `2.9.1`, torchvision `0.25.0`, fastai `1.0.63` |
 | Deep Learning Libraries | `3.7` |
 | CUDA (torch) | 12.9 |
 | System Python | 3.13.9, `C:\Users\Owner\AppData\Local\Programs\Python\Python313\python.exe` |
-| System Python packages | numpy `2.2.6`, matplotlib `3.10.6`, Pillow `11.3.0`, python-pptx `1.0.2`, python-docx `1.2.0`, PyMuPDF `1.28.2` |
+| System Python packages | numpy `2.2.6`, scipy `1.16.3`, matplotlib `3.10.6`, Pillow `13.0.0`, lxml `6.1.3`, python-pptx `1.0.2`, python-docx `1.2.0`, PyMuPDF `1.28.2` |
 | TeX | One MiKTeX Utility 1.11 (MiKTeX 25.12) |
 | aastex701.cls | 2025/05/09 Version 7.0.1/AAS markup document class |
 <!-- end: desktop -->

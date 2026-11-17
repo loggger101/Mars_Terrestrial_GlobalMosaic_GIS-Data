@@ -20,8 +20,8 @@ from paths import arcgis_python
 
 REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
             Path.home() / "OneDrive" / "Documents" / "GitHub" / "Mars_Terrestrial_GlobalMosaic_GIS-Data")
-SYSTEM_PKGS = ["numpy", "matplotlib", "Pillow", "python-pptx", "python-docx", "PyMuPDF"]
-ARCGIS_PKGS = ["numpy", "scipy", "matplotlib", "Pillow", "GDAL", "arcgis", "torch", "torchvision", "fastai"]
+SYSTEM_PKGS = ["numpy", "scipy", "matplotlib", "Pillow", "lxml", "python-pptx", "python-docx", "PyMuPDF"]
+ARCGIS_PKGS = ["numpy", "scipy", "matplotlib", "Pillow", "GDAL", "scikit-learn", "shapely", "arcgis", "torch", "torchvision", "fastai"]
 ROLES = {"DESKTOP-PJS73RO": "desktop"}  # host name -> section heading; any other machine is the laptop
 CLASS = "aastex701"                     # the paper's \documentclass (NEXT STUFF\Final\paper\mars_global_mosaic.tex)
 
