@@ -1,0 +1,53 @@
+{
+ "area_pm60_km2": 125523330,
+ "sets": {
+  "four": {
+   "fc": "Landform_TrainingSamples_terrain",
+   "polygons": 512,
+   "by_class": {
+    "Crater": 302,
+    "steep/windy hills": 44,
+    "lava tube": 44,
+    "Normal Ground": 122,
+    "volcanic edifice": 0,
+    "apron": 0,
+    "fluvial channel": 0
+   },
+   "area_km2": 1341602,
+   "share_pm60": 0.01069,
+   "blocks": 39
+  },
+  "second": {
+   "fc": "Landform_TrainingSamples_v2",
+   "polygons": 971,
+   "by_class": {
+    "Crater": 291,
+    "steep/windy hills": 44,
+    "lava tube": 38,
+    "Normal Ground": 121,
+    "volcanic edifice": 124,
+    "apron": 155,
+    "fluvial channel": 198
+   },
+   "area_km2": 4133487,
+   "share_pm60": 0.03293,
+   "blocks": 143
+  },
+  "third": {
+   "fc": "Landform_TrainingSamples_v3",
+   "polygons": 11921,
+   "by_class": {
+    "Crater": 1254,
+    "steep/windy hills": 752,
+    "lava tube": 157,
+    "Normal Ground": 2400,
+    "volcanic edifice": 1844,
+    "apron": 2280,
+    "fluvial channel": 3234
+   },
+   "area_km2": 4826517,
+   "share_pm60": 0.03845,
+   "blocks": 192
+  }
+ }
+}

@@ -65,7 +65,10 @@ plans. When they disagree, the KB wins and the plan is fixed.
   `make_validation_sheet.py`, `make_global60_candidate_sheets.py`, `make_athabasca_layout.py` (layout 15; adds
   its own graticule), `make_dl_map.py` and `make_unet_map.py` (layouts 16, 17), `make_v2_sheets.py` (04b, 13b, 17b), `make_v3_sheets.py` (04c, 13c, 17c; KB §69.82), `make_tes_block_layout.py` (18; needs `make_tes_block_scale.py`'s
   rasters first), `make_channel_valley_layout.py` (19; needs `make_channel_valley_check.py`'s log), `make_v3_label_layout.py`
-  (20), then `polish_layouts.py`
+  (20), `make_thermal_change_layout.py` (21; needs `make_thermal_change.py --window 25 -55 115 -25`),
+  `make_bandset_change_layout.py` (22; needs `make_bandset_change.py`), `make_terrain_bands_layout.py` (23; needs
+  `make_bandset_change.py`), `make_themis_ti_layout.py` (24), `make_block_scores_layout.py` (25),
+  `make_label_sets_layout.py` (26; KB §69.148–§69.150), then `polish_layouts.py`
   (§57, §63, §66.4, §66.9). A text-only change can go into the builder and the `.aprx` element directly, without
   a rebuild (§67.2).
 - **After any layout builder, run `polish_layouts.py`** (Arial everywhere), export with `--export <scratch>`,

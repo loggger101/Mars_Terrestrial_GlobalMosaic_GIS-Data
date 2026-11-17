@@ -12,7 +12,7 @@ The analysis extent is **±60° latitude** (86.6% of the surface), set by the co
 
 This repository is the project page and an off-drive backup of the project. The working copy lives on an external drive (about 430 GB with all derived rasters, measured 2026-10-22). The tree holds everything small: the scripts, the knowledge base, the ArcGIS project file, the hand-drawn training labels and every vector layer, the layouts, the logs and the deliverables. The rasters go in three [releases](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases).
 
-**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 266, by purpose) · [software environment](docs/environment.md) (each machine's versions, read from the machine) · [backup and restore](docs/backup.md)
+**Contents:** [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md) (the full record, every number tagged verified or open) · [rasters](docs/rasters.md) and [vector layers](exports/README.md) (what each one is) · [figures](docs/figures.md) (every map sheet and chart, with the script that makes it) · [build scripts](docs/scripts.md) (all 274, by purpose) · [software environment](docs/environment.md) (each machine's versions, read from the machine) · [backup and restore](docs/backup.md)
 
 [![Mars ±60° landform classification, seven classes, from a U-Net on the third label set](docs/thumbs/17c_unet_v3_provinces.jpg)](Mars%20Project/Global60/layouts/17c_unet_v3_provinces.png)
 *The lead map: seven landform classes over ±60° from a U-Net trained on the third label set, scored on polygons it never saw (layout 17c; the SVM map on the same labels is layout 04c, the seven-class map on the reviewed labels 04b, the four-class map 04).*
@@ -58,7 +58,7 @@ The prospectus asked whether a co-registered visible and thermal-infrared mosaic
 | Crater and channel candidates | done at ±60° and in both type areas, checked against the Robbins catalogue and the mapped valleys |
 | Landform layers | 202 channels, 381 crater rims and 86 lava margins accepted into the three layers; the review of candidates stopped at 3,791 of 9,287 |
 | Tests T1–T17 and the hypotheses | done, with every chart drawn from its test's log |
-| Map layouts | twenty-six, below |
+| Map layouts | thirty-two, below |
 | Paper and deck | final, both built from one record and checked against it number by number |
 
 ### The working record
@@ -182,7 +182,7 @@ Made in the Pro GUI: one follows its 4096-pixel processing tiles and scores belo
 
 ## Layouts
 
-The 26 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets, 08 included, are centred on 0°E; the type-area sheets are drawn on the mosaics' own grid, central meridian 180°.
+The 32 map sheets in the ArcGIS Pro project, grouped by what they show. Click one for the full sheet; [figures](docs/figures.md) gives each one's builder script and knowledge-base sections. The ±60° sheets, 08 included, are centred on 0°E; the type-area sheets are drawn on the mosaics' own grid, central meridian 180°.
 
 **The data at ±60°**
 
@@ -221,6 +221,13 @@ The 26 map sheets in the ArcGIS Pro project, grouped by what they show. Click on
 | | | |
 |---|---|---|
 | [![Layout 06: Ius Chasma, candidates to digitise](docs/thumbs/06_ius_digitising.jpg)](Mars%20Project/Global60/layouts/06_ius_digitising.png) **06** · Ius Chasma, candidates to digitise | [![Layout 09: Athabasca Valles, candidates to digitise](docs/thumbs/09_athabasca_digitising.jpg)](Mars%20Project/Global60/layouts/09_athabasca_digitising.png) **09** · Athabasca Valles, candidates to digitise | [![Layout 14: Validation: the candidates against review and the Robbins catalogue](docs/thumbs/14_validation.jpg)](Mars%20Project/Global60/layouts/14_validation.png) **14** · Validation: the candidates against review and the Robbins catalogue |
+
+**What the bands and labels decide** (added 17 November: T1 and T17 mapped, the held-out blocks, the label sets)
+
+| | | |
+|---|---|---|
+| [![Layout 21: Where the thermal bands change the map (T1 mapped)](docs/thumbs/21_thermal_change.jpg)](Mars%20Project/Global60/layouts/21_thermal_change.png) **21** · Where the thermal bands change the map (T1 mapped) | [![Layout 22: How much of the map each band set decides](docs/thumbs/22_bandset_change.jpg)](Mars%20Project/Global60/layouts/22_bandset_change.png) **22** · How much of the map each band set decides | [![Layout 23: The terrain bands, and the map they make alone](docs/thumbs/23_terrain_bands.jpg)](Mars%20Project/Global60/layouts/23_terrain_bands.png) **23** · The terrain bands, and the map they make alone |
+| [![Layout 24: The night infrared against calibrated thermal inertia (T17)](docs/thumbs/24_themis_inertia.jpg)](Mars%20Project/Global60/layouts/24_themis_inertia.png) **24** · The night infrared against calibrated thermal inertia (T17) | [![Layout 25: Where the lead maps score well](docs/thumbs/25_block_scores.jpg)](Mars%20Project/Global60/layouts/25_block_scores.png) **25** · Where the lead maps score well | [![Layout 26: The three label sets, and how the training ground grew](docs/thumbs/26_label_sets.jpg)](Mars%20Project/Global60/layouts/26_label_sets.png) **26** · The three label sets, and how the training ground grew |
 
 ## Source data
 
@@ -290,12 +297,12 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 ```
 Mars Remote Sensing Project/
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
-  build/                   266 scripts: every raster product, figure, layout, audit and deliverable
+  build/                   274 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
   NEXT STUFF/              interim report and presentation; Final/: the AASTeX paper and the final deck
   OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
 Mars Project/
-  Mars Project.aprx        the ArcGIS Pro project: 45 maps, all Mars, and 26 layouts
+  Mars Project.aprx        the ArcGIS Pro project: 63 maps, all Mars, and 32 layouts
   Global60/, TypeArea/,    metadata sidecars, models (.ecd), raster attribute tables, layouts;
   Athabasca/               Global60/checks/ holds the DEM step chips
   DLModels/                the fourteen deep-learning models' metadata and training plots (the

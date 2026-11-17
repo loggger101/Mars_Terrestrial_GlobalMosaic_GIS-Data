@@ -288,9 +288,15 @@ OnMars MDIM, CTX, MOLA/HRSC, the Perseverance / Jezero feeds).
 | `18_t3_tes_blocks` | T3 in 5° blocks: where the THEMIS pair tracks TES thermal inertia | `make_tes_block_layout.py` (§69.30) |
 | `19_channels_vs_valleys` | A1: the order ≥ 3 routed segments against the mapped valleys, ±60° and the southern highlands | `make_channel_valley_layout.py` (§69.50) |
 | `20_labels_v3` | the v3 labels, training and held out, ±60° and Tharsis, per class beside v2 | `make_v3_label_layout.py` (§69.50) |
+| `21_thermal_change` | T1 mapped: where the four-class SVM's class changes without the thermal bands, ±60° and Hellas | `make_thermal_change_layout.py` (§69.148) |
+| `22_bandset_change` | T1's three band sets mapped: how much of the map each changes against the all-band map | `make_bandset_change_layout.py` (§69.149) |
+| `23_terrain_bands` | slope and relief, the stack's terrain bands, and the four-class map they make alone | `make_terrain_bands_layout.py` (§69.150) |
+| `24_themis_inertia` | T17: the night IR beside calibrated THEMIS thermal inertia at both type areas | `make_themis_ti_layout.py` (§69.150) |
+| `25_block_scores` | the 14 held-out blocks coloured by each lead map's accuracy | `make_block_scores_layout.py` (§69.150) |
+| `26_label_sets` | the three label sets side by side, with polygons, area and blocks | `make_label_sets_layout.py` (§69.150) |
 
-The ±60° sheets (04, 04b, 05, 07, 08, 10–13, 13b, 16, 17, 17b, 18) draw in geographic `GCS_Mars_2000`, so 0°E is at the centre (08 since §64);
-the type-area sheets (01–03, 06, 09, 14, 15) draw in `Mars_Equidistant_Cylindrical_CM180`, and their footers name it. **[V]**
+The ±60° sheets (04, 04b, 05, 07, 08, 10–13, 13b, 16, 17, 17b, 18, 21–23, 25, 26) draw in geographic `GCS_Mars_2000`, so 0°E is at the centre (08 since §64);
+the type-area sheets (01–03, 06, 09, 14, 15, 24) draw in `Mars_Equidistant_Cylindrical_CM180`, and their footers name it. **[V]**
 
 Polished exports are in `Mars Project\TypeArea\layouts\` (01–03) and `Mars Project\Global60\layouts\` (04–18);
 the builders' own PNGs are written before `polish_layouts.py` runs, so copy the polished export over them.
@@ -309,7 +315,7 @@ the builders' own PNGs are written before `polish_layouts.py` runs, so copy the 
 proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal labels the same day (§69.4), the v2 labels 2026-10-27 (§69.8), the v3 labels 2026-11-01 (§69.49); counted again 2026-11-03, after D14 (§69.64, §69.69). All of
 §6 is **[V]**.
 
-### Feature classes — 42 present
+### Feature classes — 43 present
 
 | Dataset | Geometry | Rows | Made by |
 |---|---|---|---|
@@ -327,6 +333,7 @@ proposals 2026-10-23 (§69.2), read again 2026-10-24 (§69.3), the rehearsal lab
 | `Landform_CraterCandidates_auto_60` | Point | 465,354 | ±60° closed depressions ≥ 1 km (§54.4) |
 | `Landform_ChannelCandidates_auto_60` | Polyline | 969,822 | ±60° routed channels (§54.4) |
 | `Landform_ChannelCandidates_auto_60_o3` | Polyline | 44,704 | its order ≥ 3 segments, with `ValleyKm5` and `ValleyShare5`, A1's measure per segment (§69.50) |
+| `Ref_HeldOut_Blocks_v3` | Polygon | 14 | the held-out 15° blocks with their v3 polygon counts and each lead map's accuracy, for layout 25 (§69.150) |
 | ~~`Landform_CraterCandidates_auto_60_smoke`, `Landform_ChannelCandidates_auto_60_smoke`~~ | Point, Polyline | 8,098, 5,305 | X2's smoke run (§53.3); **deleted 2026-11-03 at the author's yes to D14**, after a row-for-row copy to `.backups\smoke_D14_20261103-014337.gdb` (§69.64); still in the release GeoPackage |
 | `Landform_TrainingSamples_offtharsis_draw` | Polygon | 6 | the agent's six off-Tharsis volcanic edifice polygons at Syrtis Major, MappedBy "agent CTX (KB 69.105)"; no apron drawn (§69.63, §69.105) |
 | `Landform_TrainingSamples_terrain` | Polygon | 512 | **the hand-drawn labels** (§29.2); never overwrite |
@@ -8466,3 +8473,34 @@ At the author's yes (11-17: "Add all three"), after §69.146's review of the lay
 - **Export:** `make_final_figs.py` adds the three to its paper-only list. Their tables are hidden like the prose, since the paper gives their numbers in text and captions: the exporter's table-cell pattern now also takes 19's cells, which Pro renamed "t5_1 1" when the sheet got a second table, 14's table (`v_c<row>_<col>`, its labels, bands and rule), 19's `counts` line and `table2_title`. None of `final.py`'s 14 layouts has such an element (checked before the export, so the deck's exports are unchanged). 14's legend drops "(MappedBy says who)" in memory, as other layer names are made plain; its table also printed "83 (agent)", which the paper does not use.
 - **Paper:** layout 11 beside the density paragraph of the Craters section ("Mapped by density"), with the 465,354 depressions and 352,796 catalogued craters ≥ 1 km and r = −0.11 of §53.6; layout 19 after the routed-channel figure, cited at A1's result, with §69.50's 2.8 % (rotations 3.3 %, 1.2–4.7 %), 18.0 % at 45–60° S and 1,329 of 44,704 segments; layout 14 in "Who judged what", with the review counts of §46 and §69.55 as the sheet gives them (Ius Chasma channels 94 accepted, 80 rejected of 2,610; depressions 168 and 1,476 of 1,685; Athabasca Valles channels 108 and 290 of 3,283, 200 of them the automated reading's with 3 accepted; depressions 213 and 1,475 of 1,709; none drawn by hand, so no recall). The candidate and review totals agree with the text's 9,287 and 3,791.
 - All 46 figures stay numbered in order of first citation in the body text; every number in the `.tex` is in this record (`verify_interim.py`).
+
+### 69.148 T1 mapped: the thermal bands change 14.9 % of the four-class map, most on the Hellas floor; layout 21 — 2026-11-17, desktop **[V]**
+
+The author's goal of 11-17 (look for layouts that show the data or offer a new analysis, without being asked) found that T1 (§40.1, §56) had only ever been scored on held-out polygons. New `build\make_thermal_change.py` (ArcGIS Python, GDAL, read-only on the maps; predictions P1–P3 written into it before the first run) compares the published four-class SVM at 200 m with and without the two THEMIS bands over all of ±60°: same training polygons and settings, same grid, cos-latitude weighted, 1° either side of 180° left out (§54.3). Log `logs\thermal_change.json`; grid `Global60\global60_thermal_change_0p5deg.tif` (per 0.5° cell, the share that changes); with `--window 25 -55 115 -25` the Hellas close-up, `Global60\global60_thermal_change_window.tif`, the change grouped by kind.
+
+- **14.9 % of ±60° changes class** without the thermal bands, against a held-out accuracy change of 1.4 points (§56). By class with the bands: hills 44.4 % change, lava tube 24.6 %, Crater 19.4 %, Normal Ground 8.9 %. Class shares with and without: Crater 32.4 / 31.7 %, hills 2.7 / 2.1 %, lava tube 10.7 / 12.3 %, Normal Ground 54.2 / 53.8 %. The largest single change is Normal Ground with the bands, Crater without (3.7 % of ±60°).
+- **By latitude** the south changes more: 17.4–18.8 % from 0° to 50°S, 14.4 % at 50–60°S; 11.4–14.8 % from 0° to 50°N and 7.4 % at 50–60°N. Per 0.5° cell: median 13.9 %, 90th percentile 27.4 %; 14.3 % of cells change by a quarter or more.
+- **Where:** the 10° boxes that change most lie on the Hellas floor (about 50–90°E, 30–50°S, up to 36.1 % in a box), south-west of Tharsis (150–140°W, 10–20°S), in Acidalia (30–20°W, 50–60°N) and, by eye, around Syrtis Major and Isidis. Read from the grid by eye and by box means; no unit was tested.
+- **Hellas, 25–115°E, 55–25°S:** 22.7 % changes, half of it between Crater and lava tube (Crater with the bands, lava tube without, 7.1 % of the window; the reverse 4.2 %).
+- **Predictions:** P1 under 15 % **held** (14.9 %); P2 the largest change between Crater and Normal Ground **held**; P3 lava tube larger without the bands **held** (12.3 % against 10.7 %).
+- **Layout 21** (`make_thermal_change_layout.py`; maps "Mars ±60° — the thermal bands' effect" and its Hellas map): A the 0.5° grid with Hellas outlined, B the close-up by kind of change, the class and latitude tables read from the log. Rehearsed on a copy, built, `polish_layouts.py`, exported after the polish (its graticule halos) and read.
+
+### 69.149 T1's three band sets mapped: terrain alone gives 71.1 % of the map its all-band class; layout 22 — 2026-11-17, desktop **[V]**
+
+New `build\make_bandset_change.py` (same method as §69.148, at 400 m; predictions written before the run) compares the all-band 400 m map (§56.1) with each band set's map. Log `logs\bandset_change.json`, grids `Global60\global60_bandset_change_<set>_0p5deg.tif`.
+
+| against the all-band 400 m map | changes | 0.5° cells changing ≥ 25 % | Crater / hills / lava tube / Normal Ground, share of ±60° |
+|---|---|---|---|
+| without thermal | **17.1 %** | 23.2 % | 31.7 / 2.1 / 12.3 / 53.8 % |
+| without visible | **27.4 %** | 53.8 % | 35.1 / 1.9 / 6.9 / 56.1 % |
+| slope and relief alone | **28.9 %** | 55.4 % | 31.9 / 1.7 / 8.9 / 57.5 % |
+
+(The all-band map: 33.1 / 2.3 / 10.7 / 53.9 %.) So slope and relief alone give 71.1 % of the map its all-band class; the visible bands decide more of the rest than the thermal bands, though held-out accuracy separates the sets little (§56.1). **Predictions:** P1 without visible changes more than without thermal **held**; P2 terrain alone changes most **held**; P3 without thermal at 400 m within 2 points of the 200 m 14.9 % **not held** (17.1 %). **Layout 22** (`make_bandset_change_layout.py`): the three grids on layout 21's scale, the change and held-out score of each set (read from `global60_classification_check_<set>_400m.json`), the class shares.
+
+### 69.150 Four more layouts: the terrain bands, T17's inertia, the held-out blocks, the three label sets — 2026-11-17, desktop **[V]**
+
+- **Layout 23** (`make_terrain_bands_layout.py`): slope and local relief (bands 6 and 7 of `global60_svm_stack_200m.tif`, drawn through an RGB colorizer set in the CIM, as arcpy adds no single band by path; stretch limits 0–17.8° and 2–558 m read from the stack's `STRETCH` metadata), the all-band 400 m map and the terrain-only map. The held-out polygons score them 70.5 and 70.8 %, but terrain alone wins 34 of 124 Crater polygons against 103 and puts more Crater inside the named craters than in their rings for 47.1 % of them against 61.8 % (§56.1).
+- **Layout 24** (`make_themis_ti_layout.py`): T17 (§69.144) shown: each type area's night band beside the USGS quantitative THEMIS inertia (`Reference\THEMIS_TI_quantitative_windows\`) on fixed classes in tiu, with every ρ of the T17 log. **Seen on the sheet:** the inertia mosaic is built from image strips, each offset from its neighbours; with the night mosaic's regional stretch (§28.10) this is a likely reason ρ over a window (+0.44, +0.19) is below ρ within 10 km (+0.60, +0.51). Inferred from the picture, not measured.
+- **Layout 25** (`make_block_scores_layout.py`; new feature class `Ref_HeldOut_Blocks_v3`, the 14 blocks with their held-out v3 polygon counts and accuracies, rebuilt each run and checked against `logs\v3_maps.json`'s block list and its 1,652 polygons): each held-out block coloured by each lead map's pixel accuracy on the third set's held-out polygons (`v3_polygons.by_block`). The U-Net's lowest blocks are 4_2 (60–75°E, 30–45°N, 67.5 %) and −9_−1 (Tharsis, 135–120°W, 15°S–0°, 73.3 %, 374 polygons); the SVM reaches 60 % in 3 of 14 (−11_2 99.2 %, −11_1 94.0 %, −5_−1 60.1 %).
+- **Layout 26** (`make_label_sets_layout.py`, log `logs\label_sets.json`): the three label sets filled in their class colours. Four-class: 512 polygons, 1,341,602 km², 1.07 % of ±60°, in 39 blocks; second: 971, 4,133,487 km², 3.29 %, 143 blocks; third: 11,921, 4,826,517 km², 3.84 %, 192 blocks (area on the sphere, blocks by centroid). The third set holds 12 times the second's polygons and 1.2 times its area.
+- Every builder was rehearsed on a copy of the `.aprx`, run with a backup, followed by `polish_layouts.py`, exported after the polish and read. The project now holds 32 layouts and 63 maps. No paper or deck text changed.

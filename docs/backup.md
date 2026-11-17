@@ -46,6 +46,8 @@ Not backed up anywhere but the drive (git history holds the files the repository
 
 Nothing a restore needs. `data-2026-11-12` holds every model and window map, the two edifice retrainings' included (KB §69.130).
 
+Since 17 November, the five rasters behind layouts 21 and 22 (`Global60/global60_thermal_change_0p5deg.tif`, `global60_thermal_change_window.tif` and `global60_bandset_change_<set>_0p5deg.tif`, 33 MB in all) are in no release. They are rebuilt from the released maps in under ten minutes by `make_thermal_change.py --window 25 -55 115 -25` and `make_bandset_change.py` (KB §69.148, §69.149).
+
 ## Keeping it current
 
 Run from `Mars Remote Sensing Project\build\` on the drive; each script finds the drive from its own location, so `Z:` and `F:` both work. "ArcGIS Python" below is ArcGIS Pro's `arcgispro-py3` environment: `C:\Program Files\ArcGIS\Pro\bin\Python\envs\arcgispro-py3\python.exe` on the laptop, `D:\ArcGISPro\...` on the desktop.

@@ -1,0 +1,204 @@
+{
+ "all": "global60_landforms_svm_400m.tif",
+ "weight": "cos(latitude)",
+ "excluded": "pixels within 1 degree of longitude 180",
+ "sets": {
+  "nothermal": {
+   "map": "global60_landforms_svm_nothermal_400m.tif",
+   "share_changed": 0.17112,
+   "table_all_rows_set_cols": {
+    "Crater": {
+     "Crater": 0.25388,
+     "steep/windy hills": 0.00448,
+     "lava tube": 0.0321,
+     "Normal Ground": 0.0401
+    },
+    "steep/windy hills": {
+     "Crater": 0.00444,
+     "steep/windy hills": 0.01383,
+     "lava tube": 0.00439,
+     "Normal Ground": 0.00082
+    },
+    "lava tube": {
+     "Crater": 0.01746,
+     "steep/windy hills": 0.00248,
+     "lava tube": 0.07544,
+     "Normal Ground": 0.01134
+    },
+    "Normal Ground": {
+     "Crater": 0.04132,
+     "steep/windy hills": 0.00065,
+     "lava tube": 0.01153,
+     "Normal Ground": 0.48573
+    }
+   },
+   "class_area_all": {
+    "Crater": 0.33057,
+    "steep/windy hills": 0.02348,
+    "lava tube": 0.10672,
+    "Normal Ground": 0.53923
+   },
+   "class_area_set": {
+    "Crater": 0.3171,
+    "steep/windy hills": 0.02145,
+    "lava tube": 0.12346,
+    "Normal Ground": 0.538
+   },
+   "changed_by_class_all": {
+    "Crater": 0.23198,
+    "steep/windy hills": 0.41088,
+    "lava tube": 0.29312,
+    "Normal Ground": 0.09922
+   },
+   "changed_by_lat_band": {
+    "+50..+60": 0.07597,
+    "+40..+50": 0.12375,
+    "+30..+40": 0.1342,
+    "+20..+30": 0.13989,
+    "+10..+20": 0.13951,
+    "+0..+10": 0.16791,
+    "-10..+0": 0.20467,
+    "-20..-10": 0.21078,
+    "-30..-20": 0.20969,
+    "-40..-30": 0.22178,
+    "-50..-40": 0.21011,
+    "-60..-50": 0.18011
+   },
+   "cells_over_25pct": 0.23207,
+   "grid": "global60_bandset_change_nothermal_0p5deg.tif"
+  },
+  "novisible": {
+   "map": "global60_landforms_svm_novisible_400m.tif",
+   "share_changed": 0.27445,
+   "table_all_rows_set_cols": {
+    "Crater": {
+     "Crater": 0.22089,
+     "steep/windy hills": 0.00525,
+     "lava tube": 0.03558,
+     "Normal Ground": 0.06885
+    },
+    "steep/windy hills": {
+     "Crater": 0.00498,
+     "steep/windy hills": 0.01177,
+     "lava tube": 0.00574,
+     "Normal Ground": 0.00098
+    },
+    "lava tube": {
+     "Crater": 0.06618,
+     "steep/windy hills": 0.00169,
+     "lava tube": 0.02022,
+     "Normal Ground": 0.01863
+    },
+    "Normal Ground": {
+     "Crater": 0.05875,
+     "steep/windy hills": 0.00047,
+     "lava tube": 0.00733,
+     "Normal Ground": 0.47268
+    }
+   },
+   "class_area_all": {
+    "Crater": 0.33057,
+    "steep/windy hills": 0.02348,
+    "lava tube": 0.10672,
+    "Normal Ground": 0.53923
+   },
+   "class_area_set": {
+    "Crater": 0.3508,
+    "steep/windy hills": 0.01918,
+    "lava tube": 0.06888,
+    "Normal Ground": 0.56114
+   },
+   "changed_by_class_all": {
+    "Crater": 0.33179,
+    "steep/windy hills": 0.49879,
+    "lava tube": 0.81053,
+    "Normal Ground": 0.12343
+   },
+   "changed_by_lat_band": {
+    "+50..+60": 0.08307,
+    "+40..+50": 0.19372,
+    "+30..+40": 0.23031,
+    "+20..+30": 0.22823,
+    "+10..+20": 0.23678,
+    "+0..+10": 0.2819,
+    "-10..+0": 0.32625,
+    "-20..-10": 0.33348,
+    "-30..-20": 0.30024,
+    "-40..-30": 0.35816,
+    "-50..-40": 0.37203,
+    "-60..-50": 0.28356
+   },
+   "cells_over_25pct": 0.5378,
+   "grid": "global60_bandset_change_novisible_0p5deg.tif"
+  },
+  "terrain": {
+   "map": "global60_landforms_svm_terrain_400m.tif",
+   "share_changed": 0.28908,
+   "table_all_rows_set_cols": {
+    "Crater": {
+     "Crater": 0.1982,
+     "steep/windy hills": 0.00391,
+     "lava tube": 0.05388,
+     "Normal Ground": 0.07458
+    },
+    "steep/windy hills": {
+     "Crater": 0.00464,
+     "steep/windy hills": 0.01111,
+     "lava tube": 0.00703,
+     "Normal Ground": 0.00071
+    },
+    "lava tube": {
+     "Crater": 0.06178,
+     "steep/windy hills": 0.00147,
+     "lava tube": 0.02266,
+     "Normal Ground": 0.02081
+    },
+    "Normal Ground": {
+     "Crater": 0.05436,
+     "steep/windy hills": 0.00011,
+     "lava tube": 0.0058,
+     "Normal Ground": 0.47896
+    }
+   },
+   "class_area_all": {
+    "Crater": 0.33057,
+    "steep/windy hills": 0.02348,
+    "lava tube": 0.10672,
+    "Normal Ground": 0.53923
+   },
+   "class_area_set": {
+    "Crater": 0.31898,
+    "steep/windy hills": 0.0166,
+    "lava tube": 0.08936,
+    "Normal Ground": 0.57507
+   },
+   "changed_by_class_all": {
+    "Crater": 0.40044,
+    "steep/windy hills": 0.52698,
+    "lava tube": 0.7877,
+    "Normal Ground": 0.11177
+   },
+   "changed_by_lat_band": {
+    "+50..+60": 0.08448,
+    "+40..+50": 0.20171,
+    "+30..+40": 0.23899,
+    "+20..+30": 0.23881,
+    "+10..+20": 0.24962,
+    "+0..+10": 0.30058,
+    "-10..+0": 0.34687,
+    "-20..-10": 0.35278,
+    "-30..-20": 0.32119,
+    "-40..-30": 0.37787,
+    "-50..-40": 0.38885,
+    "-60..-50": 0.29027
+   },
+   "cells_over_25pct": 0.55368,
+   "grid": "global60_bandset_change_terrain_0p5deg.tif"
+  }
+ },
+ "predictions": {
+  "P1 without visible changes more than without thermal": "held",
+  "P2 terrain only changes the most": "held",
+  "P3 without thermal at 400 m within 2 points of 14.9 %": "not held"
+ }
+}
