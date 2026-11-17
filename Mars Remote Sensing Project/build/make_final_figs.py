@@ -10,7 +10,7 @@ crops in interim_img\ are never touched. The .aprx is opened, never saved; Pro m
 
 The charts drawn from logs come from make_fig_final.py (system Python).
 """
-import os, sys
+import os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -20,10 +20,18 @@ import make_interim_figs as M
 import final as F
 
 class _Figures:                             # which layouts: final.py's FIGURES, and those the paper alone shows
-    FIGURES = F.FIGURES + [{"images": [("layout", n)]} for n in ("20_labels_v3",)]   # Fig. labelsv3 (KB §69.146)
+    FIGURES = F.FIGURES + [{"images": [("layout", n)]} for n in (
+        "20_labels_v3",                                     # KB §69.146
+        "11_global60_depressions", "19_channels_vs_valleys", "14_validation")]   # KB §69.147
 
 
 M.I = _Figures
+# The paper gives their tables' numbers in its text, so the tables are hidden like the prose: 19's cells, which Pro
+# renamed "t5_1 1" when the sheet got a second table; 14's table (v_c<row>_<col>, its labels, bands and rule); 19's
+# line of counts and second table's title. None of final.py's layouts has such an element (checked 2026-11-17,
+# KB §69.147). 14's legend names the review field that records who traced each margin; the caption says it.
+M.TABLE_CELL = re.compile(r"t\d+_\d+(_bg)?( \d+)?$|v_(c\d+_\d+|l\d+|h\d*|band\d+|rule)$|counts$|table2_title$")
+M.PLAIN_NAMES = M.PLAIN_NAMES + [(re.compile(r"\s*\(MappedBy says who\)"), "")]
 M.OUT = os.path.join(HERE, "final_img")     # where: its own folder
 
 # The final's own changes, in memory like the hidden prose, so the interim's figures stay as they are (KB §69.69).

@@ -414,11 +414,22 @@ with the mosaic. %% KB §69.82, §69.83
 
 Three kinds of judgement enter the results, and they are kept apart. The author drew the 512 four-class polygons,
 reviewed the proposals of the seven-class scheme, and reviewed 3,791 of the 9,287 type-area candidates as accept,
-reject or unsure. Written rules, fixed before they ran, screened the apron and fluvial proposals of the second label
+reject or unsure (Figure~\ref{fig:review}). Written rules, fixed before they ran, screened the apron and fluvial proposals of the second label
 set and placed every polygon of the third (Appendix~\ref{app:rules}); no one looked at those rows to accept them.
 The rest was read by an automated process: the remaining candidate channels at Athabasca Valles and the origin of each accepted channel, the lava
 margins traced on the Context Camera mosaic, the probability sample of Section~\ref{sec:sample}, and six edifice
 polygons outside Tharsis. %% KB §69.33, §69.55, §69.105
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/14_validation.png}
+\caption{The type-area candidates as reviewed, over the 100~m hillshade: accepted, rejected, unsure or not reviewed,
+with the crater database's craters of at least 1~km \citep{Robbins2012} as dots and, at Athabasca Valles, the lava
+margins traced on Context Camera images. At Ius Chasma 94 channels were accepted and 80 rejected of 2,610, and 168
+depressions accepted and 1,476 rejected of 1,685; at Athabasca Valles 108 and 290 of 3,283 channels, 200 of them
+decided by the automated reading, which accepted 3, and 213 and 1,475 of 1,709 depressions. No feature the
+detectors missed was drawn in, so the review measures precision and not recall. \label{fig:review}}
+\end{figure*}
 
 Each of the automated readings was given a check, registered before it began, and the checks are reported whether
 or not they passed. The process read candidates from contact sheets that show each one in four panels at 100~m (local relief,
@@ -639,13 +650,23 @@ the two type areas. Orange, the closed depressions; blue, the crater database \c
 depressions accepted in the review. \label{fig:sfd}}
 \end{figure*}
 
-Mapped by density, the small candidates do not follow the craters: per 0.5$^{\circ}$ cell their log density correlates
+Mapped by density (Figure~\ref{fig:depmaps}), the small candidates do not follow the craters: per 0.5$^{\circ}$ cell their log density correlates
 with that of Robbins at $r=-0.11$, nearly flat across latitude bands while Robbins doubles, and their pattern shows
 north--south stripes where the HRSC/MOLA blend is sharpest. Below about 5~km the detector maps the elevation model's
 resolution as much as the craters. Relative crater density per geologic unit, which needs no detector, ranks the units
 as expected: on \lAv\ Robbins counts 1,122 craters $\ge1$~km per $10^6$~km$^2$, against 1,760 and 2,183 on the older
 units of the Athabasca window; the detector reverses the order (4,966 on \lAv) by counting non-crater pits on flat lava.
 These densities are relative and are not converted to ages \citep{Hartmann2005}. %% KB §53.6, §42.2
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/11_global60_depressions.png}
+\caption{Closed depressions of at least 1~km in the 200~m elevation model (top, 465,354) and craters of at least 1~km
+in the crater database \citep{Robbins2012} (bottom, 352,796), counted per 0.5$^{\circ}$ cell of true area, per
+$10^4$~km$^2$. The detector's density does not follow the catalogue's (log densities, $r=-0.11$): it hardly changes
+from the smooth north to the cratered south, and its north--south stripes and blocks follow the elevation model's
+makeup, not the geology. \label{fig:depmaps}}
+\end{figure*}
 
 Figure~\ref{fig:t2} gives every unit of at least 20,000~km$^2$ in the two windows. At Athabasca the catalogue's order
 is the stratigraphic one, \lAv\ (184,458~km$^2$, 207 craters) below the Amazonian and Hesperian volcanic unit (1,760)
@@ -687,7 +708,7 @@ ground where the DEM holds few pits, and their length per cell correlates negati
 depressions ($r=-0.35$). Of the two global valley maps, \citet{Hynek2010} and \citet{Alemanno2018}, the second is the
 reference: against its lines, 2.8\% of the order-$\ge3$ length lies within 5~km of a mapped valley and 2.0\% of the
 valley length within 5~km of such a segment, no better than the valley map rotated in longitude (precision 1.2 to
-4.7\%, median 3.3\%). Precision is 10.3\% for the largest trunks (order $\ge5$) and 18.0\% from $45^{\circ}$ to
+4.7\%, median 3.3\%; Figure~\ref{fig:valleys}). Precision is 10.3\% for the largest trunks (order $\ge5$) and 18.0\% from $45^{\circ}$ to
 $60^{\circ}$S, and 0.1\% from the equator to $30^{\circ}$N, where 46\% of the order-$\ge3$ length lies and few valleys
 are mapped. The routed network is the elevation model's drainage, not a valley map. %% KB §54.4, §55.4, §53.6, §68.5, §69.50 (A1)
 
@@ -696,6 +717,18 @@ are mapped. The routed network is the elevation model's drainage, not a valley m
 \includegraphics[width=\textwidth]{figures/12_global60_channels.png}
 \caption{Routed channels of Strahler order 3 to 5 over the \pmsixty\ hillshade (orders 1 and 2 are not drawn). Most
 high-order paths lie on plains under $2^{\circ}$ and follow the DEM's makeup as much as real drainage. \label{fig:channels}}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/19_channels_vs_valleys.png}
+\caption{Routed segments of Strahler order 3 and higher against the valley lines of \citet{Alemanno2018}: a segment is
+green when at least half its length lies within 5~km of a mapped valley, orange when it lies farther. (A) \pmsixty:
+2.8\% of the order-$\ge3$ length lies within 5~km, against 3.3\% (1.2 to 4.7\%) for the valley map rotated in
+longitude; most of that length runs across the low-latitude volcanic plains, where no valleys are mapped. (B) The
+southern highlands, $90^{\circ}$W to $0^{\circ}$, $30^{\circ}$ to $60^{\circ}$S, where the match is closest: 18.0\%
+from $45^{\circ}$ to $60^{\circ}$S. Of the 44,704 order-$\ge3$ segments, 1,329 lie mostly within 5~km of a
+valley. \label{fig:valleys}}
 \end{figure*}
 
 How many tributary orders the 100~m stack resolves (test T7) has no answer the elevation model supports. Over
