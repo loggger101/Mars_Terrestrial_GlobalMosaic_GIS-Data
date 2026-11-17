@@ -47,7 +47,7 @@ The prospectus asked whether a co-registered visible and thermal-infrared mosaic
 | How any number was reached | the [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md), by section number (the paper's source cites one beside every number) |
 | The earlier deliverables | the interim report and presentation in [`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF); the prospectus and Presentation 1 in [`OLD/`](Mars%20Remote%20Sensing%20Project/OLD) |
 
-**The work is finished.** The paper, the deck and the maps are final as of 12 November 2026, for the final due **8 December 2026**; no run is in progress, and every result is in the paper, the deck and the knowledge base.
+**The work is finished.** The maps and data are final as of 12 November 2026, and the paper and the deck as of 16 November, after their last audit corrections, for the final due **8 December 2026**; no run is in progress, and every result is in the paper, the deck and the knowledge base.
 
 | Part of the project | State |
 |---|---|
