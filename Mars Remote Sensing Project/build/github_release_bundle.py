@@ -114,7 +114,8 @@ if __name__ == "__main__":
         if not exists:
             subprocess.run(["gh", "release", "create", tag, "-R", REPO, "--title", tag,
                             "--notes", "Rasters, caches and vector exports from the project drive. "
-                                       "See the README section 'Restoring'."], check=True)
+                                       "What each asset holds and how to restore it: docs/backup.md "
+                                       "('Restoring')."], check=True)
         for a in assets:   # one at a time, so a dropped connection costs one file
             subprocess.run(["gh", "release", "upload", tag, str(a), "-R", REPO, "--clobber"], check=True)
             print("uploaded", a.name, flush=True)

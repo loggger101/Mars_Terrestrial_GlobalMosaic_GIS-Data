@@ -158,7 +158,7 @@ def main():
            "SHA256SUMS and docs/backup.md." if PATCHED else
            "Large derived products from the project drive: the ±60° derivatives (byte-split, "
            "reassemble with `cat name.part* > name`), the deep-learning exports and the GUI ±60° "
-           "segmentation. See SHA256SUMS and the README section 'Restoring'.")
+           "segmentation. See SHA256SUMS and docs/backup.md ('Restoring').")
     have = existing()
     zip_parts("global60-sidecars", MP, sorted(p for b in BIG for p in G60.glob(b + ".*xml")), have)
     lo = MP / "LabeledObjects"
