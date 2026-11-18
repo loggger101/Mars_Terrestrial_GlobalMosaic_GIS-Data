@@ -24,8 +24,8 @@ plans. When they disagree, the KB wins and the plan is fixed.
    `build\retarget_junction.py` (the scripts print the command); the first machine then needs them retargeted back. On
    a machine new to the drive, run the preflight with the ArcGIS Pro Python:
    `python "<drive>\Mars Remote Sensing Project\build\desktop_check.py" --gpu` (junctions, GPU, deep-learning libraries).
-5. **What changed since last time?** `NEXT-STEPS.md` "Resume here", the review tally (`python build\accept_reviewed.py`,
-   a dry run), new files on the drive, and the GP history (KB §9). Plan from that, not from a snapshot.
+5. **What changed since last time?** `NEXT-STEPS.md` "Resume here" (the review closed 11-10, so the review tally,
+   `python build\accept_reviewed.py` as a dry run, no longer moves), new files on the drive, and the GP history (KB §9). Plan from that, not from a snapshot.
 
 ## 2. Where everything is
 
@@ -33,7 +33,7 @@ plans. When they disagree, the KB wins and the plan is fixed.
 |---|---|
 | the record | `Mars Remote Sensing Project\PROJECT-KNOWLEDGE.md` (§1–§16 reference, §17 on the dated log; §11 open questions; tags `[V]` verified, `[E]` earlier, `[?]` open) |
 | the plan | `Mars Remote Sensing Project\NEXT-STEPS.md` ("Resume here"; standing §1; decisions §2; after-review steps §3; tests §4; desktop jobs §5; the review §6; figures and the final §7; schedule §8; risks §9; ruled out §10) |
-| the interim plan | `Mars Remote Sensing Project\INTERIM-PLAN.md` (the living build and its commands §0; progress facts §3; hypotheses §5; timeline §6; wording traps §7) |
+| the interim plan | `Mars Remote Sensing Project\INTERIM-PLAN.md` (done: report 5 Nov, talk 10 Nov; kept as the record of the living build and its commands §0; progress facts §3; hypotheses §5; timeline §6; wording traps §7) |
 | scripts | `Mars Remote Sensing Project\build\` (246 `.py` / `.ps1`; catalogue in the repo's `docs/scripts.md`); logs and test results in `build\logs\` |
 | interim deck and report | `Mars Remote Sensing Project\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx` (32 slides) and `Mars Mosaic - Interim Report.docx` (21 pages), built from `build\interim.py` |
 | ArcGIS project | `Mars Project\Mars Project.aprx` (45 maps, 26 layouts, KB §5); `Mars Project\Mars Project.gdb` (KB §6); `.aprx` backups in `Mars Project\.backups\` (one per write; drive only) |
@@ -115,7 +115,8 @@ plans. When they disagree, the KB wins and the plan is fixed.
   exits 1 on a personal pronoun (§39.4).
 - **Deletions only on explicit approval**, after an inventory; send to the Recycle Bin, never hard-delete; emptying
   it is the author's call (§37, §50, §57.5). Machine output enters the `Landform_*` digitising classes only
-  through an accept in review (§25, §46).
+  through an accept in review (§25, §46); the exceptions, at the author's word, are the agent's CTX margins and its
+  readings of 11-02 and 11-10, each marked as its own (§69.52, §69.55, §69.105).
 - **Never start a ±60° segmentation, a multi-hour job not in `NEXT-STEPS.md`, or a software install without asking.**
 
 ## 4. End of every session

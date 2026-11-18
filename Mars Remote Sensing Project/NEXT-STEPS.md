@@ -9,95 +9,44 @@ checklist, is `HANDOFF-DESKTOP.md`.
 | deadline | date |
 |---|---|
 | interim data cut | **26 October** (D20; was 2 November): the interim covers what is measured by then |
-| interim presentation | **10 November** (D16, the author, 2026-10-27); the report's date not given, plan against the same day |
-| label review, v2 runs, digitising: for the final | **27 October – 22 November** (the v2 runs need ~2 days after the label review) |
+| interim presentation | **10 November** (D16): given; the report went in on 5 November (§69.79, §69.107) |
+| label review, v2 runs, digitising: for the final | **27 October – 22 November**: done (the label review §69.8, the runs §69.24–§69.126; the hand work closed 11-10, §6) |
 | data freeze | **22 November** |
 | final | **Tuesday 8 December 2026** |
 
 ---
 
-## Resume here — 2026-11-11 (§69.112)
+## Resume here — 2026-11-17 (§69.153)
 
-Only the state, what waits on whom and the next step; the history behind each line is the KB section it cites
-(condensed 2026-10-31, §13.1 P10: the dated paragraphs since 10-18 are in git history and KB §58–§69.34).
+Only the state and what is left; the history of every line is the KB section it cites and git (the 11-11 version
+of this section, with each run's dated account, is in the history; condensed 2026-11-17).
 
-**Where it stands.**
-- **The author does no more manual review (11-10); the agent did the items left (§69.105):** the 86 traced margins read again blind (56 of 85 kept; T5 on them not supported, +3.3 pt, −7.2 to +13.8), and six off-Tharsis edifice polygons at Syrtis Major (U-Net v3 7.7 %, SVM v3 0.6 %; no apron drawn). D33 closed; blocks 12, 15 and 19 (a)–(c), (g), (h) are in the paper (26 pages) and deck.
-- **Both v3 maps lead the final (D36, §69.82; the author, 11-07), every extra run is scored, rep last, 11-11** (`run_v3x.ps1`, about 50–65 h from 11-07 14:47, queue replaced 15:30 after a fault in its exit codes, §69.83; fresh done 11-08, F1–F5 held, U-Net 86.6 % on 14 other blocks, in the paper and deck, §69.84; its weak hills are the rule-placed kind, §69.85; noth done 11-09: T1 not held, T2 held, −6.4 and −7.6 pt, not resolved by block, in the paper and deck, §69.86; the noth map differs more off the volcanic units than on them, and the rule's hills sit on crater flanks, §69.87; cut done 11-09: C1 held, 78.1 % balanced on the v2 polygons, no loss spikes, S1 registered for add, §69.88; a second v3 training, rep, queued after fresh2 at the author's yes (R1–R3 written first, second queue PID 64600; everything ends about early 11 Nov, add_train running ~23.5 min an epoch), §69.89; the loss spikes go with the added polygons, not the class weights, §69.90; noth's drop is apron read as edifice in the Tharsis block −9_−1, §69.91; cut falls short of base on Crater, gains edifice on Tharsis, §69.92; add done 11-09: C2, C4 held, C3 not, the halves about equal; S1 not decided (3.51); in the paper and deck, §69.93; the extra runs drawn in one figure, paper Figure 25 and deck slide 35, rerun when rep ends, §69.94; why the SVM did not rise: one pixel's bands, not its 1,000-a-class sample or its labels (stand-in, Q0–Q3 held), and the third set's hills take Crater, §69.95; surroundings to 20 km lift its stand-in 39.2 → 57.1 %, the third set still no help, §69.97; to 51 km 62.0 %, the U-Net still +9.7 to +37.1 ahead, §69.98; without the thermal bands that stand-in loses 8.0 points, resolved, mostly apron (N1, N2 not held), §69.99; all of it in the window statistics and most or all of it made up by map coordinates instead (S1 held, S2 not), §69.100; a second draw of the points repeats both (D1–D3 held; the coordinates make up 80 % there), §69.101; fresh2 scored 11-10: F6.1–F6.4 held, F6.5 not (U-Net 85.4 %, its lead over the nearest training polygon, 80.6 % there, resolved by balanced accuracy only), §69.96; that miss is fresh2's class mix: at the 1,652 polygons' mix the lead is resolved there, and over both draws as scored (P1–P4 held), §69.102; rep done 11-11 07:39: R1 and R2 held, R3 not; by score the thermal drop is larger than one training against another, by map it is not, and volcanic edifice covers 8.7 % of the windows against 16.3 %, so the class areas are one training's; in the paper, deck and release `data-2026-11-10`, §69.106). Scores (§69.81, §69.80): U-Net v3 87.6 %, κ 0.844 on the 237 v2 polygons (v2 69.0 %, 0.606) and 49.6 % (40.8–58.5) on the probability sample (21.7 %), edifice 18.0 % of ±60° (40.0), no polygon leak; the rule recommends it. SVM v3 39.1 %, κ 0.288 (v2 42.5 %, 0.310), sample 40.2 % (39.9): the rule does not, its Crater falls 21.8 points. The paper and deck moved to both on 11-07: the U-Net with the rule, the SVM against it, which both say.
-- **The ±60° products** (KB §53–§57, §66): 465,354 closed depressions ≥ 1 km and 969,822 routed channel segments
-  (layouts 11, 12), which find the mapped valleys no better than a rotated valley map (A1, §69.50): the DEM's
-  drainage paths, not a channel map; the four-class SVM map at 200 m with an 11 × 11 majority filter, 73.8 %, κ 0.58 held out (§57,
-  layout 04); the two-pass U-Net province map, 98.9 %, κ 0.980 held out (§66.8, layout 17). **A geography-only
-  baseline**, each pixel the nearest training polygon's class, scores 83.2 % on the same polygons, above the SVM
-  map, which leads it only by balanced accuracy (§69.35); in the paper since 11-01 (D30, §69.48). Crater size-frequency curves: §69.35.
-- **How firm the scores are** (A5, §69.44): resampling the 14 held-out blocks, the four-class U-Net's lead over the
-  SVM map (+11.1 to +41.0 pt) and T1's thermal gain (+0.46 to +2.67 pt) hold; the seven-class U-Net's 26.5-point
-  accuracy lead over the seven-class SVM does not (−9.7 to +47.8; by balanced accuracy it does, +2.3 to +19.5), nor
-  does the SVM map's position against the baseline either way. Three blocks hold 61.6 % of the four-class held-out
-  area; the seven-class lead sits on the two Tharsis blocks. In the paper since 11-01 (D31, §69.47).
-- **Crater recall explained** (A11, §69.45): recall rises with Robbins' rim state, 34.9 → 66.0 % at ≥ 5 km; fresh
-  rims ≥ 10 km are found at 90–100 %; partial rims 18–27 points less often. C5's rule cuts both sets at Dmin, which
-  understates recall by 4.5–8 points at every Dmin above 1 km (≥ 5 km: 52.4 % with one side cut) and precision at
-  ≥ 50 km by 15–20. The paper's figure and text take the one-side cut since 11-01 (D32, §69.47).
-- **Seven classes** (D17, D28): 971 reviewed v2 labels, 734 training and 237 held out (§69.8). On the v2 held-out
-  polygons the seven-class SVM scores 42.5 %, κ 0.310 and the seven-class U-Net 69.0 %, κ 0.606; both fail D18's
-  rule, and **they lead all the same** (layouts 04b, 13b, 17b; §69.24–§69.27). The U-Net maps edifice on 40.0 % of
-  ±60° (§69.25; 39.5 % on T8's 1.6 km mask), 70 % of it off the volcanic units, most on SIM 3292's highland group, 46.8 % of which it calls edifice
-  (T8, A14, §69.37). Against named features (A15, §69.39), fluvial channel concentrates on the named valleys' lines
-  on both maps (U-Net 83 % of 83 valles), edifice on none of the 10 named small edifices on the U-Net.
-  On the 1,652 v3 held-out polygons (A16, §69.57) both v2 maps score ~3 points lower (65.8 %, 39.8 %), and the
-  U-Net's balanced lead (+12.5 pt) is not resolved by block; the paper and deck say so since 11-02 (D35).
-- **Thermal:** T1, +1.36 pt at 200 m in overall accuracy and none by balanced accuracy (§56, §69.18, D25); T9 (A8,
-  §69.50), on SIM 3292's unit groups, cannot price it: the stack predicts them no better than the commonest group; T3, the
-  THEMIS pair against TES inertia peaks in 2–5° blocks at r ≈ 0.12 (§69.29; layout 18, §69.30).
-- **The review, the critical path** (§69.33): **3,791 of 9,287 candidates**: every closed depression at both type
-  areas, the 188 steep Ius channels, 209 of the 409 rock-floored Athabasca channels. The digitising classes hold 202
-  channels, 381 crater rims, none drawn by hand, and 86 lava margins the agent traced on CTX (below). **The agent cannot stand in** (§69.51, 11-02): blind on 48 of the author's calls it agreed at chance
-  (46.5 %, κ 0.08), so the review stays the author's, now **without Pro**: contact sheets and a guide in
-  `Mars Project\review_sheets\`, answered as letters in `answers.txt`, written in by `apply_sheet_review.py`.
-  **On CTX (§69.52, 11-02)** the agent traced **86 Athabasca lava margins (1,476 km, all 126 plates)** into
-  `Landform_LavaFlowMargins` (MappedBy "agent CTX"), so T5 has run on traced margins: H1 still not supported
-  (day IR − Viking red +4.9 pt [−2.7, +13.1]). Its
-  channel review (3 accepts of 200) and its Origin (29 fluvial, 0 volcanic of 199) both **failed their repeat gates**;
-  **at the author's word (11-02, §69.55) they are written in all the same, marked as the agent's** (ReviewNote /
-  Notes "agent CTX (KB 69.55)"; any answer of the author's replaces them): the channel class now holds 202 (3 the
-  agent's), Athabasca channel precision 27 % combined, the author's own 50 %. H2's stage 2 cannot run in these type
-  areas: all 29 fluvial Origins are at Ius, and the author said skip drawing volcanic ones (§69.63). R1 and R2 are scored on the agent's labels too (§69.55).
-- **The project and the deliverables:** 45 maps and 26 layouts, no broken source (§5; the 42nd, "Off-Tharsis labels (author)", 11-03, §69.63); every sheet's text read against the record and seven corrected 11-03, layout 14's recall now "–" until a feature is drawn by hand (§69.69). The interim at its 26 October
-  cut (D20): 32 slides and a 21-page report, rebuilt 10-31 for layout 11's corrected citation (§69.34); speaker
-  notes on every slide since 11-01, the slides unchanged (§69.41). The final
-  paper (39 pages since 11-11, §69.117; the deck 51 slides since 11-11, §69.122, compiled by the repository's CI on every push that touches it, §69.42) and deck lead with the seven-class maps (§69.27); their review figures stay at §69.7's until the
-  freeze (§12.1). Backup: release `data-2026-11-12`, the final data release (§69.130; `data-2026-11-10`, §69.105, and `data-2026-10-29`, §69.28, before it).
-- **The machines:** the drive-root junctions point at `F:` and are broken on the laptop (§58); the drive and the
-  clone agree, and `github_sync.py` refuses if the clone ever holds work the drive lacks (§69.20). `run_v3.ps1` ended 11-07 (§69.81):
-  the drive and Pro are free again.
-  The laptop runs scorer work from the cached 400 m class arrays (`build\*_ov400.npy`) in minutes; run
-  one such job at a time: two together ran out of memory on 11-01 (§69.44).
+**Where it stands: the work is finished; the freeze (22 Nov) and the final (8 Dec) remain.**
+- **The maps that lead the final** (D36, §69.82): the seven-class U-Net and SVM on the third label set, U-Net
+  87.6 %, κ 0.844 and SVM 39.1 %, κ 0.288 on the 237 v2 held-out polygons; the rule recommends the U-Net, not the
+  SVM, and the paper and deck say both. Every extra run, the edifice retrainings edf and edf2 included, is scored
+  and reported as a test (§69.84–§69.126); the lead is unchanged.
+- **The tests:** every one in §4 has run and is in the paper (H1–H4, Q1–Q6, T1–T17, the material-label tests);
+  T1 is mapped over ±60° too (§69.148–§69.151).
+- **The review and the hand work: closed** (§6; the author's decision of 11-10, §69.105, §69.152). The agent's
+  readings are marked as its own; the paper calls them an automated process.
+- **The deliverables:** the paper, 51 pages and 47 figures, and the deck, 53 slides, both built, read and
+  checked by `verify_interim.py` (§69.145–§69.151); the release `data-2026-11-12` (§69.130) with
+  `derivatives-2026-11-11` and `derivatives-2026-10-06`; the README written as finished work (D43, §69.130); the Pro
+  project holds 63 maps and 32 layouts (§69.150). The interim went in on 5 Nov and was presented on 10 Nov.
+- **The machines:** the drive and the clone agree, `github_sync.py` refuses if they do not (§69.20); nothing is
+  running on the desktop.
 
-**Next, in this order:**
+**Left, in order:**
 
-| # | what | who | how | done when |
-|---|---|---|---|---|
-| 1 | **The author's review items: done by the agent, 11-10** (the author's word: no more manual review, KB §69.105): the 86 CTX-traced margins read again blind on the 29 sheets (`answers_agent.txt`; 56 `k`, 25 `p`, 4 `n`, 1 `u`); six off-Tharsis edifice polygons drawn at Syrtis Major, no apron (none clear on the CTX views). Nothing else is left for the author to review; the other 200 rock-floored Athabasca channels, the rest of the candidates and breached craters stay unreviewed unless asked | agent | §6 | done (§69.105) |
-| 2 | After each review session: copy the accepts, refresh layout 14, re-export the gdb, push | agent | §3 | the repo's gdb export matches the drive; layout 14's table matches the tally |
-| 3 | Retests: **done 11-10** (§69.105): T5 on the margins the second reading kept, form `k` +3.3 pt (−7.2 to +13.8), form `kp` +4.6 (−3.4 to +12.6), H1 not supported on either; the off-Tharsis edifice scored (U-Net v3 7.7 %, SVM v3 0.6 %; P1, P3, P4 held, P2 not tested). H2's stage 2 stays skipped (§69.63) | agent | §4 | done |
-| 3b | **The v3 runs: done 11-07; D36: both lead; sheets, paper and deck moved (KB §69.82). Every extra run is done: rep, the second v3 training, scored 11-11 (R1, R2 held, R3 not), placed and added to release `data-2026-11-10` (§69.106; the others §69.84–§69.102, the release §69.105)** (KB §69.80, §69.81; `logs\v3_maps.json`, `logs\r2\r2_v3_result.json`). Every run and check in the sequence is finished; the rule recommends U-Net v3 and not SVM v3. **If the author picks a v3 map** (§69.77 has the audit): the layouts first, `make_v2_sheets.py`'s sheet text being specific to the v2 results, so v3 sheets are written from the v3 results, not by a flag, and `score_metrics.py` run on the v3 check logs for them; then the three figures and every v2 map number in the paper and `final.py`, by `verify_interim.py`; the `\VV` numbers in `v2_drafts.tex` blocks 18 and 19; a new data release (`github_release_bundle.py`'s globs already take the v3 maps and model) | agent, desktop | KB §69.49 | v3 maps scored on the v3 and the v2 held-out polygons |
-| 4 | ~~The paper's analyses that need no author time~~: all done (A1–A16, KB §69.34–§69.57); nothing in §12.2 is left | agent | §12.2 | done |
-| 5 | The interim: **the report went in on 5 Nov** (KB §69.79); the talk was given on **10 Nov** (the author, 11-11, KB §69.107) | author | `INTERIM-PLAN.md` §0, §6 | done |
-| 7 | **The edifice retraining (D37, yes 11-11, KB §69.107):** the lead U-Net trained again with validation blocks of its own, edifice negatives on the highland group and class weights (§14 row 4); rule and predictions registered before the run; scored on the same held-out polygons and windows as base and rep; the paper and deck move only if the registered rule says it leads and the author picks it. **Registered and running since 11-11 12:10 (KB §69.108):** run `edf` = fresh's training polygons plus 420 rule-placed Normal Ground squares where the published map says edifice; `run_v3_edf.ps1` (PID 77672; export, ~13 h training, then the windows of edf, edfv and freshw), log `build/logs/run_v3_edf/queue.log`. **At "queue done":** `make_v3_edf.py --report` (ArcGIS Python) → `logs/v3_edf.json`, E1–E5 and the rule into a KB section. **Decided ahead (11-11, KB §69.109):** all five held (D39), classify ±60° in two passes at once and make it the lead U-Net (layouts, paper, deck); otherwise (D40) a paragraph in the paper and a row on the deck's extra-runs slide, the lead map unchanged. **Made ready 11-11 (KB §69.120):** for D39 `run_v3e_lead.ps1` (`make_v3e_global.py`; own scratch and names, dry-run only so far); the text for either outcome is `v2_drafts.tex` block 22 | agent, desktop | §14 row 4 | scored, in the KB, before **22 Nov**. **Scored 11-12 (KB §69.125): E2 held, E1/E3/E4/E5 not; not recommended, reported as a test (D40), in the paper and deck. Its training got 2.5–10× the others' learning rate, so a second training at the control's rate (edf2, `run_v3_edf2.ps1`) runs until about 21:30 on 11-12; it is not pre-registered and goes beside edf, not in place of it**. **edf2 scored 11-12 (KB §69.126): E1 missed by 0.39 points, E2–E5 held; not recommended, in paper and deck beside edf; lead unchanged. Closed.** |
-| 8 | ~~A derivatives release with §54's patch (D15)~~ **Done 11-11** (KB §69.113): `derivatives-2026-11-11`, the five patched rasters, 35.3 GB in 23 assets; hashes differ from `derivatives-2026-10-06`, `restore.py --dry-run` takes the patched copies (87.7 GB in all), `tools/check_remote.py` passes, `docs/backup.md`, `docs/rasters.md` and the README updated, `data-2026-11-10` latest again. Not done: a download and rejoin of the patched pieces | agent, desktop | KB §69.113 | done |
-| 9 | **The TES figure and layout 18 into the final (D38, both, 11-11):** `final_img\tes_block_scale.png` into the paper's thermal results, layout 18 into the deck beside T3; rebuild and read both. **Done 11-11** (KB §69.107): paper 27 pages, the figure on page 10; deck 44 slides, the new one slide 13 | agent | KB §69.30 | done |
-| 6 | The freeze: §12.1's lines and every result into the KB, then `final.py` and the `.tex` (the settled blocks 8–11, 14 and "Viking colour" went in early, 11-02, §69.58, and into the deck, §69.59; the deck builds and renders on the laptop; blocks 16 (a), (b), (d), 18 and 19 (d), (e), (f), (i) applied 11-07, §69.82, 21, the abstract, 11-10, §69.103, and 12, 15 and 19 (a)–(c), (g), (h) 11-10 once D33 closed, the paper at 26 pages, §69.105; 16 (c) as a note the same night; block 13 the same night without a DOI (D23, §69.105) and block 20's rep text 11-11 (§69.106); left: the open decisions' clauses; all but block 18's numbers tried on a scratch copy 11-05, every anchor found, §69.78; the deck's share, block 19, drafted and tried the same day, §69.79); rebuild, read, `verify_interim.py` on both | agent | §12.6 step 4 | by **22 Nov** |
-| 10 | **The paper expanded (D42, 11-11, KB §69.109):** no length limit, possibly a published paper or report, "the longer and more in depth the better"; the agent expands whatever is useful: appendices (the full method detail, every registered prediction with its outcome, the per-class and per-block tables, the label rules), and fuller Methods, Results and Discussion with more figures. Every number from the KB, `verify_interim.py` after each pass; AASTeX kept, no journal chosen. **Done so far (11-11):** Appendix A, the third label set's rules; Appendix B, 28 registered predictions with their outcomes (E1-E5 to add when scored); Appendix C, every U-Net training by class and by block (KB §69.110); two Methods subsections, on predictions, checks and repeatability and on who judged what (KB §69.111; 31 pages). **Wording (the author, 11-11, KB §69.111):** in the paper and deck the readings the author did not make are "an automated process", never an AI or another person; one acknowledgment sentence names the AI assistant. Results gained "Where the two methods agree" with its figure and the crater size-frequency paragraph and figure (KB §69.112; 33 pages). **Next:** the retraining's result, then a fuller Discussion | agent | §12.4 | built, read page by page, before **22 Nov** |
-| 11 | **The repository as a deliverable (D43, 11-11):** the professor receives the GitHub repository beside the PDF and the deck. At the freeze the README becomes a finished-work page for a reader: what was asked, what was found, where the paper, deck, maps and record are; the working plan moves off the front page. **Drafted 11-11** ("Draft now, finish at freeze", KB §69.114): findings, where to start, a state table and a section naming the working record ("Keep, link from README"); at the freeze drop the status line, add the retraining's result and read Results against the frozen paper. **Done 11-12 (KB §69.130), at the author's "finish the rest of the work":** the status line is now "The work is finished", the state table says final, the retraining is in findings item 6 and Deep learning, "the published map" wording names the four-class map, and the release links name `data-2026-11-12` | agent | §13.1 P12 | **done**, `tools/check_repo.py` passing |
-| 12 | **A final data release at the freeze (D41, 11-11):** a new tagged release with the maps and models as they stand, checked against its checksums, cited by the paper's data section; no DOI; published without asking again. **Tallied ahead 11-11 (KB §69.123):** 14.41 GB in six groups, no file over one part, 75.6 GB free for staging; the five steps in order are in that section. **Done 11-12 (KB §69.130), at the author's "finish the rest of the work":** release `data-2026-11-12`, cited in the paper, the deck, the README, `docs/backup.md`, the catalogues and the handoff | agent, desktop | KB §57.4 | **done**: uploaded, `tools/check_remote.py` passing |
+| # | what | who | when |
+|---|---|---|---|
+| 1 | The data freeze: no new runs; any change after it is a correction, recorded in the KB with its reason | agent | **22 Nov** |
+| 2 | The final: the paper's PDF and the deck as committed; a last read of both against the KB if anything changed | author presents | **8 Dec** |
+| 3 | Closing the project (§13.1 P12, D27): tag `final-2026-12-08` and a final release, `CITATION.cff` completed (no ORCID), this plan closed with a header saying so, the memory and this section retired | agent | 9–12 Dec |
 
-The class revision (§11) is done to the final's text (2a–2c, KB §69.2–§69.27). Deep learning (X5, X5b, X5c) is done
-and scored (§66); further tuning first needs validation blocks of its own (§66.5), the author's call.
-
-**Where the results are weakest and what would most improve them:** §14 (11-01), ranked.
-
-**Waiting on the author:** no review (11-10: the author does no more manual review, so R1, R2, the margins and the off-Tharsis labels stay on the agent's reading, §69.55, §69.105); no decision is open since 11-11 (KB §69.107: the talk given, D15 yes, D27 yes without an ORCID, D37 yes, D38 both; D22 stays on the agent's labels); the author deletes the duplicate `F:\check_repo.py` and empties the Recycle Bins (~21 GB of finished scratch, §57.5) later; nothing after row 7 is scored: what follows either outcome is decided (D39, D40, KB §69.109). The final talk has no length limit, the paper none either; the project ends with the final (P13 dropped).
+**Waiting on the author:** nothing. No decision is open (§2); no review remains (§6). Optional, whenever
+convenient: empty the Recycle Bins (~21 GB of finished scratch, §57.5).
 
 ---
 
@@ -112,12 +61,12 @@ fluvial channels, impact craters — from a co-registered visible + thermal-IR m
 | **Craters** | closed depressions ≥ 1 km in both windows, 11–13 % catalogued craters (§26, §42.3) | 465,354 closed depressions ≥ 1 km: 15.3 % catalogued at ≥ 1 km, 62.2 % at ≥ 5 km (§53.4, §54.4); layout 11 |
 | **Channels** | 2,610 candidates at Ius, 188 steep and rock-floored (§25); 3,283 at Athabasca | 969,822 routed segments, layout 12 (§53.6): against the mapped valleys no better than a rotated valley map (A1, layout 19, §69.50), so the DEM's drainage paths, not a channel map |
 | **Lava flows** | the geologic map's `lAv` unit at Athabasca is the reference (§42) | SIM 3292 volcanic units, layout 10 (§44); the classifier cannot separate volcanic plains (§43.2–43.3) |
-| **Manual digitising** | 202 channels and 381 crater rims copied from the review (3,791 of 9,287 candidates, §69.33, §69.55), 86 lava margins traced by the agent on CTX (§69.52); none drawn by hand | — |
-| **Classification** | Iso Cluster and supervised on terrain labels (§19, §27) | **seven classes lead** (D28): U-Net 69.0 %, κ 0.606 and SVM 42.5 %, κ 0.310 on 237 held-out polygons (§69.24–§69.27); four classes: SVM 73.8 %, κ 0.58 (§57), U-Net 98.9 % (§66.8); nearest-training-polygon baseline 83.2 % (§69.35) |
+| **Manual digitising** | closed 11-10 (§6): 202 channels and 381 crater rims copied from the review (3,791 of 9,287 candidates, §69.33, §69.55), 86 lava margins traced by the agent on CTX (§69.52, read again blind §69.105); none drawn by hand | — |
+| **Classification** | Iso Cluster and supervised on terrain labels (§19, §27) | **the seven-class maps on the third label set lead** (D36): U-Net 87.6 %, κ 0.844 and SVM 39.1 %, κ 0.288 on the 237 v2 held-out polygons (§69.81); on the second label set 69.0 % and 42.5 % (§69.24–§69.27); four classes: SVM 73.8 %, κ 0.58 (§57), U-Net 98.9 % (§66.8); nearest-training-polygon baseline 83.2 % (§69.35) |
 
 **The central claim, measured:** the thermal bands add a small, resolved amount to the classification
 (+1.3 to +2.0 pt with two classifiers, §40.1, §56), from crater and hill terrain, in overall accuracy and none by
-balanced accuracy (D25, §69.18), while the seven-class U-Net, trained once without them, loses 6.4–7.6 pt, not resolved by block (§69.86); against calibrated TES thermal inertia the THEMIS mosaics keep only a weak local
+balanced accuracy (D25, §69.18), yet without them 14.9 % of the four-class map changes class over ±60° (§69.148), while the seven-class U-Net, trained once without them, loses 6.4–7.6 pt, not resolved by block (§69.86); against calibrated TES thermal inertia the THEMIS mosaics keep only a weak local
 signal and the Viking colour, not a calibrated albedo, carries the regional signal (§42.4, §43.1, §69.50). The hand-drawn classes are landform classes (§40.1, §56.1).
 
 **Hypotheses** (status table in `INTERIM-PLAN.md` §5): H1 not supported at the geologic map's 1:20 M
@@ -127,10 +76,11 @@ H4 supported when tested as written, 11-12 (image gradients find 104 of 109 larg
 
 ---
 
-## 2. Open decisions
+## 2. Decisions — none open
 
 D1–D13 were all answered on 2026-10-08/09 (KB §50); the published filter on 2026-10-16 (§57) and the
-400 m map on 2026-10-16 (§57.2). Open, each the author's:
+400 m map on 2026-10-16 (§57.2). **Every decision below is answered; none has been open since 11-11 (KB §69.107,
+§69.109).** The last ones asked:
 
 | # | decision | recommendation |
 |---|---|---|
@@ -190,6 +140,10 @@ v2 is a reported test. The author makes time for both reviews: no cap.
 
 ## 3. What the agent does after each review session
 
+**No review session remains (§6, closed 11-10);** the steps are kept as the procedure that was followed. Step 3's
+stage 2 ran instead on SIM 3292's mapped rilles and channels (KB §69.133), and step 4 on the 86 traced margins
+(§69.52, §69.105).
+
 1. `accept_reviewed.py` (ArcGIS Python; a dry run prints the tally and the precision so far), then
    `accept_reviewed.py --apply --by "<reviewer>"`. Reruns copy only new accepts.
 2. Layout 14: `make_validation_sheet.py` (Pro closed), then `polish_layouts.py`; export and read it.
@@ -213,7 +167,7 @@ Each writes its prediction and verdict rule into the script before it runs.
 | T2 | is Athabasca younger than Ius's plateau? | **done** (§42.2) |
 | T3 | which layer tracks calibrated thermal inertia? | **done**: Viking does, the THEMIS pair barely (§42.4, §43.1) |
 | T4 | H2: do volcanic and fluvial channels separate on gradient and thermal response? | stage 1 done, not supported (§51.1); stage 1b (§69.50); **stage 2 done 11-12** on SIM 3292's mapped rilles and channels, not supported (§69.133); the same in all 9 settings of floor window and piece length, and seven rilles could resolve only about twice the observed difference (§69.137) |
-| T5 | H1: does IR show flow margins Viking misses? | inconclusive at 1:20 M (§47.2); the lean survives removing topography (A9, §69.50); **open**, on digitised margins (§3 step 4) |
+| T5 | H1: does IR show flow margins Viking misses? | inconclusive at 1:20 M (§47.2); the lean survives removing topography (A9, §69.50); **done** on the 86 CTX-traced margins, not supported (+4.9 pt, −2.7 to +13.1, §69.52), and on those the blind second reading kept (+3.3 pt, −7.2 to +13.8, §69.105) |
 | T6 | H3: is the composite more stable than any single input? | **done**, not supported (§47.3) |
 | T7 | Q5: how many tributary orders does 100 m resolve? | **done**: no DEM-supported answer (§47.4) |
 | T8 | the classes against the geologic map | **done** (§43.2), rerun on the published map (§57.1) |
@@ -230,8 +184,9 @@ Each writes its prediction and verdict rule into the script before it runs.
 | T17 | the display mosaics against 100 m THEMIS inertia at the type areas | **done 11-13** (KB §69.144): night IR ρ +0.603 / +0.509 within 10 km tiles, +0.442 / +0.185 per window; Viking red −0.493 at Athabasca |
 | H4b | H4 below 100 km on Robbins craters | **done 11-13** (KB §69.140): 62.3 / 77.3 / 79.4 % for 20–30 / 30–50 / 50–100 km; misses are degraded rims |
 | Blocks | are 15° blocks wide enough? | **done 11-13** (KB §69.141): errors correlated to 2,400 km on inertia classes; 30° blocks change no verdict; smaller blocks would turn thermal to helps |
+| T1 mapped | where over ±60° do the thermal bands, and each band set, change the four-class map? | **done 11-17** (KB §69.148–§69.151): 14.9 % changes without thermal (M1–M3 held), 17.1 / 27.4 / 28.9 % without thermal / visible / all but terrain at 400 m (M4, M5 held, M6 not); layouts 21, 22; paper Figure 33 |
 
-**Scope:** every open test is optional; if time runs short, drop tests, never the digitising checkpoint or
+**Scope:** no test is open (11-17); every open test was optional; if time runs short, drop tests, never the digitising checkpoint or
 the cut dates. (The digitising checkpoint closed 11-10 by the author's decision: §6.)
 
 ---
@@ -298,7 +253,8 @@ training polygons, the held-out scores and the tests.
 | 05 | the 29–30 Sep GUI SVMs checked | ✓ | appendix |
 | 14 | validation of the review | if reviewing has started | ✓ |
 
-**Final report outline** (to fill after the freeze, not before): 1 question and hook (Athabasca) · 2 data and
+**Status, 11-17:** the final paper (51 pages, 47 figures) and deck (53 slides) are built and read; the sheets above
+are in them as the paper's figures name. **Final report outline** (as planned 10-18; the paper follows it): 1 question and hook (Athabasca) · 2 data and
 the ±60° decision · 3 co-registration and the frames trap · 4 the thermal pair: what it can and cannot do ·
 5 craters · 6 channels · 7 lava flows · 8 classification and accuracy · 9 limits · 10 what next. Each section
 closes on a measured number and a sheet. **The final builders exist since 2026-10-22 (KB §69):** the AASTeX paper
@@ -320,9 +276,9 @@ point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE
 |---|---|
 | **16–26 Oct** | Done: X5 on the desktop (KB §66); the class revision's proposals (22–23 Oct) and its rehearsal (KB §69.4). |
 | **26 Oct** | **Interim data cut** (D20, KB §69.5). What is measured is in the interim; the rest goes to the final. |
-| **27 Oct – 22 Nov** | For the final: review and digitising (§6), after each session §3; the label review (§11.4), then the v2 runs (~2 days, §11.5); H1 and H2 retests, layout 14 from the review. **Data freeze 22 Nov.** GitHub release refreshed. |
-| **by 10 Nov** | The interim per `INTERIM-PLAN.md` §6: any last change, rebuild, read every page, `verify_interim.py`. **Interim presentation 10 Nov** (the report's date not given). |
-| **23 Nov – 4 Dec** | The final report and deck, built by script from the layouts. Thanksgiving 26 Nov: nothing planned. |
+| **27 Oct – 22 Nov** | Done: for the final, review and digitising (§6, closed 11-10), after each session §3; the label review (§11.4), then the v2 runs (~2 days, §11.5); H1 and H2 retests, layout 14 from the review. **Data freeze 22 Nov.** GitHub release refreshed. |
+| **by 10 Nov** | Done (report 5 Nov, talk 10 Nov): the interim per `INTERIM-PLAN.md` §6: any last change, rebuild, read every page, `verify_interim.py`. **Interim presentation 10 Nov** (the report's date not given). |
+| **23 Nov – 4 Dec** | The final report and deck are built already (§69.145–§69.151); corrections only, each recorded. Thanksgiving 26 Nov: nothing planned. |
 | **5–8 Dec** | Buffer and rehearsal. Nothing new. |
 
 ---
@@ -336,7 +292,7 @@ point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE
   built by script, not by hand.
 - **The thermal argument is weaker than the prospectus says** (§28.10, §43.1): write both documents around what
   is measured; the wording traps are `INTERIM-PLAN.md` §7.
-- **The review may not start in time:** the §6 contingency is the plan for that case.
+- ~~**The review may not start in time**~~: it ran to 3,791 of 9,287 candidates and closed 11-10 (§6).
 
 ---
 
@@ -355,13 +311,16 @@ point `github_catalog_rasters.py`'s `DATA` and `github_export_gdb.py`'s `RELEASE
 - **The decks' and paper's images as JPEG** (was §13.1 P5): ruled out by the author, 2026-10-27; the figures stay
   PNG (KB §69.19).
 - **The agent digitising for the author:** the judgement is the point of task 11. Machine output enters the
-  digitising classes only through an accept in review (§25, D10).
+  digitising classes only through an accept in review (§25, D10). **Overtaken, at the author's word:** the agent
+  traced the Athabasca margins on CTX (11-02, §69.52, §69.55) and did the review items left (11-10, §69.105), each
+  marked as its own.
 
 ---
 
 ## 11. The class revision (D17), for the final
 
-The author's scheme, the audit and the plan are KB §68; this section is the work.
+**Done** (KB §69.2–§69.27; the third label set §69.49–§69.82): kept as the method record; its dates (§11.6) are
+past. The author's scheme, the audit and the plan are KB §68; this section is the work.
 
 ### 11.1 The classes
 
@@ -508,7 +467,7 @@ in the paper and the final deck. Left for the freeze, each drafted in `NEXT STUF
 | where | today | true since |
 |---|---|---|
 | before the acknowledgments | — | W7, block 13, and W6, block 12: applied 11-10 (§69.105; no DOI, D23) |
-| the PDF and the final deck | the paper compiled by CI on every push (27 pages since 11-11, §69.107), its committed PDF and the deck rebuilt 11-11 with the TES figure and layout 18 (D38, §69.107; 44 slides) | after the freeze's edits: `build_final_paper.py` with MiKTeX on the desktop, since CI's PDF is only a run artifact and the committed one is the drive's; `build_final_deck.py` on either machine; read every page; note the page count (the trial of §69.78, every block in and the `\VV` numbers at placeholder width, came to 22; the 11-10 trial of blocks 12, 13 and 15, 26, §69.103) |
+| the PDF and the final deck | **done**: the paper 51 pages since 11-17 (§69.151), the deck 53 slides (§69.144), both rebuilt and read; CI compiles the paper on every push (§69.42) | after the freeze's edits: `build_final_paper.py` with MiKTeX on the desktop, since CI's PDF is only a run artifact and the committed one is the drive's; `build_final_deck.py` on either machine; read every page; note the page count (the trial of §69.78, every block in and the `\VV` numbers at placeholder width, came to 22; the 11-10 trial of blocks 12, 13 and 15, 26, §69.103) |
 
 ### 12.2 Analyses that need no author time
 
@@ -521,8 +480,8 @@ in the paper and the final deck. Left for the freeze, each drafted in `NEXT STUF
 |---|---|---|---|---|
 | R1 | **A blind spot-check of the rule-screened rows**: 30 accepted and 10 rejected of each of fluvial and apron, shown without the rule's verdict; agreement gives the rule a measured precision; **registered, drawn and rendered 11-02 (KB §69.54)**: 80 rows on 14 sheets in `Mars Project\review_sheets\r1\` (no Pro), `score_r1.py answers.txt`; **answered by the agent at the author's word (§69.55)**: fluvial 27 of 27 rule accepts kept (κ 0.45), apron 20 of 26 (77 %, κ 0.02), and 5 of the apron rejects it kept are flat Tharsis fan-shaped deposits the slope test drops (D34) | the paper can say how good the screen is, not only that it is one | ~45 min on the sheets | A |
 | R2 | **A probability-sample accuracy check** (Olofsson et al. 2014): stratified random points on the published map (and the U-Net and v2 maps), 25–50 per mapped class, labelled blind from the imagery with the maps hidden; **points, sheets and scorer done 11-02 (KB §69.53)**: 210 points in `Mars Project\review_sheets\r2\` (35 hidden calibration points), `score_r2.py answers.txt --author`; the agent's own labelling failed its gate (66.7 %, κ 0.60); **scored all the same at the author's word (§69.55, `--waive-gate`)**: four-class SVM 56.9 % (48.8–65.0), seven-class SVM 39.9 %, U-Nets 44.4 % and 21.7 %; Normal Ground 79.8 % of the ground against 33.3 % mapped; an upper bound on the gap, the labeller leaning to Normal Ground | unbiased map accuracy and area-adjusted class areas with intervals; hand-drawn polygons sit where a class is clear, so the polygon score flatters every map | ~2–3 h for ~200 points | A if any time is free |
-| R3 | Lava margins at Athabasca, for H1 (already §6 step 4) | H1 tested at the stack's own scale | | |
-| R4 | A few hills polygons in a third training block (§11.3) | only if v2 is rerun; otherwise the limit is stated | ~20 min | C |
+| R3 | Lava margins at Athabasca, for H1: **done by the agent** on CTX (§69.52), read again blind (§69.105) | H1 tested at the stack's own scale | | done |
+| R4 | A few hills polygons in a third training block (§11.3) | overtaken: the third label set holds hills in 150 training blocks (§69.76) | | done |
 
 ### 12.4 The paper's text and figures
 
@@ -583,8 +542,9 @@ in the paper and the final deck. Left for the freeze, each drafted in `NEXT STUF
    §69.39).
 2. **Desktop:** the v2 scoring and D18 done (§11.5; A4b done 10-31, KB §69.34); A1, A2, A3 (b) and (c), A7, A8, A9 and
    A13 done 11-01/02 on the laptop (KB §69.50), A5, A6 and A11 11-01 (§69.44–§69.46): nothing in §12.2 is left.
-3. **The author:** the candidate review (§6) first; then R1; R2 if any time is free.
-4. **By 22 Nov:** the freeze; §12.1's lines and every result above that ran, into the KB, then `final.py` and the
+3. **The author:** the candidate review (§6), done to 3,791 of 9,287 and closed 11-10; R1 and R2 answered by the
+   agent at the author's word (§69.55).
+4. **By 22 Nov:** the freeze (every block in since 11-12; nothing left but the freeze itself); §12.1's lines and every result above that ran, into the KB, then `final.py` and the
    `.tex`; rebuild and read; `verify_interim.py` on both.
 
 ---
@@ -620,16 +580,16 @@ question without changing the cut, if the author wants it on screen (§12.5).
 ## 14. Where the results are weakest, and what would most improve them (2026-11-01, laptop)
 
 Read against the record after A5, A6 and A11 (KB §69.44–§69.46); ranked by how much each limits what the final can
-claim. "Cost" is who and how long; nothing here goes ahead of the review (§6) or the freeze (22 Nov).
+claim. "Cost" is who and how long. **Every row is done or stated as a limit in the paper (11-17).**
 
 | # | weakness | evidence | what would improve it | cost |
 |---|---|---|---|---|
 | 1 | **The held-out score rests on a few large polygons in a few blocks.** Three blocks hold 61.6 % of the four-class held-out area; one Normal Ground polygon is 73.7 % of its class's, Arsia Mons 30.7 % of Crater's; dropping one block moves the published map by 8.7 pt | §69.44 | **R2, the probability-sample check** (§12.3): stratified random points labelled blind give unbiased accuracy and class areas with intervals, independent of where polygons were drawn. The single most valuable hour of the author's after the review | done on the agent's labels, gate waived (§69.55: every map well below its polygon score); the author's ~2–3 h on the `r2` sheets would replace them |
 | 2 | **The SVM maps do not beat geography.** The nearest training polygon scores 83.2 % against the published map's 73.8 % (four classes) and 45.6 % against 42.5 % (seven); by block neither gap is resolved either way | §69.35, §69.44 | A3 (c), done 11-01 (KB §69.50): a 51 km mode filter lifts the four-class SVM from 69.9 % to 82.1 %, still below the baseline, and leaves the seven-class SVM flat (at most 43.9 %); context alone closes neither gap. A3 (b), done 11-02 (KB §69.50): elevation and latitude alone score 62.5 % and 31.8 %, below the raw SVM by 7.4 and 10.6 points (24.2 and 14.5 by balanced accuracy): what beats the SVM is position, not height. The U-Net, which uses context, already clears the baseline. In the paper since 11-01 (D30, KB §69.48): the baseline beside every score, the SVM map led by balanced accuracy, where it is ahead | done |
 | 3 | **The seven-class lead is two blocks wide.** By accuracy, the seven-class U-Net's lead over the seven-class SVM is not resolved by block (−9.7 to +47.8 pt); it sits on the Tharsis blocks −9_−1 and −9_0; the SVM leads in 8 of 14 blocks | §69.44; A16 (11-02, §69.57): on the 1,652 v3 held-out polygons the balanced lead (+12.5 pt) is not resolved by block either (−3.7 to +16.3); the paper and deck qualified 11-02 (D35) | Done 11-01 (D31, KB §69.47): the paper leads with balanced accuracy, which is resolved (+2.3 to +19.5). For a firmer test, edifice and apron labels in held-out blocks outside Tharsis (Elysium, Syrtis, Hesperia); the v3 held-out set cannot stand in, holding off Tharsis 6 edifice polygons in one block and 16 apron in another (§69.61). **The author draws them (yes, 11-03)**: map "Off-Tharsis labels (author)", guide `Mars Project\review_sheets\offtharsis\README.md`; the targets are Syrtis Major's paterae (block 4_0) and the Nilosyrtis Mensae / Colles Nili aprons (4_2): one held-out block per class, so a polygon-level score, no block interval (§69.63). **Done by the agent 11-10** (§69.105): six edifice polygons at Nili and Meroe Paterae; the U-Net v3 calls 7.7 % of them edifice (1.4–20.5), the SVM v3 0.6 %: off Tharsis the lead is small and the class weak; no apron could be drawn | done |
-| 4 | **The seven-class U-Net's edifice is wrong over much of the planet**: 40.0 % of ±60°, 46.8 % of the highland group, none of the 10 named small edifices | §69.25, §69.37, §69.39 | Retrain with validation blocks of its own (§66.5), edifice negatives drawn on the highland group and class weights; score on the same held-out blocks. Not a post-hoc mask by the geologic map: T8 scores against that map | desktop, hours, as X5c (§66.6); the author's call (§66.5) |
-| 5 | **The routed channels are not a channel map.** Against the valley map (A1), order ≥ 3 precision 2.8 % and recall 2.0 % at 5 km, no better than the valley map rotated in longitude (median 3.3 %); 46 % of the order ≥ 3 length lies at 0–30° N, where 0.1 % meets a valley | §53.6, §69.50 | Call the network the DEM's drainage paths in the final, not channels; a channel claim rests on the reviewed candidates (§6), or on the order ≥ 5 trunks and the southern highlands, where precision reaches 10–18 % | the score done 11-01; the wording at the freeze |
-| 6 | **Two hypotheses wait on the review**: H2 stage 2 needs `Origin` on ≥ 10 fluvial and ≥ 10 volcanic of the 199 copied channels; H1 now runs on 86 agent-traced CTX margins (§69.52: not supported, +4.9 pt [−2.7, +13.1]), the author has not checked them | §69.33 | `Origin` on the 199 channels: the agent's is in (§69.55), 29 fluvial and 0 volcanic. All 29 fluvial are at Ius, so volcanic channels drawn at Athabasca would give only the pooled, window-confounded comparison that repeats stage 1, and stage 2's thermal term needs a source candidate a drawn line lacks (§69.63): the agent did not draw them, and the author said skip them (11-03); H2 stays at stages 1 and 1b. The margins: the author checks them (D33, 11-03) | done: the agent's blind second reading, T5 on the lines kept, not supported (§69.105) |
+| 4 | **The seven-class U-Net's edifice is wrong over much of the planet**: 40.0 % of ±60°, 46.8 % of the highland group, none of the 10 named small edifices | §69.25, §69.37, §69.39 | Retrain with validation blocks of its own (§66.5), edifice negatives drawn on the highland group and class weights; score on the same held-out blocks. Not a post-hoc mask by the geologic map: T8 scores against that map | done: D37 yes; edf and edf2 scored 11-12, neither recommended, both in the paper and deck as tests (§69.125, §69.126) |
+| 5 | **The routed channels are not a channel map.** Against the valley map (A1), order ≥ 3 precision 2.8 % and recall 2.0 % at 5 km, no better than the valley map rotated in longitude (median 3.3 %); 46 % of the order ≥ 3 length lies at 0–30° N, where 0.1 % meets a valley | §53.6, §69.50 | Call the network the DEM's drainage paths in the final, not channels; a channel claim rests on the reviewed candidates (§6), or on the order ≥ 5 trunks and the southern highlands, where precision reaches 10–18 % | done: the paper calls them the elevation model's drainage paths (§69.50) |
+| 6 | **Two hypotheses wait on the review**: H2 stage 2 needs `Origin` on ≥ 10 fluvial and ≥ 10 volcanic of the 199 copied channels; H1 now runs on 86 agent-traced CTX margins (§69.52: not supported, +4.9 pt [−2.7, +13.1]), the author has not checked them | §69.33 | `Origin` on the 199 channels: the agent's is in (§69.55), 29 fluvial and 0 volcanic. All 29 fluvial are at Ius, so volcanic channels drawn at Athabasca would give only the pooled, window-confounded comparison that repeats stage 1, and stage 2's thermal term needs a source candidate a drawn line lacks (§69.63): the agent did not draw them, and the author said skip them (11-03). **H2 stage 2 ran 11-12 on SIM 3292's mapped rilles instead, not supported (§69.133).** The margins: the author's check (D33) closed 11-10 | done: the agent's blind second reading, T5 on the lines kept, not supported (§69.105) |
 | 7 | **Crater recall stops near one half**, mostly from degraded and partial rims (77 % of the misses are rim states 1–2) and, at 5–10 km, from C5's two-sided cut | §69.45 | The figure and sentence: done 11-01 (D32, KB §69.47). To recover recall: 23 % of the misses (72 % at ≥ 50 km) hold only a smaller closed basin, which a rim-based diameter or merging nested basins would match; that is a change to the detector and an 11 h fine pass, so future work (W6), not before the freeze | detector: after 8 Dec |
 | 8 | **The thermal gain is small** (+1.36 pt, resolved by block; none by balanced accuracy) | §56, §69.18, §69.44 | Nothing to fix: A2 (done 11-01, KB §69.50) found +1.1 pt on seven classes, not concentrated in the new classes; A8 (done 11-02, KB §69.50): SIM 3292's unit groups are not predictable from the stack above the commonest group, with or without thermal, so the mapped units are not the material labels a thermal test needs; that test waits on photo-interpreted labels (W6) | done |
 

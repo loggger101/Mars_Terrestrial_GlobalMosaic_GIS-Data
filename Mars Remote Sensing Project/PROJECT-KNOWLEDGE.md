@@ -493,7 +493,6 @@ There is **no ground truth and no sub-metre imagery.** Validation rests on:
 | 14 | The 8 Sep segmentation's time: the September interim logs "Sep 9, 03:35", the output name encodes 2026-09-08 19:25:34 | unresolved; plausibly UTC against local time (§14.5) |
 | 15 | Does the GUI ±60° segmentation of 29 Sep de-speckle? | unmeasured; low priority; never start another ±60° segmentation without asking (§23.6, §29.5) |
 | 24 | Which step inside `ClassifyRaster` makes neighbouring processing tiles differ? | the tiles themselves are proven the cause (§53.2); the inner step is not known, and the `.afr` is gone |
-| 28 | Is the v3 U-Net's 6.4–7.6-point drop without the thermal bands larger than one training against another? | **answered 11-11 (§69.106):** by score, yes: a second training moves 0.74 and 0.87 points, the removal 6.4 and 7.6, and apron's share of the drop is beyond it; by map, no: a second training changes 26.8 % of the windows' ground against the removal's 28.1 %, and volcanic edifice swings as far as it did without the bands (R1, R2 held; R3 not held as written) |
 | 29 | Why does the nearest training polygon score 71.9 % on the second fresh draw against 52.9 % on the first at the same class mix? | described, not tested: nearer training polygons or larger patches (§69.102) |
 
 **Answered** **[V]** (the question as asked, and its answer):
@@ -512,7 +511,7 @@ There is **no ground truth and no sub-metre imagery.** Validation rests on:
 | 10 | does `GPU_THEN_CPU` engage on the 2080 Ti | yes (§2.3, §53.3) |
 | 11 | the desktop's internal disk | ~32 GB free on `C:`, enough for scratch with per-tile clean-up (§53.0) |
 | 13 | acquire THEMIS Night IR | done 2026-09-18; no global night mosaic exists, coverage is ±60° (§15) |
-| 16 | digitising: seeded, and how it starts | candidates in separate classes (§25, §26); 512 hand-drawn training labels (§29.2); digitising starts as a review (§46). The classes hold 0 lava margins, 199 channels and 381 crater rims, all accepted candidates; 3,791 of 9,287 reviewed (§69.7, §69.31, §69.33) |
+| 16 | digitising: seeded, and how it starts | candidates in separate classes (§25, §26); 512 hand-drawn training labels (§29.2); digitising starts as a review (§46). The classes hold 202 channels (199 the author's accepts, 3 the agent's), 381 crater rims (all the author's accepts) and 86 lava margins traced by the agent on CTX; 3,791 of 9,287 reviewed; closed 11-10, none drawn by hand (§69.33, §69.52, §69.55, §69.105, §69.152) |
 | 17 | keep the plateau channel candidates | keep; reject in review: the rejections become layout 14's precision (§50) |
 | 18 | hydrology at ±60° | yes; the fine pass ran (§53.4); the fill mask is not optional (§28.11) |
 | 19 | rebuild the 7-band composite on the night grid with valid slope | done as the corrected stack (§31.2); the GUI `CompositeBand` stays as it is |
@@ -523,6 +522,7 @@ There is **no ground truth and no sub-metre imagery.** Validation rests on:
 | 25 | fix the 7-band stack before deep learning | yes: train on the corrected stack's training-split export (§31, §50.2) |
 | 26 | boxes or pixel labels for deep learning | boxes (PASCAL VOC), as exported; whole-chip boxes on area classes are a limit to report (§50) |
 | 27 | how much smoothing to publish | the 200 m map with an 11 × 11 (2.2 km) majority filter (§57); the 400 m 5 × 5 map is superseded (§57.2) |
+| 28 | is the v3 U-Net's 6.4–7.6-point drop without the thermal bands larger than one training against another? | by score, yes: a second training moves 0.74 and 0.87 points, the removal 6.4 and 7.6, and apron's share of the drop is beyond it; by map, no: a second training changes 26.8 % of the windows' ground against the removal's 28.1 %, and volcanic edifice swings as far as it did without the bands (R1, R2 held; R3 not held as written; §69.106) |
 
 ---
 
@@ -8518,3 +8518,14 @@ At the author's yes (11-17: "Yes, add it") to adding §69.148's result to the pa
 ### 69.152 Hand digitising checked and marked closed in NEXT-STEPS — 2026-11-17, desktop **[V]**
 
 At the author's request (11-17), the gdb was read: `Landform_ChannelCenterlines` 202 (`MappedBy` the author 199, the agent 3; `Origin` 29 fluvial, 173 indeterminate), `Landform_CraterRims` 381 (all the author's accepts; `Preservation` empty on every row), `Landform_LavaFlowMargins` 86 (all the agent's CTX traces; 12 certain, 47 probable, 27 inferred). Candidate review unchanged since §69.55: depressions 1,685 and 1,709 all decided; channels 188 of 2,610 at Ius and 409 of 3,283 at Athabasca. Nothing was drawn by hand from scratch. The author's decision of 11-10 (§69.105) closes the hand work; at their yes, NEXT-STEPS §6 (headed "the critical path") now says so, with these counts, and two lines that still asked for hand-drawn volcanic channels point to H2 stage 2 on the rilles (§69.133).
+
+### 69.153 The plans brought to the state of 11-17: NEXT-STEPS rewritten at "Resume here", the interim plan closed — 2026-11-17, desktop **[V]**
+
+At the author's "ensure all next-steps and similar items are properly updated" (11-17).
+
+- **`NEXT-STEPS.md`:** "Resume here" rewritten as the state of 11-17 (the 11-11 version, 19,454 characters of dated accounts, is in git history, as the file's header prescribes): the work finished, three items left (the freeze 22 Nov, the final 8 Dec, closing 9–12 Dec), nothing waiting on the author. Then 26 lines brought current: the deadline table (the review and runs done, the interim given); §1's digitising and classification rows (the third label set's maps lead, 87.6 % and 39.1 %) and the central claim (14.9 % of the map changes without the thermal bands, §69.148); §2 headed "none open"; §3 marked as the procedure followed; §4's T5 done and a row for T1 mapped; §7's status (51 pages, 47 figures; 53 slides); §8's windows; §9's review risk resolved; §10's "agent digitising" marked overtaken at the author's word; §11 done; §12.1's page counts, R3 and R4 done, §12.6 step 3; §14's rows 4, 5 and 6 done and its header.
+- **`INTERIM-PLAN.md`:** a done note at the top (report 5 Nov, talk 10 Nov; the tables describe the 26 Oct cut); the 10 Nov line given.
+- **`HANDOFF-DESKTOP.md`:** the review tally no longer moves; the digitising rule names its two exceptions (§69.52, §69.55, §69.105); the interim plan listed as done.
+- **This record, §11:** q28, answered 11-11, moved from Open to Answered; q16's answer gives the classes as they are (202, 381, 86; closed 11-10).
+- **README:** the status line dates the paper 17 November and says the 17 November layouts are not in the deck.
+- The duplicate `F:\check_repo.py` the old plan asked the author to delete is already gone.
