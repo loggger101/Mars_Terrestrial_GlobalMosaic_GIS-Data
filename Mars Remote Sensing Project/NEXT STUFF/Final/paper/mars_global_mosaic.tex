@@ -1000,6 +1000,21 @@ bands and 63.4\% without at 200~m, 63.5\% and 63.4\% at 400~m, because Crater an
 area. Terrain alone ties the score but makes a poor crater map (34 of 124 crater polygons won, against 103). The
 hand-drawn classes are landform classes, a terrain property, and cannot price a material signal. %% KB §40.1, §56, §56.1, §69.18
 
+Over the whole of \pmsixty, rather than on the held-out polygons, the thermal bands decide much more of the map than
+their score suggests (Figure~\ref{fig:thermalchange}). Classified without them, 14.9\% of the four-class map at
+200~m changes class, about a seventh of the extent, where the held-out accuracy moved by 1.4 points; the predictions
+written first (Appendix~\ref{app:predictions}, M1--M3) held, the largest single change being Normal Ground with the
+bands and Crater without (3.7\% of \pmsixty). Hills (44.4\% of their area) and lava tube (24.6\%) change most, and
+lava tube covers 12.3\% of the extent without the bands against 10.7\% with them. The south changes more than the
+north, 17.4 to 18.8\% in each $10^{\circ}$ band from the equator to $50^{\circ}$S against 7.4 to 14.8\% north of it,
+and the Hellas floor most of all: from $25^{\circ}$ to $115^{\circ}$E and $25^{\circ}$ to $55^{\circ}$S 22.7\% of the
+ground changes, half of it between Crater and lava tube. Set against the other band groups at 400~m, the thermal
+bands decide the least: without them 17.1\% of the map changes, without the visible bands 27.4\% and with slope and
+relief alone 28.9\% (M4--M6), so those two terrain bands give 71.1\% of the map its all-band class. The held-out
+polygons measure how often a map is right where a class was drawn; they do not show how much of the rest a band
+group decides. %% KB §69.148, §69.149
+
+
 The seven-class U-Net was retrained once without the two thermal bands, on the third label set, with the prediction
 written first that it would score within 3 points. It scores 81.2\% on the 237 polygons against 87.5\% with them (Figure~\ref{fig:extraruns}), and
 78.7\% against 86.4\% on the 1,652, so the prediction does not hold: the drop is about five times the support vector
@@ -1074,6 +1089,16 @@ The four-class maps are kept beside them, and the maps the paper leads with are 
 \caption{Test T1, first form: held-out accuracy of a Gaussian maximum-likelihood classifier on each band set at 400~m.
 The dashed line is one class everywhere. \label{fig:ablation}}
 \end{figure}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/21_thermal_change.png}
+\caption{Where the thermal bands change the four-class map: the support vector machine at 200~m trained on the same
+polygons with all seven bands and without the two THEMIS bands, compared pixel by pixel. (A) The share of each
+0.5$^{\circ}$ cell whose class differs, 14.9\% over \pmsixty; the box is panel B. (B) The Hellas basin, $25^{\circ}$
+to $115^{\circ}$E and $25^{\circ}$ to $55^{\circ}$S, at 200~m, by kind of change: 22.7\% of the window changes.
+Weighted by the cosine of latitude; $1^{\circ}$ either side of $180^{\circ}$ is left out. \label{fig:thermalchange}}
+\end{figure*}
 
 \begin{figure*}[t]
 \centering
@@ -1775,7 +1800,8 @@ gradients still find 62.3 to 79.4\% of the Robbins rims, fewer as craters shrink
 valleys no more often than a rotated valley map; stream order is a parameter, not a measurement.
 \item The four-class landform map scores a balanced accuracy of 66.7\% (73.8\%, \kap\,0.58 overall) on blocks it never
 saw, where geography alone, the nearest training polygon's class, gives 61.3\% (83.2\% overall); the thermal bands add
-a resolved 1.4 to 2.0 points of overall accuracy and none by balanced accuracy. A seven-class U-Net trained once
+a resolved 1.4 to 2.0 points of overall accuracy and none by balanced accuracy, yet without them 14.9\% of the map
+changes class, against 28.9\% when only slope and relief are kept. A seven-class U-Net trained once
 without them scores 6.4 to 7.6 points lower, a difference not resolved by block but larger than a second
 training's under one point; a support vector machine given 51~km
 of surroundings loses 8.0 points without them, a resolved difference that the point's map coordinates largely make up. A U-Net reaches 98.9\% as a
@@ -1908,7 +1934,7 @@ flanks of the Tharsis volcanoes, so those deposits pass without it, which added 
 Each run behind the lead maps had its predictions, and where a choice hung on it a rule, written into its script
 before it ran; nothing was adjusted afterwards, and each prediction is reported held or not held whichever way it
 fell. They are listed here in the order the runs were made, with the number that decided each. Of the 33 written for those runs, 21
-held; with the 55 written since for the tests that followed, 40 of them held, 61 of 88 held. A prediction that failed is as much a result as one that held: the U-Net's score on the third label set was
+held; with the 61 written since for the tests that followed, 45 of them held, 66 of 94 held. A prediction that failed is as much a result as one that held: the U-Net's score on the third label set was
 above the range written for it, which is why a leak was sought before the score was believed
 (Section~\ref{sec:v3}). %% KB §69.76, §69.81, §69.84, §69.86, §69.88, §69.93, §69.96, §69.106, §69.108, §69.125
 
@@ -1992,8 +2018,9 @@ E3 held (1.0 and 0.0 points from the lead model); E4 held (6.7\%, below all thre
 %% KB §69.125, §69.126
 
 \emph{The tests run after the maps}. The hypotheses, questions and material-label tests of
-Sections~\ref{sec:craters}, \ref{sec:channels}, \ref{sec:hypdisc} and \ref{sec:material} wrote their predictions the
-same way, before each first run, as did the checks of their own settings. %% KB §69.132--§69.144
+Sections~\ref{sec:craters}, \ref{sec:channels}, \ref{sec:hypdisc} and \ref{sec:material}, and the maps of the thermal
+bands' effect in Section~\ref{sec:landforms}, wrote their predictions the same way, before each first run, as did the
+checks of their own settings. %% KB §69.132--§69.144, §69.148, §69.149
 
 \emph{H4 and Q6} (six; four held).
 \begin{enumerate}
@@ -2060,6 +2087,20 @@ widen the intervals by under half (\emph{held}); the verdicts are the same (\emp
 \item[T17] Night infrared tracks inertia over each whole window, $\rho$ above 0.3 (\emph{not held}: $+0.185$ at
 Athabasca); more within 10~km tiles (\emph{held}: $+0.603$ and $+0.509$); more than the diurnal-contrast index
 (\emph{held}); Viking red's $|\rho|$ below night infrared's (\emph{not held}: $-0.493$ at Athabasca).
+\end{enumerate}
+
+\emph{The thermal bands mapped over \pmsixty} (six; five held). The four-class support vector machine with and
+without each band group, compared pixel by pixel over the whole extent rather than on the held-out polygons.
+\begin{enumerate}
+\item[M1] Without the thermal bands under 15\% of \pmsixty\ changes class. \emph{Held}: 14.9\%.
+\item[M2] The largest single change is between Crater and Normal Ground. \emph{Held}: Normal Ground with the bands
+and Crater without, 3.7\% of \pmsixty.
+\item[M3] Without them lava tube covers more of \pmsixty. \emph{Held}: 12.3\% against 10.7\%.
+\item[M4] At 400~m, removing the visible bands changes more of the map than removing the thermal bands.
+\emph{Held}: 27.4\% against 17.1\%.
+\item[M5] Slope and relief alone change the most of the three sets. \emph{Held}: 28.9\%.
+\item[M6] Without the thermal bands the 400~m map changes within 2 points of the 200~m map's 14.9\%. \emph{Not held}:
+17.1\%.
 \end{enumerate}
 
 \section{The U-Net trainings class by class and block by block} \label{app:perclass}

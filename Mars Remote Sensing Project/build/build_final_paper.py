@@ -70,6 +70,7 @@ FIGURES = [   # (source under build\, name in figures\)
     (r"final_img\11_global60_depressions.png", "11_global60_depressions.png"),   # layout 11 (KB §69.147)
     (r"final_img\19_channels_vs_valleys.png", "19_channels_vs_valleys.png"),     # layout 19 (KB §69.147)
     (r"final_img\14_validation.png", "14_validation.png"),                       # layout 14 (KB §69.147)
+    (r"final_img\21_thermal_change.png", "21_thermal_change.png"),               # layout 21 (KB §69.151)
 ]
 # Two deck charts carry slide furniture a paper caption replaces: a title strip naming the gdb class and the KB
 # (ius_channel_candidates), a footnote citing the KB (global60_thermal). Pixels cut from the top and the bottom.

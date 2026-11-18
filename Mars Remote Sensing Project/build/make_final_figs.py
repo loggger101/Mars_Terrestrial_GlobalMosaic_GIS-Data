@@ -22,7 +22,8 @@ import final as F
 class _Figures:                             # which layouts: final.py's FIGURES, and those the paper alone shows
     FIGURES = F.FIGURES + [{"images": [("layout", n)]} for n in (
         "20_labels_v3",                                     # KB §69.146
-        "11_global60_depressions", "19_channels_vs_valleys", "14_validation")]   # KB §69.147
+        "11_global60_depressions", "19_channels_vs_valleys", "14_validation",   # KB §69.147
+        "21_thermal_change")]                               # KB §69.151
 
 
 M.I = _Figures
