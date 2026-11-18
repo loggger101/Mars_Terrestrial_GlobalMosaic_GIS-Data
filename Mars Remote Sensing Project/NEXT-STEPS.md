@@ -232,7 +232,7 @@ Each writes its prediction and verdict rule into the script before it runs.
 | Blocks | are 15° blocks wide enough? | **done 11-13** (KB §69.141): errors correlated to 2,400 km on inertia classes; 30° blocks change no verdict; smaller blocks would turn thermal to helps |
 
 **Scope:** every open test is optional; if time runs short, drop tests, never the digitising checkpoint or
-the cut dates.
+the cut dates. (The digitising checkpoint closed 11-10 by the author's decision: §6.)
 
 ---
 
@@ -248,7 +248,16 @@ pyramids, X6 q24 (§53–§55); T1 in Pro (§56).
 
 ---
 
-## 6. Manual GUI work, the critical path
+## 6. Manual GUI work — closed
+
+**Status, 2026-11-17: closed by the author's decision of 11-10** (no more manual review; KB §69.105, §69.152). What
+the gdb holds and will hold at the freeze: `Landform_ChannelCenterlines` 202 (199 from the author's accepts, 3 the
+agent's), `Landform_CraterRims` 381 (all from the author's accepts; `Preservation` left empty),
+`Landform_LavaFlowMargins` 86 (all traced by the agent on CTX, read again blind, §69.105). The review stands at 3,791
+of 9,287 candidates by the author: every depression at both sites, the priority channel layers (188 at Ius, 409 at
+Athabasca, 200 of them the agent's). Step 4 never ran: nothing the detectors missed was drawn, so the review gives
+precision and no recall. H2 stage 2 ran on the geologic map's rilles instead of hand-labelled volcanic channels
+(§69.133). The steps below are kept as the plan that was followed.
 
 **Review, then draw only what is missing** (decision D10, KB §46):
 
@@ -625,4 +634,4 @@ claim. "Cost" is who and how long; nothing here goes ahead of the review (§6) o
 | 8 | **The thermal gain is small** (+1.36 pt, resolved by block; none by balanced accuracy) | §56, §69.18, §69.44 | Nothing to fix: A2 (done 11-01, KB §69.50) found +1.1 pt on seven classes, not concentrated in the new classes; A8 (done 11-02, KB §69.50): SIM 3292's unit groups are not predictable from the stack above the commonest group, with or without thermal, so the mapped units are not the material labels a thermal test needs; that test waits on photo-interpreted labels (W6) | done |
 
 **Order for the agent:** D31 and D32 done 11-01 (KB §69.47), and §12.6 step 2's list (A1–A3, A7–A9, A13; KB
-§69.50); the v3 maps were picked 11-07 (D36, KB §69.82); rep was scored 11-11 (§69.106); what is left is the freeze. **For the author:** nothing required since §69.55; volcanic channels drawn by hand would unblock H2 stage 2, and any answer on the sheets replaces the agent's.
+§69.50); the v3 maps were picked 11-07 (D36, KB §69.82); rep was scored 11-11 (§69.106); what is left is the freeze. **For the author:** nothing required since §69.55; the hand work is closed (§6, the author's decision of 11-10), and H2 stage 2 ran on the geologic map's rilles instead of hand-drawn volcanic channels (KB §69.133).

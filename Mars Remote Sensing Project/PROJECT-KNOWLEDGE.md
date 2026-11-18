@@ -8514,3 +8514,7 @@ At the author's yes (11-17: "Yes, add it") to adding §69.148's result to the pa
 - **Appendix B:** a group "The thermal bands mapped over ±60°" (six; five held): M1–M3 from `make_thermal_change.py`, M4–M6 from `make_bandset_change.py`. Its totals become **61** written since the lead maps' runs, **45** of them held, **66 of 94** held in all (were 55, 40, 61 of 88).
 - **Conclusions:** the four-class item gains that without the thermal bands 14.9 % of the map changes class, against 28.9 % when only slope and relief are kept.
 - The deck is unchanged.
+
+### 69.152 Hand digitising checked and marked closed in NEXT-STEPS — 2026-11-17, desktop **[V]**
+
+At the author's request (11-17), the gdb was read: `Landform_ChannelCenterlines` 202 (`MappedBy` the author 199, the agent 3; `Origin` 29 fluvial, 173 indeterminate), `Landform_CraterRims` 381 (all the author's accepts; `Preservation` empty on every row), `Landform_LavaFlowMargins` 86 (all the agent's CTX traces; 12 certain, 47 probable, 27 inferred). Candidate review unchanged since §69.55: depressions 1,685 and 1,709 all decided; channels 188 of 2,610 at Ius and 409 of 3,283 at Athabasca. Nothing was drawn by hand from scratch. The author's decision of 11-10 (§69.105) closes the hand work; at their yes, NEXT-STEPS §6 (headed "the critical path") now says so, with these counts, and two lines that still asked for hand-drawn volcanic channels point to H2 stage 2 on the rilles (§69.133).
