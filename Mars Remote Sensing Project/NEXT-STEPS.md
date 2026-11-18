@@ -45,6 +45,27 @@ of this section, with each run's dated account, is in the history; condensed 202
 | 2 | The final: the paper's PDF and the deck as committed; a last read of both against the KB if anything changed | author presents | **8 Dec** |
 | 3 | Closing the project (§13.1 P12, D27): tag `final-2026-12-08` and a final release, `CITATION.cff` completed (no ORCID), this plan closed with a header saying so, the memory and this section retired | agent | 9–12 Dec |
 
+**Row 3, step by step** (prepared 11-18, KB §69.157; ~1 h). Already done ahead of it: `CITATION.cff` has its
+`preferred-citation` for the paper (no ORCID); D14's smoke classes were settled on 11-03; the README reads as
+finished work (D43, §69.130).
+
+1. Checks, both clean: `git status` in the clone, `tools/check_repo.py`, `audit_record.py` (ArcGIS Python),
+   `verify_interim.py` on `final.py` and on the tex. If the paper or deck changed after 22 Nov, the change is in
+   the KB as a correction first.
+2. Assets, staged in the scratch folder, never in the clone: the paper's PDF and the deck as committed; the five
+   rasters of 17 Nov with their `.aux.xml` (`Mars Project\Global60\global60_thermal_change_0p5deg.tif`,
+   `global60_thermal_change_window.tif`, `global60_bandset_change_{nothermal,novisible,terrain}_0p5deg.tif`,
+   ~33 MB) zipped as `thermal-change-rasters.zip` with bare file names, no folder (`restore.py` unzips it into
+   `Mars Project\Global60\` and skips the paper and deck, which the tree already holds); `SHA256SUMS.txt` over
+   all three.
+3. `CITATION.cff`: `version: "final-2026-12-08"`, `date-released` the day of release, `month: 12` in
+   `preferred-citation`. `docs/backup.md` "Not yet in a release": the five rasters moved to the new release.
+4. `github_sync.py --commit`, then `git tag final-2026-12-08` and `git push origin final-2026-12-08`.
+5. `gh release create final-2026-12-08 <the three assets> --title "Final, 8 December 2026"` with notes saying:
+   the paper and deck as presented; the five rasters; the maps, models and vectors unchanged in
+   `data-2026-11-12`, which `restore.py` still takes. Older releases' notes are left as they are.
+6. This plan gets a header "Closed <date>"; this section is retired; the memory files are retired.
+
 **Waiting on the author:** nothing. No decision is open (§2); no review remains (§6). Optional, whenever
 convenient: empty the Recycle Bins (~21 GB of finished scratch, §57.5).
 

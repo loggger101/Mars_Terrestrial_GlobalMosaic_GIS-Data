@@ -33,3 +33,15 @@ keywords:
   - planetary science
   - deep learning
   - U-Net
+preferred-citation:
+  type: report
+  title: "A Co-registered Visible, Thermal-Infrared and Elevation Stack of Mars at ±60°: What It Maps and What It Cannot"
+  authors:
+    - family-names: Edwards
+      given-names: Logan M
+      affiliation: "Florida Institute of Technology"
+  institution:
+    name: "Florida Institute of Technology"
+  year: 2026
+  notes: "Final report, OCN 4704 Remote Sensing, Fall 2026."
+  url: "https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/blob/main/Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final/paper/mars_global_mosaic.pdf"

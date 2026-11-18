@@ -8558,3 +8558,11 @@ At the author's "continue to audit, ensure everything is properly utilized, inte
 - **§5's script count** was of 10-31 (175); now 275 on the drive (265 `.py`, 10 `.ps1`), 274 public.
 - **`docs/scripts.md` header** (written by `github_sync.py`) named one run queue; there are seven `run_*.ps1` beside the three Office renderers.
 - **`make_fig_pipeline.py`** docstring: run it from PowerShell (§69.155). README's alt text for the diagram names its new boxes.
+
+### 69.157 Closing the project prepared ahead of 9 Dec: the paper's citation, `restore.py` taught the final release — 2026-11-18, desktop **[V]**
+
+At the author's "continue to wrap up what you can" (11-18). Only what does not wait for the final: no tag, no release, nothing in the paper or deck changed.
+
+- **`CITATION.cff`** gains `preferred-citation`: the paper as a report (its title, the author, Florida Institute of Technology, 2026, "Final report, OCN 4704 Remote Sensing, Fall 2026", the URL of the committed PDF). No ORCID (D27). `version`, `date-released` and the month wait for the final release.
+- **`restore.py`** took a release's assets by name and skipped any it did not know, so a final release holding the five rasters of 17 Nov (§69.148, §69.149) would have been passed over and the rasters never restored. A rule now unzips `thermal-change-rasters.zip` into `Mars Project\Global60\`; the paper and deck stay skipped, the tree holds them. A dry run still finds every earlier release (88.5 GB).
+- **`NEXT-STEPS.md`** row 3 is written out step by step: the checks, the three assets and their hashes, `CITATION.cff`, the tag, the release and its notes, the plan's closing header. D14's smoke classes, which P12 lists, were settled on 11-03 (§69.64).

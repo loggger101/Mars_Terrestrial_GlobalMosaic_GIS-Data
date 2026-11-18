@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 r"""Rebuild the Mars Global Mosaic project drive from this repository and its releases.
 
-    python restore.py --dest E:\                    everything: the tree, the newest data release, every derivatives release
+    python restore.py --dest E:\                    everything: the tree, the newest data release, every derivatives release, the final release
     python restore.py --dest E:\ --dry-run          say what would happen, download nothing
     python restore.py --dest E:\ --only typearea    only assets whose name contains "typearea"
     python restore.py --dest E:\ --no-tree          releases only
@@ -134,6 +134,8 @@ def destination(name, dest):
     if name.startswith(("typearea", "athabasca", "global60-classification", "global60-sidecars", "labeledobjects",
                         "dl-models")):
         return "unzip", mp
+    if name.startswith("thermal-change-rasters"):   # final release: the five grids of 17 Nov (KB §69.148-149)
+        return "unzip", mp / "Global60"
     if name.startswith("npy-caches"):
         return "unzip", rsp
     if name.startswith("mars_project_vectors.gpkg"):
@@ -142,7 +144,7 @@ def destination(name, dest):
         return "join", mp / "Global60"
     if name.startswith(("Classified_", "Segmented_")):
         return "copy", mp / "restored_from_gdb"
-    return "skip", None   # the SHA256SUMS files
+    return "skip", None   # the SHA256SUMS files; the paper and deck, already in the tree
 
 
 def main():
