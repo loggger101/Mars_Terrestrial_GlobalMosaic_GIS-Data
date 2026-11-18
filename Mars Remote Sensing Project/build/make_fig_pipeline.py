@@ -10,7 +10,8 @@ At \textwidth (~504 pt) a 1,100 px wide SVG sets 15 px text at ~6.9 pt.
   python make_fig_pipeline.py [--repo <clone>]
 
 Writes build\final_img\pipeline.pdf and pipeline.png. System Python. Fails if the SVG, Edge or either output is
-missing, or if an output is older than the SVG.
+missing, or if an output is older than the SVG. Run it from PowerShell or cmd: under Git Bash headless Edge
+writes no PDF (KB §69.155).
 """
 import os, re, sys, subprocess, tempfile
 from pathlib import Path

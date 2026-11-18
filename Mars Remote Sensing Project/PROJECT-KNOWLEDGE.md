@@ -554,8 +554,8 @@ older one**. A false claim wearing a `[V]` is worse than none.
 | `verify*`, `check_*`, `test_*` | checks claims against the project files |
 | bare noun | a module: `paths.py`, `grid60.py`, `areas.py`, `interim.py`, `le_theme.py`, `layoutkit.py` |
 
-**Counted 2026-10-31 (§69.34):** 175 build scripts on the drive (170 `.py`, 5 `.ps1`); 174 in the public repo, which leaves out
-`neutral_voice.py`. The repo's `docs/scripts.md` catalogues them; `tools/check_repo.py` fails if the README's count drifts.
+**Counted 2026-11-17 (§69.156):** 275 build scripts on the drive (265 `.py`, 10 `.ps1`); 274 in the public repo, which leaves out
+`neutral_voice.py` (175 and 174 on 2026-10-31, §69.34). The repo's `docs/scripts.md` catalogues them; `tools/check_repo.py` fails if the README's count drifts.
 
 **Every figure has a script that regenerates it.** Type-area products are `ius_*` in `Mars Project\TypeArea\`
 and `ath_*` in `Mars Project\Athabasca\`; ±60° products are `global60_*` in `Mars Project\Global60\`. Every
@@ -8548,3 +8548,13 @@ At the author's "update this" (11-17) on `docs/pipeline.svg` (the clone only, dr
 - **README footnote:** one line more (what the thermal box and the digitising box count); the SVG grows to 520 px, the paper crop to 452 px.
 - **Paper:** Figure 1's caption names the digitising classes and the 14.9 % (Section 4). Rendered and read.
 - `make_fig_pipeline.py` fails under the Bash tool (headless Edge writes no PDF there) and works from PowerShell.
+
+### 69.156 Audit of 11-17 evening: the handoff's table, the script count, the index header — 2026-11-17, desktop **[V]**
+
+At the author's "continue to audit, ensure everything is properly utilized, integrated and updated" (11-17).
+
+- **Checked and current:** the paper's 47 figures in order of first citation; every paper figure number the repo pages give (`docs/figures.md`); the numbers in `docs/figures.md` (415), `docs/backup.md` (69) and `NEXT-STEPS.md` against this record; `CITATION.cff` (the final data release, data-2026-11-12); `neutral_voice.py --check` clean on the record, the plans, the paper, `final.py`, the repo pages and the 25 newest scripts.
+- **`HANDOFF-DESKTOP.md` §2:** had 246 scripts, 45 maps and 26 layouts, layout PNGs 04–20, three reference sets, and no row for the final. Now 275 scripts (274 public), 63 maps, 32 layouts, PNGs 04–26, the seven reference sets, and a row for the final paper and deck with their builders.
+- **§5's script count** was of 10-31 (175); now 275 on the drive (265 `.py`, 10 `.ps1`), 274 public.
+- **`docs/scripts.md` header** (written by `github_sync.py`) named one run queue; there are seven `run_*.ps1` beside the three Office renderers.
+- **`make_fig_pipeline.py`** docstring: run it from PowerShell (§69.155). README's alt text for the diagram names its new boxes.
