@@ -249,7 +249,7 @@ the layouts above, all 13 re-exported from the current sheets on 2026-10-22 (KB 
 [`build/final_img/`](../Mars%20Remote%20Sensing%20Project/build/final_img) holds the same kind of crops for the
 final deck (layouts 04, 04b, 04c, 07, 08, 10, 12, 15, 16, 17, 17b, 17c), exported by
 [`make_final_figs.py`](../Mars%20Remote%20Sensing%20Project/build/make_final_figs.py), beside the three charts above. The
-final paper's [`figures/`](../Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final/paper/figures) folder holds copies of
+final paper's [`figures/`](../Mars%20Remote%20Sensing%20Project/Deliverables/Final/paper/figures) folder holds copies of
 figures on this page, put there by `build_final_paper.py` so the `.tex` compiles on its own (KB §69).
 
 ## Other
@@ -258,6 +258,6 @@ figures on this page, put there by `build_final_paper.py` so the `.tex` compiles
 |---|---|---|
 | [`pipeline.svg`](pipeline.svg) | The pipeline diagram on the front page: four sources, one ±60° grid, the products, all three label rounds, the SVM and the U-Net with their seven-class and four-class scores, the thermal bands mapped, and the candidates feeding the digitising classes. KB §69.38, §69.155. | by hand |
 | [`final_img/pipeline.pdf`](../Mars%20Remote%20Sensing%20Project/build/final_img/pipeline.pdf) · [`pipeline.png`](../Mars%20Remote%20Sensing%20Project/build/final_img/pipeline.png) | The same diagram rendered for the paper, the footnote left to the caption: one vector page and a 2,200 × 892 PNG. In the paper's Methods (`fig:pipeline`). KB §69.38. | `make_fig_pipeline.py` |
-| [`NEXT STUFF/Final/paper/mars_global_mosaic.pdf`](../Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final/paper/mars_global_mosaic.pdf) | The final paper, a draft in AASTeX 7 (25 pages, the references included); the machine products presented as candidates while the review is open. KB §69. | `build_final_paper.py` |
-| [`NEXT STUFF/Mars Mosaic - Interim Report.pdf`](../Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Mars%20Mosaic%20-%20Interim%20Report.pdf) | The interim report, submitted 5 November 2026: 21 pages, 21 figures, the data cut 26 October (D20), its Viking wording corrected 3 November. KB §69.64. | `build_interim_report_live.py`, rendered through Word |
-| [`OLD/ocean first pres LE.pdf`](../Mars%20Remote%20Sensing%20Project/OLD/ocean%20first%20pres%20LE.pdf) | Presentation 1 as delivered (history, not corrected). KB §14.5. | — |
+| [`Deliverables/Final/paper/mars_global_mosaic.pdf`](../Mars%20Remote%20Sensing%20Project/Deliverables/Final/paper/mars_global_mosaic.pdf) | The final paper, a draft in AASTeX 7 (25 pages, the references included); the machine products presented as candidates while the review is open. KB §69. | `build_final_paper.py` |
+| [`Deliverables/Mars Mosaic - Interim Report.pdf`](../Mars%20Remote%20Sensing%20Project/Deliverables/Mars%20Mosaic%20-%20Interim%20Report.pdf) | The interim report, submitted 5 November 2026: 21 pages, 21 figures, the data cut 26 October (D20), its Viking wording corrected 3 November. KB §69.64. | `build_interim_report_live.py`, rendered through Word |
+| [`Earlier deliverables/ocean first pres LE.pdf`](../Mars%20Remote%20Sensing%20Project/Earlier%20deliverables/ocean%20first%20pres%20LE.pdf) | Presentation 1 as delivered (history, not corrected). KB §14.5. | — |

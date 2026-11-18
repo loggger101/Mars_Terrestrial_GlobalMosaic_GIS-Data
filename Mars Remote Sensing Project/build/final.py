@@ -4,7 +4,7 @@
 Built on the interim's pattern (interim.py): every word and number on the slides is here, each with its KB §, and a
 number changes here only after it changes in PROJECT-KNOWLEDGE.md. The slides follow the final report outline of
 NEXT-STEPS.md §7: question and hook, data and the ±60° decision, co-registration, the thermal pair, craters,
-channels, lava flows, classification and accuracy, limits, what next. The paper (NEXT STUFF\\Final\\paper) tells the
+channels, lava flows, classification and accuracy, limits, what next. The paper (Deliverables\\Final\\paper) tells the
 same story at length; the two must not disagree.
 
 No rubric or template exists for the final (KB §50, D2): the deck uses the Presentation 1 design (le_theme.py), as the

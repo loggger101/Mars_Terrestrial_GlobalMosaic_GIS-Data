@@ -39,13 +39,13 @@ The prospectus asked whether a co-registered visible and thermal-infrared mosaic
 
 | To read | Open |
 |---|---|
-| The final paper (AASTeX, PDF) | [`mars_global_mosaic.pdf`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final/paper/mars_global_mosaic.pdf); its source and figures are beside it in [`NEXT STUFF/Final/paper/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final/paper) |
-| The final presentation | [`Mars Global Mosaic - Final Presentation.pptx`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF/Final/Mars%20Global%20Mosaic%20-%20Final%20Presentation.pptx) |
+| The final paper (AASTeX, PDF) | [`mars_global_mosaic.pdf`](Mars%20Remote%20Sensing%20Project/Deliverables/Final/paper/mars_global_mosaic.pdf); its source and figures are beside it in [`Deliverables/Final/paper/`](Mars%20Remote%20Sensing%20Project/Deliverables/Final/paper) |
+| The final presentation | [`Mars Global Mosaic - Final Presentation.pptx`](Mars%20Remote%20Sensing%20Project/Deliverables/Final/Mars%20Global%20Mosaic%20-%20Final%20Presentation.pptx) |
 | The lead maps | layouts [17c](Mars%20Project/Global60/layouts/17c_unet_v3_provinces.png) (U-Net) and [04c](Mars%20Project/Global60/layouts/04c_global60_landforms_v3.png) (SVM); all 32 sheets are under [Layouts](#layouts) |
 | The results in brief, with their charts | [Results](#results), below |
 | The maps and layers themselves | [Using the data](#using-the-data); ArcGIS Pro is not needed |
 | How any number was reached | the [knowledge base](Mars%20Remote%20Sensing%20Project/PROJECT-KNOWLEDGE.md), by section number (the paper's source cites one beside every number) |
-| The earlier deliverables | the interim report and presentation in [`NEXT STUFF/`](Mars%20Remote%20Sensing%20Project/NEXT%20STUFF); the prospectus and Presentation 1 in [`OLD/`](Mars%20Remote%20Sensing%20Project/OLD) |
+| The earlier deliverables | the interim report and presentation in [`Deliverables/`](Mars%20Remote%20Sensing%20Project/Deliverables); the prospectus and Presentation 1 in [`Earlier deliverables/`](Mars%20Remote%20Sensing%20Project/Earlier%20deliverables) |
 
 **The work is finished.** The maps and data are final as of 12 November 2026, the deck as of 16 November and the paper as of 17 November, when six layouts and the map of where the thermal bands change the classification were added, for the final due **8 December 2026**; no run is in progress, and every result is in the paper and the knowledge base, and all but the 17 November layouts in the deck.
 
@@ -296,11 +296,15 @@ The folders mirror the drive, so a path in the knowledge base (`<drive>\Mars Pro
 
 ```
 Mars Remote Sensing Project/
+  Deliverables/            what was handed in: the interim report (.docx, .pdf) and presentation
+    Final/                 the final deck, and paper/: the AASTeX source, its figures and the PDF
+  Earlier deliverables/    the prospectus and Presentation 1 (delivered; the deck as PDF)
   PROJECT-KNOWLEDGE.md     the authoritative record: data, traps, every result, open questions
+  NEXT-STEPS.md, HANDOFF-DESKTOP.md, INTERIM-PLAN.md
+                           the working plan, the machine notes and the interim's plan (notes, not
+                           deliverables; see "The working record" above)
   build/                   274 scripts: every raster product, figure, layout, audit and deliverable
     logs/                  run logs and the classification scores as JSON
-  NEXT STUFF/              interim report and presentation; Final/: the AASTeX paper and the final deck
-  OLD/                     prospectus and Presentation 1 (delivered; the deck as PDF)
 Mars Project/
   Mars Project.aprx        the ArcGIS Pro project: 63 maps, all Mars, and 32 layouts
   Global60/, TypeArea/,    metadata sidecars, models (.ecd), raster attribute tables, layouts;

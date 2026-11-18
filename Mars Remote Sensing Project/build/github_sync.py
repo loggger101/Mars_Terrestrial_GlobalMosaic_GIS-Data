@@ -27,7 +27,7 @@ What goes to the repo, mirrored under the same folder names as on the drive:
   <drive root>\  -> drive-root\ sidecars of the four globals (not "new training.*", KB §57.6)
 Any single file over 95 MB is skipped and reported (GitHub refuses files over 100 MB).
 
-The built deliverables (NEXT-STEPS §13.1 P4, D26): every .pptx, .docx and .pdf under NEXT STUFF\ outside a figures\
+The built deliverables (NEXT-STEPS §13.1 P4, D26): every .pptx, .docx and .pdf under Deliverables\ outside a figures\
 folder is rebuilt from source on the drive, and each commit of one adds 15-25 MB to the history for good (nearly all
 of the .git, KB §69.19). They are mirrored like everything else (D26, answered 2026-11-03: everything goes in the
 repo, nothing held back; KB §69.74). --hold-deliverables leaves a new or changed one out and lists it; the mirror then
@@ -90,7 +90,7 @@ SKIP_DIRS |= {".backups", "aprx_live", "le_img"}
 SKIP_DIRS |= {"ctx_cache"}
 REVIEW_KEEP = {".md", ".txt"}
 SKIP_FILES = {"neutral_voice.py",
-              "ocean first pres LE.pptx"}     # Presentation 1, delivered; its PDF stays in OLD\
+              "ocean first pres LE.pptx"}     # Presentation 1, delivered; its PDF stays in Earlier deliverables\
 RASTER = {".tif", ".tiff", ".ovr", ".img", ".jp2"}
 # pres1_img\ holds Presentation 1's figures; only those the interim or the final deck still shows are mirrored
 PRES1_USED = {n for m in ("interim.py", "final.py")
@@ -103,7 +103,7 @@ LATEX_WORK = {".aux", ".log", ".out", ".blg", ".synctex", ".fls", ".fdb_latexmk"
 def deliverable(p):
     """A built deck, report or paper PDF (the module docstring); a paper's figures\\ PDFs are sources, not builds."""
     parts = p.relative_to(DRIVE).parts
-    return (p.suffix.lower() in {".pptx", ".docx", ".pdf"} and "NEXT STUFF" in parts
+    return (p.suffix.lower() in {".pptx", ".docx", ".pdf"} and "Deliverables" in parts
             and "figures" not in parts)
 
 
@@ -445,7 +445,7 @@ def main():
         print(f"  SKIPPED (> 95 MB, {s / 1e6:.0f} MB): {p}")
     for h in held:
         print(f"  HELD BACK (a built deliverable; --hold-deliverables given): {h}")
-    paper = DRIVE / "Mars Remote Sensing Project" / "NEXT STUFF" / "Final" / "paper" / "mars_global_mosaic"
+    paper = DRIVE / "Mars Remote Sensing Project" / "Deliverables" / "Final" / "paper" / "mars_global_mosaic"
     if paper.with_suffix(".pdf").stat().st_mtime < paper.with_suffix(".tex").stat().st_mtime:   # CI's PDF is only an artifact (KB §69.78)
         print("  STALE: the paper's PDF is older than its .tex; run build_final_paper.py on the desktop (MiKTeX)")
     if not DRY and write_script_index():

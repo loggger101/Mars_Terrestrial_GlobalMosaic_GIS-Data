@@ -779,7 +779,7 @@ Keep the title: the source products and the visible mosaic are global; the **co-
 
 Twelve `build\` scripts pointed at a folder that no longer existed, so the audit and several figure
 generators had been silently dead since the move; nothing reported it because nothing ran them. Repathed,
-the deliverable filenames remapped (the interim in `NEXT STUFF\`; Presentation 1 is `ocean first pres LE.pptx`,
+the deliverable filenames remapped (the interim in `Deliverables\`; Presentation 1 is `ocean first pres LE.pptx`,
 `ocean` being the course code), and a UTF-8 stdout shim added (the cp1252 console crashed on `→` and `−`).
 Since §40.2 every script finds its drive. Run with the ArcGIS Python from `build\`: `verify_all.py`.
 
@@ -951,7 +951,7 @@ source: built documents are not automatically in step with what feeds them.
 ### 21.4 The interim deck was never blocked
 
 The September deck was built by `build_interim_le.py`, which needs no template (§39.2). The template-filling
-`build_interim_deck.py` needs `2 Interim Presentation Template.pptx`, in `NEXT STUFF\` since 2026-10-08. Both
+`build_interim_deck.py` needs `2 Interim Presentation Template.pptx`, in `Deliverables\` since 2026-10-08. Both
 are superseded by the living build (§39.3).
 
 ---
@@ -1925,7 +1925,7 @@ questions are tracked in `INTERIM-PLAN.md` §5.
 
 ### 39.2 The interim folder, read 2026-10-08
 
-`NEXT STUFF\` holds `2 Interim Presentation Template.pptx`: two slides of headings, *Project Title*, *Project
+`Deliverables\` holds `2 Interim Presentation Template.pptx`: two slides of headings, *Project Title*, *Project
 Investigators*, *Project Goals*, *Relevant Spectral Bands*, *List of Project Tasks and Percent Complete*,
 *Preliminary Results (if available)*, *Project issues and Hurdles*, under "Remote Sensing Project – Interim
 Presentation". **Those seven headings are what the course asks of the interim.** The September deck and report
@@ -2817,7 +2817,7 @@ the log at 13 rows; new figures: layouts 11 and 12 and T1 in Pro). `make_fig_t1_
 `t1_bootstrap_*.json` logs, each a dot with its 95 % interval, resolved in blue, not resolved open grey (validated:
 normal-vision ΔE 25, CVD ΔE 21). `make_interim_figs.py` hides layout 11's table and note for the slide. **Deck 28 slides,
 report 20 pages, 19 figures**; every changed slide and page read; `verify_interim.py`: all 249 numbers in the record. The
-percent-complete column (the author's) and the due date (unknown) are still open. Previous files in `NEXT STUFF\.backup_20261016\`.
+percent-complete column (the author's) and the due date (unknown) are still open. Previous files in `Deliverables\.backup_20261016\`.
 
 ### 57.4 GitHub release `data-2026-10-16` — 2026-10-16 **[V]**
 
@@ -2943,7 +2943,7 @@ On the laptop, ArcGIS Pro closed. Nothing measured changed.
   then `make_validation_sheet.py` (tally unchanged: 0 of 9,287 reviewed) and the polish on the real `.aprx`; every sheet
   exported and read, and the polished PNGs copied into `TypeArea\layouts\` and `Global60\layouts\`.
 - **The interim rebuilt from the new sheets**: `make_interim_figs.py` (11 layouts at 200 dpi), the deck (28 slides) and
-  the report (20 pages, 19 figures), live files backed up to `NEXT STUFF\.backup_20261018\`; both rendered and read;
+  the report (20 pages, 19 figures), live files backed up to `Deliverables\.backup_20261018\`; both rendered and read;
   `verify_interim.py`: 249 numbers, all in the KB.
 - **The repo**: a new `docs/figures.md` lists every image with its builder script and sections, thumbnails linked to
   the full files; the README shows the result charts beside the results they back and groups the layouts by theme with
@@ -2974,7 +2974,7 @@ On the laptop; nothing measured, no raster read, nothing written to the `.aprx` 
   (Hellas floor counted dusty; the Viking rocky row moved 6 DN): both stop it.
 - **The deck's slide 11** (`interim.py`) now says 47.67 DN, −0.19 and +0.02 DN, and −0.0009 over seven provinces,
   instead of "54.4 DN (these five boxes)". Rebuilt: 28 slides; the report **19 pages** (the wide figure is shorter
-  than the tall dark one), 19 figures; live files backed up to `NEXT STUFF\.backup_20261019\`. `make_interim_figs.py`
+  than the tall dark one), 19 figures; live files backed up to `Deliverables\.backup_20261019\`. `make_interim_figs.py`
   not rerun (no layout changed). Both rendered; slide 11 and report page 5 read. `verify_interim.py`: 251 numbers,
   all in the record.
 - Repo: the figure's row in `docs/figures.md` moved from "Other" to "Result charts" and rewritten; the README shows
@@ -3237,7 +3237,7 @@ class at run time, logged to `logs\dl_sheet.json`.
   installed", and the schedule put it in 26 Oct – 1 Nov. Now the next step names the result (Crater precision
   87.6 % against 71.1 % for always naming Crater; the two rare classes never named, §66.2) and the schedule lists
   the detector among the desktop runs done. **No X5 slide was added** (what the deck shows is the author's call;
-  it still shows 14 layouts, §63). Rebuilt with the live files backed up to `NEXT STUFF\.backup_20261020\`: 28
+  it still shows 14 layouts, §63). Rebuilt with the live files backed up to `Deliverables\.backup_20261020\`: 28
   slides, 19 pages; rendered through PowerPoint and Word, compared page by page with the previous build: **only
   slide 28 and report page 19 changed**, both read. `verify_interim.py`: all **253** numbers found in this record.
 
@@ -3561,7 +3561,7 @@ twice on a copy beside the `.aprx`, the copy then moved off the drive):
 At the author's request ("do both": a deep-learning slide in the interim, and the GeoPackage republished as a new
 release). On the desktop; nothing measured, no raster or gdb class written.
 
-**The interim** (live files backed up to `NEXT STUFF\.backup_20261021\`):
+**The interim** (live files backed up to `Deliverables\.backup_20261021\`):
 
 - `interim.py`: two figure entries after the T1 slide, "Deep learning, 1: a detector that draws boxes" (layout 16;
   X5's held-out recall and precision against the one-class baseline, §66.2; X5b not improved, §66.5) and "Deep
@@ -3624,7 +3624,7 @@ On the desktop, at the author's request to audit that the layouts and images are
   before §64; the others differed in 0.3–7.5 % of their pixels. The author's decision the same day: refresh them
   (reversing "leave the deck as it is", §63).
 - **Re-exported and rebuilt:** `make_interim_figs.py` (all 13 layouts), the deck (30 slides) and the report
-  (21 pages, 21 figures); the live files backed up first to `NEXT STUFF\.backup_20261022\`. `verify_interim.py`: all
+  (21 pages, 21 figures); the live files backed up first to `Deliverables\.backup_20261022\`. `verify_interim.py`: all
   277 numbers in this record. Rendered through PowerPoint and Word and compared page by page with the previous build:
   the text is unchanged but for the report's date line; the pictures changed on slides 9 (08, now centred on 0°E),
   10 (01–02), 13 (07's legend), 16 (06) and 17 (09, the larger map of §64), and on report
@@ -3685,7 +3685,7 @@ what was there was structural.
     `make_mosaic_layout.py`, `make_reference_maps.py`, `make_global60_candidate_sheets.py`, `make_geomap_sheet.py`,
     `make_validation_sheet.py`, `make_athabasca_layout.py`, `make_dl_map.py`, `make_unet_map.py`.
 - **The deck:** its crops hide titles and notes, so only 05's (its panel headings show) changed: re-exported with
-  `--only 05_svm_checks`, the deck and report rebuilt (live files to `NEXT STUFF\.backup_20261022b\`), slide 28 and
+  `--only 05_svm_checks`, the deck and report rebuilt (live files to `Deliverables\.backup_20261022b\`), slide 28 and
   report page 20 changed and read; the text of both documents unchanged; `verify_interim.py`: 277 numbers.
 - **Pages:** the README ("Three coordinate frames, not two:" a binary-contrast opener; "not just the craters"; four
   emphasis bolds mid-sentence), `Global60\README.md` (the verdict "That is the whole point of the folder", six em
@@ -3750,7 +3750,7 @@ earlier 744 × 346). Two layout flags in `interim.py`, no wording changed:
   height on the left, 408 pt wide, the takeaways and legend on the right; legend 0.62 pt/px.
 - 07 (aspect 2.92) gets `map_h=230`, a new per-figure cap in `build_interim_live.split_legend` on a full-width
   map's height (290 pt otherwise): the map 230 pt high, the legend 0.33 pt/px.
-- The deck rebuilt (live file backed up to `NEXT STUFF\.backup_20261022c\`), rendered through PowerPoint and
+- The deck rebuilt (live file backed up to `Deliverables\.backup_20261022c\`), rendered through PowerPoint and
   compared with the previous build: only slides 13 and 28 changed; both read. The report places whole crops and
   was not rebuilt. `verify_interim.py`: 277 numbers.
 
@@ -3971,7 +3971,7 @@ plan, the contingency).
 - **LaTeX:** MiKTeX 25.12 installed per-user with `winget` (the author chose it over Overleaf), automatic package
   installs on; AASTeX **7.0.1** (`aastex701.cls`, `aasjournalv7.bst`). AASTeX 7 refuses to compile without an
   `\email` for each author: the paper carries the author's school address (§69.1); AASTeX 7 does not print it.
-- **The paper:** `NEXT STUFF\Final\paper\mars_global_mosaic.tex` (two-column, 14 pages, 16 figures, 5 tables,
+- **The paper:** `Deliverables\Final\paper\mars_global_mosaic.tex` (two-column, 14 pages, 16 figures, 5 tables,
   40 references in `references.bib`), each number with its § in a `%%` comment. Sections: introduction (the
   Athabasca hook, H1–H4), data, methods (the grid, the stack, the index, fill depth and routing, the SVM and its
   block split, deep learning, bootstrap), results, discussion (the hypotheses table, limits), conclusions.
@@ -3995,7 +3995,7 @@ plan, the contingency).
   would stay; the T8 chart is used instead.
 - **The deck:** `build\final.py` (content, every number with its §) and `build\build_final_deck.py` (the interim's
   slide placement, copied so `build_interim_live.py` is untouched; special slides for the question, the bands and
-  the correlation table; `side_h` for a wide figure drawn left) → `NEXT STUFF\Final\Mars Global Mosaic - Final
+  the correlation table; `side_h` for a wide figure drawn left) → `Deliverables\Final\Mars Global Mosaic - Final
   Presentation.pptx`, **32 slides**: the question, the mosaic, the thermal pair, landforms, classification (deep
   learning included), the hypotheses, limits, conclusions, what next. Rendered through PowerPoint and every slide
   read; `verify_interim.py final.py`: all 172 numbers in this record; `neutral_voice.py --check` clean on the new
@@ -4073,8 +4073,8 @@ the clone equals `origin/main` (`cdac6d7`, CI passed), no other branch or open P
   §69.2 had written the 31st (`Landform_TrainingSamples_v2_proposals`) without adding it to §6's table; added
   (Polygon, 1,086 rows, `Action` counts read with `arcpy`: 474 keep, 574 new, 23 check, 12 relabel, 1 clip,
   1 delete, 1 fix, as §69.2). The `py -3` run cannot see this (no `arcpy`): run it under the ArcGIS Python after any gdb change.
-- **Four audits pointed at the root for the delivered Presentation 1 and the prospectus,** which live in `OLD\`, and
-  crashed: `audit_consistency.py`, `audit_structure.py`, `audit_images.py` and `verify2.py` now read `OLD\`. The
+- **Four audits pointed at the root for the delivered Presentation 1 and the prospectus,** which live in `Earlier deliverables\`, and
+  crashed: `audit_consistency.py`, `audit_structure.py`, `audit_images.py` and `verify2.py` now read `Earlier deliverables\`. The
   first three run clean; `verify2.py` gives 57 checks, 26 failed, stale by design as §17.4 says (its gdb checks
   describe September: the nomenclature triplicates deleted in §50, no pyramids before X4).
   `audit_headroom.py` takes a deck as its argument, as before.
@@ -4196,7 +4196,7 @@ author accepts"); nothing here is published, put in the interim, or used for D18
   gives the 26 October cut. The rehearsal (§69.4) stays out: never a result. The figures are unchanged.
 - **Rebuilt and read:** deck 30 slides, report 21 pages, 21 figures; `verify_interim.py` 282 numbers, all in the
   record. The first build ran the issues slide off its foot (nine items); two items cut to one line each fit it.
-  Slides 1, 6, 29 and 30 and report pages 1–3, 20 and 21 were read. Backups in `NEXT STUFF\.backup_20261026\` and
+  Slides 1, 6, 29 and 30 and report pages 1–3, 20 and 21 were read. Backups in `Deliverables\.backup_20261026\` and
   `build\.py_backup_20261026\`.
 - **The percent-complete column (D16), set by the agent at the author's request the same evening:** each row's
   progress toward the final deliverable, not the interim; 100 means nothing is left for the final, and a scope that
@@ -4578,7 +4578,7 @@ drive, no Pro; everything from the clone's logs.
 - **The two no-thermal maps are separate rasters** that score alike (seam ratios 0.997 / 0.996 at 200 m against
   0.991 / 0.988 at 400 m; matrices differing in the fourth place), not one map scored twice.
 - **The U-Net map** makes 55.1 % of ±60° Crater and 39.3 % Normal Ground, where the SVM map makes 33.9 % and 54.7 %.
-- **The paper** (`NEXT STUFF\Final\paper\mars_global_mosaic.tex`; `NEXT-STEPS.md` §12.1, §12.4):
+- **The paper** (`Deliverables\Final\paper\mars_global_mosaic.tex`; `NEXT-STEPS.md` §12.1, §12.4):
   - the abstract cut from 306 to 250 words (W1);
   - Methods name the new scores; Table 3 gains balanced accuracy, mean F1, Q and A; Results gain the quantity
     paragraph, the class areas and the T1 caveat;
@@ -4590,7 +4590,7 @@ drive, no Pro; everything from the clone's logs.
     with their precisions (54 % and 7 %). `final.py`'s limit "The review has not started" likewise.
   - **Not compiled:** the laptop's TinyTeX has no `aastex701.cls`; `build_final_paper.py` (MiKTeX) on the desktop
     rebuilds the PDF, which is then read page by page (Table 3 is wider now).
-- **The v2 drafts (W8)**: `NEXT STUFF\Final\paper\v2_drafts.tex`, the seven-class paragraphs and table rows for D18
+- **The v2 drafts (W8)**: `Deliverables\Final\paper\v2_drafts.tex`, the seven-class paragraphs and table rows for D18
   passing and for it failing, with every number a placeholder naming its log key; written against the rehearsal's
   logs, whose numbers are never results. `final.py`'s v2 slide is not drafted yet (`NEXT-STEPS.md` §12.4 W8).
 - **The seven class colours stay `labelsets.COLOURS`** (the labels' own, shared with `apply_label_review.py`):
@@ -4883,7 +4883,7 @@ At the author's request after §69.21: the deck rendered to PDF (120 dpi) and ev
 ### 69.27 The final's text rewritten with the seven-class maps leading (D28) — 2026-10-29, desktop **[V]**
 
 NEXT-STEPS §11.5 step 5, at the author's request ("Rewrite final text"). The paper
-(`NEXT STUFF\Final\paper\mars_global_mosaic.tex`) and the deck's content (`build\final.py`) now carry the
+(`Deliverables\Final\paper\mars_global_mosaic.tex`) and the deck's content (`build\final.py`) now carry the
 seven-class maps; the four-class maps are named "four-class" where they were "published". The paper's v2 text
 follows `v2_drafts.tex`, with a third branch the drafts did not foresee: the rule fails and the seven-class maps lead
 all the same (D28, §69.26).
@@ -5103,7 +5103,7 @@ element `label_b` directly (§67.2), backed up first; `polish_layouts.py` (no sh
 and read. Against the drive's PNG only the heading's strip differs (pixels 246–777 × 609–628), so the PNG was replaced.
 Then the interim's crops (`make_interim_figs.py --only 11_global60_depressions`: the whole and `__map` differ only in
 the heading, `__legend` not at all), `make_interim_dark.py`, and both documents rebuilt (live copies first saved to
-`NEXT STUFF\.backup_20261031\`): 32 slides, 21 pages, `verify_interim.py` 335 numbers; slide 14 and report page 7
+`Deliverables\.backup_20261031\`): 32 slides, 21 pages, `verify_interim.py` 335 numbers; slide 14 and report page 7
 (Figure 7) rendered and read. `make_fig_checks.py` redrew `t2_density.png` with its corrected legend ("Robbins &
 Hynek 2012 catalogue (2020 release)"); its other two charts came out pixel-identical and were restored to the
 committed bytes. The final paper and deck use neither image.
@@ -5377,7 +5377,7 @@ DOI resolved at doi.org and the registrar's BibTeX read; all six exist as named:
 | `Olofsson2014` | Olofsson et al. (6 authors), Remote Sens. Environ. 148, 42–57 | 10.1016/j.rse.2014.02.015 | good practice for sample-based accuracy assessment and area estimation (title; no abstract read) |
 
 `Edwards2011`, which W5 points at for THEMIS's local time, season and dust, was already in the file. The six entries
-are in `NEXT STUFF\Final\paper\references.bib` in the file's own form; uncited entries do not print, so the paper's
+are in `Deliverables\Final\paper\references.bib` in the file's own form; uncited entries do not print, so the paper's
 PDF is unchanged. A two-column `article` test with natbib, citing all six and `Lee2019`, compiles under TinyTeX with
 no BibTeX or LaTeX warning, seven references printed.
 
@@ -5425,7 +5425,7 @@ minute; the talk's slot length is still the author's (§12.5).
   a number is recorded, not that it is the right one.
 - Rebuilt with `python build_interim_live.py` to scratch, then compared with the deck it replaced shape by shape
   (text, position, size, image hashes): **0 of 32 slides differ**; only the notes are new. Copied over
-  `NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx`. The report is unchanged (it reads no notes).
+  `Deliverables\Mars Global Mosaic - Interim Presentation.pptx`. The report is unchanged (it reads no notes).
 - `neutral_voice.py --check interim.py build_interim_live.py`: 0 personal forms.
 
 **The held-out split as a figure** (§12.4 W4). `build\make_block_split.py` (ArcGIS Python, reads the gdb only)
@@ -5489,7 +5489,7 @@ and gathers byte-identical figures on the drive (the sync copied none).
 - `references.bib` holds one entry the `.tex` never cites, `Comaniciu2002`; BibTeX leaves it out of the list. Left for
   the freeze: cite it or drop it.
 
-**P4, the deliverables held back.** `github_sync.py` treats every `.pptx`, `.docx` and `.pdf` under `NEXT STUFF\`
+**P4, the deliverables held back.** `github_sync.py` treats every `.pptx`, `.docx` and `.pdf` under `Deliverables\`
 outside a `figures\` folder as a built deliverable: a new or changed one is not copied unless `--deliverables` is
 given, and is listed `HELD BACK`; the mirror keeps the copy last committed and never deletes it for being held back.
 The paper's `figures\pipeline.pdf` and `build\final_img\pipeline.pdf` are sources and still sync. **Proven both ways**
@@ -5954,7 +5954,7 @@ its first run and is reported held or not held.
   segment's gradient reports where it lies more than what cut it. Still a stand-in for origin; stage 2 on reviewed
   channels with `Origin` stays the authority (NEXT-STEPS §3 step 3).
 
-- **Drafted for the freeze, not inserted** (`NEXT STUFF\Final\paper\v2_drafts.tex`, blocks 8–10): **W11**, the
+- **Drafted for the freeze, not inserted** (`Deliverables\Final\paper\v2_drafts.tex`, blocks 8–10): **W11**, the
   review rule's thresholds as `review_v2_by_rule.py` holds them (a fluvial strip at least 20 m below a 4.8 km flank
   ring, ShareVolc < 0.5; an apron at SlopeMed ≥ 1°, CraterCover < 0.5) and the v2 U-Net's training as its own
   `run_config.json` records it (batch 8, 10 % of chips for validation, backbone unfrozen, 256-pixel chips, 30
@@ -6653,10 +6653,10 @@ classes); **D23, not now** (no Zenodo DOI yet: the data statement, block 13, wai
   interim's report and deck and by the final deck) had the same claim in its footnote, now "keeps the regional
   difference in its colour". Words only: the 26 October data cut, the numbers and every other figure are unchanged
   (`make_interim_dark.py` redrew all the navy copies from today's logs; compared byte for byte with the committed
-  ones, only `global60_thermal.png` differs). The live files were backed up to `NEXT STUFF\.backup_20261103\`, both
+  ones, only `global60_thermal.png` differs). The live files were backed up to `Deliverables\.backup_20261103\`, both
   rebuilt (32 slides; 21 pages, 21 figures), rendered (PowerPoint and Word COM) and every changed slide and page
   read; no page of either says "albedo" any more. `verify_interim.py`: all 539 numbers in the record; `verify_all.py`
-  37 of 37. **`NEXT STUFF\Mars Mosaic - Interim Report.pdf`** is the rendered report, for the 5 November submission.
+  37 of 37. **`Deliverables\Mars Mosaic - Interim Report.pdf`** is the rendered report, for the 5 November submission.
 
 ### 69.65 D24: the final deck in the interim's dark design — 2026-11-03, laptop **[V]**
 
@@ -6681,8 +6681,8 @@ notes (§69.9: no KB reference on a slide), so every slide has one. Until today 
 - **Read:** 37 slides rendered through PowerPoint and every one read on contact sheets, then the changed ones at full
   size. Two fixes: "Seven classes from a U-Net" ran its four takeaways into the legend (`points_h=262` in `final.py`,
   the interim's own option, now fits); the limit cards touched their bottom edge at 12 pt (11 pt now). The live
-  deck (`NEXT STUFF\Final\Mars Global Mosaic - Final Presentation.pptx`, backed up first to
-  `NEXT STUFF\.backup_20261103\`) is rebuilt; `verify_interim.py` on `final.py`: all 235 numbers in the record.
+  deck (`Deliverables\Final\Mars Global Mosaic - Final Presentation.pptx`, backed up first to
+  `Deliverables\.backup_20261103\`) is rebuilt; `verify_interim.py` on `final.py`: all 235 numbers in the record.
 
 ### 69.66 The repository brought level with the record; the review guides backed up — 2026-11-03, laptop **[V]**
 
@@ -6728,7 +6728,7 @@ notes (§69.9: no KB reference on a slide), so every slide has one. Until today 
 
 The paper read against `references.bib` at the author's request. Five places stated a sourced fact with no citation,
 and five named a method without one; at the author's yes, all ten are cited (the `.tex` and `.bib` backed up first to
-`NEXT STUFF\.backup_20261103\*_before_citations.*`; ten lines of the `.tex` changed, no number):
+`Deliverables\.backup_20261103\*_before_citations.*`; ten lines of the `.tex` changed, no number):
 
 | where | what | cited |
 |---|---|---|
@@ -6772,7 +6772,7 @@ numbers in the record.
   for the debated Athabasca forms); Discussion, H1 "remains open for margins digitised on the stack", H2 "cannot be
   taken further in these type areas"; Conclusions, "H1 awaits digitised margins, and H2 a window that holds both".
   Blocks 12 and 15 (c), (f), (h) are re-anchored to the new text and carry only the H1 change. The final deck's
-  Limits card and What Next say the same (`final.py`); deck rebuilt (backed up first, `NEXT STUFF\.backup_20261103\`),
+  Limits card and What Next say the same (`final.py`); deck rebuilt (backed up first, `Deliverables\.backup_20261103\`),
   slides 34 and 36 read. The card's review counts (549; 94 channels, 26 rims, no margins) stay level with the paper's
   Limits until block 15 (e) brings both to the day's tally at the freeze. `verify_interim.py`: all 845 numbers of the
   paper and 235 of `final.py` in the record.
@@ -6814,7 +6814,7 @@ then all 42 maps' layers (0 broken sources).
   the scale bar sits beside D, in memory, and cuts every all-white band wider than 60 px to 60 px: 15 goes from
   2,029 to 1,678 px wide (the maps 21 % larger on the page), 08 from 921 to 818 px tall. Copied into the paper
   (`build_final_paper.py --no-compile`; the laptop has no `aastex701.cls`, CI compiles) and the deck's navy copies
-  redrawn; the deck rebuilt (backed up first to `NEXT STUFF\.backup_20261103\`), rendered, slides 4 and 9 read.
+  redrawn; the deck rebuilt (backed up first to `Deliverables\.backup_20261103\`), rendered, slides 4 and 9 read.
 - **§6 was two facts behind:** its heading said 43 feature classes (42 since D14 removed two and §69.63 added one)
   and its digitising-class row "0, 94, 381" (86, 202, 381). `audit_record.py` caught the first; both corrected in
   place; it now passes.
@@ -6892,7 +6892,7 @@ author's margin check and off-Tharsis labels; the interim talk's tally note is b
 ### 69.73 The interim report made ready to submit — 2026-11-03, laptop **[V]**
 
 The author will submit the report (D16, Thursday 5 November) and asked that it be in submittable form.
-`NEXT STUFF\Mars Mosaic - Interim Report.pdf` (and `.docx`) were checked as a submission:
+`Deliverables\Mars Mosaic - Interim Report.pdf` (and `.docx`) were checked as a submission:
 
 - **Current:** the PDF had been rendered from the `.docx` a minute after its last build, which followed the last change
   to `interim.py` (§69.64). Its 21 pages carry the template's seven headings in order, then Next Steps.
@@ -6906,7 +6906,7 @@ The author will submit the report (D16, Thursday 5 November) and asked that it b
   `render_doc.ps1` now passes it, with heading bookmarks and accessibility tags; the report has no Word heading
   styles, so no outline results. (2) **No page numbers** on 21 pages: `build_interim_report_live.py` puts a PAGE
   field, centred, 10 pt, in the footer. The `.docx` rebuilt (backed up first to
-  `NEXT STUFF\.backup_20261103\…before_pagenums.docx`): its 157 paragraphs, every table cell and the 22 images
+  `Deliverables\.backup_20261103\…before_pagenums.docx`): its 157 paragraphs, every table cell and the 22 images
   (byte for byte) identical to the earlier build; rendered, 21 pages, and every word of every page at the same
   position as in the earlier PDF (`…before_props.pdf`) once the footer is set aside; the footers read 1–21.
 - **The name:** the report, like the prospectus and Presentation 1, says "Logan Edwards" (`content.py`, unchanged
@@ -6921,11 +6921,11 @@ The author will submit the report (D16, Thursday 5 November) and asked that it b
 The author, on the held-back final deck: "everything should be in the repo, there's no point in holding back on
 anything if it's going in the repo anyway." D26 (§69.42) is closed that way.
 
-- **`github_sync.py`:** the built `.pptx`, `.docx` and `.pdf` under `NEXT STUFF\` are mirrored like every other file.
+- **`github_sync.py`:** the built `.pptx`, `.docx` and `.pdf` under `Deliverables\` are mirrored like every other file.
   The old opt-in `--deliverables` is accepted and does nothing; `--hold-deliverables` leaves a new or changed one out
   for a single run. Dry runs: without the flag, would copy 2 (the script and the final deck), held back 0; with it,
   would copy 1, held back 1.
-- **Pushed:** the final deck (`NEXT STUFF\Final\Mars Global Mosaic - Final Presentation.pptx`, 26.3 MB, built
+- **Pushed:** the final deck (`Deliverables\Final\Mars Global Mosaic - Final Presentation.pptx`, 26.3 MB, built
   11-03 11:30). Each rebuilt deliverable adds 15–30 MB to the history; no history rewrite was asked for.
 - **Not in git, but in the repo's releases:** the ten DL weight files over 95 MB (`.pth`, `.dlpk`, 137–165 MB;
   GitHub refuses files over 100 MB) are in `dl-models.zip` (1.63 GB) of release `data-2026-10-29`; all five models
@@ -8576,3 +8576,13 @@ At the author's "ensure the repo itself is also properly wrapped up and presenta
 - **"The published map"**, meaning the four-class SVM map of 16 Oct, read to a newcomer as the lead map. In the README's layout table, `docs/figures.md` and `docs/rasters.md` it is now "the four-class map". `docs/scripts.md` keeps the scripts' own docstrings, written at the time.
 - Left as they are: the folder names `NEXT STUFF` and `OLD`, which mirror the drive and every KB path (the README explains both); the `agent_review` logs, the automated readings each marked as such (§69.105).
 - **The README as GitHub renders it** (checked in a browser, 11-18): all 52 images load, the 11 tables and the collapsed chart block render, no Markdown shows raw, and all 33 in-page links reach their headings. One fault: the pipeline diagram's last footnote line (§69.155) ran to ~1,143 px on the 1,100 px canvas and was cut off ("none drawn from scr…"). The footnote is now four lines, the longest ending at ~825 px, and the canvas 540 px tall instead of 520. The paper's copy is unchanged: `make_fig_pipeline.py` drops the footnote and cuts the page at `data-paper-height` 452.
+
+### 69.159 The deliverable folders renamed, and a guide page in each main folder — 2026-11-18, desktop **[V]**
+
+At the author's "improve/update the layout/formatting of files and folders" (11-18), asked whether to rename as well: "Also rename folders". The folder names recorded in §69.158 as left alone are now changed.
+
+- **Renamed on the drive and in the repository:** `Mars Remote Sensing Project\NEXT STUFF\` is now **`Deliverables\`** (the interim report and deck, and `Final\` with the paper and the final deck), and `OLD\` is now **`Earlier deliverables\`** (the prospectus and Presentation 1). `OLD` renamed in place; `NEXT STUFF` was held open at its top level by another process, so its 102 files (783,824,609 bytes, counted before and after) were moved into a new `Deliverables\` and the empty folder removed. Git records all 62 mirrored files as renames.
+- **Every path moved with them (96 references):** 12 scripts (`build_final_paper.py`, `build_final_deck.py`, `make_appendix_c.py`, `github_sync.py` and its deliverables rule, `github_environment.py`, `final.py`, `verify_interim.py`, `verify2.py`, `audit_consistency.py`, `audit_images.py`, `audit_structure.py`, `build_interim_live.py`), the paper's CI workflow, `CITATION.cff`'s link to the PDF, the README, `docs/figures.md`, `docs/backup.md`, `tools/check_repo.py`, this record, `NEXT-STEPS.md`, `HANDOFF-DESKTOP.md` and `INTERIM-PLAN.md`. Earlier sections of this record now give the new names; the run logs in `build\logs\` keep the old ones, as written at the time. Checked: every edited script compiles; the paths the audits read all exist; `build_final_paper.py --no-compile` gathers its 50 figures into the new folder; `verify_interim.py` finds all 2,506 numbers of the paper and all 459 of `final.py` in this record.
+- **Guide pages added**, each a short README that GitHub shows under the folder's listing: `Mars Remote Sensing Project\`, `Deliverables\` (each deliverable with its file and date, and the script that builds it), `Earlier deliverables\`, `build\` (where the script index is, the two Pythons), and `Mars Project\` (each folder and root file of the ArcGIS project). `THERMAL NIGHT1.ecs` is a byte-identical copy of `THERMAL NIGHT.ecs`, so its guide says so. `tools/check_repo.py` now checks the links in all five.
+- **The README's folder map** lists the deliverables first, then the record, the working notes and `build\`.
+- Gathering the paper's figures re-encoded the three crops again (§69.155); the committed bytes were restored, so the rename carries no image change.

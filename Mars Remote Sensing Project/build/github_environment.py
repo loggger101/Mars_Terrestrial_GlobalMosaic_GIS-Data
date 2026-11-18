@@ -23,7 +23,7 @@ REPO = Path(sys.argv[sys.argv.index("--repo") + 1] if "--repo" in sys.argv else
 SYSTEM_PKGS = ["numpy", "scipy", "matplotlib", "Pillow", "lxml", "python-pptx", "python-docx", "PyMuPDF"]
 ARCGIS_PKGS = ["numpy", "scipy", "matplotlib", "Pillow", "GDAL", "scikit-learn", "shapely", "arcgis", "torch", "torchvision", "fastai"]
 ROLES = {"DESKTOP-PJS73RO": "desktop"}  # host name -> section heading; any other machine is the laptop
-CLASS = "aastex701"                     # the paper's \documentclass (NEXT STUFF\Final\paper\mars_global_mosaic.tex)
+CLASS = "aastex701"                     # the paper's \documentclass (Deliverables\Final\paper\mars_global_mosaic.tex)
 
 # Run inside the ArcGIS Python: its own versions, as JSON on stdout
 ARCGIS_PROBE = r"""

@@ -39,8 +39,12 @@ ROOT = Path(__file__).resolve().parents[1]
 BUILD = ROOT / "Mars Remote Sensing Project" / "build"
 # The documents whose every number must be in the record (verify_interim.py takes each as its argument).
 DOCUMENTS = [BUILD / "interim.py", BUILD / "final.py",
-             ROOT / "Mars Remote Sensing Project" / "NEXT STUFF" / "Final" / "paper" / "mars_global_mosaic.tex"]
-PAGES = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md")), ROOT / "exports" / "README.md"]
+             ROOT / "Mars Remote Sensing Project" / "Deliverables" / "Final" / "paper" / "mars_global_mosaic.tex"]
+PAGES = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md")), ROOT / "exports" / "README.md",
+         # the folder guides (KB §69.159)
+         *(ROOT / f / "README.md" for f in ("Mars Remote Sensing Project", "Mars Remote Sensing Project/Deliverables",
+                                          "Mars Remote Sensing Project/Earlier deliverables",
+                                          "Mars Remote Sensing Project/build", "Mars Project"))]
 LINK = re.compile(r"!?\[[^\]]*\]\(<?([^)>\s]+)>?(?:\s+\"[^\"]*\")?\)")
 HTML = re.compile(r"""\b(?:src|href)=["']([^"']+)["']""")
 IMAGES = {".png", ".jpg", ".jpeg", ".gif", ".svg", ".pdf"}

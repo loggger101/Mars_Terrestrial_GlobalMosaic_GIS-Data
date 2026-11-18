@@ -12,7 +12,7 @@ the data and the grid, the thermal pair, the landforms, the classification, the 
   <ArcGIS Pro Python> make_final_figs.py           the layouts, to final_img\\
   py -3.13 make_fig_final.py                       the charts the interim never drew, to final_img\\
   <ArcGIS Pro Python> make_final_dark.py           their navy-ground copies, to final_img\\dark\\
-  py -3.13 build_final_deck.py "..\\NEXT STUFF\\Final\\Mars Global Mosaic - Final Presentation.pptx"
+  py -3.13 build_final_deck.py "..\\Deliverables\\Final\\Mars Global Mosaic - Final Presentation.pptx"
 
 The figure placement, the layout tightening and the legend handling are the interim builder's, copied below by a
 script so that build_interim_live.py stays untouched.

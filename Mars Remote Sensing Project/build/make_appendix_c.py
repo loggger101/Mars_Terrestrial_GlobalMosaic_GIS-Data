@@ -14,7 +14,7 @@ tab:perclass and tab:perblock as LaTeX, and the same as a Markdown table for the
 import os, re, sys, json
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
-TEX = os.path.join(HERE, "..", "NEXT STUFF", "Final", "paper", "mars_global_mosaic.tex")
+TEX = os.path.join(HERE, "..", "Deliverables", "Final", "paper", "mars_global_mosaic.tex")
 RUNS = [("unet_v2", "second set"), ("base", "third set"), ("rep", "trained again"), ("noth", "no thermal"),
         ("cut", "cut only"), ("add", "added only")]
 CLASSES = ["Crater", "steep/windy hills", "lava tube", "Normal Ground", "volcanic edifice", "apron", "fluvial channel"]

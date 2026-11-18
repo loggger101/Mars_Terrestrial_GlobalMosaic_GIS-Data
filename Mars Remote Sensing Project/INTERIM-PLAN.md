@@ -21,8 +21,8 @@ deck and the report are builds, never hand-edited:
 ```
 <ArcGIS Pro Python> make_interim_figs.py          (desktop: D:\ArcGISPro\bin\Python\envs\arcgispro-py3\python.exe)
 python make_interim_dark.py                       (the deck's navy copies of the charts and layouts)
-python build_interim_live.py "..\NEXT STUFF\Mars Global Mosaic - Interim Presentation.pptx"
-python build_interim_report_live.py "..\NEXT STUFF\Mars Mosaic - Interim Report.docx"
+python build_interim_live.py "..\Deliverables\Mars Global Mosaic - Interim Presentation.pptx"
+python build_interim_report_live.py "..\Deliverables\Mars Mosaic - Interim Report.docx"
 python verify_interim.py
 ```
 
@@ -57,7 +57,7 @@ python verify_interim.py
 
 ## 1. What exists
 
-Everything is in `<drive>\Mars Remote Sensing Project\NEXT STUFF\`:
+Everything is in `<drive>\Mars Remote Sensing Project\Deliverables\`:
 
 | file | built by |
 |---|---|
@@ -65,7 +65,7 @@ Everything is in `<drive>\Mars Remote Sensing Project\NEXT STUFF\`:
 | `Mars Mosaic - Interim Report.docx` (21 pages) | `build_interim_report_live.py` + `interim.py` |
 | `2 Interim Presentation Template.pptx` | the course |
 
-Earlier versions are kept on the drive in `NEXT STUFF\.backup_*` (not mirrored to GitHub).
+Earlier versions are kept on the drive in `Deliverables\.backup_*` (not mirrored to GitHub).
 
 ## 2. What the template asks for
 
@@ -145,7 +145,7 @@ go to the final, not here; slack goes to the final's data work.
 | before 10 Nov | done: any last change; rebuild both documents; render and read every changed slide and page; `verify_interim.py`; rehearsal |
 | 3 Nov | the Viking wording corrected ("Viking colour"), both rebuilt, every changed slide and page read, the report rendered to PDF (KB §69.64) |
 | 3 Nov, later | the report made ready to submit: page numbers in the footer; the PDF carries its title and author; all 21 pages read as rendered, every word in place against the earlier PDF (KB §69.73) |
-| **5 Nov** | **the report went in** (D16, the author, KB §69.79): `NEXT STUFF\Mars Mosaic - Interim Report.pdf` or the .docx |
+| **5 Nov** | **the report went in** (D16, the author, KB §69.79): `Deliverables\Mars Mosaic - Interim Report.pdf` or the .docx |
 | **10 Nov** | **the presentation was given** (the author, 11-11, KB §69.107) |
 
 ## 7. Wording traps, all hit before (KB §14.5, §12)

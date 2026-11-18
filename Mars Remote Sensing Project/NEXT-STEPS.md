@@ -279,7 +279,7 @@ are in them as the paper's figures name. **Final report outline** (as planned 10
 the ±60° decision · 3 co-registration and the frames trap · 4 the thermal pair: what it can and cannot do ·
 5 craters · 6 channels · 7 lava flows · 8 classification and accuracy · 9 limits · 10 what next. Each section
 closes on a measured number and a sheet. **The final builders exist since 2026-10-22 (KB §69):** the AASTeX paper
-`NEXT STUFF\Final\paper\mars_global_mosaic.tex` (`build_final_paper.py` copies its figures and compiles it with
+`Deliverables\Final\paper\mars_global_mosaic.tex` (`build_final_paper.py` copies its figures and compiles it with
 MiKTeX) and the deck from `final.py` (`build_final_deck.py`), figures from `make_final_figs.py` (ArcGIS Python) and
 `make_fig_final.py`. After the review and the freeze: bring the numbers in `final.py` and the `.tex` to the record,
 re-export, rebuild both, read every page and slide, run `verify_interim.py final.py` and `verify_interim.py` on
@@ -469,7 +469,7 @@ four-class maps and reports the seven-class scheme as a proposal. The author mak
 
 ## 12. Strengthening the final paper (brainstormed 2026-10-27, laptop, while `run_v2.ps1` runs)
 
-Read against the paper as built (`NEXT STUFF\Final\paper\mars_global_mosaic.tex`, KB §69) and this plan; nothing
+Read against the paper as built (`Deliverables\Final\paper\mars_global_mosaic.tex`, KB §69) and this plan; nothing
 was measured (KB §69.17). Each item says what it adds, where it runs and what it waits on. **Priority:** A, before
 the 22 Nov freeze if at all possible; B, if time allows; C, only if cheap. Every new test writes its prediction and
 verdict rule into its script before it runs (§4). Drive items wait for "queue done" in
@@ -483,7 +483,7 @@ brainstorm was dropped. Done 11-01 on the laptop and removed from the table (KB 
 The abstract, the limits on the labels and the candidates, the channel reference and the two citations were brought
 current on 2026-10-27 (KB §69.18). **Applied early, 2026-11-02 (KB §69.58):** the blocks no answer can change,
 `v2_drafts.tex` 8 (W11), 9 (W3), 10 (A1, A7), 11 (A3 (b), A8) and 14 (W4's three figures), and "Viking colour" (W5)
-in the paper and the final deck. Left for the freeze, each drafted in `NEXT STUFF\Final\paper\v2_drafts.tex`:
+in the paper and the final deck. Left for the freeze, each drafted in `Deliverables\Final\paper\v2_drafts.tex`:
 
 | where | today | true since |
 |---|---|---|

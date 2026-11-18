@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 r"""Builds the final paper (AASTeX 7, aastex701.cls): copies its figures in, then compiles the PDF.
 
-The prose is hand-written LaTeX in NEXT STUFF\Final\paper\mars_global_mosaic.tex, every number with its KB § in a
+The prose is hand-written LaTeX in Deliverables\Final\paper\mars_global_mosaic.tex, every number with its KB § in a
 comment beside it; this script only gathers the figures and runs the compiler, so a figure refreshed by
 make_final_figs.py, make_fig_final.py or an interim chart script reaches the paper on the next build.
 
@@ -15,7 +15,7 @@ reference (NEXT-STEPS §13.1 P6).
 import os, shutil, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PAPER = os.path.join(os.path.dirname(HERE), "NEXT STUFF", "Final", "paper")
+PAPER = os.path.join(os.path.dirname(HERE), "Deliverables", "Final", "paper")
 FIGS = os.path.join(PAPER, "figures")
 JOB = "mars_global_mosaic"
 TEX_BIN = os.path.join(os.environ.get("LOCALAPPDATA", ""), "Programs", "MiKTeX", "miktex", "bin", "x64")

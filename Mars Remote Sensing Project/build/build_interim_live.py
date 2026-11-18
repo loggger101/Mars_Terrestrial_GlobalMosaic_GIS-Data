@@ -8,7 +8,7 @@ commands:
   "C:\\Program Files\\ArcGIS\\Pro\\bin\\Python\\envs\\arcgispro-py3\\python.exe" make_interim_figs.py
   python build_interim_live.py <out.pptx>
 
-It covers every heading of the course template ('NEXT STUFF\\2 Interim Presentation Template.pptx'): title,
+It covers every heading of the course template ('Deliverables\\2 Interim Presentation Template.pptx'): title,
 investigators, goals; relevant spectral bands; tasks and percent complete; preliminary results; issues and
 hurdles. Until 2026-10-27 it was drawn in le_theme.py, the Presentation 1 design (git holds that version);
 the author then asked for the talk on 10 November to be redesigned, the words and numbers unchanged.

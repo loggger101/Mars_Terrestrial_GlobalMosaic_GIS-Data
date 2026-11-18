@@ -8,7 +8,7 @@ years, small integers 0-20) are ignored. Exits 1 and lists any number the record
 
     python verify_interim.py            (either Python)
     python verify_interim.py final.py   the final's text (KB §69), the same way
-    python verify_interim.py "..\NEXT STUFF\Final\paper\mars_global_mosaic.tex"   the paper's prose (KB §69.3)
+    python verify_interim.py "..\Deliverables\Final\paper\mars_global_mosaic.tex"   the paper's prose (KB §69.3)
 """
 import os, re, sys, ast
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
