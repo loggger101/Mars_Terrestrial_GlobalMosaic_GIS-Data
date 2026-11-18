@@ -8538,3 +8538,13 @@ At the author's "make sure any images/scripts/layouts included in the final are 
 - **Layouts:** every layout the paper and deck use was exported again from the `.aprx` by `make_final_figs.py` and compared with the copy in use. All were identical but **layout 16**: its copy of 10-22 predated §69.9's plain layer names and showed "X5 detections, RetinaNet (1,838 boxes; KB §66.2)" in its legend, in the paper's deep-learning figure and on deck slide 32; the fresh export reads "RetinaNet detections (1,838 boxes)". The other exports were put back byte for byte.
 - **Deck:** `make_final_dark.py` gained `make_fig_material.py`, whose two charts (slides 14, 15, added 11-13, §69.143) had no navy copy and showed white. The navy `material_thermal_gain` reads well and is used; the navy `maps_on_units` turns its cell numbers light, so they vanish on pale cells, and it is kept white (`KEEP_WHITE`), beside slide 40's `map_agreement_v3` (§69.127). Deck rebuilt: 53 slides, `verify_interim.py final.py` all 459 numbers in this record; image by image against the 11-16 build, only slide 14's chart and slide 32's legend changed in pixels; both slides rendered by PowerPoint and read.
 - **Paper rebuilt** with the new layout 16: 51 pages, every number in this record; page 29 read.
+
+### 69.155 The pipeline diagram brought to 11-17: a thermal-bands result box, the digitising classes closed — 2026-11-17, desktop **[V]**
+
+At the author's "update this" (11-17) on `docs/pipeline.svg` (the clone only, drawn by hand; README's first figure and the paper's Figure 1 through `make_fig_pipeline.py`, §69.38).
+
+- **Digitising:** the dashed "Hand digitising, 3,791 of 9,287 reviewed" box, drawn as open work, becomes a solid "Digitising classes" box: 202 channels, 381 rims, 86 traced lava margins, 3,791 of 9,287 reviewed (§69.152).
+- **New result box** "Thermal bands mapped": without the two THEMIS bands 14.9 % of the four-class map changes, against 1.4 points held out (§69.148), fed from the SVM and U-Net box. The result column was respaced; the scores in the other boxes were checked against this record and are unchanged.
+- **README footnote:** one line more (what the thermal box and the digitising box count); the SVG grows to 520 px, the paper crop to 452 px.
+- **Paper:** Figure 1's caption names the digitising classes and the 14.9 % (Section 4). Rendered and read.
+- `make_fig_pipeline.py` fails under the Bash tool (headless Edge writes no PDF there) and works from PowerShell.

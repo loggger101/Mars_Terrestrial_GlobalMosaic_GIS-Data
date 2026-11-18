@@ -162,14 +162,17 @@ day infrared, (D) the HRSC/MOLA elevation model ($-4{,}495$ to $1{,}945$~m) over
 \includegraphics[width=\textwidth]{figures/pipeline.pdf}
 \caption{The processing chain. Four mosaics in three frames go onto one \pmsixty\ grid; terrain, the seven-band stack
 and the diurnal-contrast index are built on it, and closed depressions and channels are taken from the elevation model
-as candidates for review by hand, of which 3,791 of 9,287 were reviewed. A support vector machine and a U-Net are
+as candidates for review by hand, of which 3,791 of 9,287 were reviewed; the accepted ones fill the digitising classes
+(202 channels, 381 crater rims), beside 86 lava margins traced on CTX, none drawn from scratch. A support vector machine and a U-Net are
 trained on three rounds of labels (round 1: 512 hand-drawn in four classes; round 2: 971 in seven classes, proposed
 from the geologic map, the IAU names and the valley map, then reviewed; round 3, the lead: 11,921 placed by rule from
 round 2 and the reference data, Section~\ref{sec:v3}) and scored on whole $15^{\circ}$ blocks, 14 of 39 held out.
 Scores are area-weighted accuracy and \kap\ on the held-out polygons: for seven classes the lead maps on the 237
-second-round polygons, for four classes on 183, so the two lines in a box are not directly comparable. \label{fig:pipeline}}
+second-round polygons, for four classes on 183, so the two lines in a box are not directly comparable. Run again
+without the two THEMIS bands, the four-class SVM changes class over 14.9\% of \pmsixty, against 1.4 points of
+held-out accuracy (Section~\ref{sec:results}). \label{fig:pipeline}}
 \end{figure*}
-%% KB §69.38 (the diagram, docs/pipeline.svg, rendered by build\make_fig_pipeline.py); scores §69.24, §69.25, §57, §66.8
+%% KB §69.38 (the diagram, docs/pipeline.svg, rendered by build\make_fig_pipeline.py); scores §69.24, §69.25, §57, §66.8; boxes updated §69.155 (§69.148, §69.152)
 
 %% ====================================================================================================
 \section{Methods} \label{sec:methods}
