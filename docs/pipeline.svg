@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" width="1100" height="520" data-paper-height="452" font-family="Arial, Helvetica, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 540" width="1100" height="540" data-paper-height="452" font-family="Arial, Helvetica, sans-serif" font-size="16">
   <title>Mars Global Mosaic: from four source mosaics to seven-class and four-class landform maps by support vector machine and U-Net, the thermal bands mapped, and the digitising classes filled from reviewed candidates</title>
   <defs>
     <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -19,7 +19,7 @@
       .cap{fill:#57606a;font-size:13px;font-weight:bold;letter-spacing:.04em}
     </style>
   </defs>
-  <rect x="0" y="0" width="1100" height="520" rx="10" fill="#ffffff"/>
+  <rect x="0" y="0" width="1100" height="540" rx="10" fill="#ffffff"/>
 
   <text class="cap" x="20" y="24">SOURCES · 3 FRAMES</text>
   <text class="cap" x="230" y="24">ONE GRID</text>
@@ -109,6 +109,7 @@
   <line x1="620" y1="399" x2="868" y2="399"/>
 
   <text x="20" y="470" class="note">Scores: area-weighted accuracy and κ on held-out polygons, 237 for seven classes and 183 for four, so the two lines in a box</text>
-  <text x="20" y="488" class="note">are not directly comparable; the seven-class lines are the lead maps, on the third label set. Elevation stays out of the stack: in raw metres it would swamp the 8-bit bands.</text>
-  <text x="20" y="506" class="note">Thermal bands: the four-class SVM run again without the two THEMIS bands over all of ±60°. Digitising: accepted candidates; the lava margins were traced on CTX; none was drawn from scratch.</text>
+  <text x="20" y="488" class="note">are not directly comparable; the seven-class lines are the lead maps, on the third label set. Elevation stays out of the stack:</text>
+  <text x="20" y="506" class="note">in raw metres it would swamp the 8-bit bands. Thermal bands: the four-class SVM run again without the two THEMIS bands over all of ±60°.</text>
+  <text x="20" y="524" class="note">Digitising: accepted candidates; the lava margins were traced on CTX; none was drawn from scratch.</text>
 </svg>
