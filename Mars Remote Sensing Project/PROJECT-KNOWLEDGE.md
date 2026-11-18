@@ -8566,3 +8566,12 @@ At the author's "continue to wrap up what you can" (11-18). Only what does not w
 - **`CITATION.cff`** gains `preferred-citation`: the paper as a report (its title, the author, Florida Institute of Technology, 2026, "Final report, OCN 4704 Remote Sensing, Fall 2026", the URL of the committed PDF). No ORCID (D27). `version`, `date-released` and the month wait for the final release.
 - **`restore.py`** took a release's assets by name and skipped any it did not know, so a final release holding the five rasters of 17 Nov (§69.148, §69.149) would have been passed over and the rasters never restored. A rule now unzips `thermal-change-rasters.zip` into `Mars Project\Global60\`; the paper and deck stay skipped, the tree holds them. A dry run still finds every earlier release (88.5 GB).
 - **`NEXT-STEPS.md`** row 3 is written out step by step: the checks, the three assets and their hashes, `CITATION.cff`, the tag, the release and its notes, the plan's closing header. D14's smoke classes, which P12 lists, were settled on 11-03 (§69.64).
+
+### 69.158 The repository read as an advisor would: three stale phrases fixed — 2026-11-18, desktop **[V]**
+
+At the author's "ensure the repo itself is also properly wrapped up and presentable to an advisor" (11-18). Read: the README top to bottom, the four `docs/` pages, the layer catalogue, the GitHub description and topics, issues, pull requests and branches (none open, `main` only), CI (both workflows green).
+
+- **README "Where to start"** said "all 26 sheets"; there are 32 (§69.150).
+- **README "Using the data"** called the reviewed-label seven-class maps (04b, 17b) the ones "the project leads with (D28)"; they led from 29 Oct until the third label set's maps replaced them (D36, §69.82). Now said so.
+- **"The published map"**, meaning the four-class SVM map of 16 Oct, read to a newcomer as the lead map. In the README's layout table, `docs/figures.md` and `docs/rasters.md` it is now "the four-class map". `docs/scripts.md` keeps the scripts' own docstrings, written at the time.
+- Left as they are: the folder names `NEXT STUFF` and `OLD`, which mirror the drive and every KB path (the README explains both); the `agent_review` logs, the automated readings each marked as such (§69.105).
